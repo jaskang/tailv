@@ -1,49 +1,43 @@
 {
-  "name": "ele-next",
+  "name": "elenext",
   "version": "0.1.0",
   "private": true,
+  "author": "jaskang",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/elenext.esm.production.js",
+  "jsnext:main": "dist/elenext.esm.production.js",
+  "homepage": "https://github.com/kcmbiu/elenext",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcmbiu/elenext.git"
+  },
+  "keywords": [
+    "vue3",
+    "vue-next",
+    "element",
+    "elementUI"
+  ],
+  "bugs": {
+    "url": "https://github.com/kcmbiu/elenext/issues"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "tsrv build"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
-    "vue": "^3.0.0-beta.1",
-    "vue-class-component": "^7.2.3",
-    "vue-property-decorator": "^8.4.1",
-    "vue-router": "^4.0.0-alpha.5",
-    "vuex": "^4.0.0-alpha.1"
+    "vue": "^3.0.0-beta.12"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-eslint": "~4.3.0",
-    "@vue/cli-plugin-router": "~4.3.0",
-    "@vue/cli-plugin-typescript": "~4.3.0",
-    "@vue/cli-plugin-vuex": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
-    "@vue/compiler-sfc": "^3.0.0-beta.1",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^7.0.0-alpha.0",
+    "eslint-plugin-vue": "^6.2.2",
     "less": "^3.0.4",
-    "less-loader": "^5.0.0",
-    "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "typescript": "~3.8.3",
-    "vue-cli-plugin-vue-next": "~0.1.2"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "tsrv": "^0.2.0",
+    "typescript": "^3.8.3"
   }
 }

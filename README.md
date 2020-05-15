@@ -1,24 +1,34 @@
-# ele-next
+<h1 align="center">Welcome to elenext 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/kcmbiu/elenext#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+</p>
 
-## Project setup
-```
-npm install
-```
+> vue3 element-ui
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 🏠 [Homepage](https://github.com/kcmbiu/elenext)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### ✨ [Demo](https://github.com/kcmbiu/elenext)
 
-### Lints and fixes files
-```
-npm run lint
+## Install
+
+```sh
+yarn add elenext
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Author
+
+👤 **jaskang**
+
+- Website: https://github.com/kcmbiu
+- Github: [@jaskang](https://github.com/jaskang)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/kcmbiu/elenext/issues).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
