@@ -20,14 +20,12 @@ jobs:
           key: nodeModules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             nodeModules-
-
       # - name: Install dependencies
       #   run: yarn install --frozen-lockfile
       #   env:
       #     CI: true
-
-      - name: Pages
-        run: |
-          cp -r ./webstie/dist ./docs
-        env:
-          CI: true
+      # - name: Pages
+      #   run: |
+      #     cp -r ./webstie/dist ./docs
+      #   env:
+      #     CI: true
