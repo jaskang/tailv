@@ -28,6 +28,6 @@ jobs:
 
       - name: Pages
         run: |
-          cp ./webstie/dist ./docs
+          cp -r ./webstie/dist ./docs
         env:
           CI: true
