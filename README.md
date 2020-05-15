@@ -1,16 +1,21 @@
 <h1 align="center">Welcome to elenext 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/kcmbiu/elenext#readme" target="_blank">
+  <a href="https://www.npmjs.com/package/elenext" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/elenext.svg">
+  </a>
+   <a href="https://www.npmjs.com/package/elenext">
+    <img alt="downloads" src="https://img.shields.io/npm/dm/elenext.svg?color=blue" target="_blank" />
+  </a>
+  <a href="https://elenext.now.sh" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
 </p>
 
 > vue3 element-ui
 
-### 🏠 [Homepage](https://github.com/kcmbiu/elenext)
+### 🏠 [Homepage](https://elenext.now.sh/)
 
-### ✨ [Demo](https://github.com/kcmbiu/elenext)
+### ✨ [Docs & Demo](https://elenext.now.sh/)
 
 ## Install
 
