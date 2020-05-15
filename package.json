@@ -24,6 +24,12 @@
   "scripts": {
     "build": "tsrv build"
   },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "vue": "^3.0.0-beta.12"
   },
