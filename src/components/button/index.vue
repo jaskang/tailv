@@ -1,5 +1,5 @@
 <template>
-  <div>ElButton</div>
+  <div>ElButton test</div>
 </template>
 
 <script>

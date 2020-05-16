@@ -6,7 +6,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import { ElButton } from 'elenext'
+import { ElButton } from '../src/index'
 export default {
   name: 'App',
   components: {
