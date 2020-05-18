@@ -528,18 +528,14 @@
 
 /// fontSize||Font|1
 @--button-small-font-size: 12px;
-@--button-small-border-radius: # {
-  @--border-radius-base - 1;
-}
+@--button-small-border-radius: @--border-radius-base - 1;
 /// padding||Spacing|3
 @--button-small-padding-vertical: 9px;
 /// padding||Spacing|3
 @--button-small-padding-horizontal: 15px;
 /// fontSize||Font|1
 @--button-mini-font-size: 12px;
-@--button-mini-border-radius: # {
-  @--border-radius-base - 1;
-}
+@--button-mini-border-radius: @--border-radius-base - 1;
 /// padding||Spacing|3
 @--button-mini-padding-vertical: 7px;
 /// padding||Spacing|3
@@ -971,51 +967,3 @@
 @--md: 992px;
 @--lg: 1200px;
 @--xl: 1920px;
-
-@--breakpoints: (
-  'xs': (
-    max-width: @--sm - 1
-  ),
-  'sm': (
-    min-width: @--sm
-  ),
-  'md': (
-    min-width: @--md
-  ),
-  'lg': (
-    min-width: @--lg
-  ),
-  'xl': (
-    min-width: @--xl
-  )
-);
-
-@--breakpoints-spec: (
-  'xs-only': (
-    max-width: @--sm - 1
-  ),
-  'sm-and-up': (
-    min-width: @--sm
-  ),
-  'sm-only': '(min-width: #{@--sm}) and (max-width: #{@--md - 1})',
-  'sm-and-down': (
-    max-width: @--md - 1
-  ),
-  'md-and-up': (
-    min-width: @--md
-  ),
-  'md-only': '(min-width: #{@--md}) and (max-width: #{@--lg - 1})',
-  'md-and-down': (
-    max-width: @--lg - 1
-  ),
-  'lg-and-up': (
-    min-width: @--lg
-  ),
-  'lg-only': '(min-width: #{@--lg}) and (max-width: #{@--xl - 1})',
-  'lg-and-down': (
-    max-width: @--xl - 1
-  ),
-  'xl-only': (
-    min-width: @--xl
-  )
-);

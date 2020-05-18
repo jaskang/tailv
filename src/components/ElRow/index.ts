@@ -1,7 +1,6 @@
 import { defineComponent, computed, h, provide, InjectionKey } from 'vue'
 import './index.less'
-
-export const ElRowSymbol: InjectionKey<number> = Symbol()
+import { ElRowSymbol } from '@/provides'
 
 export default defineComponent({
   name: 'ElRow',
@@ -31,18 +30,19 @@ export default defineComponent({
       }
       return ret
     })
-    return h(
-      props.tag,
-      {
-        class: [
-          'el-row',
-          props.justify !== 'start' ? `is-justify-${props.justify}` : '',
-          props.align !== 'top' ? `is-align-${props.align}` : '',
-          props.type === 'flex' ? 'el-row--flex' : ''
-        ],
-        style: style
-      },
-      slots.default
-    )
+    return () =>
+      h(
+        props.tag,
+        {
+          class: [
+            'el-row',
+            props.justify !== 'start' ? `is-justify-${props.justify}` : '',
+            props.align !== 'top' ? `is-align-${props.align}` : '',
+            props.type === 'flex' ? 'el-row--flex' : ''
+          ],
+          style: style
+        },
+        slots.default?.()
+      )
   }
 })

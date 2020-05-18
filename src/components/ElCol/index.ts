@@ -1,6 +1,6 @@
 import { defineComponent, computed, inject, h } from 'vue'
-import { ElRowSymbol } from '../ElRow'
 import './index.less'
+import { ElRowSymbol } from '../../provides'
 
 export default defineComponent({
   name: 'ElCol',
@@ -59,13 +59,14 @@ export default defineComponent({
       return ret
     })
 
-    return h(
-      props.tag,
-      {
-        class: ['el-col', classList],
-        style
-      },
-      slots.default
-    )
+    return () =>
+      h(
+        props.tag,
+        {
+          class: ['el-col', classList],
+          style
+        },
+        slots.default
+      )
   }
 })
