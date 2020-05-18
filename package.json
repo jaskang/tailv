@@ -30,10 +30,10 @@
     "vue": "^3.0.0-beta.12"
   },
   "scripts": {
-    "dev": "vite",
-    "docs:build": "tsrv build && vite build",
     "start": "tsrv build -w",
-    "build": "tsrv build"
+    "build": "tsrv build",
+    "docs:dev": "vite",
+    "docs:build": "tsrv build && vite build"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.26.0",
