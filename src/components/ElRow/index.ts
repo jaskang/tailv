@@ -1,6 +1,6 @@
 import { defineComponent, computed, h, provide, InjectionKey } from 'vue'
-import './index.less'
 import { ElRowSymbol } from '@/provides'
+import './index.less'
 
 export default defineComponent({
   name: 'ElRow',
