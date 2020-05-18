@@ -4434,22 +4434,18 @@ function normalizeContainer(container) {
     return container;
 }
 
-//
-//
-//
-//
-//
-//
-
-var script = {
-  name: 'HelloWorld',
+var script = defineComponent({
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: {
+      type: String,
+      default: ""
+    }
   },
   data() {
-    return {}
+    return {};
   }
-};
+});
 
 const _hoisted_1 = { class: "hello" };
 
@@ -4461,6 +4457,10 @@ function render(_ctx, _cache) {
 
 script.render = render;
 
+var ElGlobalConfigSymbol = Symbol();
+function useGlobal() {
+  return inject(ElGlobalConfigSymbol, null);
+}
 var ElRowSymbol = Symbol();
 var ElFormSymbol = Symbol();
 var ElFormItemSymbol = Symbol();
@@ -4531,7 +4531,7 @@ var index = defineComponent({
 
       return h(props.tag, {
         class: ['el-row', props.justify !== 'start' ? "is-justify-" + props.justify : '', props.align !== 'top' ? "is-align-" + props.align : '', props.type === 'flex' ? 'el-row--flex' : ''],
-        style: style
+        style: style.value
       }, (_slots$default = slots.default) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots));
     };
   }
@@ -4576,20 +4576,17 @@ var index$1 = defineComponent({
     var classList = computed$1(function () {
       var ret = [];
       ['span', 'offset', 'pull', 'push'].forEach(function (prop) {
-        var _props = props;
-        var size = _props[prop];
+        var size = props[prop];
 
-        if (size === 0) {
-          ret.push(prop !== 'span' ? "el-col-" + prop + "-" + _props[prop] : "el-col-" + _props[prop]);
+        if (typeof size === 'number' && size >= 0) {
+          ret.push(prop !== 'span' ? "el-col-" + prop + "-" + props[prop] : "el-col-" + props[prop]);
         }
       });
       ['xs', 'sm', 'md', 'lg', 'xl'].forEach(function (size) {
-        var _props = props;
-
-        if (typeof _props[size] === 'number') {
-          ret.push("el-col-" + size + "-" + _props[size]);
-        } else if (typeof _props[size] === 'object') {
-          var sizeProps = _props[size];
+        if (typeof props[size] === 'number') {
+          ret.push("el-col-" + size + "-" + props[size]);
+        } else if (typeof props[size] === 'object') {
+          var sizeProps = props[size];
           Object.keys(sizeProps).forEach(function (prop) {
             ret.push(prop !== 'span' ? "el-col-" + size + "-" + prop + "-" + sizeProps[prop] : "el-col-" + size + "-" + sizeProps[prop]);
           });
@@ -4599,9 +4596,9 @@ var index$1 = defineComponent({
     });
     return function () {
       return h(props.tag, {
-        class: ['el-col', classList],
-        style: style
-      }, slots.default);
+        class: ['el-col', classList.value],
+        style: style.value
+      }, slots.default());
     };
   }
 });
@@ -4617,7 +4614,9 @@ var script$1 = defineComponent({
       type: String,
       default: 'default'
     },
-    size: String,
+    size: {
+      type: String
+    },
     icon: {
       type: String,
       default: ''
@@ -4637,8 +4636,9 @@ var script$1 = defineComponent({
     var emit = _ref.emit;
     var elForm = inject(ElFormSymbol, null);
     var elFormItem = inject(ElFormItemSymbol, null);
+    var elGlobalConfig = useGlobal();
     var buttonSize = computed$1(function () {
-      return props.size || (elFormItem === null || elFormItem === void 0 ? void 0 : elFormItem.elFormItemSize);
+      return props.size || (elFormItem === null || elFormItem === void 0 ? void 0 : elFormItem.elFormItemSize) || (elGlobalConfig === null || elGlobalConfig === void 0 ? void 0 : elGlobalConfig.size);
     });
     var buttonDisabled = computed$1(function () {
       return props.disabled || (elForm === null || elForm === void 0 ? void 0 : elForm.disabled);
@@ -4719,7 +4719,6 @@ script$1$1.__file = "src/components/ElButton/ElButtonGroup.vue";
 var script$2 = defineComponent({
   components: {
     ElRow: index,
-    ElCol: index$1,
     ElButtonGroup: script$1$1,
     ElButton: script$1
   }
@@ -5267,31 +5266,582 @@ function render$2(_ctx, _cache) {
 script$2.render = render$2;
 
 var script$3 = defineComponent({
-  name: "App",
   components: {
-    HelloWorld: script,
-    Button: script$2
+    ElRow: index,
+    ElCol: index$1
   }
 });
 
-var _imports_0 = "/assets/logo.413f44ac.png";
-
-const _hoisted_1$3 = /*#__PURE__*/createVNode("img", {
-  alt: "Vue logo",
-  src: _imports_0
-}, null, -1 /* HOISTED */);
+const _hoisted_1$3 = /*#__PURE__*/createVNode("h1", null, "Layout 布局", -1 /* HOISTED */);
+const _hoisted_2$2 = /*#__PURE__*/createVNode("h2", null, "基础布局", -1 /* HOISTED */);
+const _hoisted_3$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-dark" }, null, -1 /* HOISTED */);
+const _hoisted_4$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_5$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_6$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_7$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_8$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_9$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_10$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_11$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_12$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_13$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_14$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_15$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_16$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_17$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_18$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_19$1 = /*#__PURE__*/createVNode("h2", null, "分栏间隔", -1 /* HOISTED */);
+const _hoisted_20$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_21$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_22$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_23$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_24$1 = /*#__PURE__*/createVNode("h2", null, " 混合布局 ", -1 /* HOISTED */);
+const _hoisted_25$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_26$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_27$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_28$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_29$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_30$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_31$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_32$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_33$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_34$1 = /*#__PURE__*/createVNode("h2", null, "分栏偏移", -1 /* HOISTED */);
+const _hoisted_35$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_36$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_37$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_38$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_39$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_40$1 = /*#__PURE__*/createVNode("h2", null, "对齐方式", -1 /* HOISTED */);
+const _hoisted_41$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_42$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_43$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_44$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_45$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_46$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_47$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_48$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_49$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_50$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_51$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_52$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_53$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_54$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_55$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_56 = /*#__PURE__*/createVNode("h2", null, "响应式布局", -1 /* HOISTED */);
+const _hoisted_57 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_58 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
+const _hoisted_59 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
+const _hoisted_60 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
 
 function render$3(_ctx, _cache) {
-  const _component_HelloWorld = resolveComponent("HelloWorld");
-  const _component_Button = resolveComponent("Button");
+  const _component_el_col = resolveComponent("el-col");
+  const _component_el_row = resolveComponent("el-row");
 
   return (openBlock(), createBlock(Fragment, null, [
     _hoisted_1$3,
-    createVNode(_component_HelloWorld, { msg: "Hello Vue 3.0 + Element UI" }),
-    createVNode(_component_Button)
+    _hoisted_2$2,
+    createVNode(_component_el_row, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 24 }, {
+          default: withCtx(() => [
+            _hoisted_3$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 12 }, {
+          default: withCtx(() => [
+            _hoisted_4$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 12 }, {
+          default: withCtx(() => [
+            _hoisted_5$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 8 }, {
+          default: withCtx(() => [
+            _hoisted_6$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 8 }, {
+          default: withCtx(() => [
+            _hoisted_7$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 8 }, {
+          default: withCtx(() => [
+            _hoisted_8$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_9$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_10$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_11$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_12$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_13$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_14$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_15$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_16$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_17$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_18$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    _hoisted_19$1,
+    createVNode(_component_el_row, { gutter: 20 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_20$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_21$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_22$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_23$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    _hoisted_24$1,
+    createVNode(_component_el_row, { gutter: 20 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 16 }, {
+          default: withCtx(() => [
+            _hoisted_25$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 8 }, {
+          default: withCtx(() => [
+            _hoisted_26$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, { gutter: 20 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 8 }, {
+          default: withCtx(() => [
+            _hoisted_27$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 8 }, {
+          default: withCtx(() => [
+            _hoisted_28$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_29$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_30$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, { gutter: 20 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_31$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 16 }, {
+          default: withCtx(() => [
+            _hoisted_32$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 4 }, {
+          default: withCtx(() => [
+            _hoisted_33$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    _hoisted_34$1,
+    createVNode(_component_el_row, { gutter: 20 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_35$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, {
+          span: 6,
+          offset: 6
+        }, {
+          default: withCtx(() => [
+            _hoisted_36$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, { gutter: 20 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, {
+          span: 6,
+          offset: 6
+        }, {
+          default: withCtx(() => [
+            _hoisted_37$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, {
+          span: 6,
+          offset: 6
+        }, {
+          default: withCtx(() => [
+            _hoisted_38$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, { gutter: 20 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, {
+          span: 12,
+          offset: 6
+        }, {
+          default: withCtx(() => [
+            _hoisted_39$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    _hoisted_40$1,
+    createVNode(_component_el_row, {
+      type: "flex",
+      class: "row-bg"
+    }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_41$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_42$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_43$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, {
+      type: "flex",
+      class: "row-bg",
+      justify: "center"
+    }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_44$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_45$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_46$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, {
+      type: "flex",
+      class: "row-bg",
+      justify: "end"
+    }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_47$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_48$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_49$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, {
+      type: "flex",
+      class: "row-bg",
+      justify: "space-between"
+    }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_50$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_51$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_52$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_row, {
+      type: "flex",
+      class: "row-bg",
+      justify: "space-around"
+    }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_53$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_54$1
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, { span: 6 }, {
+          default: withCtx(() => [
+            _hoisted_55$1
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    _hoisted_56,
+    createVNode(_component_el_row, { gutter: 10 }, {
+      default: withCtx(() => [
+        createVNode(_component_el_col, {
+          xs: 8,
+          sm: 6,
+          md: 4,
+          lg: 3,
+          xl: 1
+        }, {
+          default: withCtx(() => [
+            _hoisted_57
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, {
+          xs: 4,
+          sm: 6,
+          md: 8,
+          lg: 9,
+          xl: 11
+        }, {
+          default: withCtx(() => [
+            _hoisted_58
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, {
+          xs: 4,
+          sm: 6,
+          md: 8,
+          lg: 9,
+          xl: 11
+        }, {
+          default: withCtx(() => [
+            _hoisted_59
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_col, {
+          xs: 8,
+          sm: 6,
+          md: 4,
+          lg: 3,
+          xl: 1
+        }, {
+          default: withCtx(() => [
+            _hoisted_60
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    })
   ], 64 /* STABLE_FRAGMENT */))
 }
 
 script$3.render = render$3;
 
-createApp(script$3).mount('#app');
+var script$4 = defineComponent({
+  name: "App",
+  components: {
+    HelloWorld: script,
+    Button: script$2,
+    Layout: script$3
+  }
+});
+
+var _imports_0 = "/assets/logo.413f44ac.png";
+
+const _hoisted_1$4 = /*#__PURE__*/createVNode("img", {
+  alt: "Vue logo",
+  src: _imports_0
+}, null, -1 /* HOISTED */);
+
+function render$4(_ctx, _cache) {
+  const _component_HelloWorld = resolveComponent("HelloWorld");
+  const _component_Button = resolveComponent("Button");
+  const _component_Layout = resolveComponent("Layout");
+
+  return (openBlock(), createBlock(Fragment, null, [
+    _hoisted_1$4,
+    createVNode(_component_HelloWorld, { msg: "Hello Vue 3.0 + Element UI" }),
+    createVNode(_component_Button),
+    createVNode(_component_Layout)
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+script$4.render = render$4;
+
+createApp(script$4).mount('#app');
