@@ -24,9 +24,7 @@
 </template>
 <script lang="ts">
 import './button.less'
-
 import { ElFormSymbol, ElFormItemSymbol } from '../../provides/index'
-
 import { inject, computed, defineComponent } from 'vue'
 
 export default defineComponent({
