@@ -1,5 +1,5 @@
 import ElRow from './components/ElRow'
 import ElCol from './components/ElCol'
 
-export { default as ElButton } from './components/button/index.vue'
+export { ElButton, ElButtonGroup } from './components/ElButton'
 export { ElRow, ElCol }
