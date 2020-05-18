@@ -31,7 +31,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "docs:build": "vite build",
+    "docs:build": "tsrv build && vite build",
     "start": "tsrv build -w",
     "build": "tsrv build"
   },
