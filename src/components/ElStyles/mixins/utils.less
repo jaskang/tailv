@@ -1,0 +1,31 @@
+.utils-user-select(@value) {
+  -moz-user-select: @value;
+  -webkit-user-select: @value;
+  -ms-user-select: @value;
+}
+
+.utils-clearfix() {
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+.utils-vertical-center {
+  &::after {
+    display: inline-block;
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.utils-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

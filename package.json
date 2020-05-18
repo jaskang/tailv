@@ -32,6 +32,7 @@
   "scripts": {
     "dev": "vite",
     "docs:build": "vite build",
+    "start": "tsrv build -w",
     "build": "tsrv build"
   },
   "devDependencies": {
@@ -45,7 +46,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.0.4",
     "prettier": "^1.19.1",
-    "tsrv": "^0.2.0",
+    "sass": "^1.26.5",
+    "tsrv": "^0.2.2",
     "typescript": "^3.8.3",
     "vite": "^0.15.3"
   }
