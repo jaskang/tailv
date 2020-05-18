@@ -40,7 +40,7 @@ export default defineComponent({
             props.align !== 'top' ? `is-align-${props.align}` : '',
             props.type === 'flex' ? 'el-row--flex' : ''
           ],
-          style: style
+          style: style.value
         },
         slots.default?.()
       )

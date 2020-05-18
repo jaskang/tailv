@@ -24,7 +24,7 @@
 </template>
 <script lang="ts">
 import './button.less'
-import { ElFormSymbol, ElFormItemSymbol, ElGlobalConfigSymbol, useGlobal } from '../../provides/index'
+import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
 import { inject, computed, defineComponent } from 'vue'
 
 export default defineComponent({
@@ -34,7 +34,9 @@ export default defineComponent({
       type: String,
       default: 'default'
     },
-    size: String,
+    size: {
+      type: String
+    },
     icon: {
       type: String,
       default: ''
@@ -53,10 +55,10 @@ export default defineComponent({
   setup(props, { emit }) {
     const elForm = inject(ElFormSymbol, null)
     const elFormItem = inject(ElFormItemSymbol, null)
-    const elGlobalConfig = useGlobal();
+    const elGlobalConfig = useGlobal()
 
     const buttonSize = computed(() => {
-      return props.size || elFormItem?.elFormItemSize|| elGlobalConfig?.size;
+      return props.size || elFormItem?.elFormItemSize || elGlobalConfig?.size
     })
     const buttonDisabled = computed(() => {
       return props.disabled || elForm?.disabled
