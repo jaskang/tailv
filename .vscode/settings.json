@@ -1,0 +1,7 @@
+{
+  "path-intellisense.extensionOnImport": true,
+  "path-intellisense.mappings": {
+    "@/": "${workspaceRoot}"
+  },
+  "vetur.validation.template": false
+}

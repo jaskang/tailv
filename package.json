@@ -43,12 +43,13 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-vue": "^7.0.0-alpha.3",
     "less": "^3.0.4",
     "prettier": "^1.19.1",
     "sass": "^1.26.5",
     "tsrv": "^0.2.4",
     "typescript": "^3.8.3",
-    "vite": "^0.15.3"
+    "vite": "^0.15.3",
+    "vue-eslint-parser": "^7.1.0"
   }
 }
