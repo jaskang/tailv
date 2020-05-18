@@ -1,7 +1,7 @@
 <template>
   <img alt="Vue logo" src="./logo.png" />
   <HelloWorld msg="Hello Vue 3.0 + Vite" />
-  <ElButton />
+  <ElButton>默认按钮</ElButton>
 </template>
 
 <script>
