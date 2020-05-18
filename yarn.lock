@@ -1739,7 +1739,7 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chokidar@^3.3.1:
+"chokidar@>=2.0.0 <4.0.0", chokidar@^3.3.1:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
   integrity sha512-aXAaho2VJtisB/1fg1+3nlLJqGOuewTzQpd/Tz0yTg2R0e4IGtshYvtjowyEumcBv2z+y4+kc75Mz7j5xJskcQ==
@@ -4592,6 +4592,13 @@ safe-identifier@^0.4.1:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sass@^1.26.5:
+  version "1.26.5"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.26.5.tgz#2d7aecfbbabfa298567c8f06615b6e24d2d68099"
+  integrity sha512-FG2swzaZUiX53YzZSjSakzvGtlds0lcbF+URuU9mxOv7WBh7NhXEVDa4kPKN4hN6fC2TkOTOKqiqp6d53N9X5Q==
+  dependencies:
+    chokidar ">=2.0.0 <4.0.0"
+
 sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -4993,10 +5000,10 @@ tslib@^1.10.0, tslib@^1.11.2, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
-tsrv@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/tsrv/-/tsrv-0.2.0.tgz#38f510b127725cb8c2f37ea9932246aed2196790"
-  integrity sha512-smISJrKBGlXapAyNirPAkTYjNarGCSAuarR/UfSOSWqtvGbYBMgMgUIFgWxkb1EU2azfQeOJQVbRbNEw8wo5mQ==
+tsrv@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/tsrv/-/tsrv-0.2.2.tgz#a8c63dd49f26cfa83e4b30ac0616da7f6fcee451"
+  integrity sha512-pfl5RKcuEznsln0sVqYsX7g3tRf59iFZpu2yn1SdkmLozb1tHgZvL4+pKYWAkf02VxVfVQRH4cxAPfs85eZJQA==
   dependencies:
     "@babel/core" "^7.9.6"
     "@babel/helper-plugin-utils" "^7.8.3"
