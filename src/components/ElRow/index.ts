@@ -1,4 +1,4 @@
-import { defineComponent, computed, h, provide, InjectionKey } from 'vue'
+import { defineComponent, computed, h, provide } from 'vue'
 import { ElRowSymbol } from '@/provides'
 import './index.less'
 

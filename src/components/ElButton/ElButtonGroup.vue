@@ -10,4 +10,3 @@ export default defineComponent({
   name: 'ElButtonGroup'
 })
 </script>
-<style lang="less"></style>

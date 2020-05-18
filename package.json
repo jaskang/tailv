@@ -6,6 +6,7 @@
   "main": "dist/index.js",
   "module": "dist/elenext.esm.production.js",
   "jsnext:main": "dist/elenext.esm.production.js",
+  "types": "dist/__types__/index.d.ts",
   "homepage": "https://github.com/kcmbiu/elenext",
   "repository": {
     "type": "git",
@@ -47,7 +48,7 @@
     "less": "^3.0.4",
     "prettier": "^1.19.1",
     "sass": "^1.26.5",
-    "tsrv": "^0.2.4",
+    "tsrv": "^0.2.5",
     "typescript": "^3.8.3",
     "vite": "^0.15.3",
     "vue-eslint-parser": "^7.1.0"

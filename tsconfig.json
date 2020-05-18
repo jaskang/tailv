@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
+    "target": "ESNext",
+    "module": "ESNext",
+    "declaration": true,
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
-    "rootDir": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "elenext": ["./"]
+      "@/*": ["./src/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": ["esnext", "dom"]
   },
-  "include": ["types", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
+  "include": ["src", "types", "dist/__types__/index.d.ts"],
   "exclude": ["node_modules"]
 }

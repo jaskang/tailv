@@ -92,11 +92,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElButton, ElRow, ElCol, ElButtonGroup } from 'elenext'
+import { ElButton, ElRow, ElButtonGroup } from '@/index'
 export default defineComponent({
   components: {
     ElRow,
-    ElCol,
     ElButtonGroup,
     ElButton
   }
