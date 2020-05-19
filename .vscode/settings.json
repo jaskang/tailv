@@ -1,7 +1,12 @@
 {
   "path-intellisense.extensionOnImport": true,
   "path-intellisense.mappings": {
-    "@/": "${workspaceRoot}"
+    "@/": "${floder}/src/"
   },
-  "vetur.validation.template": false
+  "path-autocomplete.pathMappings": {
+    "@/": "${folder}/src", // the absolute root folder is now /src,
+    "elenext": "${folder}" // alias for /test
+  },
+  "vetur.validation.template": false,
+  "path-autocomplete.extensionOnImport": true
 }
