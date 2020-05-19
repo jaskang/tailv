@@ -9,7 +9,24 @@
     <ElButton type="warning">警告按钮</ElButton>
     <ElButton type="danger">危险按钮</ElButton>
   </ElRow>
-
+  <Preview title="默认按钮" description="description" :template="``" :script="``">
+    <ElButton>默认按钮</ElButton>
+    <ElButton type="primary">主要按钮</ElButton>
+    <ElButton type="success">成功按钮</ElButton>
+    <ElButton type="info">信息按钮</ElButton>
+    <ElButton type="warning">警告按钮</ElButton>
+    <ElButton type="danger">危险按钮</ElButton>
+    <template #template>
+      {{`
+      <ElButton>默认按钮</ElButton>
+      <ElButton type="primary">主要按钮</ElButton>
+      <ElButton type="success">成功按钮</ElButton>
+      <ElButton type="info">信息按钮</ElButton>
+      <ElButton type="warning">警告按钮</ElButton>
+      <ElButton type="danger">危险按钮</ElButton>
+      `}}
+    </template>
+  </Preview>
   <el-row>
     <el-button plain>朴素按钮</el-button>
     <el-button type="primary" plain>主要按钮</el-button>
@@ -92,9 +109,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Preview from '../components/Preview.vue'
 import { ElButton, ElRow, ElButtonGroup } from '@/index'
 export default defineComponent({
   components: {
+    Preview,
     ElRow,
     ElButtonGroup,
     ElButton
