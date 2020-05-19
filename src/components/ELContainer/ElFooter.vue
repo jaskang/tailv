@@ -13,6 +13,7 @@ export default defineComponent({
   props: {
     height: {
       type: String,
+
       default: '60px'
     }
   }
