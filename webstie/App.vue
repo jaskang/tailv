@@ -4,6 +4,7 @@
   <Button />
   <Layout />
   <Container />
+  <Icon />
 </template>
 
 <script lang="ts">
@@ -12,6 +13,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import Button from './demo/button.vue'
 import Layout from './demo/layout.vue'
 import Container from './demo/container.vue'
+import Icon from './demo/icon.vue'
 
 export default defineComponent({
   name: 'App',
@@ -19,7 +21,8 @@ export default defineComponent({
     HelloWorld,
     Button,
     Layout,
-    Container
+    Container,
+    Icon
   }
 })
 </script>
