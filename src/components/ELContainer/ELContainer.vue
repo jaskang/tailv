@@ -1,11 +1,5 @@
-<template>
-  <section class="el-container" :class="{ 'is-vertical': isVertical }">
-    <slot></slot>
-  </section>
-</template>
-
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, h } from 'vue'
 
 interface ElContainerProps {
   direction?: 'horizontal' | 'vertical'
@@ -14,16 +8,23 @@ interface ElContainerProps {
 export default defineComponent<ElContainerProps>({
   name: 'ElContainer',
   setup(props, { slots }) {
+    const child = slots.default?.()
     const isVertical = computed(() => {
       if (props.direction === 'vertical') {
         return true
       } else if (props.direction === 'horizontal') {
         return false
       }
-      const child = slots.default?.() || []
-      return child.map(vnode => vnode.type === 'el-header' || vnode.type === 'el-footer')
+      return child.some(vnode => vnode.type === 'el-header' || vnode.type === 'el-footer')
     })
-    return { isVertical }
+    return () =>
+      h(
+        'section',
+        {
+          class: { 'el-container': true, 'is-vertical': isVertical.value }
+        },
+        child
+      )
   }
 })
 </script>
@@ -36,7 +37,6 @@ export default defineComponent<ElContainerProps>({
   flex-basis: auto;
   box-sizing: border-box;
   min-width: 0;
-
   &.is-vertical {
     flex-direction: column;
   }

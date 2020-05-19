@@ -5006,10 +5006,10 @@ tslib@^1.10.0, tslib@^1.11.2, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
-tsrv@^0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/tsrv/-/tsrv-0.2.5.tgz#68eb346aef4463306cf72525fca8df6c96b3ee32"
-  integrity sha512-D3IyKlJChBWm6Day7FZPxL7weaNyv8LKFgk9ibWxB+LuPKXzEh9/9SaWCFpJIKnLvmIhaQcYtvPjNM+gGet8dg==
+tsrv@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/tsrv/-/tsrv-0.2.7.tgz#37c70eda7e752ca54e760ed0b0e616ebdad45cda"
+  integrity sha512-6NDlGuUCltTuU8ZBCRDiXmBpgVdjB7uxnZSjNiavZPrksE35+mSD4e0uc2/rrJc6sV1ArErmqSM1HDKW2HOM5w==
   dependencies:
     "@babel/core" "^7.9.6"
     "@babel/helper-plugin-utils" "^7.8.3"
@@ -5269,6 +5269,11 @@ vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.1.0:
     espree "^6.2.1"
     esquery "^1.0.1"
     lodash "^4.17.15"
+
+vue-router@^4.0.0-alpha.11:
+  version "4.0.0-alpha.11"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-alpha.11.tgz#17b0f31ae6b0284ee0895b03904cf1738989aa0e"
+  integrity sha512-GEgKq7rlwdv03QcGqADZg+Es8D6R8FfZRLSj0Ardx/sK8PiIxpt5ViwW94Zh2LuIEiuM1U5v8iyTBya0UBK61g==
 
 vue@^3.0.0-beta.12:
   version "3.0.0-beta.12"

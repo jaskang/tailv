@@ -12,11 +12,12 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "rootDir": "./",
     "paths": {
       "@/*": ["./src/*"]
     },
     "lib": ["esnext", "dom"]
   },
-  "include": ["src", "types", "dist/__types__/index.d.ts"],
+  "include": ["src", "types", "webstie"],
   "exclude": ["node_modules"]
 }

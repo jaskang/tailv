@@ -26,7 +26,7 @@
       "import { defineComponent } from 'vue'",
       "",
       "export default defineComponent({",
-      "  name: 'ElButton',",
+      "  name: '${1}',",
       "  props: {},",
       "  setup(props, { attrs, slots, emit }) {",
       "    return {}",
