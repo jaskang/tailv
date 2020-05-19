@@ -4603,11 +4603,148 @@ var index$1 = defineComponent({
   }
 });
 
-var css_248z$2 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.utils-vertical-center::after {\n  display: inline-block;\n  content: '';\n  height: 100%;\n  vertical-align: middle;\n}\n.utils-ellipsis {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.el-button {\n  display: inline-block;\n  line-height: 1;\n  white-space: nowrap;\n  cursor: pointer;\n  background: #ffffff;\n  border: 1px solid #dcdfe6;\n  border-color: #dcdfe6;\n  color: #606266;\n  -webkit-appearance: none;\n  text-align: center;\n  box-sizing: border-box;\n  outline: none;\n  margin: 0;\n  transition: 0.1s;\n  font-weight: 500;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  padding: 12px 20px;\n  font-size: 14px;\n  border-radius: 4px;\n}\n.el-button + .el-button {\n  margin-left: 10px;\n}\n.el-button.is-round {\n  padding: 12px 20px;\n}\n.el-button:hover,\n.el-button:focus {\n  color: #409eff;\n  border-color: #c6e2ff;\n  background-color: #ecf5ff;\n}\n.el-button:active {\n  color: #3a8ee6;\n  border-color: #3a8ee6;\n  outline: none;\n}\n.el-button::-moz-focus-inner {\n  border: 0;\n}\n.el-button [class*='el-icon-'] + span {\n  margin-left: 5px;\n}\n.el-button.is-plain:hover,\n.el-button.is-plain:focus {\n  background: #ffffff;\n  border-color: #409eff;\n  color: #409eff;\n}\n.el-button.is-plain:active {\n  background: #ffffff;\n  border-color: #3a8ee6;\n  color: #3a8ee6;\n  outline: none;\n}\n.el-button.is-active {\n  color: #3a8ee6;\n  border-color: #3a8ee6;\n}\n.el-button.is-disabled,\n.el-button.is-disabled:hover,\n.el-button.is-disabled:focus {\n  color: #c0c4cc;\n  cursor: not-allowed;\n  background-image: none;\n  background-color: #ffffff;\n  border-color: #ebeef5;\n}\n.el-button.is-disabled.el-button--text {\n  background-color: transparent;\n}\n.el-button.is-disabled.is-plain,\n.el-button.is-disabled.is-plain:hover,\n.el-button.is-disabled.is-plain:focus {\n  background-color: #ffffff;\n  border-color: #ebeef5;\n  color: #c0c4cc;\n}\n.el-button.is-loading {\n  position: relative;\n  pointer-events: none;\n}\n.el-button.is-loading:before {\n  pointer-events: none;\n  content: '';\n  position: absolute;\n  left: -1px;\n  top: -1px;\n  right: -1px;\n  bottom: -1px;\n  border-radius: inherit;\n  background-color: rgba(255, 255, 255, 0.35);\n}\n.el-button.is-round {\n  border-radius: 20px;\n  padding: 12px 23px;\n}\n.el-button.is-circle {\n  border-radius: 50%;\n  padding: 12px;\n}\n.el-button--primary {\n  color: #ffffff;\n  background-color: #409eff;\n  border-color: #409eff;\n}\n.el-button--primary:hover,\n.el-button--primary:focus {\n  background: #66b1ff;\n  border-color: #66b1ff;\n  color: #ffffff;\n}\n.el-button--primary:active {\n  background: #3a8ee6;\n  border-color: #3a8ee6;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--primary.is-active {\n  background: #3a8ee6;\n  border-color: #3a8ee6;\n  color: #ffffff;\n}\n.el-button--primary.is-disabled,\n.el-button--primary.is-disabled:hover,\n.el-button--primary.is-disabled:focus,\n.el-button--primary.is-disabled:active {\n  color: #ffffff;\n  background-color: #a0cfff;\n  border-color: #a0cfff;\n}\n.el-button--primary.is-plain {\n  color: #409eff;\n  background: #ecf5ff;\n  border-color: #b3d8ff;\n}\n.el-button--primary.is-plain:hover,\n.el-button--primary.is-plain:focus {\n  background: #409eff;\n  border-color: #409eff;\n  color: #ffffff;\n}\n.el-button--primary.is-plain:active {\n  background: #3a8ee6;\n  border-color: #3a8ee6;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--primary.is-plain.is-disabled,\n.el-button--primary.is-plain.is-disabled:hover,\n.el-button--primary.is-plain.is-disabled:focus,\n.el-button--primary.is-plain.is-disabled:active {\n  color: #8cc5ff;\n  background-color: #ecf5ff;\n  border-color: #d9ecff;\n}\n.el-button--success {\n  color: #ffffff;\n  background-color: #67c23a;\n  border-color: #67c23a;\n}\n.el-button--success:hover,\n.el-button--success:focus {\n  background: #85ce61;\n  border-color: #85ce61;\n  color: #ffffff;\n}\n.el-button--success:active {\n  background: #5daf34;\n  border-color: #5daf34;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--success.is-active {\n  background: #5daf34;\n  border-color: #5daf34;\n  color: #ffffff;\n}\n.el-button--success.is-disabled,\n.el-button--success.is-disabled:hover,\n.el-button--success.is-disabled:focus,\n.el-button--success.is-disabled:active {\n  color: #ffffff;\n  background-color: #b3e19d;\n  border-color: #b3e19d;\n}\n.el-button--success.is-plain {\n  color: #67c23a;\n  background: #f0f9eb;\n  border-color: #c2e7b0;\n}\n.el-button--success.is-plain:hover,\n.el-button--success.is-plain:focus {\n  background: #67c23a;\n  border-color: #67c23a;\n  color: #ffffff;\n}\n.el-button--success.is-plain:active {\n  background: #5daf34;\n  border-color: #5daf34;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--success.is-plain.is-disabled,\n.el-button--success.is-plain.is-disabled:hover,\n.el-button--success.is-plain.is-disabled:focus,\n.el-button--success.is-plain.is-disabled:active {\n  color: #a4da89;\n  background-color: #f0f9eb;\n  border-color: #e1f3d8;\n}\n.el-button--warning {\n  color: #ffffff;\n  background-color: #e6a23c;\n  border-color: #e6a23c;\n}\n.el-button--warning:hover,\n.el-button--warning:focus {\n  background: #ebb563;\n  border-color: #ebb563;\n  color: #ffffff;\n}\n.el-button--warning:active {\n  background: #cf9236;\n  border-color: #cf9236;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--warning.is-active {\n  background: #cf9236;\n  border-color: #cf9236;\n  color: #ffffff;\n}\n.el-button--warning.is-disabled,\n.el-button--warning.is-disabled:hover,\n.el-button--warning.is-disabled:focus,\n.el-button--warning.is-disabled:active {\n  color: #ffffff;\n  background-color: #f3d19e;\n  border-color: #f3d19e;\n}\n.el-button--warning.is-plain {\n  color: #e6a23c;\n  background: #fdf6ec;\n  border-color: #f5dab1;\n}\n.el-button--warning.is-plain:hover,\n.el-button--warning.is-plain:focus {\n  background: #e6a23c;\n  border-color: #e6a23c;\n  color: #ffffff;\n}\n.el-button--warning.is-plain:active {\n  background: #cf9236;\n  border-color: #cf9236;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--warning.is-plain.is-disabled,\n.el-button--warning.is-plain.is-disabled:hover,\n.el-button--warning.is-plain.is-disabled:focus,\n.el-button--warning.is-plain.is-disabled:active {\n  color: #f0c78a;\n  background-color: #fdf6ec;\n  border-color: #faecd8;\n}\n.el-button--danger {\n  color: #ffffff;\n  background-color: #f56c6c;\n  border-color: #f56c6c;\n}\n.el-button--danger:hover,\n.el-button--danger:focus {\n  background: #f78989;\n  border-color: #f78989;\n  color: #ffffff;\n}\n.el-button--danger:active {\n  background: #dd6161;\n  border-color: #dd6161;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--danger.is-active {\n  background: #dd6161;\n  border-color: #dd6161;\n  color: #ffffff;\n}\n.el-button--danger.is-disabled,\n.el-button--danger.is-disabled:hover,\n.el-button--danger.is-disabled:focus,\n.el-button--danger.is-disabled:active {\n  color: #ffffff;\n  background-color: #fab6b6;\n  border-color: #fab6b6;\n}\n.el-button--danger.is-plain {\n  color: #f56c6c;\n  background: #fef0f0;\n  border-color: #fbc4c4;\n}\n.el-button--danger.is-plain:hover,\n.el-button--danger.is-plain:focus {\n  background: #f56c6c;\n  border-color: #f56c6c;\n  color: #ffffff;\n}\n.el-button--danger.is-plain:active {\n  background: #dd6161;\n  border-color: #dd6161;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--danger.is-plain.is-disabled,\n.el-button--danger.is-plain.is-disabled:hover,\n.el-button--danger.is-plain.is-disabled:focus,\n.el-button--danger.is-plain.is-disabled:active {\n  color: #f9a7a7;\n  background-color: #fef0f0;\n  border-color: #fde2e2;\n}\n.el-button--info {\n  color: #ffffff;\n  background-color: #909399;\n  border-color: #909399;\n}\n.el-button--info:hover,\n.el-button--info:focus {\n  background: #a6a9ad;\n  border-color: #a6a9ad;\n  color: #ffffff;\n}\n.el-button--info:active {\n  background: #82848a;\n  border-color: #82848a;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--info.is-active {\n  background: #82848a;\n  border-color: #82848a;\n  color: #ffffff;\n}\n.el-button--info.is-disabled,\n.el-button--info.is-disabled:hover,\n.el-button--info.is-disabled:focus,\n.el-button--info.is-disabled:active {\n  color: #ffffff;\n  background-color: #c8c9cc;\n  border-color: #c8c9cc;\n}\n.el-button--info.is-plain {\n  color: #909399;\n  background: #f4f4f5;\n  border-color: #d3d4d6;\n}\n.el-button--info.is-plain:hover,\n.el-button--info.is-plain:focus {\n  background: #909399;\n  border-color: #909399;\n  color: #ffffff;\n}\n.el-button--info.is-plain:active {\n  background: #82848a;\n  border-color: #82848a;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--info.is-plain.is-disabled,\n.el-button--info.is-plain.is-disabled:hover,\n.el-button--info.is-plain.is-disabled:focus,\n.el-button--info.is-plain.is-disabled:active {\n  color: #bcbec2;\n  background-color: #f4f4f5;\n  border-color: #e9e9eb;\n}\n.el-button--medium {\n  padding: 10px 20px;\n  font-size: 14px;\n  border-radius: 4px;\n}\n.el-button--medium.is-round {\n  padding: 10px 20px;\n}\n.el-button--medium.is-circle {\n  padding: 10px;\n}\n.el-button--small {\n  padding: 9px 15px;\n  font-size: 12px;\n  border-radius: 3px;\n}\n.el-button--small.is-round {\n  padding: 9px 15px;\n}\n.el-button--small.is-circle {\n  padding: 9px;\n}\n.el-button--mini {\n  padding: 7px 15px;\n  font-size: 12px;\n  border-radius: 3px;\n}\n.el-button--mini.is-round {\n  padding: 7px 15px;\n}\n.el-button--mini.is-circle {\n  padding: 7px;\n}\n.el-button--text {\n  border-color: transparent;\n  color: #409eff;\n  background: transparent;\n  padding-left: 0;\n  padding-right: 0;\n}\n.el-button--text:hover,\n.el-button--text:focus {\n  color: #66b1ff;\n  border-color: transparent;\n  background-color: transparent;\n}\n.el-button--text:active {\n  color: #3a8ee6;\n  border-color: transparent;\n  background-color: transparent;\n}\n.el-button--text.is-disabled,\n.el-button--text.is-disabled:hover,\n.el-button--text.is-disabled:focus {\n  border-color: transparent;\n}\n.el-button-group {\n  display: inline-block;\n  vertical-align: middle;\n}\n.el-button-group::before,\n.el-button-group::after {\n  display: table;\n  content: '';\n}\n.el-button-group::after {\n  clear: both;\n}\n.el-button-group > .el-button {\n  float: left;\n  position: relative;\n}\n.el-button-group > .el-button + .el-button {\n  margin-left: 0;\n}\n.el-button-group > .el-button.is-disabled {\n  z-index: 1;\n}\n.el-button-group > .el-button:first-child {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.el-button-group > .el-button:last-child {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.el-button-group > .el-button:first-child:last-child {\n  border-top-right-radius: 4px;\n  border-bottom-right-radius: 4px;\n  border-top-left-radius: 4px;\n  border-bottom-left-radius: 4px;\n}\n.el-button-group > .el-button:first-child:last-child.is-round {\n  border-radius: 20px;\n}\n.el-button-group > .el-button:first-child:last-child.is-circle {\n  border-radius: 50%;\n}\n.el-button-group > .el-button:not(:first-child):not(:last-child) {\n  border-radius: 0;\n}\n.el-button-group > .el-button:not(:last-child) {\n  margin-right: -1px;\n}\n.el-button-group > .el-button:hover,\n.el-button-group > .el-button:focus,\n.el-button-group > .el-button:active {\n  z-index: 1;\n}\n.el-button-group > .el-button.is-active {\n  z-index: 1;\n}\n.el-button-group > .el-dropdown > .el-button {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n  border-left-color: rgba(255, 255, 255, 0.5);\n}\n.el-button-group .el-button--primary:first-child,\n.el-button-group .el-button--success:first-child,\n.el-button-group .el-button--warning:first-child,\n.el-button-group .el-button--danger:first-child,\n.el-button-group .el-button--info:first-child {\n  border-right-color: rgba(255, 255, 255, 0.5);\n}\n.el-button-group .el-button--primary:last-child,\n.el-button-group .el-button--success:last-child,\n.el-button-group .el-button--warning:last-child,\n.el-button-group .el-button--danger:last-child,\n.el-button-group .el-button--info:last-child {\n  border-left-color: rgba(255, 255, 255, 0.5);\n}\n.el-button-group .el-button--primary:not(:first-child):not(:last-child),\n.el-button-group .el-button--success:not(:first-child):not(:last-child),\n.el-button-group .el-button--warning:not(:first-child):not(:last-child),\n.el-button-group .el-button--danger:not(:first-child):not(:last-child),\n.el-button-group .el-button--info:not(:first-child):not(:last-child) {\n  border-left-color: rgba(255, 255, 255, 0.5);\n  border-right-color: rgba(255, 255, 255, 0.5);\n}\n";
-styleInject(css_248z$2);
-
 //
 var script$1 = defineComponent({
+  name: 'ElContainer',
+  setup: function setup(props, _ref) {
+    var slots = _ref.slots;
+    var isVertical = computed$1(function () {
+      var _slots$default;
+
+      if (props.direction === 'vertical') {
+        return true;
+      } else if (props.direction === 'horizontal') {
+        return false;
+      }
+
+      var child = ((_slots$default = slots.default) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots)) || [];
+      return child.map(function (vnode) {
+        return vnode.type === 'el-header' || vnode.type === 'el-footer';
+      });
+    });
+    return {
+      isVertical: isVertical
+    };
+  }
+});
+
+function render$1(_ctx, _cache) {
+  return (openBlock(), createBlock("section", {
+    class: ["el-container", { 'is-vertical': _ctx.isVertical }]
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 2 /* CLASS */))
+}
+
+var css_248z$2 = ".el-container {\n  display: flex;\n  flex-direction: row;\n  flex: 1;\n  flex-basis: auto;\n  box-sizing: border-box;\n  min-width: 0;\n}\n.el-container.is-vertical {\n  flex-direction: column;\n}\n";
+styleInject(css_248z$2);
+
+script$1.render = render$1;
+script$1.__file = "src/components/ELContainer/ElContainer.vue";
+
+//
+var script$1$1 = defineComponent({
+  name: 'ElAside',
+  props: {
+    width: {
+      type: String,
+      default: '300px'
+    }
+  }
+});
+
+function render$1$1(_ctx, _cache) {
+  return (openBlock(), createBlock("aside", {
+    class: "el-aside",
+    style: { width: _ctx.width }
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 4 /* STYLE */))
+}
+
+var css_248z$3 = ".el-aside {\n  overflow: auto;\n  box-sizing: border-box;\n  flex-shrink: 0;\n}\n";
+styleInject(css_248z$3);
+
+script$1$1.render = render$1$1;
+script$1$1.__file = "src/components/ELContainer/ElAside.vue";
+
+//
+var script$2 = defineComponent({
+  name: 'ElFooter',
+  componentName: 'ElFooter',
+  props: {
+    height: {
+      type: String,
+      default: '60px'
+    }
+  }
+});
+
+function render$2(_ctx, _cache) {
+  return (openBlock(), createBlock("footer", {
+    class: "el-footer",
+    style: { height: _ctx.height }
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 4 /* STYLE */))
+}
+
+var css_248z$4 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-footer {\n  padding: 0 20px;\n  box-sizing: border-box;\n  flex-shrink: 0;\n}\n";
+styleInject(css_248z$4);
+
+script$2.render = render$2;
+script$2.__file = "src/components/ELContainer/ElFooter.vue";
+
+//
+var script$3 = defineComponent({
+  name: 'ElHeader',
+  props: {
+    height: {
+      type: String,
+      default: '60px'
+    }
+  }
+});
+
+function render$3(_ctx, _cache) {
+  return (openBlock(), createBlock("header", {
+    class: "el-header",
+    style: { height: _ctx.height }
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 4 /* STYLE */))
+}
+
+var css_248z$5 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-header {\n  padding: 0 20px;\n  box-sizing: border-box;\n  flex-shrink: 0;\n}\n";
+styleInject(css_248z$5);
+
+script$3.render = render$3;
+script$3.__file = "src/components/ELContainer/ElHeader.vue";
+
+//
+var script$4 = defineComponent({
+  name: 'ElMain'
+});
+
+const _hoisted_1$1 = { class: "el-main" };
+
+function render$4(_ctx, _cache) {
+  return (openBlock(), createBlock("main", _hoisted_1$1, [
+    renderSlot(_ctx.$slots, "default")
+  ]))
+}
+
+var css_248z$6 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-main {\n  display: block;\n  flex: 1;\n  flex-basis: auto;\n  overflow: auto;\n  box-sizing: border-box;\n  padding: 20px;\n}\n";
+styleInject(css_248z$6);
+
+script$4.render = render$4;
+script$4.__file = "src/components/ELContainer/ElMain.vue";
+
+var css_248z$7 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.utils-vertical-center::after {\n  display: inline-block;\n  content: '';\n  height: 100%;\n  vertical-align: middle;\n}\n.utils-ellipsis {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.el-button {\n  display: inline-block;\n  line-height: 1;\n  white-space: nowrap;\n  cursor: pointer;\n  background: #ffffff;\n  border: 1px solid #dcdfe6;\n  border-color: #dcdfe6;\n  color: #606266;\n  -webkit-appearance: none;\n  text-align: center;\n  box-sizing: border-box;\n  outline: none;\n  margin: 0;\n  transition: 0.1s;\n  font-weight: 500;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n  padding: 12px 20px;\n  font-size: 14px;\n  border-radius: 4px;\n}\n.el-button + .el-button {\n  margin-left: 10px;\n}\n.el-button.is-round {\n  padding: 12px 20px;\n}\n.el-button:hover,\n.el-button:focus {\n  color: #409eff;\n  border-color: #c6e2ff;\n  background-color: #ecf5ff;\n}\n.el-button:active {\n  color: #3a8ee6;\n  border-color: #3a8ee6;\n  outline: none;\n}\n.el-button::-moz-focus-inner {\n  border: 0;\n}\n.el-button [class*='el-icon-'] + span {\n  margin-left: 5px;\n}\n.el-button.is-plain:hover,\n.el-button.is-plain:focus {\n  background: #ffffff;\n  border-color: #409eff;\n  color: #409eff;\n}\n.el-button.is-plain:active {\n  background: #ffffff;\n  border-color: #3a8ee6;\n  color: #3a8ee6;\n  outline: none;\n}\n.el-button.is-active {\n  color: #3a8ee6;\n  border-color: #3a8ee6;\n}\n.el-button.is-disabled,\n.el-button.is-disabled:hover,\n.el-button.is-disabled:focus {\n  color: #c0c4cc;\n  cursor: not-allowed;\n  background-image: none;\n  background-color: #ffffff;\n  border-color: #ebeef5;\n}\n.el-button.is-disabled.el-button--text {\n  background-color: transparent;\n}\n.el-button.is-disabled.is-plain,\n.el-button.is-disabled.is-plain:hover,\n.el-button.is-disabled.is-plain:focus {\n  background-color: #ffffff;\n  border-color: #ebeef5;\n  color: #c0c4cc;\n}\n.el-button.is-loading {\n  position: relative;\n  pointer-events: none;\n}\n.el-button.is-loading:before {\n  pointer-events: none;\n  content: '';\n  position: absolute;\n  left: -1px;\n  top: -1px;\n  right: -1px;\n  bottom: -1px;\n  border-radius: inherit;\n  background-color: rgba(255, 255, 255, 0.35);\n}\n.el-button.is-round {\n  border-radius: 20px;\n  padding: 12px 23px;\n}\n.el-button.is-circle {\n  border-radius: 50%;\n  padding: 12px;\n}\n.el-button--primary {\n  color: #ffffff;\n  background-color: #409eff;\n  border-color: #409eff;\n}\n.el-button--primary:hover,\n.el-button--primary:focus {\n  background: #66b1ff;\n  border-color: #66b1ff;\n  color: #ffffff;\n}\n.el-button--primary:active {\n  background: #3a8ee6;\n  border-color: #3a8ee6;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--primary.is-active {\n  background: #3a8ee6;\n  border-color: #3a8ee6;\n  color: #ffffff;\n}\n.el-button--primary.is-disabled,\n.el-button--primary.is-disabled:hover,\n.el-button--primary.is-disabled:focus,\n.el-button--primary.is-disabled:active {\n  color: #ffffff;\n  background-color: #a0cfff;\n  border-color: #a0cfff;\n}\n.el-button--primary.is-plain {\n  color: #409eff;\n  background: #ecf5ff;\n  border-color: #b3d8ff;\n}\n.el-button--primary.is-plain:hover,\n.el-button--primary.is-plain:focus {\n  background: #409eff;\n  border-color: #409eff;\n  color: #ffffff;\n}\n.el-button--primary.is-plain:active {\n  background: #3a8ee6;\n  border-color: #3a8ee6;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--primary.is-plain.is-disabled,\n.el-button--primary.is-plain.is-disabled:hover,\n.el-button--primary.is-plain.is-disabled:focus,\n.el-button--primary.is-plain.is-disabled:active {\n  color: #8cc5ff;\n  background-color: #ecf5ff;\n  border-color: #d9ecff;\n}\n.el-button--success {\n  color: #ffffff;\n  background-color: #67c23a;\n  border-color: #67c23a;\n}\n.el-button--success:hover,\n.el-button--success:focus {\n  background: #85ce61;\n  border-color: #85ce61;\n  color: #ffffff;\n}\n.el-button--success:active {\n  background: #5daf34;\n  border-color: #5daf34;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--success.is-active {\n  background: #5daf34;\n  border-color: #5daf34;\n  color: #ffffff;\n}\n.el-button--success.is-disabled,\n.el-button--success.is-disabled:hover,\n.el-button--success.is-disabled:focus,\n.el-button--success.is-disabled:active {\n  color: #ffffff;\n  background-color: #b3e19d;\n  border-color: #b3e19d;\n}\n.el-button--success.is-plain {\n  color: #67c23a;\n  background: #f0f9eb;\n  border-color: #c2e7b0;\n}\n.el-button--success.is-plain:hover,\n.el-button--success.is-plain:focus {\n  background: #67c23a;\n  border-color: #67c23a;\n  color: #ffffff;\n}\n.el-button--success.is-plain:active {\n  background: #5daf34;\n  border-color: #5daf34;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--success.is-plain.is-disabled,\n.el-button--success.is-plain.is-disabled:hover,\n.el-button--success.is-plain.is-disabled:focus,\n.el-button--success.is-plain.is-disabled:active {\n  color: #a4da89;\n  background-color: #f0f9eb;\n  border-color: #e1f3d8;\n}\n.el-button--warning {\n  color: #ffffff;\n  background-color: #e6a23c;\n  border-color: #e6a23c;\n}\n.el-button--warning:hover,\n.el-button--warning:focus {\n  background: #ebb563;\n  border-color: #ebb563;\n  color: #ffffff;\n}\n.el-button--warning:active {\n  background: #cf9236;\n  border-color: #cf9236;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--warning.is-active {\n  background: #cf9236;\n  border-color: #cf9236;\n  color: #ffffff;\n}\n.el-button--warning.is-disabled,\n.el-button--warning.is-disabled:hover,\n.el-button--warning.is-disabled:focus,\n.el-button--warning.is-disabled:active {\n  color: #ffffff;\n  background-color: #f3d19e;\n  border-color: #f3d19e;\n}\n.el-button--warning.is-plain {\n  color: #e6a23c;\n  background: #fdf6ec;\n  border-color: #f5dab1;\n}\n.el-button--warning.is-plain:hover,\n.el-button--warning.is-plain:focus {\n  background: #e6a23c;\n  border-color: #e6a23c;\n  color: #ffffff;\n}\n.el-button--warning.is-plain:active {\n  background: #cf9236;\n  border-color: #cf9236;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--warning.is-plain.is-disabled,\n.el-button--warning.is-plain.is-disabled:hover,\n.el-button--warning.is-plain.is-disabled:focus,\n.el-button--warning.is-plain.is-disabled:active {\n  color: #f0c78a;\n  background-color: #fdf6ec;\n  border-color: #faecd8;\n}\n.el-button--danger {\n  color: #ffffff;\n  background-color: #f56c6c;\n  border-color: #f56c6c;\n}\n.el-button--danger:hover,\n.el-button--danger:focus {\n  background: #f78989;\n  border-color: #f78989;\n  color: #ffffff;\n}\n.el-button--danger:active {\n  background: #dd6161;\n  border-color: #dd6161;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--danger.is-active {\n  background: #dd6161;\n  border-color: #dd6161;\n  color: #ffffff;\n}\n.el-button--danger.is-disabled,\n.el-button--danger.is-disabled:hover,\n.el-button--danger.is-disabled:focus,\n.el-button--danger.is-disabled:active {\n  color: #ffffff;\n  background-color: #fab6b6;\n  border-color: #fab6b6;\n}\n.el-button--danger.is-plain {\n  color: #f56c6c;\n  background: #fef0f0;\n  border-color: #fbc4c4;\n}\n.el-button--danger.is-plain:hover,\n.el-button--danger.is-plain:focus {\n  background: #f56c6c;\n  border-color: #f56c6c;\n  color: #ffffff;\n}\n.el-button--danger.is-plain:active {\n  background: #dd6161;\n  border-color: #dd6161;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--danger.is-plain.is-disabled,\n.el-button--danger.is-plain.is-disabled:hover,\n.el-button--danger.is-plain.is-disabled:focus,\n.el-button--danger.is-plain.is-disabled:active {\n  color: #f9a7a7;\n  background-color: #fef0f0;\n  border-color: #fde2e2;\n}\n.el-button--info {\n  color: #ffffff;\n  background-color: #909399;\n  border-color: #909399;\n}\n.el-button--info:hover,\n.el-button--info:focus {\n  background: #a6a9ad;\n  border-color: #a6a9ad;\n  color: #ffffff;\n}\n.el-button--info:active {\n  background: #82848a;\n  border-color: #82848a;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--info.is-active {\n  background: #82848a;\n  border-color: #82848a;\n  color: #ffffff;\n}\n.el-button--info.is-disabled,\n.el-button--info.is-disabled:hover,\n.el-button--info.is-disabled:focus,\n.el-button--info.is-disabled:active {\n  color: #ffffff;\n  background-color: #c8c9cc;\n  border-color: #c8c9cc;\n}\n.el-button--info.is-plain {\n  color: #909399;\n  background: #f4f4f5;\n  border-color: #d3d4d6;\n}\n.el-button--info.is-plain:hover,\n.el-button--info.is-plain:focus {\n  background: #909399;\n  border-color: #909399;\n  color: #ffffff;\n}\n.el-button--info.is-plain:active {\n  background: #82848a;\n  border-color: #82848a;\n  color: #ffffff;\n  outline: none;\n}\n.el-button--info.is-plain.is-disabled,\n.el-button--info.is-plain.is-disabled:hover,\n.el-button--info.is-plain.is-disabled:focus,\n.el-button--info.is-plain.is-disabled:active {\n  color: #bcbec2;\n  background-color: #f4f4f5;\n  border-color: #e9e9eb;\n}\n.el-button--medium {\n  padding: 10px 20px;\n  font-size: 14px;\n  border-radius: 4px;\n}\n.el-button--medium.is-round {\n  padding: 10px 20px;\n}\n.el-button--medium.is-circle {\n  padding: 10px;\n}\n.el-button--small {\n  padding: 9px 15px;\n  font-size: 12px;\n  border-radius: 3px;\n}\n.el-button--small.is-round {\n  padding: 9px 15px;\n}\n.el-button--small.is-circle {\n  padding: 9px;\n}\n.el-button--mini {\n  padding: 7px 15px;\n  font-size: 12px;\n  border-radius: 3px;\n}\n.el-button--mini.is-round {\n  padding: 7px 15px;\n}\n.el-button--mini.is-circle {\n  padding: 7px;\n}\n.el-button--text {\n  border-color: transparent;\n  color: #409eff;\n  background: transparent;\n  padding-left: 0;\n  padding-right: 0;\n}\n.el-button--text:hover,\n.el-button--text:focus {\n  color: #66b1ff;\n  border-color: transparent;\n  background-color: transparent;\n}\n.el-button--text:active {\n  color: #3a8ee6;\n  border-color: transparent;\n  background-color: transparent;\n}\n.el-button--text.is-disabled,\n.el-button--text.is-disabled:hover,\n.el-button--text.is-disabled:focus {\n  border-color: transparent;\n}\n.el-button-group {\n  display: inline-block;\n  vertical-align: middle;\n}\n.el-button-group::before,\n.el-button-group::after {\n  display: table;\n  content: '';\n}\n.el-button-group::after {\n  clear: both;\n}\n.el-button-group > .el-button {\n  float: left;\n  position: relative;\n}\n.el-button-group > .el-button + .el-button {\n  margin-left: 0;\n}\n.el-button-group > .el-button.is-disabled {\n  z-index: 1;\n}\n.el-button-group > .el-button:first-child {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.el-button-group > .el-button:last-child {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.el-button-group > .el-button:first-child:last-child {\n  border-top-right-radius: 4px;\n  border-bottom-right-radius: 4px;\n  border-top-left-radius: 4px;\n  border-bottom-left-radius: 4px;\n}\n.el-button-group > .el-button:first-child:last-child.is-round {\n  border-radius: 20px;\n}\n.el-button-group > .el-button:first-child:last-child.is-circle {\n  border-radius: 50%;\n}\n.el-button-group > .el-button:not(:first-child):not(:last-child) {\n  border-radius: 0;\n}\n.el-button-group > .el-button:not(:last-child) {\n  margin-right: -1px;\n}\n.el-button-group > .el-button:hover,\n.el-button-group > .el-button:focus,\n.el-button-group > .el-button:active {\n  z-index: 1;\n}\n.el-button-group > .el-button.is-active {\n  z-index: 1;\n}\n.el-button-group > .el-dropdown > .el-button {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n  border-left-color: rgba(255, 255, 255, 0.5);\n}\n.el-button-group .el-button--primary:first-child,\n.el-button-group .el-button--success:first-child,\n.el-button-group .el-button--warning:first-child,\n.el-button-group .el-button--danger:first-child,\n.el-button-group .el-button--info:first-child {\n  border-right-color: rgba(255, 255, 255, 0.5);\n}\n.el-button-group .el-button--primary:last-child,\n.el-button-group .el-button--success:last-child,\n.el-button-group .el-button--warning:last-child,\n.el-button-group .el-button--danger:last-child,\n.el-button-group .el-button--info:last-child {\n  border-left-color: rgba(255, 255, 255, 0.5);\n}\n.el-button-group .el-button--primary:not(:first-child):not(:last-child),\n.el-button-group .el-button--success:not(:first-child):not(:last-child),\n.el-button-group .el-button--warning:not(:first-child):not(:last-child),\n.el-button-group .el-button--danger:not(:first-child):not(:last-child),\n.el-button-group .el-button--info:not(:first-child):not(:last-child) {\n  border-left-color: rgba(255, 255, 255, 0.5);\n  border-right-color: rgba(255, 255, 255, 0.5);\n}\n";
+styleInject(css_248z$7);
+
+//
+var script$5 = defineComponent({
   name: 'ElButton',
   props: {
     type: {
@@ -4656,13 +4793,13 @@ var script$1 = defineComponent({
   }
 });
 
-const _hoisted_1$1 = {
+const _hoisted_1$1$1 = {
   key: 0,
   class: "el-icon-loading"
 };
 const _hoisted_2 = { key: 0 };
 
-function render$1(_ctx, _cache) {
+function render$5(_ctx, _cache) {
   return (openBlock(), createBlock("button", {
     class: ["el-button", [
       _ctx.type ? 'el-button--' + _ctx.type : '',
@@ -4681,7 +4818,7 @@ function render$1(_ctx, _cache) {
     onClick: _cache[1] || (_cache[1] = $event => (_ctx.handleClick($event)))
   }, [
     (_ctx.loading)
-      ? (openBlock(), createBlock("i", _hoisted_1$1))
+      ? (openBlock(), createBlock("i", _hoisted_1$1$1))
       : createCommentVNode("v-if", true),
     (_ctx.icon && !_ctx.loading)
       ? (openBlock(), createBlock("i", {
@@ -4697,34 +4834,34 @@ function render$1(_ctx, _cache) {
   ], 10 /* CLASS, PROPS */, ["disabled", "autofocus", "type"]))
 }
 
-script$1.render = render$1;
-script$1.__file = "src/components/ElButton/ElButton.vue";
+script$5.render = render$5;
+script$5.__file = "src/components/ElButton/ElButton.vue";
 
 //
-var script$1$1 = defineComponent({
+var script$6 = defineComponent({
   name: 'ElButtonGroup'
 });
 
-const _hoisted_1$1$1 = { class: "el-button-group" };
+const _hoisted_1$2 = { class: "el-button-group" };
 
-function render$1$1(_ctx, _cache) {
-  return (openBlock(), createBlock("div", _hoisted_1$1$1, [
+function render$6(_ctx, _cache) {
+  return (openBlock(), createBlock("div", _hoisted_1$2, [
     renderSlot(_ctx.$slots, "default")
   ]))
 }
 
-script$1$1.render = render$1$1;
-script$1$1.__file = "src/components/ElButton/ElButtonGroup.vue";
+script$6.render = render$6;
+script$6.__file = "src/components/ElButton/ElButtonGroup.vue";
 
-var script$2 = defineComponent({
+var script$7 = defineComponent({
   components: {
     ElRow: index,
-    ElButtonGroup: script$1$1,
-    ElButton: script$1
+    ElButtonGroup: script$6,
+    ElButton: script$5
   }
 });
 
-const _hoisted_1$2 = /*#__PURE__*/createVNode("h1", null, "ElButton", -1 /* HOISTED */);
+const _hoisted_1$3 = /*#__PURE__*/createVNode("h1", null, "ElButton", -1 /* HOISTED */);
 const _hoisted_2$1 = /*#__PURE__*/createVNode("h2", null, "基础用法", -1 /* HOISTED */);
 const _hoisted_3 = /*#__PURE__*/createTextVNode("默认按钮");
 const _hoisted_4 = /*#__PURE__*/createTextVNode("主要按钮");
@@ -4780,7 +4917,7 @@ const _hoisted_53 = /*#__PURE__*/createTextVNode("中等按钮");
 const _hoisted_54 = /*#__PURE__*/createTextVNode("小型按钮");
 const _hoisted_55 = /*#__PURE__*/createTextVNode("超小按钮");
 
-function render$2(_ctx, _cache) {
+function render$7(_ctx, _cache) {
   const _component_ElButton = resolveComponent("ElButton");
   const _component_ElRow = resolveComponent("ElRow");
   const _component_el_button = resolveComponent("el-button");
@@ -4788,7 +4925,7 @@ function render$2(_ctx, _cache) {
   const _component_el_button_group = resolveComponent("el-button-group");
 
   return (openBlock(), createBlock(Fragment, null, [
-    _hoisted_1$2,
+    _hoisted_1$3,
     _hoisted_2$1,
     createVNode(_component_ElRow, null, {
       default: withCtx(() => [
@@ -5263,16 +5400,16 @@ function render$2(_ctx, _cache) {
   ], 64 /* STABLE_FRAGMENT */))
 }
 
-script$2.render = render$2;
+script$7.render = render$7;
 
-var script$3 = defineComponent({
+var script$8 = defineComponent({
   components: {
     ElRow: index,
     ElCol: index$1
   }
 });
 
-const _hoisted_1$3 = /*#__PURE__*/createVNode("h1", null, "Layout 布局", -1 /* HOISTED */);
+const _hoisted_1$4 = /*#__PURE__*/createVNode("h1", null, "Layout 布局", -1 /* HOISTED */);
 const _hoisted_2$2 = /*#__PURE__*/createVNode("h2", null, "基础布局", -1 /* HOISTED */);
 const _hoisted_3$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-dark" }, null, -1 /* HOISTED */);
 const _hoisted_4$1 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
@@ -5333,12 +5470,12 @@ const _hoisted_58 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-pu
 const _hoisted_59 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple" }, null, -1 /* HOISTED */);
 const _hoisted_60 = /*#__PURE__*/createVNode("div", { class: "grid-content bg-purple-light" }, null, -1 /* HOISTED */);
 
-function render$3(_ctx, _cache) {
+function render$8(_ctx, _cache) {
   const _component_el_col = resolveComponent("el-col");
   const _component_el_row = resolveComponent("el-row");
 
   return (openBlock(), createBlock(Fragment, null, [
-    _hoisted_1$3,
+    _hoisted_1$4,
     _hoisted_2$2,
     createVNode(_component_el_row, null, {
       default: withCtx(() => [
@@ -5811,37 +5948,275 @@ function render$3(_ctx, _cache) {
   ], 64 /* STABLE_FRAGMENT */))
 }
 
-script$3.render = render$3;
+script$8.render = render$8;
 
-var script$4 = defineComponent({
+var script$9 = defineComponent({
+  components: {
+    ElContainer: script$1,
+    ElAside: script$1$1,
+    ElFooter: script$2,
+    ElHeader: script$3,
+    ElMain: script$4
+  }
+});
+
+const _hoisted_1$5 = /*#__PURE__*/createVNode("h1", null, "ElContainer", -1 /* HOISTED */);
+const _hoisted_2$3 = /*#__PURE__*/createVNode("h2", null, "常见页面布局", -1 /* HOISTED */);
+const _hoisted_3$2 = /*#__PURE__*/createTextVNode("Header");
+const _hoisted_4$2 = /*#__PURE__*/createTextVNode("Main");
+const _hoisted_5$2 = /*#__PURE__*/createTextVNode("Header");
+const _hoisted_6$2 = /*#__PURE__*/createTextVNode("Main");
+const _hoisted_7$2 = /*#__PURE__*/createTextVNode("Footer");
+const _hoisted_8$2 = /*#__PURE__*/createTextVNode("Aside");
+const _hoisted_9$2 = /*#__PURE__*/createTextVNode("Main");
+const _hoisted_10$2 = /*#__PURE__*/createTextVNode("Header");
+const _hoisted_11$2 = /*#__PURE__*/createTextVNode("Aside");
+const _hoisted_12$2 = /*#__PURE__*/createTextVNode("Main");
+const _hoisted_13$2 = /*#__PURE__*/createTextVNode("Header");
+const _hoisted_14$2 = /*#__PURE__*/createTextVNode("Aside");
+const _hoisted_15$2 = /*#__PURE__*/createTextVNode("Main");
+const _hoisted_16$2 = /*#__PURE__*/createTextVNode("Footer");
+const _hoisted_17$2 = /*#__PURE__*/createTextVNode("Aside");
+const _hoisted_18$2 = /*#__PURE__*/createTextVNode("Header");
+const _hoisted_19$2 = /*#__PURE__*/createTextVNode("Main");
+const _hoisted_20$2 = /*#__PURE__*/createTextVNode("Aside");
+const _hoisted_21$2 = /*#__PURE__*/createTextVNode("Header");
+const _hoisted_22$2 = /*#__PURE__*/createTextVNode("Main");
+const _hoisted_23$2 = /*#__PURE__*/createTextVNode("Footer");
+
+function render$9(_ctx, _cache) {
+  const _component_el_header = resolveComponent("el-header");
+  const _component_el_main = resolveComponent("el-main");
+  const _component_el_container = resolveComponent("el-container");
+  const _component_el_footer = resolveComponent("el-footer");
+  const _component_el_aside = resolveComponent("el-aside");
+
+  return (openBlock(), createBlock(Fragment, null, [
+    _hoisted_1$5,
+    _hoisted_2$3,
+    createVNode(_component_el_container, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_header, null, {
+          default: withCtx(() => [
+            _hoisted_3$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_main, null, {
+          default: withCtx(() => [
+            _hoisted_4$2
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_container, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_header, null, {
+          default: withCtx(() => [
+            _hoisted_5$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_main, null, {
+          default: withCtx(() => [
+            _hoisted_6$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_footer, null, {
+          default: withCtx(() => [
+            _hoisted_7$2
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_container, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_aside, { width: "200px" }, {
+          default: withCtx(() => [
+            _hoisted_8$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_main, null, {
+          default: withCtx(() => [
+            _hoisted_9$2
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_container, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_header, null, {
+          default: withCtx(() => [
+            _hoisted_10$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_container, null, {
+          default: withCtx(() => [
+            createVNode(_component_el_aside, { width: "200px" }, {
+              default: withCtx(() => [
+                _hoisted_11$2
+              ]),
+              _: 1
+            }),
+            createVNode(_component_el_main, null, {
+              default: withCtx(() => [
+                _hoisted_12$2
+              ]),
+              _: 1
+            })
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_container, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_header, null, {
+          default: withCtx(() => [
+            _hoisted_13$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_container, null, {
+          default: withCtx(() => [
+            createVNode(_component_el_aside, { width: "200px" }, {
+              default: withCtx(() => [
+                _hoisted_14$2
+              ]),
+              _: 1
+            }),
+            createVNode(_component_el_container, null, {
+              default: withCtx(() => [
+                createVNode(_component_el_main, null, {
+                  default: withCtx(() => [
+                    _hoisted_15$2
+                  ]),
+                  _: 1
+                }),
+                createVNode(_component_el_footer, null, {
+                  default: withCtx(() => [
+                    _hoisted_16$2
+                  ]),
+                  _: 1
+                })
+              ]),
+              _: 1
+            })
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_container, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_aside, { width: "200px" }, {
+          default: withCtx(() => [
+            _hoisted_17$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_container, null, {
+          default: withCtx(() => [
+            createVNode(_component_el_header, null, {
+              default: withCtx(() => [
+                _hoisted_18$2
+              ]),
+              _: 1
+            }),
+            createVNode(_component_el_main, null, {
+              default: withCtx(() => [
+                _hoisted_19$2
+              ]),
+              _: 1
+            })
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_el_container, null, {
+      default: withCtx(() => [
+        createVNode(_component_el_aside, { width: "200px" }, {
+          default: withCtx(() => [
+            _hoisted_20$2
+          ]),
+          _: 1
+        }),
+        createVNode(_component_el_container, null, {
+          default: withCtx(() => [
+            createVNode(_component_el_header, null, {
+              default: withCtx(() => [
+                _hoisted_21$2
+              ]),
+              _: 1
+            }),
+            createVNode(_component_el_main, null, {
+              default: withCtx(() => [
+                _hoisted_22$2
+              ]),
+              _: 1
+            }),
+            createVNode(_component_el_footer, null, {
+              default: withCtx(() => [
+                _hoisted_23$2
+              ]),
+              _: 1
+            })
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    })
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+script$9.render = render$9;
+
+var script$a = defineComponent({
   name: "App",
   components: {
     HelloWorld: script,
-    Button: script$2,
-    Layout: script$3
+    Button: script$7,
+    Layout: script$8,
+    Container: script$9
   }
 });
 
 var _imports_0 = "/assets/logo.413f44ac.png";
 
-const _hoisted_1$4 = /*#__PURE__*/createVNode("img", {
+const _hoisted_1$6 = /*#__PURE__*/createVNode("img", {
   alt: "Vue logo",
   src: _imports_0
 }, null, -1 /* HOISTED */);
 
-function render$4(_ctx, _cache) {
+function render$a(_ctx, _cache) {
   const _component_HelloWorld = resolveComponent("HelloWorld");
   const _component_Button = resolveComponent("Button");
   const _component_Layout = resolveComponent("Layout");
+  const _component_Container = resolveComponent("Container");
 
   return (openBlock(), createBlock(Fragment, null, [
-    _hoisted_1$4,
+    _hoisted_1$6,
     createVNode(_component_HelloWorld, { msg: "Hello Vue 3.0 + Element UI" }),
     createVNode(_component_Button),
-    createVNode(_component_Layout)
+    createVNode(_component_Layout),
+    createVNode(_component_Container)
   ], 64 /* STABLE_FRAGMENT */))
 }
 
-script$4.render = render$4;
+script$a.render = render$a;
 
-createApp(script$4).mount('#app');
+createApp(script$a).mount('#app');
