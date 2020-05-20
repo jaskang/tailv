@@ -1,19 +1,23 @@
 <template>
   <div class="preview">
     <h1>{{ title }}</h1>
-    <div class="preview__demo">
-      <slot></slot>
+    <div class="preview__card">
+      <div class="preview__demo">
+        <slot></slot>
+      </div>
+      <div :style="{ height: `${codeHeight}px` }" class="preview__code">
+        <div ref="codeRef">
+          <div v-if="description" class="preview__description">{{ description }}</div>
+          <pre v-if="$slots.template"><code class="language-markup"><slot name="template"></slot></code></pre>
+          <pre v-if="$slots.script"><code class="language-typescript"><slot name="script"></slot></code></pre>
+        </div>
+      </div>
+      <div class="preview__footer" @click="toggleCode">{{ codeHeight > 0 ? '隐藏代码' : '显示代码' }}</div>
     </div>
-    <div v-if="showCode" class="preview__code">
-      {{ description }}
-      <pre><code class="language-markup"><slot name="template"></slot></code></pre>
-      <pre><code class="language-typescript"><slot name="script"></slot></code></pre>
-    </div>
-    <div class="preview__footer" @click="toggleCode">显示代码</div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, reactive, toRefs, ref, onMounted } from 'vue';
 
 export default defineComponent({
   name: 'Preview',
@@ -25,58 +29,93 @@ export default defineComponent({
     description: {
       type: String,
       default: ''
-    },
-    template: {
-      type: String,
-      default: ''
-    },
-    script: {
-      type: String,
-      default: ''
     }
   },
   setup() {
+    const codeRef = ref<HTMLDivElement>(null);
+    let fullHeight = 0;
     const state = reactive({
-      showCode: false
-    })
+      codeHeight: 0
+    });
     const highlightAll = () => {
       setTimeout(() => {
-        window.Prism.highlightAll()
-      }, 0)
-    }
+        window.Prism.highlightAll();
+      }, 0);
+    };
     const toggleCode = () => {
-      state.showCode = !state.showCode
-      if (state.showCode) {
-        highlightAll()
+      if (state.codeHeight === 0) {
+        state.codeHeight = fullHeight;
+      } else {
+        state.codeHeight = 0;
       }
-    }
+      if (state.codeHeight >= 0) {
+        highlightAll();
+      }
+    };
+    onMounted(() => {
+      fullHeight = codeRef.value.offsetHeight;
+    });
     return {
       ...toRefs(state),
-      templateCode: '',
-      scriptCode: '',
+      codeRef,
       toggleCode
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="less">
 .preview {
-  border: 1px solid #ebebeb;
-  border-radius: 3px;
-  transition: 0.2s;
-  &::hover {
-    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+  text-align: left;
+  &__card {
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    transition: 0.2s;
+
+    &:hover {
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+    }
   }
   &__demo {
     padding: 20px;
+    background-color: #fff;
   }
   &__code {
+    background-color: #fafafa;
+    border-top: 1px solid #eaeefb;
+    overflow: hidden;
+    // height: 0;
+    transition: height 0.3s;
+  }
+  &__description {
     padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #666;
+    word-break: break-word;
+    margin: 10px;
+    background-color: #fff;
   }
   &__footer {
-    line-height: 30px;
+    border-top: 1px solid #eaeefb;
+    height: 44px;
+    line-height: 43px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
     text-align: center;
+    margin-top: -1px;
+    color: #d3dce6;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      color: #409eff;
+      background-color: #f9fafc;
+    }
   }
 }
 </style>

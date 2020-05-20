@@ -14,9 +14,9 @@
   </ElContainer>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './HelloWorld.vue'
-import { ElContainer, ElAside, ElMain } from '@/index'
+import { defineComponent } from 'vue';
+import HelloWorld from './HelloWorld.vue';
+import { ElContainer, ElAside, ElMain } from '@/index';
 export default defineComponent({
   components: {
     HelloWorld,
@@ -24,7 +24,7 @@ export default defineComponent({
     ElAside,
     ElMain
   }
-})
+});
 </script>
 <style lang="less">
 .el-header,
@@ -43,7 +43,7 @@ export default defineComponent({
 }
 
 .el-main {
-  background-color: #e9eef3;
+  background-color: #fff;
   color: #333;
   text-align: center;
 }
