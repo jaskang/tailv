@@ -99,10 +99,10 @@
   </el-row>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElRow, ElCol } from '@/index'
+import { defineComponent } from 'vue';
+import { ElRow, ElCol } from '@/index';
 
 export default defineComponent({
   components: { ElRow, ElCol }
-})
+});
 </script>
