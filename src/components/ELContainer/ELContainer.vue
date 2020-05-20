@@ -1,22 +1,22 @@
 <script lang="ts">
-import { computed, defineComponent, h } from 'vue'
+import { computed, defineComponent, h } from 'vue';
 
 interface ElContainerProps {
-  direction?: 'horizontal' | 'vertical'
+  direction?: 'horizontal' | 'vertical';
 }
 
 export default defineComponent<ElContainerProps>({
   name: 'ElContainer',
   setup(props, { slots }) {
-    const child = slots.default?.()
+    const child = slots.default?.();
     const isVertical = computed(() => {
       if (props.direction === 'vertical') {
-        return true
+        return true;
       } else if (props.direction === 'horizontal') {
-        return false
+        return false;
       }
-      return child.some(vnode => vnode.type === 'el-header' || vnode.type === 'el-footer')
-    })
+      return child.some(vnode => vnode.type === 'el-header' || vnode.type === 'el-footer');
+    });
     return () =>
       h(
         'section',
@@ -24,9 +24,9 @@ export default defineComponent<ElContainerProps>({
           class: { 'el-container': true, 'is-vertical': isVertical.value }
         },
         child
-      )
+      );
   }
-})
+});
 </script>
 
 <style lang="less">

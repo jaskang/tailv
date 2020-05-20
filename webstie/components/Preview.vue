@@ -1,13 +1,14 @@
 <template>
   <div class="preview">
     <h1>{{ title }}</h1>
+    <p v-if="description">{{ description }}</p>
     <div class="preview__card">
       <div class="preview__demo">
         <slot></slot>
       </div>
       <div :style="{ height: `${codeHeight}px` }" class="preview__code">
-        <div ref="codeRef">
-          <div v-if="description" class="preview__description">{{ description }}</div>
+        <div ref="codeRef" class="preview__coderef">
+          <div v-if="$slots.comment" class="preview__comment"><slot name="comment"></slot></div>
           <pre v-if="$slots.template"><code class="language-markup"><slot name="template"></slot></code></pre>
           <pre v-if="$slots.script"><code class="language-typescript"><slot name="script"></slot></code></pre>
         </div>
@@ -17,7 +18,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, ref, onMounted } from 'vue';
+import { defineComponent, reactive, toRefs, ref, onMounted, nextTick } from 'vue';
 
 export default defineComponent({
   name: 'Preview',
@@ -38,22 +39,22 @@ export default defineComponent({
       codeHeight: 0
     });
     const highlightAll = () => {
-      setTimeout(() => {
+      nextTick(() => {
         window.Prism.highlightAll();
-      }, 0);
+        setTimeout(() => {
+          fullHeight = codeRef.value.offsetHeight;
+        }, 200);
+      });
     };
     const toggleCode = () => {
       if (state.codeHeight === 0) {
-        state.codeHeight = fullHeight;
+        state.codeHeight = codeRef.value.offsetHeight;
       } else {
         state.codeHeight = 0;
       }
-      if (state.codeHeight >= 0) {
-        highlightAll();
-      }
     };
     onMounted(() => {
-      fullHeight = codeRef.value.offsetHeight;
+      highlightAll();
     });
     return {
       ...toRefs(state),
@@ -84,10 +85,16 @@ export default defineComponent({
     background-color: #fafafa;
     border-top: 1px solid #eaeefb;
     overflow: hidden;
-    // height: 0;
-    transition: height 0.3s;
+    height: 0;
+    // transition: height 0.3s;
   }
-  &__description {
+  &__coderef {
+    overflow: hidden;
+    > pre {
+      padding: 20px 0;
+    }
+  }
+  &__comment {
     padding: 20px;
     box-sizing: border-box;
     border: 1px solid #ebebeb;
@@ -96,8 +103,19 @@ export default defineComponent({
     line-height: 22px;
     color: #666;
     word-break: break-word;
-    margin: 10px;
+    margin: 10px 10px 0 10px;
     background-color: #fff;
+    code {
+      color: #5e6d82;
+      background-color: #e6effb;
+      margin: 0 4px;
+      display: inline-block;
+      padding: 1px 5px;
+      font-size: 12px;
+      border-radius: 3px;
+      height: 18px;
+      line-height: 18px;
+    }
   }
   &__footer {
     border-top: 1px solid #eaeefb;

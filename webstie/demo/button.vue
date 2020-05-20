@@ -1,95 +1,84 @@
 <template>
   <h1>ElButton</h1>
 
-  <Preview title="默认按钮">
-    <ElButton>默认按钮</ElButton>
-    <ElButton type="primary">主要按钮</ElButton>
-    <ElButton type="success">成功按钮</ElButton>
-    <ElButton type="info">信息按钮</ElButton>
-    <ElButton type="warning">警告按钮</ElButton>
-    <ElButton type="danger">危险按钮</ElButton>
-    <template #template>
-      {{`
-      <ElButton>默认按钮</ElButton>
-      <ElButton type="primary">主要按钮</ElButton>
-      <ElButton type="success">成功按钮</ElButton>
-      <ElButton type="info">信息按钮</ElButton>
-      <ElButton type="warning">警告按钮</ElButton>
-      <ElButton type="danger">危险按钮</ElButton>
-      `}}
+  <Preview title="基础用法" description="基础的按钮用法">
+    <template #comment>
+      <p>
+        使用<code>type</code>、<code>plain</code>、<code>round</code>和<code>circle</code>属性来定义 Button 的样式。
+      </p>
     </template>
-  </Preview>
+    <el-row>
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+    </el-row>
 
-  <Preview title="朴素按钮">
-    <el-button plain>朴素按钮</el-button>
-    <el-button type="primary" plain>主要按钮</el-button>
-    <el-button type="success" plain>成功按钮</el-button>
-    <el-button type="info" plain>信息按钮</el-button>
-    <el-button type="warning" plain>警告按钮</el-button>
-    <el-button type="danger" plain>危险按钮</el-button>
-    <template #template>
-      {{`
+    <el-row>
       <el-button plain>朴素按钮</el-button>
       <el-button type="primary" plain>主要按钮</el-button>
       <el-button type="success" plain>成功按钮</el-button>
       <el-button type="info" plain>信息按钮</el-button>
       <el-button type="warning" plain>警告按钮</el-button>
       <el-button type="danger" plain>危险按钮</el-button>
-      `}}
-    </template>
-  </Preview>
+    </el-row>
 
-  <Preview title="朴素按钮">
-    <el-button round>圆角按钮</el-button>
-    <el-button type="primary" round>主要按钮</el-button>
-    <el-button type="success" round>成功按钮</el-button>
-    <el-button type="info" round>信息按钮</el-button>
-    <el-button type="warning" round>警告按钮</el-button>
-    <el-button type="danger" round>危险按钮</el-button>
-    <template #template>
-      {{`
+    <el-row>
       <el-button round>圆角按钮</el-button>
       <el-button type="primary" round>主要按钮</el-button>
       <el-button type="success" round>成功按钮</el-button>
       <el-button type="info" round>信息按钮</el-button>
       <el-button type="warning" round>警告按钮</el-button>
       <el-button type="danger" round>危险按钮</el-button>
-      `}}
-    </template>
-  </Preview>
+    </el-row>
 
-  <Preview title="图标按钮">
-    <el-button type="primary" icon="el-icon-edit"></el-button>
-    <el-button type="primary" icon="el-icon-share"></el-button>
-    <el-button type="primary" icon="el-icon-delete"></el-button>
-    <el-button type="primary" icon="el-icon-search">搜索</el-button>
-    <el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
-    <template #template>
-      {{`
-      <el-button type="primary" icon="el-icon-edit"></el-button>
-      <el-button type="primary" icon="el-icon-share"></el-button>
-      <el-button type="primary" icon="el-icon-delete"></el-button>
-      <el-button type="primary" icon="el-icon-search">搜索</el-button>
-      <el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
-      `}}
-    </template>
-  </Preview>
-
-  <Preview title="圆形按钮">
-    <el-button icon="el-icon-search" circle></el-button>
-    <el-button type="primary" icon="el-icon-edit" circle></el-button>
-    <el-button type="success" icon="el-icon-check" circle></el-button>
-    <el-button type="info" icon="el-icon-message" circle></el-button>
-    <el-button type="warning" icon="el-icon-star-off" circle></el-button>
-    <el-button type="danger" icon="el-icon-delete" circle></el-button>
-    <template #template>
-      {{`
+    <el-row>
       <el-button icon="el-icon-search" circle></el-button>
       <el-button type="primary" icon="el-icon-edit" circle></el-button>
       <el-button type="success" icon="el-icon-check" circle></el-button>
       <el-button type="info" icon="el-icon-message" circle></el-button>
       <el-button type="warning" icon="el-icon-star-off" circle></el-button>
       <el-button type="danger" icon="el-icon-delete" circle></el-button>
+    </el-row>
+    <template #template>
+      {{`
+      <el-row>
+        <el-button>默认按钮</el-button>
+        <el-button type="primary">主要按钮</el-button>
+        <el-button type="success">成功按钮</el-button>
+        <el-button type="info">信息按钮</el-button>
+        <el-button type="warning">警告按钮</el-button>
+        <el-button type="danger">危险按钮</el-button>
+      </el-row>
+
+      <el-row>
+        <el-button plain>朴素按钮</el-button>
+        <el-button type="primary" plain>主要按钮</el-button>
+        <el-button type="success" plain>成功按钮</el-button>
+        <el-button type="info" plain>信息按钮</el-button>
+        <el-button type="warning" plain>警告按钮</el-button>
+        <el-button type="danger" plain>危险按钮</el-button>
+      </el-row>
+
+      <el-row>
+        <el-button round>圆角按钮</el-button>
+        <el-button type="primary" round>主要按钮</el-button>
+        <el-button type="success" round>成功按钮</el-button>
+        <el-button type="info" round>信息按钮</el-button>
+        <el-button type="warning" round>警告按钮</el-button>
+        <el-button type="danger" round>危险按钮</el-button>
+      </el-row>
+
+      <el-row>
+        <el-button icon="el-icon-search" circle></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+        <el-button type="success" icon="el-icon-check" circle></el-button>
+        <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+      </el-row>
       `}}
     </template>
   </Preview>

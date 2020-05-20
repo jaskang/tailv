@@ -1,6 +1,6 @@
-import { defineComponent, computed, inject, h } from 'vue'
-import './index.less'
-import { ElRowSymbol } from '../../provides'
+import { defineComponent, computed, inject, h } from 'vue';
+import './index.less';
+import { ElRowSymbol } from '../../provides';
 
 export default defineComponent({
   name: 'ElCol',
@@ -23,39 +23,39 @@ export default defineComponent({
     xl: [Number, Object]
   },
   setup(props, { slots }) {
-    const gutter = inject(ElRowSymbol, 0)
+    const gutter = inject(ElRowSymbol, 0);
 
     const style = computed(() => {
       if (gutter) {
         return {
           paddingLeft: gutter / 2 + 'px',
           paddingRight: gutter / 2 + 'px'
-        }
+        };
       }
-      return {}
-    })
+      return {};
+    });
     const classList = computed(() => {
-      const ret: string[] = []
-      ;['span', 'offset', 'pull', 'push'].forEach(prop => {
-        const size = props[prop]
+      const ret: string[] = [];
+      ['span', 'offset', 'pull', 'push'].forEach(prop => {
+        const size = props[prop];
         if (typeof size === 'number' && size >= 0) {
-          ret.push(prop !== 'span' ? `el-col-${prop}-${props[prop]}` : `el-col-${props[prop]}`)
+          ret.push(prop !== 'span' ? `el-col-${prop}-${props[prop]}` : `el-col-${props[prop]}`);
         }
-      })
-      ;['xs', 'sm', 'md', 'lg', 'xl'].forEach(size => {
+      });
+      ['xs', 'sm', 'md', 'lg', 'xl'].forEach(size => {
         if (typeof props[size] === 'number') {
-          ret.push(`el-col-${size}-${props[size]}`)
+          ret.push(`el-col-${size}-${props[size]}`);
         } else if (typeof props[size] === 'object') {
-          const sizeProps = props[size]
+          const sizeProps = props[size];
           Object.keys(sizeProps).forEach(prop => {
             ret.push(
               prop !== 'span' ? `el-col-${size}-${prop}-${sizeProps[prop]}` : `el-col-${size}-${sizeProps[prop]}`
-            )
-          })
+            );
+          });
         }
-      })
-      return ret
-    })
+      });
+      return ret;
+    });
 
     return () =>
       h(
@@ -65,6 +65,6 @@ export default defineComponent({
           style: style.value
         },
         slots.default()
-      )
+      );
   }
-})
+});

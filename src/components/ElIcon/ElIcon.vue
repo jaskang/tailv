@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import './ElIcon.less'
-import { defineComponent } from 'vue'
+import './ElIcon.less';
+import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'ElIcon',
   props: { name: String }
-})
+});
 </script>

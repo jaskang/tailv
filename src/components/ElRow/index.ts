@@ -1,6 +1,6 @@
-import { defineComponent, computed, h, provide } from 'vue'
-import { ElRowSymbol } from '@/provides'
-import './index.less'
+import { defineComponent, computed, h, provide } from 'vue';
+import { ElRowSymbol } from '@/provides';
+import './index.less';
 
 export default defineComponent({
   name: 'ElRow',
@@ -21,15 +21,15 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    provide(ElRowSymbol, props.gutter)
+    provide(ElRowSymbol, props.gutter);
     const style = computed(() => {
-      const ret: any = {}
+      const ret: any = {};
       if (props.gutter) {
-        ret.marginLeft = `-${props.gutter / 2}px`
-        ret.marginRight = ret.marginLeft
+        ret.marginLeft = `-${props.gutter / 2}px`;
+        ret.marginRight = ret.marginLeft;
       }
-      return ret
-    })
+      return ret;
+    });
     return () =>
       h(
         props.tag,
@@ -43,6 +43,6 @@ export default defineComponent({
           style: style.value
         },
         slots.default?.()
-      )
+      );
   }
-})
+});

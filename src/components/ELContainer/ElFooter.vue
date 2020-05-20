@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ElFooter',
@@ -17,7 +17,7 @@ export default defineComponent({
       default: '60px'
     }
   }
-})
+});
 </script>
 
 <style lang="less">

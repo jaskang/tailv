@@ -1,13 +1,13 @@
-import { InjectionKey, inject } from 'vue'
+import { InjectionKey, inject } from 'vue';
 
 export const ElGlobalConfigSymbol: InjectionKey<{
-    size?: 'medium'|'small'|'mini'
-}> = Symbol()
+  size?: 'medium' | 'small' | 'mini';
+}> = Symbol();
 
-export function useGlobal(){
-    return inject(ElGlobalConfigSymbol,null)
+export function useGlobal() {
+  return inject(ElGlobalConfigSymbol, null);
 }
 
-export const ElRowSymbol: InjectionKey<number> = Symbol()
-export const ElFormSymbol: InjectionKey<any> = Symbol()
-export const ElFormItemSymbol: InjectionKey<any> = Symbol()
+export const ElRowSymbol: InjectionKey<number> = Symbol();
+export const ElFormSymbol: InjectionKey<any> = Symbol();
+export const ElFormItemSymbol: InjectionKey<any> = Symbol();

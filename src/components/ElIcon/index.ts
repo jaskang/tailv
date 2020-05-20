@@ -1,1 +1,1 @@
-export { default as ElIcon } from './ElIcon.vue'
+export { default as ElIcon } from './ElIcon.vue';
