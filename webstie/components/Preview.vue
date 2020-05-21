@@ -48,7 +48,7 @@ export default defineComponent({
     };
     const toggleCode = () => {
       if (state.codeHeight === 0) {
-        state.codeHeight = codeRef.value.offsetHeight;
+        state.codeHeight = fullHeight;
       } else {
         state.codeHeight = 0;
       }

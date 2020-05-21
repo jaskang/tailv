@@ -1,39 +1,49 @@
 import { defineComponent, inject, h, mergeProps, onUnmounted, onMounted, computed } from 'vue';
-import { ElMenuSymbol } from './ElMenu';
+import { useElMenu } from './provides';
 
 export default defineComponent({
   name: 'ElMenuItem',
   props: {},
   setup(props, { attrs, slots, emit }) {
-    const parentMenu = inject(ElMenuSymbol);
+    const { parentMenu, rootMenu, paddingStyle } = useElMenu();
     const id = Symbol('ElMenuItem');
 
     const ownIndex = computed(() => {
-      return parentMenu.state.items.indexOf(id);
+      return rootMenu.state.items.indexOf(id);
     });
 
-    const isActive = computed(() => ownIndex.value === parentMenu.state.activeIndex);
+    const isActive = computed(() => ownIndex.value === rootMenu.state.activeIndex);
 
     const handleClick = () => {
-      parentMenu.selectIndex(ownIndex.value);
+      rootMenu.selectIndex(ownIndex.value);
     };
 
     const itemStyle = computed(() => {
       const style: any = {
-        color: isActive.value ? parentMenu.activeTextColor : parentMenu.textColor
+        color: isActive.value ? rootMenu.activeTextColor : rootMenu.textColor,
+        ...paddingStyle
       };
-      if (parentMenu.mode === 'horizontal') {
-        style.borderBottomColor = isActive.value ? parentMenu.activeTextColor : 'transparent';
+      if (rootMenu.mode === 'horizontal') {
+        style.borderBottomColor = isActive.value ? rootMenu.activeTextColor : 'transparent';
       }
       return style;
     });
 
     onMounted(() => {
-      parentMenu.state.items.push(id);
+      if (parentMenu.state.items.indexOf(id) === -1) {
+        parentMenu.state.items.push(id);
+      }
+      if (rootMenu.state.items.indexOf(id) === -1) {
+        rootMenu.state.items.push(id);
+      }
     });
     onUnmounted(() => {
+      if (parentMenu.state.items.indexOf(id) === -1) {
+        const indexWithParent = parentMenu.state.items.indexOf(id);
+        parentMenu.state.items.splice(indexWithParent, 1);
+      }
       if (ownIndex.value >= 0) {
-        parentMenu.state.items.splice(ownIndex.value, 1);
+        rootMenu.state.items.splice(ownIndex.value, 1);
       }
     });
     return () =>
@@ -41,7 +51,7 @@ export default defineComponent({
         'li',
         mergeProps(
           {
-            style: [itemStyle.value, { backgroundColor: parentMenu.backgroundColor }],
+            style: [paddingStyle, itemStyle.value, { backgroundColor: rootMenu.backgroundColor }],
             class: {
               'el-menu-item': true,
               'is-active': isActive.value,
