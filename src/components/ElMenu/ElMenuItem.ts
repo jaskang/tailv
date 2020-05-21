@@ -9,10 +9,10 @@ export default defineComponent({
     const id = Symbol('ElMenuItem');
 
     const ownIndex = computed(() => {
-      return rootMenu.state.items.indexOf(id);
+      return rootMenu.items.indexOf(id);
     });
 
-    const isActive = computed(() => ownIndex.value === rootMenu.state.activeIndex);
+    const isActive = computed(() => ownIndex.value === rootMenu.activeIndex);
 
     const handleClick = () => {
       rootMenu.selectIndex(ownIndex.value);
@@ -30,20 +30,25 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      if (parentMenu.state.items.indexOf(id) === -1) {
-        parentMenu.state.items.push(id);
+      if (parentMenu.deep >= 0) {
+        if (parentMenu.items.indexOf(id) === -1) {
+          parentMenu.items.push(id);
+        }
       }
-      if (rootMenu.state.items.indexOf(id) === -1) {
-        rootMenu.state.items.push(id);
+
+      if (rootMenu.items.indexOf(id) === -1) {
+        rootMenu.items.push(id);
       }
     });
     onUnmounted(() => {
-      if (parentMenu.state.items.indexOf(id) === -1) {
-        const indexWithParent = parentMenu.state.items.indexOf(id);
-        parentMenu.state.items.splice(indexWithParent, 1);
+      if (parentMenu.deep >= 0) {
+        if (parentMenu.items.indexOf(id) === -1) {
+          const indexWithParent = parentMenu.items.indexOf(id);
+          parentMenu.items.splice(indexWithParent, 1);
+        }
       }
       if (ownIndex.value >= 0) {
-        rootMenu.state.items.splice(ownIndex.value, 1);
+        rootMenu.items.splice(ownIndex.value, 1);
       }
     });
     return () =>

@@ -42,7 +42,7 @@ export default defineComponent({
       nextTick(() => {
         window.Prism.highlightAll();
         setTimeout(() => {
-          fullHeight = codeRef.value.offsetHeight;
+          fullHeight = codeRef.value?.offsetHeight;
         }, 200);
       });
     };

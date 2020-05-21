@@ -1,21 +1,23 @@
 import { InjectionKey, inject, computed } from 'vue';
 
 type RootMenuType = {
-  state: {
-    items: any[];
-    activeIndex: number;
-  };
+  activeIndex: number;
+  isMenuPopup: boolean;
   deep: number;
   mode: string;
+  menuTrigger: string;
+  collapse: boolean;
   backgroundColor: string;
   activeTextColor: string;
   textColor: string;
+  items: any[];
+  openedMenus: any[];
   selectIndex: (index: number) => void;
+  openMenu: (id: any) => void;
+  closeMenu: (id: any) => void;
 };
 type ParentMenuType = {
-  state: {
-    items: any[];
-  };
+  items: any[];
   deep: number;
   isRoot: boolean;
 };

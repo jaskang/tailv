@@ -1,4 +1,4 @@
-import { defineComponent, PropType, provide, h, mergeProps, InjectionKey, reactive } from 'vue';
+import { defineComponent, PropType, provide, h, mergeProps, InjectionKey, reactive, computed } from 'vue';
 import { useElMenu } from './provides';
 
 export default defineComponent({
@@ -16,36 +16,62 @@ export default defineComponent({
       type: String,
       default: ''
     },
+    menuTrigger: {
+      type: String as PropType<'click' | 'hover'>,
+      default: 'click'
+    },
+    collapse: {
+      type: Boolean,
+      default: false
+    },
     activeTextColor: {
       type: String,
       default: ''
     }
   },
   setup(props, { attrs, slots, emit }) {
-    const { mode, backgroundColor, activeTextColor, textColor } = props;
+    const { mode, backgroundColor, activeTextColor, textColor, collapse, menuTrigger } = props;
     const { rootMenu, rootKey, parentKey } = useElMenu();
     const state = reactive({
       activeIndex: -1,
-      items: []
+      items: [],
+      openedMenus: []
     });
-    if (!rootMenu) {
-      provide(rootKey, {
-        state,
-        deep: 0,
-        mode,
-        backgroundColor,
-        activeTextColor,
-        textColor,
-        selectIndex(index: number) {
-          state.activeIndex = index;
+    const isMenuPopup = computed(() => {
+      return mode === 'horizontal' || !!(mode === 'vertical' && collapse);
+    });
+    provide(rootKey, {
+      items: state.items,
+      collapse: !!collapse,
+      isMenuPopup: isMenuPopup.value,
+      activeIndex: state.activeIndex,
+      menuTrigger,
+      deep: 0,
+      mode,
+      backgroundColor,
+      activeTextColor,
+      textColor,
+      openedMenus: state.openedMenus,
+      openMenu(id: any) {
+        if (state.openedMenus.indexOf(id) === -1) {
+          state.openedMenus.push(id);
         }
-      });
-      provide(parentKey, {
-        state,
-        deep: 0,
-        isRoot: true
-      });
-    }
+      },
+      closeMenu(id: any) {
+        const menuIndex = state.openedMenus.indexOf(id);
+        if (menuIndex >= 0) {
+          state.openedMenus.splice(menuIndex, 1);
+        }
+      },
+      selectIndex(index: number) {
+        state.activeIndex = index;
+      }
+    });
+    provide(parentKey, {
+      items: state.items,
+      deep: 0,
+      isRoot: true
+    });
 
     return () =>
       h(
