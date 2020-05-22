@@ -15,7 +15,6 @@
         'is-circle': circle
       }
     ]"
-    @click="handleClick"
   >
     <i v-if="loading" class="el-icon-loading"></i>
     <i v-if="icon && !loading" :class="icon"></i>
@@ -64,11 +63,7 @@ export default defineComponent({
       return props.disabled || elForm?.disabled;
     });
 
-    const handleClick = (evt: any) => {
-      emit('click', evt);
-    };
     return {
-      handleClick,
       buttonSize,
       buttonDisabled
     };

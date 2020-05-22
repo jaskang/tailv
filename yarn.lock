@@ -3672,6 +3672,11 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
+node-forge@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.9.0.tgz#d624050edbb44874adca12bb9a52ec63cb782579"
+  integrity sha512-7ASaDa3pD+lJ3WvXFsxekJQelBKRpne+GOVbLbtHYdd7pFspyeuJHnWfLplGf3SwKGbfs/aYl5V/JCIaHVUKKQ==
+
 node-releases@^1.1.53:
   version "1.1.55"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.55.tgz#8af23b7c561d8e2e6e36a46637bab84633b07cee"
@@ -4704,6 +4709,13 @@ select@^1.1.2:
   resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
+selfsigned@^1.10.7:
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/selfsigned/-/selfsigned-1.10.7.tgz#da5819fd049d5574f28e88a9bcc6dbc6e6f3906b"
+  integrity sha512-8M3wBCzeWIJnQfl43IKwOmC4H/RAp50S8DF60znzjW5GVqTcSe2vWclt7hmYVPkKPlHWOu5EaWOMZ2Y6W8ZXTA==
+  dependencies:
+    node-forge "0.9.0"
+
 semver@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
@@ -5316,10 +5328,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite@^0.15.3:
-  version "0.15.6"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-0.15.6.tgz#9c3b0116b6a5fc2d2f25d209a0df275dcb0a3b59"
-  integrity sha512-w7plZmGtdWbv9qYQ7KdbTAHFgG7F+TY9WS5Y6/+7/9JQCC1u64rm18vJfgjF6EC3+M+IiCmGkaHPi/OLoaKDQQ==
+vite@^0.16.4:
+  version "0.16.4"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-0.16.4.tgz#f92a7c82754e8df8938f434ac631df137d5e01b6"
+  integrity sha512-NASAy0MgI1kYf1GrhMmpVcN4VST3yt8uHQc8w+lDL+gXXQ3YdCv7R5xFMMdov2Mwozm7XUBrk68fMXWO35HfdA==
   dependencies:
     "@babel/parser" "^7.9.4"
     "@rollup/plugin-commonjs" "~11.0.0"
@@ -5357,6 +5369,7 @@ vite@^0.15.3:
     rollup "^2.7.2"
     rollup-plugin-terser "^5.3.0"
     rollup-plugin-vue "^6.0.0-beta.1"
+    selfsigned "^1.10.7"
     slash "^3.0.0"
     vue "^3.0.0-beta.14"
     ws "^7.2.3"
@@ -5378,7 +5391,7 @@ vue-router@^4.0.0-alpha.11:
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-alpha.12.tgz#cba18f0a7fcb577d97c8cd10072a9927313db510"
   integrity sha512-TJhbWHPZS1v259PKlZf+ljSob0U2RUii3HXQgrcFXsNmeWuqEYEh6trswHHr4+MQdXxHgonyYK28qhBjNhORkA==
 
-vue@^3.0.0-beta.12, vue@^3.0.0-beta.14:
+vue@^3.0.0-beta.14:
   version "3.0.0-beta.14"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.0-beta.14.tgz#d2c8739e00c4a4a06b519c14c57d204c350c980c"
   integrity sha512-0MH1g5O3zX8ijvZuiQTYFq3UwHxtj512I/wrMPQLVXwjqb+ILA+fooSpdz4xgUBBl5zN/K9xJIwbl23sv+Sn7A==

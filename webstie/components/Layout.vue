@@ -6,6 +6,7 @@
       <router-link :to="{ name: 'container' }">container</router-link><br />
       <router-link :to="{ name: 'icon' }">icon</router-link><br />
       <router-link :to="{ name: 'menu' }">menu</router-link><br />
+      <router-link :to="{ name: 'popover' }">popover</router-link><br />
     </ElAside>
     <ElMain>
       <img alt="Vue logo" src="./../assets/logo.png" />

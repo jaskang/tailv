@@ -33,7 +33,7 @@
       >
         <ul
           role="menu"
-          :class="['el-menu el-menu--popup', `el-menu--popup-`]"
+          :class="`el-menu el-menu--popup el-menu--popup-${currentPlacement}`"
           :style="{ backgroundColor: backgroundColor || '' }"
         >
           <slot></slot>
@@ -111,9 +111,13 @@ export default defineComponent({
     });
 
     const submenuTitleIcon =
-      (rootMenu.mode === 'horizontal' && parentMenu.deep === 0) || (rootMenu.mode === 'vertical' && !rootMenu.collapse)
+      (rootMenu.mode === 'horizontal' && parentMenu.isRoot) || (rootMenu.mode === 'vertical' && !rootMenu.collapse)
         ? 'el-icon-arrow-down'
         : 'el-icon-arrow-right';
+
+    const currentPlacement = computed(() => {
+      return rootMenu.mode === 'horizontal' && parentMenu.isRoot ? 'bottom-start' : 'right-start';
+    });
 
     const handleClick = () => {
       if (
@@ -123,7 +127,11 @@ export default defineComponent({
       ) {
         return;
       }
-      rootMenu.openMenu(id);
+      if (rootMenu.openedMenus.indexOf(id) >= 0) {
+        rootMenu.closeMenu(id);
+      } else {
+        rootMenu.openMenu(id);
+      }
     };
 
     const handleMouseenter = () => {
@@ -136,7 +144,15 @@ export default defineComponent({
       }
       rootMenu.openMenu(id);
     };
-    const handleMouseleave = () => void 0;
+    const handleMouseleave = () => {
+      if (
+        (rootMenu.menuTrigger === 'click' && rootMenu.mode === 'horizontal') ||
+        (!rootMenu.collapse && rootMenu.mode === 'vertical')
+      ) {
+        return;
+      }
+      rootMenu.closeMenu(id);
+    };
 
     const handleTitleMouseenter = () => {
       if (rootMenu.mode === 'horizontal' && !rootMenu.backgroundColor) return;
@@ -154,6 +170,7 @@ export default defineComponent({
       isActive,
       titleStyle,
       paddingStyle,
+      currentPlacement,
       submenuTitleIcon,
       backgroundColor: rootMenu.backgroundColor,
       handleClick,

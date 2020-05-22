@@ -34,21 +34,17 @@ export default defineComponent({
   },
   setup() {
     const codeRef = ref<HTMLDivElement>(null);
-    let fullHeight = 0;
     const state = reactive({
       codeHeight: 0
     });
     const highlightAll = () => {
       nextTick(() => {
         window.Prism.highlightAll();
-        setTimeout(() => {
-          fullHeight = codeRef.value?.offsetHeight;
-        }, 200);
       });
     };
     const toggleCode = () => {
       if (state.codeHeight === 0) {
-        state.codeHeight = fullHeight;
+        state.codeHeight = codeRef.value?.offsetHeight;
       } else {
         state.codeHeight = 0;
       }
