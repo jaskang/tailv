@@ -1,4 +1,4 @@
-import { d as defineComponent, f as ref, g as reactive, h as onMounted, t as toRefs, n as nextTick, c as createBlock, b as createVNode, _ as _toDisplayString, j as createCommentVNode, k as renderSlot, o as openBlock } from './index.c7be9c13.js';
+import { d as defineComponent, f as ref, g as reactive, h as onMounted, t as toRefs, n as nextTick, c as createBlock, b as createVNode, _ as _toDisplayString, j as createCommentVNode, k as renderSlot, o as openBlock } from './index.5bd50846.js';
 
 var script = defineComponent({
   name: "Preview",
@@ -14,21 +14,18 @@ var script = defineComponent({
   },
   setup() {
     const codeRef = ref(null);
-    let fullHeight = 0;
     const state = reactive({
       codeHeight: 0
     });
     const highlightAll = () => {
       nextTick(() => {
         window.Prism.highlightAll();
-        setTimeout(() => {
-          fullHeight = codeRef.value.offsetHeight;
-        }, 200);
       });
     };
     const toggleCode = () => {
+      var _a;
       if (state.codeHeight === 0) {
-        state.codeHeight = codeRef.value.offsetHeight;
+        state.codeHeight = (_a = codeRef.value) == null ? void 0 : _a.offsetHeight;
       } else {
         state.codeHeight = 0;
       }
@@ -104,6 +101,8 @@ function render(_ctx, _cache) {
     ])
   ]))
 }
+
+;
 
 script.render = render;
 

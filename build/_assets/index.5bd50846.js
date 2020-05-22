@@ -1,3 +1,5 @@
+;
+
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function createCommonjsModule(fn, module) {
@@ -15,6 +17,8 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 !function(e){e.languages.typescript=e.languages.extend("javascript",{"class-name":{pattern:/(\b(?:class|extends|implements|instanceof|interface|new|type)\s+)(?!keyof\b)[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?:\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>)?/,lookbehind:!0,greedy:!0,inside:null},keyword:/\b(?:abstract|as|asserts|async|await|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|is|keyof|let|module|namespace|new|null|of|package|private|protected|public|readonly|return|require|set|static|super|switch|this|throw|try|type|typeof|undefined|var|void|while|with|yield)\b/,builtin:/\b(?:string|Function|any|number|boolean|Array|symbol|console|Promise|unknown|never)\b/}),delete e.languages.typescript.parameter;var n=e.languages.extend("typescript",{});delete n["class-name"],e.languages.typescript["class-name"].inside=n,e.languages.insertBefore("typescript","function",{"generic-function":{pattern:/#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>(?=\s*\()/,greedy:!0,inside:{function:/^#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*/,generic:{pattern:/<[\s\S]+/,alias:"class-name",inside:n}}}}),e.languages.ts=e.languages.typescript;}(Prism);
 !function(){var i=Object.assign||function(e,n){for(var t in n)n.hasOwnProperty(t)&&(e[t]=n[t]);return e};function e(e){this.defaults=i({},e);}function l(e){for(var n=0,t=0;t<e.length;++t)e.charCodeAt(t)=="\t".charCodeAt(0)&&(n+=3);return e.length+n}e.prototype={setDefaults:function(e){this.defaults=i(this.defaults,e);},normalize:function(e,n){for(var t in n=i(this.defaults,n)){var r=t.replace(/-(\w)/g,function(e,n){return n.toUpperCase()});"normalize"!==t&&"setDefaults"!==r&&n[t]&&this[r]&&(e=this[r].call(this,e,n[t]));}return e},leftTrim:function(e){return e.replace(/^\s+/,"")},rightTrim:function(e){return e.replace(/\s+$/,"")},tabsToSpaces:function(e,n){return n=0|n||4,e.replace(/\t/g,new Array(++n).join(" "))},spacesToTabs:function(e,n){return n=0|n||4,e.replace(RegExp(" {"+n+"}","g"),"\t")},removeTrailing:function(e){return e.replace(/\s*?$/gm,"")},removeInitialLineFeed:function(e){return e.replace(/^(?:\r?\n|\r)/,"")},removeIndent:function(e){var n=e.match(/^[^\S\n\r]*(?=\S)/gm);return n&&n[0].length?(n.sort(function(e,n){return e.length-n.length}),n[0].length?e.replace(RegExp("^"+n[0],"gm"),""):e):e},indent:function(e,n){return e.replace(/^[^\S\n\r]*(?=\S)/gm,new Array(++n).join("\t")+"$&")},breakLines:function(e,n){n=!0===n?80:0|n||80;for(var t=e.split("\n"),r=0;r<t.length;++r)if(!(l(t[r])<=n)){for(var i=t[r].split(/(\s+)/g),o=0,a=0;a<i.length;++a){var s=l(i[a]);n<(o+=s)&&(i[a]="\n"+i[a],o=s);}t[r]=i.join("");}return t.join("\n")}},module.exports&&(module.exports=e),"undefined"!=typeof Prism&&(Prism.plugins.NormalizeWhitespace=new e({"remove-trailing":!0,"remove-indent":!0,"left-trim":!0,"right-trim":!0}),Prism.hooks.add("before-sanity-check",function(e){var n=Prism.plugins.NormalizeWhitespace;if(!e.settings||!1!==e.settings["whitespace-normalization"])if(e.element&&e.element.parentNode||!e.code){var t=e.element.parentNode,r=/(?:^|\s)no-whitespace-normalization(?:\s|$)/;if(e.code&&t&&"pre"===t.nodeName.toLowerCase()&&!r.test(t.className)&&!r.test(e.element.className)){for(var i=t.childNodes,o="",a="",s=!1,l=0;l<i.length;++l){var c=i[l];c==e.element?s=!0:"#text"===c.nodeName&&(s?a+=c.nodeValue:o+=c.nodeValue,t.removeChild(c),--l);}if(e.element.children.length&&Prism.plugins.KeepMarkup){var u=o+e.element.innerHTML+a;e.element.innerHTML=n.normalize(u,e.settings),e.code=e.element.textContent;}else e.code=o+e.code+a,e.code=n.normalize(e.code,e.settings);}}else e.code=n.normalize(e.code,e.settings);}));}();
 });
+
+;
 
 // Make a map and return a function for checking if a key
 // is in that map.
@@ -1380,6 +1384,153 @@ function withCtx(fn, ctx = currentRenderingInstance) {
 let currentScopeId = null;
 
 const isTeleport = (type) => type.__isTeleport;
+const isTeleportDisabled = (props) => props && (props.disabled || props.disabled === '');
+const resolveTarget = (props, select) => {
+    const targetSelector = props && props.to;
+    if (isString(targetSelector)) {
+        if (!select) {
+            return null;
+        }
+        else {
+            const target = select(targetSelector);
+            return target;
+        }
+    }
+    else {
+        return targetSelector;
+    }
+};
+const TeleportImpl = {
+    __isTeleport: true,
+    process(n1, n2, container, anchor, parentComponent, parentSuspense, isSVG, optimized, internals) {
+        const { mc: mountChildren, pc: patchChildren, pbc: patchBlockChildren, o: { insert, querySelector, createText, createComment } } = internals;
+        const disabled = isTeleportDisabled(n2.props);
+        const { shapeFlag, children } = n2;
+        if (n1 == null) {
+            // insert anchors in the main view
+            const placeholder = (n2.el =  createText(''));
+            const mainAnchor = (n2.anchor =  createText(''));
+            insert(placeholder, container, anchor);
+            insert(mainAnchor, container, anchor);
+            const target = (n2.target = resolveTarget(n2.props, querySelector));
+            const targetAnchor = (n2.targetAnchor = createText(''));
+            if (target) {
+                insert(targetAnchor, target);
+            }
+            const mount = (container, anchor) => {
+                // Teleport *always* has Array children. This is enforced in both the
+                // compiler and vnode children normalization.
+                if (shapeFlag & 16 /* ARRAY_CHILDREN */) {
+                    mountChildren(children, container, anchor, parentComponent, parentSuspense, isSVG, optimized);
+                }
+            };
+            if (disabled) {
+                mount(container, mainAnchor);
+            }
+            else if (target) {
+                mount(target, targetAnchor);
+            }
+        }
+        else {
+            // update content
+            n2.el = n1.el;
+            const mainAnchor = (n2.anchor = n1.anchor);
+            const target = (n2.target = n1.target);
+            const targetAnchor = (n2.targetAnchor = n1.targetAnchor);
+            const wasDisabled = isTeleportDisabled(n1.props);
+            const currentContainer = wasDisabled ? container : target;
+            const currentAnchor = wasDisabled ? mainAnchor : targetAnchor;
+            if (n2.dynamicChildren) {
+                // fast path when the teleport happens to be a block root
+                patchBlockChildren(n1.dynamicChildren, n2.dynamicChildren, currentContainer, parentComponent, parentSuspense, isSVG);
+            }
+            else if (!optimized) {
+                patchChildren(n1, n2, currentContainer, currentAnchor, parentComponent, parentSuspense, isSVG);
+            }
+            if (disabled) {
+                if (!wasDisabled) {
+                    // enabled -> disabled
+                    // move into main container
+                    moveTeleport(n2, container, mainAnchor, internals, 1 /* TOGGLE */);
+                }
+            }
+            else {
+                // target changed
+                if ((n2.props && n2.props.to) !== (n1.props && n1.props.to)) {
+                    const nextTarget = (n2.target = resolveTarget(n2.props, querySelector));
+                    if (nextTarget) {
+                        moveTeleport(n2, nextTarget, null, internals, 0 /* TARGET_CHANGE */);
+                    }
+                }
+                else if (wasDisabled) {
+                    // disabled -> enabled
+                    // move into teleport target
+                    moveTeleport(n2, target, targetAnchor, internals, 1 /* TOGGLE */);
+                }
+            }
+        }
+    },
+    remove(vnode, { r: remove, o: { remove: hostRemove } }) {
+        const { shapeFlag, children, anchor } = vnode;
+        hostRemove(anchor);
+        if (shapeFlag & 16 /* ARRAY_CHILDREN */) {
+            for (let i = 0; i < children.length; i++) {
+                remove(children[i]);
+            }
+        }
+    },
+    move: moveTeleport,
+    hydrate: hydrateTeleport
+};
+function moveTeleport(vnode, container, parentAnchor, { o: { insert }, m: move }, moveType = 2 /* REORDER */) {
+    // move target anchor if this is a target change.
+    if (moveType === 0 /* TARGET_CHANGE */) {
+        insert(vnode.targetAnchor, container, parentAnchor);
+    }
+    const { el, anchor, shapeFlag, children, props } = vnode;
+    const isReorder = moveType === 2 /* REORDER */;
+    // move main view anchor if this is a re-order.
+    if (isReorder) {
+        insert(el, container, parentAnchor);
+    }
+    // if this is a re-order and teleport is enabled (content is in target)
+    // do not move children. So the opposite is: only move children if this
+    // is not a reorder, or the teleport is disabled
+    if (!isReorder || isTeleportDisabled(props)) {
+        // Teleport has either Array children or no children.
+        if (shapeFlag & 16 /* ARRAY_CHILDREN */) {
+            for (let i = 0; i < children.length; i++) {
+                move(children[i], container, parentAnchor, 2 /* REORDER */);
+            }
+        }
+    }
+    // move main view anchor if this is a re-order.
+    if (isReorder) {
+        insert(anchor, container, parentAnchor);
+    }
+}
+function hydrateTeleport(node, vnode, parentComponent, parentSuspense, optimized, { o: { nextSibling, parentNode, querySelector } }, hydrateChildren) {
+    const target = (vnode.target = resolveTarget(vnode.props, querySelector));
+    if (target) {
+        // if multiple teleports rendered to the same target element, we need to
+        // pick up from where the last teleport finished instead of the first node
+        const targetNode = target._lpa || target.firstChild;
+        if (vnode.shapeFlag & 16 /* ARRAY_CHILDREN */) {
+            if (isTeleportDisabled(vnode.props)) {
+                vnode.anchor = hydrateChildren(nextSibling(node), vnode, parentNode(node), parentComponent, parentSuspense, optimized);
+                vnode.targetAnchor = targetNode;
+            }
+            else {
+                vnode.anchor = nextSibling(node);
+                vnode.targetAnchor = hydrateChildren(targetNode, vnode, target, parentComponent, parentSuspense, optimized);
+            }
+            target._lpa = nextSibling(vnode.targetAnchor);
+        }
+    }
+    return vnode.anchor && nextSibling(vnode.anchor);
+}
+// Force-casted public typing for h and TSX props inference
+const Teleport = TeleportImpl;
 
 const COMPONENTS = 'components';
 function resolveComponent(name) {
@@ -2050,6 +2201,35 @@ const updateSlots = (instance, children) => {
         }
     }
 };
+/**
+ * Adds directives to a VNode.
+ */
+function withDirectives(vnode, directives) {
+    const internalInstance = currentRenderingInstance;
+    if (internalInstance === null) {
+        return vnode;
+    }
+    const instance = internalInstance.proxy;
+    const bindings = vnode.dirs || (vnode.dirs = []);
+    for (let i = 0; i < directives.length; i++) {
+        let [dir, value, arg, modifiers = EMPTY_OBJ] = directives[i];
+        if (isFunction(dir)) {
+            dir = {
+                mounted: dir,
+                updated: dir
+            };
+        }
+        bindings.push({
+            dir,
+            instance,
+            value,
+            oldValue: void 0,
+            arg,
+            modifiers
+        });
+    }
+    return vnode;
+}
 function invokeDirectiveHook(vnode, prevVNode, instance, name) {
     const bindings = vnode.dirs;
     const oldBindings = prevVNode && prevVNode.dirs;
@@ -4528,6 +4708,51 @@ const patchProp = (el, key, prevValue, nextValue, isSVG = false, prevChildren, p
             break;
     }
 };
+
+/**
+ * @internal
+ */
+const vShow = {
+    beforeMount(el, { value }, { transition }) {
+        el._vod = el.style.display === 'none' ? '' : el.style.display;
+        if (transition && value) {
+            transition.beforeEnter(el);
+        }
+        else {
+            setDisplay(el, value);
+        }
+    },
+    mounted(el, { value }, { transition }) {
+        if (transition && value) {
+            transition.enter(el);
+        }
+    },
+    updated(el, { value, oldValue }, { transition }) {
+        if (!value === !oldValue)
+            return;
+        if (transition) {
+            if (value) {
+                transition.beforeEnter(el);
+                setDisplay(el, true);
+                transition.enter(el);
+            }
+            else {
+                transition.leave(el, () => {
+                    setDisplay(el, false);
+                });
+            }
+        }
+        else {
+            setDisplay(el, value);
+        }
+    },
+    beforeUnmount(el) {
+        setDisplay(el, true);
+    }
+};
+function setDisplay(el, value) {
+    el.style.display = value ? el._vod : 'none';
+}
 
 const rendererOptions = {
     patchProp,
@@ -7089,13 +7314,7 @@ var script$5 = defineComponent({
     var buttonDisabled = computed$1(function () {
       return props.disabled || (elForm === null || elForm === void 0 ? void 0 : elForm.disabled);
     });
-
-    var handleClick = function handleClick(evt) {
-      emit('click', evt);
-    };
-
     return {
-      handleClick: handleClick,
       buttonSize: buttonSize,
       buttonDisabled: buttonDisabled
     };
@@ -7123,8 +7342,7 @@ function render$5(_ctx, _cache) {
     ]],
     disabled: _ctx.buttonDisabled || _ctx.loading,
     autofocus: _ctx.autofocus,
-    type: _ctx.nativeType,
-    onClick: _cache[1] || (_cache[1] = $event => (_ctx.handleClick($event)))
+    type: _ctx.nativeType
   }, [
     (_ctx.loading)
       ? (openBlock(), createBlock("i", _hoisted_1$1$1))
@@ -7185,7 +7403,23 @@ script$7.__file = "src/components/ElIcon/ElIcon.vue";
 var css_248z$9 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-menu {\n  border-right: solid 1px #e6e6e6;\n  list-style: none;\n  position: relative;\n  margin: 0;\n  padding-left: 0;\n  background-color: #ffffff;\n}\n.el-menu::before,\n.el-menu::after {\n  display: table;\n  content: '';\n}\n.el-menu::after {\n  clear: both;\n}\n.el-menu.el-menu--horizontal {\n  border-bottom: solid 1px #e6e6e6;\n}\n.el-menu--horizontal {\n  border-right: none;\n}\n.el-menu--horizontal > .el-menu-item {\n  float: left;\n  height: 60px;\n  line-height: 60px;\n  margin: 0;\n  border-bottom: 2px solid transparent;\n  color: #909399;\n}\n.el-menu--horizontal > .el-menu-item a,\n.el-menu--horizontal > .el-menu-item a:hover {\n  color: inherit;\n}\n.el-menu--horizontal > .el-menu-item:not(.is-disabled):hover,\n.el-menu--horizontal > .el-menu-item:not(.is-disabled):focus {\n  background-color: #fff;\n}\n.el-menu--horizontal > .el-submenu {\n  float: left;\n}\n.el-menu--horizontal > .el-submenu:focus,\n.el-menu--horizontal > .el-submenu:hover {\n  outline: none;\n}\n.el-menu--horizontal > .el-submenu:focus .el-submenu__title,\n.el-menu--horizontal > .el-submenu:hover .el-submenu__title {\n  color: #303133;\n}\n.el-menu--horizontal > .el-submenu.is-active .el-submenu__title {\n  border-bottom: 2px solid #409eff;\n  color: #303133;\n}\n.el-menu--horizontal > .el-submenu .el-submenu__title {\n  height: 60px;\n  line-height: 60px;\n  border-bottom: 2px solid transparent;\n  color: #909399;\n}\n.el-menu--horizontal > .el-submenu .el-submenu__title:hover {\n  background-color: #fff;\n}\n.el-menu--horizontal > .el-submenu .el-submenu__icon-arrow {\n  position: static;\n  vertical-align: middle;\n  margin-left: 8px;\n  margin-top: -3px;\n}\n.el-menu--horizontal .el-menu .el-menu-item,\n.el-menu--horizontal .el-menu .el-submenu__title {\n  background-color: #ffffff;\n  float: none;\n  height: 36px;\n  line-height: 36px;\n  padding: 0 10px;\n  color: #909399;\n}\n.el-menu--horizontal .el-menu .el-menu-item.is-active,\n.el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {\n  color: #303133;\n}\n.el-menu--horizontal .el-menu-item:not(.is-disabled):hover,\n.el-menu--horizontal .el-menu-item:not(.is-disabled):focus {\n  outline: none;\n  color: #303133;\n}\n.el-menu--horizontal > .el-menu-item.is-active {\n  border-bottom: 2px solid #409eff;\n  color: #303133;\n}\n.el-menu--collapse {\n  width: 64px;\n}\n.el-menu--collapse > .el-menu-item [class^='el-icon-'],\n.el-menu--collapse > .el-submenu > .el-submenu__title [class^='el-icon-'] {\n  margin: 0;\n  vertical-align: middle;\n  width: 24px;\n  text-align: center;\n}\n.el-menu--collapse > .el-menu-item .el-submenu__icon-arrow,\n.el-menu--collapse > .el-submenu > .el-submenu__title .el-submenu__icon-arrow {\n  display: none;\n}\n.el-menu--collapse > .el-menu-item span,\n.el-menu--collapse > .el-submenu > .el-submenu__title span {\n  height: 0;\n  width: 0;\n  overflow: hidden;\n  visibility: hidden;\n  display: inline-block;\n}\n.el-menu--collapse > .el-menu-item.is-active i {\n  color: inherit;\n}\n.el-menu--collapse .el-menu .el-submenu {\n  min-width: 200px;\n}\n.el-menu--collapse .el-submenu {\n  position: relative;\n}\n.el-menu--collapse .el-submenu .el-menu {\n  position: absolute;\n  margin-left: 5px;\n  top: 0;\n  left: 100%;\n  z-index: 10;\n  border: 1px solid #e4e7ed;\n  border-radius: 2px;\n  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n}\n.el-menu--collapse .el-submenu.is-opened > .el-submenu__title .el-submenu__icon-arrow {\n  transform: none;\n}\n.el-menu--popup {\n  z-index: 100;\n  min-width: 200px;\n  border: none;\n  padding: 5px 0;\n  border-radius: 2px;\n  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n}\n.el-menu--popup-bottom-start {\n  margin-top: 5px;\n}\n.el-menu--popup-right-start {\n  margin-left: 5px;\n  margin-right: 5px;\n}\n.el-menu-item {\n  height: 56px;\n  line-height: 56px;\n  font-size: 14px;\n  color: #303133;\n  padding: 0 20px;\n  list-style: none;\n  cursor: pointer;\n  position: relative;\n  transition: border-color 0.3s, background-color 0.3s, color 0.3s;\n  box-sizing: border-box;\n  white-space: nowrap;\n}\n.el-menu-item * {\n  vertical-align: middle;\n}\n.el-menu-item i {\n  color: #909399;\n}\n.el-menu-item:hover,\n.el-menu-item:focus {\n  outline: none;\n  background-color: #ecf5ff;\n}\n.el-menu-item.is-disabled {\n  opacity: 0.25;\n  cursor: not-allowed;\n  background: none !important;\n}\n.el-menu-item [class^='el-icon-'] {\n  margin-right: 5px;\n  width: 24px;\n  text-align: center;\n  font-size: 18px;\n  vertical-align: middle;\n}\n.el-menu-item.is-active {\n  color: #409eff;\n}\n.el-menu-item.is-active i {\n  color: inherit;\n}\n.el-submenu {\n  list-style: none;\n  margin: 0;\n  padding-left: 0;\n}\n.el-submenu__title {\n  height: 56px;\n  line-height: 56px;\n  font-size: 14px;\n  color: #303133;\n  padding: 0 20px;\n  list-style: none;\n  cursor: pointer;\n  position: relative;\n  transition: border-color 0.3s, background-color 0.3s, color 0.3s;\n  box-sizing: border-box;\n  white-space: nowrap;\n}\n.el-submenu__title * {\n  vertical-align: middle;\n}\n.el-submenu__title i {\n  color: #909399;\n}\n.el-submenu__title:hover,\n.el-submenu__title:focus {\n  outline: none;\n  background-color: #ecf5ff;\n}\n.el-submenu__title.is-disabled {\n  opacity: 0.25;\n  cursor: not-allowed;\n  background: none !important;\n}\n.el-submenu__title:hover {\n  background-color: #ecf5ff;\n}\n.el-submenu .el-menu {\n  border: none;\n}\n.el-submenu .el-menu-item {\n  height: 50px;\n  line-height: 50px;\n  padding: 0 45px;\n  min-width: 200px;\n}\n.el-submenu__icon-arrow {\n  position: absolute;\n  top: 50%;\n  right: 20px;\n  margin-top: -7px;\n  transition: transform 0.3s;\n  font-size: 12px;\n}\n.el-submenu.is-active .el-submenu__title {\n  border-bottom-color: #409eff;\n}\n.el-submenu.is-opened > .el-submenu__title .el-submenu__icon-arrow {\n  transform: rotateZ(180deg);\n}\n.el-submenu.is-disabled .el-submenu__title,\n.el-submenu.is-disabled .el-menu-item {\n  opacity: 0.25;\n  cursor: not-allowed;\n  background: none !important;\n}\n.el-submenu [class^='el-icon-'] {\n  vertical-align: middle;\n  margin-right: 5px;\n  width: 24px;\n  text-align: center;\n  font-size: 18px;\n}\n.el-menu-item-group > ul {\n  padding: 0;\n}\n.el-menu-item-group__title {\n  padding: 7px 0 7px 20px;\n  line-height: normal;\n  font-size: 12px;\n  color: #909399;\n}\n.horizontal-collapse-transition .el-submenu__title .el-submenu__icon-arrow {\n  transition: 0.2s;\n  opacity: 0;\n}\n";
 styleInject(css_248z$9);
 
-var ElMenuSymbol = Symbol();
+var ElRootMenuInjectionKey = Symbol('ElRootMenu');
+var ElParentMenuInjectionKey = Symbol('ElParentMenu');
+function useElMenu() {
+  var rootMenu = inject(ElRootMenuInjectionKey, null);
+  var parentMenu = inject(ElParentMenuInjectionKey, null);
+  var paddingStyle = (rootMenu === null || rootMenu === void 0 ? void 0 : rootMenu.mode) !== 'vertical' ? {} : {
+    paddingLeft: (parentMenu.deep + 1) * 20 + 'px'
+  };
+  return {
+    rootMenu: rootMenu,
+    parentMenu: parentMenu,
+    paddingStyle: paddingStyle,
+    rootKey: ElRootMenuInjectionKey,
+    parentKey: ElParentMenuInjectionKey
+  };
+}
+
 var ElMenu = defineComponent({
   name: 'Elmenu',
   props: {
@@ -7201,6 +7435,14 @@ var ElMenu = defineComponent({
       type: String,
       default: ''
     },
+    menuTrigger: {
+      type: String,
+      default: 'click'
+    },
+    collapse: {
+      type: Boolean,
+      default: false
+    },
     activeTextColor: {
       type: String,
       default: ''
@@ -7213,20 +7455,54 @@ var ElMenu = defineComponent({
     var mode = props.mode,
         backgroundColor = props.backgroundColor,
         activeTextColor = props.activeTextColor,
-        textColor = props.textColor;
+        textColor = props.textColor,
+        collapse = props.collapse,
+        menuTrigger = props.menuTrigger;
+
+    var _useElMenu = useElMenu(),
+        rootKey = _useElMenu.rootKey,
+        parentKey = _useElMenu.parentKey;
+
     var state = reactive({
       activeIndex: -1,
-      items: []
+      items: [],
+      openedMenus: []
     });
-    provide(ElMenuSymbol, {
-      state: state,
+    var isMenuPopup = computed$1(function () {
+      return mode === 'horizontal' || !!(mode === 'vertical' && collapse);
+    });
+    provide(rootKey, {
+      items: state.items,
+      collapse: !!collapse,
+      isMenuPopup: isMenuPopup.value,
+      activeIndex: state.activeIndex,
+      menuTrigger: menuTrigger,
+      deep: 0,
       mode: mode,
       backgroundColor: backgroundColor,
       activeTextColor: activeTextColor,
       textColor: textColor,
+      openedMenus: state.openedMenus,
+      openMenu: function openMenu(id) {
+        if (state.openedMenus.indexOf(id) === -1) {
+          state.openedMenus.push(id);
+        }
+      },
+      closeMenu: function closeMenu(id) {
+        var menuIndex = state.openedMenus.indexOf(id);
+
+        if (menuIndex >= 0) {
+          state.openedMenus.splice(menuIndex, 1);
+        }
+      },
       selectIndex: function selectIndex(index) {
         state.activeIndex = index;
       }
+    });
+    provide(parentKey, {
+      items: state.items,
+      deep: 0,
+      isRoot: true
     });
     return function () {
       var _slots$default;
@@ -7251,44 +7527,65 @@ var ElMenuItem = defineComponent({
     var attrs = _ref.attrs,
         slots = _ref.slots,
         emit = _ref.emit;
-    var parentMenu = inject(ElMenuSymbol);
+
+    var _useElMenu = useElMenu(),
+        parentMenu = _useElMenu.parentMenu,
+        rootMenu = _useElMenu.rootMenu,
+        paddingStyle = _useElMenu.paddingStyle;
+
     var id = Symbol('ElMenuItem');
     var ownIndex = computed$1(function () {
-      return parentMenu.state.items.indexOf(id);
+      return rootMenu.items.indexOf(id);
     });
     var isActive = computed$1(function () {
-      return ownIndex.value === parentMenu.state.activeIndex;
+      return ownIndex.value === rootMenu.activeIndex;
     });
 
     var handleClick = function handleClick() {
-      parentMenu.selectIndex(ownIndex.value);
+      rootMenu.selectIndex(ownIndex.value);
     };
 
     var itemStyle = computed$1(function () {
       var style = {
-        color: isActive.value ? parentMenu.activeTextColor : parentMenu.textColor
+        color: isActive.value ? rootMenu.activeTextColor : rootMenu.textColor,
+        ...paddingStyle
       };
 
-      if (parentMenu.mode === 'horizontal') {
-        style.borderBottomColor = isActive.value ? parentMenu.activeTextColor : 'transparent';
+      if (rootMenu.mode === 'horizontal') {
+        style.borderBottomColor = isActive.value ? rootMenu.activeTextColor : 'transparent';
       }
 
       return style;
     });
     onMounted(function () {
-      parentMenu.state.items.push(id);
+      if (parentMenu.deep >= 0) {
+        if (parentMenu.items.indexOf(id) === -1) {
+          parentMenu.items.push(id);
+        }
+      }
+
+      if (rootMenu.items.indexOf(id) === -1) {
+        rootMenu.items.push(id);
+      }
     });
     onUnmounted(function () {
+      if (parentMenu.deep >= 0) {
+        if (parentMenu.items.indexOf(id) === -1) {
+          var indexWithParent = parentMenu.items.indexOf(id);
+          parentMenu.items.splice(indexWithParent, 1);
+        }
+      }
+
       if (ownIndex.value >= 0) {
-        parentMenu.state.items.splice(ownIndex.value, 1);
+        rootMenu.items.splice(ownIndex.value, 1);
       }
     });
     return function () {
       var _slots$default, _slots$title;
 
       return h('li', mergeProps({
-        style: [itemStyle.value, {
-          backgroundColor: parentMenu.backgroundColor
+        style: [paddingStyle, itemStyle.value, {
+          backgroundColor: rootMenu.backgroundColor
         }],
         class: {
           'el-menu-item': true,
@@ -7303,7 +7600,408 @@ var ElMenuItem = defineComponent({
   }
 });
 
+//
 var script$8 = defineComponent({
+  name: 'ElSubmenu',
+  props: {
+    index: {
+      type: String,
+      required: true
+    },
+    showTimeout: {
+      type: Number,
+      default: 300
+    },
+    hideTimeout: {
+      type: Number,
+      default: 300
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    popperClass: {
+      type: String,
+      default: ''
+    },
+    popperAppendToBody: {
+      type: Boolean,
+      default: undefined
+    }
+  },
+  setup: function setup(props, _ref) {
+    var slots = _ref.slots;
+
+    var _useElMenu = useElMenu(),
+        rootMenu = _useElMenu.rootMenu,
+        parentMenu = _useElMenu.parentMenu,
+        parentKey = _useElMenu.parentKey,
+        paddingStyle = _useElMenu.paddingStyle;
+
+    var id = Symbol('ElSubmenu');
+    var submenuTitleRef = ref(null);
+    var state = reactive({
+      submenus: [],
+      items: []
+    });
+    provide(parentKey, {
+      items: state.items,
+      deep: parentMenu.deep + 1,
+      isRoot: false
+    });
+    var isActive = computed$1(function () {
+      return state.items.some(function (item) {
+        return item.isActive;
+      }) || state.submenus.some(function (item) {
+        return item.isActive;
+      });
+    });
+    var opened = computed$1(function () {
+      return rootMenu.openedMenus.includes(id);
+    });
+    var titleStyle = computed$1(function () {
+      if (rootMenu.mode !== 'horizontal') {
+        return {
+          color: rootMenu.textColor || ''
+        };
+      }
+
+      return {
+        borderBottomColor: isActive.value ? rootMenu.activeTextColor : 'transparent',
+        color: isActive.value ? rootMenu.activeTextColor : rootMenu.textColor
+      };
+    });
+    var submenuTitleIcon = rootMenu.mode === 'horizontal' && parentMenu.isRoot || rootMenu.mode === 'vertical' && !rootMenu.collapse ? 'el-icon-arrow-down' : 'el-icon-arrow-right';
+    var currentPlacement = computed$1(function () {
+      return rootMenu.mode === 'horizontal' && parentMenu.isRoot ? 'bottom-start' : 'right-start';
+    });
+
+    var handleClick = function handleClick() {
+      if (rootMenu.menuTrigger === 'hover' && rootMenu.mode === 'horizontal' || rootMenu.collapse && rootMenu.mode === 'vertical' || props.disabled) {
+        return;
+      }
+
+      if (rootMenu.openedMenus.indexOf(id) >= 0) {
+        rootMenu.closeMenu(id);
+      } else {
+        rootMenu.openMenu(id);
+      }
+    };
+
+    var handleMouseenter = function handleMouseenter() {
+      if (rootMenu.menuTrigger === 'click' && rootMenu.mode === 'horizontal' || !rootMenu.collapse && rootMenu.mode === 'vertical' || props.disabled) {
+        return;
+      }
+
+      rootMenu.openMenu(id);
+    };
+
+    var handleMouseleave = function handleMouseleave() {
+      if (rootMenu.menuTrigger === 'click' && rootMenu.mode === 'horizontal' || !rootMenu.collapse && rootMenu.mode === 'vertical') {
+        return;
+      }
+
+      rootMenu.closeMenu(id);
+    };
+
+    var handleTitleMouseenter = function handleTitleMouseenter() {
+      if (rootMenu.mode === 'horizontal' && !rootMenu.backgroundColor) return; // submenuTitleRef.value && (submenuTitleRef.value.style.backgroundColor = rootMenu.hoverBackground);
+    };
+
+    var handleTitleMouseleave = function handleTitleMouseleave() {
+      if (rootMenu.mode === 'horizontal' && !rootMenu.backgroundColor) return;
+      submenuTitleRef.value && (submenuTitleRef.value.style.backgroundColor = rootMenu.backgroundColor || '');
+    };
+
+    return {
+      mode: rootMenu.mode,
+      opened: opened,
+      isMenuPopup: rootMenu.isMenuPopup,
+      isActive: isActive,
+      titleStyle: titleStyle,
+      paddingStyle: paddingStyle,
+      currentPlacement: currentPlacement,
+      submenuTitleIcon: submenuTitleIcon,
+      backgroundColor: rootMenu.backgroundColor,
+      handleClick: handleClick,
+      handleMouseenter: handleMouseenter,
+      handleMouseleave: handleMouseleave,
+      handleTitleMouseenter: handleTitleMouseenter,
+      handleTitleMouseleave: handleTitleMouseleave,
+      submenuTitleRef: submenuTitleRef
+    };
+  }
+});
+
+function render$8(_ctx, _cache) {
+  return (openBlock(), createBlock("li", {
+    class: {
+      'el-submenu': true,
+      'is-active': _ctx.isActive,
+      'is-opened': _ctx.opened,
+      'is-disabled': _ctx.disabled
+    },
+    role: "menuitem",
+    onMouseenter: _cache[7] || (_cache[7] = $event => (_ctx.handleMouseenter($event))),
+    onMouseleave: _cache[8] || (_cache[8] = () => _ctx.handleMouseleave(false)),
+    onFocus: _cache[9] || (_cache[9] = $event => (_ctx.handleMouseenter($event)))
+  }, [
+    createVNode("div", {
+      ref: "submenuTitleRef",
+      class: "el-submenu__title",
+      style: [_ctx.paddingStyle, _ctx.titleStyle, { backgroundColor: _ctx.backgroundColor }],
+      onClick: _cache[1] || (_cache[1] = $event => (_ctx.handleClick($event))),
+      onMouseenter: _cache[2] || (_cache[2] = $event => (_ctx.handleTitleMouseenter($event))),
+      onMouseleave: _cache[3] || (_cache[3] = $event => (_ctx.handleTitleMouseleave($event)))
+    }, [
+      renderSlot(_ctx.$slots, "title"),
+      createVNode("i", {
+        class: ['el-submenu__icon-arrow', _ctx.submenuTitleIcon]
+      }, null, 2 /* CLASS */)
+    ], 36 /* STYLE, HYDRATE_EVENTS */),
+    (_ctx.isMenuPopup)
+      ? withDirectives((openBlock(), createBlock("div", {
+          key: 0,
+          ref: "menu",
+          class: [`el-menu--${_ctx.mode}`, _ctx.popperClass],
+          onMouseenter: _cache[4] || (_cache[4] = $event => _ctx.handleMouseenter($event, 100)),
+          onMouseleave: _cache[5] || (_cache[5] = () => _ctx.handleMouseleave(true)),
+          onFocus: _cache[6] || (_cache[6] = $event => _ctx.handleMouseenter($event, 100))
+        }, [
+          createVNode("ul", {
+            role: "menu",
+            class: `el-menu el-menu--popup el-menu--popup-${_ctx.currentPlacement}`,
+            style: { backgroundColor: _ctx.backgroundColor || '' }
+          }, [
+            renderSlot(_ctx.$slots, "default")
+          ], 6 /* CLASS, STYLE */)
+        ], 34 /* CLASS, HYDRATE_EVENTS */)), [
+          [vShow, _ctx.opened]
+        ])
+      : withDirectives((openBlock(), createBlock("ul", {
+          key: 1,
+          role: "menu",
+          class: "el-menu el-menu--inline",
+          style: { backgroundColor: _ctx.backgroundColor || '' }
+        }, [
+          renderSlot(_ctx.$slots, "default")
+        ], 4 /* STYLE */)), [
+          [vShow, _ctx.opened]
+        ])
+  ], 34 /* CLASS, HYDRATE_EVENTS */))
+}
+
+script$8.render = render$8;
+script$8.__file = "src/components/ElMenu/ElSubMenu.vue";
+
+var ElMenuItemGroup = defineComponent({
+  name: 'ElMenuItemGroup',
+  props: {
+    title: {
+      type: String
+    }
+  },
+  setup: function setup(props, _ref) {
+    var slots = _ref.slots;
+
+    var _useElMenu = useElMenu(),
+        paddingStyle = _useElMenu.paddingStyle;
+
+    return function () {
+      var _slots$title, _slots$title2, _slots$default;
+
+      return h('li', {
+        class: {
+          'el-menu-item-group': true
+        }
+      }, [h('div', {
+        class: {
+          'el-menu-item-group__title': true
+        },
+        style: { ...paddingStyle
+        }
+      }, (_slots$title = (_slots$title2 = slots.title) === null || _slots$title2 === void 0 ? void 0 : _slots$title2.call(slots)) !== null && _slots$title !== void 0 ? _slots$title : props.title), (_slots$default = slots.default) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots)]);
+    };
+  }
+});
+
+var css_248z$a = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-popper .popper__arrow,\n.el-popper .popper__arrow::after {\n  position: absolute;\n  display: block;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.el-popper .popper__arrow {\n  border-width: 6px;\n  -webkit-filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));\n          filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));\n}\n.el-popper .popper__arrow::after {\n  content: ' ';\n  border-width: 6px;\n}\n.el-popper[x-placement^='top'] {\n  margin-bottom: 12px;\n}\n.el-popper[x-placement^='top'] .popper__arrow {\n  bottom: -6px;\n  left: 50%;\n  margin-right: 3px;\n  border-top-color: #ebeef5;\n  border-bottom-width: 0;\n}\n.el-popper[x-placement^='top'] .popper__arrow::after {\n  bottom: 1px;\n  margin-left: -6px;\n  border-top-color: #ffffff;\n  border-bottom-width: 0;\n}\n.el-popper[x-placement^='bottom'] {\n  margin-top: 12px;\n}\n.el-popper[x-placement^='bottom'] .popper__arrow {\n  top: -6px;\n  left: 50%;\n  margin-right: 3px;\n  border-top-width: 0;\n  border-bottom-color: #ebeef5;\n}\n.el-popper[x-placement^='bottom'] .popper__arrow::after {\n  top: 1px;\n  margin-left: -6px;\n  border-top-width: 0;\n  border-bottom-color: #ffffff;\n}\n.el-popper[x-placement^='right'] {\n  margin-left: 12px;\n}\n.el-popper[x-placement^='right'] .popper__arrow {\n  top: 50%;\n  left: -6px;\n  margin-bottom: 3px;\n  border-right-color: #ebeef5;\n  border-left-width: 0;\n}\n.el-popper[x-placement^='right'] .popper__arrow::after {\n  bottom: -6px;\n  left: 1px;\n  border-right-color: #ffffff;\n  border-left-width: 0;\n}\n.el-popper[x-placement^='left'] {\n  margin-right: 12px;\n}\n.el-popper[x-placement^='left'] .popper__arrow {\n  top: 50%;\n  right: -6px;\n  margin-bottom: 3px;\n  border-right-width: 0;\n  border-left-color: #ebeef5;\n}\n.el-popper[x-placement^='left'] .popper__arrow::after {\n  right: 1px;\n  bottom: -6px;\n  margin-left: -6px;\n  border-right-width: 0;\n  border-left-color: #ffffff;\n}\n.el-popover {\n  position: absolute;\n  background: #ffffff;\n  min-width: 150px;\n  border-radius: 4px;\n  border: 1px solid #ebeef5;\n  padding: 12px;\n  z-index: 2000;\n  color: #606266;\n  line-height: 1.4;\n  text-align: justify;\n  font-size: 14px;\n  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  word-break: break-all;\n}\n.el-popover--plain {\n  padding: 18px 20px;\n}\n.el-popover__title {\n  color: #303133;\n  font-size: 16px;\n  line-height: 1;\n  margin-bottom: 12px;\n}\n.el-popover__reference:focus:not(.focusing),\n.el-popover__reference:focus:hover {\n  outline-width: 0;\n}\n.el-popover:focus:active,\n.el-popover:focus {\n  outline-width: 0;\n}\n";
+styleInject(css_248z$a);
+
+function usePopper(id) {
+  var el = document.createElement('div');
+  el.id = id + generateId();
+  document.body.appendChild(el);
+  onUnmounted(function () {
+    if (el.parentNode) el.parentNode.removeChild(el);
+  });
+  return {
+    teleportId: el.id
+  };
+}
+var generateId = function generateId() {
+  return Math.floor(Math.random() * 10000);
+};
+
+//
+var PopoverReference = defineComponent(function (props, _ref) {
+  var _children$, _children$$children;
+
+  var slots = _ref.slots,
+      attrs = _ref.attrs;
+  var children = slots.default ? slots.default() : [];
+  var child = children === null || children === void 0 ? void 0 : (_children$ = children[0]) === null || _children$ === void 0 ? void 0 : (_children$$children = _children$.children) === null || _children$$children === void 0 ? void 0 : _children$$children[0];
+  return function () {
+    return h(Fragment, [cloneVNode(child, attrs)]);
+  };
+});
+var script$9 = defineComponent({
+  name: 'ElPopoVer',
+  components: {
+    PopoverReference: PopoverReference
+  },
+  props: {
+    placement: {
+      type: String,
+      default: 'bottom'
+    },
+    trigger: {
+      type: String,
+      default: 'click'
+    },
+    openDelay: {
+      type: Number,
+      default: 0
+    },
+    closeDelay: {
+      type: Number,
+      default: 200
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    content: {
+      type: String,
+      default: ''
+    },
+    popperClass: {
+      type: String,
+      default: ''
+    },
+    width: {
+      type: String,
+      default: '200'
+    },
+    visibleArrow: {
+      type: Boolean,
+      default: true
+    },
+    arrowOffset: {
+      type: Number,
+      default: 0
+    },
+    transition: {
+      type: String,
+      default: 'fade-in-linear'
+    },
+    tabindex: {
+      type: Number,
+      default: 0
+    }
+  },
+  setup: function setup(props, _ref2) {
+    var attrs = _ref2.attrs,
+        slots = _ref2.slots,
+        emit = _ref2.emit;
+
+    var _usePopper = usePopper('ElPopover'),
+        teleportId = _usePopper.teleportId; // console.log(teleportId);
+    // console.log(slots.reference);
+    // watch(reference, (reference, prevReference) => {
+    //   console.log(reference, prevReference);
+    //   if (reference && prevReference === null) {
+    //     console.log(reference);
+    //   }
+    // });
+
+
+    var _toRefs = toRefs(reactive({
+      showPopper: false
+    })),
+        showPopper = _toRefs.showPopper;
+
+    var handler = {
+      onClick: function onClick(event) {
+        if (props.trigger === 'click') {
+          showPopper.value = !showPopper.value;
+        }
+      },
+      onMouseenter: function onMouseenter(event) {
+        if (props.trigger === 'hover') {
+          showPopper.value = true;
+        }
+      },
+      onmouseleave: function onmouseleave(event) {
+        if (props.trigger === 'hover') {
+          showPopper.value = false;
+        }
+      },
+      onBlur: function onBlur(event) {
+        showPopper.value = false;
+      }
+    };
+    return {
+      teleportId: teleportId,
+      showPopper: showPopper,
+      handler: handler
+    };
+  }
+});
+
+function render$9(_ctx, _cache) {
+  const _component_PopoverReference = resolveComponent("PopoverReference");
+
+  return (openBlock(), createBlock(Fragment, null, [
+    createVNode(Teleport, {
+      to: `#${_ctx.teleportId}`
+    }, [
+      withDirectives(createVNode("div", {
+        ref: "popper",
+        class: ['el-popover', 'el-popper', _ctx.popperClass, _ctx.content && 'el-popover--plain'],
+        style: { width: _ctx.width + 'px' }
+      }, [
+        (_ctx.title)
+          ? (openBlock(), createBlock("div", {
+              key: 0,
+              class: "el-popover__title",
+              textContent: _ctx.title
+            }, null, 8 /* PROPS */, ["textContent"]))
+          : createCommentVNode("v-if", true),
+        renderSlot(_ctx.$slots, "default", {}, () => [
+          createTextVNode(_toDisplayString(_ctx.content), 1 /* TEXT */)
+        ])
+      ], 6 /* CLASS, STYLE */), [
+        [vShow, !_ctx.disabled && _ctx.showPopper]
+      ])
+    ], 8 /* PROPS */, ["to"]),
+    createVNode(_component_PopoverReference, _ctx.handler, {
+      default: withCtx(() => [
+        renderSlot(_ctx.$slots, "reference")
+      ]),
+      _: 1
+    }, 16 /* FULL_PROPS */)
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+script$9.render = render$9;
+script$9.__file = "src/components/ElPopover/ElPopover.vue";
+
+var script$a = defineComponent({
   components: {
     HelloWorld: script,
     ElContainer: script$1,
@@ -7324,12 +8022,14 @@ const _hoisted_7 = /*#__PURE__*/createTextVNode("icon");
 const _hoisted_8 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_9 = /*#__PURE__*/createTextVNode("menu");
 const _hoisted_10 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_11 = /*#__PURE__*/createVNode("img", {
+const _hoisted_11 = /*#__PURE__*/createTextVNode("popover");
+const _hoisted_12 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_13 = /*#__PURE__*/createVNode("img", {
   alt: "Vue logo",
   src: _imports_0
 }, null, -1 /* HOISTED */);
 
-function render$8(_ctx, _cache) {
+function render$a(_ctx, _cache) {
   const _component_router_link = resolveComponent("router-link");
   const _component_ElAside = resolveComponent("ElAside");
   const _component_HelloWorld = resolveComponent("HelloWorld");
@@ -7375,13 +8075,20 @@ function render$8(_ctx, _cache) {
             ]),
             _: 1
           }),
-          _hoisted_10
+          _hoisted_10,
+          createVNode(_component_router_link, { to: { name: 'popover' } }, {
+            default: withCtx(() => [
+              _hoisted_11
+            ]),
+            _: 1
+          }),
+          _hoisted_12
         ]),
         _: 1
       }),
       createVNode(_component_ElMain, null, {
         default: withCtx(() => [
-          _hoisted_11,
+          _hoisted_13,
           createVNode(_component_HelloWorld, { msg: "Hello Vue 3.0 + Element UI" }),
           createVNode(_component_router_view)
         ]),
@@ -7392,7 +8099,7 @@ function render$8(_ctx, _cache) {
   }))
 }
 
-script$8.render = render$8;
+script$a.render = render$a;
 
 const router = createRouter({
   history: createWebHistory(),
@@ -7403,43 +8110,47 @@ const router = createRouter({
   }, {
     path: "/",
     name: "Layout",
-    component: script$8,
+    component: script$a,
     children: [{
       path: "/button",
       name: "button",
-      component: async () => import('./common.ab94f170.js')
+      component: async () => import('./button.12e992e0.js')
     }, {
       path: "/layout",
       name: "layout",
-      component: async () => import('./common.04e030fa.js')
+      component: async () => import('./layout.cb55dd6a.js')
     }, {
       path: "/container",
       name: "container",
-      component: async () => import('./common.f11dadaa.js')
+      component: async () => import('./container.a94aadfd.js')
     }, {
       path: "/icon",
       name: "icon",
-      component: async () => import('./common.b02fbecb.js')
+      component: async () => import('./icon.59837291.js')
     }, {
       path: "/menu",
       name: "menu",
-      component: async () => import('./common.d00b967c.js')
+      component: async () => import('./menu.7594935e.js')
+    }, {
+      path: "/popover",
+      name: "popover",
+      component: async () => import('./popover.46de2dac.js')
     }]
   }]
 });
 
-var script$9 = defineComponent({
+var script$b = defineComponent({
   name: "App",
   components: {}
 });
 
-function render$9(_ctx, _cache) {
+function render$b(_ctx, _cache) {
   const _component_router_view = resolveComponent("router-view");
 
   return (openBlock(), createBlock(_component_router_view))
 }
 
-script$9.render = render$9;
+script$b.render = render$b;
 
 window.Prism.plugins.NormalizeWhitespace.setDefaults({
   indent: 0,
@@ -7450,8 +8161,8 @@ window.Prism.plugins.NormalizeWhitespace.setDefaults({
   "remove-initial-line-feed": false,
   "tabs-to-spaces": 2
 });
-const app = createApp(script$9);
+const app = createApp(script$b);
 app.use(router);
 app.mount("#app");
 
-export { ElMenu as E, Fragment as F, _toDisplayString as _, script$5 as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ref as f, reactive as g, onMounted as h, index as i, createCommentVNode as j, renderSlot as k, index$1 as l, script$1 as m, nextTick as n, openBlock as o, script$1$1 as p, script$2 as q, resolveComponent as r, script$6 as s, toRefs as t, script$3 as u, script$4 as v, withCtx as w, script$7 as x, renderList as y, ElMenuItem as z };
+export { script$8 as A, ElMenuItemGroup as B, script$9 as C, ElMenu as E, Fragment as F, _toDisplayString as _, script$5 as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ref as f, reactive as g, onMounted as h, index as i, createCommentVNode as j, renderSlot as k, index$1 as l, script$1 as m, nextTick as n, openBlock as o, script$1$1 as p, script$2 as q, resolveComponent as r, script$6 as s, toRefs as t, script$3 as u, script$4 as v, withCtx as w, script$7 as x, renderList as y, ElMenuItem as z };
