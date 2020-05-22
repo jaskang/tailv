@@ -1,6 +1,10 @@
 @import '../ElStyles/common/var.less';
 
 .el-popper {
+  display: none;
+  &[data-show] {
+    display: block;
+  }
   .popper__arrow,
   .popper__arrow::after {
     position: absolute;
@@ -21,11 +25,11 @@
     border-width: @--popover-arrow-size;
   }
 
-  &[x-placement^='top'] {
+  &[data-popper-placement^='top'] {
     margin-bottom: @--popover-arrow-size + 6;
   }
 
-  &[x-placement^='top'] .popper__arrow {
+  &[data-popper-placement^='top'] .popper__arrow {
     bottom: -@--popover-arrow-size;
     left: 50%;
     margin-right: @--tooltip-arrow-size / 2;
@@ -40,11 +44,11 @@
     }
   }
 
-  &[x-placement^='bottom'] {
+  &[data-popper-placement^='bottom'] {
     margin-top: @--popover-arrow-size + 6;
   }
 
-  &[x-placement^='bottom'] .popper__arrow {
+  &[data-popper-placement^='bottom'] .popper__arrow {
     top: -@--popover-arrow-size;
     left: 50%;
     margin-right: @--tooltip-arrow-size / 2;
@@ -60,11 +64,11 @@
     }
   }
 
-  &[x-placement^='right'] {
+  &[data-popper-placement^='right'] {
     margin-left: @--popover-arrow-size + 6;
   }
 
-  &[x-placement^='right'] .popper__arrow {
+  &[data-popper-placement^='right'] .popper__arrow {
     top: 50%;
     left: -@--popover-arrow-size;
     margin-bottom: @--tooltip-arrow-size / 2;
@@ -80,11 +84,11 @@
     }
   }
 
-  &[x-placement^='left'] {
+  &[data-popper-placement^='left'] {
     margin-right: @--popover-arrow-size + 6;
   }
 
-  &[x-placement^='left'] .popper__arrow {
+  &[data-popper-placement^='left'] .popper__arrow {
     top: 50%;
     right: -@--popover-arrow-size;
     margin-bottom: @--tooltip-arrow-size / 2;
@@ -139,4 +143,13 @@
   &:focus {
     outline-width: 0;
   }
+}
+
+.el-teleport-popper {
+  /* ... */
+  display: none;
+}
+
+.el-teleport-popper[data-show] {
+  display: block;
 }

@@ -24,7 +24,7 @@
 <script lang="ts">
 import './button.less';
 import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index';
-import { inject, computed, defineComponent } from 'vue';
+import { inject, computed, defineComponent, mergeProps } from 'vue';
 
 export default defineComponent({
   name: 'ElButton',
@@ -51,7 +51,7 @@ export default defineComponent({
     round: Boolean,
     circle: Boolean
   },
-  setup(props, { emit }) {
+  setup(props, { emit, attrs }) {
     const elForm = inject(ElFormSymbol, null);
     const elFormItem = inject(ElFormItemSymbol, null);
     const elGlobalConfig = useGlobal();

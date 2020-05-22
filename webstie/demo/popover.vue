@@ -1,6 +1,14 @@
 <template>
   <h1>ElButton</h1>
-
+  <el-popover
+    placement="top-start"
+    title="标题"
+    width="200"
+    trigger="hover"
+    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+  >
+    <template #reference> <el-button>hover 激活</el-button></template>
+  </el-popover>
   <Preview title="不同尺寸">
     <el-popover
       placement="top-start"

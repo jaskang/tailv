@@ -1,27 +1,45 @@
 <template>
   <teleport :to="`#${teleportId}`">
-    <div
-      v-show="!disabled && showPopper"
-      ref="popper"
-      :class="['el-popover', 'el-popper', popperClass, content && 'el-popover--plain']"
-      :style="{ width: width + 'px' }"
-    >
+    <div>
       <div v-if="title" class="el-popover__title" v-text="title"></div>
       <slot>{{ content }}</slot>
     </div>
+    <div class="popper__arrow" data-popper-arrow></div>
   </teleport>
-  <PopoverReference v-bind="handler">
+  <PopoverReference :setup-ref="setupRef" v-bind="handler">
     <slot name="reference"></slot>
   </PopoverReference>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, reactive, toRefs, Fragment, cloneVNode, h } from 'vue';
+import { defineComponent, PropType, reactive, toRefs, Fragment, cloneVNode, h, mergeProps, computed } from 'vue';
+
 import { usePopper } from './hooks';
 
-const PopoverReference = defineComponent((props, { slots, attrs }) => {
-  const children = slots.default ? slots.default() : [];
-  const child = children?.[0]?.children?.[0];
-  return () => h(Fragment, [cloneVNode(child, attrs)]);
+const PopoverReference = defineComponent({
+  props: {
+    setupRef: {
+      type: Function,
+      required: true
+    }
+  },
+  setup(props, { slots, attrs }) {
+    const children = slots.default ? slots.default() : [];
+    const child = children?.[0]?.children?.[0];
+    const mergeChild = cloneVNode(
+      child,
+      mergeProps(
+        {
+          ref: (obj: any) => {
+            props.setupRef(obj.$el);
+          }
+        },
+        attrs
+      )
+    );
+    return () => {
+      return h(Fragment, [mergeChild]);
+    };
+  }
 });
 
 export default defineComponent({
@@ -83,24 +101,33 @@ export default defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
-    const { teleportId } = usePopper('ElPopover');
-    // console.log(teleportId);
-    // console.log(slots.reference);
-    // watch(reference, (reference, prevReference) => {
-    //   console.log(reference, prevReference);
+    const { teleportId, referenceRef } = usePopper({
+      id: 'ElPopover',
+      placement: props.placement,
+      class: ['el-popover', 'el-popper', props.popperClass, props.content && 'el-popover--plain'],
+      style: { width: props.width + 'px' }
+    });
 
-    //   if (reference && prevReference === null) {
-    //     console.log(reference);
-    //   }
-    // });
     const { showPopper } = toRefs(
       reactive({
         showPopper: false
       })
     );
+    const setupRef = (el: Element) => {
+      referenceRef.value = el;
+    };
+    const positionStype = computed(() => {
+      if (referenceRef.value) {
+        if (props.placement === 'top') {
+          return {};
+        }
+      }
+      return {};
+    });
     const handler = {
       onClick: event => {
         if (props.trigger === 'click') {
+          console.log(event, referenceRef);
           showPopper.value = !showPopper.value;
         }
       },
@@ -115,10 +142,12 @@ export default defineComponent({
         }
       },
       onBlur: event => {
-        showPopper.value = false;
+        // showPopper.value = false;
       }
     };
     return {
+      setupRef,
+      positionStype,
       teleportId,
       showPopper,
       handler
