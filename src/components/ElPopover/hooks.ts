@@ -1,85 +1,135 @@
-import { createPopper } from '@popperjs/core';
+import { createPopper, Placement, Modifier } from '@popperjs/core';
 
 import { onUnmounted, ref, onMounted, watch, watchEffect, nextTick, mergeProps } from 'vue';
+
+export type PlacementType =
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end';
+
+type UsePopperOptions = {
+  class?: string | string[];
+  width?: string;
+  trigger: 'click' | 'hover';
+  placement: PlacementType;
+  modifiers: Array<Partial<Modifier<any, any>>>;
+};
 
 export const generateId = function() {
   return Math.floor(Math.random() * 10000);
 };
 
-type UsePopperAttr = {
-  id: string;
-  [key: string]: any;
-};
+function createEl(id: string) {
+  const popperEl = document.createElement('div');
+  popperEl.id = id + generateId();
+  document.body.appendChild(popperEl);
+  return popperEl;
+}
 
-export function usePopper(attrs: UsePopperAttr) {
+function removeEl(el) {
+  if (el.parentNode) el.parentNode.removeChild(el);
+}
+export function usePopper(id: string, options: UsePopperOptions) {
   const popper = ref(null);
   const referenceRef = ref(null);
-  const popperEl = document.createElement('div');
-  const props: any = mergeProps(attrs);
-  popperEl.id = props.id + generateId();
-  if (props.class) {
-    props.class.forEach(cls => {
-      if (cls) {
-        popperEl.classList.add(cls);
-      }
-    });
-  }
-  if (props.style) {
-    for (const key in props.style) {
-      popperEl.style[key] = props.style[key];
+  const popperRef = ref(createEl(id));
+
+  watchEffect(() => {
+    if (Array.isArray(options.class)) {
+      popperRef.value.className = options.class.filter(cls => !!cls).join(' ');
+    } else if (typeof options.class === 'string') {
+      popperRef.value.className = options.class;
     }
-  }
-  document.body.appendChild(popperEl);
+    if (options.width) {
+      popperRef.value.style.width = options.width;
+    }
+  });
+  // watchEffect(() => {
+  //   if (popper.value && referenceRef.value) {
+  //     popper.value.setOptions({
+  //       placement: options.placement,
+  //       modifiers: [
+  //         {
+  //           name: 'offset',
+  //           options: {
+  //             offset: [0, 8]
+  //           }
+  //         }
+  //       ]
+  //     });
+  //   }
+  // });
 
   function show() {
     popper.value.update();
-    popperEl.setAttribute('data-show', '');
+    popperRef.value.setAttribute('data-show', 'true');
   }
 
   function hide() {
-    popperEl.removeAttribute('data-show');
+    popperRef.value.removeAttribute('data-show');
   }
-
+  function toggle() {
+    if (popperRef.value.getAttribute('data-show')) {
+      popperRef.value.removeAttribute('data-show');
+    } else {
+      popper.value.update();
+      popperRef.value.setAttribute('data-show', 'true');
+    }
+  }
   function initPopper() {
-    popper.value = createPopper(referenceRef.value, popperEl, {
-      placement: props.placement,
-      strategy: 'fixed',
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 8]
-          }
-        }
-      ]
+    popper.value = createPopper(referenceRef.value, popperRef.value, {
+      placement: options.placement,
+      modifiers: options.modifiers || []
     });
-    const showEvents = ['mouseenter', 'focus'];
-    const hideEvents = ['mouseleave', 'blur'];
+    if (options.trigger === 'click') {
+      const toggleEvents = ['click'];
+      const hideEvents = ['blur'];
 
-    showEvents.forEach(event => {
-      referenceRef.value.addEventListener(event, show);
-    });
+      toggleEvents.forEach(event => {
+        referenceRef.value.addEventListener(event, toggle);
+      });
 
-    hideEvents.forEach(event => {
-      referenceRef.value.addEventListener(event, hide);
-    });
+      hideEvents.forEach(event => {
+        referenceRef.value.addEventListener(event, hide);
+      });
+    } else {
+      const showEvents = ['mouseenter', 'focus'];
+      const hideEvents = ['mouseleave', 'blur'];
+
+      showEvents.forEach(event => {
+        referenceRef.value.addEventListener(event, show);
+      });
+
+      hideEvents.forEach(event => {
+        referenceRef.value.addEventListener(event, hide);
+      });
+    }
   }
   onMounted(() => {
     watchEffect(() => {
       if (referenceRef.value) {
-        nextTick(() => {
-          initPopper();
-        });
+        initPopper();
       }
     });
   });
   onUnmounted(() => {
-    popper.value.destroy();
-    popper.value = null;
-    if (popperEl.parentNode) popperEl.parentNode.removeChild(popperEl);
+    if (popper.value) {
+      popper.value.destroy();
+      popper.value = null;
+    }
+    removeEl(popperRef.value);
   });
   return {
     referenceRef,
-    teleportId: popperEl.id
+    teleportId: popperRef.value.id
   };
 }

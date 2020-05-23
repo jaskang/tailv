@@ -23,14 +23,7 @@
       <i :class="['el-submenu__icon-arrow', submenuTitleIcon]"></i>
     </div>
     <template v-if="isMenuPopup">
-      <div
-        v-show="opened"
-        ref="menu"
-        :class="[`el-menu--${mode}`, popperClass]"
-        @mouseenter="$event => handleMouseenter($event, 100)"
-        @mouseleave="() => handleMouseleave(true)"
-        @focus="$event => handleMouseenter($event, 100)"
-      >
+      <teleport :to="`#${teleportId}`">
         <ul
           role="menu"
           :class="`el-menu el-menu--popup el-menu--popup-${currentPlacement}`"
@@ -38,7 +31,7 @@
         >
           <slot></slot>
         </ul>
-      </div>
+      </teleport>
     </template>
     <template v-else>
       <ul
@@ -54,6 +47,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, computed, provide, ref } from 'vue';
+import { usePopper } from '../ElPopover';
 import { useElMenu } from './provides';
 
 export default defineComponent({
@@ -80,8 +74,13 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const { rootMenu, parentMenu, parentKey, paddingStyle } = useElMenu();
+    const { teleportId, referenceRef: submenuTitleRef } = usePopper('ElMenuPopover', {
+      placement: parentMenu.isRoot ? 'bottom-start' : 'right-start',
+      trigger: 'click',
+      modifiers: [{ name: 'offset', options: { offset: [0, 0] } }],
+      class: ['el-popper', `el-menu--${rootMenu.mode}`, props.popperClass]
+    });
     const id = Symbol('ElSubmenu');
-    const submenuTitleRef = ref(null);
     const state = reactive({
       submenus: [],
       items: []
@@ -164,6 +163,7 @@ export default defineComponent({
     };
 
     return {
+      teleportId,
       mode: rootMenu.mode,
       opened: opened,
       isMenuPopup: rootMenu.isMenuPopup,

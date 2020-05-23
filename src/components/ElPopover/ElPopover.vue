@@ -6,14 +6,25 @@
     </div>
     <div class="popper__arrow" data-popper-arrow></div>
   </teleport>
-  <PopoverReference :setup-ref="setupRef" v-bind="handler">
+  <PopoverReference :setup-ref="setupRef">
     <slot name="reference"></slot>
   </PopoverReference>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, reactive, toRefs, Fragment, cloneVNode, h, mergeProps, computed } from 'vue';
+import {
+  defineComponent,
+  PropType,
+  reactive,
+  toRefs,
+  Fragment,
+  cloneVNode,
+  h,
+  mergeProps,
+  computed,
+  isReactive
+} from 'vue';
 
-import { usePopper } from './hooks';
+import { usePopper, PlacementType } from './hooks';
 
 const PopoverReference = defineComponent({
   props: {
@@ -22,21 +33,21 @@ const PopoverReference = defineComponent({
       required: true
     }
   },
-  setup(props, { slots, attrs }) {
+  setup(props, { slots }) {
     const children = slots.default ? slots.default() : [];
     const child = children?.[0]?.children?.[0];
-    const mergeChild = cloneVNode(
-      child,
-      mergeProps(
-        {
-          ref: (obj: any) => {
-            props.setupRef(obj.$el);
-          }
-        },
-        attrs
-      )
-    );
+    console.log(child);
+
     return () => {
+      const mergeChild = cloneVNode(child, {
+        ref: (obj: any) => {
+          if (obj?.$el) {
+            props.setupRef(obj.$el);
+          } else {
+            props.setupRef(obj);
+          }
+        }
+      });
       return h(Fragment, [mergeChild]);
     };
   }
@@ -65,7 +76,7 @@ export default defineComponent({
     },
     trigger: {
       type: String as PropType<'click' | 'hover'>,
-      default: 'click'
+      default: 'hover'
     },
     openDelay: {
       type: Number,
@@ -76,7 +87,6 @@ export default defineComponent({
       default: 200
     },
     title: { type: String, default: '' },
-    disabled: { type: Boolean, default: false },
     content: { type: String, default: '' },
     popperClass: { type: String, default: '' },
     width: {
@@ -87,10 +97,6 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
-    arrowOffset: {
-      type: Number,
-      default: 0
-    },
     transition: {
       type: String,
       default: 'fade-in-linear'
@@ -100,12 +106,13 @@ export default defineComponent({
       default: 0
     }
   },
-  setup(props, { attrs, slots, emit }) {
-    const { teleportId, referenceRef } = usePopper({
-      id: 'ElPopover',
-      placement: props.placement,
+  setup(props) {
+    const { teleportId, referenceRef } = usePopper('ElPopover', {
+      placement: props.placement as PlacementType,
+      trigger: props.trigger as 'click' | 'hover',
+      modifiers: {},
       class: ['el-popover', 'el-popper', props.popperClass, props.content && 'el-popover--plain'],
-      style: { width: props.width + 'px' }
+      width: props.width + 'px'
     });
 
     const { showPopper } = toRefs(
@@ -114,43 +121,14 @@ export default defineComponent({
       })
     );
     const setupRef = (el: Element) => {
+      console.log(el);
+
       referenceRef.value = el;
-    };
-    const positionStype = computed(() => {
-      if (referenceRef.value) {
-        if (props.placement === 'top') {
-          return {};
-        }
-      }
-      return {};
-    });
-    const handler = {
-      onClick: event => {
-        if (props.trigger === 'click') {
-          console.log(event, referenceRef);
-          showPopper.value = !showPopper.value;
-        }
-      },
-      onMouseenter: event => {
-        if (props.trigger === 'hover') {
-          showPopper.value = true;
-        }
-      },
-      onmouseleave: event => {
-        if (props.trigger === 'hover') {
-          showPopper.value = false;
-        }
-      },
-      onBlur: event => {
-        // showPopper.value = false;
-      }
     };
     return {
       setupRef,
-      positionStype,
       teleportId,
-      showPopper,
-      handler
+      showPopper
     };
   }
 });
