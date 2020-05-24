@@ -1,6 +1,6 @@
-import { createPopper, Placement, Modifier } from '@popperjs/core';
+import { createPopper, Modifier } from '@popperjs/core';
 
-import { onUnmounted, ref, onMounted, watch, watchEffect, nextTick, mergeProps } from 'vue';
+import { onUnmounted, ref, onMounted, watchEffect } from 'vue';
 
 export type PlacementType =
   | 'top'
@@ -19,7 +19,7 @@ export type PlacementType =
 type UsePopperOptions = {
   class?: string | string[];
   width?: string;
-  trigger: 'click' | 'hover';
+  trigger?: 'click' | 'hover';
   placement: PlacementType;
   modifiers: Array<Partial<Modifier<any, any>>>;
 };
@@ -42,7 +42,7 @@ export function usePopper(id: string, options: UsePopperOptions) {
   const popper = ref(null);
   const referenceRef = ref(null);
   const popperRef = ref(createEl(id));
-
+  const hideTimeer = ref(null);
   watchEffect(() => {
     if (Array.isArray(options.class)) {
       popperRef.value.className = options.class.filter(cls => !!cls).join(' ');
@@ -53,29 +53,17 @@ export function usePopper(id: string, options: UsePopperOptions) {
       popperRef.value.style.width = options.width;
     }
   });
-  // watchEffect(() => {
-  //   if (popper.value && referenceRef.value) {
-  //     popper.value.setOptions({
-  //       placement: options.placement,
-  //       modifiers: [
-  //         {
-  //           name: 'offset',
-  //           options: {
-  //             offset: [0, 8]
-  //           }
-  //         }
-  //       ]
-  //     });
-  //   }
-  // });
 
   function show() {
+    clearTimeout(hideTimeer.value);
     popper.value.update();
     popperRef.value.setAttribute('data-show', 'true');
   }
 
   function hide() {
-    popperRef.value.removeAttribute('data-show');
+    hideTimeer.value = setTimeout(() => {
+      popperRef.value.removeAttribute('data-show');
+    }, 300);
   }
   function toggle() {
     if (popperRef.value.getAttribute('data-show')) {
@@ -101,7 +89,8 @@ export function usePopper(id: string, options: UsePopperOptions) {
       hideEvents.forEach(event => {
         referenceRef.value.addEventListener(event, hide);
       });
-    } else {
+    }
+    if (options.trigger === 'hover') {
       const showEvents = ['mouseenter', 'focus'];
       const hideEvents = ['mouseleave', 'blur'];
 
@@ -130,6 +119,9 @@ export function usePopper(id: string, options: UsePopperOptions) {
   });
   return {
     referenceRef,
-    teleportId: popperRef.value.id
+    teleportId: popperRef.value.id,
+    show,
+    hide,
+    toggle
   };
 }

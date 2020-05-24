@@ -60,6 +60,9 @@ body > .el-container {
   padding: 10px 0;
   background-color: #f9fafc;
 }
+#app {
+  height: 100%;
+}
 /* PrismJS 1.20.0
 https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript+typescript&plugins=normalize-whitespace */
 /**

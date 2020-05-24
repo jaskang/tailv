@@ -8,6 +8,6 @@ const config: UserConfig = {
   },
   minify: false,
   plugins: [lessPlugin]
-}
+} 
 
 export default config

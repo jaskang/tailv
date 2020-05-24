@@ -1,89 +1,62 @@
-import { defineComponent, PropType, provide, h, mergeProps, InjectionKey, reactive, computed } from 'vue';
+import { defineComponent, h, mergeProps, reactive, PropType, Prop } from 'vue';
 import { useElMenu } from './provides';
+
+export interface ElMenuProps {
+  mode?: 'horizontal' | 'vertical';
+  backgroundColor?: string;
+  textColor?: string;
+  activeTextColor?: string;
+  trigger?: 'click' | 'hover';
+  collapse?: boolean;
+}
+
+export interface ElMenuOptions extends Required<ElMenuProps> {
+  isPopup: boolean;
+  activeIndex: number;
+  items: any[];
+  openedMenus: any[];
+}
 
 export default defineComponent({
   name: 'Elmenu',
   props: {
-    mode: {
-      type: String as PropType<'horizontal' | 'vertical'>,
-      default: 'vertical'
-    },
-    backgroundColor: {
-      type: String,
-      default: ''
-    },
-    textColor: {
-      type: String,
-      default: ''
-    },
-    menuTrigger: {
-      type: String as PropType<'click' | 'hover'>,
-      default: 'click'
-    },
-    collapse: {
-      type: Boolean,
-      default: false
-    },
-    activeTextColor: {
-      type: String,
-      default: ''
-    }
+    mode: String,
+    backgroundColor: String,
+    textColor: String,
+    activeTextColor: String,
+    trigger: String,
+    collapse: Boolean
   },
-  setup(props, { attrs, slots, emit }) {
-    const { mode, backgroundColor, activeTextColor, textColor, collapse, menuTrigger } = props;
-    const { rootMenu, rootKey, parentKey } = useElMenu();
-    const state = reactive({
+  setup(props: ElMenuProps, { attrs, slots, emit }) {
+    const state = reactive<ElMenuOptions>({
+      mode: props.mode || 'vertical',
+      backgroundColor: props.backgroundColor || '',
+      textColor: props.textColor || '',
+      activeTextColor: props.activeTextColor || '',
+      trigger: props.trigger || 'click',
+      collapse: props.collapse || false,
+      isPopup: props.mode === 'horizontal' || !!(props.mode === 'vertical' && props.collapse),
       activeIndex: -1,
       items: [],
       openedMenus: []
     });
-    const isMenuPopup = computed(() => {
-      return mode === 'horizontal' || !!(mode === 'vertical' && collapse);
-    });
-    provide(rootKey, {
-      items: state.items,
-      collapse: !!collapse,
-      isMenuPopup: isMenuPopup.value,
-      activeIndex: state.activeIndex,
-      menuTrigger,
-      deep: 0,
-      mode,
-      backgroundColor,
-      activeTextColor,
-      textColor,
-      openedMenus: state.openedMenus,
-      openMenu(id: any) {
-        if (state.openedMenus.indexOf(id) === -1) {
-          state.openedMenus.push(id);
-        }
-      },
-      closeMenu(id: any) {
-        const menuIndex = state.openedMenus.indexOf(id);
-        if (menuIndex >= 0) {
-          state.openedMenus.splice(menuIndex, 1);
-        }
-      },
-      selectIndex(index: number) {
-        state.activeIndex = index;
-      }
-    });
-    provide(parentKey, {
-      items: state.items,
-      deep: 0,
-      isRoot: true
-    });
 
-    return () =>
-      h(
+    useElMenu(state);
+
+    return () => {
+      console.log(state.mode);
+
+      return h(
         'ul',
         mergeProps(
           {
-            style: { backgroundColor: backgroundColor || '' },
-            class: { 'el-menu--horizontal': mode === 'horizontal', 'el-menu': true }
+            style: { backgroundColor: state.backgroundColor || '' },
+            class: { 'el-menu--horizontal': state.mode === 'horizontal', 'el-menu': true }
           },
           attrs
         ),
         slots.default?.()
       );
+    };
   }
 });

@@ -1,5 +1,5 @@
 import { defineComponent, h } from 'vue';
-import { useElMenu } from './provides';
+import { useElMenuContext } from './provides';
 
 export default defineComponent({
   name: 'ElMenuItemGroup',
@@ -9,7 +9,7 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { paddingStyle } = useElMenu();
+    const { root } = useElMenuContext();
     return () =>
       h(
         'li',
@@ -26,7 +26,7 @@ export default defineComponent({
                 'el-menu-item-group__title': true
               },
               style: {
-                ...paddingStyle
+                paddingLeft: ''
               }
             },
             slots.title?.() ?? props.title
