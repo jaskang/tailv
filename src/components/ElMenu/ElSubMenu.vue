@@ -48,7 +48,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { usePopper } from '../../hooks/usePopper';
-import { useElMenuContext, useElSubMenu } from './provides';
+import { useElSubMenu } from './provides';
 
 export default defineComponent({
   name: 'ElSubmenu',
@@ -57,14 +57,13 @@ export default defineComponent({
     popperClass: { type: String, default: '' }
   },
   setup(props) {
-    const { root, parent } = useElMenuContext();
+    const { root, parent, state } = useElSubMenu();
     const { referenceRef: submenuTitleRef, teleportId, show, hide } = usePopper('ElMenuPopover', {
       placement: parent.isRoot ? 'bottom-start' : 'right-start',
       trigger: 'hover',
       modifiers: [{ name: 'offset', options: { offset: [0, 0] } }],
       class: ['el-popper', `el-menu--${root.state.mode}`, props.popperClass]
     });
-    const state = useElSubMenu();
 
     const handleClick = () => {
       if (
@@ -74,10 +73,10 @@ export default defineComponent({
       ) {
         return;
       }
-      if (root.state.openedMenus.indexOf(state.id) >= 0) {
-        root.close(state.id);
+      if (state.isOpen.value) {
+        root.close(state.id.value);
       } else {
-        root.open(state.id);
+        root.open(state.id.value);
       }
     };
 
@@ -89,7 +88,7 @@ export default defineComponent({
       ) {
         return;
       }
-      root.open(state.id);
+      root.open(state.id.value);
     };
     const handleMouseleave = () => {
       if (
@@ -98,7 +97,7 @@ export default defineComponent({
       ) {
         return;
       }
-      root.close(state.id);
+      root.close(state.id.value);
     };
 
     const handleTitleMouseenter = () => {

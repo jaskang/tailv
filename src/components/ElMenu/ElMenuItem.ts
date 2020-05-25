@@ -5,8 +5,7 @@ export default defineComponent({
   name: 'ElMenuItem',
   props: {},
   setup(props, { attrs, slots }) {
-    const { root } = useElMenuContext();
-    const state = useElMenuItem();
+    const { root, state } = useElMenuItem();
     const handleClick = () => {
       root.select(state.index.value);
     };

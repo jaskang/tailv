@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@types/prismjs": "^1.16.1",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.0",
+    "@typescript-eslint/parser": "^3.0.0",
     "@vue/compiler-sfc": "^3.0.0-beta.12",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
@@ -49,12 +49,12 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^7.0.0-alpha.3",
     "less": "^3.0.4",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.5",
     "prismjs": "^1.20.0",
     "sass": "^1.26.5",
     "tsrv": "^0.2.7",
     "typescript": "^3.8.3",
-    "vite": "^0.16.4",
+    "vite": "^0.16.10",
     "vue-eslint-parser": "^7.1.0"
   }
 }

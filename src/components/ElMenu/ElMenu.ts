@@ -1,4 +1,4 @@
-import { defineComponent, h, mergeProps, reactive, PropType, Prop } from 'vue';
+import { defineComponent, h, mergeProps, reactive, PropType, Prop, watchEffect, onMounted } from 'vue';
 import { useElMenu } from './provides';
 
 export interface ElMenuProps {
@@ -43,9 +43,12 @@ export default defineComponent({
 
     useElMenu(state);
 
+    onMounted(() => {
+      setTimeout(() => {
+        // state.backgroundColor = 'red';
+      }, 5000);
+    });
     return () => {
-      console.log(state.mode);
-
       return h(
         'ul',
         mergeProps(

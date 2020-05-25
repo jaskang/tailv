@@ -8,14 +8,15 @@ import {
   readonly,
   provide,
   toRefs,
-  ToRefs
+  ToRefs,
+  watchEffect
 } from 'vue';
 import { ElMenuOptions } from './ElMenu';
 
 export interface RootMenuType {
   state: ElMenuOptions;
-  open: (id: any) => void;
-  close: (id: any) => void;
+  open: (id: symbol) => void;
+  close: (id: symbol) => void;
   select: (index: number) => void;
 }
 
@@ -31,8 +32,8 @@ export type ParentMenuType = ToRefs<{
   placement: 'bottom-start' | 'right-start';
 }>;
 
-export const ELROOTMENU_KEY: InjectionKey<RootMenuType> = Symbol('ElRootMenu');
-export const ElPARENTMENU_KEY: InjectionKey<ParentMenuType> = Symbol('ElParentMenu');
+const ELROOTMENU_KEY: InjectionKey<RootMenuType> = Symbol('ElRootMenu');
+const ElPARENTMENU_KEY: InjectionKey<ParentMenuType> = Symbol('ElParentMenu');
 
 export function useElMenuContext() {
   const root = inject(ELROOTMENU_KEY, null);
@@ -46,13 +47,13 @@ export function useElMenuContext() {
 export function useElMenu(state: ElMenuOptions) {
   const id = Symbol('ElSubMenu');
   provide(ELROOTMENU_KEY, {
-    state,
-    open(id: any) {
+    state: state,
+    open(id: symbol) {
       if (state.openedMenus.indexOf(id) === -1) {
         state.openedMenus.push(id);
       }
     },
-    close(id: any) {
+    close(id: symbol) {
       const menuIndex = state.openedMenus.indexOf(id);
       if (menuIndex >= 0) {
         state.openedMenus.splice(menuIndex, 1);
@@ -91,6 +92,7 @@ export function useElMenu(state: ElMenuOptions) {
 export function useElSubMenu() {
   const id = Symbol('ElSubMenu');
   const { root, parent } = useElMenuContext();
+
   const pvState: ToRefs<{
     id: symbol;
     items: any[];
@@ -108,7 +110,9 @@ export function useElSubMenu() {
       deep: parent.deep.value + 1,
       isRoot: false,
       isActive: computed<boolean>(() => pvState.items.value.some(item => item.isActive)),
-      isOpen: computed(() => root.state.openedMenus.includes(id)),
+      isOpen: computed(() => {
+        return root.state.openedMenus.indexOf(id) !== -1;
+      }),
       style: computed(() => {
         const style: any = {
           backgroundColor: root.state.backgroundColor,
@@ -130,12 +134,13 @@ export function useElSubMenu() {
     })
   );
   provide(ElPARENTMENU_KEY, pvState);
-  return pvState;
+  return { root, parent, state: pvState };
 }
 
 export function useElMenuItem() {
   const id = Symbol('ElMenuItem');
   const { root, parent } = useElMenuContext();
+
   const state: ToRefs<Readonly<{
     id: symbol;
     index: number;
@@ -186,5 +191,5 @@ export function useElMenuItem() {
       root.state.items.splice(state.index.value, 1);
     }
   });
-  return state;
+  return { root, parent, state };
 }
