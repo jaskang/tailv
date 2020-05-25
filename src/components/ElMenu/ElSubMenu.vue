@@ -46,7 +46,7 @@
   </li>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, watch } from 'vue';
 import { usePopper } from '../../hooks/usePopper';
 import { useElSubMenu } from './provides';
 
@@ -59,12 +59,17 @@ export default defineComponent({
   setup(props) {
     const { root, parent, state } = useElSubMenu();
     const { referenceRef: submenuTitleRef, teleportId, show, hide } = usePopper('ElMenuPopover', {
-      placement: parent.isRoot ? 'bottom-start' : 'right-start',
-      trigger: 'hover',
-      modifiers: [{ name: 'offset', options: { offset: [0, 0] } }],
+      placement: parent.isRoot.value ? 'bottom-start' : 'right-start',
+      modifiers: [{ name: 'offset', options: { offset: parent.isRoot.value ? [0, 0] : [0, 4] } }],
       class: ['el-popper', `el-menu--${root.state.mode}`, props.popperClass]
     });
-
+    watch(state.isOpen, value => {
+      if (value) {
+        show();
+      } else {
+        hide();
+      }
+    });
     const handleClick = () => {
       if (
         (root.state.trigger === 'hover' && root.state.mode === 'horizontal') ||

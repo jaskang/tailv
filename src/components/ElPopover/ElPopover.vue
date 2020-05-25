@@ -36,7 +36,6 @@ const PopoverReference = defineComponent({
   setup(props, { slots }) {
     const children = slots.default ? slots.default() : [];
     const child = children?.[0]?.children?.[0];
-    console.log(child);
 
     return () => {
       const mergeChild = cloneVNode(child, {
@@ -128,8 +127,6 @@ export default defineComponent({
       })
     );
     const setupRef = (el: Element) => {
-      console.log(el);
-
       referenceRef.value = el;
     };
     return {

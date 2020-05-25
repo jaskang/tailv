@@ -53,17 +53,26 @@
       `}}
     </template>
   </Preview>
+  <Preview>
+    <ElPopper>
+      sdfasfasfsd
+      <template #reference>
+        <div>reference</div>
+      </template>
+    </ElPopper>
+  </Preview>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Preview from '../components/Preview.vue';
-import { ElPopover, ElButton } from '@/index';
+import { ElPopover, ElPopper, ElButton } from '@/index';
 export default defineComponent({
   components: {
     Preview,
     ElButton,
-    ElPopover
+    ElPopover,
+    ElPopper
   }
 });
 </script>

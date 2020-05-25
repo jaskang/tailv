@@ -79,10 +79,10 @@ export function useElMenu(state: ElMenuOptions) {
       id: id,
       items: state.items,
       deep: 0,
-      isRoot: false,
+      isRoot: true,
       isActive: false,
       isOpen: false,
-      style: {},
+      style: state.mode !== 'horizontal' ? { paddingLeft: '20px' } : {},
       icon: 'el-icon-arrow-down',
       placement: 'right-start'
     })

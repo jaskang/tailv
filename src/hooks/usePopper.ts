@@ -1,6 +1,8 @@
 import { createPopper, Modifier } from '@popperjs/core';
 
-import { onUnmounted, ref, onMounted, watchEffect } from 'vue';
+import { onUnmounted, ref, onMounted, watchEffect, Ref, provide, reactive, inject } from 'vue';
+import uniqueId from '@/utils/uniqueId';
+import { createEl, removeEl } from '@/utils/dom';
 
 export type PlacementType =
   | 'top'
@@ -24,25 +26,18 @@ type UsePopperOptions = {
   modifiers: Array<Partial<Modifier<any, any>>>;
 };
 
-export const generateId = function() {
-  return Math.floor(Math.random() * 10000);
-};
+const POPPER_KEY = Symbol('POPPER_KEY');
 
-function createEl(id: string) {
-  const popperEl = document.createElement('div');
-  popperEl.id = id + generateId();
-  document.body.appendChild(popperEl);
-  return popperEl;
-}
+const poppers = reactive([]);
 
-function removeEl(el) {
-  if (el.parentNode) el.parentNode.removeChild(el);
-}
 export function usePopper(id: string, options: UsePopperOptions) {
   const popper = ref(null);
   const referenceRef = ref(null);
-  const popperRef = ref(createEl(id));
+  const popperRef = ref(createEl(uniqueId(id)));
   const hideTimeer = ref(null);
+  const stete = reactive({
+    isOpen: false
+  });
   watchEffect(() => {
     if (Array.isArray(options.class)) {
       popperRef.value.className = options.class.filter(cls => !!cls).join(' ');
@@ -53,24 +48,30 @@ export function usePopper(id: string, options: UsePopperOptions) {
       popperRef.value.style.width = options.width;
     }
   });
-
+  // const parent = inject(POPPER_KEY, null);
+  // if (parent) {
+  //   parent;
+  // } else {
+  //   provide(POPPER_KEY, {});
+  // }
   function show() {
     clearTimeout(hideTimeer.value);
     popper.value.update();
     popperRef.value.setAttribute('data-show', 'true');
+    stete.isOpen = true;
   }
 
   function hide() {
     hideTimeer.value = setTimeout(() => {
       popperRef.value.removeAttribute('data-show');
+      stete.isOpen = false;
     }, 300);
   }
   function toggle() {
     if (popperRef.value.getAttribute('data-show')) {
-      popperRef.value.removeAttribute('data-show');
+      hide();
     } else {
-      popper.value.update();
-      popperRef.value.setAttribute('data-show', 'true');
+      show();
     }
   }
   function initPopper() {
@@ -120,6 +121,7 @@ export function usePopper(id: string, options: UsePopperOptions) {
   return {
     referenceRef,
     teleportId: popperRef.value.id,
+    popper,
     show,
     hide,
     toggle

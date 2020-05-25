@@ -33,7 +33,7 @@ export default defineComponent({
       backgroundColor: props.backgroundColor || '',
       textColor: props.textColor || '',
       activeTextColor: props.activeTextColor || '',
-      trigger: props.trigger || 'click',
+      trigger: props.trigger || 'hover',
       collapse: props.collapse || false,
       isPopup: props.mode === 'horizontal' || !!(props.mode === 'vertical' && props.collapse),
       activeIndex: -1,

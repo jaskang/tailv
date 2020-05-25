@@ -9,7 +9,7 @@ export default defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { root } = useElMenuContext();
+    const { parent } = useElMenuContext();
     return () =>
       h(
         'li',
@@ -26,7 +26,7 @@ export default defineComponent({
                 'el-menu-item-group__title': true
               },
               style: {
-                paddingLeft: ''
+                paddingLeft: (parent.deep.value + 1) * 20 + 'px'
               }
             },
             slots.title?.() ?? props.title
