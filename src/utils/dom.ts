@@ -1,8 +1,11 @@
-export function createEl(id: string) {
-  const popperEl = document.createElement('div');
-  popperEl.id = id;
-  document.body.appendChild(popperEl);
-  return popperEl;
+export function createEl(id: string, cls?: string) {
+  const el = document.createElement('div');
+  el.id = id;
+  if (cls) {
+    el.className = cls;
+  }
+  document.body.appendChild(el);
+  return el;
 }
 
 export function removeEl(el) {

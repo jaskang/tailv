@@ -13,11 +13,20 @@ import {
   ref,
   readonly,
   onMounted,
-  watch
+  watch,
+  provide,
+  ComputedRef,
+  ToRefs,
+  inject,
+  watchEffect,
+  toRaw,
+  isRef,
+  onUnmounted,
+  onBeforeUnmount
 } from 'vue';
 import uniqueId from '@/utils/uniqueId';
 import { createEl } from '@/utils/dom';
-import { createPopper } from '@popperjs/core';
+import { createPopper, Instance as Popper } from '@popperjs/core';
 
 export type PlacementType =
   | 'top'
@@ -39,6 +48,17 @@ interface ElPopperProps {
   popperClass: string;
   visibleArrow: boolean;
 }
+
+type ElPopperState = {
+  id: string;
+  deep: number;
+  isHover: boolean;
+  isOpen: boolean;
+  children: ElPopperState[];
+  hasChildOpened: boolean;
+};
+
+const ElPopperContextKey = Symbol('ElPopperContext');
 export default defineComponent({
   name: 'ElPopper',
   props: {
@@ -58,31 +78,44 @@ export default defineComponent({
   },
   setup(props: ElPopperProps, { slots }) {
     const id = uniqueId('el-popper');
-    const teleport = ref(createEl(id));
-    teleport.value.classList.add('el-popper');
-    const reference = ref(null);
-    const popper = ref(null);
-    const state = reactive({
-      isOpen: false
-    });
+    const teleportEl = createEl(id, 'el-popper');
+    const referenceRef = ref(null);
+    let popper: Popper = null;
     const hideTimeer = ref(null);
-    console.log('teleport.value.id', teleport.value.id);
+    const parentState = inject<ElPopperState>(ElPopperContextKey, null);
+    const state: ElPopperState = reactive({
+      id,
+      deep: parentState?.deep ? parentState?.deep + 1 : 0,
+      isHover: false,
+      isOpen: false,
+      children: [],
+      hasChildOpened: computed<boolean>(() =>
+        state.children.some(item => {
+          console.log('computed children', item, false, false);
+          console.log('computed hasChildOpened', item.isOpen, item.hasChildOpened);
+          return item.isOpen || item.hasChildOpened;
+        })
+      )
+    });
+    provide(ElPopperContextKey, state);
 
     function show() {
       clearTimeout(hideTimeer.value);
-      popper.value.update();
-      teleport.value.setAttribute('data-show', 'true');
+      popper.update();
+      teleportEl.setAttribute('data-show', 'true');
       state.isOpen = true;
     }
 
     function hide() {
-      hideTimeer.value = setTimeout(() => {
-        teleport.value.removeAttribute('data-show');
-        state.isOpen = false;
-      }, 300);
+      if (!state.hasChildOpened) {
+        hideTimeer.value = setTimeout(() => {
+          teleportEl.removeAttribute('data-show');
+          state.isOpen = false;
+        }, 200);
+      }
     }
     function toggle() {
-      if (teleport.value.getAttribute('data-show')) {
+      if (teleportEl.getAttribute('data-show')) {
         hide();
       } else {
         show();
@@ -90,7 +123,10 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      popper.value = createPopper(reference.value, teleport.value, {
+      if (parentState) {
+        parentState.children.push(state);
+      }
+      popper = createPopper(referenceRef.value, teleportEl, {
         placement: props.placement,
         modifiers: []
       });
@@ -98,29 +134,47 @@ export default defineComponent({
       const hideEvents = ['mouseleave', 'blur'];
 
       showEvents.forEach(event => {
-        reference.value.addEventListener(event, show);
+        referenceRef.value.addEventListener(event, () => {
+          state.isHover = true;
+          show();
+        });
+        teleportEl.addEventListener(event, () => {
+          state.isHover = true;
+          show();
+        });
       });
 
       hideEvents.forEach(event => {
-        reference.value.addEventListener(event, hide);
+        referenceRef.value.addEventListener(event, () => {
+          state.isHover = true;
+          hide();
+        });
+        teleportEl.addEventListener(event, () => {
+          state.isHover = true;
+          hide();
+        });
       });
-      setTimeout(() => {
-        toggle();
-      }, 5000);
+      // setTimeout(() => {
+      //   toggle();
+      // }, 5000);
     });
-    watch(reference, refvalue => {
-      console.log(refvalue);
+    onBeforeUnmount(() => {
+      popper.destroy();
+      if (parentState) {
+        const index = parentState.children.indexOf(state);
+        parentState.children.splice(index, 1);
+      }
     });
     return () => {
       const referenceContent = slots.reference ? slots.reference() : [];
 
       const transformedReferenceContent = referenceContent.map(vnode => {
         return cloneVNode(vnode, {
-          ref: reference
+          ref: referenceRef
         });
       });
       return h(Fragment, [
-        h(Teleport, { to: `#${teleport.value.id}` }, [
+        h(Teleport, { to: `#${teleportEl.id}` }, [
           slots.default?.(),
           h('div', { class: 'popper__arrow', 'data-popper-arrow': true }, [])
         ]),

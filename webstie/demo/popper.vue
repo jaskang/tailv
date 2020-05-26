@@ -3,9 +3,17 @@
 
   <Preview>
     <ElPopper>
-      sdfasfasfsd
+      ElPopper 1
+      <ElPopper>
+        ElPopper 2
+        <template #reference>
+          <div>reference 2</div>
+        </template>
+      </ElPopper>
       <template #reference>
-        <div>reference</div>
+        <div>
+          reference 1
+        </div>
       </template>
     </ElPopper>
   </Preview>
