@@ -22,7 +22,8 @@ import {
   toRaw,
   isRef,
   onUnmounted,
-  onBeforeUnmount
+  onBeforeUnmount,
+  Ref
 } from 'vue';
 import uniqueId from '@/utils/uniqueId';
 import { createEl } from '@/utils/dom';
@@ -49,14 +50,14 @@ interface ElPopperProps {
   visibleArrow: boolean;
 }
 
-type ElPopperState = {
+type ElPopperState = ToRefs<{
   id: string;
   deep: number;
   isHover: boolean;
-  isOpen: boolean;
   children: ElPopperState[];
   hasChildOpened: boolean;
-};
+  isOpen: boolean;
+}>;
 
 const ElPopperContextKey = Symbol('ElPopperContext');
 export default defineComponent({
@@ -83,48 +84,48 @@ export default defineComponent({
     let popper: Popper = null;
     const hideTimeer = ref(null);
     const parentState = inject<ElPopperState>(ElPopperContextKey, null);
-    const state: ElPopperState = reactive({
-      id,
-      deep: parentState?.deep ? parentState?.deep + 1 : 0,
-      isHover: false,
-      isOpen: false,
-      children: [],
-      hasChildOpened: computed<boolean>(() =>
-        state.children.some(item => {
-          console.log('computed children', item, false, false);
-          console.log('computed hasChildOpened', item.isOpen, item.hasChildOpened);
-          return item.isOpen || item.hasChildOpened;
+    const state: ElPopperState = toRefs(
+      reactive({
+        id,
+        deep: parentState?.deep ? parentState?.deep.value + 1 : 0,
+        isHover: false,
+        children: [],
+        hasChildOpened: computed<boolean>(() =>
+          state.children.value.some(item => {
+            return item.isOpen;
+          })
+        ),
+        isOpen: computed<boolean>(() => {
+          return state.isHover.value || state.hasChildOpened.value;
         })
-      )
-    });
+      })
+    );
+
     provide(ElPopperContextKey, state);
 
-    function show() {
-      clearTimeout(hideTimeer.value);
-      popper.update();
-      teleportEl.setAttribute('data-show', 'true');
-      state.isOpen = true;
-    }
-
-    function hide() {
-      if (!state.hasChildOpened) {
+    watch(state.isOpen, value => {
+      if (value) {
+        clearTimeout(hideTimeer.value);
+        popper.update();
+        teleportEl.setAttribute('data-show', 'true');
+      } else {
         hideTimeer.value = setTimeout(() => {
           teleportEl.removeAttribute('data-show');
-          state.isOpen = false;
         }, 200);
       }
-    }
-    function toggle() {
-      if (teleportEl.getAttribute('data-show')) {
-        hide();
-      } else {
-        show();
-      }
-    }
+    });
+
+    // function toggle() {
+    //   if (teleportEl.getAttribute('data-show')) {
+    //     hide();
+    //   } else {
+    //     show();
+    //   }
+    // }
 
     onMounted(() => {
       if (parentState) {
-        parentState.children.push(state);
+        parentState.children.value.push(state);
       }
       popper = createPopper(referenceRef.value, teleportEl, {
         placement: props.placement,
@@ -135,36 +136,31 @@ export default defineComponent({
 
       showEvents.forEach(event => {
         referenceRef.value.addEventListener(event, () => {
-          state.isHover = true;
-          show();
+          state.isHover.value = true;
         });
         teleportEl.addEventListener(event, () => {
-          state.isHover = true;
-          show();
+          state.isHover.value = true;
         });
       });
 
       hideEvents.forEach(event => {
         referenceRef.value.addEventListener(event, () => {
-          state.isHover = true;
-          hide();
+          state.isHover.value = false;
         });
         teleportEl.addEventListener(event, () => {
-          state.isHover = true;
-          hide();
+          state.isHover.value = false;
         });
       });
-      // setTimeout(() => {
-      //   toggle();
-      // }, 5000);
     });
+
     onBeforeUnmount(() => {
       popper.destroy();
       if (parentState) {
-        const index = parentState.children.indexOf(state);
-        parentState.children.splice(index, 1);
+        const index = parentState.children.value.indexOf(state);
+        parentState.children.value.splice(index, 1);
       }
     });
+
     return () => {
       const referenceContent = slots.reference ? slots.reference() : [];
 

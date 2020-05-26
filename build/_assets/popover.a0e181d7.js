@@ -1,11 +1,12 @@
-import { d as defineComponent, a as script$5, C as script$9, r as resolveComponent, c as createBlock, b as createVNode, w as withCtx, F as Fragment, o as openBlock, e as createTextVNode, _ as _toDisplayString } from './index.48c3ecc7.js';
-import { s as script$1 } from './Preview.2c03b2a7.js';
+import { d as defineComponent, a as script$5, C as script$9, D as ElPopper, r as resolveComponent, c as createBlock, b as createVNode, w as withCtx, F as Fragment, o as openBlock, e as createTextVNode, _ as _toDisplayString } from './index.403d26ed.js';
+import { s as script$1 } from './Preview.8bbf9e9a.js';
 
 var script = defineComponent({
   components: {
     Preview: script$1,
     ElButton: script$5,
-    ElPopover: script$9
+    ElPopover: script$9,
+    ElPopper
   }
 });
 
@@ -34,11 +35,14 @@ const _hoisted_5 = /*#__PURE__*/createTextVNode(/*#__PURE__*/_toDisplayString(`
         <template #reference><el-button>click 激活</el-button></template>
       </el-popover>
       `), 1 /* TEXT */);
+const _hoisted_6 = /*#__PURE__*/createTextVNode(" sdfasfasfsd ");
+const _hoisted_7 = /*#__PURE__*/createVNode("div", null, "reference", -1 /* HOISTED */);
 
 function render(_ctx, _cache) {
   const _component_el_button = resolveComponent("el-button");
   const _component_el_popover = resolveComponent("el-popover");
   const _component_Preview = resolveComponent("Preview");
+  const _component_ElPopper = resolveComponent("ElPopper");
 
   return (openBlock(), createBlock(Fragment, null, [
     _hoisted_1,
@@ -95,6 +99,20 @@ function render(_ctx, _cache) {
               ]),
               _: 1
             })
+          ]),
+          _: 1
+        })
+      ]),
+      _: 1
+    }),
+    createVNode(_component_Preview, null, {
+      default: withCtx(() => [
+        createVNode(_component_ElPopper, null, {
+          reference: withCtx(() => [
+            _hoisted_7
+          ]),
+          default: withCtx(() => [
+            _hoisted_6
           ]),
           _: 1
         })
