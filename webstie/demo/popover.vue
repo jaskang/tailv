@@ -1,14 +1,6 @@
 <template>
-  <h1>ElButton</h1>
-  <el-popover
-    placement="top-start"
-    title="标题"
-    width="200"
-    trigger="hover"
-    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-  >
-    <template #reference> <el-button>hover 激活</el-button></template>
-  </el-popover>
+  <h1>ElPopover</h1>
+
   <Preview title="不同尺寸">
     <el-popover
       placement="top-start"
@@ -17,7 +9,7 @@
       trigger="hover"
       content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
     >
-      <template #reference> <el-button>hover 激活</el-button></template>
+      <template #reference><el-button>hover 激活</el-button></template>
     </el-popover>
 
     <el-popover
@@ -53,26 +45,17 @@
       `}}
     </template>
   </Preview>
-  <Preview>
-    <ElPopper>
-      sdfasfasfsd
-      <template #reference>
-        <div>reference</div>
-      </template>
-    </ElPopper>
-  </Preview>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Preview from '../components/Preview.vue';
-import { ElPopover, ElPopper, ElButton } from '@/index';
+import { ElPopover, ElButton } from '@/index';
 export default defineComponent({
   components: {
     Preview,
     ElButton,
-    ElPopover,
-    ElPopper
+    ElPopover
   }
 });
 </script>

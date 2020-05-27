@@ -6,55 +6,17 @@
     </div>
     <div class="popper__arrow" data-popper-arrow></div>
   </teleport>
-  <PopoverReference :setup-ref="setupRef">
+  <span ref="referenceElRef" style="display: inline-block;">
     <slot name="reference"></slot>
-  </PopoverReference>
+  </span>
 </template>
 <script lang="ts">
-import {
-  defineComponent,
-  PropType,
-  reactive,
-  toRefs,
-  Fragment,
-  cloneVNode,
-  h,
-  mergeProps,
-  computed,
-  isReactive
-} from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
-import { usePopper, PlacementType } from '../../hooks/usePopper';
-
-const PopoverReference = defineComponent({
-  props: {
-    setupRef: {
-      type: Function,
-      required: true
-    }
-  },
-  setup(props, { slots }) {
-    const children = slots.default ? slots.default() : [];
-    const child = children?.[0]?.children?.[0];
-
-    return () => {
-      const mergeChild = cloneVNode(child, {
-        ref: (obj: any) => {
-          if (obj?.$el) {
-            props.setupRef(obj.$el);
-          } else {
-            props.setupRef(obj);
-          }
-        }
-      });
-      return h(Fragment, [mergeChild]);
-    };
-  }
-});
+import { usePopper, PlacementType } from '../ElPopper';
 
 export default defineComponent({
   name: 'ElPopoVer',
-  components: { PopoverReference },
   props: {
     placement: {
       type: String as PropType<
@@ -106,33 +68,19 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { teleportId, referenceRef } = usePopper('ElPopover', {
-      placement: props.placement as PlacementType,
-      trigger: props.trigger as 'click' | 'hover',
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 8]
-          }
-        }
-      ],
-      class: ['el-popover', 'el-popper', props.popperClass, props.content && 'el-popover--plain'],
-      width: props.width + 'px'
-    });
-
-    const { showPopper } = toRefs(
-      reactive({
-        showPopper: false
-      })
+    const referenceElRef = ref(null);
+    const { teleportId } = usePopper(
+      referenceElRef,
+      ['el-popover', props.popperClass, props.content && 'el-popover--plain'],
+      {
+        placement: props.placement as PlacementType,
+        modifiers: [{ name: 'offset', options: [0, 4] }]
+      }
     );
-    const setupRef = (el: Element) => {
-      referenceRef.value = el;
-    };
+
     return {
-      setupRef,
       teleportId,
-      showPopper
+      referenceElRef
     };
   }
 });

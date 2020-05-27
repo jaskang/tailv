@@ -1,2 +1,2 @@
 import './ElPopper.less';
-export { default as ElPopper } from './ElPopper';
+export { usePopper, PlacementType } from './usePopper';

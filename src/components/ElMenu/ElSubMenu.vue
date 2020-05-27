@@ -12,9 +12,9 @@
     @focus="handleMouseenter"
   >
     <div
-      ref="submenuTitleRef"
+      ref="referenceRef"
       class="el-submenu__title"
-      :style="[state.style]"
+      :style="state.style"
       @click="handleClick"
       @mouseenter="handleTitleMouseenter"
       @mouseleave="handleTitleMouseleave"
@@ -24,11 +24,7 @@
     </div>
     <template v-if="isPopup">
       <teleport :to="`#${teleportId}`">
-        <ul
-          role="menu"
-          :class="`el-menu el-menu--popup el-menu--popup-${state.placement}`"
-          :style="{ backgroundColor: state.style.backgroundColor }"
-        >
+        <ul role="menu" :class="data.class" :style="{ backgroundColor: state.style.backgroundColor, ...data.style }">
           <slot></slot>
         </ul>
       </teleport>
@@ -46,8 +42,9 @@
   </li>
 </template>
 <script lang="ts">
-import { defineComponent, watch } from 'vue';
-import { usePopper } from '../../hooks/usePopper';
+import { defineComponent, watch, ref, reactive } from 'vue';
+import { usePopper, PlacementType } from '../ElPopper';
+
 import { useElSubMenu } from './provides';
 
 export default defineComponent({
@@ -58,18 +55,17 @@ export default defineComponent({
   },
   setup(props) {
     const { root, parent, state } = useElSubMenu();
-    const { referenceRef: submenuTitleRef, teleportId, show, hide } = usePopper('ElMenuPopover', {
+    const referenceRef = ref(null);
+    const data = reactive({
+      class: `el-menu el-menu--popup el-menu--popup-${parent.isRoot.value ? 'bottom-start' : 'right-start'}`,
+      style: { width: '200px' }
+    });
+
+    const { teleportId } = usePopper(referenceRef, [`el-menu--${root.state.mode}`], {
       placement: parent.isRoot.value ? 'bottom-start' : 'right-start',
-      modifiers: [{ name: 'offset', options: { offset: parent.isRoot.value ? [0, 0] : [0, 4] } }],
-      class: ['el-popper', `el-menu--${root.state.mode}`, props.popperClass]
+      modifiers: [{ name: 'offset', options: { offset: parent.isRoot.value ? [0, 0] : [0, 4] } }]
     });
-    watch(state.isOpen, value => {
-      if (value) {
-        show();
-      } else {
-        hide();
-      }
-    });
+
     const handleClick = () => {
       if (
         (root.state.trigger === 'hover' && root.state.mode === 'horizontal') ||
@@ -111,10 +107,10 @@ export default defineComponent({
     };
     const handleTitleMouseleave = () => {
       if (root.state.mode === 'horizontal' && !root.state.backgroundColor) return;
-      submenuTitleRef.value && (submenuTitleRef.value.style.backgroundColor = root.state.backgroundColor || '');
+      referenceRef.value && (referenceRef.value.style.backgroundColor = root.state.backgroundColor || '');
     };
     return {
-      teleportId,
+      data,
       state,
       isPopup: root.state.isPopup,
       handleClick,
@@ -122,7 +118,8 @@ export default defineComponent({
       handleMouseleave,
       handleTitleMouseenter,
       handleTitleMouseleave,
-      submenuTitleRef
+      teleportId,
+      referenceRef
     };
   }
 });

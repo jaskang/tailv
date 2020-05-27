@@ -15,6 +15,7 @@
         'is-circle': circle
       }
     ]"
+    v-bind="$attrs"
   >
     <i v-if="loading" class="el-icon-loading"></i>
     <i v-if="icon && !loading" :class="icon"></i>
@@ -55,7 +56,6 @@ export default defineComponent({
     const elForm = inject(ElFormSymbol, null);
     const elFormItem = inject(ElFormItemSymbol, null);
     const elGlobalConfig = useGlobal();
-
     const buttonSize = computed(() => {
       return props.size || elFormItem?.elFormItemSize || elGlobalConfig?.size;
     });
