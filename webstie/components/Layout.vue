@@ -1,12 +1,14 @@
 <template>
   <ElContainer>
     <ElAside>
-      <router-link :to="{ name: 'button' }">button</router-link><br />
-      <router-link :to="{ name: 'layout' }">layout</router-link><br />
-      <router-link :to="{ name: 'container' }">container</router-link><br />
-      <router-link :to="{ name: 'icon' }">icon</router-link><br />
-      <router-link :to="{ name: 'menu' }">menu</router-link><br />
-      <router-link :to="{ name: 'popover' }">popover</router-link><br />
+      <el-menu>
+        <el-menu-item index="1"><router-link :to="{ name: 'button' }">button</router-link></el-menu-item>
+        <el-menu-item index="1"><router-link :to="{ name: 'layout' }">layout</router-link></el-menu-item>
+        <el-menu-item index="1"><router-link :to="{ name: 'container' }">container</router-link></el-menu-item>
+        <el-menu-item index="1"><router-link :to="{ name: 'icon' }">icon</router-link></el-menu-item>
+        <el-menu-item index="1"><router-link :to="{ name: 'menu' }">menu</router-link></el-menu-item>
+        <el-menu-item index="1"><router-link :to="{ name: 'popover' }">popover</router-link></el-menu-item>
+      </el-menu>
     </ElAside>
     <ElMain>
       <img alt="Vue logo" src="./../assets/logo.png" />
@@ -18,13 +20,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import HelloWorld from './HelloWorld.vue';
-import { ElContainer, ElAside, ElMain } from '@/index';
+import { ElContainer, ElAside, ElMain, ElMenu, ElMenuItem } from '@/index';
 export default defineComponent({
   components: {
     HelloWorld,
     ElContainer,
     ElAside,
-    ElMain
+    ElMain,
+    ElMenu,
+    ElMenuItem
   }
 });
 </script>
