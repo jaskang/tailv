@@ -149,7 +149,7 @@ export function usePopper(
   });
 
   onBeforeUnmount(() => {
-    if (popper) {
+    if (popper.value) {
       popper.value.destroy();
       popper.value = null;
     }
