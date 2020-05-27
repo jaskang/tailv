@@ -3504,10 +3504,6 @@ const onErrorCaptured = (hook, target = currentInstance) => {
 };
 
 const invoke = (fn) => fn();
-// Simple effect.
-function watchEffect(effect, options) {
-    return doWatch(effect, null, options);
-}
 // initial value for watchers to trigger on undefined initial values
 const INITIAL_WATCHER_VALUE = {};
 // implementation
@@ -8949,7 +8945,7 @@ const _hoisted_1$1$1 = {
 const _hoisted_2 = { key: 0 };
 
 function render$5(_ctx, _cache) {
-  return (openBlock(), createBlock("button", {
+  return (openBlock(), createBlock("button", mergeProps({
     class: ["el-button", [
       _ctx.type ? 'el-button--' + _ctx.type : '',
       _ctx.buttonSize ? 'el-button--' + _ctx.buttonSize : '',
@@ -8964,7 +8960,7 @@ function render$5(_ctx, _cache) {
     disabled: _ctx.buttonDisabled || _ctx.loading,
     autofocus: _ctx.autofocus,
     type: _ctx.nativeType
-  }, [
+  }, _ctx.$attrs), [
     (_ctx.loading)
       ? (openBlock(), createBlock("i", _hoisted_1$1$1))
       : createCommentVNode("v-if", true),
@@ -8979,7 +8975,7 @@ function render$5(_ctx, _cache) {
           renderSlot(_ctx.$slots, "default")
         ]))
       : createCommentVNode("v-if", true)
-  ], 10 /* CLASS, PROPS */, ["disabled", "autofocus", "type"]))
+  ], 16 /* FULL_PROPS */, ["disabled", "autofocus", "type"]))
 }
 
 script$5.render = render$5;
@@ -9259,12 +9255,8 @@ var ElMenuItem = defineComponent({
   }
 });
 
-var id = 0;
-var PREFIX = Math.ceil(Math.random() * 8999 + 1000).toString();
-function uniqueId(prefix) {
-  var nextId = "" + PREFIX + ++id;
-  return prefix ? "" + prefix + nextId : nextId;
-}
+var css_248z$a = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-popper {\n  display: none;\n}\n.el-popper[data-show] {\n  display: block;\n}\n.el-popper .popper__arrow,\n.el-popper .popper__arrow::after {\n  position: absolute;\n  display: block;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.el-popper .popper__arrow {\n  border-width: 6px;\n  -webkit-filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));\n          filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));\n}\n.el-popper .popper__arrow::after {\n  content: ' ';\n  border-width: 6px;\n}\n.el-popper[data-popper-placement^='top'] {\n  margin-bottom: 12px;\n}\n.el-popper[data-popper-placement^='top'] .popper__arrow {\n  bottom: -6px;\n  left: 50%;\n  margin-right: 3px;\n  border-top-color: #ebeef5;\n  border-bottom-width: 0;\n}\n.el-popper[data-popper-placement^='top'] .popper__arrow::after {\n  bottom: 1px;\n  margin-left: -6px;\n  border-top-color: #ffffff;\n  border-bottom-width: 0;\n}\n.el-popper[data-popper-placement^='bottom'] {\n  margin-top: 12px;\n}\n.el-popper[data-popper-placement^='bottom'] .popper__arrow {\n  top: -6px;\n  left: 50%;\n  margin-right: 3px;\n  border-top-width: 0;\n  border-bottom-color: #ebeef5;\n}\n.el-popper[data-popper-placement^='bottom'] .popper__arrow::after {\n  top: 1px;\n  margin-left: -6px;\n  border-top-width: 0;\n  border-bottom-color: #ffffff;\n}\n.el-popper[data-popper-placement^='right'] {\n  margin-left: 12px;\n}\n.el-popper[data-popper-placement^='right'] .popper__arrow {\n  top: 50%;\n  left: -6px;\n  margin-bottom: 3px;\n  border-right-color: #ebeef5;\n  border-left-width: 0;\n}\n.el-popper[data-popper-placement^='right'] .popper__arrow::after {\n  bottom: -6px;\n  left: 1px;\n  border-right-color: #ffffff;\n  border-left-width: 0;\n}\n.el-popper[data-popper-placement^='left'] {\n  margin-right: 12px;\n}\n.el-popper[data-popper-placement^='left'] .popper__arrow {\n  top: 50%;\n  right: -6px;\n  margin-bottom: 3px;\n  border-right-width: 0;\n  border-left-color: #ebeef5;\n}\n.el-popper[data-popper-placement^='left'] .popper__arrow::after {\n  right: 1px;\n  bottom: -6px;\n  margin-left: -6px;\n  border-right-width: 0;\n  border-left-color: #ffffff;\n}\n";
+styleInject(css_248z$a);
 
 function createEl(id, cls) {
   var el = document.createElement('div');
@@ -9281,108 +9273,131 @@ function removeEl(el) {
   if (el.parentNode) el.parentNode.removeChild(el);
 }
 
-var poppers = reactive([]);
-function usePopper(id, options) {
+var id = 0;
+var PREFIX = Math.ceil(Math.random() * 8999 + 1000).toString();
+function uniqueId(prefix) {
+  var nextId = "" + PREFIX + ++id;
+  return prefix ? "" + prefix + nextId : nextId;
+}
+
+function normalizeClass$1(value) {
+  var res = '';
+
+  if (typeof value === 'string') {
+    res = value;
+  } else if (Array.isArray(value)) {
+    for (var i = 0; i < value.length; i++) {
+      res += normalizeClass$1(value[i]) + ' ';
+    }
+  } else if (value !== null && typeof value === 'object') {
+    for (var name in value) {
+      if (value[name]) {
+        res += name + ' ';
+      }
+    }
+  }
+
+  return res.trim();
+}
+
+var ElPopperContextKey = Symbol('ElPopperContext');
+function usePopper(referenceElRef, popperClass, options) {
+  var _ref = options || {},
+      _ref$placement = _ref.placement,
+      placement = _ref$placement === void 0 ? 'bottom' : _ref$placement,
+      _ref$modifiers = _ref.modifiers,
+      modifiers = _ref$modifiers === void 0 ? [] : _ref$modifiers,
+      _ref$strategy = _ref.strategy,
+      strategy = _ref$strategy === void 0 ? 'absolute' : _ref$strategy;
+
+  var popperEl = createEl(uniqueId('el-popper'), normalizeClass$1(['el-popper', popperClass]));
   var popper = ref(null);
-  var referenceRef = ref(null);
-  var popperRef = ref(createEl(uniqueId(id)));
-  var hideTimeer = ref(null);
-  var stete = reactive({
-    isOpen: false
-  });
-  watchEffect(function () {
-    if (Array.isArray(options.class)) {
-      popperRef.value.className = options.class.filter(function (cls) {
-        return !!cls;
-      }).join(' ');
-    } else if (typeof options.class === 'string') {
-      popperRef.value.className = options.class;
-    }
+  var hideTimer = ref(null);
+  watch(referenceElRef, function (referenceEl) {
+    if (referenceEl) {
+      popper.value = createPopper(referenceEl, popperEl, {
+        placement: placement,
+        modifiers: modifiers,
+        strategy: strategy
+      });
+      var showEvents = ['mouseenter', 'focus'];
+      var hideEvents = ['mouseleave', 'blur'];
+      showEvents.forEach(function (event) {
+        if ( event === 'mouseenter') {
+          referenceEl.addEventListener('click', function () {
+            state.isHover.value = true;
+          });
+        } else {
+          referenceEl.addEventListener(event, function () {
+            state.isHover.value = true;
+          });
+        }
 
-    if (options.width) {
-      popperRef.value.style.width = options.width;
-    }
-  }); // const parent = inject(POPPER_KEY, null);
-  // if (parent) {
-  //   parent;
-  // } else {
-  //   provide(POPPER_KEY, {});
-  // }
-
-  function show() {
-    clearTimeout(hideTimeer.value);
-    popper.value.update();
-    popperRef.value.setAttribute('data-show', 'true');
-    stete.isOpen = true;
-  }
-
-  function hide() {
-    hideTimeer.value = setTimeout(function () {
-      popperRef.value.removeAttribute('data-show');
-      stete.isOpen = false;
-    }, 300);
-  }
-
-  function toggle() {
-    if (popperRef.value.getAttribute('data-show')) {
-      hide();
-    } else {
-      show();
-    }
-  }
-
-  function initPopper() {
-    popper.value = createPopper(referenceRef.value, popperRef.value, {
-      placement: options.placement,
-      modifiers: options.modifiers || []
-    });
-
-    if (options.trigger === 'click') {
-      var toggleEvents = ['click'];
-      var hideEvents = ['blur'];
-      toggleEvents.forEach(function (event) {
-        referenceRef.value.addEventListener(event, toggle);
+        popperEl.addEventListener(event, function () {
+          state.isHover.value = true;
+        });
       });
       hideEvents.forEach(function (event) {
-        referenceRef.value.addEventListener(event, hide);
+        referenceEl.addEventListener(event, function () {
+          state.isHover.value = false;
+        });
+        popperEl.addEventListener(event, function () {
+          state.isHover.value = false;
+        });
       });
+    } else {
+      popper.value.destroy();
+      popper.value = null;
     }
-
-    if (options.trigger === 'hover') {
-      var showEvents = ['mouseenter', 'focus'];
-      var _hideEvents = ['mouseleave', 'blur'];
-      showEvents.forEach(function (event) {
-        referenceRef.value.addEventListener(event, show);
-      });
-
-      _hideEvents.forEach(function (event) {
-        referenceRef.value.addEventListener(event, hide);
-      });
-    }
-  }
-
-  onMounted(function () {
-    watchEffect(function () {
-      if (referenceRef.value) {
-        initPopper();
-      }
-    });
   });
-  onUnmounted(function () {
+  var parentState = inject(ElPopperContextKey, null);
+  var state = toRefs(reactive({
+    id: popperEl.id,
+    deep: (parentState === null || parentState === void 0 ? void 0 : parentState.deep) ? (parentState === null || parentState === void 0 ? void 0 : parentState.deep.value) + 1 : 0,
+    isHover: false,
+    children: [],
+    hasChildOpened: computed$1(function () {
+      return state.children.value.some(function (item) {
+        return item.isOpen;
+      });
+    }),
+    isOpen: computed$1(function () {
+      return state.isHover.value || state.hasChildOpened.value;
+    })
+  }));
+  provide(ElPopperContextKey, state);
+  watch(state.isOpen, function (value) {
+    if (value) {
+      clearTimeout(hideTimer.value);
+      popper.value.update();
+      popperEl.setAttribute('data-show', 'true');
+    } else {
+      hideTimer.value = setTimeout(function () {
+        popperEl.removeAttribute('data-show');
+      }, 200);
+    }
+  });
+  onMounted(function () {
+    if (parentState) {
+      parentState.children.value.push(state);
+    }
+  });
+  onBeforeUnmount(function () {
     if (popper.value) {
       popper.value.destroy();
       popper.value = null;
     }
 
-    removeEl(popperRef.value);
+    if (parentState) {
+      var index = parentState.children.value.indexOf(state);
+      parentState.children.value.splice(index, 1);
+    }
+
+    removeEl(popperEl);
   });
   return {
-    referenceRef: referenceRef,
-    teleportId: popperRef.value.id,
-    popper: popper,
-    show: show,
-    hide: hide,
-    toggle: toggle
+    teleportId: popperEl.id,
+    popper: popper
   };
 }
 
@@ -9405,28 +9420,24 @@ var script$8 = defineComponent({
         parent = _useElSubMenu.parent,
         state = _useElSubMenu.state;
 
-    var _usePopper = usePopper('ElMenuPopover', {
+    var referenceRef = ref(null);
+    var data = reactive({
+      class: "el-menu el-menu--popup el-menu--popup-" + (parent.isRoot.value ? 'bottom-start' : 'right-start'),
+      style: {
+        width: '200px'
+      }
+    });
+
+    var _usePopper = usePopper(referenceRef, ["el-menu--" + root.state.mode], {
       placement: parent.isRoot.value ? 'bottom-start' : 'right-start',
       modifiers: [{
         name: 'offset',
         options: {
           offset: parent.isRoot.value ? [0, 0] : [0, 4]
         }
-      }],
-      class: ['el-popper', "el-menu--" + root.state.mode, props.popperClass]
+      }]
     }),
-        submenuTitleRef = _usePopper.referenceRef,
-        teleportId = _usePopper.teleportId,
-        show = _usePopper.show,
-        hide = _usePopper.hide;
-
-    watch(state.isOpen, function (value) {
-      if (value) {
-        show();
-      } else {
-        hide();
-      }
-    });
+        teleportId = _usePopper.teleportId;
 
     var handleClick = function handleClick() {
       if (root.state.trigger === 'hover' && root.state.mode === 'horizontal' || root.state.collapse && root.state.mode === 'vertical' || props.disabled) {
@@ -9462,11 +9473,11 @@ var script$8 = defineComponent({
 
     var handleTitleMouseleave = function handleTitleMouseleave() {
       if (root.state.mode === 'horizontal' && !root.state.backgroundColor) return;
-      submenuTitleRef.value && (submenuTitleRef.value.style.backgroundColor = root.state.backgroundColor || '');
+      referenceRef.value && (referenceRef.value.style.backgroundColor = root.state.backgroundColor || '');
     };
 
     return {
-      teleportId: teleportId,
+      data: data,
       state: state,
       isPopup: root.state.isPopup,
       handleClick: handleClick,
@@ -9474,7 +9485,8 @@ var script$8 = defineComponent({
       handleMouseleave: handleMouseleave,
       handleTitleMouseenter: handleTitleMouseenter,
       handleTitleMouseleave: handleTitleMouseleave,
-      submenuTitleRef: submenuTitleRef
+      teleportId: teleportId,
+      referenceRef: referenceRef
     };
   }
 });
@@ -9493,9 +9505,9 @@ function render$8(_ctx, _cache) {
     onFocus: _cache[6] || (_cache[6] = $event => (_ctx.handleMouseenter($event)))
   }, [
     createVNode("div", {
-      ref: "submenuTitleRef",
+      ref: "referenceRef",
       class: "el-submenu__title",
-      style: [_ctx.state.style],
+      style: _ctx.state.style,
       onClick: _cache[1] || (_cache[1] = $event => (_ctx.handleClick($event))),
       onMouseenter: _cache[2] || (_cache[2] = $event => (_ctx.handleTitleMouseenter($event))),
       onMouseleave: _cache[3] || (_cache[3] = $event => (_ctx.handleTitleMouseleave($event)))
@@ -9512,8 +9524,8 @@ function render$8(_ctx, _cache) {
         }, [
           createVNode("ul", {
             role: "menu",
-            class: `el-menu el-menu--popup el-menu--popup-${_ctx.state.placement}`,
-            style: { backgroundColor: _ctx.state.style.backgroundColor }
+            class: _ctx.data.class,
+            style: { backgroundColor: _ctx.state.style.backgroundColor, ..._ctx.data.style }
           }, [
             renderSlot(_ctx.$slots, "default")
           ], 6 /* CLASS, STYLE */)
@@ -9566,42 +9578,12 @@ var ElMenuItemGroup = defineComponent({
   }
 });
 
-var css_248z$a = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-popover {\n  position: absolute;\n  background: #ffffff;\n  min-width: 150px;\n  border-radius: 4px;\n  border: 1px solid #ebeef5;\n  padding: 12px;\n  z-index: 2000;\n  color: #606266;\n  line-height: 1.4;\n  text-align: justify;\n  font-size: 14px;\n  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  word-break: break-all;\n}\n.el-popover--plain {\n  padding: 18px 20px;\n}\n.el-popover__title {\n  color: #303133;\n  font-size: 16px;\n  line-height: 1;\n  margin-bottom: 12px;\n}\n.el-popover__reference:focus:not(.focusing),\n.el-popover__reference:focus:hover {\n  outline-width: 0;\n}\n.el-popover:focus:active,\n.el-popover:focus {\n  outline-width: 0;\n}\n.el-teleport-popper {\n  /* ... */\n  display: none;\n}\n.el-teleport-popper[data-show] {\n  display: block;\n}\n";
-styleInject(css_248z$a);
+var css_248z$b = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-popover {\n  position: absolute;\n  background: #ffffff;\n  min-width: 150px;\n  border-radius: 4px;\n  border: 1px solid #ebeef5;\n  padding: 12px;\n  z-index: 2000;\n  color: #606266;\n  line-height: 1.4;\n  text-align: justify;\n  font-size: 14px;\n  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  word-break: break-all;\n}\n.el-popover--plain {\n  padding: 18px 20px;\n}\n.el-popover__title {\n  color: #303133;\n  font-size: 16px;\n  line-height: 1;\n  margin-bottom: 12px;\n}\n.el-popover__reference:focus:not(.focusing),\n.el-popover__reference:focus:hover {\n  outline-width: 0;\n}\n.el-popover:focus:active,\n.el-popover:focus {\n  outline-width: 0;\n}\n.el-teleport-popper {\n  /* ... */\n  display: none;\n}\n.el-teleport-popper[data-show] {\n  display: block;\n}\n";
+styleInject(css_248z$b);
 
 //
-var PopoverReference = defineComponent({
-  props: {
-    setupRef: {
-      type: Function,
-      required: true
-    }
-  },
-  setup: function setup(props, _ref) {
-    var _children$, _children$$children;
-
-    var slots = _ref.slots;
-    var children = slots.default ? slots.default() : [];
-    var child = children === null || children === void 0 ? void 0 : (_children$ = children[0]) === null || _children$ === void 0 ? void 0 : (_children$$children = _children$.children) === null || _children$$children === void 0 ? void 0 : _children$$children[0];
-    return function () {
-      var mergeChild = cloneVNode(child, {
-        ref: function ref(obj) {
-          if (obj === null || obj === void 0 ? void 0 : obj.$el) {
-            props.setupRef(obj.$el);
-          } else {
-            props.setupRef(obj);
-          }
-        }
-      });
-      return h(Fragment, [mergeChild]);
-    };
-  }
-});
 var script$9 = defineComponent({
   name: 'ElPopoVer',
-  components: {
-    PopoverReference: PopoverReference
-  },
   props: {
     placement: {
       type: String,
@@ -9649,34 +9631,20 @@ var script$9 = defineComponent({
     }
   },
   setup: function setup(props) {
-    var _usePopper = usePopper('ElPopover', {
+    var referenceElRef = ref(null);
+
+    var _usePopper = usePopper(referenceElRef, ['el-popover', props.popperClass, props.content && 'el-popover--plain'], {
       placement: props.placement,
-      trigger: props.trigger,
       modifiers: [{
         name: 'offset',
-        options: {
-          offset: [0, 8]
-        }
-      }],
-      class: ['el-popover', 'el-popper', props.popperClass, props.content && 'el-popover--plain'],
-      width: props.width + 'px'
+        options: [0, 4]
+      }]
     }),
-        teleportId = _usePopper.teleportId,
-        referenceRef = _usePopper.referenceRef;
-
-    var _toRefs = toRefs(reactive({
-      showPopper: false
-    })),
-        showPopper = _toRefs.showPopper;
-
-    var setupRef = function setupRef(el) {
-      referenceRef.value = el;
-    };
+        teleportId = _usePopper.teleportId;
 
     return {
-      setupRef: setupRef,
       teleportId: teleportId,
-      showPopper: showPopper
+      referenceElRef: referenceElRef
     };
   }
 });
@@ -9685,10 +9653,12 @@ const _hoisted_1$3 = /*#__PURE__*/createVNode("div", {
   class: "popper__arrow",
   "data-popper-arrow": ""
 }, null, -1 /* HOISTED */);
+const _hoisted_2$1 = {
+  ref: "referenceElRef",
+  style: {"display":"inline-block"}
+};
 
 function render$9(_ctx, _cache) {
-  const _component_PopoverReference = resolveComponent("PopoverReference");
-
   return (openBlock(), createBlock(Fragment, null, [
     createVNode(Teleport, {
       to: `#${_ctx.teleportId}`
@@ -9707,170 +9677,43 @@ function render$9(_ctx, _cache) {
       ]),
       _hoisted_1$3
     ], 8 /* PROPS */, ["to"]),
-    createVNode(_component_PopoverReference, { "setup-ref": _ctx.setupRef }, {
-      default: withCtx(() => [
-        renderSlot(_ctx.$slots, "reference")
-      ]),
-      _: 1
-    }, 8 /* PROPS */, ["setup-ref"])
+    createVNode("span", _hoisted_2$1, [
+      renderSlot(_ctx.$slots, "reference")
+    ], 512 /* NEED_PATCH */)
   ], 64 /* STABLE_FRAGMENT */))
 }
 
 script$9.render = render$9;
 script$9.__file = "src/components/ElPopover/ElPopover.vue";
 
-var css_248z$b = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-popper {\n  display: none;\n  background: #ffffff;\n  border-radius: 4px;\n  border: 1px solid #ebeef5;\n}\n.el-popper[data-show] {\n  display: block;\n}\n.el-popper .popper__arrow,\n.el-popper .popper__arrow::after {\n  position: absolute;\n  display: block;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.el-popper .popper__arrow {\n  border-width: 6px;\n  -webkit-filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));\n          filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));\n}\n.el-popper .popper__arrow::after {\n  content: ' ';\n  border-width: 6px;\n}\n.el-popper[data-popper-placement^='top'] {\n  margin-bottom: 12px;\n}\n.el-popper[data-popper-placement^='top'] .popper__arrow {\n  bottom: -6px;\n  left: 50%;\n  margin-right: 3px;\n  border-top-color: #ebeef5;\n  border-bottom-width: 0;\n}\n.el-popper[data-popper-placement^='top'] .popper__arrow::after {\n  bottom: 1px;\n  margin-left: -6px;\n  border-top-color: #ffffff;\n  border-bottom-width: 0;\n}\n.el-popper[data-popper-placement^='bottom'] {\n  margin-top: 12px;\n}\n.el-popper[data-popper-placement^='bottom'] .popper__arrow {\n  top: -6px;\n  left: 50%;\n  margin-right: 3px;\n  border-top-width: 0;\n  border-bottom-color: #ebeef5;\n}\n.el-popper[data-popper-placement^='bottom'] .popper__arrow::after {\n  top: 1px;\n  margin-left: -6px;\n  border-top-width: 0;\n  border-bottom-color: #ffffff;\n}\n.el-popper[data-popper-placement^='right'] {\n  margin-left: 12px;\n}\n.el-popper[data-popper-placement^='right'] .popper__arrow {\n  top: 50%;\n  left: -6px;\n  margin-bottom: 3px;\n  border-right-color: #ebeef5;\n  border-left-width: 0;\n}\n.el-popper[data-popper-placement^='right'] .popper__arrow::after {\n  bottom: -6px;\n  left: 1px;\n  border-right-color: #ffffff;\n  border-left-width: 0;\n}\n.el-popper[data-popper-placement^='left'] {\n  margin-right: 12px;\n}\n.el-popper[data-popper-placement^='left'] .popper__arrow {\n  top: 50%;\n  right: -6px;\n  margin-bottom: 3px;\n  border-right-width: 0;\n  border-left-color: #ebeef5;\n}\n.el-popper[data-popper-placement^='left'] .popper__arrow::after {\n  right: 1px;\n  bottom: -6px;\n  margin-left: -6px;\n  border-right-width: 0;\n  border-left-color: #ffffff;\n}\n";
-styleInject(css_248z$b);
-
-var ElPopperContextKey = Symbol('ElPopperContext');
-var ElPopper = defineComponent({
-  name: 'ElPopper',
-  props: {
-    placement: {
-      type: String,
-      default: 'bottom'
-    },
-    trigger: {
-      type: String,
-      default: 'hover'
-    },
-    popperClass: {
-      type: String,
-      default: ''
-    },
-    visibleArrow: {
-      type: Boolean,
-      default: true
-    }
-  },
-  setup: function setup(props, _ref) {
-    var slots = _ref.slots;
-    var id = uniqueId('el-popper');
-    var teleportEl = createEl(id, 'el-popper');
-    var referenceRef = ref(null);
-    var popper = null;
-    var hideTimeer = ref(null);
-    var parentState = inject(ElPopperContextKey, null);
-    var state = toRefs(reactive({
-      id: id,
-      deep: (parentState === null || parentState === void 0 ? void 0 : parentState.deep) ? (parentState === null || parentState === void 0 ? void 0 : parentState.deep.value) + 1 : 0,
-      isHover: false,
-      children: [],
-      hasChildOpened: computed$1(function () {
-        return state.children.value.some(function (item) {
-          return item.isOpen;
-        });
-      }),
-      isOpen: computed$1(function () {
-        return state.isHover.value || state.hasChildOpened.value;
-      })
-    }));
-    provide(ElPopperContextKey, state);
-    watch(state.isOpen, function (value) {
-      if (value) {
-        clearTimeout(hideTimeer.value);
-        popper.update();
-        teleportEl.setAttribute('data-show', 'true');
-      } else {
-        hideTimeer.value = setTimeout(function () {
-          teleportEl.removeAttribute('data-show');
-        }, 200);
-      }
-    }); // function toggle() {
-    //   if (teleportEl.getAttribute('data-show')) {
-    //     hide();
-    //   } else {
-    //     show();
-    //   }
-    // }
-
-    onMounted(function () {
-      if (parentState) {
-        parentState.children.value.push(state);
-      }
-
-      popper = createPopper(referenceRef.value, teleportEl, {
-        placement: props.placement,
-        modifiers: []
-      });
-      var showEvents = ['mouseenter', 'focus'];
-      var hideEvents = ['mouseleave', 'blur'];
-      showEvents.forEach(function (event) {
-        referenceRef.value.addEventListener(event, function () {
-          state.isHover.value = true;
-        });
-        teleportEl.addEventListener(event, function () {
-          state.isHover.value = true;
-        });
-      });
-      hideEvents.forEach(function (event) {
-        referenceRef.value.addEventListener(event, function () {
-          state.isHover.value = false;
-        });
-        teleportEl.addEventListener(event, function () {
-          state.isHover.value = false;
-        });
-      });
-    });
-    onBeforeUnmount(function () {
-      popper.destroy();
-
-      if (parentState) {
-        var index = parentState.children.value.indexOf(state);
-        parentState.children.value.splice(index, 1);
-      }
-    });
-    return function () {
-      var _slots$default;
-
-      var referenceContent = slots.reference ? slots.reference() : [];
-      var transformedReferenceContent = referenceContent.map(function (vnode) {
-        return cloneVNode(vnode, {
-          ref: referenceRef
-        });
-      });
-      return h(Fragment, [h(Teleport, {
-        to: "#" + teleportEl.id
-      }, [(_slots$default = slots.default) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots), h('div', {
-        class: 'popper__arrow',
-        'data-popper-arrow': true
-      }, [])]), transformedReferenceContent]);
-    };
-  }
-});
-
 var script$a = defineComponent({
   components: {
     HelloWorld: script,
     ElContainer: script$1,
     ElAside: script$1$1,
-    ElMain: script$4
+    ElMain: script$4,
+    ElMenu,
+    ElMenuItem
   }
 });
 
 var _imports_0 = "/_assets/logo.2d6fa5ae.png";
 
 const _hoisted_1$4 = /*#__PURE__*/createTextVNode("button");
-const _hoisted_2$1 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_3 = /*#__PURE__*/createTextVNode("layout");
-const _hoisted_4 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_5 = /*#__PURE__*/createTextVNode("container");
-const _hoisted_6 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_7 = /*#__PURE__*/createTextVNode("icon");
-const _hoisted_8 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_9 = /*#__PURE__*/createTextVNode("menu");
-const _hoisted_10 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_11 = /*#__PURE__*/createTextVNode("popover");
-const _hoisted_12 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_13 = /*#__PURE__*/createTextVNode("popper");
-const _hoisted_14 = /*#__PURE__*/createVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_15 = /*#__PURE__*/createVNode("img", {
+const _hoisted_2$2 = /*#__PURE__*/createTextVNode("layout");
+const _hoisted_3 = /*#__PURE__*/createTextVNode("container");
+const _hoisted_4 = /*#__PURE__*/createTextVNode("icon");
+const _hoisted_5 = /*#__PURE__*/createTextVNode("menu");
+const _hoisted_6 = /*#__PURE__*/createTextVNode("popover");
+const _hoisted_7 = /*#__PURE__*/createVNode("img", {
   alt: "Vue logo",
   src: _imports_0
 }, null, -1 /* HOISTED */);
 
 function render$a(_ctx, _cache) {
   const _component_router_link = resolveComponent("router-link");
+  const _component_el_menu_item = resolveComponent("el-menu-item");
+  const _component_el_menu = resolveComponent("el-menu");
   const _component_ElAside = resolveComponent("ElAside");
   const _component_HelloWorld = resolveComponent("HelloWorld");
   const _component_router_view = resolveComponent("router-view");
@@ -9881,61 +9724,83 @@ function render$a(_ctx, _cache) {
     default: withCtx(() => [
       createVNode(_component_ElAside, null, {
         default: withCtx(() => [
-          createVNode(_component_router_link, { to: { name: 'button' } }, {
+          createVNode(_component_el_menu, null, {
             default: withCtx(() => [
-              _hoisted_1$4
+              createVNode(_component_el_menu_item, { index: "1" }, {
+                default: withCtx(() => [
+                  createVNode(_component_router_link, { to: { name: 'button' } }, {
+                    default: withCtx(() => [
+                      _hoisted_1$4
+                    ]),
+                    _: 1
+                  })
+                ]),
+                _: 1
+              }),
+              createVNode(_component_el_menu_item, { index: "1" }, {
+                default: withCtx(() => [
+                  createVNode(_component_router_link, { to: { name: 'layout' } }, {
+                    default: withCtx(() => [
+                      _hoisted_2$2
+                    ]),
+                    _: 1
+                  })
+                ]),
+                _: 1
+              }),
+              createVNode(_component_el_menu_item, { index: "1" }, {
+                default: withCtx(() => [
+                  createVNode(_component_router_link, { to: { name: 'container' } }, {
+                    default: withCtx(() => [
+                      _hoisted_3
+                    ]),
+                    _: 1
+                  })
+                ]),
+                _: 1
+              }),
+              createVNode(_component_el_menu_item, { index: "1" }, {
+                default: withCtx(() => [
+                  createVNode(_component_router_link, { to: { name: 'icon' } }, {
+                    default: withCtx(() => [
+                      _hoisted_4
+                    ]),
+                    _: 1
+                  })
+                ]),
+                _: 1
+              }),
+              createVNode(_component_el_menu_item, { index: "1" }, {
+                default: withCtx(() => [
+                  createVNode(_component_router_link, { to: { name: 'menu' } }, {
+                    default: withCtx(() => [
+                      _hoisted_5
+                    ]),
+                    _: 1
+                  })
+                ]),
+                _: 1
+              }),
+              createVNode(_component_el_menu_item, { index: "1" }, {
+                default: withCtx(() => [
+                  createVNode(_component_router_link, { to: { name: 'popover' } }, {
+                    default: withCtx(() => [
+                      _hoisted_6
+                    ]),
+                    _: 1
+                  })
+                ]),
+                _: 1
+              })
             ]),
             _: 1
-          }),
-          _hoisted_2$1,
-          createVNode(_component_router_link, { to: { name: 'layout' } }, {
-            default: withCtx(() => [
-              _hoisted_3
-            ]),
-            _: 1
-          }),
-          _hoisted_4,
-          createVNode(_component_router_link, { to: { name: 'container' } }, {
-            default: withCtx(() => [
-              _hoisted_5
-            ]),
-            _: 1
-          }),
-          _hoisted_6,
-          createVNode(_component_router_link, { to: { name: 'icon' } }, {
-            default: withCtx(() => [
-              _hoisted_7
-            ]),
-            _: 1
-          }),
-          _hoisted_8,
-          createVNode(_component_router_link, { to: { name: 'menu' } }, {
-            default: withCtx(() => [
-              _hoisted_9
-            ]),
-            _: 1
-          }),
-          _hoisted_10,
-          createVNode(_component_router_link, { to: { name: 'popover' } }, {
-            default: withCtx(() => [
-              _hoisted_11
-            ]),
-            _: 1
-          }),
-          _hoisted_12,
-          createVNode(_component_router_link, { to: { name: 'popper' } }, {
-            default: withCtx(() => [
-              _hoisted_13
-            ]),
-            _: 1
-          }),
-          _hoisted_14
+          })
         ]),
         _: 1
       }),
       createVNode(_component_ElMain, null, {
         default: withCtx(() => [
-          _hoisted_15,
+          _hoisted_7,
           createVNode(_component_HelloWorld, { msg: "Hello Vue 3.0 + Element UI" }),
           createVNode(_component_router_view)
         ]),
@@ -9961,31 +9826,27 @@ const router = createRouter({
     children: [{
       path: "/button",
       name: "button",
-      component: async () => import('./button.fd6ef43c.js')
+      component: async () => import('./button.f1e62223.js')
     }, {
       path: "/layout",
       name: "layout",
-      component: async () => import('./layout.5a0c5248.js')
+      component: async () => import('./layout.a60885a0.js')
     }, {
       path: "/container",
       name: "container",
-      component: async () => import('./container.dcaca10f.js')
+      component: async () => import('./container.4d0e3bf1.js')
     }, {
       path: "/icon",
       name: "icon",
-      component: async () => import('./icon.b38d0f32.js')
+      component: async () => import('./icon.a1def9e0.js')
     }, {
       path: "/menu",
       name: "menu",
-      component: async () => import('./menu.46b8ebd1.js')
+      component: async () => import('./menu.bcc4c39b.js')
     }, {
       path: "/popover",
       name: "popover",
-      component: async () => import('./popover.a0e181d7.js')
-    }, {
-      path: "/popper",
-      name: "popper",
-      component: async () => import('./popper.331adb40.js')
+      component: async () => import('./popover.e584e06a.js')
     }]
   }]
 });
@@ -10016,4 +9877,4 @@ const app = createApp(script$b);
 app.use(router);
 app.mount("#app");
 
-export { script$8 as A, ElMenuItemGroup as B, script$9 as C, ElPopper as D, ElMenu as E, Fragment as F, _toDisplayString as _, script$5 as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ref as f, reactive as g, onMounted as h, index as i, createCommentVNode as j, renderSlot as k, index$1 as l, script$1 as m, nextTick as n, openBlock as o, script$1$1 as p, script$2 as q, resolveComponent as r, script$6 as s, toRefs as t, script$3 as u, script$4 as v, withCtx as w, script$7 as x, renderList as y, ElMenuItem as z };
+export { script$8 as A, ElMenuItemGroup as B, script$9 as C, ElMenu as E, Fragment as F, _toDisplayString as _, script$5 as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ref as f, reactive as g, onMounted as h, index as i, createCommentVNode as j, renderSlot as k, index$1 as l, script$1 as m, nextTick as n, openBlock as o, script$1$1 as p, script$2 as q, resolveComponent as r, script$6 as s, toRefs as t, script$3 as u, script$4 as v, withCtx as w, script$7 as x, renderList as y, ElMenuItem as z };
