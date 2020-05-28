@@ -9906,27 +9906,27 @@ const router = createRouter({
     children: [{
       path: "/button",
       name: "button",
-      component: async () => import('./button.ef919fac.js')
+      component: async () => import('./button.79e61b9c.js')
     }, {
       path: "/layout",
       name: "layout",
-      component: async () => import('./layout.d13550a5.js')
+      component: async () => import('./layout.351b781a.js')
     }, {
       path: "/container",
       name: "container",
-      component: async () => import('./container.1d484612.js')
+      component: async () => import('./container.453d4926.js')
     }, {
       path: "/icon",
       name: "icon",
-      component: async () => import('./icon.16d0cf71.js')
+      component: async () => import('./icon.4c74e00d.js')
     }, {
       path: "/menu",
       name: "menu",
-      component: async () => import('./menu.869c1a6d.js')
+      component: async () => import('./menu.56d328d2.js')
     }, {
       path: "/popover",
       name: "popover",
-      component: async () => import('./popover.ae51be3e.js')
+      component: async () => import('./popover.5448c51a.js')
     }]
   }]
 });

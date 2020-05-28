@@ -269,19 +269,6 @@ pre[data-line] code {
 pre .line-highlight {
   margin-top: 0;
 }
-.hello[data-v-56a34a20] {
-  padding: 30px 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.hello img[data-v-56a34a20] {
-  display: block;
-  width: 80px;
-  height: 80px;
-}
 .preview {
   text-align: left;
 }
@@ -353,6 +340,19 @@ pre .line-highlight {
 .preview__footer:hover {
   color: #409eff;
   background-color: #f9fafc;
+}
+.hello[data-v-56a34a20] {
+  padding: 30px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hello img[data-v-56a34a20] {
+  display: block;
+  width: 80px;
+  height: 80px;
 }
 .demo-layout {
   height: 100vh;
