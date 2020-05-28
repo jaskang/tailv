@@ -16,27 +16,6 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
-.el-header,
-.el-footer {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 30px;
-}
-.el-main {
-  background-color: #fff;
-  color: #333;
-  text-align: center;
-}
-body > .el-container {
-  margin-bottom: 40px;
-}
 .el-row + .el-row {
   margin-top: 20px;
 }
@@ -290,6 +269,19 @@ pre[data-line] code {
 pre .line-highlight {
   margin-top: 0;
 }
+.hello[data-v-56a34a20] {
+  padding: 30px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hello img[data-v-56a34a20] {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
 .preview {
   text-align: left;
 }
@@ -357,4 +349,11 @@ pre .line-highlight {
 .preview__footer:hover {
   color: #409eff;
   background-color: #f9fafc;
+}
+.demo-layout {
+  height: 100vh;
+}
+.demo-content {
+  height: 100vh;
+  overflow-y: auto;
 }
