@@ -5174,10 +5174,10 @@ tslib@^1.10.0, tslib@^1.11.2, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
-tsrv@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/tsrv/-/tsrv-0.2.7.tgz#37c70eda7e752ca54e760ed0b0e616ebdad45cda"
-  integrity sha512-6NDlGuUCltTuU8ZBCRDiXmBpgVdjB7uxnZSjNiavZPrksE35+mSD4e0uc2/rrJc6sV1ArErmqSM1HDKW2HOM5w==
+tsrv@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/tsrv/-/tsrv-0.3.0.tgz#f750a0c39bec5b316d714a1a0f17e523626fd70a"
+  integrity sha512-f9zto1ossKBYv71kQFuiLipwXX0V5cj2AEpSFaGtkQMvutda/yfChNh23R73ykZvQvHQcbCLeyx8ktgAa/0ZVA==
   dependencies:
     "@babel/core" "^7.9.6"
     "@babel/helper-plugin-utils" "^7.8.3"

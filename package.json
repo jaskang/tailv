@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "author": "jaskang",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/elenext.esm.production.js",
   "module": "dist/elenext.esm.production.js",
   "jsnext:main": "dist/elenext.esm.production.js",
   "types": "dist/__types__/index.d.ts",
@@ -52,7 +52,7 @@
     "prettier": "^2.0.5",
     "prismjs": "^1.20.0",
     "sass": "^1.26.5",
-    "tsrv": "^0.2.7",
+    "tsrv": "^0.3.0",
     "typescript": "^3.8.3",
     "vite": "^0.17.1",
     "vue-eslint-parser": "^7.1.0"
