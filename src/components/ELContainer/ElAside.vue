@@ -11,16 +11,8 @@ export default defineComponent({
   props: {
     width: {
       type: String,
-      default: '300px'
+      default: '250px'
     }
   }
 });
 </script>
-<style lang="less">
-.el-aside {
-  overflow: auto;
-
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-</style>

@@ -16,12 +16,3 @@ export default defineComponent({
   }
 });
 </script>
-<style lang="less">
-@import '../ElStyles/common/var.less';
-
-.el-header {
-  padding: @--header-padding;
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-</style>

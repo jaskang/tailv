@@ -1,0 +1,41 @@
+@import './../ElStyles/common/var.less';
+
+.el-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
+  &.is-vertical {
+    flex-direction: column;
+  }
+}
+
+.el-header {
+  padding: @--header-padding;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.el-main {
+  // IE11 supports the <main> element partially https://caniuse.com/#search=main
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: @--main-padding;
+}
+
+.el-footer {
+  padding: @--footer-padding;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.el-aside {
+  overflow: auto;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
