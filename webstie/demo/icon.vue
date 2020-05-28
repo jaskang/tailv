@@ -1,26 +1,37 @@
 <template>
   <div class="demo-icon">
     <h1>Icon 图标</h1>
-    <h2>使用方法</h2>
-    <el-icon name="edit"></el-icon>
-    <el-icon name="share"></el-icon>
-    <el-icon name="delete"></el-icon>
-    <el-button type="primary" icon="el-icon-search">搜索</el-button>
-    <h2>图标集合</h2>
-    <ul class="icon-list">
-      <li v-for="name in icons" :key="name">
-        <span>
-          <i :class="'el-icon-' + name"></i>
-          <span class="icon-name">{{'el-icon-' + name}}</span>
-        </span>
-      </li>
-    </ul>
+    <Preview title="使用方法">
+      <el-icon name="edit"></el-icon>
+      <el-icon name="share"></el-icon>
+      <el-icon name="delete"></el-icon>
+      <el-button type="primary" icon="el-icon-search">搜索</el-button>
+      <template #template>
+        {{`
+        <el-icon name="edit"></el-icon>
+        <el-icon name="share"></el-icon>
+        <el-icon name="delete"></el-icon>
+        <el-button type="primary" icon="el-icon-search">搜索</el-button>
+        `}}
+      </template>
+    </Preview>
+    <Preview title="图标集合">
+      <ul class="icon-list">
+        <li v-for="name in icons" :key="name">
+          <span>
+            <i :class="'el-icon-' + name"></i>
+            <span class="icon-name">{{ 'el-icon-' + name }}</span>
+          </span>
+        </li>
+      </ul>
+    </Preview>
   </div>
 </template>
 
 <script lang="ts">
-import { ElIcon, ElButton } from '@/index';
 import { defineComponent } from 'vue';
+import Preview from '../components/Preview.vue';
+import { ElIcon, ElButton } from '@/index';
 const icons = [
   'platform-eleme',
   'eleme',
@@ -304,7 +315,7 @@ const icons = [
   'ice-cream-round'
 ];
 export default defineComponent({
-  components: { ElIcon, ElButton },
+  components: { ElIcon, ElButton, Preview },
   setup() {
     return {
       icons

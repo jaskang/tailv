@@ -1,19 +1,21 @@
 <template>
   <div class="preview">
-    <h1>{{ title }}</h1>
+    <h3 class="preview__title">{{ title }}</h3>
     <p v-if="description">{{ description }}</p>
     <div class="preview__card">
       <div class="preview__demo">
         <slot></slot>
       </div>
-      <div :style="{ height: `${codeHeight}px` }" class="preview__code">
+      <div v-if="$slots.template || $slots.script" :style="{ height: `${codeHeight}px` }" class="preview__code">
         <div ref="codeRef" class="preview__coderef">
           <div v-if="$slots.comment" class="preview__comment"><slot name="comment"></slot></div>
           <pre v-if="$slots.template"><code class="language-markup"><slot name="template"></slot></code></pre>
           <pre v-if="$slots.script"><code class="language-typescript"><slot name="script"></slot></code></pre>
         </div>
       </div>
-      <div class="preview__footer" @click="toggleCode">{{ codeHeight > 0 ? '隐藏代码' : '显示代码' }}</div>
+      <div v-if="$slots.template || $slots.script" class="preview__footer" @click="toggleCode">
+        {{ codeHeight > 0 ? '隐藏代码' : '显示代码' }}
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +66,10 @@ export default defineComponent({
 <style lang="less">
 .preview {
   text-align: left;
+  &__title {
+    font-size: 18px;
+    margin: 30px 0 20px 0;
+  }
   &__card {
     border: 1px solid #ebebeb;
     border-radius: 3px;
