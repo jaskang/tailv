@@ -285,6 +285,10 @@ pre .line-highlight {
 .preview {
   text-align: left;
 }
+.preview__title {
+  font-size: 18px;
+  margin: 30px 0 20px 0;
+}
 .preview__card {
   border: 1px solid #ebebeb;
   border-radius: 3px;
