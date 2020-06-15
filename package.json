@@ -28,33 +28,25 @@
     "access": "public"
   },
   "dependencies": {
-    "@popperjs/core": "^2.4.0",
-    "vue": "^3.0.0-beta.14",
-    "vue-router": "^4.0.0-alpha.11"
+    "@popperjs/core": "2.4.2",
+    "vue": "^3.0.0-beta.15"
   },
   "scripts": {
     "start": "tsrv build -w",
     "build": "tsrv build",
-    "docs:dev": "vite",
-    "docs:build": "tsrv build && vite build"
+    "docs:dev": "cd docs && yarn dev",
+    "docs:build": "cd docs && yarn build"
   },
   "devDependencies": {
     "@types/prismjs": "^1.16.1",
-    "@typescript-eslint/eslint-plugin": "^3.0.0",
-    "@typescript-eslint/parser": "^3.0.0",
-    "@vue/compiler-sfc": "^3.0.0-beta.12",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^5.0.2",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^7.0.0-alpha.3",
-    "less": "^3.0.4",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^7.0.0-alpha.6",
     "prettier": "^2.0.5",
     "prismjs": "^1.20.0",
-    "sass": "^1.26.5",
     "tsrv": "^0.3.0",
-    "typescript": "^3.8.3",
-    "vite": "^0.17.1",
-    "vue-eslint-parser": "^7.1.0"
+    "typescript": "^3.9.5"
   }
 }

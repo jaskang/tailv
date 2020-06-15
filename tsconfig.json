@@ -14,7 +14,8 @@
     "baseUrl": ".",
     "rootDir": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "elenext": ["./"]
     },
     "lib": ["esnext", "dom"]
   },
