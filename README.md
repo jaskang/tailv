@@ -3,9 +3,6 @@
   <a href="https://www.npmjs.com/package/elenext" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/elenext.svg">
   </a>
-   <a href="https://www.npmjs.com/package/elenext">
-    <img alt="downloads" src="https://img.shields.io/npm/dm/elenext.svg?color=blue" target="_blank" />
-  </a>
   <a href="https://elenext.now.sh" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -27,7 +24,7 @@ yarn add elenext
 
 👤 **jaskang**
 
-- Website: https://github.com/kcmbiu
+- Website: https://github.com/jaskang
 - Github: [@jaskang](https://github.com/jaskang)
 
 ## 🤝 Contributing
