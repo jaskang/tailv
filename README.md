@@ -13,9 +13,9 @@
 
 > vue3 element-ui
 
-### 🏠 [Homepage](https://elenext.now.sh/)
+### 🏠 [Homepage](https://elenext.vercel.app)
 
-### ✨ [Docs & Demo](https://elenext.now.sh/)
+### ✨ [Docs & Demo](https://elenext.vercel.app)
 
 ## Install
 
