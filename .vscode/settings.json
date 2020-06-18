@@ -8,5 +8,6 @@
     "elenext": "${folder}" // alias for /test
   },
   "vetur.validation.template": false,
-  "path-autocomplete.extensionOnImport": true
+  "path-autocomplete.extensionOnImport": true,
+  "liveServer.settings.root": "/docs/build/"
 }

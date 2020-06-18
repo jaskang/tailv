@@ -5539,7 +5539,7 @@ function normalizeContainer(container) {
 }
 
 /*!
-  * vue-router v4.0.0-alpha.11
+  * vue-router v4.0.0-alpha.12
   * (c) 2020 Eduardo San Martin Morote
   * @license MIT
   */
@@ -5564,6 +5564,7 @@ const isBrowser = typeof window !== 'undefined';
 function isESModule(obj) {
     return obj.__esModule || (hasSymbol && obj[Symbol.toStringTag] === 'Module');
 }
+const assign = Object.assign;
 function applyToParams(fn, params) {
     const newParams = {};
     for (const key in params) {
@@ -5752,52 +5753,42 @@ function warn$1(msg, ...args) {
     console.warn('[Vue Router warn]: ' + msg, ...args);
 }
 
-/**
- * `id`s can accept pretty much any characters, including CSS combinators like >
- * or ~. It's still possible to retrieve elements using
- * `document.getElementById('~')` but it needs to be escaped when using
- * `document.querySelector('#\\~')` for it to be valid. The only requirements
- * for `id`s are them to be unique on the page and to not be empty (`id=""`).
- * Because of that, when passing an `id` selector, it shouldn't have any other
- * selector attached to it (like a class or an attribute) because it wouldn't
- * have any effect anyway. We are therefore considering any selector starting
- * with a `#` to be an `id` selector so we can directly use `getElementById`
- * instead of `querySelector`, allowing users to write simpler selectors like:
- * `#1-thing` or `#with~symbols` without having to manually escape them to valid
- * CSS selectors: `#\31 -thing` and `#with\\~symbols`.
- *
- * - More information about  the topic can be found at
- *   https://mathiasbynens.be/notes/html5-id-class.
- * - Practical example: https://mathiasbynens.be/demo/html5-id
- */
-const startsWithHashRE = /^#/;
 function getElementPosition(el, offset) {
     const docRect = document.documentElement.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
     return {
-        x: elRect.left - docRect.left - (offset.x || 0),
-        y: elRect.top - docRect.top - (offset.y || 0),
+        behavior: offset.behavior,
+        left: elRect.left - docRect.left - (offset.left || 0),
+        top: elRect.top - docRect.top - (offset.top || 0),
     };
 }
 const computeScrollPosition = () => ({
-    x: window.pageXOffset,
-    y: window.pageYOffset,
+    left: window.pageXOffset,
+    top: window.pageYOffset,
 });
 function scrollToPosition(position) {
-    let normalizedPosition;
-    if ('selector' in position) {
-        const el = startsWithHashRE.test(position.selector)
-            ? document.getElementById(position.selector.slice(1))
-            : document.querySelector(position.selector);
+    let scrollToOptions;
+    if ('el' in position) {
+        let positionEl = position.el;
+        const isIdSelector = typeof positionEl === 'string' && positionEl.startsWith('#');
+        const el = typeof positionEl === 'string'
+            ? isIdSelector
+                ? document.getElementById(positionEl.slice(1))
+                : document.querySelector(positionEl)
+            : positionEl;
         if (!el) {
             return;
         }
-        normalizedPosition = getElementPosition(el, position.offset || {});
+        scrollToOptions = getElementPosition(el, position);
     }
     else {
-        normalizedPosition = position;
+        scrollToOptions = position;
     }
-    window.scrollTo(normalizedPosition.x || 0, normalizedPosition.y || 0);
+    if ('scrollBehavior' in document.documentElement.style)
+        window.scrollTo(scrollToOptions);
+    else {
+        window.scrollTo(scrollToOptions.left != null ? scrollToOptions.left : window.pageXOffset, scrollToOptions.top != null ? scrollToOptions.top : window.pageYOffset);
+    }
 }
 function getScrollKey(path, delta) {
     const position = history.state ? history.state.position - delta : -1;
@@ -5808,16 +5799,21 @@ function saveScrollPosition(key, scrollPosition) {
     scrollPositions.set(key, scrollPosition);
 }
 function getSavedScrollPosition(key) {
-    return scrollPositions.get(key);
+    const scroll = scrollPositions.get(key);
+    // consume it so it's not used again
+    scrollPositions.delete(key);
+    return scroll;
 }
 // TODO: RFC about how to save scroll position
 /**
  * ScrollBehavior instance used by the router to compute and restore the scroll
  * position when navigating.
  */
-// export interface ScrollHandler<T> {
-//   compute(): T
-//   scroll(position: T): void
+// export interface ScrollHandler<ScrollPositionEntry extends HistoryStateValue, ScrollPosition extends ScrollPositionEntry> {
+//   // returns a scroll position that can be saved in history
+//   compute(): ScrollPositionEntry
+//   // can take an extended ScrollPositionEntry
+//   scroll(position: ScrollPosition): void
 // }
 // export const scrollHandler: ScrollHandler<ScrollPosition> = {
 //   compute: computeScroll,
@@ -5899,10 +5895,7 @@ function useHistoryListeners(base, historyState, location, replace) {
         const { history } = window;
         if (!history.state)
             return;
-        history.replaceState({
-            ...history.state,
-            scroll: computeScrollPosition(),
-        }, '');
+        history.replaceState(assign({}, history.state, { scroll: computeScrollPosition() }), '');
     }
     function destroy() {
         for (const teardown of teardowns)
@@ -5970,14 +5963,9 @@ function useHistoryStateNavigation(base) {
     }
     function replace(to, data) {
         const normalized = normalizeHistoryLocation(to);
-        const state = {
-            ...history.state,
-            ...buildState(historyState.value.back, 
-            // keep back and forward entries but override current position
-            normalized, historyState.value.forward, true),
-            ...data,
-            position: historyState.value.position,
-        };
+        const state = assign({}, history.state, buildState(historyState.value.back, 
+        // keep back and forward entries but override current position
+        normalized, historyState.value.forward, true), data, { position: historyState.value.position });
         changeLocation(normalized, state, true);
         location.value = normalized;
     }
@@ -5985,17 +5973,14 @@ function useHistoryStateNavigation(base) {
         const normalized = normalizeHistoryLocation(to);
         // Add to current entry the information of where we are going
         // as well as saving the current position
-        const currentState = {
-            ...history.state,
+        const currentState = assign({}, history.state, {
             forward: normalized,
             scroll: computeScrollPosition(),
-        };
+        });
         changeLocation(currentState.current, currentState, true);
-        const state = {
-            ...buildState(location.value, normalized, null),
+        const state = assign({}, buildState(location.value, normalized, null), {
             position: currentState.position + 1,
-            ...data,
-        };
+        }, data);
         changeLocation(normalized, state, false);
         location.value = normalized;
     }
@@ -6015,15 +6000,12 @@ function createWebHistory(base) {
             historyListeners.pauseListeners();
         history.go(delta);
     }
-    const routerHistory = {
+    const routerHistory = assign({
         // it's overridden right after
-        // @ts-ignore
         location: '',
         base,
         go,
-        ...historyNavigation,
-        ...historyListeners,
-    };
+    }, historyNavigation, historyListeners);
     Object.defineProperty(routerHistory, 'location', {
         get: () => historyNavigation.location.value,
     });
@@ -6258,7 +6240,7 @@ var NavigationFailureType;
 })(NavigationFailureType || (NavigationFailureType = {}));
 function createRouterError(type, params) {
     {
-        return Object.assign(new Error(), { type }, params);
+        return assign(new Error(), { type }, params);
     }
 }
 
@@ -6280,10 +6262,7 @@ const REGEX_CHARS_RE = /[.+*?^${}()[\]/\\]/g;
  * @returns a PathParser
  */
 function tokensToParser(segments, extraOptions) {
-    const options = {
-        ...BASE_PATH_PARSER_OPTIONS,
-        ...extraOptions,
-    };
+    const options = assign({}, BASE_PATH_PARSER_OPTIONS, extraOptions);
     // the amount of scores is the same as the length of segments except for the root segment "/"
     let score = [];
     // the regexp as a string
@@ -6478,6 +6457,9 @@ const ROOT_TOKEN = {
     value: '',
 };
 const VALID_PARAM_RE = /[a-zA-Z0-9_]/;
+// After some profiling, the cache seems to be unnecessary because tokenizePath
+// (the slowest part of adding a route) is very fast
+// const tokenCache = new Map<string, Token[][]>()
 function tokenizePath(path) {
     if (!path)
         return [[]];
@@ -6486,6 +6468,7 @@ function tokenizePath(path) {
     // remove the leading slash
     if (path[0] !== '/')
         throw new Error('A non-empty path must start with "/"');
+    // if (tokenCache.has(path)) return tokenCache.get(path)!
     function crash(message) {
         throw new Error(`ERR (${state})/"${buffer}": ${message}`);
     }
@@ -6610,19 +6593,19 @@ function tokenizePath(path) {
         crash(`Unfinished custom RegExp for param "${buffer}"`);
     consumeBuffer();
     finalizeSegment();
+    // tokenCache.set(path, tokens)
     return tokens;
 }
 
 function createRouteRecordMatcher(record, parent, options) {
     const parser = tokensToParser(tokenizePath(record.path), options);
-    const matcher = {
-        ...parser,
+    const matcher = assign(parser, {
         record,
         parent,
         // these needs to be populated by the parent
         children: [],
         alias: [],
-    };
+    });
     if (parent) {
         // both are aliases or both are not aliases
         // we don't want to mix them because the order is used when
@@ -6643,6 +6626,8 @@ function createRouterMatcher(routes, globalOptions) {
         return matcherMap.get(name);
     }
     function addRoute(record, parent, originalRecord) {
+        // used later on to remove by name
+        let isRootAdd = !originalRecord;
         let mainNormalizedRecord = normalizeRouteRecord(record);
         // we might be the child of an alias
         mainNormalizedRecord.aliasOf = originalRecord && originalRecord.record;
@@ -6654,8 +6639,7 @@ function createRouterMatcher(routes, globalOptions) {
         if ('alias' in record) {
             const aliases = typeof record.alias === 'string' ? [record.alias] : record.alias;
             for (const alias of aliases) {
-                normalizedRecords.push({
-                    ...mainNormalizedRecord,
+                normalizedRecords.push(assign({}, mainNormalizedRecord, {
                     // this allows us to hold a copy of the `components` option
                     // so that async components cache is hold on the original record
                     components: originalRecord
@@ -6666,7 +6650,7 @@ function createRouterMatcher(routes, globalOptions) {
                     aliasOf: originalRecord
                         ? originalRecord.record
                         : mainNormalizedRecord,
-                });
+                }));
             }
         }
         let matcher;
@@ -6694,6 +6678,10 @@ function createRouterMatcher(routes, globalOptions) {
                 originalMatcher = originalMatcher || matcher;
                 if (originalMatcher !== matcher)
                     originalMatcher.alias.push(matcher);
+                // remove the route if named and only for the top record (avoid in nested calls)
+                // this works because the original record is the first one
+                if (isRootAdd && record.name && !isAliasRecord(matcher))
+                    removeRoute(record.name);
             }
             // only non redirect records have children
             if ('children' in mainNormalizedRecord) {
@@ -6769,10 +6757,9 @@ function createRouterMatcher(routes, globalOptions) {
                     location,
                 });
             name = matcher.record.name;
-            params = {
-                ...paramsFromLocation(currentLocation.params, matcher.keys.map(k => k.name)),
-                ...location.params,
-            };
+            params = assign(
+            // paramsFromLocation is a new object
+            paramsFromLocation(currentLocation.params, matcher.keys.map(k => k.name)), location.params);
             // throws if cannot be stringified
             path = matcher.stringify(params);
         }
@@ -6802,7 +6789,7 @@ function createRouterMatcher(routes, globalOptions) {
             name = matcher.record.name;
             // since we are navigating to the same location, we don't need to pick the
             // params like when `name` is provided
-            params = { ...currentLocation.params, ...location.params };
+            params = assign({}, currentLocation.params, location.params);
             path = matcher.stringify(params);
         }
         const matched = [];
@@ -6833,7 +6820,8 @@ function paramsFromLocation(params, keys) {
     return newParams;
 }
 /**
- * Normalizes a RouteRecordRaw. Transforms the `redirect` option into a `beforeEnter`
+ * Normalizes a RouteRecordRaw. Transforms the `redirect` option into a
+ * `beforeEnter`. This function creates a copy
  * @param record
  * @returns the normalized version
  */
@@ -6846,25 +6834,39 @@ function normalizeRouteRecord(record) {
         components: {},
     };
     if ('redirect' in record) {
-        return {
-            ...commonInitialValues,
-            redirect: record.redirect,
-        };
+        return assign(commonInitialValues, { redirect: record.redirect });
     }
     else {
-        return {
-            ...commonInitialValues,
+        const components = 'components' in record ? record.components : { default: record.component };
+        return assign(commonInitialValues, {
             beforeEnter: record.beforeEnter,
-            props: record.props || false,
+            props: normalizeRecordProps(record),
             children: record.children || [],
             instances: {},
             leaveGuards: [],
             updateGuards: [],
-            components: 'components' in record
-                ? record.components
-                : { default: record.component },
-        };
+            components,
+        });
     }
+}
+/**
+ * Normalize the optional `props` in a record to always be an object similar to
+ * components. Also accept a boolean for components.
+ * @param record
+ */
+function normalizeRecordProps(record) {
+    const propsObject = {};
+    const props = record.props || false;
+    if ('component' in record) {
+        propsObject.default = props;
+    }
+    else {
+        // NOTE: we could also allow a function to be applied to every component.
+        // Would need user feedback for use cases
+        for (let name in record.components)
+            propsObject[name] = typeof props === 'boolean' ? props : props[name];
+    }
+    return propsObject;
 }
 /**
  * Checks if a record or any of its parent is an alias
@@ -6884,10 +6886,7 @@ function isAliasRecord(record) {
  * @param matched array of matched records
  */
 function mergeMetaFields(matched) {
-    return matched.reduce((meta, record) => ({
-        ...meta,
-        ...record.meta,
-    }), {});
+    return matched.reduce((meta, record) => assign(meta, record.meta), {});
 }
 function mergeOptions$1(defaults, partialOptions) {
     let options = {};
@@ -6951,7 +6950,7 @@ function extractComponentsGuards(matched, guardType, to, from) {
     const guards = [];
     for (const record of matched) {
         for (const name in record.components) {
-            const rawComponent = record.components[name];
+            let rawComponent = record.components[name];
             if (isRouteComponent(rawComponent)) {
                 // __vccOpts is added by vue-class-component and contain the regular options
                 let options = rawComponent.__vccOpts || rawComponent;
@@ -7069,13 +7068,13 @@ const RouterLinkImpl = defineComponent({
             const children = slots.default && slots.default(link);
             return props.custom
                 ? children
-                : h('a', {
+                : h('a', assign({
                     'aria-current': link.isExactActive ? 'page' : null,
                     onClick: link.navigate,
                     href: link.href,
-                    ...attrs,
+                }, attrs, {
                     class: elClass.value,
-                }, children);
+                }), children);
         };
     },
 });
@@ -7160,12 +7159,15 @@ const RouterViewImpl = defineComponent({
         const propsData = computed$1(() => {
             // propsData only gets called if ViewComponent.value exists and it depends
             // on matchedRoute.value
-            const { props } = matchedRoute.value;
-            if (!props)
+            const componentProps = matchedRoute.value.props[props.name];
+            if (!componentProps)
                 return {};
-            if (props === true)
+            // TODO: only add props declared in the component. all if no props
+            if (componentProps === true)
                 return route.value.params;
-            return typeof props === 'object' ? props : props(route.value);
+            return typeof componentProps === 'object'
+                ? componentProps
+                : componentProps(route.value);
         });
         provide(matchedRouteKey, matchedRoute);
         const viewRef = ref();
@@ -7187,14 +7189,13 @@ const RouterViewImpl = defineComponent({
                 }
             }
             let Component = ViewComponent.value;
-            const componentProps = {
-                // only compute props if there is a matched record
-                ...(Component && propsData.value),
-                ...attrs,
+            const componentProps = assign({}, 
+            // only compute props if there is a matched record
+            Component && propsData.value, attrs, {
                 onVnodeMounted,
                 onVnodeUnmounted,
                 ref: viewRef,
-            };
+            });
             // NOTE: we could also not render if there is no route match
             const children = slots.default && slots.default({ Component, props: componentProps });
             return children
@@ -7292,34 +7293,24 @@ function createRouter(options) {
         if (typeof rawLocation === 'string') {
             let locationNormalized = parseURL(parseQuery$1, rawLocation, currentLocation.path);
             let matchedRoute = matcher.resolve({ path: locationNormalized.path }, currentLocation);
-            return {
-                // fullPath: locationNormalized.fullPath,
-                // query: locationNormalized.query,
-                // hash: locationNormalized.hash,
-                ...locationNormalized,
-                ...matchedRoute,
-                // path: matchedRoute.path,
-                // name: matchedRoute.name,
-                // meta: matchedRoute.meta,
-                // matched: matchedRoute.matched,
+            // locationNormalized is always a new object
+            return assign(locationNormalized, matchedRoute, {
                 params: decodeParams(matchedRoute.params),
                 redirectedFrom: undefined,
                 href: routerHistory.base + locationNormalized.fullPath,
-            };
+            });
         }
         let matcherLocation;
         // path could be relative in object as well
         if ('path' in rawLocation) {
-            matcherLocation = {
-                ...rawLocation,
+            matcherLocation = assign({}, rawLocation, {
                 path: parseURL(parseQuery$1, rawLocation.path, currentLocation.path).path,
-            };
+            });
         }
         else {
-            matcherLocation = {
-                ...rawLocation,
+            matcherLocation = assign({}, rawLocation, {
                 params: encodeParams(rawLocation.params),
-            };
+            });
         }
         let matchedRoute = matcher.resolve(matcherLocation, currentLocation);
         const hash = encodeHash(rawLocation.hash || '');
@@ -7328,30 +7319,29 @@ function createRouter(options) {
             'params' in rawLocation
                 ? normalizeParams(rawLocation.params)
                 : decodeParams(matchedRoute.params);
-        const fullPath = stringifyURL(stringifyQuery$1, {
-            ...rawLocation,
+        const fullPath = stringifyURL(stringifyQuery$1, assign({}, rawLocation, {
             hash,
             path: matchedRoute.path,
-        });
-        return {
+        }));
+        return assign({
             fullPath,
             // keep the hash encoded so fullPath is effectively path + encodedQuery +
             // hash
             hash,
             query: normalizeQuery(rawLocation.query),
-            ...matchedRoute,
+        }, matchedRoute, {
             redirectedFrom: undefined,
             href: routerHistory.base + fullPath,
-        };
+        });
     }
     function locationAsObject(to) {
-        return typeof to === 'string' ? { path: to } : to;
+        return typeof to === 'string' ? { path: to } : assign({}, to);
     }
     function push(to) {
         return pushWithRedirect(to);
     }
     function replace(to) {
-        return push({ ...locationAsObject(to), replace: true });
+        return push(assign(locationAsObject(to), { replace: true }));
     }
     function pushWithRedirect(to, redirectedFrom) {
         const targetLocation = (pendingLocation = resolve(to));
@@ -7365,18 +7355,17 @@ function createRouter(options) {
             const { redirect } = lastMatched;
             // transform it into an object to pass the original RouteLocaleOptions
             let newTargetLocation = locationAsObject(typeof redirect === 'function' ? redirect(targetLocation) : redirect);
-            return pushWithRedirect({
-                // having a path here would be a problem with relative locations but
-                // at the same time it doesn't make sense for a redirect to be
-                // relative (no name, no path) because it would create an infinite
-                // loop. Since newTargetLocation must either have a `path` or a
-                // `name`, this will never happen
-                ...targetLocation,
-                ...newTargetLocation,
+            return pushWithRedirect(assign({}, 
+            // having a path here would be a problem with relative locations but
+            // at the same time it doesn't make sense for a redirect to be
+            // relative (no name, no path) because it would create an infinite
+            // loop. Since newTargetLocation must either have a `path` or a
+            // `name`, this will never happen
+            targetLocation, newTargetLocation, {
                 state: data,
                 force,
                 replace,
-            }, 
+            }), 
             // keep original redirectedFrom if it exists
             redirectedFrom || targetLocation);
         }
@@ -7417,12 +7406,11 @@ function createRouter(options) {
                     // preserve the original redirectedFrom if any
                     return pushWithRedirect(
                     // keep options
-                    {
-                        ...locationAsObject(failure.to),
+                    assign(locationAsObject(failure.to), {
                         state: data,
                         force,
                         replace,
-                    }, redirectedFrom || toLocation);
+                    }), redirectedFrom || toLocation);
             }
             else {
                 // if we fail we don't finalize the navigation
@@ -7535,10 +7523,9 @@ function createRouter(options) {
             // on the initial navigation, we want to reuse the scroll position from
             // history state if it exists
             if (replace || isFirstNavigation)
-                routerHistory.replace(toLocation, {
+                routerHistory.replace(toLocation, assign({
                     scroll: isFirstNavigation && state && state.scroll,
-                    ...data,
-                });
+                }, data));
             else
                 routerHistory.push(toLocation, data);
         }
@@ -7554,6 +7541,7 @@ function createRouter(options) {
         const toLocation = resolve(to.fullPath);
         pendingLocation = toLocation;
         const from = currentRoute.value;
+        // TODO: should be moved to web history?
         if (isBrowser) {
             saveScrollPosition(getScrollKey(from.fullPath, info.delta), computeScrollPosition());
         }
@@ -7718,6 +7706,10 @@ function extractChangingRecords(to, from) {
     return [leavingRecords, updatingRecords, enteringRecords];
 }
 
+function useRouter() {
+    return inject(routerKey);
+}
+
 var script = defineComponent({
   name: "HelloWorld",
   props: {
@@ -7752,44 +7744,6 @@ const render = /*#__PURE__*/_withId(function render(_ctx, _cache) {
 
 script.render = render;
 script.__scopeId = "data-v-69f34473";
-
-/*!
-  * vue-router v4.0.0-alpha.12
-  * (c) 2020 Eduardo San Martin Morote
-  * @license MIT
-  */
-
-const hasSymbol$1 = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
-const PolySymbol$1 = (name) => 
-// vr = vue router
-hasSymbol$1
-    ? Symbol( name)
-    : ( '_vr_') + name;
-// r = router
-const routerKey$1 = PolySymbol$1( 'r');
-
-var NavigationType$1;
-(function (NavigationType) {
-    NavigationType["pop"] = "pop";
-    NavigationType["push"] = "push";
-})(NavigationType$1 || (NavigationType$1 = {}));
-var NavigationDirection$1;
-(function (NavigationDirection) {
-    NavigationDirection["back"] = "back";
-    NavigationDirection["forward"] = "forward";
-    NavigationDirection["unknown"] = "";
-})(NavigationDirection$1 || (NavigationDirection$1 = {}));
-
-var NavigationFailureType$1;
-(function (NavigationFailureType) {
-    NavigationFailureType[NavigationFailureType["aborted"] = 2] = "aborted";
-    NavigationFailureType[NavigationFailureType["cancelled"] = 3] = "cancelled";
-    NavigationFailureType[NavigationFailureType["duplicated"] = 4] = "duplicated";
-})(NavigationFailureType$1 || (NavigationFailureType$1 = {}));
-
-function useRouter() {
-    return inject(routerKey$1);
-}
 
 function getBoundingClientRect(element) {
   var rect = element.getBoundingClientRect();
@@ -10025,25 +9979,19 @@ var ElMenu = defineComponent({
 
 var ElMenuItem = defineComponent({
   name: 'ElMenuItem',
-  props: {
-    path: [String, Object]
-  },
+  props: {},
   setup: function setup(props, _ref) {
     var attrs = _ref.attrs,
-        slots = _ref.slots;
+        slots = _ref.slots,
+        emit = _ref.emit;
 
     var _useElMenuItem = useElMenuItem(),
         root = _useElMenuItem.root,
         state = _useElMenuItem.state;
 
-    var router = useRouter();
-
-    var handleClick = function handleClick() {
+    var handleClick = function handleClick(e) {
       root.select(state.index.value);
-
-      if (props.path) {
-        router.push(props.path);
-      }
+      emit('click', e);
     };
 
     return function () {
@@ -11005,6 +10953,15 @@ var script$b = defineComponent({
     ElMenu,
     ElMenuItem,
     ElMenuItemGroup
+  },
+  setup() {
+    const router = useRouter();
+    const push = (e) => {
+      router.push(e);
+    };
+    return {
+      push
+    };
   }
 });
 
@@ -11054,7 +11011,7 @@ function render$b(_ctx, _cache) {
                   default: withCtx(() => [
                     createVNode(_component_el_menu_item, {
                       index: "1",
-                      path: { name: 'layout' }
+                      onClick: _cache[1] || (_cache[1] = $event => (_ctx.push({ name: 'layout' })))
                     }, {
                       default: withCtx(() => [
                         _hoisted_3$1,
@@ -11064,7 +11021,7 @@ function render$b(_ctx, _cache) {
                     }),
                     createVNode(_component_el_menu_item, {
                       index: "1",
-                      path: { name: 'container' }
+                      onClick: _cache[2] || (_cache[2] = $event => (_ctx.push({ name: 'container' })))
                     }, {
                       default: withCtx(() => [
                         _hoisted_5$1,
@@ -11074,7 +11031,7 @@ function render$b(_ctx, _cache) {
                     }),
                     createVNode(_component_el_menu_item, {
                       index: "1",
-                      path: { name: 'icon' }
+                      onClick: _cache[3] || (_cache[3] = $event => (_ctx.push({ name: 'icon' })))
                     }, {
                       default: withCtx(() => [
                         _hoisted_7$1,
@@ -11084,7 +11041,7 @@ function render$b(_ctx, _cache) {
                     }),
                     createVNode(_component_el_menu_item, {
                       index: "1",
-                      path: { name: 'button' }
+                      onClick: _cache[4] || (_cache[4] = $event => (_ctx.push({ name: 'button' })))
                     }, {
                       default: withCtx(() => [
                         _hoisted_9,
@@ -11120,7 +11077,7 @@ function render$b(_ctx, _cache) {
                   default: withCtx(() => [
                     createVNode(_component_el_menu_item, {
                       index: "1",
-                      path: { name: 'menu' }
+                      onClick: _cache[5] || (_cache[5] = $event => (_ctx.push({ name: 'menu' })))
                     }, {
                       default: withCtx(() => [
                         _hoisted_15,
@@ -11138,7 +11095,7 @@ function render$b(_ctx, _cache) {
                   default: withCtx(() => [
                     createVNode(_component_el_menu_item, {
                       index: "1",
-                      path: { name: 'popover' }
+                      onClick: _cache[6] || (_cache[6] = $event => (_ctx.push({ name: 'popover' })))
                     }, {
                       default: withCtx(() => [
                         _hoisted_18,
@@ -11187,12 +11144,12 @@ const router = createRouter({
       name: "Layout",
       component: script$b,
       children: [
-        {path: "/button", name: "button", component: async () => import('./button.6eca0dd8.js')},
-        {path: "/layout", name: "layout", component: async () => import('./layout.1cab70b7.js')},
-        {path: "/container", name: "container", component: async () => import('./container.7ec8f706.js')},
-        {path: "/icon", name: "icon", component: async () => import('./icon.97123090.js')},
-        {path: "/menu", name: "menu", component: async () => import('./menu.f4eecd15.js')},
-        {path: "/popover", name: "popover", component: async () => import('./popover.d21ca763.js')}
+        {path: "/button", name: "button", component: async () => import('./button.155e7e63.js')},
+        {path: "/layout", name: "layout", component: async () => import('./layout.3ce80d3c.js')},
+        {path: "/container", name: "container", component: async () => import('./container.6a18d748.js')},
+        {path: "/icon", name: "icon", component: async () => import('./icon.4912a8bb.js')},
+        {path: "/menu", name: "menu", component: async () => import('./menu.fe600a31.js')},
+        {path: "/popover", name: "popover", component: async () => import('./popover.50e56248.js')}
       ]
     }
   ]

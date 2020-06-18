@@ -8,10 +8,10 @@
   "dependencies": {
     "elenext": "link:../",
     "vue": "^3.0.0-beta.14",
-    "vue-router": "^4.0.0-alpha.12"
+    "vue-router": "^4.0.0-alpha.13"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0-beta.14",
+    "@vue/compiler-sfc": "^3.0.0-beta.15",
     "vite": "^0.20.8"
   }
 }

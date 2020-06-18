@@ -1,25 +1,15 @@
 import { defineComponent, h, mergeProps } from 'vue';
 import { useElMenuContext, useElMenuItem } from './provides';
-import { useRouter, RouteLocationRaw } from 'vue-router';
 
 export default defineComponent({
   name: 'ElMenuItem',
-  props: {
-    path: [String, Object]
-  },
-  setup(
-    props: {
-      path: RouteLocationRaw;
-    },
-    { attrs, slots }
-  ) {
+  props: {},
+  setup(props, { attrs, slots, emit }) {
     const { root, state } = useElMenuItem();
-    const router = useRouter();
-    const handleClick = () => {
+
+    const handleClick = e => {
       root.select(state.index.value);
-      if (props.path) {
-        router.push(props.path);
-      }
+      emit('click', e);
     };
 
     return () =>

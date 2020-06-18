@@ -6,19 +6,19 @@
         <el-menu>
           <el-menu-item-group>
             <template #title>Basic</template>
-            <el-menu-item index="1" :path="{ name: 'layout' }">
+            <el-menu-item index="1" @click="push({ name: 'layout' })">
               <i class="el-icon-menu"></i>
               layout
             </el-menu-item>
-            <el-menu-item index="1" :path="{ name: 'container' }">
+            <el-menu-item index="1" @click="push({ name: 'container' })">
               <i class="el-icon-menu"></i>
               container
             </el-menu-item>
-            <el-menu-item index="1" :path="{ name: 'icon' }">
+            <el-menu-item index="1" @click="push({ name: 'icon' })">
               <i class="el-icon-menu"></i>
               icon
             </el-menu-item>
-            <el-menu-item index="1" :path="{ name: 'button' }">
+            <el-menu-item index="1" @click="push({ name: 'button' })">
               <i class="el-icon-menu"></i>
               button
             </el-menu-item>
@@ -34,14 +34,14 @@
           </el-menu-item-group>
           <el-menu-item-group>
             <template #title>Navigation</template>
-            <el-menu-item index="1" :path="{ name: 'menu' }">
+            <el-menu-item index="1" @click="push({ name: 'menu' })">
               <i class="el-icon-menu"></i>
               menu
             </el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <template #title>Others</template>
-            <el-menu-item index="1" :path="{ name: 'popover' }">
+            <el-menu-item index="1" @click="push({ name: 'popover' })">
               <i class="el-icon-menu"></i>
               popover
             </el-menu-item>
@@ -61,6 +61,7 @@
 import { defineComponent } from 'vue';
 import HelloWorld from './HelloWorld.vue';
 import { ElContainer, ElAside, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup } from 'elenext';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   components: {
     HelloWorld,
@@ -70,6 +71,15 @@ export default defineComponent({
     ElMenu,
     ElMenuItem,
     ElMenuItemGroup
+  },
+  setup() {
+    const router = useRouter();
+    const push = e => {
+      router.push(e);
+    };
+    return {
+      push
+    };
   }
 });
 </script>
