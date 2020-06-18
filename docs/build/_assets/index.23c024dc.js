@@ -7754,7 +7754,7 @@ script.render = render;
 script.__scopeId = "data-v-69f34473";
 
 /*!
-  * vue-router v4.0.0-alpha.11
+  * vue-router v4.0.0-alpha.12
   * (c) 2020 Eduardo San Martin Morote
   * @license MIT
   */
@@ -10498,6 +10498,14 @@ script$9.__file = "src/components/ElPopover/ElPopover.vue";
 var css_248z$8 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-textarea {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  vertical-align: bottom;\n  font-size: 14px;\n}\n.el-textarea__inner {\n  display: block;\n  resize: vertical;\n  padding: 5px 15px;\n  line-height: 1.5;\n  box-sizing: border-box;\n  width: 100%;\n  font-size: inherit;\n  color: #606266;\n  background-color: #ffffff;\n  background-image: none;\n  border: 1px solid #dcdfe6;\n  border-radius: 4px;\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.el-textarea__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner:hover {\n  border-color: #c0c4cc;\n}\n.el-textarea__inner:focus {\n  outline: none;\n  border-color: #409eff;\n}\n.el-textarea .el-input__count {\n  color: #909399;\n  background: #ffffff;\n  position: absolute;\n  font-size: 12px;\n  bottom: 5px;\n  right: 10px;\n}\n.el-textarea.is-disabled .el-textarea__inner {\n  background-color: #f5f7fa;\n  border-color: #e4e7ed;\n  color: #c0c4cc;\n  cursor: not-allowed;\n}\n.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-disabled .el-textarea__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-disabled .el-textarea__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-exceed .el-textarea__inner {\n  border-color: #f56c6c;\n}\n.el-textarea.is-exceed .el-input__count {\n  color: #f56c6c;\n}\n.el-input {\n  position: relative;\n  font-size: 14px;\n  display: inline-block;\n  width: 100%;\n  @include scroll-bar;\n}\n.el-input .el-input__clear {\n  color: #c0c4cc;\n  font-size: 14px;\n  cursor: pointer;\n  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.el-input .el-input__clear:hover {\n  color: #909399;\n}\n.el-input .el-input__count {\n  height: 100%;\n  display: inline-flex;\n  align-items: center;\n  color: #909399;\n  font-size: 12px;\n}\n.el-input .el-input__count .el-input__count-inner {\n  background: #ffffff;\n  line-height: initial;\n  display: inline-block;\n  padding: 0 5px;\n}\n.el-input__inner {\n  -webkit-appearance: none;\n  background-color: #ffffff;\n  background-image: none;\n  border-radius: 4px;\n  border: 1px solid #dcdfe6;\n  box-sizing: border-box;\n  color: #606266;\n  display: inline-block;\n  font-size: inherit;\n  height: 40px;\n  line-height: 40px;\n  outline: none;\n  padding: 0 15px;\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  width: 100%;\n}\n.el-input__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner:hover {\n  border-color: #c0c4cc;\n}\n.el-input__inner:focus {\n  outline: none;\n  border-color: #409eff;\n}\n.el-input__suffix {\n  position: absolute;\n  height: 100%;\n  right: 5px;\n  top: 0;\n  text-align: center;\n  color: #c0c4cc;\n  transition: all 0.3s;\n  pointer-events: none;\n}\n.el-input__suffix-inner {\n  pointer-events: all;\n}\n.el-input__prefix {\n  position: absolute;\n  height: 100%;\n  left: 5px;\n  top: 0;\n  text-align: center;\n  color: #c0c4cc;\n  transition: all 0.3s;\n}\n.el-input__icon {\n  height: 100%;\n  width: 25px;\n  text-align: center;\n  transition: all 0.3s;\n  line-height: 40px;\n}\n.el-input__icon:after {\n  content: '';\n  height: 100%;\n  width: 0;\n  display: inline-block;\n  vertical-align: middle;\n}\n.el-input__validateIcon {\n  pointer-events: none;\n}\n.el-input.is-active .el-input__inner {\n  outline: none;\n  border-color: #409eff;\n}\n.el-input.is-disabled .el-input__inner {\n  background-color: #f5f7fa;\n  border-color: #e4e7ed;\n  color: #c0c4cc;\n  cursor: not-allowed;\n}\n.el-input.is-disabled .el-input__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__icon {\n  cursor: not-allowed;\n}\n.el-input.is-exceed .el-input__inner {\n  border-color: #f56c6c;\n}\n.el-input.is-exceed .el-input__suffix .el-input__count {\n  color: #f56c6c;\n}\n.el-input--suffix .el-input__inner {\n  padding-right: 30px;\n}\n.el-input--prefix .el-input__inner {\n  padding-left: 30px;\n}\n.el-input--medium {\n  font-size: 14px;\n}\n.el-input--medium__inner {\n  height: 36px;\n  line-height: 36px;\n}\n.el-input--medium .el-input__icon {\n  line-height: 36px;\n}\n.el-input--small {\n  font-size: 13px;\n}\n.el-input--small__inner {\n  height: 32px;\n  line-height: 32px;\n}\n.el-input--small .el-input__icon {\n  line-height: 32px;\n}\n.el-input--mini {\n  font-size: 12px;\n}\n.el-input--mini__inner {\n  height: 28px;\n  line-height: 28px;\n}\n.el-input--mini .el-input__icon {\n  line-height: 28px;\n}\n.el-input-group {\n  line-height: normal;\n  display: inline-table;\n  width: 100%;\n  border-collapse: separate;\n  border-spacing: 0;\n}\n.el-input-group > .el-input__inner {\n  vertical-align: middle;\n  display: table-cell;\n}\n.el-input-group__append,\n.el-input-group__prepend {\n  background-color: #f5f7fa;\n  color: #909399;\n  vertical-align: middle;\n  display: table-cell;\n  position: relative;\n  border: 1px solid #dcdfe6;\n  border-radius: 4px;\n  padding: 0 20px;\n  width: 1px;\n  white-space: nowrap;\n}\n.el-input-group__append:focus,\n.el-input-group__prepend:focus {\n  outline: none;\n}\n.el-input-group__append .el-select,\n.el-input-group__prepend .el-select,\n.el-input-group__append .el-button,\n.el-input-group__prepend .el-button {\n  display: inline-block;\n  margin: -10px -20px;\n}\n.el-input-group__append button.el-button,\n.el-input-group__prepend button.el-button,\n.el-input-group__append div.el-select .el-input__inner,\n.el-input-group__prepend div.el-select .el-input__inner,\n.el-input-group__append div.el-select:hover .el-input__inner,\n.el-input-group__prepend div.el-select:hover .el-input__inner {\n  border-color: transparent;\n  background-color: transparent;\n  color: inherit;\n  border-top: 0;\n  border-bottom: 0;\n}\n.el-input-group__append .el-button,\n.el-input-group__prepend .el-button,\n.el-input-group__append .el-input,\n.el-input-group__prepend .el-input {\n  font-size: inherit;\n}\n.el-input-group__prepend {\n  border-right: 0;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.el-input-group__append {\n  border-left: 0;\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.el-input-group--prepend .el-input__inner {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.el-input-group--prepend .el-select .el-input.is-focus .el-input__inner {\n  border-color: transparent;\n}\n.el-input-group--append .el-input__inner {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.el-input-group--append .el-select .el-input.is-focus .el-input__inner {\n  border-color: transparent;\n}\n/** disalbe default clear on IE */\n.el-input__inner::-ms-clear {\n  display: none;\n  width: 0;\n  height: 0;\n}\n";
 styleInject(css_248z$8);
 
+var EL_FORM_INJECTKEY = Symbol('ElFormProvide');
+function useElForm() {
+  var from = inject(EL_FORM_INJECTKEY);
+  return {
+    from: from
+  };
+}
+
 //
 var script$a = defineComponent({
   name: 'ElInput',
@@ -10564,9 +10572,34 @@ var script$a = defineComponent({
       default: undefined
     }
   },
-  setup: function setup(props, _ref) {// const formItem = useFormItem();
+  setup: function setup(props, _ref) {
+    var slots = _ref.slots,
+        emit = _ref.emit;
 
-    var emit = _ref.emit;
+    var _useElForm = useElForm(),
+        from = _useElForm.from;
+
+    var size = computed$1(function () {
+      return props.size || from.size;
+    });
+    var disabled = computed$1(function () {
+      return props.disabled || from.disabled;
+    });
+    var cls = computed$1(function () {
+      return [props.type === 'textarea' ? 'el-textarea' : 'el-input', size ? 'el-input--' + size : '', {
+        'is-disabled': disabled,
+        // TODO: exceed
+        // 'is-exceed': inputExceed,
+        'el-input-group': slots.prepend || slots.append,
+        'el-input-group--append': slots.append,
+        'el-input-group--prepend': slots.prepend,
+        'el-input--prefix': slots.prefix || props.prefixIcon,
+        'el-input--suffix': slots.suffix || props.suffixIcon || props.clearable || props.showPassword
+      }];
+    });
+    return {
+      cls: cls
+    };
   }
 }); // data() {
 //   return {
@@ -10839,19 +10872,7 @@ const _hoisted_8 = {
 
 function render$a(_ctx, _cache) {
   return (openBlock(), createBlock("div", {
-    class: [
-      _ctx.type === 'textarea' ? 'el-textarea' : 'el-input',
-      _ctx.inputSize ? 'el-input--' + _ctx.inputSize : '',
-      {
-        'is-disabled': _ctx.inputDisabled,
-        'is-exceed': _ctx.inputExceed,
-        'el-input-group': _ctx.$slots.prepend || _ctx.$slots.append,
-        'el-input-group--append': _ctx.$slots.append,
-        'el-input-group--prepend': _ctx.$slots.prepend,
-        'el-input--prefix': _ctx.$slots.prefix || _ctx.prefixIcon,
-        'el-input--suffix': _ctx.$slots.suffix || _ctx.suffixIcon || _ctx.clearable || _ctx.showPassword
-      }
-    ],
+    class: _ctx.cls,
     onMouseenter: _cache[18] || (_cache[18] = $event => (_ctx.hovering = true)),
     onMouseleave: _cache[19] || (_cache[19] = $event => (_ctx.hovering = false))
   }, [
@@ -11166,12 +11187,12 @@ const router = createRouter({
       name: "Layout",
       component: script$b,
       children: [
-        {path: "/button", name: "button", component: async () => import('./button.5a2658ec.js')},
-        {path: "/layout", name: "layout", component: async () => import('./layout.cdf927f1.js')},
-        {path: "/container", name: "container", component: async () => import('./container.98a52990.js')},
-        {path: "/icon", name: "icon", component: async () => import('./icon.ea949a0e.js')},
-        {path: "/menu", name: "menu", component: async () => import('./menu.843ea0f5.js')},
-        {path: "/popover", name: "popover", component: async () => import('./popover.270ea4fd.js')}
+        {path: "/button", name: "button", component: async () => import('./button.6eca0dd8.js')},
+        {path: "/layout", name: "layout", component: async () => import('./layout.1cab70b7.js')},
+        {path: "/container", name: "container", component: async () => import('./container.7ec8f706.js')},
+        {path: "/icon", name: "icon", component: async () => import('./icon.97123090.js')},
+        {path: "/menu", name: "menu", component: async () => import('./menu.f4eecd15.js')},
+        {path: "/popover", name: "popover", component: async () => import('./popover.d21ca763.js')}
       ]
     }
   ]
