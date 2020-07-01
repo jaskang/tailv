@@ -28,7 +28,7 @@ import {
   RendererNode,
   RendererElement
 } from 'vue';
-import { uniqueId, normalizeClass, createEl, removeEl } from '@/utils';
+import { uniqueId, normalizeClass, createEl, removeEl } from '../../utils';
 import { createPopper, Instance as Popper } from '@popperjs/core';
 
 export type PlacementType =

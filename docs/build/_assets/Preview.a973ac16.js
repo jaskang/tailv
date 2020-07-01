@@ -1,4 +1,4 @@
-import { d as defineComponent, f as ref, g as reactive, h as onMounted, t as toRefs, n as nextTick, o as openBlock, c as createBlock, b as createVNode, _ as _toDisplayString, j as createCommentVNode, k as renderSlot } from './index.80245605.js';
+import { d as defineComponent, f as ref, g as reactive, h as onMounted, t as toRefs, n as nextTick, o as openBlock, c as createBlock, b as createVNode, _ as _toDisplayString, j as createCommentVNode, k as renderSlot } from './index.53b35fce.js';
 
 var script = defineComponent({
   name: "Preview",
@@ -102,7 +102,7 @@ function render(_ctx, _cache) {
         ? (openBlock(), createBlock("div", {
             key: 0,
             class: "preview__footer",
-            onClick: _cache[1] || (_cache[1] = $event => (_ctx.toggleCode($event)))
+            onClick: _cache[1] || (_cache[1] = ($event, ...args) => (_ctx.toggleCode($event, ...args)))
           }, _toDisplayString(_ctx.codeHeight > 0 ? '隐藏代码' : '显示代码'), 1))
         : createCommentVNode("", true)
     ])

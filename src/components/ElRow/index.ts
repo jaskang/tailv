@@ -1,5 +1,5 @@
 import { defineComponent, computed, h, provide } from 'vue';
-import { ElRowSymbol } from '@/provides';
+import { ElRowSymbol } from '../../provides';
 import './index.less';
 
 export default defineComponent({

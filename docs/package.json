@@ -6,7 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "elenext": "link:../",
+    "elenext": "link:..",
     "vue": "^3.0.0-beta.14",
     "vue-router": "^4.0.0-alpha.13"
   },

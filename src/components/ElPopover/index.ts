@@ -1,3 +1,3 @@
 import './ElPopover.less';
 
-export { default as ElPopover } from './ElPopover.vue';
+export { default as ElPopover } from './Popover';

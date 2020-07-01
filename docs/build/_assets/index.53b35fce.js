@@ -207,6 +207,7 @@ const invokeArrayFns = (fns, arg) => {
 const def = (obj, key, value) => {
     Object.defineProperty(obj, key, {
         configurable: true,
+        enumerable: false,
         value
     });
 };
@@ -402,17 +403,17 @@ const arrayInstrumentations = {};
 });
 function createGetter(isReadonly = false, shallow = false) {
     return function get(target, key, receiver) {
-        if (key === "__v_isReactive" /* isReactive */) {
+        if (key === "__v_isReactive" /* IS_REACTIVE */) {
             return !isReadonly;
         }
-        else if (key === "__v_isReadonly" /* isReadonly */) {
+        else if (key === "__v_isReadonly" /* IS_READONLY */) {
             return isReadonly;
         }
-        else if (key === "__v_raw" /* raw */ &&
+        else if (key === "__v_raw" /* RAW */ &&
             receiver ===
                 (isReadonly
-                    ? target.__v_readonly
-                    : target.__v_reactive)) {
+                    ? target["__v_readonly" /* READONLY */]
+                    : target["__v_reactive" /* REACTIVE */])) {
             return target;
         }
         const targetIsArray = isArray(target);
@@ -420,7 +421,9 @@ function createGetter(isReadonly = false, shallow = false) {
             return Reflect.get(arrayInstrumentations, key, receiver);
         }
         const res = Reflect.get(target, key, receiver);
-        if ((isSymbol(key) && builtInSymbols.has(key)) || key === '__proto__') {
+        if (isSymbol(key)
+            ? builtInSymbols.has(key)
+            : key === `__proto__` || key === `__v_isRef`) {
             return res;
         }
         if (!isReadonly) {
@@ -710,13 +713,13 @@ function createInstrumentationGetter(isReadonly, shallow) {
             ? readonlyInstrumentations
             : mutableInstrumentations;
     return (target, key, receiver) => {
-        if (key === "__v_isReactive" /* isReactive */) {
+        if (key === "__v_isReactive" /* IS_REACTIVE */) {
             return !isReadonly;
         }
-        else if (key === "__v_isReadonly" /* isReadonly */) {
+        else if (key === "__v_isReadonly" /* IS_READONLY */) {
             return isReadonly;
         }
-        else if (key === "__v_raw" /* raw */) {
+        else if (key === "__v_raw" /* RAW */) {
             return target;
         }
         return Reflect.get(hasOwn(instrumentations, key) && key in target
@@ -737,13 +740,13 @@ const readonlyCollectionHandlers = {
 const collectionTypes = new Set([Set, Map, WeakMap, WeakSet]);
 const isObservableType = /*#__PURE__*/ makeMap('Object,Array,Map,Set,WeakMap,WeakSet');
 const canObserve = (value) => {
-    return (!value["__v_skip" /* skip */] &&
+    return (!value["__v_skip" /* SKIP */] &&
         isObservableType(toRawType(value)) &&
         !Object.isFrozen(value));
 };
 function reactive(target) {
     // if trying to observe a readonly proxy, return the readonly version.
-    if (target && target["__v_isReadonly" /* isReadonly */]) {
+    if (target && target["__v_isReadonly" /* IS_READONLY */]) {
         return target;
     }
     return createReactiveObject(target, false, mutableHandlers, mutableCollectionHandlers);
@@ -763,38 +766,38 @@ function createReactiveObject(target, isReadonly, baseHandlers, collectionHandle
     }
     // target is already a Proxy, return it.
     // exception: calling readonly() on a reactive object
-    if (target["__v_raw" /* raw */] &&
-        !(isReadonly && target["__v_isReactive" /* isReactive */])) {
+    if (target["__v_raw" /* RAW */] &&
+        !(isReadonly && target["__v_isReactive" /* IS_REACTIVE */])) {
         return target;
     }
     // target already has corresponding Proxy
-    if (hasOwn(target, isReadonly ? "__v_readonly" /* readonly */ : "__v_reactive" /* reactive */)) {
+    if (hasOwn(target, isReadonly ? "__v_readonly" /* READONLY */ : "__v_reactive" /* REACTIVE */)) {
         return isReadonly
-            ? target["__v_readonly" /* readonly */]
-            : target["__v_reactive" /* reactive */];
+            ? target["__v_readonly" /* READONLY */]
+            : target["__v_reactive" /* REACTIVE */];
     }
     // only a whitelist of value types can be observed.
     if (!canObserve(target)) {
         return target;
     }
     const observed = new Proxy(target, collectionTypes.has(target.constructor) ? collectionHandlers : baseHandlers);
-    def(target, isReadonly ? "__v_readonly" /* readonly */ : "__v_reactive" /* reactive */, observed);
+    def(target, isReadonly ? "__v_readonly" /* READONLY */ : "__v_reactive" /* REACTIVE */, observed);
     return observed;
 }
 function isReactive(value) {
     if (isReadonly(value)) {
-        return isReactive(value["__v_raw" /* raw */]);
+        return isReactive(value["__v_raw" /* RAW */]);
     }
-    return !!(value && value["__v_isReactive" /* isReactive */]);
+    return !!(value && value["__v_isReactive" /* IS_REACTIVE */]);
 }
 function isReadonly(value) {
-    return !!(value && value["__v_isReadonly" /* isReadonly */]);
+    return !!(value && value["__v_isReadonly" /* IS_READONLY */]);
 }
 function isProxy(value) {
     return isReactive(value) || isReadonly(value);
 }
 function toRaw(observed) {
-    return ((observed && toRaw(observed["__v_raw" /* raw */])) || observed);
+    return ((observed && toRaw(observed["__v_raw" /* RAW */])) || observed);
 }
 
 const convert = (val) => isObject(val) ? reactive(val) : val;
@@ -907,7 +910,7 @@ function warn(msg, ...args) {
             msg + args.join(''),
             instance && instance.proxy,
             trace
-                .map(({ vnode }) => `at <${formatComponentName(vnode.type)}>`)
+                .map(({ vnode }) => `at <${formatComponentName(instance, vnode.type)}>`)
                 .join('\n'),
             trace
         ]);
@@ -958,7 +961,7 @@ function formatTrace(trace) {
 function formatTraceEntry({ vnode, recurseCount }) {
     const postfix = recurseCount > 0 ? `... (${recurseCount} recursive calls)` : ``;
     const isRoot = vnode.component ? vnode.component.parent == null : false;
-    const open = ` at <${formatComponentName(vnode.type, isRoot)}`;
+    const open = ` at <${formatComponentName(vnode.component, vnode.type, isRoot)}`;
     const close = `>` + postfix;
     return vnode.props
         ? [open, ...formatProps(vnode.props), close]
@@ -1226,9 +1229,16 @@ function renderComponentRoot(instance) {
             }
         }
         // inherit scopeId
-        const parentScopeId = parent && parent.type.__scopeId;
-        if (parentScopeId) {
-            root = cloneVNode(root, { [parentScopeId]: '' });
+        const scopeId = vnode.scopeId;
+        const treeOwnerId = parent && parent.type.__scopeId;
+        const slotScopeId = treeOwnerId && treeOwnerId !== scopeId ? treeOwnerId + '-s' : null;
+        if (scopeId || slotScopeId) {
+            const extras = {};
+            if (scopeId)
+                extras[scopeId] = '';
+            if (slotScopeId)
+                extras[slotScopeId] = '';
+            root = cloneVNode(root, extras);
         }
         // inherit directives
         if (vnode.dirs) {
@@ -1674,11 +1684,13 @@ function isSameVNodeType(n1, n2) {
 }
 const InternalObjectKey = `__vInternal`;
 const normalizeKey = ({ key }) => key != null ? key : null;
-const normalizeRef = ({ ref }) => (ref != null
-    ? isArray(ref)
-        ? ref
-        : [currentRenderingInstance, ref]
-    : null);
+const normalizeRef = ({ ref }) => {
+    return (ref != null
+        ? isArray(ref)
+            ? ref
+            : [currentRenderingInstance, ref]
+        : null);
+};
 const createVNode = ( _createVNode);
 function _createVNode(type, props = null, children = null, patchFlag = 0, dynamicProps = null, isBlockNode = false) {
     if (!type || type === NULL_DYNAMIC_COMPONENT) {
@@ -1764,11 +1776,11 @@ function _createVNode(type, props = null, children = null, patchFlag = 0, dynami
     return vnode;
 }
 function cloneVNode(vnode, extraProps) {
-    const props = (extraProps
+    const props = extraProps
         ? vnode.props
             ? mergeProps(vnode.props, extraProps)
             : extend({}, extraProps)
-        : vnode.props);
+        : vnode.props;
     // This is intentionally NOT using spread or extend to avoid the runtime
     // key enumeration cost.
     return {
@@ -1777,7 +1789,7 @@ function cloneVNode(vnode, extraProps) {
         type: vnode.type,
         props,
         key: props && normalizeKey(props),
-        ref: props && normalizeRef(props),
+        ref: extraProps && extraProps.ref ? normalizeRef(extraProps) : vnode.ref,
         scopeId: vnode.scopeId,
         children: vnode.children,
         target: vnode.target,
@@ -1891,8 +1903,7 @@ function normalizeChildren(vnode, children) {
 }
 const handlersRE = /^on|^vnode/;
 function mergeProps(...args) {
-    const ret = {};
-    extend(ret, args[0]);
+    const ret = extend({}, args[0]);
     for (let i = 1; i < args.length; i++) {
         const toMerge = args[i];
         for (const key in toMerge) {
@@ -2021,12 +2032,18 @@ function updateProps(instance, rawProps, rawPrevProps, optimized) {
         let kebabKey;
         for (const key in rawCurrentProps) {
             if (!rawProps ||
-                (!hasOwn(rawProps, key) &&
+                (
+                // for camelCase
+                !hasOwn(rawProps, key) &&
                     // it's possible the original props was passed in as kebab-case
                     // and converted to camelCase (#955)
                     ((kebabKey = hyphenate(key)) === key || !hasOwn(rawProps, kebabKey)))) {
                 if (options) {
-                    if (rawPrevProps && rawPrevProps[kebabKey] !== undefined) {
+                    if (rawPrevProps && (
+                    // for camelCase
+                    rawPrevProps[key] !== undefined ||
+                        // for kebab-case
+                        rawPrevProps[kebabKey] !== undefined)) {
                         props[key] = resolvePropValue(options, rawProps || EMPTY_OBJ, key, undefined);
                     }
                 }
@@ -2228,6 +2245,8 @@ const initSlots = (instance, children) => {
     if (instance.vnode.shapeFlag & 32 /* SLOTS_CHILDREN */) {
         if (children._ === 1) {
             instance.slots = children;
+            // make compiler marker non-enumerable
+            def(children, '_', 1);
         }
         else {
             normalizeObjectSlots(children, (instance.slots = {}));
@@ -2360,6 +2379,7 @@ function createAppAPI(render, hydrate) {
             _props: rootProps,
             _container: null,
             _context: context,
+            version,
             get config() {
                 return context.config;
             },
@@ -2503,7 +2523,7 @@ function createRenderer(options) {
 }
 // implementation
 function baseCreateRenderer(options, createHydrationFns) {
-    const { insert: hostInsert, remove: hostRemove, patchProp: hostPatchProp, createElement: hostCreateElement, createText: hostCreateText, createComment: hostCreateComment, setText: hostSetText, setElementText: hostSetElementText, parentNode: hostParentNode, nextSibling: hostNextSibling, setScopeId: hostSetScopeId = NOOP, cloneNode: hostCloneNode, insertStaticContent: hostInsertStaticContent } = options;
+    const { insert: hostInsert, remove: hostRemove, patchProp: hostPatchProp, forcePatchProp: hostForcePatchProp, createElement: hostCreateElement, createText: hostCreateText, createComment: hostCreateComment, setText: hostSetText, setElementText: hostSetElementText, parentNode: hostParentNode, nextSibling: hostNextSibling, setScopeId: hostSetScopeId = NOOP, cloneNode: hostCloneNode, insertStaticContent: hostInsertStaticContent } = options;
     // Note: functions inside this closure should use `const xxx = () => {}`
     // style in order to prevent being inlined by minifiers.
     const patch = (n1, n2, container, anchor = null, parentComponent = null, parentSuspense = null, isSVG = false, optimized = false) => {
@@ -2656,7 +2676,10 @@ function baseCreateRenderer(options, createHydrationFns) {
     const patchElement = (n1, n2, parentComponent, parentSuspense, isSVG, optimized) => {
         const el = (n2.el = n1.el);
         let { patchFlag, dynamicChildren, dirs } = n2;
-        const oldProps = (n1 && n1.props) || EMPTY_OBJ;
+        // #1426 take the old vnode's patch flag into account since user may clone a
+        // compiler-generated vnode, which de-opts to FULL_PROPS
+        patchFlag |= n1.patchFlag & 16 /* FULL_PROPS */;
+        const oldProps = n1.props || EMPTY_OBJ;
         const newProps = n2.props || EMPTY_OBJ;
         let vnodeHook;
         if ((vnodeHook = newProps.onVnodeBeforeUpdate)) {
@@ -2700,7 +2723,8 @@ function baseCreateRenderer(options, createHydrationFns) {
                         const key = propsToUpdate[i];
                         const prev = oldProps[key];
                         const next = newProps[key];
-                        if (prev !== next) {
+                        if (next !== prev ||
+                            (hostForcePatchProp && hostForcePatchProp(el, key))) {
                             hostPatchProp(el, key, prev, next, isSVG, n1.children, parentComponent, parentSuspense, unmountChildren);
                         }
                     }
@@ -2762,7 +2786,8 @@ function baseCreateRenderer(options, createHydrationFns) {
                     continue;
                 const next = newProps[key];
                 const prev = oldProps[key];
-                if (next !== prev) {
+                if (next !== prev ||
+                    (hostForcePatchProp && hostForcePatchProp(el, key))) {
                     hostPatchProp(el, key, prev, next, isSVG, vnode.children, parentComponent, parentSuspense, unmountChildren);
                 }
             }
@@ -2866,6 +2891,7 @@ function baseCreateRenderer(options, createHydrationFns) {
             // no update needed. just copy over properties
             n2.component = n1.component;
             n2.el = n1.el;
+            instance.vnode = n2;
         }
     };
     const setupRenderEffect = (instance, initialVNode, container, anchor, parentSuspense, isSVG, optimized) => {
@@ -2914,6 +2940,7 @@ function baseCreateRenderer(options, createHydrationFns) {
                 // This is triggered by mutation of component's own state (next: null)
                 // OR parent calling processComponent (next: VNode)
                 let { next, bu, u, parent, vnode } = instance;
+                let originNext = next;
                 let vnodeHook;
                 if (next) {
                     updateComponentPreRender(instance, next, optimized);
@@ -2944,7 +2971,7 @@ function baseCreateRenderer(options, createHydrationFns) {
                 // anchor may have changed if it's in a fragment
                 getNextHostNode(prevTree), instance, parentSuspense, isSVG);
                 next.el = nextTree.el;
-                if (next === null) {
+                if (originNext === null) {
                     // self-triggered update. In case of HOC, update parent component
                     // vnode el. HOC is indicated by parent instance's subTree pointing
                     // to child component's vnode
@@ -3537,13 +3564,18 @@ const BaseTransitionImpl = {
         onBeforeLeave: Function,
         onLeave: Function,
         onAfterLeave: Function,
-        onLeaveCancelled: Function
+        onLeaveCancelled: Function,
+        // appear
+        onBeforeAppear: Function,
+        onAppear: Function,
+        onAfterAppear: Function,
+        onAppearCancelled: Function
     },
     setup(props, { slots }) {
         const instance = getCurrentInstance();
         const state = useTransitionState();
         return () => {
-            const children = slots.default && slots.default();
+            const children = slots.default && getTransitionRawChildren(slots.default(), true);
             if (!children || !children.length) {
                 return;
             }
@@ -3569,7 +3601,6 @@ const BaseTransitionImpl = {
             if (oldInnerChild &&
                 oldInnerChild.type !== Comment &&
                 !isSameVNodeType(innerChild, oldInnerChild)) {
-                const prevHooks = oldInnerChild.transition;
                 const leavingHooks = resolveTransitionHooks(oldInnerChild, rawProps, state, instance);
                 // update old tree's hooks in case of dynamic transition
                 setTransitionHooks(oldInnerChild, leavingHooks);
@@ -3584,7 +3615,6 @@ const BaseTransitionImpl = {
                     return emptyPlaceholder(child);
                 }
                 else if (mode === 'in-out') {
-                    delete prevHooks.delayedLeave;
                     leavingHooks.delayLeave = (el, earlyRemove, delayedLeave) => {
                         const leavingVNodesCache = getLeavingNodesForType(state, oldInnerChild);
                         leavingVNodesCache[String(oldInnerChild.key)] = oldInnerChild;
@@ -3616,7 +3646,7 @@ function getLeavingNodesForType(state, vnode) {
 }
 // The transition hooks are attached to the vnode as vnode.transition
 // and will be called at appropriate timing in the renderer.
-function resolveTransitionHooks(vnode, { appear, persisted = false, onBeforeEnter, onEnter, onAfterEnter, onEnterCancelled, onBeforeLeave, onLeave, onAfterLeave, onLeaveCancelled }, state, instance) {
+function resolveTransitionHooks(vnode, { appear, persisted = false, onBeforeEnter, onEnter, onAfterEnter, onEnterCancelled, onBeforeLeave, onLeave, onAfterLeave, onLeaveCancelled, onBeforeAppear, onAppear, onAfterAppear, onAppearCancelled }, state, instance) {
     const key = String(vnode.key);
     const leavingVNodesCache = getLeavingNodesForType(state, vnode);
     const callHook = (hook, args) => {
@@ -3626,8 +3656,14 @@ function resolveTransitionHooks(vnode, { appear, persisted = false, onBeforeEnte
     const hooks = {
         persisted,
         beforeEnter(el) {
-            if (!appear && !state.isMounted) {
-                return;
+            let hook = onBeforeEnter;
+            if (!state.isMounted) {
+                if (appear) {
+                    hook = onBeforeAppear || onBeforeEnter;
+                }
+                else {
+                    return;
+                }
             }
             // for same element (v-show)
             if (el._leaveCb) {
@@ -3641,33 +3677,46 @@ function resolveTransitionHooks(vnode, { appear, persisted = false, onBeforeEnte
                 // force early removal (not cancelled)
                 leavingVNode.el._leaveCb();
             }
-            callHook(onBeforeEnter, [el]);
+            callHook(hook, [el]);
         },
         enter(el) {
-            if (!appear && !state.isMounted) {
-                return;
+            let hook = onEnter;
+            let afterHook = onAfterEnter;
+            let cancelHook = onEnterCancelled;
+            if (!state.isMounted) {
+                if (appear) {
+                    hook = onAppear || onEnter;
+                    afterHook = onAfterAppear || onAfterEnter;
+                    cancelHook = onAppearCancelled || onEnterCancelled;
+                }
+                else {
+                    return;
+                }
             }
             let called = false;
-            const afterEnter = (el._enterCb = (cancelled) => {
+            const done = (el._enterCb = (cancelled) => {
                 if (called)
                     return;
                 called = true;
                 if (cancelled) {
-                    callHook(onEnterCancelled, [el]);
+                    callHook(cancelHook, [el]);
                 }
                 else {
-                    callHook(onAfterEnter, [el]);
+                    callHook(afterHook, [el]);
                 }
                 if (hooks.delayedLeave) {
                     hooks.delayedLeave();
                 }
                 el._enterCb = undefined;
             });
-            if (onEnter) {
-                onEnter(el, afterEnter);
+            if (hook) {
+                hook(el, done);
+                if (hook.length <= 1) {
+                    done();
+                }
             }
             else {
-                afterEnter();
+                done();
             }
         },
         leave(el, remove) {
@@ -3680,7 +3729,7 @@ function resolveTransitionHooks(vnode, { appear, persisted = false, onBeforeEnte
             }
             callHook(onBeforeLeave, [el]);
             let called = false;
-            const afterLeave = (el._leaveCb = (cancelled) => {
+            const done = (el._leaveCb = (cancelled) => {
                 if (called)
                     return;
                 called = true;
@@ -3698,10 +3747,13 @@ function resolveTransitionHooks(vnode, { appear, persisted = false, onBeforeEnte
             });
             leavingVNodesCache[key] = vnode;
             if (onLeave) {
-                onLeave(el, afterLeave);
+                onLeave(el, done);
+                if (onLeave.length <= 1) {
+                    done();
+                }
             }
             else {
-                afterLeave();
+                done();
             }
         }
     };
@@ -3732,6 +3784,33 @@ function setTransitionHooks(vnode, hooks) {
     else {
         vnode.transition = hooks;
     }
+}
+function getTransitionRawChildren(children, keepComment = false) {
+    let ret = [];
+    let keyedFragmentCount = 0;
+    for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        // handle fragment children case, e.g. v-for
+        if (child.type === Fragment) {
+            if (child.patchFlag & 128 /* KEYED_FRAGMENT */)
+                keyedFragmentCount++;
+            ret = ret.concat(getTransitionRawChildren(child.children, keepComment));
+        }
+        // comment placeholders should be skipped, e.g. v-if
+        else if (keepComment || child.type !== Comment) {
+            ret.push(child);
+        }
+    }
+    // #1126 if a transition children list contains multiple sub fragments, these
+    // fragments will be merged into a flat children array. Since each v-for
+    // fragment may contain different static bindings inside, we need to de-top
+    // these children to force full diffs to ensure correct behavior.
+    if (keyedFragmentCount > 1) {
+        for (let i = 0; i < ret.length; i++) {
+            ret[i].patchFlag = -2 /* BAIL */;
+        }
+    }
+    return ret;
 }
 
 const isKeepAlive = (vnode) => vnode.type.__isKeepAlive;
@@ -4295,7 +4374,7 @@ const PublicInstanceProxyHandlers = {
     get({ _: instance }, key) {
         const { ctx, setupState, data, props, accessCache, type, appContext } = instance;
         // let @vue/reatvitiy know it should never observe Vue public instances.
-        if (key === "__v_skip" /* skip */) {
+        if (key === "__v_skip" /* SKIP */) {
             return true;
         }
         // data / props / ctx
@@ -4304,6 +4383,7 @@ const PublicInstanceProxyHandlers = {
         // is the multiple hasOwn() calls. It's much faster to do a simple property
         // access on a plain object, so we use an accessCache object (with null
         // prototype) to memoize what access type a key corresponds to.
+        let normalizedProps;
         if (key[0] !== '$') {
             const n = accessCache[key];
             if (n !== undefined) {
@@ -4330,8 +4410,8 @@ const PublicInstanceProxyHandlers = {
             else if (
             // only cache other properties when instance has declared (thus stable)
             // props
-            type.props &&
-                hasOwn(normalizePropsOptions(type)[0], key)) {
+            (normalizedProps = normalizePropsOptions(type)[0]) &&
+                hasOwn(normalizedProps, key)) {
                 accessCache[key] = 2 /* PROPS */;
                 return props[key];
             }
@@ -4392,10 +4472,12 @@ const PublicInstanceProxyHandlers = {
         return true;
     },
     has({ _: { data, setupState, accessCache, ctx, type, appContext } }, key) {
+        let normalizedProps;
         return (accessCache[key] !== undefined ||
             (data !== EMPTY_OBJ && hasOwn(data, key)) ||
             (setupState !== EMPTY_OBJ && hasOwn(setupState, key)) ||
-            (type.props && hasOwn(normalizePropsOptions(type)[0], key)) ||
+            ((normalizedProps = normalizePropsOptions(type)[0]) &&
+                hasOwn(normalizedProps, key)) ||
             hasOwn(ctx, key) ||
             hasOwn(publicPropertiesMap, key) ||
             hasOwn(appContext.config.globalProperties, key));
@@ -4585,7 +4667,7 @@ function recordInstanceBoundEffect(effect) {
 }
 const classifyRE = /(?:^|[-_])(\w)/g;
 const classify = (str) => str.replace(classifyRE, c => c.toUpperCase()).replace(/[-_]/g, '');
-function formatComponentName(Component, isRoot = false) {
+function formatComponentName(instance, Component, isRoot = false) {
     let name = isFunction(Component)
         ? Component.displayName || Component.name
         : Component.name;
@@ -4593,6 +4675,16 @@ function formatComponentName(Component, isRoot = false) {
         const match = Component.__file.match(/([^/\\]+)\.vue$/);
         if (match) {
             name = match[1];
+        }
+    }
+    if (!name && instance && instance.parent) {
+        // try to infer the name based on local resolution
+        const registry = instance.parent.components;
+        for (const key in registry) {
+            if (registry[key] === Component) {
+                name = key;
+                break;
+            }
         }
     }
     return name ? classify(name) : isRoot ? `App` : `Anonymous`;
@@ -4681,6 +4773,9 @@ fallback) {
     return (openBlock(),
         createBlock(Fragment, { key: props.key }, slot ? slot(props) : fallback ? fallback() : [], slots._ ? 64 /* STABLE_FRAGMENT */ : -2 /* BAIL */));
 }
+
+// Core API ------------------------------------------------------------------
+const version = "3.0.0-beta.17";
 /**
  * @private
  */
@@ -4696,12 +4791,7 @@ let tempContainer;
 let tempSVGContainer;
 const nodeOps = {
     insert: (child, parent, anchor) => {
-        if (anchor) {
-            parent.insertBefore(child, anchor);
-        }
-        else {
-            parent.appendChild(child);
-        }
+        parent.insertBefore(child, anchor || null);
     },
     remove: child => {
         const parent = child.parentNode;
@@ -4995,6 +5085,7 @@ function patchStopImmediatePropagation(e, value) {
 }
 
 const nativeOnRE = /^on[a-z]/;
+const forcePatchProp = (_, key) => key === 'value';
 const patchProp = (el, key, prevValue, nextValue, isSVG = false, prevChildren, parentComponent, parentSuspense, unmountChildren) => {
     switch (key) {
         // special
@@ -5055,6 +5146,7 @@ const ANIMATION = 'animation';
 // base Transition component, with DOM-specific logic.
 const Transition = (props, { slots }) => h(BaseTransition, resolveTransitionProps(props), slots);
 Transition.inheritRef = true;
+Transition.displayName = 'Transition';
 const DOMTransitionPropsValidators = {
     name: String,
     type: String,
@@ -5085,50 +5177,29 @@ function resolveTransitionProps(rawProps) {
     if (!css) {
         return baseProps;
     }
-    const originEnterClass = [enterFromClass, enterActiveClass, enterToClass];
-    const instance = getCurrentInstance();
     const durations = normalizeDuration(duration);
     const enterDuration = durations && durations[0];
     const leaveDuration = durations && durations[1];
-    const { appear, onBeforeEnter, onEnter, onLeave } = baseProps;
-    // is appearing
-    if (appear && !instance.isMounted) {
-        enterFromClass = appearFromClass;
-        enterActiveClass = appearActiveClass;
-        enterToClass = appearToClass;
-    }
-    const finishEnter = (el, done) => {
-        removeTransitionClass(el, enterToClass);
-        removeTransitionClass(el, enterActiveClass);
+    const { onBeforeEnter, onEnter, onEnterCancelled, onLeave, onLeaveCancelled, onBeforeAppear = onBeforeEnter, onAppear = onEnter, onAppearCancelled = onEnterCancelled } = baseProps;
+    const finishEnter = (el, isAppear, done) => {
+        removeTransitionClass(el, isAppear ? appearToClass : enterToClass);
+        removeTransitionClass(el, isAppear ? appearActiveClass : enterActiveClass);
         done && done();
-        // reset enter class
-        if (appear) {
-            [enterFromClass, enterActiveClass, enterToClass] = originEnterClass;
-        }
     };
     const finishLeave = (el, done) => {
         removeTransitionClass(el, leaveToClass);
         removeTransitionClass(el, leaveActiveClass);
         done && done();
     };
-    // only needed for user hooks called in nextFrame
-    // sync errors are already handled by BaseTransition
-    function callHookWithErrorHandling(hook, args) {
-        callWithAsyncErrorHandling(hook, instance, 9 /* TRANSITION_HOOK */, args);
-    }
-    return extend(baseProps, {
-        onBeforeEnter(el) {
-            onBeforeEnter && onBeforeEnter(el);
-            addTransitionClass(el, enterActiveClass);
-            addTransitionClass(el, enterFromClass);
-        },
-        onEnter(el, done) {
+    const makeEnterHook = (isAppear) => {
+        return (el, done) => {
+            const hook = isAppear ? onAppear : onEnter;
+            const resolve = () => finishEnter(el, isAppear, done);
+            hook && hook(el, resolve);
             nextFrame(() => {
-                const resolve = () => finishEnter(el, done);
-                onEnter && callHookWithErrorHandling(onEnter, [el, resolve]);
-                removeTransitionClass(el, enterFromClass);
-                addTransitionClass(el, enterToClass);
-                if (!(onEnter && onEnter.length > 1)) {
+                removeTransitionClass(el, isAppear ? appearFromClass : enterFromClass);
+                addTransitionClass(el, isAppear ? appearToClass : enterToClass);
+                if (!(hook && hook.length > 1)) {
                     if (enterDuration) {
                         setTimeout(resolve, enterDuration);
                     }
@@ -5137,13 +5208,26 @@ function resolveTransitionProps(rawProps) {
                     }
                 }
             });
+        };
+    };
+    return extend(baseProps, {
+        onBeforeEnter(el) {
+            onBeforeEnter && onBeforeEnter(el);
+            addTransitionClass(el, enterActiveClass);
+            addTransitionClass(el, enterFromClass);
         },
+        onBeforeAppear(el) {
+            onBeforeAppear && onBeforeAppear(el);
+            addTransitionClass(el, appearActiveClass);
+            addTransitionClass(el, appearFromClass);
+        },
+        onEnter: makeEnterHook(false),
+        onAppear: makeEnterHook(true),
         onLeave(el, done) {
+            const resolve = () => finishLeave(el, done);
             addTransitionClass(el, leaveActiveClass);
             addTransitionClass(el, leaveFromClass);
             nextFrame(() => {
-                const resolve = () => finishLeave(el, done);
-                onLeave && callHookWithErrorHandling(onLeave, [el, resolve]);
                 removeTransitionClass(el, leaveFromClass);
                 addTransitionClass(el, leaveToClass);
                 if (!(onLeave && onLeave.length > 1)) {
@@ -5155,9 +5239,20 @@ function resolveTransitionProps(rawProps) {
                     }
                 }
             });
+            onLeave && onLeave(el, resolve);
         },
-        onEnterCancelled: finishEnter,
-        onLeaveCancelled: finishLeave
+        onEnterCancelled(el) {
+            finishEnter(el, false);
+            onEnterCancelled && onEnterCancelled(el);
+        },
+        onAppearCancelled(el) {
+            finishEnter(el, true);
+            onAppearCancelled && onAppearCancelled(el);
+        },
+        onLeaveCancelled(el) {
+            finishLeave(el);
+            onLeaveCancelled && onLeaveCancelled(el);
+        }
     });
 }
 function normalizeDuration(duration) {
@@ -5287,12 +5382,13 @@ function toMs(s) {
 }
 
 function toRaw$1(observed) {
-    return ((observed && toRaw$1(observed["__v_raw" /* raw */])) || observed);
+    return ((observed && toRaw$1(observed["__v_raw" /* RAW */])) || observed);
 }
 
 const positionMap = new WeakMap();
 const newPositionMap = new WeakMap();
 const TransitionGroupImpl = {
+    name: 'TransitionGroup',
     props: extend({}, TransitionPropsValidators, {
         tag: String,
         moveClass: String
@@ -5302,19 +5398,13 @@ const TransitionGroupImpl = {
         const state = useTransitionState();
         let prevChildren;
         let children;
-        let hasMove = null;
         onUpdated(() => {
             // children is guaranteed to exist after initial render
             if (!prevChildren.length) {
                 return;
             }
             const moveClass = props.moveClass || `${props.name || 'v'}-move`;
-            // Check if move transition is needed. This check is cached per-instance.
-            hasMove =
-                hasMove === null
-                    ? (hasMove = hasCSSTransform(prevChildren[0].el, instance.vnode.el, moveClass))
-                    : hasMove;
-            if (!hasMove) {
+            if (!hasCSSTransform(prevChildren[0].el, instance.vnode.el, moveClass)) {
                 return;
             }
             // we divide the work into three loops to avoid mixing DOM reads and writes
@@ -5347,8 +5437,7 @@ const TransitionGroupImpl = {
             const cssTransitionProps = resolveTransitionProps(rawProps);
             const tag = rawProps.tag || Fragment;
             prevChildren = children;
-            const slotChildren = slots.default ? slots.default() : [];
-            children = getTransitionRawChildren(slotChildren);
+            children = slots.default ? getTransitionRawChildren(slots.default()) : [];
             for (let i = 0; i < children.length; i++) {
                 const child = children[i];
                 if (child.key != null) {
@@ -5362,25 +5451,10 @@ const TransitionGroupImpl = {
                     positionMap.set(child, child.el.getBoundingClientRect());
                 }
             }
-            return createVNode(tag, null, slotChildren);
+            return createVNode(tag, null, children);
         };
     }
 };
-function getTransitionRawChildren(children) {
-    let ret = [];
-    for (let i = 0; i < children.length; i++) {
-        const child = children[i];
-        // handle fragment children case, e.g. v-for
-        if (child.type === Fragment) {
-            ret = ret.concat(getTransitionRawChildren(child.children));
-        }
-        // comment placeholders should be skipped, e.g. v-if
-        else if (child.type !== Comment) {
-            ret.push(child);
-        }
-    }
-    return ret;
-}
 // remove mode props as TransitionGroup doesn't support it
 delete TransitionGroupImpl.props.mode;
 function callPendingCbs(c) {
@@ -5496,15 +5570,15 @@ const vShow = {
             setDisplay(el, value);
         }
     },
-    beforeUnmount(el) {
-        setDisplay(el, true);
+    beforeUnmount(el, { value }) {
+        setDisplay(el, value);
     }
 };
 function setDisplay(el, value) {
     el.style.display = value ? el._vod : 'none';
 }
 
-const rendererOptions = extend({ patchProp }, nodeOps);
+const rendererOptions = extend({ patchProp, forcePatchProp }, nodeOps);
 // lazy create the renderer - this makes core renderer logic tree-shakable
 // in case the user only imports reactivity utilities from Vue.
 let renderer;
@@ -10338,60 +10412,35 @@ var ElMenuItemGroup = defineComponent({
 var css_248z$7 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-popover {\n  position: absolute;\n  background: #ffffff;\n  min-width: 150px;\n  border-radius: 4px;\n  border: 1px solid #ebeef5;\n  padding: 12px;\n  z-index: 2000;\n  color: #606266;\n  line-height: 1.4;\n  text-align: justify;\n  font-size: 14px;\n  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  word-break: break-all;\n}\n.el-popover--plain {\n  padding: 18px 20px;\n}\n.el-popover__title {\n  color: #303133;\n  font-size: 16px;\n  line-height: 1;\n  margin-bottom: 12px;\n}\n.el-popover__reference:focus:not(.focusing),\n.el-popover__reference:focus:hover {\n  outline-width: 0;\n}\n.el-popover:focus:active,\n.el-popover:focus {\n  outline-width: 0;\n}\n.el-teleport-popper {\n  /* ... */\n  display: none;\n}\n.el-teleport-popper[data-show] {\n  display: block;\n}\n";
 styleInject(css_248z$7);
 
-//
-var script$9 = defineComponent({
-  name: 'ElPopoVer',
+var PopoverInner = defineComponent({
   props: {
-    placement: {
-      type: String,
-      default: 'bottom'
-    },
-    trigger: {
-      type: String,
-      default: 'hover'
-    },
-    openDelay: {
-      type: Number,
-      default: 0
-    },
-    closeDelay: {
-      type: Number,
-      default: 200
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    content: {
-      type: String,
-      default: ''
-    },
-    popperClass: {
-      type: String,
-      default: ''
-    },
-    width: {
-      type: String,
-      default: '200'
-    },
-    visibleArrow: {
-      type: Boolean,
-      default: true
-    },
-    transition: {
-      type: String,
-      default: 'fade-in-linear'
-    },
-    tabindex: {
-      type: Number,
-      default: 0
+    rootElRef: {
+      type: Object,
+      required: true
     }
   },
-  setup: function setup(props) {
+  setup: function setup(_ref, _ref2) {
+    var rootElRef = _ref.rootElRef;
+    var slots = _ref2.slots,
+        attrs = _ref2.attrs;
+    onMounted(function () {
+      var ctx = getCurrentInstance();
+      rootElRef.value = ctx.vnode.el.nextElementSibling;
+    });
+    return function () {
+      return slots.default ? slots.default({}) : h("span", null, null);
+    };
+  }
+});
+var Popover = defineComponent({
+  setup: function setup(props, _ref3) {
+    var attrs = _ref3.attrs,
+        slots = _ref3.slots,
+        emit = _ref3.emit;
     var referenceElRef = ref(null);
 
-    var _usePopper = usePopper(referenceElRef, ['el-popover', props.popperClass, props.content && 'el-popover--plain'], {
-      placement: props.placement,
+    var _usePopper = usePopper(referenceElRef, ['el-popover', 'el-popover--plain'], {
+      placement: 'top',
       modifiers: [{
         name: 'offset',
         options: [0, 4]
@@ -10399,49 +10448,30 @@ var script$9 = defineComponent({
     }),
         teleportId = _usePopper.teleportId;
 
-    return {
-      teleportId: teleportId,
-      referenceElRef: referenceElRef
+    return function () {
+      var _slots$default, _slots$reference;
+
+      return h(Fragment, null, [h(Teleport, {
+        "to": "#" + teleportId
+      }, {
+        default: withCtx(function () {
+          return [h("div", null, [h("div", {
+            "class": "el-popover__title"
+          }, "title"), (_slots$default = slots.default) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots)]), h("div", {
+            "class": "popper__arrow",
+            "data-popper-arrow": true
+          }, null)];
+        })
+      }), h(PopoverInner, {
+        "rootElRef": referenceElRef
+      }, {
+        default: withCtx(function () {
+          return [(_slots$reference = slots.reference) === null || _slots$reference === void 0 ? void 0 : _slots$reference.call(slots)];
+        })
+      })]);
     };
   }
 });
-
-const _hoisted_1$3 = /*#__PURE__*/createVNode("div", {
-  class: "popper__arrow",
-  "data-popper-arrow": ""
-}, null, -1 /* HOISTED */);
-const _hoisted_2$1$1 = {
-  ref: "referenceElRef",
-  style: {"display":"inline-block"}
-};
-
-function render$9(_ctx, _cache) {
-  return (openBlock(), createBlock(Fragment, null, [
-    createVNode(Teleport, {
-      to: `#${_ctx.teleportId}`
-    }, [
-      createVNode("div", null, [
-        (_ctx.title)
-          ? (openBlock(), createBlock("div", {
-              key: 0,
-              class: "el-popover__title",
-              textContent: _ctx.title
-            }, null, 8 /* PROPS */, ["textContent"]))
-          : createCommentVNode("v-if", true),
-        renderSlot(_ctx.$slots, "default", {}, () => [
-          createTextVNode(_toDisplayString(_ctx.content), 1 /* TEXT */)
-        ])
-      ]),
-      _hoisted_1$3
-    ], 8 /* PROPS */, ["to"]),
-    createVNode("span", _hoisted_2$1$1, [
-      renderSlot(_ctx.$slots, "reference")
-    ], 512 /* NEED_PATCH */)
-  ], 64 /* STABLE_FRAGMENT */))
-}
-
-script$9.render = render$9;
-script$9.__file = "src/components/ElPopover/ElPopover.vue";
 
 var css_248z$8 = "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Color\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Border\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Typography\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* MessageBox\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popup\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Timeline\n--------------------------*/\n/* Backtop\n--------------------------*/\n/* Link\n--------------------------*/\n/* Calendar\n--------------------------*/\n/* Form\n-------------------------- */\n/* Avatar\n--------------------------*/\n/* Break-point\n--------------------------*/\n.el-textarea {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  vertical-align: bottom;\n  font-size: 14px;\n}\n.el-textarea__inner {\n  display: block;\n  resize: vertical;\n  padding: 5px 15px;\n  line-height: 1.5;\n  box-sizing: border-box;\n  width: 100%;\n  font-size: inherit;\n  color: #606266;\n  background-color: #ffffff;\n  background-image: none;\n  border: 1px solid #dcdfe6;\n  border-radius: 4px;\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.el-textarea__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-textarea__inner:hover {\n  border-color: #c0c4cc;\n}\n.el-textarea__inner:focus {\n  outline: none;\n  border-color: #409eff;\n}\n.el-textarea .el-input__count {\n  color: #909399;\n  background: #ffffff;\n  position: absolute;\n  font-size: 12px;\n  bottom: 5px;\n  right: 10px;\n}\n.el-textarea.is-disabled .el-textarea__inner {\n  background-color: #f5f7fa;\n  border-color: #e4e7ed;\n  color: #c0c4cc;\n  cursor: not-allowed;\n}\n.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-disabled .el-textarea__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-disabled .el-textarea__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-textarea.is-exceed .el-textarea__inner {\n  border-color: #f56c6c;\n}\n.el-textarea.is-exceed .el-input__count {\n  color: #f56c6c;\n}\n.el-input {\n  position: relative;\n  font-size: 14px;\n  display: inline-block;\n  width: 100%;\n  @include scroll-bar;\n}\n.el-input .el-input__clear {\n  color: #c0c4cc;\n  font-size: 14px;\n  cursor: pointer;\n  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n}\n.el-input .el-input__clear:hover {\n  color: #909399;\n}\n.el-input .el-input__count {\n  height: 100%;\n  display: inline-flex;\n  align-items: center;\n  color: #909399;\n  font-size: 12px;\n}\n.el-input .el-input__count .el-input__count-inner {\n  background: #ffffff;\n  line-height: initial;\n  display: inline-block;\n  padding: 0 5px;\n}\n.el-input__inner {\n  -webkit-appearance: none;\n  background-color: #ffffff;\n  background-image: none;\n  border-radius: 4px;\n  border: 1px solid #dcdfe6;\n  box-sizing: border-box;\n  color: #606266;\n  display: inline-block;\n  font-size: inherit;\n  height: 40px;\n  line-height: 40px;\n  outline: none;\n  padding: 0 15px;\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  width: 100%;\n}\n.el-input__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-input__inner:hover {\n  border-color: #c0c4cc;\n}\n.el-input__inner:focus {\n  outline: none;\n  border-color: #409eff;\n}\n.el-input__suffix {\n  position: absolute;\n  height: 100%;\n  right: 5px;\n  top: 0;\n  text-align: center;\n  color: #c0c4cc;\n  transition: all 0.3s;\n  pointer-events: none;\n}\n.el-input__suffix-inner {\n  pointer-events: all;\n}\n.el-input__prefix {\n  position: absolute;\n  height: 100%;\n  left: 5px;\n  top: 0;\n  text-align: center;\n  color: #c0c4cc;\n  transition: all 0.3s;\n}\n.el-input__icon {\n  height: 100%;\n  width: 25px;\n  text-align: center;\n  transition: all 0.3s;\n  line-height: 40px;\n}\n.el-input__icon:after {\n  content: '';\n  height: 100%;\n  width: 0;\n  display: inline-block;\n  vertical-align: middle;\n}\n.el-input__validateIcon {\n  pointer-events: none;\n}\n.el-input.is-active .el-input__inner {\n  outline: none;\n  border-color: #409eff;\n}\n.el-input.is-disabled .el-input__inner {\n  background-color: #f5f7fa;\n  border-color: #e4e7ed;\n  color: #c0c4cc;\n  cursor: not-allowed;\n}\n.el-input.is-disabled .el-input__inner::-moz-placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__inner:-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__inner::-ms-input-placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__inner::placeholder {\n  color: #c0c4cc;\n}\n.el-input.is-disabled .el-input__icon {\n  cursor: not-allowed;\n}\n.el-input.is-exceed .el-input__inner {\n  border-color: #f56c6c;\n}\n.el-input.is-exceed .el-input__suffix .el-input__count {\n  color: #f56c6c;\n}\n.el-input--suffix .el-input__inner {\n  padding-right: 30px;\n}\n.el-input--prefix .el-input__inner {\n  padding-left: 30px;\n}\n.el-input--medium {\n  font-size: 14px;\n}\n.el-input--medium__inner {\n  height: 36px;\n  line-height: 36px;\n}\n.el-input--medium .el-input__icon {\n  line-height: 36px;\n}\n.el-input--small {\n  font-size: 13px;\n}\n.el-input--small__inner {\n  height: 32px;\n  line-height: 32px;\n}\n.el-input--small .el-input__icon {\n  line-height: 32px;\n}\n.el-input--mini {\n  font-size: 12px;\n}\n.el-input--mini__inner {\n  height: 28px;\n  line-height: 28px;\n}\n.el-input--mini .el-input__icon {\n  line-height: 28px;\n}\n.el-input-group {\n  line-height: normal;\n  display: inline-table;\n  width: 100%;\n  border-collapse: separate;\n  border-spacing: 0;\n}\n.el-input-group > .el-input__inner {\n  vertical-align: middle;\n  display: table-cell;\n}\n.el-input-group__append,\n.el-input-group__prepend {\n  background-color: #f5f7fa;\n  color: #909399;\n  vertical-align: middle;\n  display: table-cell;\n  position: relative;\n  border: 1px solid #dcdfe6;\n  border-radius: 4px;\n  padding: 0 20px;\n  width: 1px;\n  white-space: nowrap;\n}\n.el-input-group__append:focus,\n.el-input-group__prepend:focus {\n  outline: none;\n}\n.el-input-group__append .el-select,\n.el-input-group__prepend .el-select,\n.el-input-group__append .el-button,\n.el-input-group__prepend .el-button {\n  display: inline-block;\n  margin: -10px -20px;\n}\n.el-input-group__append button.el-button,\n.el-input-group__prepend button.el-button,\n.el-input-group__append div.el-select .el-input__inner,\n.el-input-group__prepend div.el-select .el-input__inner,\n.el-input-group__append div.el-select:hover .el-input__inner,\n.el-input-group__prepend div.el-select:hover .el-input__inner {\n  border-color: transparent;\n  background-color: transparent;\n  color: inherit;\n  border-top: 0;\n  border-bottom: 0;\n}\n.el-input-group__append .el-button,\n.el-input-group__prepend .el-button,\n.el-input-group__append .el-input,\n.el-input-group__prepend .el-input {\n  font-size: inherit;\n}\n.el-input-group__prepend {\n  border-right: 0;\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.el-input-group__append {\n  border-left: 0;\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.el-input-group--prepend .el-input__inner {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.el-input-group--prepend .el-select .el-input.is-focus .el-input__inner {\n  border-color: transparent;\n}\n.el-input-group--append .el-input__inner {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.el-input-group--append .el-select .el-input.is-focus .el-input__inner {\n  border-color: transparent;\n}\n/** disalbe default clear on IE */\n.el-input__inner::-ms-clear {\n  display: none;\n  width: 0;\n  height: 0;\n}\n";
 styleInject(css_248z$8);
@@ -10455,7 +10485,7 @@ function useElForm() {
 }
 
 //
-var script$a = defineComponent({
+var script$9 = defineComponent({
   name: 'ElInput',
   inheritAttrs: false,
   props: {
@@ -10791,11 +10821,11 @@ var script$a = defineComponent({
 //   }
 // }
 
-const _hoisted_1$4 = {
+const _hoisted_1$3 = {
   key: 0,
   class: "el-input-group__prepend"
 };
-const _hoisted_2$2 = {
+const _hoisted_2$1$1 = {
   key: 0,
   class: "el-input__prefix"
 };
@@ -10818,7 +10848,7 @@ const _hoisted_8 = {
   class: "el-input__count"
 };
 
-function render$a(_ctx, _cache) {
+function render$9(_ctx, _cache) {
   return (openBlock(), createBlock("div", {
     class: _ctx.cls,
     onMouseenter: _cache[18] || (_cache[18] = $event => (_ctx.hovering = true)),
@@ -10828,7 +10858,7 @@ function render$a(_ctx, _cache) {
       ? (openBlock(), createBlock(Fragment, { key: 0 }, [
           createCommentVNode(" 前置元素 "),
           (_ctx.$slots.prepend)
-            ? (openBlock(), createBlock("div", _hoisted_1$4, [
+            ? (openBlock(), createBlock("div", _hoisted_1$3, [
                 renderSlot(_ctx.$slots, "prepend")
               ]))
             : createCommentVNode("v-if", true),
@@ -10855,7 +10885,7 @@ function render$a(_ctx, _cache) {
             : createCommentVNode("v-if", true),
           createCommentVNode(" 前置内容 "),
           (_ctx.$slots.prefix || _ctx.prefixIcon)
-            ? (openBlock(), createBlock("span", _hoisted_2$2, [
+            ? (openBlock(), createBlock("span", _hoisted_2$1$1, [
                 renderSlot(_ctx.$slots, "prefix"),
                 (_ctx.prefixIcon)
                   ? (openBlock(), createBlock("i", {
@@ -10941,10 +10971,10 @@ function render$a(_ctx, _cache) {
   ], 34 /* CLASS, HYDRATE_EVENTS */))
 }
 
-script$a.render = render$a;
-script$a.__file = "src/components/ElInput/ElInput.vue";
+script$9.render = render$9;
+script$9.__file = "src/components/ElInput/ElInput.vue";
 
-var script$b = defineComponent({
+var script$a = defineComponent({
   components: {
     HelloWorld: script,
     ElContainer: script$1,
@@ -10965,8 +10995,8 @@ var script$b = defineComponent({
   }
 });
 
-const _hoisted_1$5 = { class: "demo-layout" };
-const _hoisted_2$3 = /*#__PURE__*/createTextVNode("Basic");
+const _hoisted_1$4 = { class: "demo-layout" };
+const _hoisted_2$2 = /*#__PURE__*/createTextVNode("Basic");
 const _hoisted_3$1 = /*#__PURE__*/createVNode("i", { class: "el-icon-menu" }, null, -1);
 const _hoisted_4$1 = /*#__PURE__*/createTextVNode(" layout ");
 const _hoisted_5$1 = /*#__PURE__*/createVNode("i", { class: "el-icon-menu" }, null, -1);
@@ -10986,7 +11016,7 @@ const _hoisted_18 = /*#__PURE__*/createVNode("i", { class: "el-icon-menu" }, nul
 const _hoisted_19 = /*#__PURE__*/createTextVNode(" popover ");
 const _hoisted_20 = /*#__PURE__*/createTextVNode("Hooks");
 
-function render$b(_ctx, _cache) {
+function render$a(_ctx, _cache) {
   const _component_HelloWorld = resolveComponent("HelloWorld");
   const _component_el_menu_item = resolveComponent("el-menu-item");
   const _component_el_menu_item_group = resolveComponent("el-menu-item-group");
@@ -10996,7 +11026,7 @@ function render$b(_ctx, _cache) {
   const _component_ElMain = resolveComponent("ElMain");
   const _component_ElContainer = resolveComponent("ElContainer");
 
-  return (openBlock(), createBlock("div", _hoisted_1$5, [
+  return (openBlock(), createBlock("div", _hoisted_1$4, [
     createVNode(_component_ElContainer, { direction: "horizontal" }, {
       default: withCtx(() => [
         createVNode(_component_ElAside, { class: "demo-aside" }, {
@@ -11006,7 +11036,7 @@ function render$b(_ctx, _cache) {
               default: withCtx(() => [
                 createVNode(_component_el_menu_item_group, null, {
                   title: withCtx(() => [
-                    _hoisted_2$3
+                    _hoisted_2$2
                   ]),
                   default: withCtx(() => [
                     createVNode(_component_el_menu_item, {
@@ -11132,7 +11162,7 @@ function render$b(_ctx, _cache) {
 
 ;
 
-script$b.render = render$b;
+script$a.render = render$a;
 
 const router = createRouter({
   history: createWebHistory(),
@@ -11142,31 +11172,31 @@ const router = createRouter({
     {
       path: "/",
       name: "Layout",
-      component: script$b,
+      component: script$a,
       children: [
-        {path: "/button", name: "button", component: async () => import('./button.155e7e63.js')},
-        {path: "/layout", name: "layout", component: async () => import('./layout.3ce80d3c.js')},
-        {path: "/container", name: "container", component: async () => import('./container.6a18d748.js')},
-        {path: "/icon", name: "icon", component: async () => import('./icon.4912a8bb.js')},
-        {path: "/menu", name: "menu", component: async () => import('./menu.fe600a31.js')},
-        {path: "/popover", name: "popover", component: async () => import('./popover.50e56248.js')}
+        {path: "/button", name: "button", component: async () => import('./button.ad78c2ff.js')},
+        {path: "/layout", name: "layout", component: async () => import('./layout.002572bb.js')},
+        {path: "/container", name: "container", component: async () => import('./container.faca491c.js')},
+        {path: "/icon", name: "icon", component: async () => import('./icon.67e93faa.js')},
+        {path: "/menu", name: "menu", component: async () => import('./menu.f4f892b8.js')},
+        {path: "/popover", name: "popover", component: async () => import('./popover.26e9105b.js')}
       ]
     }
   ]
 });
 
-var script$c = defineComponent({
+var script$b = defineComponent({
   name: "App",
   components: {}
 });
 
-function render$c(_ctx, _cache) {
+function render$b(_ctx, _cache) {
   const _component_router_view = resolveComponent("router-view");
 
   return (openBlock(), createBlock(_component_router_view))
 }
 
-script$c.render = render$c;
+script$b.render = render$b;
 
 window.Prism.plugins.NormalizeWhitespace.setDefaults({
   indent: 0,
@@ -11177,8 +11207,8 @@ window.Prism.plugins.NormalizeWhitespace.setDefaults({
   "remove-initial-line-feed": false,
   "tabs-to-spaces": 2
 });
-const app = createApp(script$c);
+const app = createApp(script$b);
 app.use(router);
 app.mount("#app");
 
-export { script$8 as A, ElMenuItemGroup as B, script$9 as C, ElMenu as E, Fragment as F, _toDisplayString as _, script$5 as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ref as f, reactive as g, onMounted as h, index as i, createCommentVNode as j, renderSlot as k, index$1 as l, script$1 as m, nextTick as n, openBlock as o, script$1$1 as p, script$2 as q, resolveComponent as r, script$6 as s, toRefs as t, script$3 as u, script$4 as v, withCtx as w, script$7 as x, renderList as y, ElMenuItem as z };
+export { script$8 as A, ElMenuItemGroup as B, ElMenu as E, Fragment as F, Popover as P, _toDisplayString as _, script$5 as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ref as f, reactive as g, onMounted as h, index as i, createCommentVNode as j, renderSlot as k, index$1 as l, script$1 as m, nextTick as n, openBlock as o, script$1$1 as p, script$2 as q, resolveComponent as r, script$6 as s, toRefs as t, script$3 as u, script$4 as v, withCtx as w, script$7 as x, renderList as y, ElMenuItem as z };

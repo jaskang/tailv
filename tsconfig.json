@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "preserve",
     "target": "ESNext",
     "module": "ESNext",
     "declaration": true,
@@ -14,7 +15,6 @@
     "baseUrl": ".",
     "rootDir": "./",
     "paths": {
-      "@/*": ["./src/*"],
       "elenext": ["./"]
     },
     "lib": ["esnext", "dom"]
