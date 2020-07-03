@@ -3,10 +3,11 @@
   "version": "0.1.1",
   "author": "jaskang",
   "license": "MIT",
-  "main": "dist/elenext.esm.production.js",
-  "module": "dist/elenext.esm.production.js",
-  "jsnext:main": "dist/elenext.esm.production.js",
-  "types": "dist/__types__/index.d.ts",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "site"
+  ],
   "homepage": "https://github.com/kcmbiu/elenext",
   "repository": {
     "type": "git",
@@ -24,13 +25,7 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@popperjs/core": "2.4.2",
-    "vue": "^3.0.0-beta.15"
-  },
+  "dependencies": {},
   "scripts": {
     "start": "tsrv build -w",
     "build": "tsrv build",
@@ -38,15 +33,7 @@
     "docs:build": "cd docs && yarn build"
   },
   "devDependencies": {
-    "@types/prismjs": "^1.16.1",
-    "@typescript-eslint/eslint-plugin": "^2.7.0",
-    "@typescript-eslint/parser": "^2.7.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-vue": "^7.0.0-alpha.6",
-    "prettier": "^2.0.5",
-    "prismjs": "^1.20.0",
-    "tsrv": "^0.6.0",
+    "lerna": "^3.20.2",
     "typescript": "^3.9.5"
   }
 }

@@ -1,0 +1,29 @@
+{
+  "name": "elenext",
+  "version": "0.1.2",
+  "description": "> TODO: description",
+  "author": "jaskang <jaskang@qq.com>",
+  "homepage": "https://github.com/kcmbiu/elenext#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/elenext.esm.js",
+  "types": "dist/elenext.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasKang/elenext.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JasKang/elenext/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "elehooks": "0.0.1"
+  }
+}
