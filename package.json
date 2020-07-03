@@ -1,5 +1,5 @@
 {
-  "name": "elenext",
+  "name": "root",
   "version": "0.1.1",
   "author": "jaskang",
   "license": "MIT",
@@ -25,15 +25,22 @@
   "files": [
     "dist"
   ],
-  "dependencies": {},
   "scripts": {
+    "test": "jest --runInBand",
     "start": "tsrv build -w",
     "build": "tsrv build",
     "docs:dev": "cd docs && yarn dev",
     "docs:build": "cd docs && yarn build"
   },
+  "dependencies": {},
   "devDependencies": {
-    "lerna": "^3.20.2",
-    "typescript": "^3.9.5"
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "@types/puppeteer": "^3.0.1",
+    "jest": "^26.1.0",
+    "lerna": "^3.22.1",
+    "puppeteer": "^5.0.0",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.9.6"
   }
 }
