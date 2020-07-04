@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "index.js",
   "module": "dist/elenext.esm.js",
-  "types": "dist/elenext.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
@@ -24,6 +24,11 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "elehooks": "0.0.1"
+    "@popperjs/core": "^2.4.4",
+    "elehooks": "0.0.1",
+    "vue": "^3.0.0-beta.18"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0-beta.18"
   }
 }
