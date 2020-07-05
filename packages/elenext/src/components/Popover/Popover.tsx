@@ -1,6 +1,8 @@
 import { defineComponent, ref, onMounted, getCurrentInstance, Teleport, PropType, Ref } from 'vue'
 import { usePopper } from '../Popper'
 
+import './Popover.scss'
+
 const PopoverInner = defineComponent({
   props: {
     rootElRef: {

@@ -2,6 +2,8 @@ import { reactive, toRefs, computed, ref, onMounted, watch, provide, ToRefs, inj
 import { uniqueId, normalizeClass, createEl, removeEl } from '../../utils'
 import { createPopper, Instance as Popper } from '@popperjs/core'
 
+import './popper.scss'
+
 export type PlacementType =
   | 'top'
   | 'top-start'
@@ -38,8 +40,8 @@ export function usePopper(
 ) {
   const { placement = 'bottom', modifiers = [], strategy = 'absolute' } = options || {}
   const popperEl = createEl(uniqueId('el-popper'), normalizeClass(['el-popper', popperClass]))
-  const popper = ref<Popper>(null)
-  const hideTimer = ref(null)
+  const popper = ref<Popper>()
+  const hideTimer = ref<number>()
   const trigger = 'click'
   watch(referenceElRef, referenceEl => {
     if (referenceEl) {
@@ -75,8 +77,8 @@ export function usePopper(
         })
       })
     } else {
-      popper.value.destroy()
-      popper.value = null
+      popper.value?.destroy()
+      popper.value = undefined
     }
   })
   const parentState = inject<ElPopperState>(ElPopperContextKey, null)
@@ -102,7 +104,7 @@ export function usePopper(
   watch(state.isOpen, value => {
     if (value) {
       clearTimeout(hideTimer.value)
-      popper.value.update()
+      popper.value?.update()
       popperEl.setAttribute('data-show', 'true')
     } else {
       hideTimer.value = setTimeout(() => {
@@ -120,7 +122,7 @@ export function usePopper(
   onBeforeUnmount(() => {
     if (popper.value) {
       popper.value.destroy()
-      popper.value = null
+      popper.value = undefined
     }
     if (parentState) {
       const index = parentState.children.value.indexOf(state)

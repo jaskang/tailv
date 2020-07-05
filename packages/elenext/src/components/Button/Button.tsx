@@ -3,10 +3,6 @@ import { inject, computed, defineComponent } from 'vue'
 
 import './Button.scss'
 
-// console.log(styles)
-
-// console.log(s)
-
 const ElButton = defineComponent({
   name: 'ElButton',
   props: {

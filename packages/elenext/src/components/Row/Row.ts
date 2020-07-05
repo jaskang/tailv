@@ -1,6 +1,8 @@
 import { defineComponent, computed, h, provide } from 'vue'
 import { ElRowSymbol } from '../../provides'
 
+import './Row.scss'
+
 export default defineComponent({
   name: 'ElRow',
   props: {
