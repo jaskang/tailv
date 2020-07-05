@@ -58,10 +58,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './HelloWorld.vue';
-import { ElContainer, ElAside, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup } from 'elenext';
-import { useRouter } from 'vue-router';
+import { defineComponent } from 'vue'
+import HelloWorld from './HelloWorld.vue'
+import { ElContainer, ElAside, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup } from 'elenext'
+import { useRouter, RouteLocationRaw } from 'vue-router'
 export default defineComponent({
   components: {
     HelloWorld,
@@ -73,15 +73,15 @@ export default defineComponent({
     ElMenuItemGroup
   },
   setup() {
-    const router = useRouter();
-    const push = e => {
-      router.push(e);
-    };
+    const router = useRouter()
+    const push = (e: RouteLocationRaw) => {
+      router.push(e)
+    }
     return {
       push
-    };
+    }
   }
-});
+})
 </script>
 <style lang="less">
 .demo-layout {

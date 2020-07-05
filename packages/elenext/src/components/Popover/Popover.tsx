@@ -1,10 +1,10 @@
-import { defineComponent, ref, onMounted, getCurrentInstance, Teleport } from 'vue'
-import { usePopper, PlacementType } from '../Popper'
+import { defineComponent, ref, onMounted, getCurrentInstance, Teleport, PropType, Ref } from 'vue'
+import { usePopper } from '../Popper'
 
 const PopoverInner = defineComponent({
   props: {
     rootElRef: {
-      type: Object,
+      type: Object as PropType<Ref<Element | undefined>>,
       required: true
     }
   },

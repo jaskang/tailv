@@ -11,7 +11,7 @@ export default defineComponent({
   setup(props, { slots }) {
     return () => (
       <aside class="el-aside" style={{ width: props.width }}>
-        {slots.defalut?.()}
+        {slots.default?.()}
       </aside>
     )
   }

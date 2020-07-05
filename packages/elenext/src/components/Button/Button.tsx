@@ -1,5 +1,5 @@
 import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
-import { inject, computed, defineComponent } from 'vue'
+import { inject, computed, defineComponent, watchEffect } from 'vue'
 
 const ElButton = defineComponent({
   name: 'ElButton',
@@ -50,9 +50,9 @@ const ElButton = defineComponent({
         class={[
           'el-button',
           props.type ? 'el-button--' + props.type : '',
-          buttonSize ? 'el-button--' + buttonSize : '',
+          buttonSize ? 'el-button--' + buttonSize.value : '',
           {
-            'is-disabled': buttonDisabled,
+            'is-disabled': buttonDisabled.value,
             'is-loading': props.loading,
             'is-plain': props.plain,
             'is-round': props.round,

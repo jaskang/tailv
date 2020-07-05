@@ -10,6 +10,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
+    "styles",
     "dist"
   ],
   "sideEffects": false,

@@ -108,7 +108,7 @@ export default defineComponent({
               class={data.class}
               style={{ backgroundColor: state.style.value.backgroundColor, ...data.style }}
             >
-              {slots.defalut?.()}
+              {slots.default?.()}
             </ul>
           </Teleport>
         ) : (
@@ -118,7 +118,7 @@ export default defineComponent({
             class="el-menu el-menu--inline"
             style={{ backgroundColor: state.style.value.backgroundColor }}
           >
-            {slots.defalut?.()}
+            {slots.default?.()}
           </ul>
         )}
       </li>
