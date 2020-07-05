@@ -1,6 +1,6 @@
 import './assets/prism.css'
 import './assets/prism.js'
-import './index.css'
+// import './index.css'
 import './index.less'
 import { createApp } from 'vue'
 import { router } from './router'

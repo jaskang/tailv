@@ -1,13 +1,16 @@
 import path from 'path'
+import nodeResolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 import ts from 'rollup-plugin-typescript2'
+import postcss from 'rollup-plugin-postcss'
 import replace from '@rollup/plugin-replace'
 import babel from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
-
+import autoprefixer from 'autoprefixer'
 if (!process.env.TARGET) {
   throw new Error('TARGET package must be specified via --environment flag.')
 }
-
+const extensions = ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs']
 const packagesDir = path.resolve(__dirname, 'packages')
 const packageDir = path.resolve(packagesDir, process.env.TARGET)
 const name = path.basename(packageDir)
@@ -32,11 +35,15 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
     input: resolve(`src/index.ts`),
     external,
     plugins: [
+      postcss({
+        plugins: [autoprefixer()]
+      }),
       json({
         namedExports: false
       }),
-      replace({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      nodeResolve({ mainFields: ['module', 'main', 'jsnext:main', 'browser'], extensions }),
+      commonjs({
+        include: /node_modules/
       }),
       ts({
         check: process.env.NODE_ENV === 'production' && !hasTSChecked,
@@ -53,8 +60,12 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       }),
       babel({
         exclude: /\/node_modules\//,
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs']
+        extensions: extensions
         // babelHelpers: 'runtime'
+      }),
+
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
       }),
       ...plugins
     ],

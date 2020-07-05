@@ -1,14 +1,19 @@
-declare const __DEV__: boolean;
+declare const __DEV__: boolean
 
 // export * from 'vue'
 
 declare module '*.vue' {
-  import { ComponentOptions } from 'vue';
-  const comp: ComponentOptions;
-  export default comp;
+  import { ComponentOptions } from 'vue'
+  const comp: ComponentOptions
+  export default comp
 }
 
 declare module '*.module.less' {
-  const classes: { readonly [key: string]: string };
-  export default classes;
+  const classes: { readonly [key: string]: string }
+  export default classes
+}
+
+declare module '*.module.scss' {
+  const classes: { readonly [key: string]: string }
+  export default classes
 }
