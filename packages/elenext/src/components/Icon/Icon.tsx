@@ -1,8 +1,11 @@
 import { defineComponent } from 'vue'
+
+import './Icon.scss'
+
 export default defineComponent({
   name: 'ElIcon',
   props: { name: String },
-  setup() {
-    return () => <i class={'el-icon-' + name}></i>
+  setup(props) {
+    return () => <i class={`el-icon-${props.name}`}></i>
   }
 })

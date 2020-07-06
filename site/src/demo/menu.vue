@@ -128,7 +128,7 @@
       </el-col>
       <el-col :span="12">
         <h5>自定义颜色</h5>
-        <el-menu
+        <!-- <el-menu
           mode="vertical"
           default-active="2"
           class="el-menu-vertical-demo"
@@ -166,7 +166,7 @@
             <i class="el-icon-setting"></i>
             <template #title><span>导航四</span></template>
           </el-menu-item>
-        </el-menu>
+        </el-menu> -->
       </el-col>
     </el-row>
   </Preview>

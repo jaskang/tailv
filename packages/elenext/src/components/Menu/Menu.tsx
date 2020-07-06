@@ -101,9 +101,9 @@ export default defineComponent({
         // key={+collapse}
         style={{ backgroundColor: props.backgroundColor || '' }}
         class={{
+          'el-menu': true,
           'el-menu--horizontal': props.mode === 'horizontal',
-          'el-menu--collapse': props.collapse,
-          'el-menu': true
+          'el-menu--collapse': props.collapse
         }}
       >
         {slots.default?.()}

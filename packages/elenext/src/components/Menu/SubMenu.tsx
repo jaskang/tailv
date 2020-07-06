@@ -37,6 +37,11 @@ export default defineComponent({
     })
     const isActive = computed(() => menuState.activeId === id || state.items.indexOf(menuState.activeId) !== -1)
     const isOpen = computed(() => menuState.openedItems.indexOf(id) !== -1)
+    const titleIcon = computed(() =>
+      (menuState.mode === 'horizontal' && state.deep === 0) || (menuState.mode === 'vertical' && !menuState.collapse)
+        ? 'el-icon-arrow-down'
+        : 'el-icon-arrow-right'
+    )
 
     const handleClick = () => {
       if (
@@ -46,7 +51,7 @@ export default defineComponent({
       ) {
         return
       }
-      if (isOpen) {
+      if (isOpen.value) {
         menuActions.close(id)
       } else {
         menuActions.open(id)
@@ -116,26 +121,19 @@ export default defineComponent({
           onMouseleave={handleTitleMouseleave}
         >
           {slots.title?.()}
-          <i
-            class={[
-              'el-submenu__icon-arrow'
-              //  state.icon
-            ]}
-          ></i>
+          <i class={['el-submenu__icon-arrow', titleIcon.value]}></i>
         </div>
       )
       return (
         <li
           class={{
             'el-submenu': true,
-            'is-active': isActive,
-            'is-opened': isOpen,
+            'is-active': isActive.value,
+            'is-opened': isOpen.value,
             'is-disabled': props.disabled
           }}
           role="menuitem"
-          onClick={handleClick}
           onMouseenter={onMouseEnter}
-          onFocus={onMouseEnter}
           onBlur={onMouseLeave}
           onMouseleave={onMouseLeave}
         >
@@ -161,7 +159,7 @@ export default defineComponent({
           ) : (
             <>
               {Title}
-              {isOpen && (
+              {isOpen.value && (
                 <ul role="menu" class="el-menu el-menu--inline" style={{ backgroundColor: menuState.backgroundColor }}>
                   {slots.default?.()}
                 </ul>
