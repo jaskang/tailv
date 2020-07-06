@@ -2,6 +2,7 @@
 @import '../styles/common/var';
 
 @include b(popper) {
+  position: absolute;
   display: none;
   &[data-show] {
     display: block;

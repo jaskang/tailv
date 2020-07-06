@@ -1,18 +1,5 @@
-import {
-  defineComponent,
-  watch,
-  ref,
-  reactive,
-  Teleport,
-  inject,
-  Transition,
-  InjectionKey,
-  provide,
-  computed,
-  onMounted,
-  onUnmounted
-} from 'vue'
-import { usePopper, PlacementType } from '../Popper'
+import { defineComponent, reactive, inject, InjectionKey, provide, computed, onMounted, onUnmounted } from 'vue'
+import { ElPopper } from '../Popper'
 import { MenuSymbol } from './Menu'
 
 type SubMenuState = {
@@ -50,13 +37,6 @@ export default defineComponent({
     })
     const isActive = computed(() => menuState.activeId === id || state.items.indexOf(menuState.activeId) !== -1)
     const isOpen = computed(() => menuState.openedItems.indexOf(id) !== -1)
-
-    const referenceRef = ref<HTMLElement>()
-
-    const { teleportId } = usePopper(referenceRef, [`el-menu--${menuState.mode}`], {
-      placement: state.deep === 0 ? 'bottom-start' : 'right-start',
-      modifiers: [{ name: 'offset', options: { offset: state.deep === 0 ? [0, 0] : [0, 4] } }]
-    })
 
     const handleClick = () => {
       if (
@@ -99,7 +79,7 @@ export default defineComponent({
     }
     const handleTitleMouseleave = () => {
       if (menuState.mode === 'horizontal' && !menuState.backgroundColor) return
-      referenceRef.value && (referenceRef.value.style.backgroundColor = menuState.backgroundColor || '')
+      // referenceRef.value && (referenceRef.value.style.backgroundColor = menuState.backgroundColor || '')
     }
 
     onMounted(() => {
@@ -126,23 +106,9 @@ export default defineComponent({
       }
     })
 
-    return () => (
-      <li
-        class={{
-          'el-submenu': true,
-          'is-active': isActive,
-          'is-opened': isOpen,
-          'is-disabled': props.disabled
-        }}
-        role="menuitem"
-        onClick={handleClick}
-        onMouseenter={onMouseEnter}
-        onFocus={onMouseEnter}
-        onBlur={onMouseLeave}
-        onMouseleave={onMouseLeave}
-      >
+    return () => {
+      const Title = (
         <div
-          ref="referenceRef"
           class="el-submenu__title"
           // style={state.style}
           onClick={handleClick}
@@ -157,33 +123,53 @@ export default defineComponent({
             ]}
           ></i>
         </div>
-        {menuState.isPopup ? (
-          <Transition name={'el-zoom-in-top'}>
-            <Teleport to={`#${teleportId}`}>
-              <ul
-                role="menu"
-                class={[
-                  'el-menu',
-                  'el-menu--popup',
-                  `el-menu--popup-${state.deep === 0 ? 'bottom-start' : 'right-start'}`
-                ]}
-                style={{ backgroundColor: menuState.backgroundColor, width: '200px' }}
-              >
-                {slots.default?.()}
-              </ul>
-            </Teleport>
-          </Transition>
-        ) : (
-          <ul
-            role="menu"
-            v-show="state.isOpen"
-            class="el-menu el-menu--inline"
-            style={{ backgroundColor: menuState.backgroundColor }}
-          >
-            {slots.default?.()}
-          </ul>
-        )}
-      </li>
-    )
+      )
+      return (
+        <li
+          class={{
+            'el-submenu': true,
+            'is-active': isActive,
+            'is-opened': isOpen,
+            'is-disabled': props.disabled
+          }}
+          role="menuitem"
+          onClick={handleClick}
+          onMouseenter={onMouseEnter}
+          onFocus={onMouseEnter}
+          onBlur={onMouseLeave}
+          onMouseleave={onMouseLeave}
+        >
+          {menuState.isPopup ? (
+            <ElPopper
+              placement={state.deep === 0 ? 'bottom-start' : 'right-start'}
+              render={() => (
+                <ul
+                  role="menu"
+                  class={[
+                    'el-menu',
+                    'el-menu--popup',
+                    `el-menu--popup-${state.deep === 0 ? 'bottom-start' : 'right-start'}`
+                  ]}
+                  style={{ backgroundColor: menuState.backgroundColor, width: '200px' }}
+                >
+                  {slots.default?.()}
+                </ul>
+              )}
+            >
+              {Title}
+            </ElPopper>
+          ) : (
+            <>
+              {Title}
+              {isOpen && (
+                <ul role="menu" class="el-menu el-menu--inline" style={{ backgroundColor: menuState.backgroundColor }}>
+                  {slots.default?.()}
+                </ul>
+              )}
+            </>
+          )}
+        </li>
+      )
+    }
   }
 })

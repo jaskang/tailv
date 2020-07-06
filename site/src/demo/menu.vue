@@ -93,7 +93,7 @@
     <el-row class="tac">
       <el-col :span="12">
         <h5>默认颜色</h5>
-        <el-menu default-active="2" class="el-menu-vertical-demo">
+        <el-menu mode="vertical" default-active="2" class="el-menu-vertical-demo">
           <el-submenu index="1">
             <template #title>
               <i class="el-icon-location"></i>
@@ -129,6 +129,7 @@
       <el-col :span="12">
         <h5>自定义颜色</h5>
         <el-menu
+          mode="vertical"
           default-active="2"
           class="el-menu-vertical-demo"
           background-color="#545c64"
@@ -171,16 +172,16 @@
   </Preview>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import Preview from '../components/Preview.vue';
-import { ElRow, ElCol, ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from 'elenext';
+import Preview from '../components/Preview.vue'
+import { ElRow, ElCol, ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from 'elenext'
 export default defineComponent({
   components: { Preview, ElRow, ElCol, ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup },
   setup(props, { attrs, slots, emit }) {
-    return {};
+    return {}
   }
-});
+})
 </script>
 <style lang="less">
 .el-menu-vertical-demo {

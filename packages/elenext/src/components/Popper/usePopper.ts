@@ -1,19 +1,4 @@
-import {
-  reactive,
-  toRefs,
-  computed,
-  ref,
-  onMounted,
-  watch,
-  provide,
-  ToRefs,
-  inject,
-  onBeforeUnmount,
-  Ref,
-  ComputedRef,
-  unref,
-  watchEffect
-} from 'vue'
+import { reactive, computed, ref, watch, provide, inject, onBeforeUnmount, Ref, watchEffect } from 'vue'
 import { uniqueId, normalizeClass, createEl, removeEl } from '../../utils'
 import { createPopper, Instance as Popper } from '@popperjs/core'
 
@@ -131,6 +116,7 @@ export function usePopper(
     console.log('isActive:' + state.isActive)
     console.log('children:' + state.children.length)
   })
+
   watch(isOpen, isOpen => {
     console.log(isOpen)
     if (isOpen) {
@@ -150,9 +136,7 @@ export function usePopper(
       popper.value.destroy()
       popper.value = undefined
     }
-    if (actions) {
-      actions.remove(id)
-    }
+    actions?.remove(id)
     removeEl(popperEl)
   })
 

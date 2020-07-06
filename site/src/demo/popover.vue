@@ -9,7 +9,7 @@
       trigger="hover"
       content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
     >
-      <template #reference><el-button>hover 激活</el-button></template>
+      <el-button>hover 激活</el-button>
     </el-popover>
 
     <el-popover
@@ -19,7 +19,7 @@
       trigger="click"
       content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
     >
-      <template #reference><el-button>click 激活</el-button></template>
+      <el-button>click 激活</el-button>
     </el-popover>
     <template #template>
       {{`
@@ -48,14 +48,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Preview from '../components/Preview.vue';
-import { ElPopover, ElButton } from 'elenext';
+import { defineComponent } from 'vue'
+import Preview from '../components/Preview.vue'
+import { ElPopover, ElButton } from 'elenext'
 export default defineComponent({
   components: {
     Preview,
     ElButton,
     ElPopover
   }
-});
+})
 </script>
