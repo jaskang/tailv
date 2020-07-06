@@ -1,4 +1,9 @@
 import { defineComponent } from 'vue'
+import { injectCss } from '../../utils'
+
+import styles from './header.scss'
+
+injectCss(styles, 'ElHeader')
 
 const ElHeader = defineComponent({
   name: 'ElHeader',

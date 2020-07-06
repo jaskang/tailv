@@ -1,6 +1,9 @@
 import { defineComponent } from 'vue'
+import { injectCss } from '../../utils'
 
-import './Aside.scss'
+import styles from './Aside.scss'
+
+injectCss(styles, 'ElAside')
 
 const ElAside = defineComponent({
   name: 'ElAside',

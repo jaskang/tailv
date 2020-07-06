@@ -1,6 +1,9 @@
 import { defineComponent, reactive, PropType, onMounted, provide, InjectionKey, toRefs, ToRefs } from 'vue'
+import { injectCss } from 'src/utils'
 
-import './Menu.scss'
+import styles from './Menu.scss'
+
+injectCss(styles, 'ElMenu')
 
 type MenuState = {
   mode: 'horizontal' | 'vertical'

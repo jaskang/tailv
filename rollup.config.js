@@ -17,6 +17,8 @@ const name = path.basename(packageDir)
 const resolve = p => path.resolve(packageDir, p)
 const pkg = require(resolve(`package.json`))
 
+// const styleInjectPath = require.resolve('./').replace(/[\\/]+/g, '/')
+
 function createConfig(format, output, hasTSChecked, plugins = []) {
   if (!output) {
     console.log(require('chalk').yellow(`invalid format: "${format}"`))
@@ -36,6 +38,7 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
     external,
     plugins: [
       postcss({
+        inject: false,
         plugins: [autoprefixer()]
       }),
       json({

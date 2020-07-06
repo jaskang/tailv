@@ -6,5 +6,5 @@
     "rootDir": "src",
     "paths": {}
   },
-  "include": ["src", "__tests__"]
+  "include": ["types/shims.d.ts", "src", "__tests__"]
 }

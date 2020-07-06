@@ -1,9 +1,13 @@
 import { defineComponent, ref, onMounted, getCurrentInstance, Teleport, PropType, Ref, Fragment } from 'vue'
+import { injectCss } from '../../utils'
 import { ElPopper } from '../Popper'
 
-import './Popover.scss'
+import styles from './Popover.scss'
+
+injectCss(styles, 'ElPopver')
 
 const Popover = defineComponent({
+  name: 'ElPopver',
   props: {
     trigger: {
       type: String,

@@ -1,7 +1,10 @@
-import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
 import { inject, computed, defineComponent } from 'vue'
+import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
+import { injectCss } from '../../utils'
 
-import './Button.scss'
+import styles from './Button.scss'
+
+injectCss(styles, 'ElButton')
 
 const ElButton = defineComponent({
   name: 'ElButton',

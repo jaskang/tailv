@@ -1,2 +1,2 @@
-export { createEl, removeEl, normalizeClass } from './dom';
-export { uniqueId } from './uniqueId';
+export { createEl, removeEl, normalizeClass, injectCss } from './dom'
+export { uniqueId } from './uniqueId'

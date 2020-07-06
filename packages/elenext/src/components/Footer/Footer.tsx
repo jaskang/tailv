@@ -1,6 +1,9 @@
 import { defineComponent } from 'vue'
+import { injectCss } from '../../utils'
 
-import './Footer.scss'
+import styles from './Footer.scss'
+
+injectCss(styles, 'ElFooter')
 
 const ElFooter = defineComponent({
   name: 'ElFooter',

@@ -1,8 +1,10 @@
 import { reactive, computed, ref, watch, provide, inject, onBeforeUnmount, Ref, watchEffect } from 'vue'
-import { uniqueId, normalizeClass, createEl, removeEl } from '../../utils'
+import { uniqueId, normalizeClass, createEl, removeEl, injectCss } from '../../utils'
 import { createPopper, Instance as Popper } from '@popperjs/core'
 
-import './popper.scss'
+import styles from './popper.scss'
+
+injectCss(styles, 'ElPopper')
 
 export type PlacementType =
   | 'top'
