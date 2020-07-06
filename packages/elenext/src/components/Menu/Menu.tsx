@@ -10,7 +10,7 @@ type MenuState = {
   activeTextColor: string
   backgroundColor: string
   isPopup: boolean
-  activeIndex: number
+  activeId: symbol
   items: symbol[]
   openedItems: symbol[]
 }
@@ -22,7 +22,7 @@ export type MenuInjectData = {
     remove: (id: symbol) => void
     open: (id: symbol) => void
     close: (id: symbol) => void
-    select: (index: number) => void
+    select: (id: symbol) => void
   }
 }
 
@@ -53,10 +53,17 @@ export default defineComponent({
       activeTextColor: props.activeTextColor,
       backgroundColor: props.backgroundColor,
       isPopup: props.mode === 'horizontal' || !!(props.mode === 'vertical' && props.collapse),
-      activeIndex: -1,
+      activeId: Symbol(),
       items: [],
       openedItems: []
     })
+
+    onMounted(() => {
+      setTimeout(() => {
+        // state.backgroundColor = 'red';
+      }, 5000)
+    })
+
     provide(MenuSymbol, {
       menuState: state,
       menuActions: {
@@ -82,16 +89,10 @@ export default defineComponent({
             state.openedItems.splice(menuIndex, 1)
           }
         },
-        select(index: number) {
-          state.activeIndex = index
+        select(id: symbol) {
+          state.activeId = id
         }
       }
-    })
-
-    onMounted(() => {
-      setTimeout(() => {
-        // state.backgroundColor = 'red';
-      }, 5000)
     })
 
     return () => (

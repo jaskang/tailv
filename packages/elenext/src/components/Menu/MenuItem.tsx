@@ -1,22 +1,31 @@
 import { defineComponent, inject, onMounted, onUnmounted, computed } from 'vue'
 import { MenuSymbol } from './Menu'
+import { SubMenuSymbol } from './SubMenu'
 
 export default defineComponent({
   name: 'ElMenuItem',
   props: {},
   setup(props, { slots, emit }) {
     const { menuState, menuActions } = inject(MenuSymbol) || {}
+    // const { subMenuState, subMenuActions } = inject(SubMenuSymbol) || {}
     if (!menuState || !menuActions) {
       throw new Error('ElMenuItem must insaid ElMenu')
     }
     const id = Symbol(`ElMenuItem`)
 
-    const isActive = computed(() => menuState.items[menuState.activeIndex] === id)
-    const handleClick = e => {
-      emit('click', e)
+    const handleClick = () => {
+      menuActions.select(id)
     }
-    const onMouseEnter = () => {}
-    const onMouseLeave = () => {}
+    const onMouseEnter = () => {
+      if (menuState.trigger == 'hover') {
+        menuActions.open(id)
+      }
+    }
+    const onMouseLeave = () => {
+      if (menuState.trigger == 'hover') {
+        menuActions.open(id)
+      }
+    }
 
     onMounted(() => {
       menuActions.add(id)
@@ -31,7 +40,7 @@ export default defineComponent({
         // style={state.style.value}
         class={{
           'el-menu-item': true,
-          'is-active': isActive.value,
+          'is-active': menuState.activeId === id,
           'is-disabled': false
         }}
         onClick={handleClick}

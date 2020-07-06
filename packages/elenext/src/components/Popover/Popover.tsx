@@ -22,9 +22,16 @@ const PopoverInner = defineComponent({
 })
 
 const Popover = defineComponent({
+  props: {
+    trigger: {
+      type: String,
+      default: 'click'
+    }
+  },
   setup(props, { attrs, slots, emit }) {
     const referenceElRef = ref<HTMLElement>()
     const { teleportId } = usePopper(referenceElRef, ['el-popover', 'el-popover--plain'], {
+      trigger: props.trigger as 'click' | 'hover',
       placement: 'top',
       modifiers: [{ name: 'offset', options: [0, 4] }]
     })

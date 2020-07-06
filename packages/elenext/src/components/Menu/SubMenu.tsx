@@ -1,14 +1,31 @@
-import { defineComponent, watch, ref, reactive, Teleport, inject, Transition, InjectionKey, provide } from 'vue'
+import {
+  defineComponent,
+  watch,
+  ref,
+  reactive,
+  Teleport,
+  inject,
+  Transition,
+  InjectionKey,
+  provide,
+  computed,
+  onMounted,
+  onUnmounted
+} from 'vue'
 import { usePopper, PlacementType } from '../Popper'
 import { MenuSymbol } from './Menu'
 
 type SubMenuState = {
   deep: number
+  items: symbol[]
 }
 
 export type SubMenuInjectData = {
   subMenuState: SubMenuState
-  subMenuActions: {}
+  subMenuActions: {
+    add: (id: symbol) => void
+    remove: (id: symbol) => void
+  }
 }
 export const SubMenuSymbol: InjectionKey<SubMenuInjectData> = Symbol('Submenu')
 
@@ -25,27 +42,20 @@ export default defineComponent({
     if (!menuState || !menuActions) {
       throw new Error('ElSubmenu must insaid ElMenu')
     }
+    const id = Symbol(`ElMenuItem`)
 
-    const state = reactive({
-      id: Symbol(`ElMenuItem`),
+    const state = reactive<SubMenuState>({
       deep: subMenuState ? subMenuState?.deep + 1 : 0,
-      isRoot: !!subMenuState,
-      isActive: false,
-      isOpen: false
+      items: []
     })
-
-    provide(SubMenuSymbol, {
-      subMenuState: {
-        deep: state.deep
-      },
-      subMenuActions: {}
-    })
+    const isActive = computed(() => menuState.activeId === id || state.items.indexOf(menuState.activeId) !== -1)
+    const isOpen = computed(() => menuState.openedItems.indexOf(id) !== -1)
 
     const referenceRef = ref<HTMLElement>()
 
     const { teleportId } = usePopper(referenceRef, [`el-menu--${menuState.mode}`], {
-      placement: state.isRoot ? 'bottom-start' : 'right-start',
-      modifiers: [{ name: 'offset', options: { offset: state.isRoot ? [0, 0] : [0, 4] } }]
+      placement: state.deep === 0 ? 'bottom-start' : 'right-start',
+      modifiers: [{ name: 'offset', options: { offset: state.deep === 0 ? [0, 0] : [0, 4] } }]
     })
 
     const handleClick = () => {
@@ -56,14 +66,14 @@ export default defineComponent({
       ) {
         return
       }
-      if (state.isOpen) {
-        menuActions.close(state.id)
+      if (isOpen) {
+        menuActions.close(id)
       } else {
-        menuActions.open(state.id)
+        menuActions.open(id)
       }
     }
 
-    const handleMouseenter = () => {
+    const onMouseEnter = () => {
       if (
         (menuState.trigger === 'click' && menuState.mode === 'horizontal') ||
         (!menuState.collapse && menuState.mode === 'vertical') ||
@@ -71,16 +81,16 @@ export default defineComponent({
       ) {
         return
       }
-      menuActions.open(state.id)
+      menuActions.open(id)
     }
-    const handleMouseleave = () => {
+    const onMouseLeave = () => {
       if (
         (menuState.trigger === 'click' && menuState.mode === 'horizontal') ||
         (!menuState.collapse && menuState.mode === 'vertical')
       ) {
         return
       }
-      menuActions.close(state.id)
+      menuActions.close(id)
     }
 
     const handleTitleMouseenter = () => {
@@ -91,30 +101,45 @@ export default defineComponent({
       if (menuState.mode === 'horizontal' && !menuState.backgroundColor) return
       referenceRef.value && (referenceRef.value.style.backgroundColor = menuState.backgroundColor || '')
     }
-    // return {
-    //   data,
-    //   state,
-    //   isPopup: root.state.isPopup,
-    //   handleClick,
-    //   handleMouseenter,
-    //   handleMouseleave,
-    //   handleTitleMouseenter,
-    //   handleTitleMouseleave,
-    //   teleportId,
-    //   referenceRef
-    // }
+
+    onMounted(() => {
+      menuActions.add(id)
+    })
+    onUnmounted(() => {
+      menuActions.remove(id)
+    })
+
+    provide(SubMenuSymbol, {
+      subMenuState: state,
+      subMenuActions: {
+        add(id: symbol) {
+          if (state.items.indexOf(id) === -1) {
+            state.items.push(id)
+          }
+        },
+        remove(id: symbol) {
+          const menuIndex = state.items.indexOf(id)
+          if (menuIndex >= 0) {
+            state.items.splice(menuIndex, 1)
+          }
+        }
+      }
+    })
+
     return () => (
       <li
         class={{
           'el-submenu': true,
-          'is-active': state.isActive,
-          'is-opened': state.isOpen,
+          'is-active': isActive,
+          'is-opened': isOpen,
           'is-disabled': props.disabled
         }}
         role="menuitem"
-        onMouseenter={handleMouseenter}
-        onMouseleave={handleMouseleave}
-        onFocus={handleMouseenter}
+        onClick={handleClick}
+        onMouseenter={onMouseEnter}
+        onFocus={onMouseEnter}
+        onBlur={onMouseLeave}
+        onMouseleave={onMouseLeave}
       >
         <div
           ref="referenceRef"
@@ -137,7 +162,11 @@ export default defineComponent({
             <Teleport to={`#${teleportId}`}>
               <ul
                 role="menu"
-                class={['el-menu', 'el-menu--popup', `el-menu--popup-${state.isRoot ? 'bottom-start' : 'right-start'}`]}
+                class={[
+                  'el-menu',
+                  'el-menu--popup',
+                  `el-menu--popup-${state.deep === 0 ? 'bottom-start' : 'right-start'}`
+                ]}
                 style={{ backgroundColor: menuState.backgroundColor, width: '200px' }}
               >
                 {slots.default?.()}
