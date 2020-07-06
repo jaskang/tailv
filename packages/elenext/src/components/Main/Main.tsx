@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 import './Main.scss'
 
-export default defineComponent({
+const ElMain = defineComponent({
   name: 'ElMain',
   setup(_, { slots, attrs }) {
     return () => (
@@ -12,3 +12,5 @@ export default defineComponent({
     )
   }
 })
+
+export default ElMain

@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 import './Aside.scss'
 
-export default defineComponent({
+const ElAside = defineComponent({
   name: 'ElAside',
   props: {
     width: {
@@ -18,3 +18,5 @@ export default defineComponent({
     )
   }
 })
+
+export default ElAside

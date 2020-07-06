@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 import './Footer.scss'
 
-export default defineComponent({
+const ElFooter = defineComponent({
   name: 'ElFooter',
   componentName: 'ElFooter',
   props: {
@@ -19,3 +19,4 @@ export default defineComponent({
     )
   }
 })
+export default ElFooter

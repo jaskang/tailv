@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-export default defineComponent({
+const ElHeader = defineComponent({
   name: 'ElHeader',
   props: {
     height: {
@@ -16,3 +16,5 @@ export default defineComponent({
     )
   }
 })
+
+export default ElHeader

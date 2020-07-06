@@ -3,7 +3,7 @@ import { ElRowSymbol } from '../../provides'
 
 import './Col.scss'
 
-export default defineComponent({
+const ElCol defineComponent({
   name: 'ElCol',
   props: {
     span: {
@@ -63,3 +63,6 @@ export default defineComponent({
     )
   }
 })
+
+
+export default ElCol

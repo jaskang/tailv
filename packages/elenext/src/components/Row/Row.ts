@@ -3,7 +3,7 @@ import { ElRowSymbol } from '../../provides'
 
 import './Row.scss'
 
-export default defineComponent({
+const ElRow = defineComponent({
   name: 'ElRow',
   props: {
     tag: {
@@ -47,3 +47,5 @@ export default defineComponent({
       )
   }
 })
+
+export default ElRow

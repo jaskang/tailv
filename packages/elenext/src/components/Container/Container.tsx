@@ -4,7 +4,7 @@ interface ElContainerProps {
   direction?: 'horizontal' | 'vertical'
 }
 
-export default defineComponent({
+const ElContainer = defineComponent({
   name: 'ElContainer',
   props: {
     direction: {
@@ -20,3 +20,5 @@ export default defineComponent({
     )
   }
 })
+
+export default ElContainer

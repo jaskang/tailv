@@ -1,7 +1,16 @@
-import { defineComponent, watch, ref, reactive, Teleport } from 'vue'
+import { defineComponent, watch, ref, reactive, Teleport, inject, Transition, InjectionKey, provide } from 'vue'
 import { usePopper, PlacementType } from '../Popper'
+import { MenuSymbol } from './Menu'
 
-import { useElSubMenu } from './provides'
+type SubMenuState = {
+  deep: number
+}
+
+export type SubMenuInjectData = {
+  subMenuState: SubMenuState
+  subMenuActions: {}
+}
+export const SubMenuSymbol: InjectionKey<SubMenuInjectData> = Symbol('Submenu')
 
 export default defineComponent({
   name: 'ElSubmenu',
@@ -10,60 +19,77 @@ export default defineComponent({
     popperClass: { type: String, default: '' }
   },
   setup(props, { slots, attrs, emit }) {
-    const { root, parent, state } = useElSubMenu()
-    const referenceRef = ref<HTMLElement>()
-    const data = reactive({
-      class: `el-menu el-menu--popup el-menu--popup-${parent?.isRoot.value ? 'bottom-start' : 'right-start'}`,
-      style: { width: '200px' }
+    const { menuState, menuActions } = inject(MenuSymbol) || {}
+    const { subMenuState, subMenuActions } = inject(SubMenuSymbol) || {}
+
+    if (!menuState || !menuActions) {
+      throw new Error('ElSubmenu must insaid ElMenu')
+    }
+
+    const state = reactive({
+      id: Symbol(`ElMenuItem`),
+      deep: subMenuState ? subMenuState?.deep + 1 : 0,
+      isRoot: !!subMenuState,
+      isActive: false,
+      isOpen: false
     })
 
-    const { teleportId } = usePopper(referenceRef, [`el-menu--${root?.state.mode}`], {
-      placement: parent?.isRoot.value ? 'bottom-start' : 'right-start',
-      modifiers: [{ name: 'offset', options: { offset: parent?.isRoot.value ? [0, 0] : [0, 4] } }]
+    provide(SubMenuSymbol, {
+      subMenuState: {
+        deep: state.deep
+      },
+      subMenuActions: {}
+    })
+
+    const referenceRef = ref<HTMLElement>()
+
+    const { teleportId } = usePopper(referenceRef, [`el-menu--${menuState.mode}`], {
+      placement: state.isRoot ? 'bottom-start' : 'right-start',
+      modifiers: [{ name: 'offset', options: { offset: state.isRoot ? [0, 0] : [0, 4] } }]
     })
 
     const handleClick = () => {
       if (
-        (root?.state.trigger === 'hover' && root?.state.mode === 'horizontal') ||
-        (root?.state.collapse && root?.state.mode === 'vertical') ||
+        (menuState.trigger === 'hover' && menuState.mode === 'horizontal') ||
+        (menuState.collapse && menuState.mode === 'vertical') ||
         props.disabled
       ) {
         return
       }
-      if (state.isOpen.value) {
-        root?.close(state.id.value)
+      if (state.isOpen) {
+        menuActions.close(state.id)
       } else {
-        root?.open(state.id.value)
+        menuActions.open(state.id)
       }
     }
 
     const handleMouseenter = () => {
       if (
-        (root?.state.trigger === 'click' && root?.state.mode === 'horizontal') ||
-        (!root?.state.collapse && root?.state.mode === 'vertical') ||
+        (menuState.trigger === 'click' && menuState.mode === 'horizontal') ||
+        (!menuState.collapse && menuState.mode === 'vertical') ||
         props.disabled
       ) {
         return
       }
-      root?.open(state.id.value)
+      menuActions.open(state.id)
     }
     const handleMouseleave = () => {
       if (
-        (root?.state.trigger === 'click' && root?.state.mode === 'horizontal') ||
-        (!root?.state.collapse && root?.state.mode === 'vertical')
+        (menuState.trigger === 'click' && menuState.mode === 'horizontal') ||
+        (!menuState.collapse && menuState.mode === 'vertical')
       ) {
         return
       }
-      root?.close(state.id.value)
+      menuActions.close(state.id)
     }
 
     const handleTitleMouseenter = () => {
-      if (root?.state.mode === 'horizontal' && !root?.state.backgroundColor) return
+      if (menuState.mode === 'horizontal' && !menuState.backgroundColor) return
       // submenuTitleRef.value && (submenuTitleRef.value.style.backgroundColor = root?.hoverBackground);
     }
     const handleTitleMouseleave = () => {
-      if (root?.state.mode === 'horizontal' && !root?.state.backgroundColor) return
-      referenceRef.value && (referenceRef.value.style.backgroundColor = root?.state.backgroundColor || '')
+      if (menuState.mode === 'horizontal' && !menuState.backgroundColor) return
+      referenceRef.value && (referenceRef.value.style.backgroundColor = menuState.backgroundColor || '')
     }
     // return {
     //   data,
@@ -93,30 +119,37 @@ export default defineComponent({
         <div
           ref="referenceRef"
           class="el-submenu__title"
-          style={state.style.value}
+          // style={state.style}
           onClick={handleClick}
           onMouseenter={handleTitleMouseenter}
           onMouseleave={handleTitleMouseleave}
         >
           {slots.title?.()}
-          <i class={['el-submenu__icon-arrow', state.icon]}></i>
+          <i
+            class={[
+              'el-submenu__icon-arrow'
+              //  state.icon
+            ]}
+          ></i>
         </div>
-        {root?.state.isPopup ? (
-          <Teleport to={`#${teleportId}`}>
-            <ul
-              role="menu"
-              class={data.class}
-              style={{ backgroundColor: state.style.value.backgroundColor, ...data.style }}
-            >
-              {slots.default?.()}
-            </ul>
-          </Teleport>
+        {menuState.isPopup ? (
+          <Transition name={'el-zoom-in-top'}>
+            <Teleport to={`#${teleportId}`}>
+              <ul
+                role="menu"
+                class={['el-menu', 'el-menu--popup', `el-menu--popup-${state.isRoot ? 'bottom-start' : 'right-start'}`]}
+                style={{ backgroundColor: menuState.backgroundColor, width: '200px' }}
+              >
+                {slots.default?.()}
+              </ul>
+            </Teleport>
+          </Transition>
         ) : (
           <ul
-            v-show="state.isOpen"
             role="menu"
+            v-show="state.isOpen"
             class="el-menu el-menu--inline"
-            style={{ backgroundColor: state.style.value.backgroundColor }}
+            style={{ backgroundColor: menuState.backgroundColor }}
           >
             {slots.default?.()}
           </ul>
