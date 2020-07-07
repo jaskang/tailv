@@ -287,3 +287,14 @@
   transition: 0.2s;
   opacity: 0;
 }
+
+.collapse-enter-from {
+  max-height: 0;
+}
+.collapse-enter-active {
+  overflow: hidden;
+  transition: max-height 2s;
+}
+.collapse-enter-to {
+  max-height: 200vh;
+}

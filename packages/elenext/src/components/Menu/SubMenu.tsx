@@ -1,6 +1,7 @@
-import { defineComponent, reactive, inject, InjectionKey, provide, computed, onMounted, onUnmounted } from 'vue'
+import { defineComponent, InjectionKey, Transition } from 'vue'
 import { ElPopper } from '../Popper'
-import { MenuSymbol } from './Menu'
+import { useMenu } from './Menu'
+import CollapseTransition from '../Transition/CollapseTransition'
 
 type SubMenuState = {
   deep: number
@@ -23,93 +24,52 @@ export default defineComponent({
     popperClass: { type: String, default: '' }
   },
   setup(props, { slots, attrs, emit }) {
-    const { menuState, menuActions } = inject(MenuSymbol) || {}
-    const { subMenuState, subMenuActions } = inject(SubMenuSymbol) || {}
-
-    if (!menuState || !menuActions) {
-      throw new Error('ElSubmenu must insaid ElMenu')
-    }
-    const id = Symbol(`ElMenuItem`)
-
-    const state = reactive<SubMenuState>({
-      deep: subMenuState ? subMenuState?.deep + 1 : 0,
-      items: []
-    })
-    const isActive = computed(() => menuState.activeId === id || state.items.indexOf(menuState.activeId) !== -1)
-    const isOpen = computed(() => menuState.openedItems.indexOf(id) !== -1)
-    const titleIcon = computed(() =>
-      (menuState.mode === 'horizontal' && state.deep === 0) || (menuState.mode === 'vertical' && !menuState.collapse)
-        ? 'el-icon-arrow-down'
-        : 'el-icon-arrow-right'
-    )
+    const id = Symbol(`ElSubmenu`)
+    const { data, config, actions } = useMenu({ id })
 
     const handleClick = () => {
-      if (
-        (menuState.trigger === 'hover' && menuState.mode === 'horizontal') ||
-        (menuState.collapse && menuState.mode === 'vertical') ||
-        props.disabled
-      ) {
-        return
-      }
-      if (isOpen.value) {
-        menuActions.close(id)
+      // if (
+      //   (config?.trigger === 'hover' && config?.mode === 'horizontal') ||
+      //   (config?.collapse && config?.mode === 'vertical') ||
+      //   props.disabled
+      // ) {
+      //   return
+      // }
+      if (data.isOpen) {
+        actions?.toggleOpen(false)
       } else {
-        menuActions.open(id)
+        actions?.toggleOpen(true)
       }
     }
 
-    const onMouseEnter = () => {
-      if (
-        (menuState.trigger === 'click' && menuState.mode === 'horizontal') ||
-        (!menuState.collapse && menuState.mode === 'vertical') ||
-        props.disabled
-      ) {
-        return
-      }
-      menuActions.open(id)
-    }
-    const onMouseLeave = () => {
-      if (
-        (menuState.trigger === 'click' && menuState.mode === 'horizontal') ||
-        (!menuState.collapse && menuState.mode === 'vertical')
-      ) {
-        return
-      }
-      menuActions.close(id)
-    }
+    // const onMouseEnter = () => {
+    //   if (
+    //     (config?.trigger === 'click' && config?.mode === 'horizontal') ||
+    //     (!config?.collapse && config?.mode === 'vertical') ||
+    //     props.disabled
+    //   ) {
+    //     return
+    //   }
+    //   actions?.toggleOpen(true)
+    // }
+    // const onMouseLeave = () => {
+    //   if (
+    //     (config?.trigger === 'click' && config?.mode === 'horizontal') ||
+    //     (!config?.collapse && config?.mode === 'vertical')
+    //   ) {
+    //     return
+    //   }
+    //   actions?.toggleOpen(false)
+    // }
 
     const handleTitleMouseenter = () => {
-      if (menuState.mode === 'horizontal' && !menuState.backgroundColor) return
+      if (config?.mode === 'horizontal' && !config?.backgroundColor) return
       // submenuTitleRef.value && (submenuTitleRef.value.style.backgroundColor = root?.hoverBackground);
     }
     const handleTitleMouseleave = () => {
-      if (menuState.mode === 'horizontal' && !menuState.backgroundColor) return
+      if (config?.mode === 'horizontal' && !config?.backgroundColor) return
       // referenceRef.value && (referenceRef.value.style.backgroundColor = menuState.backgroundColor || '')
     }
-
-    onMounted(() => {
-      menuActions.add(id)
-    })
-    onUnmounted(() => {
-      menuActions.remove(id)
-    })
-
-    provide(SubMenuSymbol, {
-      subMenuState: state,
-      subMenuActions: {
-        add(id: symbol) {
-          if (state.items.indexOf(id) === -1) {
-            state.items.push(id)
-          }
-        },
-        remove(id: symbol) {
-          const menuIndex = state.items.indexOf(id)
-          if (menuIndex >= 0) {
-            state.items.splice(menuIndex, 1)
-          }
-        }
-      }
-    })
 
     return () => {
       const Title = (
@@ -121,51 +81,56 @@ export default defineComponent({
           onMouseleave={handleTitleMouseleave}
         >
           {slots.title?.()}
-          <i class={['el-submenu__icon-arrow', titleIcon.value]}></i>
+          <i class={['el-submenu__icon-arrow', 'el-icon-arrow-down']}></i>
         </div>
       )
-      return (
+      return config?.isPopup ? (
         <li
           class={{
             'el-submenu': true,
-            'is-active': isActive.value,
-            'is-opened': isOpen.value,
+            'is-active': data.isActive,
+            'is-opened': data.isOpen,
             'is-disabled': props.disabled
           }}
           role="menuitem"
-          onMouseenter={onMouseEnter}
-          onBlur={onMouseLeave}
-          onMouseleave={onMouseLeave}
         >
-          {menuState.isPopup ? (
-            <ElPopper
-              placement={state.deep === 0 ? 'bottom-start' : 'right-start'}
-              render={() => (
-                <ul
-                  role="menu"
-                  class={[
-                    'el-menu',
-                    'el-menu--popup',
-                    `el-menu--popup-${state.deep === 0 ? 'bottom-start' : 'right-start'}`
-                  ]}
-                  style={{ backgroundColor: menuState.backgroundColor, width: '200px' }}
-                >
-                  {slots.default?.()}
-                </ul>
-              )}
-            >
-              {Title}
-            </ElPopper>
-          ) : (
-            <>
-              {Title}
-              {isOpen.value && (
-                <ul role="menu" class="el-menu el-menu--inline" style={{ backgroundColor: menuState.backgroundColor }}>
-                  {slots.default?.()}
-                </ul>
-              )}
-            </>
-          )}
+          <ElPopper
+            placement={data.deep === 0 ? 'bottom-start' : 'right-start'}
+            render={() => (
+              <ul
+                role="menu"
+                class={[
+                  'el-menu',
+                  'el-menu--popup',
+                  `el-menu--popup-${data.deep === 0 ? 'bottom-start' : 'right-start'}`
+                ]}
+                style={{ backgroundColor: config?.backgroundColor, width: '200px' }}
+              >
+                {slots.default?.()}
+              </ul>
+            )}
+          >
+            {Title}
+          </ElPopper>
+        </li>
+      ) : (
+        <li
+          class={{
+            'el-submenu': true,
+            'is-active': data.isActive,
+            'is-opened': data.isOpen,
+            'is-disabled': props.disabled
+          }}
+          role="menuitem"
+        >
+          {Title}
+          <CollapseTransition>
+            {data.isOpen && (
+              <ul role="menu" class="el-menu el-menu--inline" style={{ backgroundColor: config?.backgroundColor }}>
+                {slots.default?.()}
+              </ul>
+            )}
+          </CollapseTransition>
         </li>
       )
     }
