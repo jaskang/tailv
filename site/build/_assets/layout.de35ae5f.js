@@ -1,8 +1,8 @@
-import { d as defineComponent, i as index, l as index$1, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, e as createTextVNode, _ as _toDisplayString } from './index.53b35fce.js';
-import { s as script$1 } from './Preview.a973ac16.js';
+import { d as defineComponent, E as ElRow, k as ElCol, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, e as createTextVNode, _ as _toDisplayString } from './index.7476aa35.js';
+import { s as script$1 } from './Preview.46b42e7b.js';
 
 var script = defineComponent({
-  components: {ElRow: index, ElCol: index$1, Preview: script$1}
+  components: {ElRow, ElCol, Preview: script$1}
 });
 
 const _hoisted_1 = /*#__PURE__*/createVNode("h1", null, "Layout 布局", -1);

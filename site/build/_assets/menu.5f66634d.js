@@ -1,8 +1,8 @@
-import { d as defineComponent, i as index, l as index$1, E as ElMenu, z as ElMenuItem, A as script$8, B as ElMenuItemGroup, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, e as createTextVNode, _ as _toDisplayString } from './index.53b35fce.js';
-import { s as script$1 } from './Preview.a973ac16.js';
+import { d as defineComponent, E as ElRow, k as ElCol, M as Menu, v as MenuItem, S as SubMenu, x as MenuItemGroup, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, e as createTextVNode, _ as _toDisplayString } from './index.7476aa35.js';
+import { s as script$1 } from './Preview.46b42e7b.js';
 
 var script = defineComponent({
-  components: {Preview: script$1, ElRow: index, ElCol: index$1, ElMenu, ElMenuItem, ElSubmenu: script$8, ElMenuItemGroup},
+  components: {Preview: script$1, ElRow, ElCol, ElMenu: Menu, ElMenuItem: MenuItem, ElSubmenu: SubMenu, ElMenuItemGroup: MenuItemGroup},
   setup(props, {attrs, slots, emit}) {
     return {};
   }
@@ -98,20 +98,6 @@ const _hoisted_37 = /*#__PURE__*/createVNode("span", null, "导航三", -1);
 const _hoisted_38 = /*#__PURE__*/createVNode("i", { class: "el-icon-setting" }, null, -1);
 const _hoisted_39 = /*#__PURE__*/createVNode("span", null, "导航四", -1);
 const _hoisted_40 = /*#__PURE__*/createVNode("h5", null, "自定义颜色", -1);
-const _hoisted_41 = /*#__PURE__*/createVNode("i", { class: "el-icon-location" }, null, -1);
-const _hoisted_42 = /*#__PURE__*/createVNode("span", null, "导航一", -1);
-const _hoisted_43 = /*#__PURE__*/createTextVNode("分组一");
-const _hoisted_44 = /*#__PURE__*/createTextVNode("选项1");
-const _hoisted_45 = /*#__PURE__*/createTextVNode("选项2");
-const _hoisted_46 = /*#__PURE__*/createTextVNode("选项3");
-const _hoisted_47 = /*#__PURE__*/createTextVNode("选项4");
-const _hoisted_48 = /*#__PURE__*/createTextVNode("选项1");
-const _hoisted_49 = /*#__PURE__*/createVNode("i", { class: "el-icon-menu" }, null, -1);
-const _hoisted_50 = /*#__PURE__*/createVNode("span", null, "导航二", -1);
-const _hoisted_51 = /*#__PURE__*/createVNode("i", { class: "el-icon-document" }, null, -1);
-const _hoisted_52 = /*#__PURE__*/createVNode("span", null, "导航三", -1);
-const _hoisted_53 = /*#__PURE__*/createVNode("i", { class: "el-icon-setting" }, null, -1);
-const _hoisted_54 = /*#__PURE__*/createVNode("span", null, "导航四", -1);
 
 function render(_ctx, _cache) {
   const _component_el_menu_item = resolveComponent("el-menu-item");
@@ -305,6 +291,7 @@ function render(_ctx, _cache) {
               default: withCtx(() => [
                 _hoisted_25,
                 createVNode(_component_el_menu, {
+                  mode: "vertical",
                   "default-active": "2",
                   class: "el-menu-vertical-demo"
                 }, {
@@ -401,102 +388,7 @@ function render(_ctx, _cache) {
             }),
             createVNode(_component_el_col, { span: 12 }, {
               default: withCtx(() => [
-                _hoisted_40,
-                createVNode(_component_el_menu, {
-                  "default-active": "2",
-                  class: "el-menu-vertical-demo",
-                  "background-color": "#545c64",
-                  "text-color": "#fff",
-                  "active-text-color": "#ffd04b"
-                }, {
-                  default: withCtx(() => [
-                    createVNode(_component_el_submenu, { index: "1" }, {
-                      title: withCtx(() => [
-                        _hoisted_41,
-                        _hoisted_42
-                      ]),
-                      default: withCtx(() => [
-                        createVNode(_component_el_menu_item_group, null, {
-                          title: withCtx(() => [
-                            _hoisted_43
-                          ]),
-                          default: withCtx(() => [
-                            createVNode(_component_el_menu_item, { index: "1-1" }, {
-                              default: withCtx(() => [
-                                _hoisted_44
-                              ]),
-                              _: 1
-                            }),
-                            createVNode(_component_el_menu_item, { index: "1-2" }, {
-                              default: withCtx(() => [
-                                _hoisted_45
-                              ]),
-                              _: 1
-                            })
-                          ]),
-                          _: 1
-                        }),
-                        createVNode(_component_el_menu_item_group, { title: "分组2" }, {
-                          default: withCtx(() => [
-                            createVNode(_component_el_menu_item, { index: "1-3" }, {
-                              default: withCtx(() => [
-                                _hoisted_46
-                              ]),
-                              _: 1
-                            })
-                          ]),
-                          _: 1
-                        }),
-                        createVNode(_component_el_submenu, { index: "1-4" }, {
-                          title: withCtx(() => [
-                            _hoisted_47
-                          ]),
-                          default: withCtx(() => [
-                            createVNode(_component_el_menu_item, { index: "1-4-1" }, {
-                              default: withCtx(() => [
-                                _hoisted_48
-                              ]),
-                              _: 1
-                            })
-                          ]),
-                          _: 1
-                        })
-                      ]),
-                      _: 1
-                    }),
-                    createVNode(_component_el_menu_item, { index: "2" }, {
-                      title: withCtx(() => [
-                        _hoisted_50
-                      ]),
-                      default: withCtx(() => [
-                        _hoisted_49
-                      ]),
-                      _: 1
-                    }),
-                    createVNode(_component_el_menu_item, {
-                      index: "3",
-                      disabled: ""
-                    }, {
-                      title: withCtx(() => [
-                        _hoisted_52
-                      ]),
-                      default: withCtx(() => [
-                        _hoisted_51
-                      ]),
-                      _: 1
-                    }),
-                    createVNode(_component_el_menu_item, { index: "4" }, {
-                      title: withCtx(() => [
-                        _hoisted_54
-                      ]),
-                      default: withCtx(() => [
-                        _hoisted_53
-                      ]),
-                      _: 1
-                    })
-                  ]),
-                  _: 1
-                })
+                _hoisted_40
               ]),
               _: 1
             })

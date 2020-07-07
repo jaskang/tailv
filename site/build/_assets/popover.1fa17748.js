@@ -1,10 +1,10 @@
-import { d as defineComponent, a as script$5, P as Popover, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, e as createTextVNode, _ as _toDisplayString } from './index.53b35fce.js';
-import { s as script$1 } from './Preview.a973ac16.js';
+import { d as defineComponent, a as ElButton, P as Popover, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, e as createTextVNode, _ as _toDisplayString } from './index.7476aa35.js';
+import { s as script$1 } from './Preview.46b42e7b.js';
 
 var script = defineComponent({
   components: {
     Preview: script$1,
-    ElButton: script$5,
+    ElButton,
     ElPopover: Popover
   }
 });
@@ -53,7 +53,7 @@ function render(_ctx, _cache) {
           trigger: "hover",
           content: "这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
         }, {
-          reference: withCtx(() => [
+          default: withCtx(() => [
             createVNode(_component_el_button, null, {
               default: withCtx(() => [
                 _hoisted_2
@@ -70,7 +70,7 @@ function render(_ctx, _cache) {
           trigger: "click",
           content: "这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
         }, {
-          reference: withCtx(() => [
+          default: withCtx(() => [
             createVNode(_component_el_button, null, {
               default: withCtx(() => [
                 _hoisted_3

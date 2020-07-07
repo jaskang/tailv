@@ -1,14 +1,14 @@
-import { d as defineComponent, m as script$2, p as script$1$1, q as script$2$1, u as script$3, v as script$4, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, e as createTextVNode, _ as _toDisplayString } from './index.53b35fce.js';
-import { s as script$1 } from './Preview.a973ac16.js';
+import { d as defineComponent, l as ElContainer, m as ElAside, p as ElFooter, q as ElHeader, s as ElMain, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, e as createTextVNode, _ as _toDisplayString } from './index.7476aa35.js';
+import { s as script$1 } from './Preview.46b42e7b.js';
 
 var script = defineComponent({
   components: {
     Preview: script$1,
-    ElContainer: script$2,
-    ElAside: script$1$1,
-    ElFooter: script$2$1,
-    ElHeader: script$3,
-    ElMain: script$4
+    ElContainer,
+    ElAside,
+    ElFooter,
+    ElHeader,
+    ElMain
   }
 });
 

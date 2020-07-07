@@ -1,5 +1,5 @@
-import { d as defineComponent, x as script$7, a as script$5, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, y as renderList, e as createTextVNode, _ as _toDisplayString } from './index.53b35fce.js';
-import { s as script$1 } from './Preview.a973ac16.js';
+import { d as defineComponent, I as Icon, a as ElButton, r as resolveComponent, o as openBlock, c as createBlock, b as createVNode, w as withCtx, F as Fragment, u as renderList, e as createTextVNode, _ as _toDisplayString } from './index.7476aa35.js';
+import { s as script$1 } from './Preview.46b42e7b.js';
 
 const icons = [
   "platform-eleme",
@@ -284,7 +284,7 @@ const icons = [
   "ice-cream-round"
 ];
 var script = defineComponent({
-  components: {ElIcon: script$7, ElButton: script$5, Preview: script$1},
+  components: {ElIcon: Icon, ElButton, Preview: script$1},
   setup() {
     return {
       icons
