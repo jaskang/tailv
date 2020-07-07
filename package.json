@@ -30,8 +30,8 @@
     "dev": "node scripts/dev.js",
     "start": "tsrv build -w",
     "build": "tsrv build",
-    "docs:dev": "cd docs && yarn dev",
-    "docs:build": "cd docs && yarn build"
+    "docs:dev": "cd site && yarn dev",
+    "docs:build": "cd site && yarn build"
   },
   "dependencies": {},
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { inject, computed, defineComponent } from 'vue'
 import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
-import { injectCss } from '../../utils'
+import { injectCss } from '../../utils/dom'
 
 import styles from './Button.scss'
 

@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { injectCss } from 'src/utils'
+import { injectCss } from '../../utils/dom'
 
 import styles from './Icon.scss'
 

@@ -1,6 +1,7 @@
 import { reactive, computed, ref, watch, provide, inject, onBeforeUnmount, Ref, watchEffect } from 'vue'
-import { uniqueId, normalizeClass, createEl, removeEl, injectCss } from '../../utils'
 import { createPopper, Instance as Popper } from '@popperjs/core'
+import { normalizeClass, createEl, removeEl, injectCss } from '../../utils/dom'
+import { uniqueId } from '../../utils/uniqueId'
 
 import styles from './popper.scss'
 

@@ -1,15 +1,16 @@
 import { defineComponent } from 'vue'
-import { useMenu } from './Menu'
+import { useMenu } from './hooks'
+import { uniqueId } from '../../utils/uniqueId'
 
 export default defineComponent({
   name: 'ElMenuItem',
   props: {},
   setup(props, { slots, emit }) {
-    const id = Symbol(`ElMenuItem`)
-    const { data, config, actions } = useMenu({ id })
+    const id = Symbol(`ElMenuItem-${uniqueId()}`)
+    const { data, config, emitter } = useMenu(id)
 
     const handleClick = () => {
-      actions?.toggleSelect(!data.isActive)
+      emitter?.emit('select', id)
     }
 
     return () => (

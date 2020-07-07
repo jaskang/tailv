@@ -1,6 +1,6 @@
 import { defineComponent, computed, inject, h } from 'vue'
 import { ElRowSymbol } from '../../provides'
-import { injectCss } from '../../utils'
+import { injectCss } from '../../utils/dom'
 
 import styles from './Col.scss'
 

@@ -1,7 +1,8 @@
-import { defineComponent, InjectionKey, Transition } from 'vue'
+import { defineComponent, InjectionKey } from 'vue'
 import { ElPopper } from '../Popper'
-import { useMenu } from './Menu'
 import CollapseTransition from '../Transition/CollapseTransition'
+import { useMenu } from './hooks'
+import { uniqueId } from '../../utils/uniqueId'
 
 type SubMenuState = {
   deep: number
@@ -24,8 +25,8 @@ export default defineComponent({
     popperClass: { type: String, default: '' }
   },
   setup(props, { slots, attrs, emit }) {
-    const id = Symbol(`ElSubmenu`)
-    const { data, config, actions } = useMenu({ id })
+    const id = Symbol(`ElSubmenu-${uniqueId()}`)
+    const { data, config, emitter } = useMenu(id)
 
     const handleClick = () => {
       // if (
@@ -36,9 +37,9 @@ export default defineComponent({
       //   return
       // }
       if (data.isOpen) {
-        actions?.toggleOpen(false)
+        emitter?.emit('close', id)
       } else {
-        actions?.toggleOpen(true)
+        emitter?.emit('open', id)
       }
     }
 
