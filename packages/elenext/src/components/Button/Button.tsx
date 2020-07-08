@@ -10,12 +10,12 @@ const ElButton = defineComponent({
     size: { type: String, default: '', required: false },
     icon: { type: String, default: '', required: false },
     nativeType: { type: String, default: 'button' },
-    loading: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false },
-    plain: { type: Boolean, default: false },
-    autofocus: { type: Boolean, default: false },
-    round: { type: Boolean, default: false },
-    circle: { type: Boolean, default: false }
+    loading: { type: Boolean },
+    disabled: { type: Boolean },
+    plain: { type: Boolean },
+    autofocus: { type: Boolean },
+    round: { type: Boolean },
+    circle: { type: Boolean }
   },
   setup(props, { emit, attrs, slots }) {
     const elForm = inject(ElFormSymbol, null)
@@ -27,11 +27,6 @@ const ElButton = defineComponent({
     const buttonDisabled = computed(() => {
       return props.disabled || elForm?.disabled
     })
-
-    // return {
-    //   buttonSize,
-    //   buttonDisabled
-    // }
 
     return () => (
       <button
