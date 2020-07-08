@@ -18,7 +18,7 @@ export type SubMenuInjectData = {
 }
 export const SubMenuSymbol: InjectionKey<SubMenuInjectData> = Symbol('Submenu')
 
-export default defineComponent({
+const ElSubmenu = defineComponent({
   name: 'ElSubmenu',
   props: {
     disabled: { type: Boolean, default: false },
@@ -103,9 +103,14 @@ export default defineComponent({
                 class={[
                   'el-menu',
                   'el-menu--popup',
-                  `el-menu--popup-${data.deep === 0 ? 'bottom-start' : 'right-start'}`
+                  `el-menu--popup-${
+                    data.deep === 0 ? 'bottom-start' : 'right-start'
+                  }`
                 ]}
-                style={{ backgroundColor: config?.backgroundColor, width: '200px' }}
+                style={{
+                  backgroundColor: config?.backgroundColor,
+                  width: '200px'
+                }}
               >
                 {slots.default?.()}
               </ul>
@@ -127,7 +132,11 @@ export default defineComponent({
           {Title}
           <CollapseTransition>
             {data.isOpen && (
-              <ul role="menu" class="el-menu el-menu--inline" style={{ backgroundColor: config?.backgroundColor }}>
+              <ul
+                role="menu"
+                class="el-menu el-menu--inline"
+                style={{ backgroundColor: config?.backgroundColor }}
+              >
                 {slots.default?.()}
               </ul>
             )}
@@ -137,3 +146,5 @@ export default defineComponent({
     }
   }
 })
+
+export default ElSubmenu

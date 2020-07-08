@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 import { useMenu } from './hooks'
 import { uniqueId } from '../../utils/uniqueId'
 
-export default defineComponent({
+const ElMenuItem = defineComponent({
   name: 'ElMenuItem',
   props: {},
   setup(props, { slots, emit }) {
@@ -31,3 +31,5 @@ export default defineComponent({
     )
   }
 })
+
+export default ElMenuItem

@@ -3,11 +3,19 @@ import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
 
 import './Button.scss'
 
-const ElButton = defineComponent({
+const Button = defineComponent({
   name: 'ElButton',
   props: {
-    type: { type: String as PropType<'medium' | 'small' | 'mini'>, default: 'default' },
-    size: { type: String, default: '' },
+    type: {
+      type: String as PropType<'medium' | 'small' | 'mini'>,
+      default: 'default'
+    },
+    size: {
+      type: String as PropType<
+        'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+      >,
+      default: ''
+    },
     icon: { type: String, default: '' },
     nativeType: { type: String, default: 'button' },
     loading: { type: Boolean },
@@ -55,4 +63,4 @@ const ElButton = defineComponent({
   }
 })
 
-export default ElButton
+export default Button

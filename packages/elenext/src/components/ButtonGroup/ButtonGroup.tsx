@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-export default defineComponent({
+const ButtonGroup = defineComponent({
   name: 'ElButtonGroup',
   setup(props, { attrs, slots }) {
     return () => (
@@ -10,3 +10,4 @@ export default defineComponent({
     )
   }
 })
+export default ButtonGroup
