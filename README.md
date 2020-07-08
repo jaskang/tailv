@@ -3,16 +3,16 @@
   <a href="https://www.npmjs.com/package/elenext" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/elenext.svg">
   </a>
-  <a href="https://elenext.now.sh" target="_blank">
+  <a href="https://elenext.vercel.app" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
 </p>
 
-> vue3 element-ui
+## elenext 是一个基于 vue3 的 UI 组价库，组件样式源于 element-ui ，组件设计也会尽量往 element 靠拢，以减少迁移成本
 
-### 🏠 [Homepage](https://elenext.vercel.app)
+> vue3 elenext
 
-### ✨ [Docs & Demo](https://elenext.vercel.app)
+### ✨ 文档 & Demo [https://elenext.vercel.app](https://elenext.vercel.app)
 
 ## Install
 
@@ -62,10 +62,6 @@ yarn add elenext
 
 - Website: https://github.com/jaskang
 - Github: [@jaskang](https://github.com/jaskang)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/kcmbiu/elenext/issues).
 
 ## Show your support
 
