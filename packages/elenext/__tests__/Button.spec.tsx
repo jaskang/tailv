@@ -5,9 +5,9 @@ import { ElButton } from '../'
 // const { ElButton } = require('../')
 
 test('default', () => {
-  const wrapper = mount(ElButton, {
-    props: {
-      type: 'primary'
+  const wrapper = mount({
+    render() {
+      return <ElButton type="primary"></ElButton>
     }
   })
 

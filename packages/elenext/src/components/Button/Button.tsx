@@ -7,8 +7,8 @@ const ElButton = defineComponent({
   name: 'ElButton',
   props: {
     type: { type: String, default: 'default', required: false },
-    size: { type: String, default: '' },
-    icon: { type: String, default: '' },
+    size: { type: String, default: '', required: false },
+    icon: { type: String, default: '', required: false },
     nativeType: { type: String, default: 'button' },
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
