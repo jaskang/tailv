@@ -1,4 +1,3 @@
-<h1 align="center">Welcome to elenext 👋</h1>
 <p>
   <a href="https://www.npmjs.com/package/elenext" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/elenext.svg">
@@ -8,11 +7,13 @@
   </a>
 </p>
 
-## elenext 是一个基于 vue3 的 UI 组价库，组件样式源于 element-ui ，组件设计也会尽量往 element 靠拢，以减少迁移成本
+# elenext
 
-> vue3 elenext
+elenext 是一个基于 vue3 实现的 UI 组价库，组件样式源于 element-ui ，组件设计也会尽量往 element 靠拢，以减少迁移成本
 
-### ✨ 文档 & Demo [https://elenext.vercel.app](https://elenext.vercel.app)
+## Docs & Demo
+
+[https://elenext.vercel.app](https://elenext.vercel.app)
 
 ## Install
 
