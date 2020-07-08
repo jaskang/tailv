@@ -4,7 +4,12 @@ module.exports = api => {
   const isTest = api.env('test')
   return {
     presets: [
-      ['@babel/env', isTest ? { targets: { node: 'current' }, modules: 'commonjs' } : { loose: true, modules: false }],
+      [
+        '@babel/env',
+        isTest
+          ? { targets: { node: 'current' }, modules: 'commonjs' }
+          : { loose: true, modules: false }
+      ],
       [
         '@babel/preset-typescript',
         {
@@ -15,7 +20,7 @@ module.exports = api => {
       ]
     ],
     plugins: [
-      // ['@babel/plugin-transform-typescript', { allExtensions: true, isTSX: true, jsxPragma: 'preserve' }],
+      ['@babel/plugin-transform-runtime'],
       [
         '@ant-design-vue/babel-plugin-jsx',
         {

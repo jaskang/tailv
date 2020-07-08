@@ -4,14 +4,11 @@
   "command": {
     "bootstrap": {
       "hoist": true,
-      /* 在bootstrap期间，将参数传递给 npm install */
       "npmClientArgs": ["--no-package-lock", "--no-ci"]
     },
     "version": {
       "allowBranch": ["master"],
-      /* 开启的话，提交当前所有更改，而不是添加新的提交，会跳过 `git commit`、`git push` */
       "amend": false,
-      /* 自动生成changelog.md，详情请看[约定式提交](https://www.conventionalcommits.org/zh-hans/v1.0.0-beta.4/) */
       "conventionalCommits": true
     },
     "publish": {

@@ -30,7 +30,8 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
   const external = [
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
-    ...['path', 'url']
+    ...['path', 'url'],
+    ...['/@babel/runtime/']
   ]
 
   return {
@@ -64,7 +65,10 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       json({
         namedExports: false
       }),
-      nodeResolve({ mainFields: ['module', 'main', 'jsnext:main', 'browser'], extensions }),
+      nodeResolve({
+        mainFields: ['module', 'main', 'jsnext:main', 'browser'],
+        extensions
+      }),
       commonjs({
         include: /node_modules/
       }),
@@ -83,12 +87,14 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       }),
       babel({
         exclude: /\/node_modules\//,
-        extensions: extensions
-        // babelHelpers: 'runtime'
+        extensions: extensions,
+        babelHelpers: 'runtime'
       }),
 
       replace({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        'process.env.NODE_ENV': JSON.stringify(
+          process.env.NODE_ENV || 'development'
+        )
       }),
       ...plugins
     ],
@@ -123,7 +129,10 @@ function createPackageConfigs() {
   const packageConfigs = ['esm', 'cjs'].reduce((prev, format, index) => {
     const { terser } = require('rollup-plugin-terser')
     const output = outputConfigs[format]
-    const outputProd = { ...output, file: output.file.replace(/\.js$/, '.prod.js') }
+    const outputProd = {
+      ...output,
+      file: output.file.replace(/\.js$/, '.prod.js')
+    }
     prev.push(createConfig(format, output, hasTSChecked))
     if (index === 0) {
       hasTSChecked = true

@@ -5,7 +5,7 @@ const target = args._.length ? fuzzyMatchTarget(args._)[0] : 'elenext'
 
 execa(
   'rollup',
-  ['-wc', '--environment', [`TARGET:${target}`].filter(Boolean).join(',')],
+  ['-c', '--environment', [`TARGET:${target}`].filter(Boolean).join(',')],
   {
     stdio: 'inherit'
   }

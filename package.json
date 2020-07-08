@@ -26,13 +26,12 @@
     "dist"
   ],
   "scripts": {
-    "test": "jest --runInBand",
-    "test:coverage": "jest --coverage --runInBand",
     "dev": "node scripts/dev.js",
-    "start": "tsrv build -w",
-    "build": "tsrv build",
+    "build": "node scripts/build.js",
     "docs:dev": "cd site && yarn dev",
-    "docs:build": "cd site && yarn build"
+    "docs:build": "cd site && yarn build",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --coverage --runInBand"
   },
   "dependencies": {},
   "devDependencies": {
@@ -40,6 +39,7 @@
     "@babel/core": "^7.10.4",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.10.4",
