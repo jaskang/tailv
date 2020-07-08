@@ -54,7 +54,9 @@
     "@vue/compiler-dom": "^3.0.0-beta.19",
     "@vue/test-utils": "^2.0.0-alpha.7",
     "autoprefixer": "^9.8.4",
+    "babel-jest": "^26.1.0",
     "chalk": "^4.1.0",
+    "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "execa": "^4.0.2",
     "jest": "^26.1.0",
@@ -68,6 +70,7 @@
     "sass": "^1.26.9",
     "ts-jest": "^26.1.1",
     "typescript": "^3.9.6",
-    "vue": "^3.0.0-beta.19"
+    "vue": "^3.0.0-beta.19",
+    "vue-jest": "^5.0.0-alpha.1"
   }
 }
