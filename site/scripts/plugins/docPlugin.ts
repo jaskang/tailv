@@ -2,8 +2,6 @@ import { Plugin } from 'vite'
 import path from 'path'
 import MarkdownIt from 'markdown-it'
 
-const md = new MarkdownIt({ html: true, linkify: true, typographer: true })
-
 const docPlugin: Plugin = {
   resolvers: [
     {
@@ -43,14 +41,51 @@ const docPlugin: Plugin = {
         return path.startsWith('/@docs/') && path.endsWith('.md')
       },
       transform(code, isImport, isBuild, path, query) {
+        const demos: {
+          id: string
+          component: string
+        }[] = []
+        const md = new MarkdownIt({
+          html: true,
+          linkify: true,
+          typographer: true,
+          highlight: function (str: string, lang: string) {
+            if (lang === 'html') {
+              const id = `Demo${demos.length}`
+              demos.push({
+                id: id,
+                component: `
+                const ${id} = defineComponent({
+                  template: ${JSON.stringify(str)}
+                });
+                `
+              })
+              return `<${id}></${id}>`
+            }
+            return str
+          }
+        })
         const context = md.render(code)
         const docComponent = `
-        import {defineComponent} from "/@modules/vue.js";
+        import { createApp, defineComponent } from 'vue';
+
+        ${demos
+          .map(demo => {
+            return demo.component
+          })
+          .join('')}
+          
         const __script = defineComponent({
+          components: {
+            ${demos
+              .map(demo => {
+                return demo.id
+              })
+              .join(',')}
+          },
           template: ${JSON.stringify(context)}
         });
-        export default __script;
-        `
+        export default __script;`
         return docComponent
       }
     }
