@@ -1,9 +1,6 @@
 import { defineComponent } from 'vue'
-import { injectCss } from '../../utils/dom'
 
-import styles from './Icon.scss'
-
-injectCss(styles, 'ElIcon')
+import './Icon.scss'
 
 export default defineComponent({
   name: 'ElIcon',

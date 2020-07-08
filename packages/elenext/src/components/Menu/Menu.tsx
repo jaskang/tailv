@@ -1,11 +1,7 @@
 import { defineComponent, reactive, PropType, onMounted, provide } from 'vue'
-import { injectCss } from '../../utils/dom'
 import { useMenu, MenuConfig, MenuConfigSymbol, recursiveMenus, findMenuData } from './hooks'
 
-import styles from './Menu.scss'
-import Emitter from 'src/utils/emitter'
-
-injectCss(styles, 'ElMenu')
+import './Menu.scss'
 
 export default defineComponent({
   name: 'ElMenu',

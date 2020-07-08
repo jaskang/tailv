@@ -30,16 +30,6 @@ export function normalizeClass(value: unknown): string {
   return res.trim()
 }
 
-export function injectCss(css: string, id: string) {
-  if (!document.head.querySelector('#' + id)) {
-    const node = document.createElement('style')
-    node.textContent = css
-    node.type = 'text/css'
-    node.id = id
-    document.head.appendChild(node)
-  }
-}
-
 export function hasClass(el: Element, cls: string) {
   if (!el || !cls) return false
   if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.')

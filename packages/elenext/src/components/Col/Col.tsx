@@ -1,10 +1,7 @@
 import { defineComponent, computed, inject, h } from 'vue'
 import { ElRowSymbol } from '../../provides'
-import { injectCss } from '../../utils/dom'
 
-import styles from './Col.scss'
-
-injectCss(styles, 'ElCol')
+import './Col.scss'
 
 const ElCol = defineComponent({
   name: 'ElCol',

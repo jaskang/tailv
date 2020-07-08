@@ -1,5 +1,5 @@
 import { InjectionKey, inject, reactive, computed, watch, onMounted, onBeforeUnmount, provide } from 'vue'
-import Emitter from '../../utils/emitter'
+import Emitter from '../../utils/Emitter'
 
 export interface MenuConfig {
   mode: 'horizontal' | 'vertical'

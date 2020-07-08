@@ -3,8 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
-    "rootDir": "src",
-    "paths": {}
+    "rootDir": "./src",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["types/shims.d.ts", "src", "__tests__"]
 }

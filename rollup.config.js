@@ -1,6 +1,7 @@
 import path from 'path'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import alias from '@rollup/plugin-alias'
 import ts from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
 import replace from '@rollup/plugin-replace'
@@ -17,7 +18,7 @@ const name = path.basename(packageDir)
 const resolve = p => path.resolve(packageDir, p)
 const pkg = require(resolve(`package.json`))
 
-// const styleInjectPath = require.resolve('./').replace(/[\\/]+/g, '/')
+const injectCssPath = '@/utils/injectCss'
 
 function createConfig(format, output, hasTSChecked, plugins = []) {
   if (!output) {
@@ -37,8 +38,22 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
     input: resolve(`src/index.ts`),
     external,
     plugins: [
+      alias({
+        entries: [
+          {
+            find: '@/utils/injectCss',
+            replacement: resolve('src/utils/injectCss')
+            // OR place `customResolver` here. See explanation below.
+          }
+        ]
+      }),
       postcss({
-        inject: false,
+        inject: (css, fileId) => {
+          const id = path.relative(resolve('src'), fileId)
+          return `
+            import injectCss from '@/utils/injectCss';
+            injectCss(${css},'${id}');`
+        },
         plugins: [autoprefixer()]
       }),
       json({

@@ -1,8 +1,5 @@
 import { defineComponent, PropType } from 'vue'
-import { injectCss } from '../../utils/dom'
-import styles from './Container.scss'
-
-injectCss(styles, 'ElContainer')
+import './Container.scss'
 
 interface ElContainerProps {
   direction?: 'horizontal' | 'vertical'
