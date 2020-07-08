@@ -1,7 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      // "@/*": ["./../packages/elenext/src/components/*/__docs__/zh-CN.md"]
+    }
   },
   "include": ["src"]
 }

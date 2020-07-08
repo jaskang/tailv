@@ -60,7 +60,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import HelloWorld from './HelloWorld.vue'
-import { ElContainer, ElAside, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup } from 'elenext'
+import {
+  ElContainer,
+  ElAside,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup
+} from 'elenext'
 import { useRouter, RouteLocationRaw } from 'vue-router'
 export default defineComponent({
   components: {

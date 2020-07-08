@@ -10,4 +10,5 @@ const ButtonGroup = defineComponent({
     )
   }
 })
+
 export default ButtonGroup

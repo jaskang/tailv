@@ -37,6 +37,20 @@ export {
 
 export const elenext: Plugin = {
   install(app) {
+    app.component('ElRow', ElRow)
+    app.component('ElCol', ElCol)
+    app.component('ElContainer', ElContainer)
+    app.component('ElAside', ElAside)
+    app.component('ElMain', ElMain)
+    app.component('ElHeader', ElHeader)
+    app.component('ElFooter', ElFooter)
     app.component('ElButton', ElButton)
+    app.component('ElButtonGroup', ElButtonGroup)
+    app.component('ElIcon', ElIcon)
+    app.component('ElPopover', ElPopover)
+    app.component('ElMenu', ElMenu)
+    app.component('ElMenuItem', ElMenuItem)
+    app.component('ElSubmenu', ElSubmenu)
+    app.component('ElMenuItemGroup', ElMenuItemGroup)
   }
 }

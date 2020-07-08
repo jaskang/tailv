@@ -1,6 +1,5 @@
 <template>
   <h1>ElPopover</h1>
-
   <Preview title="不同尺寸">
     <el-popover
       placement="top-start"
@@ -51,6 +50,7 @@
 import { defineComponent } from 'vue'
 import Preview from '../components/Preview.vue'
 import { ElPopover, ElButton } from 'elenext'
+
 export default defineComponent({
   components: {
     Preview,
