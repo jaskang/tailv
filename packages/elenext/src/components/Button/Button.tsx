@@ -6,27 +6,16 @@ import './Button.scss'
 const ElButton = defineComponent({
   name: 'ElButton',
   props: {
-    type: {
-      type: String,
-      default: 'default'
-    },
-    size: {
-      type: String
-    },
-    icon: {
-      type: String,
-      default: ''
-    },
-    nativeType: {
-      type: String,
-      default: 'button'
-    },
-    loading: Boolean,
-    disabled: Boolean,
-    plain: Boolean,
-    autofocus: Boolean,
-    round: Boolean,
-    circle: Boolean
+    type: { type: String, default: 'default', required: false },
+    size: { type: String, default: '' },
+    icon: { type: String, default: '' },
+    nativeType: { type: String, default: 'button' },
+    loading: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
+    plain: { type: Boolean, default: false },
+    autofocus: { type: Boolean, default: false },
+    round: { type: Boolean, default: false },
+    circle: { type: Boolean, default: false }
   },
   setup(props, { emit, attrs, slots }) {
     const elForm = inject(ElFormSymbol, null)

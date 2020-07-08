@@ -10,7 +10,10 @@ module.exports = {
     __ESM_BROWSER__: false,
     __NODE_JS__: true,
     __FEATURE_OPTIONS__: true,
-    __FEATURE_SUSPENSE__: true
+    __FEATURE_SUSPENSE__: true,
+    'ts-jest': {
+      tsConfig: 'tsconfig.spec.json'
+    }
   },
   coverageDirectory: 'coverage',
   coverageReporters: ['html', 'lcov', 'text'],
@@ -21,4 +24,4 @@ module.exports = {
   rootDir: __dirname,
   testMatch: ['<rootDir>/packages/**/__tests__/**/*spec.[jt]s?(x)'],
   testPathIgnorePatterns: ['/node_modules/']
-};
+}

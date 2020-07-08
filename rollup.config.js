@@ -19,8 +19,6 @@ const name = path.basename(packageDir)
 const resolve = p => path.resolve(packageDir, p)
 const pkg = require(resolve(`package.json`))
 
-const injectCssPath = '@/utils/injectCss'
-
 function createConfig(format, output, hasTSChecked, plugins = []) {
   if (!output) {
     console.log(require('chalk').yellow(`invalid format: "${format}"`))
@@ -51,7 +49,7 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       postcss({
         // support import style with id
         inject: (css, fileId) => {
-          const id = path.relative(resolve('src'), fileId)
+          const id = path.relative(resolve('src'), fileId).replace(/\//g, '_')
           return `
             import injectCss from '@/utils/injectCss';
             injectCss(${css},'${id}');`
