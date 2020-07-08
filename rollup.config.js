@@ -8,6 +8,7 @@ import replace from '@rollup/plugin-replace'
 import babel from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
 import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
 if (!process.env.TARGET) {
   throw new Error('TARGET package must be specified via --environment flag.')
 }
@@ -41,20 +42,26 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       alias({
         entries: [
           {
-            find: '@/utils/injectCss',
-            replacement: resolve('src/utils/injectCss')
-            // OR place `customResolver` here. See explanation below.
+            // alias `@/`
+            find: /^@\/(.*)/g,
+            replacement: `${resolve('src')}/$1`
           }
         ]
       }),
       postcss({
+        // support import style with id
         inject: (css, fileId) => {
           const id = path.relative(resolve('src'), fileId)
           return `
             import injectCss from '@/utils/injectCss';
             injectCss(${css},'${id}');`
         },
-        plugins: [autoprefixer()]
+        plugins: [
+          autoprefixer(),
+          cssnano({
+            preset: 'default'
+          })
+        ]
       }),
       json({
         namedExports: false
