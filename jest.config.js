@@ -19,9 +19,10 @@ module.exports = {
     '^.+\\.(ts|tsx)$': '<rootDir>/node_modules/babel-jest'
   },
   moduleNameMapper: {
-    moduleNameMapper: {
-      '^@/(.*)$': '<rootDir>/packages/elenext/src/$1'
-    }
+    '^@/(.*)$': '<rootDir>/packages/elenext/src/$1',
+    '\\.(css|less|scss)$': '<rootDir>/scripts/__mocks__/styleMock.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/scripts/__mocks__/fileMock.js'
   },
   rootDir: __dirname,
   testMatch: ['<rootDir>/packages/**/__tests__/**/*spec.[jt]s?(x)'],
