@@ -1,6 +1,6 @@
 {
   "name": "elehooks",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "> TODO: description",
   "author": "jaskang <jaskang@qq.com>",
   "homepage": "https://github.com/kcmbiu/elenext#readme",
@@ -22,6 +22,5 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "dependencies": {}
+  }
 }
