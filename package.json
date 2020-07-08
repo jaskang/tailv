@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "test": "jest --runInBand",
+    "test:coverage": "jest --coverage --runInBand",
     "dev": "node scripts/dev.js",
     "start": "tsrv build -w",
     "build": "tsrv build",

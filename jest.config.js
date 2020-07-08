@@ -9,11 +9,12 @@ module.exports = {
     }
   },
   verbose: true,
+  moduleFileExtensions: ['vue', 'js', 'json', 'jsx', 'ts', 'tsx', 'node'],
+  testMatch: ['<rootDir>/packages/**/__tests__/**/*spec.[jt]s?(x)'],
   coverageDirectory: 'coverage',
   coverageReporters: ['html', 'lcov', 'text'],
-  collectCoverageFrom: ['packages/*/src/**/*.ts'],
+  collectCoverageFrom: ['packages/*/src/**/*.ts?(x)', '!**/components/*/index.ts'],
   watchPathIgnorePatterns: ['/node_modules/', '/dist/', '/.git/'],
-  moduleFileExtensions: ['vue', 'js', 'json', 'jsx', 'ts', 'tsx', 'node'],
   transform: {
     '^.+\\.vue$': '<rootDir>/node_modules/vue-jest',
     '^.+\\.(ts|tsx)$': '<rootDir>/node_modules/babel-jest'
@@ -24,7 +25,5 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/scripts/__mocks__/fileMock.js'
   },
-  rootDir: __dirname,
-  testMatch: ['<rootDir>/packages/**/__tests__/**/*spec.[jt]s?(x)'],
-  testPathIgnorePatterns: ['/node_modules/']
+  rootDir: __dirname
 }

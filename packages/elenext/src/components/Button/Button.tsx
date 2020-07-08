@@ -1,4 +1,4 @@
-import { inject, computed, defineComponent } from 'vue'
+import { inject, computed, defineComponent, PropType } from 'vue'
 import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
 
 import './Button.scss'
@@ -6,9 +6,9 @@ import './Button.scss'
 const ElButton = defineComponent({
   name: 'ElButton',
   props: {
-    type: { type: String, default: 'default', required: false },
-    size: { type: String, default: '', required: false },
-    icon: { type: String, default: '', required: false },
+    type: { type: String as PropType<'medium' | 'small' | 'mini'>, default: 'default' },
+    size: { type: String, default: '' },
+    icon: { type: String, default: '' },
     nativeType: { type: String, default: 'button' },
     loading: { type: Boolean },
     disabled: { type: Boolean },
@@ -35,8 +35,8 @@ const ElButton = defineComponent({
         type={props.nativeType as 'button'}
         class={[
           'el-button',
-          props.type ? 'el-button--' + props.type : '',
-          buttonSize ? 'el-button--' + buttonSize.value : '',
+          `el-button--${props.type}`,
+          buttonSize.value ? 'el-button--' + buttonSize.value : '',
           {
             'is-disabled': buttonDisabled.value,
             'is-loading': props.loading,

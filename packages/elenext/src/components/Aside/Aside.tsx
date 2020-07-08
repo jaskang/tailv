@@ -10,9 +10,9 @@ const ElAside = defineComponent({
       default: '250px'
     }
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     return () => (
-      <aside class="el-aside" style={{ width: props.width }}>
+      <aside class="el-aside" style={{ width: props.width }} {...attrs}>
         {slots.default?.()}
       </aside>
     )
