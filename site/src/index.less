@@ -49,6 +49,19 @@ html {
   height: 100%;
 }
 
+// background-color: #fafafa;
+code {
+  color: #5e6d82;
+  background-color: #e6effb;
+  margin: 0 4px;
+  display: inline-block;
+  padding: 1px 5px;
+  font-size: 12px;
+  border-radius: 3px;
+  height: 18px;
+  line-height: 18px;
+}
+
 .demo {
   border: 1px solid #ebebeb;
   border-radius: 3px;
@@ -75,18 +88,42 @@ html {
     word-break: break-word;
     margin: 0;
     background-color: #fff;
+  }
+}
 
-    // background-color: #fafafa;
-    code {
-      color: #5e6d82;
-      background-color: #e6effb;
-      margin: 0 4px;
-      display: inline-block;
-      padding: 1px 5px;
-      font-size: 12px;
-      border-radius: 3px;
-      height: 18px;
-      line-height: 18px;
-    }
+.demo {
+  .el-header,
+  .el-footer {
+    background-color: #b3c0d1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+
+  .el-aside {
+    background-color: #d3dce6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+
+  .el-main {
+    background-color: #e9eef3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+
+  .preview__demo > .el-container {
+    margin-bottom: 40px;
+  }
+
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
   }
 }

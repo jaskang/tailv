@@ -14,7 +14,8 @@ export const router = createRouter({
         {
           path: '/button',
           name: 'button',
-          component: async () => import('/@docs/Button/__docs__/zh-CN.md')
+          component: async () =>
+            import('/@docs/Button/__docs__/Button.zh-CN.md')
         },
         {
           path: '/layout',
@@ -24,7 +25,8 @@ export const router = createRouter({
         {
           path: '/container',
           name: 'container',
-          component: async () => import('./demo/container.vue')
+          component: async () =>
+            import('/@docs/Container/__docs__/Container.zh-CN.md')
         },
         {
           path: '/icon',

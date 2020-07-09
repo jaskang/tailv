@@ -1,12 +1,34 @@
 import { Plugin } from 'vite'
 import path from 'path'
 import MarkdownIt from 'markdown-it'
+import { parse, SFCDescriptor } from '@vue/compiler-sfc'
 
 const docRule = /^\/@docs\/(.*?).md$/
+
+const cache = new Map<string, SFCDescriptor>()
 
 interface VuedcoPluginOptions {
   docsPath?: (root: string) => string | undefined
   plugins?: any[]
+}
+
+function stripScript(content: string) {
+  const result = content.match(/<(script)>([\s\S]+)<\/\1>/)
+  const code = result && result[2] ? result[2].trim() : 'export default {}'
+  return code
+}
+
+function stripStyle(content: string) {
+  const result = content.match(/<(style)\s*>([\s\S]+)<\/\1>/)
+  return result && result[2] ? result[2].trim() : ''
+}
+
+function stripTemplate(content: string) {
+  content = content.trim()
+  if (!content) {
+    return content
+  }
+  return content.replace(/<(script|style)[\s\S]+<\/\1>/g, '').trim()
 }
 
 export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
@@ -18,7 +40,6 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
           if (docRule.test(publicPath)) {
             const docDir = docsPath?.(root) || root
             const docFilePath = publicPath.replace(docRule, '$1.md')
-            console.log(`requestToFile:${docFilePath}`)
             return path.join(docDir, docFilePath)
           }
         },
@@ -26,7 +47,6 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
           const docDir = docsPath?.(root) || root
           if (filePath.startsWith(docDir) && filePath.endsWith('.md')) {
             const reqPath = filePath.replace(docDir, '')
-            console.log(`fileToRequest:${reqPath}`)
             return `/@docs/${reqPath}`
           }
         }
@@ -48,21 +68,29 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
             html: true,
             linkify: true,
             typographer: true,
-            highlight: function (str: string, lang: string) {
+            highlight: function (code: string, lang: string) {
               if (lang === 'html') {
                 const id = `Demo${demos.length}`
+
+                const stript = stripScript(code).replace(
+                  'export default',
+                  `const ${id} =`
+                )
+                const template = stripTemplate(code)
+                // const styles = stripStyle(code)
+
                 demos.push({
                   id: id,
-                  component: `
-                  const ${id} = defineComponent({
-                    template: ${JSON.stringify(`
-                    <Preview>
-                      ${str}
-                      <template #source>{{${JSON.stringify(str)}}}</template>
-                    </Preview>
-                    `)}
-                  });
-                  `
+                  component: [
+                    '',
+                    stript,
+                    `${id}.template = ${JSON.stringify(
+                      `<Preview>${template}<template #source>{{${JSON.stringify(
+                        template
+                      )}}}</template></Preview>`
+                    )}`
+                    // 'injectCss(,)'
+                  ].join('\n')
                 })
                 return `<pre></pre><${id} />`
               }
@@ -70,6 +98,7 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
             }
           })
           md.use(require('markdown-it-container'), 'demo')
+          md.use(require('markdown-it-container'), 'tip')
           const context = md.render(code)
           const docComponent = `
           import { createApp, defineComponent } from 'vue';

@@ -1,7 +1,5 @@
 import { defineComponent } from 'vue'
 
-import './Aside.scss'
-
 const ElAside = defineComponent({
   name: 'ElAside',
   props: {

@@ -1,7 +1,5 @@
 import { defineComponent } from 'vue'
 
-import './Main.scss'
-
 const ElMain = defineComponent({
   name: 'ElMain',
   setup(_, { slots, attrs }) {

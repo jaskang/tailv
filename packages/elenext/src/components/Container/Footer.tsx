@@ -1,9 +1,8 @@
 import { defineComponent } from 'vue'
 
-import './header.scss'
-
-const ElHeader = defineComponent({
-  name: 'ElHeader',
+const ElFooter = defineComponent({
+  name: 'ElFooter',
+  componentName: 'ElFooter',
   props: {
     height: {
       type: String,
@@ -12,11 +11,10 @@ const ElHeader = defineComponent({
   },
   setup(props, { slots, attrs }) {
     return () => (
-      <header class="el-header" style={{ height: props.height }}>
+      <footer class="el-footer" style={{ height: props.height }} {...attrs}>
         {slots.default?.()}
-      </header>
+      </footer>
     )
   }
 })
-
-export default ElHeader
+export default ElFooter

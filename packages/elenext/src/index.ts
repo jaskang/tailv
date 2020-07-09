@@ -1,11 +1,13 @@
 import { Plugin } from 'vue'
 import { ElRow } from './components/Row'
 import { ElCol } from './components/Col'
-import { ElContainer } from './components/Container'
-import { ElAside } from './components/Aside'
-import { ElMain } from './components/Main'
-import { ElHeader } from './components/Header'
-import { ElFooter } from './components/Footer'
+import {
+  ElContainer,
+  ElAside,
+  ElMain,
+  ElFooter,
+  ElHeader
+} from './components/Container'
 import { ElButton } from './components/Button'
 import { ElButtonGroup } from './components/ButtonGroup'
 import { ElIcon } from './components/Icon'
@@ -16,6 +18,7 @@ import {
   ElSubmenu,
   ElMenuItemGroup
 } from './components/Menu'
+export { default as injectCss } from './utils/injectCss'
 
 export {
   ElRow,
@@ -39,11 +42,13 @@ export const elenext: Plugin = {
   install(app) {
     app.component('ElRow', ElRow)
     app.component('ElCol', ElCol)
+
     app.component('ElContainer', ElContainer)
     app.component('ElAside', ElAside)
     app.component('ElMain', ElMain)
     app.component('ElHeader', ElHeader)
     app.component('ElFooter', ElFooter)
+
     app.component('ElButton', ElButton)
     app.component('ElButtonGroup', ElButtonGroup)
     app.component('ElIcon', ElIcon)
