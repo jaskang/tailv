@@ -2,12 +2,12 @@ import { Plugin } from 'vite'
 import path from 'path'
 import MarkdownIt from 'markdown-it'
 
-const docPlugin: Plugin = {
+const vuedocPlugin: Plugin = {
   resolvers: [
     {
       requestToFile(publicPath: string, root: string) {
         if (publicPath.startsWith('/@docs/')) {
-          console.log(`requestToFile:${publicPath}`)
+          // console.log(`requestToFile:${publicPath}`)
           const docFilePath = publicPath.replace(
             /^\/\@docs\/(.*?)\//g,
             '$1/__docs__/'
@@ -20,25 +20,27 @@ const docPlugin: Plugin = {
       },
       fileToRequest(filePath: string, root: string) {
         const relativeFilePath = path.relative(root, filePath)
+        // console.log(`fileToRequest:${relativeFilePath}`)
         if (relativeFilePath.startsWith('../packages/elenext/src/components')) {
           const reqPath = relativeFilePath
             .replace('../packages/elenext/src/components/', '')
             .replace(/^(.*?)\/__docs__/g, '$1')
           return `/@docs/${reqPath}`
         }
-      },
-      alias(id: string) {
-        // console.log(`alias:${id}`)
-        if (id.startsWith('@docs')) {
-          return id.replace('@docs', '/@docs')
-        }
       }
+      // alias(id: string) {
+      //   if (id.startsWith('@docs')) {
+      //     return id.replace('@docs', '/@docs')
+      //   }
+      // }
     }
   ],
   transforms: [
     {
       test(path, query) {
-        return path.startsWith('/@docs/') && path.endsWith('.md')
+        console.log()
+
+        return path.endsWith('.md')
       },
       transform(code, isImport, isBuild, path, query) {
         const demos: {
@@ -92,4 +94,4 @@ const docPlugin: Plugin = {
   ]
 }
 
-export default docPlugin
+export default vuedocPlugin

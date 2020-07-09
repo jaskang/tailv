@@ -9,5 +9,5 @@
   },
   "vetur.validation.template": false,
   "path-autocomplete.extensionOnImport": true,
-  "liveServer.settings.root": "/docs/build/"
+  "liveServer.settings.root": "/site/build/"
 }

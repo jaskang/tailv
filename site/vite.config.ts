@@ -1,6 +1,6 @@
 import type { UserConfig } from 'vite'
 import path from 'path'
-import docPlugin from './scripts/plugins/docPlugin'
+import vuedocPlugin from './scripts/plugins/vite-plugin-vuedoc/index'
 
 const config: UserConfig = {
   outDir: 'build',
@@ -8,7 +8,7 @@ const config: UserConfig = {
     vue: 'vue/dist/vue.esm-bundler.js'
   },
   minify: false,
-  plugins: [docPlugin]
+  plugins: [vuedocPlugin]
 }
 
 export default config
