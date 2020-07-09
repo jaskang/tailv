@@ -12899,14 +12899,22 @@ var script = defineComponent({
   }
 });
 
-const _withId = /*#__PURE__*/withScopeId("data-v-0a2036f4");
+var _imports_0 = "/_assets/logo.378e4005.png";
 
-pushScopeId("data-v-0a2036f4");
+const _withId = /*#__PURE__*/withScopeId("data-v-01465939");
+
+pushScopeId("data-v-01465939");
 const _hoisted_1 = { class: "hello" };
+const _hoisted_2 = /*#__PURE__*/createVNode("img", {
+  style: {"width":"80px","height":"80px"},
+  alt: "Vue logo",
+  src: _imports_0
+}, null, -1);
 popScopeId();
 
 const render$1 = /*#__PURE__*/_withId(function render(_ctx, _cache) {
   return (openBlock(), createBlock("div", _hoisted_1, [
+    _hoisted_2,
     createVNode("h1", null, _toDisplayString(_ctx.msg), 1)
   ]))
 });
@@ -12914,7 +12922,7 @@ const render$1 = /*#__PURE__*/_withId(function render(_ctx, _cache) {
 ;
 
 script.render = render$1;
-script.__scopeId = "data-v-0a2036f4";
+script.__scopeId = "data-v-01465939";
 
 function getBoundingClientRect(element) {
   var rect = element.getBoundingClientRect();
@@ -14917,7 +14925,7 @@ var Button = defineComponent({
         "class": props.icon
       }, null, 2
       /* CLASS */
-      ), createVNode("span", null, [(_slots$default = slots["default"]) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots)], -2
+      ), slots["default"] && createVNode("span", null, [(_slots$default = slots["default"]) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots)], -2
       /* CLASS, STYLE, PROPS, FULL_PROPS, HYDRATE_EVENTS, STABLE_FRAGMENT, KEYED_FRAGMENT, UNKEYED_FRAGMENT, NEED_PATCH, DYNAMIC_SLOTS */
       )], -2
       /* CLASS, STYLE, PROPS, FULL_PROPS, HYDRATE_EVENTS, STABLE_FRAGMENT, KEYED_FRAGMENT, UNKEYED_FRAGMENT, NEED_PATCH, DYNAMIC_SLOTS */
@@ -15932,7 +15940,7 @@ var script$1 = defineComponent({
 });
 
 const _hoisted_1$1 = { class: "demo-layout" };
-const _hoisted_2 = /*#__PURE__*/createTextVNode("Basic");
+const _hoisted_2$1 = /*#__PURE__*/createTextVNode("Basic");
 const _hoisted_3 = /*#__PURE__*/createVNode("i", { class: "el-icon-menu" }, null, -1);
 const _hoisted_4 = /*#__PURE__*/createTextVNode(" layout ");
 const _hoisted_5 = /*#__PURE__*/createVNode("i", { class: "el-icon-menu" }, null, -1);
@@ -15972,7 +15980,7 @@ function render$2(_ctx, _cache) {
               default: withCtx(() => [
                 createVNode(_component_el_menu_item_group, null, {
                   title: withCtx(() => [
-                    _hoisted_2
+                    _hoisted_2$1
                   ]),
                   default: withCtx(() => [
                     createVNode(_component_el_menu_item, {
@@ -16113,32 +16121,32 @@ const router = createRouter({
         {
           path: "/button",
           name: "button",
-          component: async () => import('./zh-CN.97f24c0e.js')
+          component: async () => import('./zh-CN.e6847f6c.js')
         },
         {
           path: "/layout",
           name: "layout",
-          component: async () => import('./layout.82f512c1.js')
+          component: async () => import('./layout.08b07fca.js')
         },
         {
           path: "/container",
           name: "container",
-          component: async () => import('./container.880626c8.js')
+          component: async () => import('./container.026655ac.js')
         },
         {
           path: "/icon",
           name: "icon",
-          component: async () => import('./icon.63c07427.js')
+          component: async () => import('./icon.c4fca88b.js')
         },
         {
           path: "/menu",
           name: "menu",
-          component: async () => import('./menu.ad7e5ae1.js')
+          component: async () => import('./menu.49f1c587.js')
         },
         {
           path: "/popover",
           name: "popover",
-          component: async () => import('./popover.b8b4cac0.js')
+          component: async () => import('./popover.30dc83fa.js')
         }
       ]
     }
@@ -16146,17 +16154,88 @@ const router = createRouter({
 });
 
 var script$2 = defineComponent({
+  name: "Preview",
+  props: {},
+  setup(props, {slots}) {
+    const codeRef = ref();
+    const state = reactive({
+      codeHeight: 0
+    });
+    const highlightAll = () => {
+      nextTick(() => {
+        window.Prism.highlightAll();
+      });
+    };
+    const toggleCode = () => {
+      var _a;
+      if (state.codeHeight === 0) {
+        state.codeHeight = ((_a = codeRef.value) == null ? void 0 : _a.offsetHeight) || 0;
+      } else {
+        state.codeHeight = 0;
+      }
+    };
+    onMounted(() => {
+      highlightAll();
+    });
+    return {
+      ...toRefs(state),
+      codeRef,
+      toggleCode
+    };
+  }
+});
+
+const _hoisted_1$2 = { class: "preview" };
+const _hoisted_2$2 = { class: "preview__card" };
+const _hoisted_3$1 = { class: "preview__demo" };
+const _hoisted_4$1 = {
+  ref: "codeRef",
+  class: "preview__coderef"
+};
+const _hoisted_5$1 = { class: "language-markup" };
+
+function render$3(_ctx, _cache) {
+  return (openBlock(), createBlock("div", _hoisted_1$2, [
+    createVNode("div", _hoisted_2$2, [
+      createVNode("div", _hoisted_3$1, [
+        renderSlot(_ctx.$slots, "default")
+      ]),
+      createVNode("div", {
+        style: { height: `${_ctx.codeHeight}px` },
+        class: "preview__code"
+      }, [
+        createVNode("div", _hoisted_4$1, [
+          createVNode("pre", null, [
+            createVNode("code", _hoisted_5$1, [
+              renderSlot(_ctx.$slots, "source")
+            ])
+          ])
+        ], 512)
+      ], 4),
+      createVNode("div", {
+        class: "preview__footer",
+        onClick: _cache[1] || (_cache[1] = ($event, ...args) => (_ctx.toggleCode($event, ...args)))
+      }, _toDisplayString(_ctx.codeHeight > 0 ? '隐藏代码' : '显示代码'), 1)
+    ])
+  ]))
+}
+
+;
+
+script$2.render = render$3;
+
+var script$3 = defineComponent({
   name: "App",
   components: {}
 });
 
-function render$3(_ctx, _cache) {
+function render$4(_ctx, _cache) {
   const _component_router_view = resolveComponent("router-view");
 
   return (openBlock(), createBlock(_component_router_view))
 }
 
-script$2.render = render$3;
+script$3.render = render$4;
 
 window.Prism.plugins.NormalizeWhitespace.setDefaults({
   indent: 0,
@@ -16167,9 +16246,10 @@ window.Prism.plugins.NormalizeWhitespace.setDefaults({
   "remove-initial-line-feed": false,
   "tabs-to-spaces": 2
 });
-const app = createApp(script$2);
+const app = createApp(script$3);
 app.use(router);
 app.use(elenext);
+app.component("Preview", script$2);
 app.mount("#app");
 
-export { Button as B, ElRow as E, Fragment as F, Icon as I, Popover as P, _toDisplayString as _, ElCol as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ref as f, reactive as g, onMounted as h, createCommentVNode as i, renderSlot as j, ElContainer as k, ElAside as l, ElFooter as m, nextTick as n, openBlock as o, ElHeader as p, ElMain as q, resolveComponent as r, renderList as s, toRefs as t, ElMenu as u, ElMenuItem as v, withCtx as w, ElSubmenu as x, ElMenuItemGroup as y };
+export { Button as B, ElRow as E, Fragment as F, Icon as I, Popover as P, _toDisplayString as _, ElCol as a, createVNode as b, createBlock as c, defineComponent as d, createTextVNode as e, ElContainer as f, ElAside as g, ElFooter as h, ElHeader as i, ElMain as j, renderList as k, ElMenu as l, ElMenuItem as m, ElSubmenu as n, openBlock as o, ElMenuItemGroup as p, resolveComponent as r, script$2 as s, withCtx as w };

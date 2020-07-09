@@ -1,9 +1,14 @@
+@import './normalize.css';
+
 body,
 html {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, SimSun, sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
@@ -12,8 +17,6 @@ html {
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -44,4 +47,46 @@ html {
 
 #app {
   height: 100%;
+}
+
+.demo {
+  border: 1px solid #ebebeb;
+  border-radius: 3px;
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+      0 2px 4px 0 rgba(232, 237, 250, 0.5);
+  }
+
+  > pre {
+    display: none;
+  }
+  > p {
+    padding: 20px;
+    box-sizing: border-box;
+    // border-top: 1px solid #ebebeb;
+    // border-left: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    // border-radius: 3px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #666;
+    word-break: break-word;
+    margin: 0;
+    background-color: #fff;
+
+    // background-color: #fafafa;
+    code {
+      color: #5e6d82;
+      background-color: #e6effb;
+      margin: 0 4px;
+      display: inline-block;
+      padding: 1px 5px;
+      font-size: 12px;
+      border-radius: 3px;
+      height: 18px;
+      line-height: 18px;
+    }
+  }
 }

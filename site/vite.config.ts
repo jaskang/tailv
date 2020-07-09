@@ -11,6 +11,8 @@ const config: UserConfig = {
   plugins: [
     createVuedcoPlugin({
       docsPath(root: string) {
+        console.log(path.join(root, '../packages/elenext/src/components/'))
+
         return path.join(root, '../packages/elenext/src/components/')
       }
     })

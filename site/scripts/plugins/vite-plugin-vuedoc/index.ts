@@ -16,17 +16,17 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
       {
         requestToFile(publicPath: string, root: string) {
           if (docRule.test(publicPath)) {
-            console.log(`requestToFile:${publicPath}`)
             const docDir = docsPath?.(root) || root
             const docFilePath = publicPath.replace(docRule, '$1.md')
+            console.log(`requestToFile:${docFilePath}`)
             return path.join(docDir, docFilePath)
           }
         },
         fileToRequest(filePath: string, root: string) {
           const docDir = docsPath?.(root) || root
           if (filePath.startsWith(docDir) && filePath.endsWith('.md')) {
-            console.log(`requestToFile:${filePath}`)
             const reqPath = filePath.replace(docDir, '')
+            console.log(`fileToRequest:${reqPath}`)
             return `/@docs/${reqPath}`
           }
         }
@@ -35,7 +35,7 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
     transforms: [
       {
         test(path, query) {
-          return docRule.test(path)
+          return path.endsWith('.md')
         },
         // TODO: 目前使用需使用 vue.esm-bundler.js, 需改为 @vue/compiler-sfc 编译组件
         transform(code, isImport, isBuild, path, query) {
