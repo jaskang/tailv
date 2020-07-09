@@ -5,6 +5,7 @@ import './index.less'
 import { createApp } from 'vue'
 import { router } from './router'
 import { elenext } from 'elenext'
+import Preview from './components/Preview.vue'
 import App from './App.vue'
 window.Prism.plugins.NormalizeWhitespace.setDefaults({
   indent: 0,
@@ -20,4 +21,5 @@ const app = createApp(App)
 
 app.use(router)
 app.use(elenext)
+app.component('Preview', Preview)
 app.mount('#app')

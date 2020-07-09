@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // "@/*": ["./../packages/elenext/src/components/*/__docs__/zh-CN.md"]
+      "/@docs/*": ["./../packages/elenext/src/components/*"]
     }
   },
   "include": ["src"]

@@ -1,6 +1,6 @@
 import type { UserConfig } from 'vite'
 import path from 'path'
-import vuedocPlugin from './scripts/plugins/vite-plugin-vuedoc/index'
+import { createVuedcoPlugin } from './scripts/plugins/vite-plugin-vuedoc'
 
 const config: UserConfig = {
   outDir: 'build',
@@ -8,7 +8,13 @@ const config: UserConfig = {
     vue: 'vue/dist/vue.esm-bundler.js'
   },
   minify: false,
-  plugins: [vuedocPlugin]
+  plugins: [
+    createVuedcoPlugin({
+      docsPath(root: string) {
+        return path.join(root, '../packages/elenext/src/components/')
+      }
+    })
+  ]
 }
 
 export default config

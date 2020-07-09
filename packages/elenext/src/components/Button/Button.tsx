@@ -57,7 +57,7 @@ const Button = defineComponent({
       >
         {props.loading && <i class="el-icon-loading"></i>}
         {props.icon && !props.loading && <i class={props.icon}></i>}
-        <span>{slots.default?.()}</span>
+        {slots.default && <span>{slots.default?.()}</span>}
       </button>
     )
   }

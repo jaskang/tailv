@@ -6,7 +6,9 @@
 
 基础的按钮用法。
 
-:::demo 使用`type`、`plain`、`round`和`circle`属性来定义 Button 的样式。
+:::demo
+
+使用`type`、`plain`、`round`和`circle`属性来定义 Button 的样式。
 
 ```html
 <el-row>
@@ -133,7 +135,8 @@
 
 点击按钮后进行数据加载操作，在按钮上显示加载状态。
 
-:::demo 要设置为 loading 状态，只要设置`loading`属性为`true`即可。
+:::demo
+要设置为 loading 状态，只要设置`loading`属性为`true`即可。
 
 ```html
 <el-button type="primary" :loading="true">加载中</el-button>

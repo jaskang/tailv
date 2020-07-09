@@ -1,66 +1,60 @@
 <template>
   <div class="preview">
-    <h3 class="preview__title">{{ title }}</h3>
-    <p v-if="description">{{ description }}</p>
     <div class="preview__card">
       <div class="preview__demo">
         <slot></slot>
       </div>
-      <div v-if="$slots.template || $slots.script" :style="{ height: `${codeHeight}px` }" class="preview__code">
+      <div :style="{ height: `${codeHeight}px` }" class="preview__code">
         <div ref="codeRef" class="preview__coderef">
-          <div v-if="$slots.comment" class="preview__comment"><slot name="comment"></slot></div>
-          <pre v-if="$slots.template"><code class="language-markup"><slot name="template"></slot></code></pre>
-          <pre v-if="$slots.script"><code class="language-typescript"><slot name="script"></slot></code></pre>
+          <pre><code class="language-markup"><slot name="source"></slot></code></pre>
         </div>
       </div>
-      <div v-if="$slots.template || $slots.script" class="preview__footer" @click="toggleCode">
+      <div class="preview__footer" @click="toggleCode">
         {{ codeHeight > 0 ? '隐藏代码' : '显示代码' }}
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, ref, onMounted, nextTick } from 'vue';
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  ref,
+  onMounted,
+  nextTick
+} from 'vue'
 
 export default defineComponent({
   name: 'Preview',
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String,
-      default: ''
-    }
-  },
-  setup() {
-    const codeRef = ref<HTMLDivElement>(null);
+  props: {},
+  setup(props, { slots }) {
+    const codeRef = ref<HTMLDivElement>()
     const state = reactive({
       codeHeight: 0
-    });
+    })
     const highlightAll = () => {
       nextTick(() => {
-        window.Prism.highlightAll();
-      });
-    };
+        window.Prism.highlightAll()
+      })
+    }
     const toggleCode = () => {
       if (state.codeHeight === 0) {
-        state.codeHeight = codeRef.value?.offsetHeight;
+        state.codeHeight = codeRef.value?.offsetHeight || 0
       } else {
-        state.codeHeight = 0;
+        state.codeHeight = 0
       }
-    };
+    }
     onMounted(() => {
-      highlightAll();
-    });
+      highlightAll()
+    })
     return {
       ...toRefs(state),
       codeRef,
       toggleCode
-    };
+    }
   }
-});
+})
 </script>
 
 <style lang="less">
@@ -76,7 +70,8 @@ export default defineComponent({
     transition: 0.2s;
 
     &:hover {
-      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+        0 2px 4px 0 rgba(232, 237, 250, 0.5);
     }
   }
   &__demo {
