@@ -1,6 +1,5 @@
 import { Plugin } from 'vue'
-import { ElRow } from './components/Row'
-import { ElCol } from './components/Col'
+import { ElRow, ElCol } from './components/Layout'
 import {
   ElContainer,
   ElAside,
@@ -8,8 +7,7 @@ import {
   ElFooter,
   ElHeader
 } from './components/Container'
-import { ElButton } from './components/Button'
-import { ElButtonGroup } from './components/ButtonGroup'
+import { ElButton, ElButtonGroup } from './components/Button'
 import { ElIcon } from './components/Icon'
 import { ElPopover } from './components/Popover'
 import {

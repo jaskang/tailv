@@ -14,7 +14,7 @@ interface VuedcoPluginOptions {
 
 function stripScript(content: string) {
   const result = content.match(/<(script)>([\s\S]+)<\/\1>/)
-  const code = result && result[2] ? result[2].trim() : 'export default {}'
+  const code = result && result[2] ? result[2].trim() : ''
   return code
 }
 
@@ -64,30 +64,40 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
             component: string
           }[] = []
 
-          const md = new MarkdownIt({
+          const md = new MarkdownIt('commonmark', {
             html: true,
             linkify: true,
             typographer: true,
             highlight: function (code: string, lang: string) {
               if (lang === 'html') {
                 const id = `Demo${demos.length}`
-
-                const stript = stripScript(code).replace(
-                  'export default',
-                  `const ${id} =`
-                )
+                // const fullCode = `${code}`
+                const stript = (
+                  stripScript(code) || 'export default {}'
+                ).replace('export default', `const ${id} =`)
                 const template = stripTemplate(code)
-                // const styles = stripStyle(code)
+                const styles = stripStyle(code)
 
                 demos.push({
                   id: id,
                   component: [
                     '',
                     stript,
+                    `if (${id}.methods) {
+                      ${id}.methods.source = function () {
+                        return ${JSON.stringify(code)}
+                      }
+                    } else {
+                      ${id}.methods = {
+                        source() {
+                          return ${JSON.stringify(code)}
+                        },
+                      }
+                    }`,
                     `${id}.template = ${JSON.stringify(
-                      `<Preview>${template}<template #source>{{${JSON.stringify(
-                        template
-                      )}}}</template></Preview>`
+                      `<Preview :source="source()">
+                        ${template} 
+                      </Preview>`
                     )}`
                     // 'injectCss(,)'
                   ].join('\n')

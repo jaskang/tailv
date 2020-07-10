@@ -6,7 +6,7 @@
       </div>
       <div :style="{ height: `${codeHeight}px` }" class="preview__code">
         <div ref="codeRef" class="preview__coderef">
-          <pre><code class="language-markup"><slot name="source"></slot></code></pre>
+          <pre><code class="language-markup" v-text="source"></code></pre>
         </div>
       </div>
       <div class="preview__footer" @click="toggleCode">
@@ -27,7 +27,12 @@ import {
 
 export default defineComponent({
   name: 'Preview',
-  props: {},
+  props: {
+    source: {
+      type: String,
+      default: ''
+    }
+  },
   setup(props, { slots }) {
     const codeRef = ref<HTMLDivElement>()
     const state = reactive({

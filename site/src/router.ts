@@ -20,7 +20,7 @@ export const router = createRouter({
         {
           path: '/layout',
           name: 'layout',
-          component: async () => import('./demo/layout.vue')
+          component: async () => import('/@docs/Layout/__docs__/Layout.md')
         },
         {
           path: '/container',
@@ -31,7 +31,7 @@ export const router = createRouter({
         {
           path: '/icon',
           name: 'icon',
-          component: async () => import('./demo/icon.vue')
+          component: async () => import('/@docs/Icon/__docs__/Icon.md')
         },
         {
           path: '/menu',
