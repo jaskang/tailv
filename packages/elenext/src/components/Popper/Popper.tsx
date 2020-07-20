@@ -37,6 +37,10 @@ const PopperInner = defineComponent({
 const Popper = defineComponent({
   name: 'ElPopper',
   props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
     popperClass: {
       type: String,
       default: ''
@@ -56,40 +60,52 @@ const Popper = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
-    const { popper, popperEl, setReferenceEl, setVisible } = usePopper(props.popperClass, {
+    const { popper, popperEl, setReferenceEl, setVisible: setPopperVisible } = usePopper(props.popperClass, {
       placement: props.placement as Placement,
       modifiers: props.modifiers,
       strategy: props.strategy as 'absolute' | 'fixed'
     })
     const state = reactive({
-      visible: false
+      visible: props.value
     })
+    const setVisible = (visible: boolean) => {
+      state.visible = visible
+      emit('input', visible)
+    }
     watchEffect(() => {
-      setVisible(state.visible)
+      setPopperVisible(state.visible)
     })
+    watch(
+      () => props.value,
+      value => {
+        console.log(value)
+        state.visible = value
+      }
+    )
+
     const setRootEl = (el: HTMLElement | null) => {
       if (el) {
         setReferenceEl(el)
         if (props.trigger === 'click') {
           el.addEventListener('click', () => {
-            state.visible = !state.visible
+            setVisible(!state.visible)
           })
           useClickAway(() => {
-            state.visible = false
+            setVisible(false)
           }, el)
         } else if (props.trigger === 'hover') {
           el.addEventListener('mouseenter', () => {
-            state.visible = true
+            setVisible(true)
           })
           el.addEventListener('mouseleave', () => {
-            state.visible = false
+            setVisible(false)
           })
         } else if (props.trigger === 'focus') {
           el.addEventListener('focus', () => {
-            state.visible = true
+            setVisible(true)
           })
           el.addEventListener('blur', () => {
-            state.visible = false
+            setVisible(false)
           })
         }
       } else {

@@ -8,6 +8,10 @@ import { normalizeClass } from '../../utils/dom'
 const Popover = defineComponent({
   name: 'ElPopver',
   props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
     trigger: {
       type: String,
       default: 'click'
@@ -39,6 +43,7 @@ const Popover = defineComponent({
           props.content && 'el-popover--plain'
         ])}
         trigger={props.trigger}
+        v-model={props.value}
         v-slots={{
           reference: slots.reference,
           default: () => (
@@ -49,9 +54,7 @@ const Popover = defineComponent({
               role="tooltip"
               id="tooltipId"
             >
-              {props.title && (
-                <div class="el-popover__title">{props.title}</div>
-              )}
+              {props.title && <div class="el-popover__title">{props.title}</div>}
               {slots.default ? slots.default() : props.content}
             </div>
           )
