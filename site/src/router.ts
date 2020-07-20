@@ -18,8 +18,8 @@ export const router = createRouter({
             import('/@docs/Button/__docs__/Button.zh-CN.md')
         },
         {
-          path: '/Link',
-          name: 'Link',
+          path: '/link',
+          name: 'link',
           component: async () => import('/@docs/Link/__docs__/Link.md')
         },
         {
@@ -51,7 +51,7 @@ export const router = createRouter({
         {
           path: '/popover',
           name: 'popover',
-          component: async () => import('./demo/popover.vue')
+          component: async () => import('/@docs/Popover/__docs__/Popover.md')
         }
       ]
     }

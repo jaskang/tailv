@@ -5,10 +5,9 @@ import {
   getCurrentInstance,
   Teleport,
   PropType,
-  Ref,
-  h,
-  Fragment
+  Ref
 } from 'vue'
+
 import { usePopper, PlacementType } from './usePopper'
 
 const PopperInner = defineComponent({
@@ -48,10 +47,6 @@ const Popper = defineComponent({
     strategy: {
       type: String as PropType<'absolute' | 'fixed'>,
       default: 'bottom'
-    },
-    render: {
-      type: Function as PropType<() => JSX.Element>,
-      default: () => <></>
     }
   },
   setup(props, { attrs, slots, emit }) {
@@ -64,11 +59,10 @@ const Popper = defineComponent({
     })
 
     return () => {
-      const Render = props.render as () => JSX.Element
       return (
         <>
           <Teleport to={`#${teleportId}`}>
-            {slots.default ? slots.default() : Render()}
+            {slots.default && slots.default()}
           </Teleport>
           <PopperInner rootElRef={referenceElRef}>
             {slots.reference?.()}
