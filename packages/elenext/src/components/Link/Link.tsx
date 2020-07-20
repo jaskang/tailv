@@ -1,8 +1,9 @@
-import { defineComponent } from 'vue'
+import { defineComponent, mergeProps } from 'vue'
 import './Link.scss'
 
 const Link = defineComponent({
   name: 'ElLink',
+  inheritAttrs: false,
   props: {
     type: {
       type: String,
@@ -17,7 +18,7 @@ const Link = defineComponent({
     icon: String
   },
   setup(props, { emit, slots, attrs }) {
-    const handleClick = e => {
+    const handleClick = (event: MouseEvent) => {
       if (!props.disabled) {
         if (!props.href) {
           emit('click', event)
@@ -34,8 +35,7 @@ const Link = defineComponent({
           props.underline && !props.disabled && 'is-underline'
         ]}
         href={props.disabled ? undefined : props.href}
-        {...attrs}
-        onClick={handleClick}
+        {...mergeProps(attrs, { onClick: handleClick })}
       >
         {props.icon && <i class={props.icon}></i>}
         <span class="el-link--inner">{slots.default?.()}</span>
