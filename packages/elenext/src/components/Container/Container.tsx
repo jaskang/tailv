@@ -1,7 +1,7 @@
 import { defineComponent, PropType } from 'vue'
 import './Container.scss'
 
-const ElContainer = defineComponent({
+const Container = defineComponent({
   name: 'ElContainer',
   props: {
     direction: {
@@ -23,4 +23,4 @@ const ElContainer = defineComponent({
   }
 })
 
-export default ElContainer
+export default Container
