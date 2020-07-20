@@ -1,4 +1,4 @@
-import { d as defineComponent } from './index.b9d31c51.js';
+import { d as defineComponent } from './index.c3d2dc32.js';
 
 const Demo0 = {};
 if (Demo0.methods) {
