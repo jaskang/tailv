@@ -64,7 +64,7 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
             component: string
           }[] = []
 
-          const md = new MarkdownIt('commonmark', {
+          const md = new MarkdownIt('default', {
             html: true,
             linkify: true,
             typographer: true,

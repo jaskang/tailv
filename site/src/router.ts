@@ -18,6 +18,11 @@ export const router = createRouter({
             import('/@docs/Button/__docs__/Button.zh-CN.md')
         },
         {
+          path: '/Link',
+          name: 'Link',
+          component: async () => import('/@docs/Link/__docs__/Link.md')
+        },
+        {
           path: '/layout',
           name: 'layout',
           component: async () => import('/@docs/Layout/__docs__/Layout.md')
@@ -37,6 +42,11 @@ export const router = createRouter({
           path: '/menu',
           name: 'menu',
           component: async () => import('./demo/menu.vue')
+        },
+        {
+          path: '/alert',
+          name: 'alert',
+          component: async () => import('/@docs/Alert/__docs__/Alert.md')
         },
         {
           path: '/popover',

@@ -1,4 +1,14 @@
-import { defineComponent, ref, onMounted, getCurrentInstance, Teleport, PropType, Ref, h, Fragment } from 'vue'
+import {
+  defineComponent,
+  ref,
+  onMounted,
+  getCurrentInstance,
+  Teleport,
+  PropType,
+  Ref,
+  h,
+  Fragment
+} from 'vue'
 import { usePopper, PlacementType } from './usePopper'
 
 const PopperInner = defineComponent({
@@ -8,7 +18,7 @@ const PopperInner = defineComponent({
       required: true
     }
   },
-  setup({ rootElRef }, { slots, attrs }) {
+  setup({ rootElRef }, { slots }) {
     onMounted(() => {
       const ctx = getCurrentInstance()
       if (ctx?.vnode.el) {
@@ -57,8 +67,12 @@ const Popper = defineComponent({
       const Render = props.render as () => JSX.Element
       return (
         <>
-          <Teleport to={`#${teleportId}`}>{slots.popper ? slots.popper() : Render()}</Teleport>
-          <PopperInner rootElRef={referenceElRef}>{slots.default?.()}</PopperInner>
+          <Teleport to={`#${teleportId}`}>
+            {slots.default ? slots.default() : Render()}
+          </Teleport>
+          <PopperInner rootElRef={referenceElRef}>
+            {slots.reference?.()}
+          </PopperInner>
         </>
       )
     }

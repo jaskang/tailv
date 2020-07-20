@@ -4,50 +4,14 @@
       <ElAside class="demo-aside">
         <HelloWorld msg="Hello Elenext UI" />
         <el-menu>
-          <el-menu-item-group>
-            <template #title>Basic</template>
-            <el-menu-item index="1" @click="push({ name: 'layout' })">
-              <i class="el-icon-menu"></i>
-              layout
+          <el-menu-item-group v-for="menu in menus" :key="menu.title">
+            <template #title>{{ menu.title }}</template>
+            <el-menu-item
+              v-for="item in menu.items"
+              @click="push({ name: item })"
+            >
+              {{ item }}
             </el-menu-item>
-            <el-menu-item index="1" @click="push({ name: 'container' })">
-              <i class="el-icon-menu"></i>
-              container
-            </el-menu-item>
-            <el-menu-item index="1" @click="push({ name: 'icon' })">
-              <i class="el-icon-menu"></i>
-              icon
-            </el-menu-item>
-            <el-menu-item index="1" @click="push({ name: 'button' })">
-              <i class="el-icon-menu"></i>
-              button
-            </el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template #title>Form</template>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template #title>Data</template>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template #title>Notice</template>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template #title>Navigation</template>
-            <el-menu-item index="1" @click="push({ name: 'menu' })">
-              <i class="el-icon-menu"></i>
-              menu
-            </el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template #title>Others</template>
-            <el-menu-item index="1" @click="push({ name: 'popover' })">
-              <i class="el-icon-menu"></i>
-              popover
-            </el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template #title>Hooks</template>
           </el-menu-item-group>
         </el-menu>
       </ElAside>
@@ -59,25 +23,12 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from './HelloWorld.vue'
-import {
-  ElContainer,
-  ElAside,
-  ElMain,
-  ElMenu,
-  ElMenuItem,
-  ElMenuItemGroup
-} from 'elenext'
 import { useRouter, RouteLocationRaw } from 'vue-router'
+import menus from '../menus'
+import HelloWorld from './HelloWorld.vue'
 export default defineComponent({
   components: {
-    HelloWorld,
-    ElContainer,
-    ElAside,
-    ElMain,
-    ElMenu,
-    ElMenuItem,
-    ElMenuItemGroup
+    HelloWorld
   },
   setup() {
     const router = useRouter()
@@ -85,7 +36,8 @@ export default defineComponent({
       router.push(e)
     }
     return {
-      push
+      push,
+      menus
     }
   }
 })

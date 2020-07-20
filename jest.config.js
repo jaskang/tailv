@@ -13,10 +13,13 @@ module.exports = {
   testMatch: ['<rootDir>/packages/**/__tests__/**/*spec.[jt]s?(x)'],
   coverageDirectory: 'coverage',
   coverageReporters: ['html', 'lcov', 'text'],
-  collectCoverageFrom: ['packages/*/src/**/*.ts?(x)', '!**/components/*/index.ts'],
+  collectCoverageFrom: [
+    'packages/*/src/**/*.ts?(x)',
+    '!**/components/*/index.ts'
+  ],
   watchPathIgnorePatterns: ['/node_modules/', '/dist/', '/.git/'],
   transform: {
-    '^.+\\.vue$': '<rootDir>/node_modules/vue-jest',
+    // '^.+\\.vue$': '<rootDir>/node_modules/vue-jest',
     '^.+\\.(ts|tsx)$': '<rootDir>/node_modules/babel-jest'
   },
   moduleNameMapper: {

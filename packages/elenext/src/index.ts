@@ -8,6 +8,7 @@ import {
   ElHeader
 } from './components/Container'
 import { ElButton, ElButtonGroup } from './components/Button'
+import { ElLink } from './components/Link'
 import { ElIcon } from './components/Icon'
 import { ElPopover } from './components/Popover'
 import {
@@ -16,6 +17,8 @@ import {
   ElSubmenu,
   ElMenuItemGroup
 } from './components/Menu'
+import { ElAlert } from './components/Alert'
+
 export { default as injectCss } from './utils/injectCss'
 
 export {
@@ -28,12 +31,14 @@ export {
   ElFooter,
   ElButton,
   ElButtonGroup,
+  ElLink,
   ElIcon,
   ElPopover,
   ElMenu,
   ElMenuItem,
   ElSubmenu,
-  ElMenuItemGroup
+  ElMenuItemGroup,
+  ElAlert
 }
 
 export const elenext: Plugin = {
@@ -49,11 +54,13 @@ export const elenext: Plugin = {
 
     app.component('ElButton', ElButton)
     app.component('ElButtonGroup', ElButtonGroup)
+    app.component('ElLink', ElLink)
     app.component('ElIcon', ElIcon)
     app.component('ElPopover', ElPopover)
     app.component('ElMenu', ElMenu)
     app.component('ElMenuItem', ElMenuItem)
     app.component('ElSubmenu', ElSubmenu)
     app.component('ElMenuItemGroup', ElMenuItemGroup)
+    app.component('ElAlert', ElAlert)
   }
 }
