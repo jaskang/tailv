@@ -41,7 +41,7 @@ export const router = createRouter({
         {
           path: '/menu',
           name: 'menu',
-          component: async () => import('./demo/menu.vue')
+          component: async () => import('/@docs/Menu/__docs__/Menu.md')
         },
         {
           path: '/alert',

@@ -14,7 +14,7 @@ const ElMenu = defineComponent({
   props: {
     mode: {
       type: String as PropType<'horizontal' | 'vertical'>,
-      default: 'horizontal'
+      default: 'vertical'
     },
     trigger: {
       type: String as PropType<'click' | 'hover'>,

@@ -18,7 +18,7 @@ export type SubMenuInjectData = {
 }
 export const SubMenuSymbol: InjectionKey<SubMenuInjectData> = Symbol('Submenu')
 
-const ElSubmenu = defineComponent({
+const Submenu = defineComponent({
   name: 'ElSubmenu',
   props: {
     disabled: { type: Boolean, default: false },
@@ -97,27 +97,28 @@ const ElSubmenu = defineComponent({
         >
           <ElPopper
             placement={data.deep === 0 ? 'bottom-start' : 'right-start'}
-            render={() => (
-              <ul
-                role="menu"
-                class={[
-                  'el-menu',
-                  'el-menu--popup',
-                  `el-menu--popup-${
-                    data.deep === 0 ? 'bottom-start' : 'right-start'
-                  }`
-                ]}
-                style={{
-                  backgroundColor: config?.backgroundColor,
-                  width: '200px'
-                }}
-              >
-                {slots.default?.()}
-              </ul>
-            )}
-          >
-            {Title}
-          </ElPopper>
+            v-slots={{
+              default: () => (
+                <ul
+                  role="menu"
+                  class={[
+                    'el-menu',
+                    'el-menu--popup',
+                    `el-menu--popup-${
+                      data.deep === 0 ? 'bottom-start' : 'right-start'
+                    }`
+                  ]}
+                  style={{
+                    backgroundColor: config?.backgroundColor,
+                    width: '200px'
+                  }}
+                >
+                  {slots.default?.()}
+                </ul>
+              ),
+              reference: () => Title
+            }}
+          ></ElPopper>
         </li>
       ) : (
         <li
@@ -147,4 +148,4 @@ const ElSubmenu = defineComponent({
   }
 })
 
-export default ElSubmenu
+export default Submenu
