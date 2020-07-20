@@ -5,146 +5,72 @@ import { uniqueId } from '../../utils/uniqueId'
 
 import './popper.scss'
 
-export type PlacementType =
+export type Placement =
+  | 'auto'
+  | 'auto-start'
+  | 'auto-end'
   | 'top'
   | 'top-start'
   | 'top-end'
   | 'bottom'
   | 'bottom-start'
   | 'bottom-end'
-  | 'left'
-  | 'left-start'
-  | 'left-end'
   | 'right'
   | 'right-start'
   | 'right-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end'
 
-type PopperInjectData = {
-  actions: {
-    add: (id: symbol) => void
-    remove: (id: symbol) => void
-  }
-}
-
-type PopperState = {
-  isActive: boolean
-  children: symbol[]
-}
-
-const PopperSymbol = Symbol('Popper')
+export type Strategy = 'absolute' | 'fixed'
 
 export function usePopper(
-  referenceElRef: Ref<HTMLElement | undefined>,
-  popperClass: string | string[],
-  options?: {
-    trigger?: 'click' | 'hover'
-    placement?: PlacementType
+  popperClass?: string | string[],
+  popperOptions?: {
+    placement?: Placement
     modifiers?: Array<any>
-    strategy?: 'absolute' | 'fixed'
+    strategy?: Strategy
   }
 ) {
-  const { trigger = 'click', placement = 'bottom', modifiers = [], strategy = 'absolute' } = options || {}
+  const { placement = 'bottom', modifiers = [], strategy = 'absolute' } = popperOptions || {}
+
   const popperEl = createEl(uniqueId('el-popper'), normalizeClass(['el-popper', popperClass]))
   const popper = ref<Popper>()
-  const hideTimer = ref<number>()
-  const id = Symbol('usePopper')
-  const state = reactive<PopperState>({
-    isActive: false,
-    children: []
-  })
+  let referenceEl: HTMLElement | null = null
 
-  const hasChildOpened = computed(() => state.children.length > 0)
-  const isOpen = computed(() => state.isActive || hasChildOpened.value)
-
-  const injectData = reactive<PopperInjectData>({
-    actions: {
-      add(id) {
-        if (state.children.indexOf(id) === -1) {
-          state.children.push(id)
-        }
-      },
-      remove(id) {
-        const menuIndex = state.children.indexOf(id)
-        if (menuIndex >= 0) {
-          state.children.splice(menuIndex, 1)
-        }
-      }
+  const setReferenceEl = (el: HTMLElement) => {
+    if (referenceEl === el) {
+      return
     }
-  })
+    if (popper.value) {
+      popper.value.destroy()
+    }
+    popper.value = createPopper(el, popperEl, {
+      placement,
+      modifiers,
+      strategy
+    })
+  }
 
-  watch(referenceElRef, referenceEl => {
-    if (referenceEl) {
-      popper.value = createPopper(referenceEl, popperEl, {
-        placement,
-        modifiers,
-        strategy
-      })
-      const showEvents = ['mouseenter', 'focus']
-      const hideEvents = ['mouseleave', 'blur']
-
-      showEvents.forEach(event => {
-        if (trigger === 'click' && event === 'mouseenter') {
-          referenceEl.addEventListener('click', () => {
-            state.isActive = true
-          })
-        } else {
-          referenceEl.addEventListener(event, () => {
-            state.isActive = true
-          })
-        }
-        popperEl.addEventListener(event, () => {
-          state.isActive = true
-        })
-      })
-
-      hideEvents.forEach(event => {
-        referenceEl.addEventListener(event, () => {
-          state.isActive = false
-        })
-        popperEl.addEventListener(event, () => {
-          state.isActive = false
-        })
-      })
+  const setVisible = (visible: boolean) => {
+    if (visible) {
+      popperEl.setAttribute('data-show', '')
     } else {
-      popper.value?.destroy()
-      popper.value = undefined
+      popperEl.removeAttribute('data-show')
     }
-  })
-
-  const { actions } = inject<PopperInjectData>(PopperSymbol) || {}
-
-  watchEffect(() => {
-    console.log('isActive:' + state.isActive)
-    console.log('children:' + state.children.length)
-  })
-
-  watch(isOpen, isOpen => {
-    console.log(isOpen)
-    if (isOpen) {
-      clearTimeout(hideTimer.value)
-      popper.value?.update()
-      popperEl.setAttribute('data-show', 'true')
-      actions?.add(id)
-    } else {
-      hideTimer.value = window.setTimeout(() => {
-        popperEl.removeAttribute('data-show')
-        actions?.remove(id)
-      }, 200)
-    }
-  })
+  }
   onBeforeUnmount(() => {
     if (popper.value) {
       popper.value.destroy()
       popper.value = undefined
     }
-    actions?.remove(id)
     removeEl(popperEl)
   })
 
-  provide(PopperSymbol, injectData)
-
   return {
-    teleportId: popperEl.id,
-    popper
+    popper,
+    popperEl: popperEl,
+    setVisible,
+    setReferenceEl
   }
 }

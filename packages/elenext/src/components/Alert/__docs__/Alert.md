@@ -6,7 +6,9 @@
 
 页面中的非浮层元素，不会自动消失。
 
-:::demo Alert 组件提供四种主题，由`type`属性指定，默认值为`info`。
+:::demo
+
+Alert 组件提供四种主题，由`type`属性指定，默认值为`info`。
 
 ```html
 <el-alert title="成功提示的文案" type="success"> </el-alert>
@@ -21,7 +23,9 @@
 
 Alert 组件提供了两个不同的主题：`light`和`dark`。
 
-:::demo 通过设置`effect`属性来改变主题，默认为`light`。
+:::demo
+
+通过设置`effect`属性来改变主题，默认为`light`。
 
 ```html
 <el-alert title="成功提示的文案" type="success" effect="dark"> </el-alert>
@@ -36,7 +40,9 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 自定义关闭按钮为文字或其他符号。
 
-:::demo 在 Alert 组件中，你可以设置是否可关闭，关闭按钮的文本以及关闭时的回调函数。`closable`属性决定是否可关闭，接受`boolean`，默认为`true`。你可以设置`close-text`属性来代替右侧的关闭图标，注意：`close-text`必须为文本。设置`close`事件来设置关闭时的回调。
+:::demo
+
+在 Alert 组件中，你可以设置是否可关闭，关闭按钮的文本以及关闭时的回调函数。`closable`属性决定是否可关闭，接受`boolean`，默认为`true`。你可以设置`close-text`属性来代替右侧的关闭图标，注意：`close-text`必须为文本。设置`close`事件来设置关闭时的回调。
 
 ```html
 <el-alert title="不可关闭的 alert" type="success" :closable="false"> </el-alert>
@@ -60,7 +66,9 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 表示某种状态时提升可读性。
 
-:::demo 通过设置`show-icon`属性来显示 Alert 的 icon，这能更有效地向用户展示你的显示意图。
+:::demo
+
+通过设置`show-icon`属性来显示 Alert 的 icon，这能更有效地向用户展示你的显示意图。
 
 ```html
 <el-alert title="成功提示的文案" type="success" show-icon> </el-alert>
@@ -90,7 +98,9 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 包含标题和内容，解释更详细的警告。
 
-:::demo 除了必填的`title`属性外，你可以设置`description`属性来帮助你更好地介绍，我们称之为辅助性文字。辅助性文字只能存放单行文本，会自动换行显示。
+:::demo
+
+除了必填的`title`属性外，你可以设置`description`属性来帮助你更好地介绍，我们称之为辅助性文字。辅助性文字只能存放单行文本，会自动换行显示。
 
 ```html
 <el-alert
@@ -105,7 +115,9 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 ### 带有 icon 和辅助性文字介绍
 
-:::demo 最后，这是一个同时具有 icon 和辅助性文字的样例。
+:::demo
+
+最后，这是一个同时具有 icon 和辅助性文字的样例。
 
 ```html
 <el-alert
@@ -155,10 +167,10 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 ### Slot
 
-| Name  | Description |
-| ----- | ----------- |
-| —     | 描述        |
-| title | 标题的内容  |
+| Name        | Description |
+| ----------- | ----------- |
+| description | 描述        |
+| title       | 标题的内容  |
 
 ### Events
 

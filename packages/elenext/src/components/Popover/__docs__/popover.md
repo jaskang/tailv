@@ -41,10 +41,10 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   trigger="focus"
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
 >
+  <template #reference>
+    <el-button>focus 激活</el-button>
+  </template>
 </el-popover>
-<template #reference>
-  <el-button>focus 激活</el-button>
-</template>
 <el-popover
   placement="bottom"
   title="标题"
@@ -84,11 +84,7 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   <el-table :data="gridData">
     <el-table-column width="150" property="date" label="日期"></el-table-column>
     <el-table-column width="100" property="name" label="姓名"></el-table-column>
-    <el-table-column
-      width="300"
-      property="address"
-      label="地址"
-    ></el-table-column>
+    <el-table-column width="300" property="address" label="地址"></el-table-column>
   </el-table>
   <template #reference>
     <el-button>click 激活</el-button>
@@ -140,9 +136,7 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   <p>这是一段内容这是一段内容确定删除吗？</p>
   <div style="text-align: right; margin: 0">
     <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-    <el-button type="primary" size="mini" @click="visible = false"
-      >确定</el-button
-    >
+    <el-button type="primary" size="mini" @click="visible = false">确定</el-button>
   </div>
   <template #reference>
     <el-button>删除</el-button>

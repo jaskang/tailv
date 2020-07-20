@@ -4,6 +4,7 @@ import './Link.scss'
 const Link = defineComponent({
   name: 'ElLink',
   inheritAttrs: false,
+  emits: ['click'],
   props: {
     type: {
       type: String,
@@ -25,7 +26,6 @@ const Link = defineComponent({
         }
       }
     }
-
     return () => (
       <a
         class={[
@@ -35,7 +35,8 @@ const Link = defineComponent({
           props.underline && !props.disabled && 'is-underline'
         ]}
         href={props.disabled ? undefined : props.href}
-        {...mergeProps(attrs, { onClick: handleClick })}
+        {...{ ...attrs, onClick: handleClick }}
+        // onClick={handleClick}
       >
         {props.icon && <i class={props.icon}></i>}
         <span class="el-link--inner">{slots.default?.()}</span>

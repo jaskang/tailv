@@ -22,5 +22,6 @@ const PropTypes = {
   },
   func<T extends (...args: any) => any>() {
     return { type: Function as PropType<T> }
-  }
+  },
+  oneOf<T = any>() {}
 }

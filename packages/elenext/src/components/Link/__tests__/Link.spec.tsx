@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { ElLink } from '../'
+import { reactive } from 'vue'
 describe('Link', () => {
   it('create', () => {
     const wrapper = mount({
@@ -50,15 +51,28 @@ describe('Link', () => {
 
   it('click', async () => {
     let times = 0
+
     const wrapper = mount({
-      setup() {
+      props: {
+        disabled: {
+          type: Boolean
+        }
+      },
+      setup(props) {
         const handleClick = () => {
           times++
         }
-        return () => <ElLink onClick={handleClick}>default</ElLink>
+        return () => (
+          <ElLink disabled={props.disabled} onClick={handleClick}>
+            default
+          </ElLink>
+        )
       }
     })
     await wrapper.find('.el-link').trigger('click')
-    expect(times).toBe(2)
+    expect(times).toBe(1)
+    await wrapper.setProps({ disabled: true })
+    await wrapper.find('.el-link').trigger('click')
+    expect(times).toBe(1)
   })
 })

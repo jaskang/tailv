@@ -5,24 +5,30 @@ import {
   getCurrentInstance,
   Teleport,
   PropType,
-  Ref
+  Ref,
+  reactive,
+  watch,
+  watchEffect
 } from 'vue'
 
-import { usePopper, PlacementType } from './usePopper'
+import { usePopper, Placement } from './usePopper'
+import useClickAway from '../../hooks/useClickAway'
 
 const PopperInner = defineComponent({
   props: {
-    rootElRef: {
-      type: Object as PropType<Ref<Element | undefined>>,
+    setRootEl: {
+      type: Function as PropType<(el: HTMLElement | null) => void>,
       required: true
     }
   },
-  setup({ rootElRef }, { slots }) {
+  setup({ setRootEl }, { slots }) {
     onMounted(() => {
-      const ctx = getCurrentInstance()
-      if (ctx?.vnode.el) {
-        rootElRef.value = ctx.vnode.el.nextElementSibling
+      const instance = getCurrentInstance()
+      let node = instance!.vnode.el
+      while (node && !node.tagName) {
+        node = node.nextSibling
       }
+      setRootEl(node as HTMLElement | null)
     })
     return () => (slots.default ? slots.default() : <span></span>)
   }
@@ -40,7 +46,7 @@ const Popper = defineComponent({
       default: 'click'
     },
     placement: {
-      type: String as PropType<PlacementType>,
+      type: String as PropType<Placement>,
       default: 'top'
     },
     modifiers: { type: Array, default: [] },
@@ -50,23 +56,51 @@ const Popper = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
-    const referenceElRef = ref<HTMLElement>()
-    const { teleportId } = usePopper(referenceElRef, props.popperClass, {
-      trigger: props.trigger as 'click' | 'hover',
-      placement: props.placement as PlacementType,
+    const { popper, popperEl, setReferenceEl, setVisible } = usePopper(props.popperClass, {
+      placement: props.placement as Placement,
       modifiers: props.modifiers,
       strategy: props.strategy as 'absolute' | 'fixed'
     })
-
+    const state = reactive({
+      visible: false
+    })
+    watchEffect(() => {
+      setVisible(state.visible)
+    })
+    const setRootEl = (el: HTMLElement | null) => {
+      if (el) {
+        setReferenceEl(el)
+        if (props.trigger === 'click') {
+          el.addEventListener('click', () => {
+            state.visible = !state.visible
+          })
+          useClickAway(() => {
+            state.visible = false
+          }, el)
+        } else if (props.trigger === 'hover') {
+          el.addEventListener('mouseenter', () => {
+            state.visible = true
+          })
+          el.addEventListener('mouseleave', () => {
+            state.visible = false
+          })
+        } else if (props.trigger === 'focus') {
+          el.addEventListener('focus', () => {
+            state.visible = true
+          })
+          el.addEventListener('blur', () => {
+            state.visible = false
+          })
+        }
+      } else {
+        throw new Error('reference root dom required')
+      }
+    }
     return () => {
       return (
         <>
-          <Teleport to={`#${teleportId}`}>
-            {slots.default && slots.default()}
-          </Teleport>
-          <PopperInner rootElRef={referenceElRef}>
-            {slots.reference?.()}
-          </PopperInner>
+          <Teleport to={`#${popperEl.id}`}>{slots.default && slots.default()}</Teleport>
+          <PopperInner setRootEl={setRootEl}>{slots.reference?.()}</PopperInner>
         </>
       )
     }
