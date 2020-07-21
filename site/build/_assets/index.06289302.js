@@ -13144,7 +13144,7 @@ const _hoisted_2 = /*#__PURE__*/createVNode("img", {
 }, null, -1);
 popScopeId();
 
-const render$1 = /*#__PURE__*/_withId(function render(_ctx, _cache) {
+const render$1 = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock("div", _hoisted_1, [
     _hoisted_2,
     createVNode("h1", null, toDisplayString(_ctx.msg), 1)
@@ -13174,8 +13174,7 @@ var script$1 = defineComponent({
 
 const _hoisted_1$1 = { class: "demo-layout" };
 
-function render$2(_ctx, _cache) {
-  const _component_HelloWorld = resolveComponent("HelloWorld");
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_el_menu_item = resolveComponent("el-menu-item");
   const _component_el_menu_item_group = resolveComponent("el-menu-item-group");
   const _component_el_menu = resolveComponent("el-menu");
@@ -13189,7 +13188,6 @@ function render$2(_ctx, _cache) {
       default: withCtx(() => [
         createVNode(_component_ElAside, { class: "demo-aside" }, {
           default: withCtx(() => [
-            createVNode(_component_HelloWorld, { msg: "Hello Elenext UI" }),
             createVNode(_component_el_menu, null, {
               default: withCtx(() => [
                 (openBlock(true), createBlock(Fragment, null, renderList(_ctx.menus, (menu) => {
@@ -13207,11 +13205,11 @@ function render$2(_ctx, _cache) {
                           default: withCtx(() => [
                             createTextVNode(toDisplayString(item), 1 /* TEXT */)
                           ]),
-                          _: 1
+                          _: 2
                         }, 1032, ["onClick"]))
                       }), 256 /* UNKEYED_FRAGMENT */))
                     ]),
-                    _: 1
+                    _: 2
                   }, 1024))
                 }), 128 /* KEYED_FRAGMENT */))
               ]),
@@ -13249,42 +13247,42 @@ const router = createRouter({
         {
           path: "/button",
           name: "button",
-          component: async () => import('./Button.zh-CN.64731512.js')
+          component: async () => import('./Button.zh-CN.2309fc0b.js')
         },
         {
           path: "/link",
           name: "link",
-          component: async () => import('./Link.2ed957cc.js')
+          component: async () => import('./Link.0f2df1a0.js')
         },
         {
           path: "/layout",
           name: "layout",
-          component: async () => import('./Layout.7f130dbd.js')
+          component: async () => import('./Layout.ea4d744b.js')
         },
         {
           path: "/container",
           name: "container",
-          component: async () => import('./Container.zh-CN.94626892.js')
+          component: async () => import('./Container.zh-CN.45f25d2c.js')
         },
         {
           path: "/icon",
           name: "icon",
-          component: async () => import('./Icon.75e7436f.js')
+          component: async () => import('./Icon.dd0d64d6.js')
         },
         {
           path: "/menu",
           name: "menu",
-          component: async () => import('./Menu.0074dba0.js')
+          component: async () => import('./Menu.bed71fa7.js')
         },
         {
           path: "/alert",
           name: "alert",
-          component: async () => import('./Alert.904328e7.js')
+          component: async () => import('./Alert.87804d38.js')
         },
         {
           path: "/popover",
           name: "popover",
-          component: async () => import('./Popover.0f9792e0.js')
+          component: async () => import('./Popover.5c7677e8.js')
         }
       ]
     }
@@ -15181,7 +15179,7 @@ var ElMain = defineComponent({
 var css_248z$2 = ".el-container{display:flex;flex-direction:row;flex:1;flex-basis:auto;box-sizing:border-box;min-width:0}.el-container.is-vertical{flex-direction:column}.el-footer,.el-header{padding:0 20px}.el-aside,.el-footer,.el-header{box-sizing:border-box;flex-shrink:0}.el-aside,.el-main{overflow:auto}.el-main{display:block;flex:1;flex-basis:auto;box-sizing:border-box;padding:20px}";
             injectCss(css_248z$2,'components_Container_Container.scss');
 
-var ElContainer = defineComponent({
+var Container = defineComponent({
   name: 'ElContainer',
   props: {
     direction: {
@@ -15304,11 +15302,49 @@ var ButtonGroup = defineComponent({
   }
 });
 
+function createCommonjsModule$1(fn, basedir, module) {
+	return module = {
+	  path: basedir,
+	  exports: {},
+	  require: function (path, base) {
+      return commonjsRequire$1(path, (base === undefined || base === null) ? module.path : base);
+    }
+	}, fn(module, module.exports), module.exports;
+}
+
+function commonjsRequire$1 () {
+	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+}
+
+var _extends_1 = createCommonjsModule$1(function (module) {
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+});
+
 var css_248z$4 = ".el-link{display:inline-flex;flex-direction:row;align-items:center;justify-content:center;vertical-align:middle;position:relative;text-decoration:none;outline:none;cursor:pointer;padding:0;font-size:14px;font-weight:500}.el-link.is-underline:hover:after{content:\"\";position:absolute;left:0;right:0;height:0;bottom:0;border-bottom:1px solid #409eff}.el-link.is-disabled{cursor:not-allowed}.el-link [class*=el-icon-]+span{margin-left:5px}.el-link.el-link--default{color:#606266}.el-link.el-link--default:hover{color:#409eff}.el-link.el-link--default:after{border-color:#409eff}.el-link.el-link--default.is-disabled{color:#c0c4cc}.el-link.el-link--primary{color:#409eff}.el-link.el-link--primary:hover{color:#66b1ff}.el-link.el-link--primary:after{border-color:#409eff}.el-link.el-link--primary.is-disabled{color:#a0cfff}.el-link.el-link--primary.is-underline:hover:after{border-color:#409eff}.el-link.el-link--danger{color:#f56c6c}.el-link.el-link--danger:hover{color:#f78989}.el-link.el-link--danger:after{border-color:#f56c6c}.el-link.el-link--danger.is-disabled{color:#fab6b6}.el-link.el-link--danger.is-underline:hover:after{border-color:#f56c6c}.el-link.el-link--success{color:#67c23a}.el-link.el-link--success:hover{color:#85ce61}.el-link.el-link--success:after{border-color:#67c23a}.el-link.el-link--success.is-disabled{color:#b3e19d}.el-link.el-link--success.is-underline:hover:after{border-color:#67c23a}.el-link.el-link--warning{color:#e6a23c}.el-link.el-link--warning:hover{color:#ebb563}.el-link.el-link--warning:after{border-color:#e6a23c}.el-link.el-link--warning.is-disabled{color:#f3d19e}.el-link.el-link--warning.is-underline:hover:after{border-color:#e6a23c}.el-link.el-link--info{color:#909399}.el-link.el-link--info:hover{color:#a6a9ad}.el-link.el-link--info:after{border-color:#909399}.el-link.el-link--info.is-disabled{color:#c8c9cc}.el-link.el-link--info.is-underline:hover:after{border-color:#909399}";
             injectCss(css_248z$4,'components_Link_Link.scss');
 
 var Link = defineComponent({
   name: 'ElLink',
+  inheritAttrs: false,
+  emits: ['click'],
   props: {
     type: {
       type: String,
@@ -15327,7 +15363,7 @@ var Link = defineComponent({
         slots = _ref.slots,
         attrs = _ref.attrs;
 
-    var handleClick = function handleClick(e) {
+    var handleClick = function handleClick(event) {
       if (!props.disabled) {
         if (!props.href) {
           emit('click', event);
@@ -15338,10 +15374,11 @@ var Link = defineComponent({
     return function () {
       var _slots$default;
 
-      return createVNode("a", mergeProps(attrs, {
+      return createVNode("a", mergeProps(_extends_1({}, attrs, {
+        onClick: handleClick
+      }), {
         "class": ['el-link', props.type ? "el-link--" + props.type : '', props.disabled && 'is-disabled', props.underline && !props.disabled && 'is-underline'],
-        "href": props.disabled ? undefined : props.href,
-        "onClick": handleClick
+        "href": props.disabled ? undefined : props.href
       }), [props.icon && createVNode("i", {
         "class": props.icon
       }, null, 2
@@ -15350,7 +15387,7 @@ var Link = defineComponent({
         "class": "el-link--inner"
       }, [(_slots$default = slots["default"]) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots)])], 16
       /* FULL_PROPS */
-      , ["href", "onClick"]);
+      , ["href"]);
     };
   }
 });
@@ -15373,6 +15410,16 @@ var Icon = defineComponent({
     };
   }
 });
+
+const transformOn$2 = (obj) => {
+  const result = {};
+  Object.keys(obj).forEach((evt) => {
+    result[`on${evt[0].toUpperCase()}${evt.substr(1)}`] = obj[evt];
+  });
+  return result;
+};
+
+var babelHelperVueTransformOn = transformOn$2;
 
 function createEl(id, cls) {
   var el = document.createElement('div');
@@ -15474,11 +15521,43 @@ function uniqueId(prefix) {
 var css_248z$6 = ".el-popper{position:absolute;display:none}.el-popper[data-show]{display:block}.el-popper .popper__arrow,.el-popper .popper__arrow:after{position:absolute;display:block;width:0;height:0;border-color:transparent;border-style:solid}.el-popper .popper__arrow{border-width:6px;-webkit-filter:drop-shadow(0 2px 12px rgba(0,0,0,.03));filter:drop-shadow(0 2px 12px rgba(0,0,0,.03))}.el-popper .popper__arrow:after{content:\" \";border-width:6px}.el-popper[x-placement^=top]{margin-bottom:12px}.el-popper[x-placement^=top] .popper__arrow{bottom:-6px;left:50%;margin-right:3px;border-top-color:#ebeef5;border-bottom-width:0}.el-popper[x-placement^=top] .popper__arrow:after{bottom:1px;margin-left:-6px;border-top-color:#fff;border-bottom-width:0}.el-popper[x-placement^=bottom]{margin-top:12px}.el-popper[x-placement^=bottom] .popper__arrow{top:-6px;left:50%;margin-right:3px;border-top-width:0;border-bottom-color:#ebeef5}.el-popper[x-placement^=bottom] .popper__arrow:after{top:1px;margin-left:-6px;border-top-width:0;border-bottom-color:#fff}.el-popper[x-placement^=right]{margin-left:12px}.el-popper[x-placement^=right] .popper__arrow{top:50%;left:-6px;margin-bottom:3px;border-right-color:#ebeef5;border-left-width:0}.el-popper[x-placement^=right] .popper__arrow:after{bottom:-6px;left:1px;border-right-color:#fff;border-left-width:0}.el-popper[x-placement^=left]{margin-right:12px}.el-popper[x-placement^=left] .popper__arrow{top:50%;right:-6px;margin-bottom:3px;border-right-width:0;border-left-color:#ebeef5}.el-popper[x-placement^=left] .popper__arrow:after{right:1px;bottom:-6px;margin-left:-6px;border-right-width:0;border-left-color:#fff}";
             injectCss(css_248z$6,'components_Popper_popper.scss');
 
-var PopperSymbol = Symbol('Popper');
-function usePopper(referenceElRef, popperClass, options) {
-  var _ref = options || {},
-      _ref$trigger = _ref.trigger,
-      trigger = _ref$trigger === void 0 ? 'click' : _ref$trigger,
+var useChildren = function useChildren(key, item, effect) {
+  var _inject = inject(key, {}),
+      add = _inject.add,
+      remove = _inject.remove;
+
+  var state = reactive({
+    children: []
+  });
+  onMounted(function () {
+    add === null || add === void 0 ? void 0 : add(item);
+  });
+  onUnmounted(function () {
+    remove === null || remove === void 0 ? void 0 : remove(item);
+  });
+  watchEffect(function () {
+    effect(state.children);
+  });
+  provide(key, {
+    add: function add(item) {
+      if (state.children.indexOf(item) === -1) {
+        state.children.push(item);
+      }
+    },
+    remove: function remove(item) {
+      var index = state.children.indexOf(item);
+
+      if (index >= 0) {
+        state.children.splice(index, 1);
+      }
+    },
+    children: state.children
+  });
+};
+
+var popperInject = Symbol('popper');
+function usePopper(popperClass, popperOptions) {
+  var _ref = popperOptions || {},
       _ref$placement = _ref.placement,
       placement = _ref$placement === void 0 ? 'bottom' : _ref$placement,
       _ref$modifiers = _ref.modifiers,
@@ -15486,132 +15565,120 @@ function usePopper(referenceElRef, popperClass, options) {
       _ref$strategy = _ref.strategy,
       strategy = _ref$strategy === void 0 ? 'absolute' : _ref$strategy;
 
-  var popperEl = createEl(uniqueId('el-popper'), normalizeClass$1(['el-popper', popperClass]));
+  var id = uniqueId('el-popper');
+  var popperEl = createEl(id, normalizeClass$1(['el-popper', popperClass]));
   var popper = ref();
-  var hideTimer = ref();
-  var id = Symbol('usePopper');
+  var referenceEl = null;
+
+  var setReferenceEl = function setReferenceEl(el) {
+    if (referenceEl === el) {
+      return;
+    }
+
+    if (popper.value) {
+      popper.value.destroy();
+    }
+
+    popper.value = createPopper(el, popperEl, {
+      placement: placement,
+      modifiers: modifiers,
+      strategy: strategy
+    });
+  };
+
   var state = reactive({
-    isActive: false,
-    children: []
+    focus: false,
+    visible: false,
+    childrenVisible: false
   });
-  var hasChildOpened = computed$1(function () {
-    return state.children.length > 0;
+  var realVisible = computed$1(function () {
+    return state.visible || state.focus || state.childrenVisible;
   });
-  var isOpen = computed$1(function () {
-    return state.isActive || hasChildOpened.value;
+  useChildren(popperInject, {
+    id: id,
+    visible: realVisible
+  }, function (children) {
+    state.childrenVisible = children.some(function (item) {
+      return item.visible.value;
+    });
   });
-  var injectData = reactive({
-    actions: {
-      add: function add(id) {
-        if (state.children.indexOf(id) === -1) {
-          state.children.push(id);
-        }
-      },
-      remove: function remove(id) {
-        var menuIndex = state.children.indexOf(id);
-
-        if (menuIndex >= 0) {
-          state.children.splice(menuIndex, 1);
-        }
-      }
-    }
-  });
-  watch(referenceElRef, function (referenceEl) {
-    if (referenceEl) {
-      popper.value = createPopper(referenceEl, popperEl, {
-        placement: placement,
-        modifiers: modifiers,
-        strategy: strategy
-      });
-      var showEvents = ['mouseenter', 'focus'];
-      var hideEvents = ['mouseleave', 'blur'];
-      showEvents.forEach(function (event) {
-        if (trigger === 'click' && event === 'mouseenter') {
-          referenceEl.addEventListener('click', function () {
-            state.isActive = true;
-          });
-        } else {
-          referenceEl.addEventListener(event, function () {
-            state.isActive = true;
-          });
-        }
-
-        popperEl.addEventListener(event, function () {
-          state.isActive = true;
-        });
-      });
-      hideEvents.forEach(function (event) {
-        referenceEl.addEventListener(event, function () {
-          state.isActive = false;
-        });
-        popperEl.addEventListener(event, function () {
-          state.isActive = false;
-        });
-      });
-    } else {
-      var _popper$value;
-
-      (_popper$value = popper.value) === null || _popper$value === void 0 ? void 0 : _popper$value.destroy();
-      popper.value = undefined;
-    }
-  });
-
-  var _ref2 = inject(PopperSymbol) || {},
-      actions = _ref2.actions;
-
   watchEffect(function () {
-    console.log('isActive:' + state.isActive);
-    console.log('children:' + state.children.length);
-  });
-  watch(isOpen, function (isOpen) {
-    console.log(isOpen);
-
-    if (isOpen) {
-      var _popper$value2;
-
-      clearTimeout(hideTimer.value);
-      (_popper$value2 = popper.value) === null || _popper$value2 === void 0 ? void 0 : _popper$value2.update();
-      popperEl.setAttribute('data-show', 'true');
-      actions === null || actions === void 0 ? void 0 : actions.add(id);
+    if (realVisible.value) {
+      popperEl.setAttribute('data-show', '');
     } else {
-      hideTimer.value = window.setTimeout(function () {
-        popperEl.removeAttribute('data-show');
-        actions === null || actions === void 0 ? void 0 : actions.remove(id);
-      }, 200);
+      popperEl.removeAttribute('data-show');
     }
   });
-  onBeforeUnmount(function () {
+  var events = [['mouseenter', function () {
+    return state.focus = true;
+  }], ['mouseleave', function () {
+    return state.focus = false;
+  }]];
+  onMounted(function () {
+    events.forEach(function (event) {
+      popperEl.addEventListener(event[0], event[1]);
+    });
+  });
+  onUnmounted(function () {
     if (popper.value) {
       popper.value.destroy();
       popper.value = undefined;
     }
 
-    actions === null || actions === void 0 ? void 0 : actions.remove(id);
+    events.forEach(function (event) {
+      popperEl.removeEventListener(event[0], event[1]);
+    });
     removeEl(popperEl);
   });
-  provide(PopperSymbol, injectData);
   return {
-    teleportId: popperEl.id,
-    popper: popper
+    popper: popper,
+    popperEl: popperEl,
+    setReferenceEl: setReferenceEl,
+    state: state
   };
+}
+
+var defaultEvent = 'click';
+function useClickAway(onClickAway, target, eventName) {
+  if (eventName === void 0) {
+    eventName = defaultEvent;
+  }
+
+  var handler = function handler(event) {
+    if (!target || target.contains(event.target)) {
+      return;
+    }
+
+    onClickAway(event);
+  };
+
+  watchEffect(function (onInvalidate) {
+    document.addEventListener(eventName, handler);
+    onInvalidate(function () {
+      document.removeEventListener(eventName, handler);
+    });
+  });
 }
 
 var PopperInner = defineComponent({
   props: {
-    rootElRef: {
-      type: Object,
+    setRootEl: {
+      type: Function,
       required: true
     }
   },
   setup: function setup(_ref, _ref2) {
-    var rootElRef = _ref.rootElRef;
+    var setRootEl = _ref.setRootEl;
     var slots = _ref2.slots;
     onMounted(function () {
-      var ctx = getCurrentInstance();
+      var instance = getCurrentInstance();
+      var node = instance.vnode.el;
 
-      if (ctx === null || ctx === void 0 ? void 0 : ctx.vnode.el) {
-        rootElRef.value = ctx.vnode.el.nextElementSibling;
+      while (node && !node.tagName) {
+        node = node.nextSibling;
       }
+
+      setRootEl(node);
     });
     return function () {
       return slots["default"] ? slots["default"]() : createVNode("span", null, null);
@@ -15620,7 +15687,12 @@ var PopperInner = defineComponent({
 });
 var Popper = defineComponent({
   name: 'ElPopper',
+  emits: ['update:modelValue'],
   props: {
+    modelValue: {
+      type: Boolean,
+      "default": false
+    },
     popperClass: {
       type: String,
       "default": ''
@@ -15646,36 +15718,88 @@ var Popper = defineComponent({
     var attrs = _ref3.attrs,
         slots = _ref3.slots,
         emit = _ref3.emit;
-    var referenceElRef = ref();
 
-    var _usePopper = usePopper(referenceElRef, props.popperClass, {
-      trigger: props.trigger,
+    var _usePopper = usePopper(props.popperClass, {
       placement: props.placement,
       modifiers: props.modifiers,
       strategy: props.strategy
     }),
-        teleportId = _usePopper.teleportId;
+        popperState = _usePopper.state,
+        popperEl = _usePopper.popperEl,
+        setReferenceEl = _usePopper.setReferenceEl;
+
+    var state = reactive({
+      focusPopper: false,
+      visible: props.modelValue
+    });
+
+    var setVisible = function setVisible(visible) {
+      if (popperState.focus && visible === false) ; else {
+        state.visible = visible;
+        emit('update:modelValue', visible);
+      }
+    };
+
+    watchEffect(function () {
+      popperState.visible = state.visible;
+    });
+    watch(function () {
+      return props.modelValue;
+    }, function (value) {
+      state.visible = value;
+    });
+
+    var setRootEl = function setRootEl(el) {
+      if (!el) {
+        throw new Error('reference root dom required');
+      }
+
+      setReferenceEl(el);
+
+      if (props.trigger === 'click') {
+        el.addEventListener('click', function () {
+          setVisible(!state.visible);
+        });
+        useClickAway(function () {
+          setVisible(false);
+        }, el);
+      } else if (props.trigger === 'hover') {
+        el.addEventListener('mouseenter', function () {
+          setVisible(true);
+        });
+        el.addEventListener('mouseleave', function () {
+          setVisible(false);
+        });
+      } else if (props.trigger === 'focus') {
+        el.addEventListener('focus', function () {
+          setVisible(true);
+        });
+        el.addEventListener('blur', function () {
+          setVisible(false);
+        });
+      }
+    };
 
     return function () {
-      var _slots$reference;
+      var _slots$popper, _slots$default;
 
       return createVNode(Fragment, null, [createVNode(Teleport, {
-        "to": "#" + teleportId
+        "to": "#" + popperEl.id
       }, {
         "default": function _default() {
-          return [slots["default"] && slots["default"]()];
+          return [(_slots$popper = slots.popper) === null || _slots$popper === void 0 ? void 0 : _slots$popper.call(slots)];
         }
       }, 8
       /* PROPS */
       , ["to"]), createVNode(PopperInner, {
-        "rootElRef": referenceElRef
+        "setRootEl": setRootEl
       }, {
         "default": function _default() {
-          return [(_slots$reference = slots.reference) === null || _slots$reference === void 0 ? void 0 : _slots$reference.call(slots)];
+          return [(_slots$default = slots["default"]) === null || _slots$default === void 0 ? void 0 : _slots$default.call(slots)];
         }
       }, 8
       /* PROPS */
-      , ["rootElRef"])]);
+      , ["setRootEl"])]);
     };
   }
 });
@@ -15685,7 +15809,12 @@ var css_248z$7 = ".el-popover{position:absolute;background:#fff;min-width:150px;
 
 var Popover = defineComponent({
   name: 'ElPopver',
+  emits: ['update:modelValue'],
   props: {
+    modelValue: {
+      type: Boolean,
+      "default": false
+    },
     trigger: {
       type: String,
       "default": 'click'
@@ -15711,13 +15840,20 @@ var Popover = defineComponent({
     var attrs = _ref.attrs,
         slots = _ref.slots,
         emit = _ref.emit;
+
+    var onUpdate = function onUpdate(value) {
+      emit('update:modelValue', value);
+    };
+
     return function () {
-      return createVNode(Popper, {
+      return createVNode(Popper, mergeProps(babelHelperVueTransformOn({
+        'update:modelValue': onUpdate
+      }), {
         "popperClass": normalizeClass$1(['el-popover', 'el-popper', props.popperClass, props.content && 'el-popover--plain']),
-        "trigger": props.trigger
-      }, {
-        reference: slots.reference,
-        "default": function _default() {
+        "trigger": props.trigger,
+        "modelValue": props.modelValue
+      }), {
+        popper: function popper() {
           return withDirectives(createVNode("div", {
             "ref": "popper",
             "style": {
@@ -15727,13 +15863,14 @@ var Popover = defineComponent({
             "id": "tooltipId"
           }, [props.title && createVNode("div", {
             "class": "el-popover__title"
-          }, [props.title]), slots["default"] ? slots["default"]() : props.content], 4
+          }, [props.title]), slots.popper ? slots.popper() : props.content], 4
           /* STYLE */
           ), [[vShow, "!disabled && showPopper"]]);
-        }
+        },
+        "default": slots["default"]
       }, 8
       /* PROPS */
-      , ["popperClass", "trigger"]);
+      , ["popperClass", "trigger", "modelValue"]);
     };
   }
 });
@@ -16409,7 +16546,7 @@ var elenext = {
   install: function install(app) {
     app.component('ElRow', ElRow);
     app.component('ElCol', ElCol);
-    app.component('ElContainer', ElContainer);
+    app.component('ElContainer', Container);
     app.component('ElAside', ElAside);
     app.component('ElMain', ElMain);
     app.component('ElHeader', ElHeader);
@@ -16472,7 +16609,7 @@ const _hoisted_4 = {
   class: "preview__coderef"
 };
 
-function render$3(_ctx, _cache) {
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock("div", _hoisted_1$2, [
     createVNode("div", _hoisted_2$1, [
       createVNode("div", _hoisted_3, [
@@ -16493,7 +16630,7 @@ function render$3(_ctx, _cache) {
       ], 4),
       createVNode("div", {
         class: "preview__footer",
-        onClick: _cache[1] || (_cache[1] = ($event, ...args) => (_ctx.toggleCode($event, ...args)))
+        onClick: _cache[1] || (_cache[1] = (...args) => (_ctx.toggleCode(...args)))
       }, toDisplayString(_ctx.codeHeight > 0 ? '隐藏代码' : '显示代码'), 1)
     ])
   ]))
@@ -16508,7 +16645,7 @@ var script$3 = defineComponent({
   components: {}
 });
 
-function render$4(_ctx, _cache) {
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_router_view = resolveComponent("router-view");
 
   return (openBlock(), createBlock(_component_router_view))

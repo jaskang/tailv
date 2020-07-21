@@ -54,11 +54,12 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
     ],
     transforms: [
       {
-        test(path, query) {
-          return path.endsWith('.md')
+        test(ctx) {
+          return ctx.path.endsWith('.md')
         },
         // TODO: 目前使用需使用 vue.esm-bundler.js, 需改为 @vue/compiler-sfc 编译组件
-        transform(code, isImport, isBuild, path, query) {
+        // transform(code, isImport, isBuild, path, query) {
+        transform(ctx) {
           const demos: {
             id: string
             component: string
@@ -72,9 +73,7 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
               if (lang === 'html') {
                 const id = `Demo${demos.length}`
                 // const fullCode = `${code}`
-                const stript = (
-                  stripScript(code) || 'export default {}'
-                ).replace('export default', `const ${id} =`)
+                const stript = (stripScript(code) || 'export default {}').replace('export default', `const ${id} =`)
                 const template = stripTemplate(code)
                 const styles = stripStyle(code)
 
@@ -109,7 +108,7 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
           })
           md.use(require('markdown-it-container'), 'demo')
           md.use(require('markdown-it-container'), 'tip')
-          const context = md.render(code)
+          const context = md.render(ctx.code, {})
           const docComponent = `
           import { createApp, defineComponent } from 'vue';
   

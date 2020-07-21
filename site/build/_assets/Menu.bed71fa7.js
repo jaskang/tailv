@@ -1,4 +1,4 @@
-import { d as defineComponent } from './index.c3d2dc32.js';
+let __VITE_CSS__ = document.createElement('style');__VITE_CSS__.innerHTML = "";document.head.appendChild(__VITE_CSS__);import { d as defineComponent } from './index.06289302.js';
 
 const Demo0 = {
     data() {

@@ -1,18 +1,18 @@
-import { d as defineComponent } from './index.c3d2dc32.js';
+let __VITE_CSS__ = document.createElement('style');__VITE_CSS__.innerHTML = "";document.head.appendChild(__VITE_CSS__);import { d as defineComponent } from './index.06289302.js';
 
 const Demo0 = {};
 if (Demo0.methods) {
                       Demo0.methods.source = function () {
-                        return "<i class=\"el-icon-edit\"></i>\n{{' '}}\n<i class=\"el-icon-share\"></i>\n{{' '}}\n<i class=\"el-icon-delete\"></i>\n{{' '}}\n<el-button type=\"primary\" icon=\"el-icon-search\">搜索</el-button>\n"
+                        return "<i class=\"el-icon-edit\"></i>\n<i class=\"el-icon-share\"></i>\n<i class=\"el-icon-delete\"></i>\n<el-button type=\"primary\" icon=\"el-icon-search\">搜索</el-button>\n"
                       };
                     } else {
                       Demo0.methods = {
                         source() {
-                          return "<i class=\"el-icon-edit\"></i>\n{{' '}}\n<i class=\"el-icon-share\"></i>\n{{' '}}\n<i class=\"el-icon-delete\"></i>\n{{' '}}\n<el-button type=\"primary\" icon=\"el-icon-search\">搜索</el-button>\n"
+                          return "<i class=\"el-icon-edit\"></i>\n<i class=\"el-icon-share\"></i>\n<i class=\"el-icon-delete\"></i>\n<el-button type=\"primary\" icon=\"el-icon-search\">搜索</el-button>\n"
                         },
                       };
                     }
-Demo0.template = "<Preview :source=\"source()\">\n                        <i class=\"el-icon-edit\"></i>\n{{' '}}\n<i class=\"el-icon-share\"></i>\n{{' '}}\n<i class=\"el-icon-delete\"></i>\n{{' '}}\n<el-button type=\"primary\" icon=\"el-icon-search\">搜索</el-button> \n                      </Preview>";
+Demo0.template = "<Preview :source=\"source()\">\n                        <i class=\"el-icon-edit\"></i>\n<i class=\"el-icon-share\"></i>\n<i class=\"el-icon-delete\"></i>\n<el-button type=\"primary\" icon=\"el-icon-search\">搜索</el-button> \n                      </Preview>";
 const icons = [
     'platform-eleme',
     'eleme',
