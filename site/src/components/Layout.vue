@@ -2,7 +2,7 @@
   <div class="demo-layout">
     <ElContainer direction="horizontal">
       <ElAside class="demo-aside">
-        <!-- <HelloWorld msg="Hello Elenext UI" /> -->
+        <HelloWorld msg="Hello Elenext UI" />
         <el-menu>
           <el-menu-item-group v-for="menu in menus" :key="menu.title">
             <template #title>{{ menu.title }}</template>
