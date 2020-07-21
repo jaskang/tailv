@@ -1,18 +1,8 @@
-import {
-  defineComponent,
-  ref,
-  onMounted,
-  getCurrentInstance,
-  Teleport,
-  PropType,
-  Ref,
-  reactive,
-  watch,
-  watchEffect
-} from 'vue'
+import { defineComponent, onMounted, getCurrentInstance, Teleport, PropType, reactive, watch, watchEffect } from 'vue'
 
 import { usePopper, Placement } from './usePopper'
 import useClickAway from '../../hooks/useClickAway'
+// import vClickAway from '../../directives/v-click-away'
 
 const PopperInner = defineComponent({
   props: {
@@ -36,8 +26,9 @@ const PopperInner = defineComponent({
 
 const Popper = defineComponent({
   name: 'ElPopper',
+  emits: ['update:modelValue'],
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -60,63 +51,66 @@ const Popper = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
-    const { popper, popperEl, setReferenceEl, setVisible: setPopperVisible } = usePopper(props.popperClass, {
+    const { state: popperState, popperEl, setReferenceEl } = usePopper(props.popperClass, {
       placement: props.placement as Placement,
       modifiers: props.modifiers,
       strategy: props.strategy as 'absolute' | 'fixed'
     })
     const state = reactive({
-      visible: props.value
+      focusPopper: false,
+      visible: props.modelValue
     })
     const setVisible = (visible: boolean) => {
-      state.visible = visible
-      emit('input', visible)
+      if (popperState.focus && visible === false) {
+      } else {
+        state.visible = visible
+        emit('update:modelValue', visible)
+      }
     }
     watchEffect(() => {
-      setPopperVisible(state.visible)
+      popperState.visible = state.visible
     })
     watch(
-      () => props.value,
+      () => props.modelValue,
       value => {
-        console.log(value)
         state.visible = value
       }
     )
 
     const setRootEl = (el: HTMLElement | null) => {
-      if (el) {
-        setReferenceEl(el)
-        if (props.trigger === 'click') {
-          el.addEventListener('click', () => {
-            setVisible(!state.visible)
-          })
-          useClickAway(() => {
-            setVisible(false)
-          }, el)
-        } else if (props.trigger === 'hover') {
-          el.addEventListener('mouseenter', () => {
-            setVisible(true)
-          })
-          el.addEventListener('mouseleave', () => {
-            setVisible(false)
-          })
-        } else if (props.trigger === 'focus') {
-          el.addEventListener('focus', () => {
-            setVisible(true)
-          })
-          el.addEventListener('blur', () => {
-            setVisible(false)
-          })
-        }
-      } else {
+      if (!el) {
         throw new Error('reference root dom required')
       }
+      setReferenceEl(el)
+      if (props.trigger === 'click') {
+        el.addEventListener('click', () => {
+          setVisible(!state.visible)
+        })
+        useClickAway(() => {
+          setVisible(false)
+        }, el)
+      } else if (props.trigger === 'hover') {
+        el.addEventListener('mouseenter', () => {
+          setVisible(true)
+        })
+        el.addEventListener('mouseleave', () => {
+          setVisible(false)
+        })
+      } else if (props.trigger === 'focus') {
+        el.addEventListener('focus', () => {
+          setVisible(true)
+        })
+        el.addEventListener('blur', () => {
+          setVisible(false)
+        })
+      }
     }
+
     return () => {
       return (
         <>
-          <Teleport to={`#${popperEl.id}`}>{slots.default && slots.default()}</Teleport>
-          <PopperInner setRootEl={setRootEl}>{slots.reference?.()}</PopperInner>
+          <Teleport to={`#${popperEl.id}`}>{slots.popper?.()}</Teleport>
+          <PopperInner setRootEl={setRootEl}>{slots.default?.()}</PopperInner>
         </>
       )
     }

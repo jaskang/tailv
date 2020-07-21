@@ -1,9 +1,24 @@
-import { reactive, computed, ref, watch, provide, inject, onBeforeUnmount, Ref, watchEffect } from 'vue'
+import {
+  reactive,
+  computed,
+  ref,
+  watch,
+  provide,
+  inject,
+  onBeforeUnmount,
+  Ref,
+  watchEffect,
+  onUnmounted,
+  onMounted,
+  InjectionKey,
+  toRefs
+} from 'vue'
 import { createPopper, Instance as Popper } from '@popperjs/core'
 import { normalizeClass, createEl, removeEl } from '../../utils/dom'
 import { uniqueId } from '../../utils/uniqueId'
 
 import './popper.scss'
+import useChildren from '../../hooks/useChildren'
 
 export type Placement =
   | 'auto'
@@ -24,17 +39,23 @@ export type Placement =
 
 export type Strategy = 'absolute' | 'fixed'
 
+const popperInject: InjectionKey<{
+  id: symbol
+  visible: boolean
+}> = Symbol('popper')
+
 export function usePopper(
   popperClass?: string | string[],
   popperOptions?: {
+    trigger?: 'click' | 'hover' | 'focus' | 'manual'
     placement?: Placement
     modifiers?: Array<any>
     strategy?: Strategy
   }
 ) {
   const { placement = 'bottom', modifiers = [], strategy = 'absolute' } = popperOptions || {}
-
-  const popperEl = createEl(uniqueId('el-popper'), normalizeClass(['el-popper', popperClass]))
+  const id = uniqueId('el-popper')
+  const popperEl = createEl(id, normalizeClass(['el-popper', popperClass]))
   const popper = ref<Popper>()
   let referenceEl: HTMLElement | null = null
 
@@ -52,25 +73,58 @@ export function usePopper(
     })
   }
 
-  const setVisible = (visible: boolean) => {
-    if (visible) {
+  const state = reactive({
+    focus: false,
+    visible: false,
+    childrenVisible: false
+  })
+
+  const realVisible = computed(() => state.visible || state.focus || state.childrenVisible)
+
+  useChildren(
+    popperInject,
+    {
+      id: id,
+      visible: realVisible
+    },
+    children => {
+      state.childrenVisible = children.some(item => item.visible.value)
+    }
+  )
+
+  watchEffect(() => {
+    if (realVisible.value) {
       popperEl.setAttribute('data-show', '')
     } else {
       popperEl.removeAttribute('data-show')
     }
-  }
-  onBeforeUnmount(() => {
+  })
+
+  const events: Array<[string, () => void]> = [
+    ['mouseenter', () => (state.focus = true)],
+    ['mouseleave', () => (state.focus = false)]
+  ]
+
+  onMounted(() => {
+    events.forEach(event => {
+      popperEl.addEventListener(event[0], event[1])
+    })
+  })
+  onUnmounted(() => {
     if (popper.value) {
       popper.value.destroy()
       popper.value = undefined
     }
+    events.forEach(event => {
+      popperEl.removeEventListener(event[0], event[1])
+    })
     removeEl(popperEl)
   })
 
   return {
     popper,
     popperEl: popperEl,
-    setVisible,
-    setReferenceEl
+    setReferenceEl,
+    state: state
   }
 }

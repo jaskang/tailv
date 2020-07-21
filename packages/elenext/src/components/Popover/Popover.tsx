@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, watchEffect } from 'vue'
 
 import { ElPopper } from '../Popper'
 
@@ -7,8 +7,9 @@ import { normalizeClass } from '../../utils/dom'
 
 const Popover = defineComponent({
   name: 'ElPopver',
+  emits: ['update:modelValue'],
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -34,6 +35,9 @@ const Popover = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
+    const onUpdate = (value: boolean) => {
+      emit('update:modelValue', value)
+    }
     return () => (
       <ElPopper
         popperClass={normalizeClass([
@@ -43,10 +47,14 @@ const Popover = defineComponent({
           props.content && 'el-popover--plain'
         ])}
         trigger={props.trigger}
-        v-model={props.value}
+        modelValue={props.modelValue}
+        on={{
+          'update:modelValue': onUpdate
+        }}
+        // TODO: vueComponent/jsx parseEvents ?
+        // vOn={[onUpdate,'update:modelValue']}
         v-slots={{
-          reference: slots.reference,
-          default: () => (
+          popper: () => (
             <div
               ref="popper"
               v-show="!disabled && showPopper"
@@ -55,9 +63,10 @@ const Popover = defineComponent({
               id="tooltipId"
             >
               {props.title && <div class="el-popover__title">{props.title}</div>}
-              {slots.default ? slots.default() : props.content}
+              {slots.popper ? slots.popper() : props.content}
             </div>
-          )
+          ),
+          default: slots.default
         }}
       ></ElPopper>
     )

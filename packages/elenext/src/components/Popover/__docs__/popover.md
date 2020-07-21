@@ -16,9 +16,7 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   trigger="hover"
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
 >
-  <template #reference>
-    <el-button>hover 激活</el-button>
-  </template>
+  <el-button>hover 激活</el-button>
 </el-popover>
 
 <el-popover
@@ -28,9 +26,7 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   trigger="click"
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
 >
-  <template #reference>
-    <el-button>click 激活</el-button>
-  </template>
+  <el-button>click 激活</el-button>
 </el-popover>
 
 <el-popover
@@ -41,9 +37,7 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   trigger="focus"
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
 >
-  <template #reference>
-    <el-button>focus 激活</el-button>
-  </template>
+  <el-button>focus 激活</el-button>
 </el-popover>
 <el-popover
   placement="bottom"
@@ -53,9 +47,7 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
   content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   v-model="visible"
 >
-  <template #reference>
-    <el-button @click="visible = !visible">手动激活</el-button>
-  </template>
+  <el-button @click="click">手动激活</el-button>
 </el-popover>
 
 <script>
@@ -63,6 +55,12 @@ Popover 的属性与 Tooltip 很类似，它们都是基于`Vue-popper`开发的
     data() {
       return {
         visible: false
+      }
+    },
+    methods: {
+      click() {
+        this.visible = !this.visible
+        console.log(this.visible)
       }
     }
   }
