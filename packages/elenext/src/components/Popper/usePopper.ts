@@ -92,8 +92,9 @@ export function usePopper(
     }
   )
 
-  watchEffect(() => {
+  watchEffect(async () => {
     if (realVisible.value) {
+      await popper.value?.update()
       popperEl.setAttribute('data-show', '')
     } else {
       popperEl.removeAttribute('data-show')

@@ -98,15 +98,13 @@ const Submenu = defineComponent({
           <ElPopper
             placement={data.deep === 0 ? 'bottom-start' : 'right-start'}
             v-slots={{
-              default: () => (
+              popper: () => (
                 <ul
                   role="menu"
                   class={[
                     'el-menu',
                     'el-menu--popup',
-                    `el-menu--popup-${
-                      data.deep === 0 ? 'bottom-start' : 'right-start'
-                    }`
+                    `el-menu--popup-${data.deep === 0 ? 'bottom-start' : 'right-start'}`
                   ]}
                   style={{
                     backgroundColor: config?.backgroundColor,
@@ -116,7 +114,7 @@ const Submenu = defineComponent({
                   {slots.default?.()}
                 </ul>
               ),
-              reference: () => Title
+              default: () => Title
             }}
           ></ElPopper>
         </li>
@@ -133,11 +131,7 @@ const Submenu = defineComponent({
           {Title}
           <CollapseTransition>
             {data.isOpen && (
-              <ul
-                role="menu"
-                class="el-menu el-menu--inline"
-                style={{ backgroundColor: config?.backgroundColor }}
-              >
+              <ul role="menu" class="el-menu el-menu--inline" style={{ backgroundColor: config?.backgroundColor }}>
                 {slots.default?.()}
               </ul>
             )}
