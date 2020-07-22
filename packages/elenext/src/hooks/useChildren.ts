@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, InjectionKey, provide, reactive, inject, watchEffect } from 'vue'
+import { onMounted, onUnmounted, InjectionKey, provide, reactive, inject, watchEffect, watch } from 'vue'
 type IdType = string | symbol
 
 type ItemType<T> = {
@@ -24,9 +24,22 @@ const useChildren = <T extends { id: IdType }>(
   onUnmounted(() => {
     remove?.(item)
   })
-  watchEffect(() => {
-    effect(state.children)
-  })
+  // watchEffect(
+  //   () => {
+  //     effect(state.children)
+  //   },
+  //   { deep: true }
+  // )
+  watch(
+    () => state.children,
+    children => {
+      console.log(children)
+      effect(state.children)
+    },
+    {
+      deep: true
+    }
+  )
   provide(key, {
     add(item) {
       if (state.children.indexOf(item) === -1) {
@@ -41,6 +54,7 @@ const useChildren = <T extends { id: IdType }>(
     },
     children: state.children
   })
+  return { children: state.children }
 }
 
 export default useChildren

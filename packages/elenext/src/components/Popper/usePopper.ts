@@ -81,16 +81,15 @@ export function usePopper(
 
   const realVisible = computed(() => state.visible || state.focus || state.childrenVisible)
 
-  useChildren(
-    popperInject,
-    {
-      id: id,
-      visible: realVisible
-    },
-    children => {
-      state.childrenVisible = children.some(item => item.visible.value)
-    }
-  )
+  const provideData = reactive({
+    id: id,
+    visible: realVisible
+  })
+  useChildren(popperInject, provideData, children => {
+    state.childrenVisible = children.some(item => item.visible)
+    console.log(`${id}:${state.childrenVisible}`)
+    console.log(children)
+  })
 
   watchEffect(async () => {
     if (realVisible.value) {

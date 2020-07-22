@@ -13175,6 +13175,7 @@ var script$1 = defineComponent({
 const _hoisted_1$1 = { class: "demo-layout" };
 
 function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_HelloWorld = resolveComponent("HelloWorld");
   const _component_el_menu_item = resolveComponent("el-menu-item");
   const _component_el_menu_item_group = resolveComponent("el-menu-item-group");
   const _component_el_menu = resolveComponent("el-menu");
@@ -13188,6 +13189,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
       default: withCtx(() => [
         createVNode(_component_ElAside, { class: "demo-aside" }, {
           default: withCtx(() => [
+            createVNode(_component_HelloWorld, { msg: "Hello Elenext UI" }),
             createVNode(_component_el_menu, null, {
               default: withCtx(() => [
                 (openBlock(true), createBlock(Fragment, null, renderList(_ctx.menus, (menu) => {
@@ -13247,42 +13249,42 @@ const router = createRouter({
         {
           path: "/button",
           name: "button",
-          component: async () => import('./Button.zh-CN.9d641563.js')
+          component: async () => import('./Button.zh-CN.68da2797.js')
         },
         {
           path: "/link",
           name: "link",
-          component: async () => import('./Link.2dd2a28e.js')
+          component: async () => import('./Link.d6779ff0.js')
         },
         {
           path: "/layout",
           name: "layout",
-          component: async () => import('./Layout.6dc6ee4a.js')
+          component: async () => import('./Layout.691b276d.js')
         },
         {
           path: "/container",
           name: "container",
-          component: async () => import('./Container.zh-CN.06239725.js')
+          component: async () => import('./Container.zh-CN.48a484ad.js')
         },
         {
           path: "/icon",
           name: "icon",
-          component: async () => import('./Icon.80ac4050.js')
+          component: async () => import('./Icon.cd8a617f.js')
         },
         {
           path: "/menu",
           name: "menu",
-          component: async () => import('./Menu.e4a29732.js')
+          component: async () => import('./Menu.b0ea2b18.js')
         },
         {
           path: "/alert",
           name: "alert",
-          component: async () => import('./Alert.9ab22334.js')
+          component: async () => import('./Alert.251f1006.js')
         },
         {
           path: "/popover",
           name: "popover",
-          component: async () => import('./Popover.b0b0da6d.js')
+          component: async () => import('./Popover.cd93aaba.js')
         }
       ]
     }
@@ -16305,9 +16307,20 @@ var useChildren = function useChildren(key, item, effect) {
   });
   onUnmounted(function () {
     remove === null || remove === void 0 ? void 0 : remove(item);
-  });
-  watchEffect(function () {
+  }); // watchEffect(
+  //   () => {
+  //     effect(state.children)
+  //   },
+  //   { deep: true }
+  // )
+
+  watch(function () {
+    return state.children;
+  }, function (children) {
+    console.log(children);
     effect(state.children);
+  }, {
+    deep: true
   });
   provide(key, {
     add: function add(item) {
@@ -16324,6 +16337,9 @@ var useChildren = function useChildren(key, item, effect) {
     },
     children: state.children
   });
+  return {
+    children: state.children
+  };
 };
 
 var popperInject = Symbol('popper');
@@ -16365,13 +16381,16 @@ function usePopper(popperClass, popperOptions) {
   var realVisible = computed$1(function () {
     return state.visible || state.focus || state.childrenVisible;
   });
-  useChildren(popperInject, {
+  var provideData = reactive({
     id: id,
     visible: realVisible
-  }, function (children) {
+  });
+  useChildren(popperInject, provideData, function (children) {
     state.childrenVisible = children.some(function (item) {
-      return item.visible.value;
+      return item.visible;
     });
+    console.log(id + ":" + state.childrenVisible);
+    console.log(children);
   });
   watchEffect( /*#__PURE__*/asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
     var _popper$value;
