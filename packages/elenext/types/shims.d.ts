@@ -22,3 +22,14 @@ declare module '*.scss' {
   const classes: string
   export default classes
 }
+
+declare namespace JSX {
+  interface IntrinsicAttributes {
+    /**
+     * support vue2 v-on
+     */
+    on?: {
+      [key: string]: (...args: any[]) => any
+    }
+  }
+}
