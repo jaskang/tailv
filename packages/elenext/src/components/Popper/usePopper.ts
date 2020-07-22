@@ -91,10 +91,11 @@ export function usePopper(
     console.log(children)
   })
 
-  watchEffect(async () => {
+  watchEffect(() => {
     if (realVisible.value) {
-      await popper.value?.update()
-      popperEl.setAttribute('data-show', '')
+      popper.value?.update().then(() => {
+        popperEl.setAttribute('data-show', '')
+      })
     } else {
       popperEl.removeAttribute('data-show')
     }

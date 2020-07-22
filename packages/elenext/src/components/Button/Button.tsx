@@ -1,19 +1,17 @@
 import { inject, computed, defineComponent, PropType } from 'vue'
 import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
 
-import './Button.scss'
+// import './Button.scss'
 
 const Button = defineComponent({
   name: 'ElButton',
   props: {
     type: {
-      type: String as PropType<'medium' | 'small' | 'mini'>,
+      type: String as PropType<'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'text'>,
       default: 'default'
     },
     size: {
-      type: String as PropType<
-        'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
-      >,
+      type: String as PropType<'large' | 'small'>,
       default: ''
     },
     icon: { type: String, default: '' },
@@ -42,9 +40,9 @@ const Button = defineComponent({
         autofocus={props.autofocus}
         type={props.nativeType as 'button'}
         class={[
-          'el-button',
-          `el-button--${props.type}`,
-          buttonSize.value ? 'el-button--' + buttonSize.value : '',
+          'uk-button',
+          `uk-button-${props.type}`,
+          buttonSize.value ? 'uk-button-' + buttonSize.value : '',
           {
             'is-disabled': buttonDisabled.value,
             'is-loading': props.loading,
