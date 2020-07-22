@@ -44,19 +44,11 @@ const Alert = defineComponent({
     })
     const typeClass = computed(() => `el-alert--${props.type}`)
 
-    const iconClass = computed(
-      () =>
-        TYPE_CLASSES_MAP[props.type as 'success' | 'warning' | 'error'] ||
-        'el-icon-info'
-    )
+    const iconClass = computed(() => TYPE_CLASSES_MAP[props.type as 'success' | 'warning' | 'error'] || 'el-icon-info')
 
-    const isBigIcon = computed(() =>
-      props.description || slots.default ? 'is-big' : ''
-    )
+    const isBigIcon = computed(() => (props.description || slots.default ? 'is-big' : ''))
 
-    const isBoldTitle = computed(() =>
-      props.description || slots.default ? 'is-bold' : ''
-    )
+    const isBoldTitle = computed(() => (props.description || slots.default ? 'is-bold' : ''))
 
     const close = () => {
       data.visible = false
@@ -65,31 +57,18 @@ const Alert = defineComponent({
     return () => (
       <Transition name="el-alert-fade">
         <div
-          class={[
-            'el-alert',
-            typeClass.value,
-            props.center ? 'is-center' : '',
-            'is-' + props.effect
-          ]}
+          class={['el-alert', typeClass.value, props.center ? 'is-center' : '', 'is-' + props.effect]}
           v-show={data.visible}
           role="alert"
         >
-          {props.showIcon && (
-            <i class={['el-alert__icon', iconClass.value, isBigIcon.value]}></i>
-          )}
+          {props.showIcon && <i class={['el-alert__icon', iconClass.value, isBigIcon.value]}></i>}
 
           <div class="el-alert__content">
             {(slots.title || props.title) && (
-              <span class={['el-alert__title', isBoldTitle.value]}>
-                {slots.title?.() || props.title}
-              </span>
+              <span class={['el-alert__title', isBoldTitle.value]}>{slots.title?.() || props.title}</span>
             )}
-            {slots.default && !props.description && (
-              <p class="el-alert__description">{slots.default?.()}</p>
-            )}
-            {props.description && !slots.default && (
-              <p class="el-alert__description">{props.description}</p>
-            )}
+            {slots.default && !props.description && <p class="el-alert__description">{slots.default?.()}</p>}
+            {props.description && !slots.default && <p class="el-alert__description">{props.description}</p>}
             <i
               v-show={props.closable}
               class={{

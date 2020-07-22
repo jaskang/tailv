@@ -9,7 +9,7 @@
 
 # elenext
 
-elenext 是一个基于 vue3 实现的 UI 组价库，组件样式源于 element-ui ，组件设计也会尽量往 element 靠拢，以减少迁移成本
+A Vue.js 3.0 UI Toolkit for Web, Element-UI by Vue 3.0
 
 ## Docs & Demo
 
@@ -21,12 +21,35 @@ elenext 是一个基于 vue3 实现的 UI 组价库，组件样式源于 element
 yarn add elenext
 ```
 
+## Quick Start
+
+```javascript
+import { createApp } from 'vue'
+import elenext from 'elenext'
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(elenext)
+app.mount('#app')
+```
+
+For more information, please refer to Quick Start in our documentation.
+
+## Browser Support
+
+Modern browsers and Internet Explorer 11+.
+
+## Development
+
+Skip this part if you just want to use Element.
+
 ## Todo
 
 :sparkles: **组件库** :sparkles:
 
-- [ ] alert
-- [ ] aside
+- [x] alert
+- [x] aside
 - [ ] badge
 - [ ] breadcrumb
 - [x] button
@@ -49,7 +72,7 @@ yarn add elenext
 - [ ] link
 - [ ] loading
 - [ ] main
-- [ ] menu
+- [x] menu
 - [ ] message
 - [ ] notification
 - [ ] option
@@ -62,7 +85,6 @@ yarn add elenext
 👤 **jaskang**
 
 - Website: https://github.com/jaskang
-- Github: [@jaskang](https://github.com/jaskang)
 
 ## Show your support
 

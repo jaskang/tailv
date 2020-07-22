@@ -2,6 +2,12 @@ declare const __DEV__: boolean
 
 // export * from 'vue'
 
+// declare module 'vue' {
+//   interface HTMLAttributes {
+//     vShow?: boolean
+//   }
+// }
+
 declare module '*.vue' {
   import { ComponentOptions } from 'vue'
   const comp: ComponentOptions

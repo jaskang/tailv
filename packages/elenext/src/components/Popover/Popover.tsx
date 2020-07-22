@@ -1,4 +1,4 @@
-import { defineComponent, watchEffect } from 'vue'
+import { defineComponent } from 'vue'
 
 import { ElPopper } from '../Popper'
 
@@ -55,13 +55,7 @@ const Popover = defineComponent({
         // vOn={[onUpdate,'update:modelValue']}
         v-slots={{
           popper: () => (
-            <div
-              ref="popper"
-              v-show="!disabled && showPopper"
-              style={{ width: props.width + 'px' }}
-              role="tooltip"
-              id="tooltipId"
-            >
+            <div ref="popper" style={{ width: props.width + 'px' }} role="tooltip" id="tooltipId">
               {props.title && <div class="el-popover__title">{props.title}</div>}
               {slots.popper ? slots.popper() : props.content}
             </div>
