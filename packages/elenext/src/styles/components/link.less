@@ -1,166 +1,76 @@
-// Name:            Link
-// Description:     Styles for links
-//
-// Component:       `uk-link-muted`
-//                  `uk-link-text`
-//                  `uk-link-heading`
-//                  `uk-link-reset`
-//
-// Sub-objects:     `uk-link-toggle`
-//
-// ========================================================================
+@import './visibility.less';
 
+@link-default-font-color: @global-color-text-regular;
+@link-default-active-color: @global-color-primary;
+@link-disabled-font-color: @global-color-text-placeholder;
 
-// Variables
-// ========================================================================
-
-@link-muted-color:                              @global-muted-color;
-@link-muted-hover-color:                        @global-color;
-
-@link-text-hover-color:                         @global-muted-color;
-
-@link-heading-hover-color:                      @global-primary-background;
-@link-heading-hover-text-decoration:            none;
-
-
-/* ========================================================================
-   Component: Link
- ========================================================================== */
-
-
-/* Muted
- ========================================================================== */
-
-a.uk-link-muted,
-.uk-link-muted a {
-    color: @link-muted-color;
-    .hook-link-muted;
-}
-
-a.uk-link-muted:hover,
-.uk-link-muted a:hover,
-.uk-link-toggle:hover .uk-link-muted,
-.uk-link-toggle:focus .uk-link-muted {
-    color: @link-muted-hover-color;
-    .hook-link-muted-hover;
-}
-
-
-/* Text
- ========================================================================== */
-
-a.uk-link-text,
-.uk-link-text a {
-    color: inherit;
-    .hook-link-text;
-}
-
-a.uk-link-text:hover,
-.uk-link-text a:hover,
-.uk-link-toggle:hover .uk-link-text,
-.uk-link-toggle:focus .uk-link-text {
-    color: @link-text-hover-color;
-    .hook-link-text-hover;
-}
-
-
-/* Heading
- ========================================================================== */
-
-a.uk-link-heading,
-.uk-link-heading a {
-    color: inherit;
-    .hook-link-heading;
-}
-
-a.uk-link-heading:hover,
-.uk-link-heading a:hover,
-.uk-link-toggle:hover .uk-link-heading,
-.uk-link-toggle:focus .uk-link-heading {
-    color: @link-heading-hover-color;
-    text-decoration: @link-heading-hover-text-decoration;
-    .hook-link-heading-hover;
-}
-
-
-/* Reset
- ========================================================================== */
-
-/*
- * `!important` needed to override inverse component
- */
-
-a.uk-link-reset,
-.uk-link-reset a {
-    color: inherit !important;
-    text-decoration: none !important;
-    .hook-link-reset;
-}
-
-
-/* Toggle
- ========================================================================== */
-
-.uk-link-toggle {
-    color: inherit !important;
-    text-decoration: none !important;
-}
- 
-.uk-link-toggle:focus { outline: none; }
-
-
-// Hooks
-// ========================================================================
-
-.hook-link-misc;
-
-.hook-link-muted() {}
-.hook-link-muted-hover() {}
-.hook-link-text() {}
-.hook-link-text-hover() {}
-.hook-link-heading() {}
-.hook-link-heading-hover() {}
-.hook-link-reset() {}
-.hook-link-misc() {}
-
-
-// Inverse
-// ========================================================================
-
-@inverse-link-muted-color:                        @inverse-global-muted-color;
-@inverse-link-muted-hover-color:                  @inverse-global-color;
-@inverse-link-text-hover-color:                   @inverse-global-muted-color;
-@inverse-link-heading-hover-color:                @inverse-global-primary-background;
-
-.hook-inverse() {
-
-    .uk-link-muted,
-    .uk-link-muted a {
-        color: @inverse-link-muted-color;
-        .hook-inverse-link-muted;
+.@{perfix}-link {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  //   font-size: @link-font-size;
+  //   font-weight: @link-font-weight;
+  &:hover {
+    text-decoration: none;
+  }
+  &.is-underline {
+    &:hover:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 0;
+      bottom: 0;
+      border-bottom: 1px solid @link-default-active-color;
     }
+  }
 
-    .uk-link-muted:hover,
-    .uk-link-muted a:hover {
-        color: @inverse-link-muted-hover-color;
-        .hook-inverse-link-muted-hover;
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  & [class*='el-icon-'] {
+    & + span {
+      margin-left: 5px;
     }
+  }
 
-    .uk-link-text:hover,
-    .uk-link-text a:hover {
-        color: @inverse-link-text-hover-color;
-        .hook-inverse-link-text-hover;
+  &.@{perfix}-link--default {
+    color: @link-default-font-color;
+    &:hover {
+      color: @link-default-active-color;
     }
-
-    .uk-link-heading:hover,
-    .uk-link-heading a:hover {
-        color: @inverse-link-heading-hover-color;
-        .hook-inverse-link-heading-hover;
+    &:after {
+      border-color: @link-default-active-color;
     }
-
+    &.is-disabled {
+      color: @link-disabled-font-color;
+    }
+  }
+  each(@types,{
+    &.el-link--@{key} {
+      color: @value;
+      &:hover {
+        color: mix(@value,#fff, 80%);
+      }
+      &:after {
+        border-color: @value;
+      }
+      &.is-disabled {
+        color: mix(@value, #fff, 50%);
+      }
+      &.is-underline {
+        &:hover:after {
+          border-color: @value;
+        }
+      }
+    }
+  });
 }
-
-.hook-inverse-link-muted() {}
-.hook-inverse-link-muted-hover() {}
-.hook-inverse-link-text-hover() {}
-.hook-inverse-link-heading-hover() {}
