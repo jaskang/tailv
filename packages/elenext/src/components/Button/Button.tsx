@@ -7,7 +7,7 @@ const Button = defineComponent({
   name: 'ElButton',
   props: {
     type: {
-      type: String as PropType<'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'text'>,
+      type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'>,
       default: 'default'
     },
     size: {
@@ -40,9 +40,9 @@ const Button = defineComponent({
         autofocus={props.autofocus}
         type={props.nativeType as 'button'}
         class={[
-          'uk-button',
-          `uk-button-${props.type}`,
-          buttonSize.value ? 'uk-button-' + buttonSize.value : '',
+          'el-button',
+          `el-button-${props.type}`,
+          buttonSize.value ? 'el-button-' + buttonSize.value : '',
           {
             'is-disabled': buttonDisabled.value,
             'is-loading': props.loading,

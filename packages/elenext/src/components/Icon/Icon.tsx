@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-import './Icon.scss'
+// import './Icon.scss'
 
 const Icon = defineComponent({
   name: 'ElIcon',

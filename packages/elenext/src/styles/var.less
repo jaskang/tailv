@@ -1,0 +1,111 @@
+@perfix: el;
+
+@types: {
+  primary: @global-color-primary;
+  success: @global-color-success;
+  danger: @global-color-danger;
+  warning: @global-color-warning;
+  info: @global-color-info;
+};
+
+// Global variables
+// ========================================================================
+
+//
+// Typography
+//
+
+@global-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑',
+  Arial, sans-serif;
+@global-font-family-code: Consolas, monaco, monospace;
+@global-font-size: 14px;
+@global-line-height: 1.5; // 24px
+
+@global-2xlarge-font-size: 32px; // 42px
+@global-xlarge-font-size: 20px; // 32px
+@global-large-font-size: 18px; // 24px
+@global-medium-font-size: 16px; // 20px
+@global-small-font-size: 12px; // 14px
+
+//
+// background
+//
+
+@global-background-default: #fff;
+@global-background-muted: #f8f8f8;
+
+//
+// color
+//
+
+@global-color-text-primary: #303133;
+@global-color-text-regular: #606266;
+@global-color-text-secondary: #909399;
+@global-color-text-placeholder: #c0c4cc;
+
+@global-color-white: #ffffff;
+@global-color-black: #000000;
+
+@global-color-primary: #409eff;
+
+@global-color-success: #67c23a;
+@global-color-warning: #e6a23c;
+@global-color-danger: #f56c6c;
+@global-color-info: #909399;
+
+@global-color-success-light: mix(@global-color-white, @global-color-success, 80%);
+@global-color-warning-light: mix(@global-color-white, @global-color-warning, 80%);
+@global-color-danger-light: mix(@global-color-white, @global-color-danger, 80%);
+@global-color-info-light: mix(@global-color-white, @global-color-info, 80%);
+
+@global-color-success-lighter: mix(@global-color-white, @global-color-success, 90%);
+@global-color-warning-lighter: mix(@global-color-white, @global-color-warning, 90%);
+@global-color-danger-lighter: mix(@global-color-white, @global-color-danger, 90%);
+@global-color-info-lighter: mix(@global-color-white, @global-color-info, 90%);
+
+//
+// Borders
+//
+
+@global-border-width: 1px;
+@global-border: #e5e5e5;
+
+//
+// Box-Shadows
+//
+
+@global-small-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+@global-medium-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+@global-large-box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+@global-xlarge-box-shadow: 0 28px 50px rgba(0, 0, 0, 0.16);
+
+//
+// Spacings
+//
+
+// Used in margin, section, list
+@global-margin: 20px;
+@global-small-margin: 10px;
+@global-medium-margin: 40px;
+@global-large-margin: 70px;
+@global-xlarge-margin: 140px;
+
+// Used in grid, column, container, align, card, padding
+@global-gutter: 30px;
+@global-small-gutter: 15px;
+@global-medium-gutter: 40px;
+@global-large-gutter: 70px;
+
+//
+// Controls
+//
+
+@global-control-height: 40px;
+@global-control-small-height: 30px;
+@global-control-large-height: 55px;
+
+//
+// Z-index
+//
+
+@global-z-index: 1000;

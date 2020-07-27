@@ -7,7 +7,7 @@ import { ElIcon } from './components/Icon'
 import { ElPopover } from './components/Popover'
 import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from './components/Menu'
 import { ElAlert } from './components/Alert'
-import './styles/index.scss'
+import './styles/index.less'
 export { default as injectCss } from './utils/injectCss'
 
 export {

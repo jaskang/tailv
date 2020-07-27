@@ -17,7 +17,7 @@ import { createPopper, Instance as Popper } from '@popperjs/core'
 import { normalizeClass, createEl, removeEl } from '../../utils/dom'
 import { uniqueId } from '../../utils/uniqueId'
 
-import './popper.scss'
+// import './popper.scss'
 import useChildren from '../../hooks/useChildren'
 
 export type Placement =

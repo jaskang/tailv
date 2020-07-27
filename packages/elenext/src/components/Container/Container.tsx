@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from 'vue'
-import './Container.scss'
+// import './Container.scss'
 
 const Container = defineComponent({
   name: 'ElContainer',

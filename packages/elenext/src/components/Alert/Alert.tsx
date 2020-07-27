@@ -1,6 +1,6 @@
 import { defineComponent, Transition, computed, PropType, reactive } from 'vue'
 
-import './Alert.scss'
+// import './Alert.scss'
 
 const TYPE_CLASSES_MAP = {
   success: 'el-icon-success',

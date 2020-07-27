@@ -1,7 +1,7 @@
 import { defineComponent, computed, inject, h } from 'vue'
 import { ElRowSymbol } from '../../provides'
 
-import './Col.scss'
+// import './Col.scss'
 
 const ElCol = defineComponent({
   name: 'ElCol',

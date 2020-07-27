@@ -1,0 +1,144 @@
+@button-link-default-font-color: @global-color-text-regular;
+@button-link-default-active-color: @global-color-primary;
+@button-link-disabled-font-color: @global-color-text-placeholder;
+
+@button-line-height: @global-control-height - 2;
+@button-small-line-height: @global-control-small-height - 2;
+@button-large-line-height: @global-control-large-height - 2;
+
+@button-font-size: @global-font-size;
+@button-small-font-size: @global-small-font-size;
+@button-large-font-size: @global-medium-font-size;
+
+@button-padding-horizontal: @global-gutter;
+@button-small-padding-horizontal: @global-small-gutter;
+@button-large-padding-horizontal: @global-medium-gutter;
+
+.button-type(@type,@font-color,@background-color,@border-color) {
+  .@{perfix}-button-@{type} {
+    color: @font-color;
+    background: @background-color;
+    border: 1px solid @border-color;
+    /* Hover + Focus */
+    &:hover,
+    &:focus {
+      color: @font-color;
+      background: mix(@global-color-white, @background-color, 20%);
+      border-color: mix(@global-color-white, @border-color, 20%);
+    }
+    /* OnClick + Active */
+    &:active,
+    &.is-active {
+      color: @font-color;
+      background: mix(@global-color-black, @background-color, 10%);
+      border-color: mix(@global-color-black, @border-color, 10%);
+    }
+    &:disabled,
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        cursor: not-allowed;
+        color: @global-color-white;
+        background-color: mix(@background-color, @global-color-white);
+        border-color: mix(@border-color, @global-color-white);
+      }
+    }
+  }
+}
+
+.@{perfix}-button {
+  margin: 0;
+  border: none;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0 @button-padding-horizontal;
+  font-size: @button-font-size;
+  line-height: @button-line-height;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button-type(default,@global-color-text-regular,@global-color-white,@global-border);
+.button-type(primary,@global-color-white,@global-color-primary,@global-color-primary);
+.button-type(success,@global-color-white,@global-color-success,@global-color-success);
+.button-type(info,@global-color-white,@global-color-info,@global-color-info);
+.button-type(warning,@global-color-white,@global-color-warning,@global-color-warning);
+.button-type(danger,@global-color-white,@global-color-danger,@global-color-danger);
+
+/* Size modifiers
+ ========================================================================== */
+
+.@{perfix}-button-small {
+  padding: 0 @button-small-padding-horizontal;
+  line-height: @button-small-line-height;
+  font-size: @button-small-font-size;
+}
+
+.@{perfix}-button-large {
+  padding: 0 @button-large-padding-horizontal;
+  line-height: @button-large-line-height;
+  font-size: @button-large-font-size;
+}
+
+/*
+ * Link
+ * 1. Reset
+ * 2. Style
+ */
+
+.@{perfix}-button-link {
+  padding: 0;
+  background: none;
+  line-height: @global-line-height;
+  color: @button-link-default-font-color;
+  &:hover,
+  &:focus {
+    color: @button-link-default-active-color;
+    text-decoration: underline;
+  }
+  &:disabled {
+    color: @button-link-disabled-font-color;
+    text-decoration: none;
+  }
+}
+
+/* Group
+ ========================================================================== */
+
+/*
+ * 1. Using `flex` instead of `inline-block` to prevent whitespace betweent child elements
+ * 2. Behave like button
+ * 3. Create position context
+ */
+
+.@{perfix}-button-group {
+  /* 1 */
+  display: inline-flex;
+  /* 2 */
+  vertical-align: middle;
+  /* 3 */
+  position: relative;
+}

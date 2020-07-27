@@ -1,0 +1,519 @@
+// @import 'var.less';
+
+@base-link-color: @global-color-text-regular;
+@base-link-hover-color: @global-color-primary;
+
+@base-h1-font-size: @global-2xlarge-font-size;
+@base-h1-line-height: 1.4;
+@base-h2-font-size: @global-xlarge-font-size;
+@base-h2-line-height: 1.4;
+@base-h3-font-size: @global-large-font-size;
+@base-h3-line-height: 1.4;
+@base-h4-font-size: @global-medium-font-size;
+@base-h4-line-height: 1.4;
+@base-h5-font-size: @global-font-size;
+@base-h5-line-height: 1.4;
+@base-h6-font-size: @global-small-font-size;
+@base-h6-line-height: 1.4;
+
+@base-list-padding-left: 30px;
+
+/* ========================================================================
+   Component: Base
+ ========================================================================== */
+
+/*
+ * 1. Set `font-size` to support `rem` units
+ *    Not using `font` property because a leading hyphen (e.g. -apple-system) causes the font to break in IE11 and Edge
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ * 3. Style
+ */
+
+html {
+  /* 1 */
+  font-family: @global-font-family;
+  font-size: @global-font-size;
+  font-weight: normal;
+  line-height: @global-line-height;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 3 */
+  background: @global-background-default;
+  color: @global-color-text-regular;
+}
+
+/*
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/* Links
+ ========================================================================== */
+
+/*
+ * Remove the outline on focused links when they are also active or hovered
+ */
+
+a:active,
+a:hover {
+  outline: none;
+}
+
+/*
+ * Style
+ */
+
+a {
+  color: @base-link-color;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: @base-link-hover-color;
+    text-decoration: underline;
+  }
+}
+
+/* Text-level semantics
+ ========================================================================== */
+
+/*
+ * 1. Add the correct text decoration in Edge.
+ * 2. The shorthand declaration `underline dotted` is not supported in Safari.
+ */
+
+abbr[title] {
+  /* 1 */
+  text-decoration: underline dotted;
+  /* 2 */
+  -webkit-text-decoration-style: dotted;
+}
+
+/*
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+ * 1. Consolas has a better baseline in running text compared to `Courier`
+ * 2. Correct the odd `em` font sizing in all browsers.
+ * 3. Style
+ */
+
+:not(pre) > code,
+:not(pre) > kbd,
+:not(pre) > samp {
+  /* 1 */
+  font-family: @global-font-family-code;
+  /* 2 */
+  font-size: @global-small-font-size;
+  /* 3 */
+  color: @global-color-danger;
+  white-space: nowrap;
+}
+
+/*
+ * Emphasize
+ */
+
+em {
+  color: @global-color-danger;
+}
+
+/*
+ * Insert
+ */
+
+ins {
+  background: #ffd;
+  text-decoration: none;
+}
+
+/*
+ * Mark
+ */
+
+mark {
+  background: #ffd;
+}
+
+/*
+ * Quote
+ */
+
+q {
+  font-style: italic;
+}
+
+/*
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/*
+ * Prevents `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+ ========================================================================== */
+
+/*
+ * Remove the gap between embedded content and the bottom of their containers.
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * 1. Add responsiveness.
+ * 2. Auto-scale the height. Only needed if `height` attribute is present.
+ * 3. Corrects responsive `max-width` behavior if padding and border are used.
+ * 4. Exclude SVGs for IE11 because they don't preserve their aspect ratio.
+ */
+
+canvas,
+img,
+video {
+  /* 1 */
+  max-width: 100%;
+  /* 2 */
+  height: auto;
+  /* 3 */
+  box-sizing: border-box;
+}
+
+/* 4 */
+@supports (display: block) {
+  svg {
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+}
+
+/*
+ * Hide the overflow in IE.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/*
+ * 1. Fix lazy loading images if parent element is set to `display: inline` and has `overflow: hidden`.
+ * 2. Hide `alt` text for lazy loading images.
+ * Note: Selector for background while loading img[data-src*='.jpg'][src*='data:image'] { background: grey; }
+ */
+
+img:not([src]) {
+  /* 1 */
+  min-width: 1px;
+  /* 2 */
+  visibility: hidden;
+}
+
+/*
+ * Iframe
+ * Remove border in all browsers
+ */
+
+iframe {
+  border: 0;
+}
+
+/* Block elements
+ ========================================================================== */
+
+/*
+ * Margins
+ */
+
+p,
+ul,
+ol,
+dl,
+pre,
+address,
+fieldset,
+figure {
+  margin: 0 0 @global-margin 0;
+}
+
+/* Add margin if adjacent element */
+* + p,
+* + ul,
+* + ol,
+* + dl,
+* + pre,
+* + address,
+* + fieldset,
+* + figure {
+  margin-top: @global-margin;
+}
+
+/* Headings
+ ========================================================================== */
+
+h1,
+.uk-h1,
+h2,
+.uk-h2,
+h3,
+.uk-h3,
+h4,
+.uk-h4,
+h5,
+.uk-h5,
+h6,
+.uk-h6,
+.uk-heading-small,
+.uk-heading-medium,
+.uk-heading-large,
+.uk-heading-xlarge,
+.uk-heading-2xlarge {
+  margin: 0 0 @global-margin 0;
+  font-family: @global-font-family;
+  font-weight: normal;
+  color: @global-color-primary;
+  text-transform: none;
+}
+
+/* Add margin if adjacent element */
+* + h1,
+* + .uk-h1,
+* + h2,
+* + .uk-h2,
+* + h3,
+* + .uk-h3,
+* + h4,
+* + .uk-h4,
+* + h5,
+* + .uk-h5,
+* + h6,
+* + .uk-h6,
+* + .uk-heading-small,
+* + .uk-heading-medium,
+* + .uk-heading-large,
+* + .uk-heading-xlarge,
+* + .uk-heading-2xlarge {
+  margin-top: @global-medium-margin;
+}
+
+/*
+ * Sizes
+ */
+
+h1,
+.uk-h1 {
+  font-size: @base-h1-font-size;
+  line-height: @base-h1-line-height;
+}
+
+h2,
+.uk-h2 {
+  font-size: @base-h2-font-size;
+  line-height: @base-h2-line-height;
+}
+
+h3,
+.uk-h3 {
+  font-size: @base-h3-font-size;
+  line-height: @base-h3-line-height;
+}
+
+h4,
+.uk-h4 {
+  font-size: @base-h4-font-size;
+  line-height: @base-h4-line-height;
+}
+
+h5,
+.uk-h5 {
+  font-size: @base-h5-font-size;
+  line-height: @base-h5-line-height;
+}
+
+h6,
+.uk-h6 {
+  font-size: @base-h6-font-size;
+  line-height: @base-h6-line-height;
+}
+
+/* Lists
+ ========================================================================== */
+
+ul,
+ol {
+  padding-left: @base-list-padding-left;
+}
+
+/*
+ * Reset margin for nested lists
+ */
+
+ul > li > ul,
+ul > li > ol,
+ol > li > ol,
+ol > li > ul {
+  margin: 0;
+}
+
+/* Description lists
+ ========================================================================== */
+
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 0;
+}
+
+/* Horizontal rules
+ ========================================================================== */
+
+/*
+ * 1. Show the overflow in Chrome, Edge and IE.
+ * 2. Add the correct text-align in Edge and IE.
+ * 3. Style
+ */
+
+hr,
+.uk-hr {
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+  text-align: inherit;
+  /* 3 */
+  margin: 0 0 @global-margin 0;
+  border: 0;
+  border-top: 1px solid @global-border;
+}
+
+/* Add margin if adjacent element */
+* + hr,
+* + .uk-hr {
+  margin-top: @global-margin;
+}
+
+/* Address
+ ========================================================================== */
+
+address {
+  font-style: normal;
+}
+
+/* Blockquotes
+ ========================================================================== */
+
+blockquote {
+  margin: 0 0 @global-margin 0;
+  font-size: @global-medium-font-size;
+  font-style: italic;
+}
+
+/* Add margin if adjacent element */
+* + blockquote {
+  margin-top: @global-margin;
+}
+
+/*
+ * Content
+ */
+
+blockquote p:last-of-type {
+  margin-bottom: 0;
+}
+
+blockquote footer {
+  margin-top: @global-small-margin;
+  font-size: @global-small-font-size;
+}
+
+/* Preformatted text
+ ========================================================================== */
+
+/*
+ * 1. Contain overflow in all browsers.
+ */
+
+pre {
+  font-size: @global-small-font-size;
+  font-family: @global-font-family-code;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  /* 1 */
+  overflow: auto;
+}
+
+pre code {
+  font-family: @global-font-family-code;
+}
+
+/* Selection pseudo-element
+ ========================================================================== */
+
+::selection {
+  background: #39f;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* HTML5 elements
+ ========================================================================== */
+
+/*
+ * 1. Add the correct display in Edge, IE 10+, and Firefox.
+ * 2. Add the correct display in IE.
+ */
+
+details, /* 1 */
+main {
+  /* 2 */
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/*
+ * Add the correct display in IE.
+ */
+
+template {
+  display: none;
+}

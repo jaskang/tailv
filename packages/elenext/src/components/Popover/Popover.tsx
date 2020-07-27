@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 
 import { ElPopper } from '../Popper'
 
-import './Popover.scss'
+// import './Popover.scss'
 import { normalizeClass } from '../../utils/dom'
 
 const Popover = defineComponent({
