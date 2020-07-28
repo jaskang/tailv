@@ -2,51 +2,20 @@
 @button-link-default-active-color: @global-color-primary;
 @button-link-disabled-font-color: @global-color-text-placeholder;
 
-@button-line-height: @global-control-height - 2;
-@button-small-line-height: @global-control-small-height - 2;
-@button-large-line-height: @global-control-large-height - 2;
+@button-line-height: @global-line-height - 2;
+@button-line-height-medium: @global-line-height-medium - 2;
+@button-line-height-small: @global-line-height-small - 2;
+@button-line-height-mini: @global-line-height-mini - 2;
 
 @button-font-size: @global-font-size;
-@button-small-font-size: @global-small-font-size;
-@button-large-font-size: @global-medium-font-size;
+@button-font-size-medium: @global-font-size;
+@button-font-size-small: @global-small-font-size;
+@button-font-size-mini: @global-small-font-size;
 
-@button-padding-horizontal: @global-gutter;
-@button-small-padding-horizontal: @global-small-gutter;
-@button-large-padding-horizontal: @global-medium-gutter;
-
-.button-type(@type,@font-color,@background-color,@border-color) {
-  .@{perfix}-button-@{type} {
-    color: @font-color;
-    background: @background-color;
-    border: 1px solid @border-color;
-    /* Hover + Focus */
-    &:hover,
-    &:focus {
-      color: @font-color;
-      background: mix(@global-color-white, @background-color, 20%);
-      border-color: mix(@global-color-white, @border-color, 20%);
-    }
-    /* OnClick + Active */
-    &:active,
-    &.is-active {
-      color: @font-color;
-      background: mix(@global-color-black, @background-color, 10%);
-      border-color: mix(@global-color-black, @border-color, 10%);
-    }
-    &:disabled,
-    &.is-disabled {
-      &,
-      &:hover,
-      &:focus,
-      &:active {
-        cursor: not-allowed;
-        color: @global-color-white;
-        background-color: mix(@background-color, @global-color-white);
-        border-color: mix(@border-color, @global-color-white);
-      }
-    }
-  }
-}
+@button-padding-horizontal: @global-padding-horizontal;
+@button-medium-padding-horizontal: @global-padding-horizontal-medium;
+@button-small-padding-horizontal: @global-padding-horizontal-small;
+@button-mini-padding-horizontal: @global-padding-horizontal-mini;
 
 .@{perfix}-button {
   margin: 0;
@@ -79,6 +48,10 @@
   &:focus {
     outline: none;
   }
+  &:disabled,
+  &.is-disabled {
+    cursor: not-allowed;
+  }
 }
 
 .button-type(default,@global-color-text-regular,@global-color-white,@global-border);
@@ -90,18 +63,9 @@
 
 /* Size modifiers
  ========================================================================== */
-
-.@{perfix}-button-small {
-  padding: 0 @button-small-padding-horizontal;
-  line-height: @button-small-line-height;
-  font-size: @button-small-font-size;
-}
-
-.@{perfix}-button-large {
-  padding: 0 @button-large-padding-horizontal;
-  line-height: @button-large-line-height;
-  font-size: @button-large-font-size;
-}
+.button-size(medium,@button-font-size-medium,@button-line-height-medium,@button-medium-padding-horizontal);
+.button-size(small,@button-font-size-small,@button-line-height-small,@button-small-padding-horizontal);
+.button-size(mini,@button-font-size-mini,@button-line-height-mini,@button-mini-padding-horizontal);
 
 /*
  * Link
@@ -141,4 +105,45 @@
   vertical-align: middle;
   /* 3 */
   position: relative;
+}
+
+.button-size(@size,@font-size,@line-height,@padding-horizontal) {
+  .@{perfix}-button-@{size} {
+    font-size: @font-size;
+    padding: 0 @padding-horizontal;
+    line-height: @line-height;
+  }
+}
+
+.button-type(@type,@font-color,@background-color,@border-color) {
+  .@{perfix}-button-@{type} {
+    color: @font-color;
+    background: @background-color;
+    border: 1px solid @border-color;
+    /* Hover + Focus */
+    &:hover,
+    &:focus {
+      color: @font-color;
+      background: mix(@global-color-white, @background-color, 20%);
+      border-color: mix(@global-color-white, @border-color, 20%);
+    }
+    /* OnClick + Active */
+    &:active,
+    &.is-active {
+      color: @font-color;
+      background: mix(@global-color-black, @background-color, 10%);
+      border-color: mix(@global-color-black, @border-color, 10%);
+    }
+    &:disabled,
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: @global-color-white;
+        background-color: mix(@background-color, @global-color-white);
+        border-color: mix(@border-color, @global-color-white);
+      }
+    }
+  }
 }
