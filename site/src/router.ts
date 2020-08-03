@@ -52,6 +52,11 @@ export const router = createRouter({
           path: '/popover',
           name: 'popover',
           component: async () => import('/@docs/Popover/__docs__/Popover.md')
+        },
+        {
+          path: '/breadcrumb',
+          name: 'breadcrumb',
+          component: async () => import('/@docs/Breadcrumb/__docs__/Breadcrumb.md')
         }
       ]
     }

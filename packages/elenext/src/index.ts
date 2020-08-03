@@ -7,6 +7,7 @@ import { ElIcon } from './components/Icon'
 import { ElPopover } from './components/Popover'
 import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from './components/Menu'
 import { ElAlert } from './components/Alert'
+import { ElBreadcrumb,ElBreadcrumbItem } from './components/Breadcrumb'
 // import './styles/index.less'
 export { default as injectCss } from './utils/injectCss'
 
@@ -27,7 +28,9 @@ export {
   ElMenuItem,
   ElSubmenu,
   ElMenuItemGroup,
-  ElAlert
+  ElAlert,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 }
 
 export const elenext: Plugin = {
@@ -51,5 +54,7 @@ export const elenext: Plugin = {
     app.component('ElSubmenu', ElSubmenu)
     app.component('ElMenuItemGroup', ElMenuItemGroup)
     app.component('ElAlert', ElAlert)
+    app.component('ElBreadcrumb', ElBreadcrumb)
+    app.component('ElBreadcrumbItem', ElBreadcrumbItem)
   }
 }
