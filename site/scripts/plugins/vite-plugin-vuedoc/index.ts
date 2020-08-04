@@ -38,13 +38,13 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
       {
         requestToFile(publicPath: string, root: string) {
           if (docRule.test(publicPath)) {
-            const docDir = docsPath?.(root) || root
+            const docDir = docsPath(root) || root
             const docFilePath = publicPath.replace(docRule, '$1.md')
             return path.join(docDir, docFilePath)
           }
         },
         fileToRequest(filePath: string, root: string) {
-          const docDir = docsPath?.(root) || root
+          const docDir = docsPath(root) || root
           if (filePath.startsWith(docDir) && filePath.endsWith('.md')) {
             const reqPath = filePath.replace(docDir, '')
             return `/@docs/${reqPath}`

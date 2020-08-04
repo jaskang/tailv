@@ -8,14 +8,14 @@
   "private": "true",
   "dependencies": {
     "elenext": "^0.2.0",
-    "vue": "^3.0.0-rc.4",
-    "vue-router": "^4.0.0-beta.2"
+    "vue": "^3.0.0-rc.5",
+    "vue-router": "^4.0.0-beta.4"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0-rc.4",
+    "@vue/compiler-sfc": "^3.0.0-rc.5",
     "less": "^3.12.2",
     "markdown-it": "^11.0.0",
     "markdown-it-container": "^3.0.0",
-    "vite": "^1.0.0-rc.3"
+    "vite": "^1.0.0-rc.4"
   }
 }

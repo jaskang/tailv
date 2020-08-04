@@ -10,18 +10,18 @@ const Button = defineComponent({
       type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'>,
       default: 'default'
     },
+    shape: {
+      type: String as PropType<'round' | 'circle'>,
+      default: ''
+    },
     size: {
       type: String as PropType<'large' | 'small'>,
       default: ''
     },
+    nativeType: { type: String as PropType<'button' | 'submit' | 'reset'>, default: 'button' },
     icon: { type: String, default: '' },
-    nativeType: { type: String, default: 'button' },
     loading: { type: Boolean },
-    disabled: { type: Boolean },
-    plain: { type: Boolean },
-    autofocus: { type: Boolean },
-    round: { type: Boolean },
-    circle: { type: Boolean }
+    disabled: { type: Boolean }
   },
   setup(props, { emit, attrs, slots }) {
     const elForm = inject(ElFormSymbol, null)
@@ -37,25 +37,22 @@ const Button = defineComponent({
     return () => (
       <button
         disabled={buttonDisabled.value || props.loading}
-        autofocus={props.autofocus}
         type={props.nativeType as 'button'}
         class={[
           'el-button',
           `el-button-${props.type}`,
           buttonSize.value ? 'el-button-' + buttonSize.value : '',
+          props.shape ? `is-${props.shape}` : '',
           {
             'is-disabled': buttonDisabled.value,
-            'is-loading': props.loading,
-            'is-plain': props.plain,
-            'is-round': props.round,
-            'is-circle': props.circle
+            'is-loading': props.loading
           }
         ]}
         {...attrs}
       >
         {props.loading && <i class="el-icon-loading"></i>}
         {props.icon && !props.loading && <i class={props.icon}></i>}
-        {slots.default && <span>{slots.default?.()}</span>}
+        <span>{slots.default?.()}</span>
       </button>
     )
   }
