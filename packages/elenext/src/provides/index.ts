@@ -11,3 +11,4 @@ export function useGlobal() {
 export const ElRowSymbol: InjectionKey<number> = Symbol();
 export const ElFormSymbol: InjectionKey<any> = Symbol();
 export const ElFormItemSymbol: InjectionKey<any> = Symbol();
+export const ElBreadcrumbSymbol: InjectionKey<any> = Symbol()

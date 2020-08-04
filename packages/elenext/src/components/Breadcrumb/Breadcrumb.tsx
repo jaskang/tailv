@@ -1,4 +1,7 @@
-import { defineComponent } from 'vue'
+import { defineComponent, provide, getCurrentInstance } from 'vue'
+import { ElBreadcrumbSymbol } from '../../provides'
+
+import './Breadcrumb.scss'
 
 const Breadcrumb = defineComponent({
   name: 'ElBreadcrumb',
@@ -12,12 +15,9 @@ const Breadcrumb = defineComponent({
       default: ''
     }
   },
-  setup(prop, { attrs }) {
-    return () => (
-      <div class="el-breadcrumb" aria-label="Breadcrumb" role="navigation">
-        {slots.default?.()}
-      </div>
-    )
+  setup(prop, { slots }) {
+    provide(ElBreadcrumbSymbol, getCurrentInstance())
+    return () => <div class="el-breadcrumb">{slots.default?.()}</div>
   }
 })
 

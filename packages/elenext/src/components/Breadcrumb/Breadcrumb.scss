@@ -1,6 +1,7 @@
-@import "../styles/mixins/mixins";
-@import ' ../styles/mixins/utils ";
-@import "../styles/common/var";
+@charset "UTF-8";
+@import '../styles/common/var';
+@import '../styles/mixins/mixins';
+@import '../styles/mixins/utils';
 
 @include b(breadcrumb) {
   font-size: 14px;
