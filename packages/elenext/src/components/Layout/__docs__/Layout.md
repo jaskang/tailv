@@ -6,34 +6,35 @@
 
 使用单一分栏创建基础的栅格布局。
 
-:::demo 通过 row 和 col 组件，并通过 col 组件的 `span` 属性我们就可以自由地组合布局。
+:::demo
+通过 row 和 col 组件，并通过 col 组件的 `span` 属性我们就可以自由地组合布局。
 
 ```html
 <el-row>
-  <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="12"><div class="grid-content bg-purple-dark"></div></el-col>
 </el-row>
 <el-row>
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
 </el-row>
 <el-row>
   <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
   <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+</el-row>
+<el-row>
+  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="3"><div class="grid-content bg-purple-light"></div></el-col>
+  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="3"><div class="grid-content bg-purple-light"></div></el-col>
+</el-row>
+<el-row>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
 </el-row>
 ```
 
@@ -43,99 +44,44 @@
 
 分栏之间存在间隔。
 
-:::demo Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间隔为 0。
+:::demo
+Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间隔为 0。
 
 ```html
-<el-row :gutter="20">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+<el-row gutter="50">
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
 </el-row>
-
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
 ```
 
 :::
 
 ### 混合布局
 
-通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局。
+通过基础的 1/12 分栏任意扩展组合形成较为复杂的混合布局。
 
 :::demo
 
 ```html
-<el-row :gutter="20">
-  <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row :gutter="20">
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+<el-row>
   <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
 </el-row>
-<el-row :gutter="20">
+<el-row>
   <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
 </el-row>
-
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
+<el-row>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+</el-row>
 ```
 
 :::
@@ -144,57 +90,33 @@
 
 支持偏移指定的栏数。
 
-:::demo 通过制定 col 组件的 `offset` 属性可以指定分栏偏移的栏数。
+:::demo
+通过制定 col 组件的 `offset` 属性可以指定分栏偏移的栏数。
 
 ```html
-<el-row :gutter="20">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
+<el-row>
+  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="3" offset="3"><div class="grid-content bg-purple"></div></el-col>
 </el-row>
-<el-row :gutter="20">
-  <el-col :span="6" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
-  <el-col :span="6" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
+<el-row>
+  <el-col :span="3" offset="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="3" offset="3"><div class="grid-content bg-purple"></div></el-col>
 </el-row>
-<el-row :gutter="20">
-  <el-col :span="12" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
+<el-row>
+  <el-col :span="6" offset="3"><div class="grid-content bg-purple"></div></el-col>
 </el-row>
-
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
+<el-row>
+  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="3" offset="mr"><div class="grid-content bg-purple">offset="mr"</div></el-col>
+</el-row>
+<el-row>
+  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="3" offset="ml"><div class="grid-content bg-purple">offset="ml"</div></el-col>
+</el-row>
+<el-row>
+  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="3" offset="mx"><div class="grid-content bg-purple">offset="mx"</div></el-col>
+</el-row>
 ```
 
 :::
@@ -203,7 +125,8 @@
 
 通过 `flex` 布局来对分栏进行灵活的对齐。
 
-:::demo 将 `type` 属性赋值为 'flex'，可以启用 flex 布局，并可通过 `justify` 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的排版方式。
+:::demo
+将 `type` 属性赋值为 'flex'，可以启用 flex 布局，并可通过 `justify` 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的排版方式。
 
 ```html
 <el-row type="flex" class="row-bg">
@@ -231,35 +154,6 @@
   <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
 </el-row>
-
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
 ```
 
 :::
@@ -285,25 +179,6 @@
     <div class="grid-content bg-purple-light"></div>
   </el-col>
 </el-row>
-
-<style>
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-</style>
 ```
 
 :::
@@ -332,13 +207,12 @@ import 'element-ui/lib/theme-chalk/display.css'
 
 ### Row Attributes
 
-| 参数    | 说明                                  | 类型   | 可选值                                      | 默认值 |
-| ------- | ------------------------------------- | ------ | ------------------------------------------- | ------ |
-| gutter  | 栅格间隔                              | number | —                                           | 0      |
-| type    | 布局模式，可选 flex，现代浏览器下有效 | string | —                                           | —      |
-| justify | flex 布局下的水平排列方式             | string | start/end/center/space-around/space-between | start  |
-| align   | flex 布局下的垂直排列方式             | string | top/middle/bottom                           | top    |
-| tag     | 自定义元素标签                        | string | \*                                          | div    |
+| 参数    | 说明                      | 类型   | 可选值                                      | 默认值 |
+| ------- | ------------------------- | ------ | ------------------------------------------- | ------ |
+| gutter  | 栅格间隔                  | number | —                                           | 20     |
+| justify | flex 布局下的水平排列方式 | string | start/end/center/space-around/space-between | start  |
+| align   | flex 布局下的垂直排列方式 | string | top/middle/bottom                           | top    |
+| tag     | 自定义元素标签            | string | \*                                          | div    |
 
 ### Col Attributes
 

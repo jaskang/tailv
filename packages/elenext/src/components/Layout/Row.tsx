@@ -6,12 +6,10 @@ import { ElRowSymbol } from '../../provides'
 const ElRow = defineComponent({
   name: 'ElRow',
   props: {
-    tag: {
-      type: String,
-      default: 'div'
+    gutter: {
+      type: Number,
+      default: 20
     },
-    gutter: Number,
-    type: String,
     justify: {
       type: String,
       default: 'start'
@@ -24,27 +22,27 @@ const ElRow = defineComponent({
   setup(props, { slots }) {
     provide(ElRowSymbol, props.gutter)
     const style = computed(() => {
-      const ret: any = {}
-      if (props.gutter) {
-        ret.marginLeft = `-${props.gutter / 2}px`
-        ret.marginRight = ret.marginLeft
+      if (props.gutter >= 0) {
+        const px = `-${props.gutter / 2}px`
+        return {
+          marginLeft: px,
+          marginRight: px
+        }
       }
-      return ret
+      return {}
     })
-    return () =>
-      h(
-        props.tag,
-        {
-          class: [
-            'el-row',
-            props.justify !== 'start' ? `is-justify-${props.justify}` : '',
-            props.align !== 'top' ? `is-align-${props.align}` : '',
-            props.type === 'flex' ? 'el-row--flex' : ''
-          ],
-          style: style.value
-        },
-        slots.default?.()
-      )
+    return () => (
+      <div
+        class={[
+          'el-row',
+          props.justify !== 'start' ? `is-justify-${props.justify}` : '',
+          props.align !== 'top' ? `is-align-${props.align}` : ''
+        ]}
+        style={style.value}
+      >
+        {slots.default?.()}
+      </div>
+    )
   }
 })
 

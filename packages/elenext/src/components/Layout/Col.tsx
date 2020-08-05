@@ -8,9 +8,9 @@ const ElCol = defineComponent({
   props: {
     span: {
       type: Number,
-      default: 24
+      default: 12
     },
-    offset: Number,
+    offset: String,
     pull: Number,
     push: Number,
     xs: [Number, Object],
@@ -36,7 +36,7 @@ const ElCol = defineComponent({
       const pos: Array<'span' | 'offset' | 'pull' | 'push'> = ['span', 'offset', 'pull', 'push']
       pos.forEach(prop => {
         const size = props[prop]
-        if (typeof size === 'number' && size >= 0) {
+        if (size) {
           ret.push(prop !== 'span' ? `el-col-${prop}-${props[prop]}` : `el-col-${props[prop]}`)
         }
       })
