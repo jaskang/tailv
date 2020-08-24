@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { ElContainer, ElHeader, ElFooter, ElMain, ElAside } from '../'
+import { ElContainer, ElHeader, ElFooter, ElMain, ElAside } from '..'
 
 describe('Container', () => {
   test('create', () => {

@@ -19,7 +19,7 @@
 
 @button-border-radius: 4px;
 
-.@{perfix}-button {
+.@{prefix}-button {
   margin: 0;
   border: none;
   overflow: visible;
@@ -80,7 +80,7 @@
  * 2. Style
  */
 
-.@{perfix}-button-text {
+.@{prefix}-button-text {
   padding: 0;
   background: none;
   line-height: @global-line-height;
@@ -109,14 +109,14 @@
  * 3. Create position context
  */
 
-.@{perfix}-button-group {
+.@{prefix}-button-group {
   /* 1 */
   display: inline-flex;
   /* 2 */
   vertical-align: middle;
   /* 3 */
   position: relative;
-  & > .@{perfix}-button{
+  & > .@{prefix}-button{
     &:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -140,7 +140,7 @@
 }
 
 .button-type(@type,@font-color,@background-color,@border-color) {
-  .@{perfix}-button-@{type} {
+  .@{prefix}-button-@{type} {
     color: @font-color;
     background: @background-color;
     border: 1px solid @border-color;
@@ -173,7 +173,7 @@
 }
 
 .button-size(@size,@font-size,@line-height,@padding-horizontal) {
-  .@{perfix}-button-@{size} {
+  .@{prefix}-button-@{size} {
     font-size: @font-size;
     padding: 0 @padding-horizontal;
     line-height: @line-height;

@@ -22,14 +22,14 @@ export const router = createRouter({
           component: async () => import('/@docs/Link/__docs__/Link.md')
         },
         {
+          path: '/grid',
+          name: 'grid',
+          component: async () => import('/@docs/Grid/__docs__/Grid.md')
+        },
+        {
           path: '/layout',
           name: 'layout',
           component: async () => import('/@docs/Layout/__docs__/Layout.md')
-        },
-        {
-          path: '/container',
-          name: 'container',
-          component: async () => import('/@docs/Container/__docs__/Container.zh-CN.md')
         },
         {
           path: '/icon',
