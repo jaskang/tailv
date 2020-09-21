@@ -32,8 +32,8 @@ export {
 
 export const elenext: Plugin = {
   install(app) {
-    app.component('ElRow', ElRow)
-    app.component('ElCol', ElCol)
+    app.component('ElRow', Row)
+    app.component('ElCol', Col)
 
     app.component('ElContainer', ElContainer)
     app.component('ElAside', ElAside)

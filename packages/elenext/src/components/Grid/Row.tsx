@@ -56,7 +56,7 @@ const Row = defineComponent({
       return results
     })
 
-    const classes = computed(() => {
+    const classes = computed(() =>
       normalizeClass([
         blockCls,
         {
@@ -64,7 +64,7 @@ const Row = defineComponent({
           [`${blockCls}-${props.align}`]: props.align
         }
       ])
-    })
+    )
 
     const style = computed(() => {
       const [x, y] = gutter.value
