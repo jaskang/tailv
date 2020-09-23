@@ -11,22 +11,22 @@
 
 ```html
 <el-row>
-  <el-col :span="24"><div class="grid-content bg-purple">col</div></el-col>
+  <el-col :span="24">col</el-col>
 </el-row>
 <el-row>
-  <el-col :span="12"><div class="grid-content bg-purple">col-12</div></el-col>
-  <el-col :span="12"><div class="grid-content bg-purple-light">col-12</div></el-col>
+  <el-col :span="12">col-12</el-col>
+  <el-col :span="12">col-12</el-col>
 </el-row>
 <el-row>
-  <el-col :span="8"><div class="grid-content bg-purple">col-8</div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple-light">col-8</div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple">col-8</div></el-col>
+  <el-col :span="8">col-8</el-col>
+  <el-col :span="8">col-8</el-col>
+  <el-col :span="8">col-8</el-col>
 </el-row>
 <el-row>
-  <el-col :span="6"><div class="grid-content bg-purple">col-6</div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light">col-6</div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple">col-6</div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light">col-6</div></el-col>
+  <el-col :span="6">col-6</el-col>
+  <el-col :span="6">col-6</el-col>
+  <el-col :span="6">col-6</el-col>
+  <el-col :span="6">col-6</el-col>
 </el-row>
 ```
 
@@ -40,39 +40,23 @@
 Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间隔为 0。
 
 ```html
-<el-row gutter="50">
-  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple-light"></div></el-col>
-</el-row>
-```
-
-:::
-
-### 混合布局
-
-通过基础的 1/12 分栏任意扩展组合形成较为复杂的混合布局。
-
-:::demo
-
-```html
-<el-row>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+<el-row :gutter="16">
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
 </el-row>
 <el-row>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
 </el-row>
-<el-row>
-  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+<el-row :gutter="[16,24]">
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
+  <el-col :span="6"></el-col>
 </el-row>
 ```
 
@@ -87,27 +71,15 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 
 ```html
 <el-row>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3" offset="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="8">col-8</el-col>
+  <el-col :span="8" :offset="8"> col-8 </el-col>
 </el-row>
 <el-row>
-  <el-col :span="3" offset="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3" offset="3"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6" :offset="6"> col-6 col-offset-6 </el-col>
+  <el-col :span="6" :offset="6"> col-6 col-offset-6 </el-col>
 </el-row>
 <el-row>
-  <el-col :span="6" offset="3"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3" offset="mr"><div class="grid-content bg-purple">offset="mr"</div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3" offset="ml"><div class="grid-content bg-purple">offset="ml"</div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3" offset="mx"><div class="grid-content bg-purple">offset="mx"</div></el-col>
+  <el-col :span="12" :offset="6"> col-12 col-offset-6 </el-col>
 </el-row>
 ```
 
@@ -121,30 +93,49 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 将 `type` 属性赋值为 'flex'，可以启用 flex 布局，并可通过 `justify` 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的排版方式。
 
 ```html
-<el-row>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+<el-row justify="center" align="top">
+  <el-col :span="4">
+    <div :value="100">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="50">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="120">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="80">col-4</div>
+  </el-col>
 </el-row>
-<el-row justify="center">
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+
+<el-row justify="space-around" align="middle">
+  <el-col :span="4">
+    <div :value="100">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="50">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="120">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="80">col-4</div>
+  </el-col>
 </el-row>
-<el-row justify="flex-end">
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row justify="space-between">
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row justify="space-around">
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="3"><div class="grid-content bg-purple"></div></el-col>
+
+<el-row justify="space-between" align="bottom">
+  <el-col :span="4">
+    <div :value="100">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="50">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="120">col-4</div>
+  </el-col>
+  <el-col :span="4">
+    <div :value="80">col-4</div>
+  </el-col>
 </el-row>
 ```
 
@@ -157,20 +148,11 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 :::demo
 
 ```html
-<el-row :gutter="10">
-  <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-    <div class="grid-content bg-purple"></div>
-  </el-col>
-  <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-    <div class="grid-content bg-purple-light"></div>
-  </el-col>
-  <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-    <div class="grid-content bg-purple"></div>
-  </el-col>
-  <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-    <div class="grid-content bg-purple-light"></div>
-  </el-col>
-</el-row>
+<el-row>
+  <el-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10"> Col </el-col>
+  <el-col :xs="20" :sm="16" :md="12" :lg="8" :xl="4"> Col </el-col>
+  <el-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10"> Col </el-col> </el-row
+>,
 ```
 
 :::

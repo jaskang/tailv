@@ -16,7 +16,7 @@ const Row = defineComponent({
   name: getCompName('Row'),
   props: {
     gutter: {
-      type: Number as PropType<Gutter>,
+      type: Object as PropType<Gutter>,
       default: 0
     },
     align: {
@@ -30,9 +30,9 @@ const Row = defineComponent({
   },
   setup(props, { slots }) {
     const { screens } = useBreakpoint()
+    console.log(screens)
 
     const gutter = computed(() => {
-      console.log(screens)
       const propGutter = props.gutter
       const getTuple = (arg: number | GutterTuple) => {
         if (Array.isArray(arg)) {
@@ -53,6 +53,7 @@ const Row = defineComponent({
       } else {
         results = getTuple(propGutter)
       }
+      console.log(results)
       return results
     })
 
