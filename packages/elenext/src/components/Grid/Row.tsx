@@ -3,8 +3,9 @@ import { normalizeClass } from '../../utils/dom'
 import { getBlockCls, getCompName } from '../../config'
 import useBreakpoint, { Breakpoint, responsiveArray } from './hooks/useBreakpoint'
 
-type Gutter = number | [number, number] | Partial<Record<Breakpoint, number | [number, number]>>
 export type GutterTuple = [number, number]
+
+type Gutter = number | GutterTuple | Partial<Record<Breakpoint, number | GutterTuple>>
 
 export const RowInjectKey: InjectionKey<{
   gutter: ComputedRef<GutterTuple>
@@ -16,7 +17,7 @@ const Row = defineComponent({
   name: getCompName('Row'),
   props: {
     gutter: {
-      type: Object as PropType<Gutter>,
+      type: [Number, Array, Object] as PropType<Gutter>,
       default: 0
     },
     align: {
@@ -30,8 +31,6 @@ const Row = defineComponent({
   },
   setup(props, { slots }) {
     const { screens } = useBreakpoint()
-    console.log(screens)
-
     const gutter = computed(() => {
       const propGutter = props.gutter
       const getTuple = (arg: number | GutterTuple) => {
@@ -53,7 +52,7 @@ const Row = defineComponent({
       } else {
         results = getTuple(propGutter)
       }
-      console.log(results)
+      console.log('gutter', results)
       return results
     })
 
@@ -72,25 +71,29 @@ const Row = defineComponent({
       let ret: CSSProperties = {
         ...(x > 0
           ? {
-              marginLeft: x / -2,
-              marginRight: x / -2
+              marginLeft: `${x / -2}px`,
+              marginRight: `${x / -2}px`
             }
           : {}),
         ...(y > 0
           ? {
-              marginTop: y / -2,
-              marginBottom: y / -2
+              marginTop: `${y / -2}px`,
+              marginBottom: `${y / -2}px`
             }
           : {})
       }
       return ret
     })
+
     provide(RowInjectKey, { gutter })
-    return () => (
-      <div class={classes.value} style={style.value}>
-        {slots.default?.()}
-      </div>
-    )
+    return () => {
+      // style={style.value}
+      return (
+        <div class={classes.value} style={style.value}>
+          {slots.default?.()}
+        </div>
+      )
+    }
   }
 })
 

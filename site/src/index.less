@@ -4,12 +4,16 @@
 
 .preview__demo {
   .el-col {
-    border-radius: 4px;
     min-height: 36px;
-    background: #99a9bf;
     text-align: center;
+    > div {
+      border-radius: 4px;
+      background: #99a9bf;
+    }
     &:nth-child(even) {
-      background: #d3dce6;
+      > div {
+        background: #d3dce6;
+      }
     }
   }
 }

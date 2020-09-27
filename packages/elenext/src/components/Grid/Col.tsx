@@ -32,7 +32,7 @@ const defalutPropItem = {
 }
 
 const sizePropItem = {
-  type: Object as PropType<SizeProp>,
+  type: [Number, Object] as PropType<SizeProp>,
   required: false
 }
 
@@ -67,6 +67,8 @@ const Col = defineComponent({
         const propSize = (props as any)[size]
         if (typeof propSize === 'object') {
           sizeProps = propSize || {}
+        } else {
+          sizeProps = { span: propSize }
         }
 
         sizeClassObj = {
@@ -98,21 +100,21 @@ const Col = defineComponent({
       ret = {
         ...(x > 0
           ? {
-              paddingLeft: x / 2,
-              paddingRight: x / 2
+              paddingLeft: `${x / 2}px`,
+              paddingRight: `${x / 2}px`
             }
           : {}),
         ...(y > 0
           ? {
-              paddingTop: y / 2,
-              paddingBottom: y / 2
+              paddingTop: `${y / 2}px`,
+              paddingBottom: `${y / 2}px`
             }
           : {})
       }
       if (props.flex) {
         ret.flex = parseFlex(props.flex)
       }
-      return {}
+      return ret
     })
 
     return () => (
