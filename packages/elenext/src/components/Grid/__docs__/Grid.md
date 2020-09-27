@@ -41,25 +41,25 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 
 ```html
 <el-row :gutter="16">
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
 </el-row>
 <br />
-<el-row :gutter="[16,24]">
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
-  <el-col :span="6"><div>Column</div></el-col>
+<el-row :gutter="[30,24]">
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
+  <el-col :span="6"><div>col-6</div></el-col>
 </el-row>
 ```
 
@@ -75,7 +75,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 ```html
 <el-row>
   <el-col :span="8"><div>col-8</div></el-col>
-  <el-col :span="8" :offset="8"><div>col-8</div></el-col>
+  <el-col :span="8" :offset="8"><div>col-8 offset-8</div></el-col>
 </el-row>
 <el-row>
   <el-col :span="6" :offset="6"><div>col-6 col-offset-6</div></el-col>

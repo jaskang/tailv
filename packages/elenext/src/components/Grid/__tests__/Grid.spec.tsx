@@ -101,12 +101,7 @@ describe('Col', () => {
       render() {
         return (
           <ElRow gutter={20}>
-            <ElCol
-              ref="col"
-              sm={{ span: 4, offset: 2 }}
-              md={8}
-              lg={{ span: 6, offset: 3 }}
-            ></ElCol>
+            <ElCol ref="col" sm={{ span: 4, offset: 2 }} md={8} lg={{ span: 6, offset: 3 }}></ElCol>
           </ElRow>
         )
       }
