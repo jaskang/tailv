@@ -26,10 +26,9 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.4.4",
-    "elehooks": "^0.1.0",
-    "uikit": "^3.5.5"
+    "elehooks": "^0.1.0"
   },
   "peerDependencies": {
-    "vue": "^3.0.0-rc.2"
+    "vue": "^3.0.0-rc.6"
   }
 }

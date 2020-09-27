@@ -8,7 +8,7 @@
 
 :::demo
 
-使用`type`、`plain`、`round`和`circle`属性来定义 Button 的样式。
+使用`type`属性来定义 Button 的颜色。使用`shape`属性来定义 Button 的样式。
 
 ```html
 <el-row>
@@ -21,30 +21,21 @@
 </el-row>
 
 <el-row>
-  <el-button plain>朴素按钮</el-button>
-  <el-button type="primary" plain>主要按钮</el-button>
-  <el-button type="success" plain>成功按钮</el-button>
-  <el-button type="info" plain>信息按钮</el-button>
-  <el-button type="warning" plain>警告按钮</el-button>
-  <el-button type="danger" plain>危险按钮</el-button>
+  <el-button shape="round">圆角按钮</el-button>
+  <el-button type="primary" shape="round">主要按钮</el-button>
+  <el-button type="success" shape="round">成功按钮</el-button>
+  <el-button type="info" shape="round">信息按钮</el-button>
+  <el-button type="warning" shape="round">警告按钮</el-button>
+  <el-button type="danger" shape="round">危险按钮</el-button>
 </el-row>
 
 <el-row>
-  <el-button round>圆角按钮</el-button>
-  <el-button type="primary" round>主要按钮</el-button>
-  <el-button type="success" round>成功按钮</el-button>
-  <el-button type="info" round>信息按钮</el-button>
-  <el-button type="warning" round>警告按钮</el-button>
-  <el-button type="danger" round>危险按钮</el-button>
-</el-row>
-
-<el-row>
-  <el-button icon="el-icon-search" circle></el-button>
-  <el-button type="primary" icon="el-icon-edit" circle></el-button>
-  <el-button type="success" icon="el-icon-check" circle></el-button>
-  <el-button type="info" icon="el-icon-message" circle></el-button>
-  <el-button type="warning" icon="el-icon-star-off" circle></el-button>
-  <el-button type="danger" icon="el-icon-delete" circle></el-button>
+  <el-button icon="el-icon-search" shape="circle"></el-button>
+  <el-button type="primary" icon="el-icon-edit" shape="circle"></el-button>
+  <el-button type="success" icon="el-icon-check" shape="circle"></el-button>
+  <el-button type="info" icon="el-icon-message" shape="circle"></el-button>
+  <el-button type="warning" icon="el-icon-star-off" shape="circle"></el-button>
+  <el-button type="danger" icon="el-icon-delete" shape="circle"></el-button>
 </el-row>
 ```
 
@@ -59,20 +50,20 @@
 ```html
 <el-row>
   <el-button disabled>默认按钮</el-button>
-  <el-button type="primary" disabled>主要按钮</el-button>
-  <el-button type="success" disabled>成功按钮</el-button>
-  <el-button type="info" disabled>信息按钮</el-button>
-  <el-button type="warning" disabled>警告按钮</el-button>
-  <el-button type="danger" disabled>危险按钮</el-button>
+  <el-button disabled type="primary">主要按钮</el-button>
+  <el-button disabled type="success">成功按钮</el-button>
+  <el-button disabled type="info">信息按钮</el-button>
+  <el-button disabled type="warning">警告按钮</el-button>
+  <el-button disabled type="danger">危险按钮</el-button>
 </el-row>
 
 <el-row>
-  <el-button plain disabled>朴素按钮</el-button>
-  <el-button type="primary" plain disabled>主要按钮</el-button>
-  <el-button type="success" plain disabled>成功按钮</el-button>
-  <el-button type="info" plain disabled>信息按钮</el-button>
-  <el-button type="warning" plain disabled>警告按钮</el-button>
-  <el-button type="danger" plain disabled>危险按钮</el-button>
+  <el-button disabled shape="round">圆角按钮</el-button>
+  <el-button disabled type="primary" shape="round">主要按钮</el-button>
+  <el-button disabled type="success" shape="round">成功按钮</el-button>
+  <el-button disabled type="info" shape="round">信息按钮</el-button>
+  <el-button disabled type="warning" shape="round">警告按钮</el-button>
+  <el-button disabled type="danger" shape="round">危险按钮</el-button>
 </el-row>
 ```
 
@@ -85,8 +76,7 @@
 :::demo
 
 ```html
-<el-button type="text">文字按钮</el-button>
-<el-button type="text" disabled>文字按钮</el-button>
+<el-button type="text">文字按钮</el-button> <el-button type="text" disabled>文字按钮</el-button>
 ```
 
 :::
@@ -98,13 +88,13 @@
 :::demo 设置`icon`属性即可，icon 的列表可以参考 Element 的 icon 组件，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
 
 ```html
-<el-button type="primary" icon="el-icon-edit"></el-button>
-<el-button type="primary" icon="el-icon-share"></el-button>
-<el-button type="primary" icon="el-icon-delete"></el-button>
-<el-button type="primary" icon="el-icon-search">搜索</el-button>
-<el-button type="primary">
-  上传<i class="el-icon-upload el-icon--right"></i>
-</el-button>
+<el-row>
+  <el-button type="primary" icon="el-icon-edit"></el-button>
+  <el-button type="primary" icon="el-icon-share"></el-button>
+  <el-button type="primary" icon="el-icon-delete"></el-button>
+  <el-button type="primary" icon="el-icon-search">搜索</el-button>
+  <el-button type="primary"> 上传<i class="el-icon-upload el-icon--right"></i> </el-button>
+</el-row>
 ```
 
 :::
@@ -118,9 +108,7 @@
 ```html
 <el-button-group>
   <el-button type="primary" icon="el-icon-arrow-left">上一页</el-button>
-  <el-button type="primary"
-    >下一页<i class="el-icon-arrow-right el-icon--right"></i
-  ></el-button>
+  <el-button type="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
 </el-button-group>
 <el-button-group>
   <el-button type="primary" icon="el-icon-edit"></el-button>
@@ -158,10 +146,10 @@ Button 组件提供除了默认值以外的三种尺寸，可以在不同场景�
   <el-button size="mini">超小按钮</el-button>
 </el-row>
 <el-row>
-  <el-button round>默认按钮</el-button>
-  <el-button size="medium" round>中等按钮</el-button>
-  <el-button size="small" round>小型按钮</el-button>
-  <el-button size="mini" round>超小按钮</el-button>
+  <el-button type="primary" shape="round">默认按钮</el-button>
+  <el-button type="primary" shape="round" size="medium">中等按钮</el-button>
+  <el-button type="primary" shape="round" size="small">小型按钮</el-button>
+  <el-button type="primary" shape="round" size="mini">超小按钮</el-button>
 </el-row>
 ```
 
@@ -173,9 +161,7 @@ Button 组件提供除了默认值以外的三种尺寸，可以在不同场景�
 | ----------- | -------------- | ------- | -------------------------------------------------- | ------ |
 | size        | 尺寸           | string  | medium / small / mini                              | —      |
 | type        | 类型           | string  | primary / success / warning / danger / info / text | —      |
-| plain       | 是否朴素按钮   | boolean | —                                                  | false  |
-| round       | 是否圆角按钮   | boolean | —                                                  | false  |
-| circle      | 是否圆形按钮   | boolean | —                                                  | false  |
+| shape       | 是否朴素按钮   | boolean | round / circle                                     | -      |
 | loading     | 是否加载中状态 | boolean | —                                                  | false  |
 | disabled    | 是否禁用状态   | boolean | —                                                  | false  |
 | icon        | 图标类名       | string  | —                                                  | —      |

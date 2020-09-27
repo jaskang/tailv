@@ -1,0 +1,11 @@
+.clearfix() {
+  &::before {
+    content: '';
+    display: table-cell;
+  }
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}

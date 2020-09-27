@@ -14,8 +14,7 @@ export const router = createRouter({
         {
           path: '/button',
           name: 'button',
-          component: async () =>
-            import('/@docs/Button/__docs__/Button.zh-CN.md')
+          component: async () => import('/@docs/Button/__docs__/Button.zh-CN.md')
         },
         {
           path: '/link',
@@ -23,15 +22,14 @@ export const router = createRouter({
           component: async () => import('/@docs/Link/__docs__/Link.md')
         },
         {
+          path: '/grid',
+          name: 'grid',
+          component: async () => import('/@docs/Grid/__docs__/Grid.md')
+        },
+        {
           path: '/layout',
           name: 'layout',
           component: async () => import('/@docs/Layout/__docs__/Layout.md')
-        },
-        {
-          path: '/container',
-          name: 'container',
-          component: async () =>
-            import('/@docs/Container/__docs__/Container.zh-CN.md')
         },
         {
           path: '/icon',
@@ -52,6 +50,11 @@ export const router = createRouter({
           path: '/popover',
           name: 'popover',
           component: async () => import('/@docs/Popover/__docs__/Popover.md')
+        },
+        {
+          path: '/test',
+          name: 'test',
+          component: async () => import('./components/Test.vue')
         }
       ]
     }

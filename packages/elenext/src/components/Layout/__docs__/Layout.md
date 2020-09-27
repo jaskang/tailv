@@ -1,356 +1,246 @@
-## Layout 布局
+## Container 布局容器
 
-通过基础的 24 分栏，迅速简便地创建布局。
+用于布局的容器组件，方便快速搭建页面的基本结构：
 
-### 基础布局
+`<el-container>`：外层容器。当子元素中包含 `<el-header>` 或 `<el-footer>` 时，全部子元素会垂直上下排列，否则会水平左右排列。
 
-使用单一分栏创建基础的栅格布局。
+`<el-header>`：顶栏容器。
 
-:::demo 通过 row 和 col 组件，并通过 col 组件的 `span` 属性我们就可以自由地组合布局。
+`<el-aside>`：侧边栏容器。
 
-```html
-<el-row>
-  <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-</el-row>
-<el-row>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
-</el-row>
-```
+`<el-main>`：主要区域容器。
 
+`<el-footer>`：底栏容器。
+
+:::tip
+以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`<el-container>` 的子元素只能是后四者，后四者的父元素也只能是 `<el-container>`。
 :::
 
-### 分栏间隔
-
-分栏之间存在间隔。
-
-:::demo Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间隔为 0。
-
-```html
-<el-row :gutter="20">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
-```
-
-:::
-
-### 混合布局
-
-通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局。
+### 常见页面布局
 
 :::demo
 
 ```html
-<el-row :gutter="20">
-  <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row :gutter="20">
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row :gutter="20">
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
+<el-container direction="vertical">
+  <el-header>Header</el-header>
+  <el-main>Main</el-main>
+</el-container>
 
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+<el-container direction="vertical">
+  <el-header>Header</el-header>
+  <el-main>Main</el-main>
+  <el-footer>Footer</el-footer>
+</el-container>
+
+<el-container>
+  <el-aside width="200px">Aside</el-aside>
+  <el-main>Main</el-main>
+</el-container>
+
+<el-container direction="vertical">
+  <el-header>Header</el-header>
+  <el-container>
+    <el-aside width="200px">Aside</el-aside>
+    <el-main>Main</el-main>
+  </el-container>
+</el-container>
+
+<el-container direction="vertical">
+  <el-header>Header</el-header>
+  <el-container>
+    <el-aside width="200px">Aside</el-aside>
+    <el-container direction="vertical">
+      <el-main>Main</el-main>
+      <el-footer>Footer</el-footer>
+    </el-container>
+  </el-container>
+</el-container>
+
+<el-container>
+  <el-aside width="200px">Aside</el-aside>
+  <el-container direction="vertical">
+    <el-header>Header</el-header>
+    <el-main>Main</el-main>
+  </el-container>
+</el-container>
+
+<el-container>
+  <el-aside width="200px">Aside</el-aside>
+  <el-container direction="vertical">
+    <el-header>Header</el-header>
+    <el-main>Main</el-main>
+    <el-footer>Footer</el-footer>
+  </el-container>
+</el-container>
+<style scoped>
+  .el-header,
+  .el-footer {
+    background-color: #b3c0d1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
   }
-  .el-col {
-    border-radius: 4px;
+
+  .el-aside {
+    background-color: #d3dce6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
   }
-  .bg-purple-dark {
-    background: #99a9bf;
+
+  .el-main {
+    background-color: #e9eef3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
   }
-  .bg-purple {
-    background: #d3dce6;
+
+  body > .el-container {
+    margin-bottom: 40px;
   }
-  .bg-purple-light {
-    background: #e5e9f2;
+
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
   }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
+
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
   }
 </style>
 ```
 
 :::
 
-### 分栏偏移
-
-支持偏移指定的栏数。
-
-:::demo 通过制定 col 组件的 `offset` 属性可以指定分栏偏移的栏数。
-
-```html
-<el-row :gutter="20">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
-</el-row>
-<el-row :gutter="20">
-  <el-col :span="6" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
-  <el-col :span="6" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
-</el-row>
-<el-row :gutter="20">
-  <el-col :span="12" :offset="6"
-    ><div class="grid-content bg-purple"></div
-  ></el-col>
-</el-row>
-
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
-```
-
-:::
-
-### 对齐方式
-
-通过 `flex` 布局来对分栏进行灵活的对齐。
-
-:::demo 将 `type` 属性赋值为 'flex'，可以启用 flex 布局，并可通过 `justify` 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的排版方式。
-
-```html
-<el-row type="flex" class="row-bg">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row type="flex" class="row-bg" justify="center">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row type="flex" class="row-bg" justify="end">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row type="flex" class="row-bg" justify="space-between">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-<el-row type="flex" class="row-bg" justify="space-around">
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-</el-row>
-
-<style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-</style>
-```
-
-:::
-
-### 响应式布局
-
-参照了 Bootstrap 的 响应式设计，预设了五个响应尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
+### 实例
 
 :::demo
 
 ```html
-<el-row :gutter="10">
-  <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-    <div class="grid-content bg-purple"></div>
-  </el-col>
-  <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-    <div class="grid-content bg-purple-light"></div>
-  </el-col>
-  <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-    <div class="grid-content bg-purple"></div>
-  </el-col>
-  <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-    <div class="grid-content bg-purple-light"></div>
-  </el-col>
-</el-row>
+<el-container style="height: 500px; border: 1px solid #eee">
+  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-menu :default-openeds="['1', '3']">
+      <el-submenu index="1">
+        <template slot="title"> <i class="el-icon-message"></i>导航一 </template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="1-4-1">选项4-1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-submenu index="2">
+        <template slot="title"><i class="el-icon-menu"></i>导航二</template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="2-1">选项1</el-menu-item>
+          <el-menu-item index="2-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="2-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项4-1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-submenu index="3">
+        <template slot="title"> <i class="el-icon-setting"></i>导航三 </template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="3-1">选项1</el-menu-item>
+          <el-menu-item index="3-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="3-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="3-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="3-4-1">选项4-1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+    </el-menu>
+  </el-aside>
+
+  <el-container direction="vertical">
+    <el-header style="text-align: right; font-size: 12px">
+      <el-dropdown>
+        <i class="el-icon-setting" style="margin-right: 15px"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>查看</el-dropdown-item>
+          <el-dropdown-item>新增</el-dropdown-item>
+          <el-dropdown-item>删除</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>王小虎</span>
+    </el-header>
+
+    <el-main>
+      <el-table :data="tableData">
+        <el-table-column prop="date" label="日期" width="140"> </el-table-column>
+        <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
+        <el-table-column prop="address" label="地址"> </el-table-column>
+      </el-table>
+    </el-main>
+  </el-container>
+</el-container>
 
 <style>
-  .el-col {
-    border-radius: 4px;
+  .el-header {
+    background-color: #b3c0d1;
+    color: #333;
+    line-height: 60px;
   }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
+
+  .el-aside {
+    color: #333;
   }
 </style>
+
+<script>
+  export default {
+    data() {
+      const item = {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }
+      return {
+        tableData: Array(20).fill(item)
+      }
+    }
+  }
+</script>
 ```
 
 :::
 
-### 基于断点的隐藏类
+### Container Attributes
 
-Element 额外提供了一系列类名，用于在某些条件下隐藏元素。这些类名可以添加在任何 DOM 元素或自定义组件上。如果需要，请自行引入以下文件：
+| 参数      | 说明             | 类型   | 可选值                | 默认值                                                                 |
+| --------- | ---------------- | ------ | --------------------- | ---------------------------------------------------------------------- |
+| direction | 子元素的排列方向 | string | horizontal / vertical | 子元素中有 `el-header` 或 `el-footer` 时为 vertical，否则为 horizontal |
 
-```js
-import 'element-ui/lib/theme-chalk/display.css'
-```
+### Header Attributes
 
-包含的类名及其含义为：
+| 参数   | 说明     | 类型   | 可选值 | 默认值 |
+| ------ | -------- | ------ | ------ | ------ |
+| height | 顶栏高度 | string | —      | 60px   |
 
-- `hidden-xs-only` - 当视口在 `xs` 尺寸时隐藏
-- `hidden-sm-only` - 当视口在 `sm` 尺寸时隐藏
-- `hidden-sm-and-down` - 当视口在 `sm` 及以下尺寸时隐藏
-- `hidden-sm-and-up` - 当视口在 `sm` 及以上尺寸时隐藏
-- `hidden-md-only` - 当视口在 `md` 尺寸时隐藏
-- `hidden-md-and-down` - 当视口在 `md` 及以下尺寸时隐藏
-- `hidden-md-and-up` - 当视口在 `md` 及以上尺寸时隐藏
-- `hidden-lg-only` - 当视口在 `lg` 尺寸时隐藏
-- `hidden-lg-and-down` - 当视口在 `lg` 及以下尺寸时隐藏
-- `hidden-lg-and-up` - 当视口在 `lg` 及以上尺寸时隐藏
-- `hidden-xl-only` - 当视口在 `xl` 尺寸时隐藏
+### Aside Attributes
 
-### Row Attributes
+| 参数  | 说明       | 类型   | 可选值 | 默认值 |
+| ----- | ---------- | ------ | ------ | ------ |
+| width | 侧边栏宽度 | string | —      | 300px  |
 
-| 参数    | 说明                                  | 类型   | 可选值                                      | 默认值 |
-| ------- | ------------------------------------- | ------ | ------------------------------------------- | ------ |
-| gutter  | 栅格间隔                              | number | —                                           | 0      |
-| type    | 布局模式，可选 flex，现代浏览器下有效 | string | —                                           | —      |
-| justify | flex 布局下的水平排列方式             | string | start/end/center/space-around/space-between | start  |
-| align   | flex 布局下的垂直排列方式             | string | top/middle/bottom                           | top    |
-| tag     | 自定义元素标签                        | string | \*                                          | div    |
+### Footer Attributes
 
-### Col Attributes
-
-| 参数   | 说明                                   | 类型                                        | 可选值 | 默认值 |
-| ------ | -------------------------------------- | ------------------------------------------- | ------ | ------ |
-| span   | 栅格占据的列数                         | number                                      | —      | 24     |
-| offset | 栅格左侧的间隔格数                     | number                                      | —      | 0      |
-| push   | 栅格向右移动格数                       | number                                      | —      | 0      |
-| pull   | 栅格向左移动格数                       | number                                      | —      | 0      |
-| xs     | `<768px` 响应式栅格数或者栅格属性对象  | number/object (例如： {span: 4, offset: 4}) | —      | —      |
-| sm     | `≥768px` 响应式栅格数或者栅格属性对象  | number/object (例如： {span: 4, offset: 4}) | —      | —      |
-| md     | `≥992px` 响应式栅格数或者栅格属性对象  | number/object (例如： {span: 4, offset: 4}) | —      | —      |
-| lg     | `≥1200px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —      | —      |
-| xl     | `≥1920px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —      | —      |
-| tag    | 自定义元素标签                         | string                                      | \*     | div    |
+| 参数   | 说明     | 类型   | 可选值 | 默认值 |
+| ------ | -------- | ------ | ------ | ------ |
+| height | 底栏高度 | string | —      | 60px   |

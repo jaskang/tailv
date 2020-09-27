@@ -1,5 +1,5 @@
-import { defineComponent, mergeProps } from 'vue'
-import './Link.scss'
+import { defineComponent } from 'vue'
+// import './Link.scss'
 
 const Link = defineComponent({
   name: 'ElLink',
