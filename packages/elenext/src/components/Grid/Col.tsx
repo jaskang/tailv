@@ -2,6 +2,7 @@ import { defineComponent, computed, inject, PropType, ref, ComputedRef, CSSPrope
 import { getCompName, getBlockCls } from '../../config'
 import { RowInjectKey, GutterTuple } from './Row'
 import { normalizeClass } from '../../utils/dom'
+import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 
 type ColPropType = number | string
 
@@ -28,7 +29,7 @@ function parseFlex(flex: FlexType): string {
 
 const defalutPropItem = {
   type: [Number, String] as PropType<ColPropType>,
-  default: 0
+  default: undefined
 }
 
 const sizePropItem = {
@@ -51,7 +52,6 @@ const Col = defineComponent({
     md: sizePropItem,
     lg: sizePropItem,
     xl: sizePropItem,
-    xxl: sizePropItem,
     flex: {
       type: [Number, String] as PropType<FlexType>,
       required: false
@@ -62,7 +62,7 @@ const Col = defineComponent({
 
     const classes = computed(() => {
       let sizeClassObj = {}
-      ;['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].forEach(size => {
+      RESPONSIVE_ARRAY.reverse().forEach(size => {
         let sizeProps: SizeProp = {}
         const propSize = (props as any)[size]
         if (typeof propSize === 'object') {

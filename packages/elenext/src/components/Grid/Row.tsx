@@ -1,7 +1,7 @@
 import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef } from 'vue'
 import { normalizeClass } from '../../utils/dom'
 import { getBlockCls, getCompName } from '../../config'
-import useBreakpoint, { Breakpoint, responsiveArray } from './hooks/useBreakpoint'
+import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 
 export type GutterTuple = [number, number]
 
@@ -42,8 +42,8 @@ const Row = defineComponent({
       }
       let results: GutterTuple = [0, 0]
       if (typeof propGutter === 'object' && !Array.isArray(propGutter)) {
-        for (let i = 0; i < responsiveArray.length; i++) {
-          const breakpoint: Breakpoint = responsiveArray[i]
+        for (let i = 0; i < RESPONSIVE_ARRAY.length; i++) {
+          const breakpoint: Breakpoint = RESPONSIVE_ARRAY[i]
           if (screens[breakpoint] && propGutter[breakpoint] !== undefined) {
             results = getTuple(propGutter[breakpoint]!)
             break

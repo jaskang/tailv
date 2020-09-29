@@ -1,20 +1,19 @@
 import { onMounted, onUnmounted, reactive } from 'vue'
 
-export type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+export type Breakpoint = 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 export type ScreenMap = Partial<Record<Breakpoint, boolean>>
 
-export const responsiveArray: Breakpoint[] = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs']
+export const RESPONSIVE_ARRAY: Breakpoint[] = ['xl', 'lg', 'md', 'sm', 'xs']
 
-export const responsiveMap: Partial<Record<Breakpoint, string>> = {
-  xs: '(max-width: 575px)',
-  sm: '(min-width: 576px)',
-  md: '(min-width: 768px)',
-  lg: '(min-width: 992px)',
-  xl: '(min-width: 1200px)',
-  xxl: '(min-width: 1600px)'
+export const RESPONSIVE_MAP: Partial<Record<Breakpoint, string>> = {
+  xs: '(max-width: 767px)',
+  sm: '(min-width: 768px)',
+  md: '(min-width: 992px)',
+  lg: '(min-width: 1200px)',
+  xl: '(min-width: 1400px)'
 }
 function useBreakpoint() {
-  const keys = Object.keys(responsiveMap) as Breakpoint[]
+  const keys = Object.keys(RESPONSIVE_MAP) as Breakpoint[]
   const screens = reactive<ScreenMap>({})
   const headlers = {} as {
     [prop: string]: {
@@ -24,7 +23,7 @@ function useBreakpoint() {
   }
   onMounted(() => {
     keys.forEach(screen => {
-      const matchMediaQuery = responsiveMap[screen]!
+      const matchMediaQuery = RESPONSIVE_MAP[screen]!
       const mql = window.matchMedia(matchMediaQuery)
       const listener = ({ matches }: { matches: boolean }) => {
         screens[screen] = matches
@@ -36,7 +35,7 @@ function useBreakpoint() {
   })
   onUnmounted(() => {
     keys.forEach(screen => {
-      const matchMediaQuery = responsiveMap[screen]!
+      const matchMediaQuery = RESPONSIVE_MAP[screen]!
       const handler = headlers[matchMediaQuery]
       handler?.mql.removeListener(handler?.listener)
     })
