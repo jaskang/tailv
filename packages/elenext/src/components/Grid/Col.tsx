@@ -33,7 +33,7 @@ const defalutPropItem = {
 }
 
 const sizePropItem = {
-  type: [Number, Object] as PropType<SizeProp>,
+  type: [Number, Object] as PropType<number | SizeProp>,
   required: false
 }
 
@@ -61,35 +61,35 @@ const Col = defineComponent({
     const { gutter } = inject(RowInjectKey, { gutter: ref([0, 0]) } as { gutter: ComputedRef<GutterTuple> })
 
     const classes = computed(() => {
-      let sizeClassObj = {}
+      let sizeObjs: any[] = []
       RESPONSIVE_ARRAY.reverse().forEach(size => {
         let sizeProps: SizeProp = {}
-        const propSize = (props as any)[size]
-        if (typeof propSize === 'object') {
-          sizeProps = propSize || {}
-        } else {
-          sizeProps = { span: propSize }
-        }
-
-        sizeClassObj = {
-          ...sizeClassObj,
-          [`${blockCls}-${size}-${sizeProps.span}`]: sizeProps.span !== undefined,
-          [`${blockCls}-${size}-order-${sizeProps.order}`]: sizeProps.order || sizeProps.order === 0,
-          [`${blockCls}-${size}-offset-${sizeProps.offset}`]: sizeProps.offset || sizeProps.offset === 0,
-          [`${blockCls}-${size}-push-${sizeProps.push}`]: sizeProps.push || sizeProps.push === 0,
-          [`${blockCls}-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0
+        const propSize = props[size]
+        if (typeof propSize !== 'undefined') {
+          if (typeof propSize === 'number') {
+            sizeProps = { span: propSize }
+          } else {
+            sizeProps = propSize || {}
+          }
+          sizeObjs.push({
+            [`${blockCls}-${size}-${sizeProps.span}`]: sizeProps.span !== undefined,
+            [`${blockCls}-${size}-order-${sizeProps.order}`]: sizeProps.order || sizeProps.order === 0,
+            [`${blockCls}-${size}-offset-${sizeProps.offset}`]: sizeProps.offset || sizeProps.offset === 0,
+            [`${blockCls}-${size}-push-${sizeProps.push}`]: sizeProps.push || sizeProps.push === 0,
+            [`${blockCls}-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0
+          })
         }
       })
       const ret = normalizeClass([
         blockCls,
         {
-          [`${blockCls}-${props.span}`]: props.span !== undefined,
+          [`${blockCls}-${props.span}`]: props.span,
           [`${blockCls}-order-${props.order}`]: props.order,
           [`${blockCls}-offset-${props.offset}`]: props.offset,
           [`${blockCls}-push-${props.push}`]: props.push,
           [`${blockCls}-pull-${props.pull}`]: props.pull
         },
-        sizeClassObj
+        ...sizeObjs
       ])
       return ret
     })
