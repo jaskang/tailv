@@ -32,6 +32,11 @@ export const router = createRouter({
           component: async () => import('/@docs/Layout/__docs__/Layout.md')
         },
         {
+          path: '/tile',
+          name: 'tile',
+          component: async () => import('/@docs/Tile/__docs__/Tile.md')
+        },
+        {
           path: '/icon',
           name: 'icon',
           component: async () => import('/@docs/Icon/__docs__/Icon.md')

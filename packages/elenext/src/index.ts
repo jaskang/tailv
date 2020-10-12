@@ -1,5 +1,6 @@
-import { Plugin } from 'vue'
+import { Component, Plugin } from 'vue'
 import { Row, Col } from './components/Grid'
+import { Tile } from './components/Tile'
 import { ElContainer, ElAside, ElMain, ElFooter, ElHeader } from './components/Layout'
 import { ElButton, ElButtonGroup } from './components/Button'
 import { ElLink } from './components/Link'
@@ -13,6 +14,7 @@ export { default as injectCss } from './utils/injectCss'
 export {
   Row,
   Col,
+  Tile,
   ElContainer,
   ElAside,
   ElMain,
@@ -32,24 +34,33 @@ export {
 
 export const elenext: Plugin = {
   install(app) {
-    app.component('ElRow', Row)
-    app.component('ElCol', Col)
+    const useComponent = (component: Component) => {
+      if (component.name) {
+        app.component(component.name, component)
+      } else {
+        throw 'component need name'
+      }
+    }
 
-    app.component('ElContainer', ElContainer)
-    app.component('ElAside', ElAside)
-    app.component('ElMain', ElMain)
-    app.component('ElHeader', ElHeader)
-    app.component('ElFooter', ElFooter)
+    useComponent(Row)
+    useComponent(Col)
+    useComponent(Tile)
 
-    app.component('ElButton', ElButton)
-    app.component('ElButtonGroup', ElButtonGroup)
-    app.component('ElLink', ElLink)
-    app.component('ElIcon', ElIcon)
-    app.component('ElPopover', ElPopover)
-    app.component('ElMenu', ElMenu)
-    app.component('ElMenuItem', ElMenuItem)
-    app.component('ElSubmenu', ElSubmenu)
-    app.component('ElMenuItemGroup', ElMenuItemGroup)
-    app.component('ElAlert', ElAlert)
+    useComponent(ElContainer)
+    useComponent(ElAside)
+    useComponent(ElMain)
+    useComponent(ElHeader)
+    useComponent(ElFooter)
+
+    useComponent(ElButton)
+    useComponent(ElButtonGroup)
+    useComponent(ElLink)
+    useComponent(ElIcon)
+    useComponent(ElPopover)
+    useComponent(ElMenu)
+    useComponent(ElMenuItem)
+    useComponent(ElSubmenu)
+    useComponent(ElMenuItemGroup)
+    useComponent(ElAlert)
   }
 }

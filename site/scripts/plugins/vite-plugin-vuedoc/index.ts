@@ -110,7 +110,7 @@ export function createVuedcoPlugin(options: VuedcoPluginOptions): Plugin {
           md.use(require('markdown-it-container'), 'tip')
           const context = md.render(ctx.code, {})
           const docComponent = `
-          import { createApp, defineComponent } from 'vue';
+          import { defineComponent } from 'vue';
   
           ${demos.map(demo => demo.component).join('')}
             
