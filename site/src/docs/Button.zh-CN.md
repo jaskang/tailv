@@ -92,7 +92,7 @@
 ```vue
 <template>
   <el-row>
-    <el-button type="primary" icon="el-icon-edit"></el-button>
+    <el-button type="primary" icon="el-icon-edit" @click="testclick"></el-button>
     <el-button type="primary" icon="el-icon-share"></el-button>
     <el-button type="primary" icon="el-icon-delete"></el-button>
     <el-button type="primary" icon="el-icon-search">搜索</el-button>
@@ -100,7 +100,13 @@
   </el-row>
 </template>
 <script>
-export default {}
+export default {
+  methods: {
+    testclick() {
+      alert('testclick')
+    }
+  }
+}
 </script>
 ```
 
