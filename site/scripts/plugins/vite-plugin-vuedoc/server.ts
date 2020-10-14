@@ -1,7 +1,8 @@
 import fs from 'fs-extra'
-import { cachedRead, ServerPlugin } from 'vite'
+import { ServerPlugin } from 'vite'
 import { createMarkdownRenderFn, DemoType } from './markdownToVue'
 import { VUEDOC_DEMO_RE } from './resolver'
+import { VueDocPluginOptions } from '.'
 const getETag = require('etag')
 
 const debug = require('debug')('vuedoc:serve')
@@ -9,9 +10,9 @@ const debugHmr = require('debug')('vuedoc:hmr')
 
 const cacheDemos: Map<string, DemoType[]> = new Map()
 
-export function createVuedocServerPlugin(): ServerPlugin {
+export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPlugin {
   return ({ app, root, watcher, resolver }) => {
-    const markdownToVue = createMarkdownRenderFn()
+    const markdownToVue = createMarkdownRenderFn(options)
 
     // hot reload .md files as .vue files
     watcher.on('change', async file => {

@@ -16,14 +16,7 @@
   </div>
 </template>
 <script lang="ts">
-import {
-  defineComponent,
-  reactive,
-  toRefs,
-  ref,
-  onMounted,
-  nextTick
-} from 'vue'
+import { defineComponent, reactive, toRefs, ref, onMounted, nextTick } from 'vue'
 
 export default defineComponent({
   name: 'Preview',

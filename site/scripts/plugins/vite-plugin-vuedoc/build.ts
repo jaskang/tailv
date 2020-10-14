@@ -2,11 +2,12 @@ import fs from 'fs-extra'
 import { Plugin } from 'rollup'
 import { createMarkdownRenderFn, DemoType } from './markdownToVue'
 import { VUEDOC_DEMO_RE } from './resolver'
+import { VueDocPluginOptions } from '.'
 
 const cacheDemos: Map<string, { component: any; demos: DemoType[] }> = new Map()
 
-export function createVuedocBuildPlugin(): Plugin {
-  const markdownToVue = createMarkdownRenderFn(true)
+export function createVuedocBuildPlugin(options: VueDocPluginOptions): Plugin {
+  const markdownToVue = createMarkdownRenderFn(options, true)
   return {
     name: 'vuedoc',
     resolveId(id) {
