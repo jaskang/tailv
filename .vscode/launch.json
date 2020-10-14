@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch via NPM",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": ["run", "docs:dev"],
       "port": 9229,
       "skipFiles": ["<node_internals>/**"]
     }

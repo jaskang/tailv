@@ -1,19 +1,19 @@
 ## Button 按钮
 
-常用的操作按钮。
+常用的操作按钮
 
 ### 基础用法
 
-基础的按钮用法。
+基础的按钮用法
 
 :::demo
 
-使用`type`属性来定义 Button 的颜色。使用`shape`属性来定义 Button 的样式。
+使用`type`属性来定义 Button 的颜色。使用`shape`属性来定义 Button 的样式。22
 
 ```vue
 <template>
   <el-row>
-    <el-button>默认按钮ssdfsdf</el-button>
+    <el-button>默认按钮</el-button>
     <el-button type="primary">主要按钮</el-button>
     <el-button type="success">成功按钮</el-button>
     <el-button type="info">信息按钮</el-button>
@@ -43,7 +43,7 @@
 
 :::
 
-### 禁用状态
+### 禁用状态 1
 
 按钮不可用状态。
 
@@ -51,7 +51,7 @@
 
 ```html
 <el-row>
-  <el-button disabled>默认按钮</el-button>
+  <el-button disabled>默认按钮12</el-button>
   <el-button disabled type="primary">主要按钮</el-button>
   <el-button disabled type="success">成功按钮</el-button>
   <el-button disabled type="info">信息按钮</el-button>

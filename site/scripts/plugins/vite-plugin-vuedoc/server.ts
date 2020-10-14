@@ -1,43 +1,67 @@
+import fs from 'fs-extra'
 import { cachedRead, ServerPlugin } from 'vite'
 import { createMarkdownRenderFn, DemoType } from './markdownToVue'
-import { existsSync } from 'fs'
+import { VUEDOC_DEMO_RE } from './resolver'
+const getETag = require('etag')
 
 const debug = require('debug')('vuedoc:serve')
+const debugHmr = require('debug')('vuedoc:hmr')
+
 const cacheDemos: Map<string, DemoType[]> = new Map()
 
 export function createVuedocServerPlugin(): ServerPlugin {
   return ({ app, root, watcher, resolver }) => {
     const markdownToVue = createMarkdownRenderFn()
 
+    // hot reload .md files as .vue files
+    watcher.on('change', async file => {
+      if (file.endsWith('.md')) {
+        debugHmr(`reloading ${file}`)
+        console.log(`[change] ${file}`)
+
+        const content = await fs.readFile(file, 'utf-8')
+        const { component, demos } = markdownToVue(content, file)
+        cacheDemos.set(file, demos)
+        const timestamp = Date.now()
+        for (const demo of demos) {
+          watcher.handleVueReload(`${file}/${demo.id}`, timestamp, demo.code)
+        }
+        watcher.handleVueReload(`${file}`, timestamp, component)
+      }
+    })
+
     app.use(async (ctx, next) => {
-      const demoPathReg = /(.*?\.md)\/(VueDocDemo\d+)/
-
-      if (demoPathReg.test(ctx.path)) {
-        const [, filepath, id] = demoPathReg.exec(ctx.path)
-        const file = resolver.requestToFile(ctx.path).replace(`/${id}`, '')
-        console.log(`file:`, file)
-
-        const demos = cacheDemos.get(file) || []
+      if (VUEDOC_DEMO_RE.test(ctx.path)) {
+        const file = resolver.requestToFile(ctx.path)
+        const [, filepath, id] = VUEDOC_DEMO_RE.exec(file)
+        const demos = cacheDemos.get(filepath) || []
+        console.log(`[cacheDemos.get] ${filepath}`)
         const demo = demos.find(item => item.id === id)
+
         ctx.vue = true
         ctx.type = 'js'
+        ctx.etag = getETag(demo.code)
         ctx.body = demo.code
         await next()
         return
       }
       if (ctx.path.endsWith('.md')) {
         const file = resolver.requestToFile(ctx.path)
-        if (!existsSync(file)) {
+        console.log(`endsWith('.md')`, file)
+        if (!fs.existsSync(file)) {
           return next()
         }
-        await cachedRead(ctx, file)
-        const { component, demos } = markdownToVue(ctx.body, ctx.path)
+        const content = await fs.readFile(file, 'utf-8')
+        const lastModified = fs.statSync(file).mtimeMs
+        const { component, demos } = markdownToVue(content, file)
         cacheDemos.set(file, demos)
+
         ctx.vue = true
         ctx.type = 'js'
+        ctx.etag = getETag(component)
+        ctx.lastModified = new Date(lastModified)
         ctx.body = component
         await next()
-
         debug(ctx.url, ctx.status)
         return
       }

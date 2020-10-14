@@ -1,5 +1,8 @@
 import MarkdownIt from 'markdown-it'
 import matter from 'gray-matter'
+import { VUEDOC_DEMO_PREFIX } from './resolver'
+
+const debug = require('debug')('vuedoc:md')
 
 export type DemoType = {
   id: string
@@ -7,14 +10,14 @@ export type DemoType = {
 }
 
 export function createMarkdownRenderFn(isBuild = false) {
-  const demos: DemoType[] = []
+  let demos: DemoType[] = []
   const markdown = new MarkdownIt('default', {
     html: true,
     linkify: true,
     typographer: true,
     highlight: function (code: string, lang: string) {
       if (lang === 'vue') {
-        const id = `VueDocDemo${demos.length}`
+        const id = `${VUEDOC_DEMO_PREFIX}${demos.length}`
         demos.push({
           id,
           code
@@ -28,7 +31,9 @@ export function createMarkdownRenderFn(isBuild = false) {
   markdown.use(require('markdown-it-container'), 'tip')
 
   return (src, path) => {
-    demos.splice(0, demos.length)
+    const start = Date.now()
+
+    demos = []
     const { content, data: frontmatter } = matter(src)
     const template = markdown.render(content, {})
 
@@ -44,7 +49,6 @@ export function createMarkdownRenderFn(isBuild = false) {
     
     ${demos
       .map(demo => {
-        console.log(`${path}/${demo.id}`)
         return `import ${demo.id} from '${path}/${demo.id}${isBuild ? '.vue' : ''}';`
       })
       .join('\n')}
@@ -56,9 +60,16 @@ export function createMarkdownRenderFn(isBuild = false) {
     });
     script.matter = ${JSON.stringify(frontmatter)}
     export default script;
+
+    if (import.meta.hot && false) { // hack hmr
+      import.meta.hot.accept();
+    }
     </script>
     `
 
-    return { component: docComponent, demos: [...demos] }
+    debug(`[render] ${path} in ${Date.now() - start}ms.`)
+
+    const result = { component: docComponent, demos: [...demos] }
+    return result
   }
 }
