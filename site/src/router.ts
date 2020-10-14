@@ -14,8 +14,8 @@ export const router = createRouter({
         {
           path: '/button',
           name: 'button',
+          // component: async () => import('elenext/src/components/Button/__docs__/Button.zh-CN.md')
           component: async () => import('./docs/Button.zh-CN.md')
-          // component: async () => import('./../../packages/elenext/src/components/Button/__docs__/Button.zh-CN.md')
         }
         // {
         //   path: '/link',

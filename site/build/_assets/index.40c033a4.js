@@ -6720,7 +6720,7 @@ const router = createRouter({
         {
           path: "/button",
           name: "button",
-          component: async () => import("./Button.zh-CN.8ad88186.js")
+          component: async () => import("./Button.zh-CN.52298c6a.js")
         }
       ]
     }

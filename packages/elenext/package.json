@@ -11,7 +11,8 @@
   "files": [
     "index.js",
     "styles",
-    "dist"
+    "dist",
+    "src"
   ],
   "sideEffects": true,
   "repository": {

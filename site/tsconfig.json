@@ -3,9 +3,7 @@
   "compilerOptions": {
     "target": "ES2016",
     "baseUrl": ".",
-    "paths": {
-      "/@docs/*": ["./../packages/elenext/src/components/*"]
-    }
+    "paths": {}
   },
   "include": ["src"]
 }

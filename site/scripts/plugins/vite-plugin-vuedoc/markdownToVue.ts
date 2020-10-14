@@ -60,10 +60,9 @@ export function createMarkdownRenderFn(isBuild = false) {
     });
     script.matter = ${JSON.stringify(frontmatter)}
     export default script;
-
-    if (import.meta.hot && false) { // hack hmr
-      import.meta.hot.accept();
-    }
+    
+    ${isBuild ? '' : 'if (import.meta.hot) { import.meta.hot.accept(); }'}
+    
     </script>
     `
 
