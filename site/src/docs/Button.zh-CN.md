@@ -103,7 +103,7 @@
 export default {
   methods: {
     testclick() {
-      alert('testclick')
+      alert('testclick111222')
     }
   }
 }

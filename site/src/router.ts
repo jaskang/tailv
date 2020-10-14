@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from './components/Layout.vue'
 
-console.log('123232222')
-
 export const router = createRouter({
   history: createWebHistory(),
   strict: true,

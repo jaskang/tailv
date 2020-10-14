@@ -17,8 +17,6 @@ export function createVuedocServerPlugin(): ServerPlugin {
     watcher.on('change', async file => {
       if (file.endsWith('.md')) {
         debugHmr(`reloading ${file}`)
-        console.log(`[change] ${file}`)
-
         const content = await fs.readFile(file, 'utf-8')
         const { component, demos } = markdownToVue(content, file)
         cacheDemos.set(file, demos)
@@ -35,7 +33,6 @@ export function createVuedocServerPlugin(): ServerPlugin {
         const file = resolver.requestToFile(ctx.path)
         const [, filepath, id] = VUEDOC_DEMO_RE.exec(file)
         const demos = cacheDemos.get(filepath) || []
-        console.log(`[cacheDemos.get] ${filepath}`)
         const demo = demos.find(item => item.id === id)
 
         ctx.vue = true
@@ -47,7 +44,6 @@ export function createVuedocServerPlugin(): ServerPlugin {
       }
       if (ctx.path.endsWith('.md')) {
         const file = resolver.requestToFile(ctx.path)
-        console.log(`endsWith('.md')`, file)
         if (!fs.existsSync(file)) {
           return next()
         }

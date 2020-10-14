@@ -1,7 +1,7 @@
 export default [
   {
     title: 'Basic',
-    items: ['grid', 'layout', 'tile', 'icon', 'button1123', 'link']
+    items: ['grid', 'layout', 'tile', 'icon', 'button', 'link']
   },
   {
     title: 'Navigation',

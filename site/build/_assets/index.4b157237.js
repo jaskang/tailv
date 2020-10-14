@@ -6662,7 +6662,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
       default: withCtx(() => [
         createVNode(_component_ElAside, {class: "demo-aside"}, {
           default: withCtx(() => [
-            createVNode(_component_HelloWorld, {msg: "Hello Elenext UI"}),
+            createVNode(_component_HelloWorld, {msg: "Hello Elenext UI23"}),
             createVNode(_component_el_menu, null, {
               default: withCtx(() => [
                 (openBlock(true), createBlock(Fragment, null, renderList(_ctx.menus, (menu) => {
@@ -6720,7 +6720,7 @@ const router = createRouter({
         {
           path: "/button",
           name: "button",
-          component: async () => import("./Button.zh-CN.dbedf11a.js")
+          component: async () => import("./Button.zh-CN.8ad88186.js")
         }
       ]
     }

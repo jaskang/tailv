@@ -12,14 +12,12 @@ export function createResolver(): Resolver {
         if (publicPath.indexOf(root) === 0) {
           file = publicPath
         }
-        console.log('requestToFile', root, file)
         return file
       }
     },
     fileToRequest(filePath, root) {
       if (filePath.endsWith('.md')) {
         const request = '/' + path.relative(root, filePath)
-        console.log('fileToRequest', root, request)
         return request
       }
     }
