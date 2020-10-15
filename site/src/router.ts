@@ -15,23 +15,24 @@ export const router = createRouter({
           path: '/button',
           name: 'button',
           // component: async () => import('elenext/src/components/Button/__docs__/Button.zh-CN.md')
-          component: async () => import('./docs/Button.zh-CN.md')
+          component: async () => import('./__docs__/Button.zh-CN.md')
+        },
+        {
+          path: '/grid',
+          name: 'grid',
+          component: async () => import('./__docs__/Grid.zh-CN.md')
+        },
+        {
+          path: '/layout',
+          name: 'layout',
+          component: async () => import('./__docs__/Layout.zh-CN.md')
         }
         // {
         //   path: '/link',
         //   name: 'link',
         //   component: async () => import('/@docs/Link/__docs__/Link.md')
         // },
-        // {
-        //   path: '/grid',
-        //   name: 'grid',
-        //   component: async () => import('/@docs/Grid/__docs__/Grid.md')
-        // },
-        // {
-        //   path: '/layout',
-        //   name: 'layout',
-        //   component: async () => import('/@docs/Layout/__docs__/Layout.md')
-        // },
+
         // {
         //   path: '/tile',
         //   name: 'tile',

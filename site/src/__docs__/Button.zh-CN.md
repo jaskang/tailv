@@ -1,6 +1,6 @@
 ## Button 按钮
 
-常用的操作按钮 1233232xxxxbbbb
+常用的操作按钮
 
 ### 基础用法
 
@@ -13,7 +13,7 @@
 ```vue
 <template>
   <el-row>
-    <el-button>默认按钮12</el-button>
+    <el-button>默认按钮</el-button>
     <el-button type="primary">主要按钮</el-button>
     <el-button type="success">成功按钮</el-button>
     <el-button type="info">信息按钮</el-button>

@@ -1,3 +1,50 @@
+.vuedoc{
+}
+.vuedoc-demo{
+}
+.vuedoc-demo__inner{
+  border:1px solid #eaeefb;
+}
+.vuedoc-demo__preview{
+  padding:20px;
+  background-color:#fff;
+}
+.vuedoc-demo__source{
+  background-color:#fafafa;
+  border-top:1px solid #eaeefb;
+  overflow:hidden;
+  height:0;
+  transition:all 0.2s ease-in-out;
+}
+.vuedoc-demo__sourceref{
+  overflow:hidden;
+}
+.vuedoc-demo__sourceref > pre{
+  padding:20px 0;
+  margin:0;
+  line-height:1.5;
+}
+.vuedoc-demo__sourceref code{
+  background-color:inherit;
+}
+.vuedoc-demo__footer{
+  border-top:1px solid #eaeefb;
+  height:44px;
+  line-height:43px;
+  box-sizing:border-box;
+  background-color:#fff;
+  border-bottom-left-radius:4px;
+  border-bottom-right-radius:4px;
+  text-align:center;
+  margin-top:-1px;
+  color:#d3dce6;
+  cursor:pointer;
+  position:relative;
+}
+.vuedoc-demo__footer:hover{
+  color:#409eff;
+  background-color:#f9fafc;
+}
 code[class*='language-'],
 pre[class*='language-']{
   color:black;
@@ -201,17 +248,6 @@ pre .line-highlight{
 }
 #app{
   height:100%;
-}
-code{
-  color:#5e6d82;
-  background-color:#e6effb;
-  margin:0 4px;
-  display:inline-block;
-  padding:1px 5px;
-  font-size:12px;
-  border-radius:3px;
-  height:18px;
-  line-height:18px;
 }
 .demo{
   border:1px solid #ebebeb;

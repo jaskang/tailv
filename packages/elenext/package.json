@@ -30,6 +30,6 @@
     "elehooks": "^0.1.0"
   },
   "peerDependencies": {
-    "vue": "^3.0.0-rc.6"
+    "vue": "^3.0.0"
   }
 }
