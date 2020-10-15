@@ -1,6 +1,6 @@
 import path from 'path'
 import type { UserConfig } from 'vite'
-import vitePluginVuedoc from './scripts/plugins/vite-plugin-vuedoc'
+import vitePluginVuedoc from 'vite-plugin-vuedoc'
 
 const config: UserConfig = {
   outDir: 'build',
