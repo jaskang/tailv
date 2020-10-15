@@ -1,6 +1,5 @@
-import './assets/prism.css'
-// import './assets/prism.js'
 // import './index.css'
+
 import '../scripts/plugins/vite-plugin-vuedoc/vuedoc.css'
 import './index.less'
 import { createApp } from 'vue'
