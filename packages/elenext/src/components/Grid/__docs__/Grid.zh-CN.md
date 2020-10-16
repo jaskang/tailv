@@ -29,26 +29,6 @@
     <el-col :span="6"><div>col-6</div></el-col>
   </el-row>
 </template>
-<style lang="less">
-.vuedoc-demo {
-  .el-row + .el-row {
-    margin-top: 20px;
-  }
-  .el-col {
-    min-height: 36px;
-    text-align: center;
-    > div {
-      border-radius: 4px;
-      background: #99a9bf;
-    }
-    &:nth-child(even) {
-      > div {
-        background: #d3dce6;
-      }
-    }
-  }
-}
-</style>
 ```
 
 ## 分栏间隔

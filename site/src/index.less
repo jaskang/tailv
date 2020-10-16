@@ -1,7 +1,30 @@
+body {
+  line-height: 1.5;
+}
+
 #app {
   height: 100%;
 }
 
 .site-content {
   padding: 30px;
+}
+
+.vuedoc-demo {
+  .el-row + .el-row {
+    margin-top: 20px;
+  }
+  .el-col {
+    min-height: 36px;
+    text-align: center;
+    > div {
+      border-radius: 4px;
+      background: #99a9bf;
+    }
+    &:nth-child(even) {
+      > div {
+        background: #d3dce6;
+      }
+    }
+  }
 }
