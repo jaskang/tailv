@@ -26,23 +26,23 @@ export const router = createRouter({
           path: '/layout',
           name: 'layout',
           component: async () => import('./__docs__/Layout.zh-CN.md')
+        },
+        {
+          path: '/link',
+          name: 'link',
+          component: async () => import('./__docs__/Link.zh-CN.md')
+        },
+        {
+          path: '/icon',
+          name: 'icon',
+          component: async () => import('./__docs__/Icon.zh-CN.md')
         }
-        // {
-        //   path: '/link',
-        //   name: 'link',
-        //   component: async () => import('/@docs/Link/__docs__/Link.md')
-        // },
-
         // {
         //   path: '/tile',
         //   name: 'tile',
         //   component: async () => import('/@docs/Tile/__docs__/Tile.md')
         // },
-        // {
-        //   path: '/icon',
-        //   name: 'icon',
-        //   component: async () => import('/@docs/Icon/__docs__/Icon.md')
-        // },
+
         // {
         //   path: '/menu',
         //   name: 'menu',
