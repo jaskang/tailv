@@ -1,20 +1,15 @@
-import type { UserConfig } from 'vite'
 import path from 'path'
-import { createVuedcoPlugin } from './scripts/plugins/vite-plugin-vuedoc'
+import type { UserConfig } from 'vite'
+import vitePluginVuedoc from 'vite-plugin-vuedoc'
+import vitePluginSyncmd from './script/vitePluginSyncmd'
 
 const config: UserConfig = {
   outDir: 'build',
-  alias: {
-    vue: 'vue/dist/vue.esm-bundler.js'
-  },
   minify: false,
-  plugins: [
-    createVuedcoPlugin({
-      docsPath(root: string) {
-        return path.join(root, '../packages/elenext/src/components/')
-      }
-    })
-  ]
+  optimizeDeps: {
+    exclude: ['elenext']
+  },
+  plugins: [vitePluginVuedoc(), vitePluginSyncmd()]
 }
 
 export default config

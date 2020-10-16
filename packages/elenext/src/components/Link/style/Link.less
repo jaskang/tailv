@@ -1,0 +1,64 @@
+@link-default-font-color: @global-color-text-regular;
+@link-default-active-color: @global-color-primary;
+@link-disabled-font-color: @global-color-text-placeholder;
+
+.@{prefix}-link {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  &:hover {
+    text-decoration: none;
+  }
+  &.is-underline {
+    text-decoration: underline;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  & [class*='el-icon-'] {
+    & + span {
+      margin-left: 5px;
+    }
+  }
+
+  &.@{prefix}-link--default {
+    color: @link-default-font-color;
+    &:hover {
+      color: @link-default-active-color;
+    }
+    &:after {
+      border-color: @link-default-active-color;
+    }
+    &.is-disabled {
+      color: @link-disabled-font-color;
+    }
+  }
+  each(@types,{
+    &.el-link--@{key} {
+      color: @value;
+      &:hover {
+        color: mix(@value,#fff, 80%);
+      }
+      &:after {
+        border-color: @value;
+      }
+      &.is-disabled {
+        color: mix(@value, #fff, 50%);
+      }
+      &.is-underline {
+        &:hover:after {
+          border-color: @value;
+        }
+      }
+    }
+  });
+}

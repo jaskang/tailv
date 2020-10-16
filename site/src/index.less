@@ -1,129 +1,31 @@
-@import './normalize.css';
-
-body,
-html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, SimSun, sans-serif;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: transparent;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-.el-row + .el-row {
-  margin-top: 20px;
-}
-
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #99a9bf;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
+body {
+  line-height: 1.5;
 }
 
 #app {
   height: 100%;
 }
 
-// background-color: #fafafa;
-code {
-  color: #5e6d82;
-  background-color: #e6effb;
-  margin: 0 4px;
-  display: inline-block;
-  padding: 1px 5px;
-  font-size: 12px;
-  border-radius: 3px;
-  height: 18px;
-  line-height: 18px;
+.site-content {
+  padding: 30px;
 }
 
-.demo {
-  border: 1px solid #ebebeb;
-  border-radius: 3px;
-  transition: 0.2s;
-
-  &:hover {
-    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
-      0 2px 4px 0 rgba(232, 237, 250, 0.5);
+.vuedoc-demo {
+  .el-row + .el-row {
+    margin-top: 20px;
   }
-
-  > pre {
-    display: none;
-  }
-  > p {
-    padding: 20px;
-    box-sizing: border-box;
-    // border-top: 1px solid #ebebeb;
-    // border-left: 1px solid #ebebeb;
-    border-bottom: 1px solid #ebebeb;
-    // border-radius: 3px;
-    font-size: 14px;
-    line-height: 22px;
-    color: #666;
-    word-break: break-word;
-    margin: 0;
-    background-color: #fff;
-  }
-}
-
-.demo {
-  .el-header,
-  .el-footer {
-    background-color: #b3c0d1;
-    color: #333;
+  .el-col {
     text-align: center;
-    line-height: 60px;
-  }
-
-  .el-aside {
-    background-color: #d3dce6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-
-  .el-main {
-    background-color: #e9eef3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-
-  .preview__demo > .el-container {
-    margin-bottom: 40px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
+    > div {
+      min-height: 36px;
+      line-height: 36px;
+      border-radius: 4px;
+      background: #99a9bf;
+    }
+    &:nth-child(even) {
+      > div {
+        background: #d3dce6;
+      }
+    }
   }
 }

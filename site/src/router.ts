@@ -14,50 +14,60 @@ export const router = createRouter({
         {
           path: '/button',
           name: 'button',
-          component: async () =>
-            import('/@docs/Button/__docs__/Button.zh-CN.md')
+          // component: async () => import('elenext/src/components/Button/__docs__/Button.zh-CN.md')
+          component: async () => import('./__docs__/Button.zh-CN.md')
         },
         {
-          path: '/link',
-          name: 'link',
-          component: async () => import('/@docs/Link/__docs__/Link.md')
+          path: '/grid',
+          name: 'grid',
+          component: async () => import('./__docs__/Grid.zh-CN.md')
         },
         {
           path: '/layout',
           name: 'layout',
-          component: async () => import('/@docs/Layout/__docs__/Layout.md')
+          component: async () => import('./__docs__/Layout.zh-CN.md')
         },
         {
-          path: '/container',
-          name: 'container',
-          component: async () =>
-            import('/@docs/Container/__docs__/Container.zh-CN.md')
+          path: '/link',
+          name: 'link',
+          component: async () => import('./__docs__/Link.zh-CN.md')
         },
         {
           path: '/icon',
           name: 'icon',
-          component: async () => import('/@docs/Icon/__docs__/Icon.md')
+          component: async () => import('./__docs__/Icon.zh-CN.md')
         },
         {
-          path: '/menu',
-          name: 'menu',
-          component: async () => import('/@docs/Menu/__docs__/Menu.md')
-        },
-        {
-          path: '/alert',
-          name: 'alert',
-          component: async () => import('/@docs/Alert/__docs__/Alert.md')
-        },
-        {
-          path: '/popover',
-          name: 'popover',
-          component: async () => import('/@docs/Popover/__docs__/Popover.md')
+          path: '/tile',
+          name: 'tile',
+          component: async () => import('./__docs__/Tile.zh-CN.md')
         },
         {
           path: '/breadcrumb',
           name: 'breadcrumb',
-          component: async () => import('/@docs/Breadcrumb/__docs__/Breadcrumb.md')
+          component: async () => import('./__docs__/Breadcrumb.zh-CN.md')
         }
+
+        // {
+        //   path: '/menu',
+        //   name: 'menu',
+        //   component: async () => import('/@docs/Menu/__docs__/Menu.md')
+        // },
+        // {
+        //   path: '/alert',
+        //   name: 'alert',
+        //   component: async () => import('/@docs/Alert/__docs__/Alert.md')
+        // },
+        // {
+        //   path: '/popover',
+        //   name: 'popover',
+        //   component: async () => import('/@docs/Popover/__docs__/Popover.md')
+        // },
+        // {
+        //   path: '/test',
+        //   name: 'test',
+        //   component: async () => import('./components/Test.vue')
+        // }
       ]
     }
   ]

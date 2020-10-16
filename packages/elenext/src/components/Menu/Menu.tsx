@@ -1,13 +1,7 @@
 import { defineComponent, reactive, PropType, onMounted, provide } from 'vue'
-import {
-  useMenu,
-  MenuConfig,
-  MenuConfigSymbol,
-  recursiveMenus,
-  findMenuData
-} from './hooks'
+import { useMenu, MenuConfig, MenuConfigSymbol, recursiveMenus, findMenuData } from './hooks'
 
-import './Menu.scss'
+// import './Menu.scss'
 
 const ElMenu = defineComponent({
   name: 'ElMenu',
@@ -35,9 +29,7 @@ const ElMenu = defineComponent({
       textColor: props.textColor,
       activeTextColor: props.activeTextColor,
       backgroundColor: props.backgroundColor,
-      isPopup:
-        props.mode === 'horizontal' ||
-        !!(props.mode === 'vertical' && props.collapse)
+      isPopup: props.mode === 'horizontal' || !!(props.mode === 'vertical' && props.collapse)
     })
 
     provide(MenuConfigSymbol, config)

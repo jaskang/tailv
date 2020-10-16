@@ -1,8 +1,8 @@
 <template>
   <div class="demo-layout">
-    <ElContainer direction="horizontal">
+    <ElLayout>
       <ElAside class="demo-aside">
-        <HelloWorld msg="Hello Elenext UI" />
+        <HelloWorld msg="Elenext UI" />
         <el-menu>
           <el-menu-item-group v-for="menu in menus" :key="menu.title">
             <template #title>{{ menu.title }}</template>
@@ -12,10 +12,10 @@
           </el-menu-item-group>
         </el-menu>
       </ElAside>
-      <ElMain class="demo-content">
+      <ElMain class="site-content">
         <router-view></router-view>
       </ElMain>
-    </ElContainer>
+    </ElLayout>
   </div>
 </template>
 <script lang="ts">

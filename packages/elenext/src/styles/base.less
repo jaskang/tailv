@@ -1,0 +1,149 @@
+// @import 'var.less';
+
+@base-link-color: @global-color-text-regular;
+@base-link-hover-color: @global-color-primary;
+
+@base-h1-font-size: @global-2xlarge-font-size;
+@base-h1-line-height: 1.4;
+@base-h2-font-size: @global-xlarge-font-size;
+@base-h2-line-height: 1.4;
+@base-h3-font-size: @global-large-font-size;
+@base-h3-line-height: 1.4;
+@base-h4-font-size: @global-medium-font-size;
+@base-h4-line-height: 1.4;
+@base-h5-font-size: @global-font-size;
+@base-h5-line-height: 1.4;
+@base-h6-font-size: @global-small-font-size;
+@base-h6-line-height: 1.4;
+
+@base-list-padding-left: 30px;
+
+html {
+  /* 1 */
+  font-family: @global-font-family;
+  font-size: @global-font-size;
+  font-weight: normal;
+  line-height: @global-line-height;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 3 */
+  background: @global-background-default;
+  color: @global-color-text-regular;
+}
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Sizes
+ */
+
+h1 {
+  font-size: @base-h1-font-size;
+  line-height: @base-h1-line-height;
+}
+
+h2 {
+  font-size: @base-h2-font-size;
+  line-height: @base-h2-line-height;
+}
+
+h3 {
+  font-size: @base-h3-font-size;
+  line-height: @base-h3-line-height;
+}
+
+h4 {
+  font-size: @base-h4-font-size;
+  line-height: @base-h4-line-height;
+}
+
+h5 {
+  font-size: @base-h5-font-size;
+  line-height: @base-h5-line-height;
+}
+
+h6 {
+  font-size: @base-h6-font-size;
+  line-height: @base-h6-line-height;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+td:not([align]),
+th:not([align]) {
+  text-align: left;
+}
+
+a {
+  color: @base-link-color;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: @base-link-hover-color;
+    text-decoration: underline;
+  }
+}

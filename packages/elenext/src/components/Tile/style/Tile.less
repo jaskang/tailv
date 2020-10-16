@@ -1,0 +1,16 @@
+// @import './mixin.less';
+
+.@{prefix}-tile {
+  align-items: stretch;
+  display: block;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: min-content;
+  &.is-parent {
+    display: flex;
+  }
+  &.is-vertical {
+    flex-direction: column;
+  }
+}

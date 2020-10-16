@@ -1,20 +1,22 @@
-import { Plugin } from 'vue'
-import { ElRow, ElCol } from './components/Layout'
-import { ElContainer, ElAside, ElMain, ElFooter, ElHeader } from './components/Container'
+import { Component, Plugin } from 'vue'
+import { Row, Col } from './components/Grid'
+import { Tile } from './components/Tile'
+import { Layout, ElAside, ElMain, ElFooter, ElHeader } from './components/Layout'
 import { ElButton, ElButtonGroup } from './components/Button'
 import { ElLink } from './components/Link'
 import { ElIcon } from './components/Icon'
 import { ElPopover } from './components/Popover'
 import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from './components/Menu'
 import { ElAlert } from './components/Alert'
-import { ElBreadcrumb,ElBreadcrumbItem } from './components/Breadcrumb'
-// import './styles/index.less'
+import { ElBreadcrumb, ElBreadcrumbItem } from './components/Breadcrumb'
+import './styles/index.less'
 export { default as injectCss } from './utils/injectCss'
 
 export {
-  ElRow,
-  ElCol,
-  ElContainer,
+  Row,
+  Col,
+  Tile,
+  Layout,
   ElAside,
   ElMain,
   ElHeader,
@@ -35,26 +37,36 @@ export {
 
 export const elenext: Plugin = {
   install(app) {
-    app.component('ElRow', ElRow)
-    app.component('ElCol', ElCol)
+    const useComponent = (component: Component) => {
+      if (component.name) {
+        app.component(component.name, component)
+      } else {
+        throw 'component need name'
+      }
+    }
 
-    app.component('ElContainer', ElContainer)
-    app.component('ElAside', ElAside)
-    app.component('ElMain', ElMain)
-    app.component('ElHeader', ElHeader)
-    app.component('ElFooter', ElFooter)
+    useComponent(Row)
+    useComponent(Col)
+    useComponent(Tile)
 
-    app.component('ElButton', ElButton)
-    app.component('ElButtonGroup', ElButtonGroup)
-    app.component('ElLink', ElLink)
-    app.component('ElIcon', ElIcon)
-    app.component('ElPopover', ElPopover)
-    app.component('ElMenu', ElMenu)
-    app.component('ElMenuItem', ElMenuItem)
-    app.component('ElSubmenu', ElSubmenu)
-    app.component('ElMenuItemGroup', ElMenuItemGroup)
-    app.component('ElAlert', ElAlert)
-    app.component('ElBreadcrumb', ElBreadcrumb)
-    app.component('ElBreadcrumbItem', ElBreadcrumbItem)
+    useComponent(Layout)
+    useComponent(ElAside)
+    useComponent(ElMain)
+    useComponent(ElHeader)
+    useComponent(ElFooter)
+
+    useComponent(ElButton)
+    useComponent(ElButtonGroup)
+    useComponent(ElLink)
+    useComponent(ElIcon)
+    useComponent(ElPopover)
+    useComponent(ElMenu)
+    useComponent(ElMenuItem)
+    useComponent(ElSubmenu)
+    useComponent(ElMenuItemGroup)
+    useComponent(ElAlert)
+
+    useComponent(ElBreadcrumb)
+    useComponent(ElBreadcrumbItem)
   }
 }

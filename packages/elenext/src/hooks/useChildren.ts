@@ -24,12 +24,6 @@ const useChildren = <T extends { id: IdType }>(
   onUnmounted(() => {
     remove?.(item)
   })
-  // watchEffect(
-  //   () => {
-  //     effect(state.children)
-  //   },
-  //   { deep: true }
-  // )
   watch(
     () => state.children,
     children => {

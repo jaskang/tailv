@@ -17,7 +17,7 @@ import { createPopper, Instance as Popper } from '@popperjs/core'
 import { normalizeClass, createEl, removeEl } from '../../utils/dom'
 import { uniqueId } from '../../utils/uniqueId'
 
-import './popper.scss'
+// import './popper.scss'
 import useChildren from '../../hooks/useChildren'
 
 export type Placement =
@@ -91,10 +91,11 @@ export function usePopper(
     console.log(children)
   })
 
-  watchEffect(async () => {
+  watchEffect(() => {
     if (realVisible.value) {
-      await popper.value?.update()
-      popperEl.setAttribute('data-show', '')
+      popper.value?.update().then(() => {
+        popperEl.setAttribute('data-show', '')
+      })
     } else {
       popperEl.removeAttribute('data-show')
     }

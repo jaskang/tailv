@@ -1,0 +1,189 @@
+@button-link-default-font-color: @global-color-primary;
+@button-link-default-active-color: mix(@global-color-primary, #fff, 80%);
+@button-link-disabled-font-color: mix(@global-color-primary, #fff, 50%);
+
+@button-line-height: @global-line-height - 2;
+@button-line-height-medium: @global-line-height-medium - 2;
+@button-line-height-small: @global-line-height-small - 2;
+@button-line-height-mini: @global-line-height-mini - 2;
+
+@button-font-size: @global-font-size;
+@button-font-size-medium: @global-font-size;
+@button-font-size-small: @global-small-font-size;
+@button-font-size-mini: @global-small-font-size;
+
+@button-padding-horizontal: @global-padding-horizontal;
+@button-medium-padding-horizontal: @global-padding-horizontal-medium;
+@button-small-padding-horizontal: @global-padding-horizontal-small;
+@button-mini-padding-horizontal: @global-padding-horizontal-mini;
+
+@button-border-radius: 4px;
+
+.@{prefix}-button {
+  margin: 0;
+  border: none;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: @button-border-radius;
+  padding: 0 @button-padding-horizontal;
+  font-size: @button-font-size;
+  line-height: @button-line-height;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+  &:disabled,
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  &.is-round {
+    border-radius: (@button-line-height + 2) / 2;
+  }
+  &.is-circle {
+    border-radius: 50%;
+    padding: 0 ((@button-line-height - @button-font-size) / 2);
+  }
+}
+
+.button-type(default,@global-color-text-regular,@global-color-white,@global-border);
+.button-type(primary,@global-color-white,@global-color-primary,@global-color-primary);
+.button-type(success,@global-color-white,@global-color-success,@global-color-success);
+.button-type(info,@global-color-white,@global-color-info,@global-color-info);
+.button-type(warning,@global-color-white,@global-color-warning,@global-color-warning);
+.button-type(danger,@global-color-white,@global-color-danger,@global-color-danger);
+
+.button-size(medium,@button-font-size-medium,@button-line-height-medium,@button-medium-padding-horizontal);
+.button-size(small,@button-font-size-small,@button-line-height-small,@button-small-padding-horizontal);
+.button-size(mini,@button-font-size-mini,@button-line-height-mini,@button-mini-padding-horizontal);
+
+/*
+ * Link
+ * 1. Reset
+ * 2. Style
+ */
+
+.@{prefix}-button-text {
+  padding: 0;
+  background: none;
+  line-height: @global-line-height;
+  color: @button-link-default-font-color;
+  user-select: none;
+  &:hover,
+  &:focus {
+    color: @button-link-default-active-color;
+    text-decoration: underline;
+  }
+  &:active {
+    color: @button-link-default-font-color;
+  }
+  &:disabled {
+    color: @button-link-disabled-font-color;
+    text-decoration: none;
+  }
+}
+
+/* Group
+ ========================================================================== */
+
+/*
+ * 1. Using `flex` instead of `inline-block` to prevent whitespace betweent child elements
+ * 2. Behave like button
+ * 3. Create position context
+ */
+
+.@{prefix}-button-group {
+  /* 1 */
+  display: inline-flex;
+  /* 2 */
+  vertical-align: middle;
+  /* 3 */
+  position: relative;
+  & > .@{prefix}-button{
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right-color: rgba(@global-color-white, 0.5);
+    }
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left-color: rgba(@global-color-white, 0.5);
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+      border-left-color: rgba(@global-color-white, 0.5);
+      border-right-color: rgba(@global-color-white, 0.5);
+    }
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+  }
+}
+
+.button-type(@type,@font-color,@background-color,@border-color) {
+  .@{prefix}-button-@{type} {
+    color: @font-color;
+    background: @background-color;
+    border: 1px solid @border-color;
+    /* Hover + Focus */
+    &:hover,
+    &:focus {
+      color: @font-color;
+      background: mix(@global-color-white, @background-color, 20%);
+      border-color: mix(@global-color-white, @border-color, 20%);
+    }
+    /* OnClick + Active */
+    &:active,
+    &.is-active {
+      color: @font-color;
+      background: mix(@global-color-black, @background-color, 10%);
+      border-color: mix(@global-color-black, @border-color, 10%);
+    }
+    &:disabled,
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: if((@type = default), @global-color-text-placeholder, @global-color-white);
+        background-color: mix(@background-color, @global-color-white);
+        border-color: mix(@border-color, @global-color-white);
+      }
+    }
+  }
+}
+
+.button-size(@size,@font-size,@line-height,@padding-horizontal) {
+  .@{prefix}-button-@{size} {
+    font-size: @font-size;
+    padding: 0 @padding-horizontal;
+    line-height: @line-height;
+
+    &.is-round {
+      border-radius: (@line-height + 2) / 2;
+    }
+    &.is-circle {
+      border-radius: 50%;
+      padding: 0 ((@line-height - @font-size) / 2);
+    }
+  }
+}
