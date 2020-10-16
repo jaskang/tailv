@@ -40,29 +40,32 @@
 
 文字链接下划线。
 
-````vue
+```vue
 <template>
   <div>
     <el-link :underline="false">无下划线</el-link>
     <el-link>有下划线</el-link>
   </div>
 </template>
+```
 
-### 图标 带图标的文字链接可增强辨识度。 ```vue
+### 图标 带图标的文字链接可增强辨识度。
+
+```vue
 <template>
   <div>
     <el-link icon="el-icon-edit">编辑</el-link>
     <el-link>查看<i class="el-icon-view el-icon--right"></i> </el-link>
   </div>
 </template>
-````
+```
 
-### Attributes
+### Attributes | 参数 | 说明 | 类型 | 可选值 | 默认值 | | --------- | -------------- | ------- |
 
-| 参数      | 说明           | 类型    | 可选值                                      | 默认值  |
-| --------- | -------------- | ------- | ------------------------------------------- | ------- |
-| type      | 类型           | string  | primary / success / warning / danger / info | default |
-| underline | 是否下划线     | boolean | —                                           | true    |
-| disabled  | 是否禁用状态   | boolean | —                                           | false   |
-| href      | 原生 href 属性 | string  | —                                           | -       |
-| icon      | 图标类名       | string  | —                                           | -       |
+------------------------------------------- | ------- | | type | 类型 | string | primary / success / warning / danger /
+info | default | | underline | 是否下划线 | boolean | — | true | | disabled | 是否禁用状态 | boolean | — | false | |
+href | 原生 href 属性 | string | — | - | | icon | 图标类名 | string | — | - |
+
+```
+
+```
