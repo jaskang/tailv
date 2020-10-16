@@ -36,12 +36,12 @@ export const router = createRouter({
           path: '/icon',
           name: 'icon',
           component: async () => import('./__docs__/Icon.zh-CN.md')
+        },
+        {
+          path: '/tile',
+          name: 'tile',
+          component: async () => import('./__docs__/Tile.zh-CN.md')
         }
-        // {
-        //   path: '/tile',
-        //   name: 'tile',
-        //   component: async () => import('/@docs/Tile/__docs__/Tile.md')
-        // },
 
         // {
         //   path: '/menu',
