@@ -6,6 +6,9 @@ import vitePluginSyncmd from './script/vitePluginSyncmd'
 const config: UserConfig = {
   outDir: 'build',
   minify: false,
+  optimizeDeps: {
+    exclude: ['elenext']
+  },
   plugins: [vitePluginVuedoc(), vitePluginSyncmd()]
 }
 

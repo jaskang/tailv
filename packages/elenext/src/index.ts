@@ -1,7 +1,7 @@
 import { Component, Plugin } from 'vue'
 import { Row, Col } from './components/Grid'
 import { Tile } from './components/Tile'
-import { ElContainer, ElAside, ElMain, ElFooter, ElHeader } from './components/Layout'
+import { Layout, ElAside, ElMain, ElFooter, ElHeader } from './components/Layout'
 import { ElButton, ElButtonGroup } from './components/Button'
 import { ElLink } from './components/Link'
 import { ElIcon } from './components/Icon'
@@ -15,7 +15,7 @@ export {
   Row,
   Col,
   Tile,
-  ElContainer,
+  Layout,
   ElAside,
   ElMain,
   ElHeader,
@@ -46,7 +46,7 @@ export const elenext: Plugin = {
     useComponent(Col)
     useComponent(Tile)
 
-    useComponent(ElContainer)
+    useComponent(Layout)
     useComponent(ElAside)
     useComponent(ElMain)
     useComponent(ElHeader)

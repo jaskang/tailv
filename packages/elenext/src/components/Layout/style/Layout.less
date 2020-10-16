@@ -1,0 +1,41 @@
+@layout-header-padding: 0 50px;
+@layout-footer-padding: 24px 50px;
+
+.@{prefix}-layout {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  min-height: 0;
+
+  &.is-horizontal {
+    flex-direction: column;
+    flex-direction: row;
+    > .@{prefix}-layout,
+    > .@{prefix}-layout-content {
+      overflow-x: hidden;
+    }
+  }
+}
+
+.@{prefix}-header {
+  padding: @layout-header-padding;
+  flex: 0 0 auto;
+}
+
+.@{prefix}-footer {
+  padding: @layout-footer-padding;
+  flex: 0 0 auto;
+}
+
+.@{prefix}-aside {
+  position: relative;
+  min-width: 0;
+  transition: all 0.2s;
+  overflow: auto;
+}
+
+.@{prefix}-main {
+  display: block;
+  flex: auto;
+  min-height: 0;
+}

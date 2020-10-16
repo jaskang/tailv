@@ -1,8 +1,8 @@
-## Layout 布局
+# Layout 布局
 
 通过基础的 24 分栏，迅速简便地创建布局。
 
-### 基础布局
+## 基础布局
 
 使用单一分栏创建基础的栅格布局。
 
@@ -51,7 +51,7 @@
 </style>
 ```
 
-### 分栏间隔
+## 分栏间隔
 
 分栏之间存在间隔。
 
@@ -83,7 +83,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 </template>
 ```
 
-### 分栏偏移
+## 分栏偏移
 
 支持偏移指定的栏数。
 
@@ -105,7 +105,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 </template>
 ```
 
-### 对齐方式
+## 对齐方式
 
 通过 `flex` 布局来对分栏进行灵活的对齐。
 
@@ -160,7 +160,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 </template>
 ```
 
-### 响应式布局
+## 响应式布局
 
 参照了 Bootstrap 的 响应式设计，预设了五个响应尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
 
@@ -174,7 +174,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 </template>
 ```
 
-### Row Attributes
+## Row Attributes
 
 | props   | description               | type   | Accepted Values                             | default    |
 | ------- | ------------------------- | ------ | ------------------------------------------- | ---------- |
@@ -182,7 +182,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 | justify | flex 布局下的水平排列方式 | string | start/end/center/space-around/space-between | flex-start |
 | align   | flex 布局下的垂直排列方式 | string | top/middle/bottom                           | top        |
 
-### Col Attributes
+## Col Attributes
 
 | props  | description                            | type                                        | Accepted Values | default |
 | ------ | -------------------------------------- | ------------------------------------------- | --------------- | ------- |
