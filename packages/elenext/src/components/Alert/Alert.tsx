@@ -1,4 +1,5 @@
 import { defineComponent, Transition, computed, PropType, reactive } from 'vue'
+import { getBlockCls, getCompName } from '../../config'
 
 // import './Alert.scss'
 
@@ -8,8 +9,9 @@ const TYPE_CLASSES_MAP = {
   error: 'el-icon-error'
 }
 
+const blockCls = getBlockCls('Alert')
 const Alert = defineComponent({
-  name: 'ElAlert',
+  name: getCompName('Alert'),
   props: {
     title: {
       type: String,
@@ -42,7 +44,7 @@ const Alert = defineComponent({
     const data = reactive({
       visible: true
     })
-    const typeClass = computed(() => `el-alert--${props.type}`)
+    const typeClass = computed(() => `${blockCls}--${props.type}`)
 
     const iconClass = computed(() => TYPE_CLASSES_MAP[props.type as 'success' | 'warning' | 'error'] || 'el-icon-info')
 
@@ -57,7 +59,7 @@ const Alert = defineComponent({
     return () => (
       <Transition name="el-alert-fade">
         <div
-          class={['el-alert', typeClass.value, props.center ? 'is-center' : '', 'is-' + props.effect]}
+          class={[blockCls, typeClass.value, props.center ? 'is-center' : '', 'is-' + props.effect]}
           v-show={data.visible}
           role="alert"
         >
