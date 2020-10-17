@@ -8,9 +8,6 @@ module.exports = {
   npm: {
     skipChecks: true
   },
-  hooks: {
-    'after:bump': 'npx auto-changelog -p'
-  },
   plugins: {
     '@release-it/conventional-changelog': {
       preset: 'angular',
