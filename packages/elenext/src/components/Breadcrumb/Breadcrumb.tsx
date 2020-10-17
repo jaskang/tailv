@@ -1,8 +1,6 @@
 import { defineComponent, provide, getCurrentInstance } from 'vue'
 import { ElBreadcrumbSymbol } from '../../provides'
 
-// import './styles/Breadcrumb.scss'
-
 const Breadcrumb = defineComponent({
   name: 'ElBreadcrumb',
   props: {

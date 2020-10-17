@@ -1,0 +1,40 @@
+@root: ~'@{prefix}-breadcrumb';
+
+.@{root} {
+  font-size: 14px;
+  // line-height: 1;
+  &__separator {
+    margin: 0 9px;
+    font-weight: bold;
+    color: @global-color-text-placeholder;
+
+    &[class*='icon'] {
+      margin: 0 6px;
+      font-weight: normal;
+    }
+  }
+  &__item {
+    // float: left;
+    &:last-child {
+      .@{root}__separator {
+        display: none;
+      }
+    }
+  }
+  &__inner {
+    color: @global-color-text-regular;
+
+    &.is-link,
+    & a {
+      font-weight: bold;
+      text-decoration: none;
+      transition: @global-color-transition-base;
+      color: @global-color-text-primary;
+
+      &:hover {
+        color: @global-color-primary;
+        cursor: pointer;
+      }
+    }
+  }
+}

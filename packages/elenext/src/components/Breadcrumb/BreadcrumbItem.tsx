@@ -7,7 +7,7 @@ const BreadcrumbItem = defineComponent({
     to: {
       type: Object,
       default: () => {
-        return {}
+        return null
       }
     },
     replace: Boolean

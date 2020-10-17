@@ -1,13 +1,7 @@
-<<<<<<< HEAD:packages/elenext/src/components/Breadcrumb/Breadcrumb.scss
-@charset "UTF-8";
-@import '../styles/common/var';
 @import '../styles/mixins/mixins';
 @import '../styles/mixins/utils';
-=======
-@import "mixins/mixins";
-@import "mixins/utils";
-@import "common/var";
->>>>>>> master:packages/elenext/src/styles/element/breadcrumb.scss
+@import '../styles/common/var';
+@import '../styles/common/transition';
 
 @include b(breadcrumb) {
   font-size: 14px;
@@ -19,7 +13,7 @@
     font-weight: bold;
     color: $--color-text-placeholder;
 
-    &[class*=icon] {
+    &[class*='icon'] {
       margin: 0 6px;
       font-weight: normal;
     }
@@ -31,7 +25,8 @@
     @include e(inner) {
       color: $--color-text-regular;
 
-      &.is-link, & a {
+      &.is-link,
+      & a {
         font-weight: bold;
         text-decoration: none;
         transition: $--color-transition-base;
@@ -47,7 +42,8 @@
     &:last-child {
       .el-breadcrumb__inner,
       .el-breadcrumb__inner a {
-        &, &:hover {
+        &,
+        &:hover {
           font-weight: normal;
           color: $--color-text-regular;
           cursor: text;
