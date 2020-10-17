@@ -23,9 +23,9 @@ export const router = createRouter({
           component: async () => import('./__docs__/Grid.zh-CN.md')
         },
         {
-          path: '/layout',
-          name: 'layout',
-          component: async () => import('./__docs__/Layout.zh-CN.md')
+          path: '/container',
+          name: 'container',
+          component: async () => import('./__docs__/Container.zh-CN.md')
         },
         {
           path: '/link',
@@ -46,6 +46,11 @@ export const router = createRouter({
           path: '/breadcrumb',
           name: 'breadcrumb',
           component: async () => import('./__docs__/Breadcrumb.zh-CN.md')
+        },
+        {
+          path: '/nav',
+          name: 'nav',
+          component: async () => import('./__docs__/Nav.zh-CN.md')
         }
 
         // {

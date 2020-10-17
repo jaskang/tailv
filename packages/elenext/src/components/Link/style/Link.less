@@ -2,7 +2,13 @@
 @link-default-active-color: @global-color-primary;
 @link-disabled-font-color: @global-color-text-placeholder;
 
-.@{prefix}-link {
+@selector-link: ~'@{prefix}-link';
+
+.el-link {
+  content: @selector-link;
+}
+
+.@{selector-link} {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
@@ -30,7 +36,7 @@
     }
   }
 
-  &.@{prefix}-link--default {
+  &.@{selector-link}--default {
     color: @link-default-font-color;
     &:hover {
       color: @link-default-active-color;
@@ -43,7 +49,7 @@
     }
   }
   each(@types,{
-    &.el-link--@{key} {
+    &.@{selector-link}--@{key} {
       color: @value;
       &:hover {
         color: mix(@value,#fff, 80%);

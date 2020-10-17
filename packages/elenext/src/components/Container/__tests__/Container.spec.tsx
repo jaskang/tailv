@@ -1,28 +1,45 @@
 import { mount } from '@vue/test-utils'
-import { ElContainer, ElHeader, ElFooter, ElMain, ElAside } from '..'
+import { Container, ElHeader, ElFooter, ElMain, ElAside } from '..'
 
 describe('Container', () => {
   test('create', () => {
     const wrapper = mount({
       render() {
-        return <ElContainer></ElContainer>
+        return <Container></Container>
       }
     })
     expect(wrapper.element).not.toBeNull()
   })
 
-  test('vertical', () => {
+  test('props direction', () => {
     const wrapper = mount({
-      render() {
-        return (
-          <ElContainer direction="vertical">
+      setup() {
+        return () => (
+          <Container direction="horizontal">
             <ElHeader></ElHeader>
-            <ElFooter></ElFooter>
-          </ElContainer>
+            <ElMain></ElMain>
+          </Container>
         )
       }
     })
-    expect(wrapper.classes()).toContain('is-vertical')
+    expect(wrapper.classes()).toContain('is-horizontal')
+  })
+
+  test('auto horizontal', () => {
+    const wrapper = mount({
+      mounted() {},
+      render() {
+        return (
+          <Container>
+            <ElAside></ElAside>
+            <ElMain></ElMain>
+          </Container>
+        )
+      }
+    })
+    setTimeout(() => {
+      expect(wrapper.classes()).toContain('is-horizontal')
+    }, 0)
   })
 })
 

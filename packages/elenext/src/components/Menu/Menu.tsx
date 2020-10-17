@@ -8,7 +8,7 @@ const ElMenu = defineComponent({
   props: {
     mode: {
       type: String as PropType<'horizontal' | 'vertical'>,
-      default: 'vertical'
+      default: 'horizontal'
     },
     trigger: {
       type: String as PropType<'click' | 'hover'>,
@@ -19,6 +19,21 @@ const ElMenu = defineComponent({
     activeTextColor: { type: String, default: '' },
     backgroundColor: { type: String, default: '' }
   },
+  data(){
+    return {}
+  },
+  render(){
+    return <ul
+    style={{ backgroundColor: this.backgroundColor || '' }}
+    class={{
+      'el-menu': true,
+      'el-menu--horizontal': this.mode === 'horizontal',
+      'el-menu--collapse': this.collapse
+    }}
+  >
+    {this.$slots.default?.()}
+  </ul>
+  }
   setup(props, { attrs, slots }) {
     const id = Symbol('ElMenu')
 
@@ -66,18 +81,7 @@ const ElMenu = defineComponent({
     })
 
     return () => (
-      <ul
-        role="menubar"
-        // key={+collapse}
-        style={{ backgroundColor: props.backgroundColor || '' }}
-        class={{
-          'el-menu': true,
-          'el-menu--horizontal': props.mode === 'horizontal',
-          'el-menu--collapse': props.collapse
-        }}
-      >
-        {slots.default?.()}
-      </ul>
+      
     )
   }
 })

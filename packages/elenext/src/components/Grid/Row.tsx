@@ -52,7 +52,6 @@ const Row = defineComponent({
       } else {
         results = getTuple(propGutter)
       }
-      console.log('gutter', results)
       return results
     })
 

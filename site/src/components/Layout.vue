@@ -1,21 +1,21 @@
 <template>
   <div class="demo-layout">
-    <ElLayout>
+    <ElContainer>
       <ElAside class="demo-aside">
         <HelloWorld msg="Elenext UI" />
-        <el-menu>
-          <el-menu-item-group v-for="menu in menus" :key="menu.title">
-            <template #title>{{ menu.title }}</template>
-            <el-menu-item v-for="item in menu.items" @click="push({ name: item })">
+        <el-nav>
+          <template v-for="menu in menus" :key="menu.title">
+            <h4>{{ menu.title }}</h4>
+            <el-nav-item v-for="item in menu.items" @click="push({ name: item })">
               {{ item }}
-            </el-menu-item>
-          </el-menu-item-group>
-        </el-menu>
+            </el-nav-item>
+          </template>
+        </el-nav>
       </ElAside>
       <ElMain class="site-content">
         <router-view></router-view>
       </ElMain>
-    </ElLayout>
+    </ElContainer>
   </div>
 </template>
 <script lang="ts">

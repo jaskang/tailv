@@ -9,7 +9,7 @@ test('default', async () => {
       return <ElButton type="primary"></ElButton>
     }
   })
-  expect(wrapper.classes()).toContain('el-button--primary')
+  expect(wrapper.classes()).toContain('el-button-primary')
 })
 
 test('slots', async () => {
@@ -24,10 +24,10 @@ test('slots', async () => {
 test('props size', async () => {
   const wrapper = mount({
     render() {
-      return <ElButton size="mini"></ElButton>
+      return <ElButton size="small"></ElButton>
     }
   })
-  expect(wrapper.find('.el-button--mini').exists()).toBe(true)
+  expect(wrapper.find('.el-button-small').exists()).toBe(true)
 })
 
 test('props icon', async () => {
@@ -66,15 +66,6 @@ test('props disabled', async () => {
   expect(wrapper.find('.is-disabled').exists()).toBe(true)
 })
 
-test('props plain', async () => {
-  const wrapper = mount({
-    render() {
-      return <ElButton plain></ElButton>
-    }
-  })
-  expect(wrapper.find('.is-plain').exists()).toBe(true)
-})
-
 test('props autofocus', async () => {
   const wrapper = mount({
     render() {
@@ -84,10 +75,10 @@ test('props autofocus', async () => {
   expect(wrapper.element.hasAttribute('autofocus')).toBe(true)
 })
 
-test('props round', async () => {
+test('props shape', async () => {
   const wrapper = mount({
     render() {
-      return <ElButton round></ElButton>
+      return <ElButton shape="round"></ElButton>
     }
   })
   expect(wrapper.find('.is-round').exists()).toBe(true)
@@ -96,7 +87,7 @@ test('props round', async () => {
 test('props circle', async () => {
   const wrapper = mount({
     render() {
-      return <ElButton circle></ElButton>
+      return <ElButton shape="circle"></ElButton>
     }
   })
   expect(wrapper.find('.is-circle').exists()).toBe(true)

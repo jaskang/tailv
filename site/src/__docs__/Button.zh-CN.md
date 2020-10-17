@@ -4,9 +4,7 @@
 
 ## 基础用法
 
-基础的按钮用法
-
-使用`type`属性来定义 Button 的颜色。使用`shape`属性来定义 Button 的样式。22
+使用`type`属性来定义 Button 的颜色。 使用`shape`属性来定义 Button 的样式。
 
 ```vue
 <template>
@@ -39,9 +37,7 @@
 </template>
 ```
 
-## 禁用状态 1
-
-按钮不可用状态。
+## 禁用状态
 
 你可以使用`disabled`属性来定义按钮是否可用，它接受一个`Boolean`值。
 
@@ -82,7 +78,9 @@
 
 带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。
 
+:::tip
 设置`icon`属性即可，icon 的列表可以参考 Element 的 icon 组件，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
+:::
 
 ```vue
 <template>
@@ -109,7 +107,9 @@ export default {
 
 以按钮组的方式出现，常用于多项类似操作。
 
+:::tip
 使用`<el-button-group>`标签来嵌套你的按钮。
+:::
 
 ```vue
 <template>
@@ -129,7 +129,9 @@ export default {
 
 点击按钮后进行数据加载操作，在按钮上显示加载状态。
 
+:::tip
 要设置为 loading 状态，只要设置`loading`属性为`true`即可。
+:::
 
 ```vue
 <template>

@@ -1,11 +1,11 @@
 export default [
   {
     title: 'Basic',
-    items: ['grid', 'layout', 'tile', 'icon', 'button', 'link']
+    items: ['grid', 'container', 'tile', 'icon', 'button', 'link']
   },
   {
     title: 'Navigation',
-    items: ['menu', 'breadcrumb']
+    items: ['nav', 'breadcrumb']
   },
   {
     title: 'Notice',

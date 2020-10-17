@@ -1,11 +1,10 @@
 import { defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
-// import './Container.scss'
+import { getBlockCls, getCompName } from '@/config'
 
-const blockCls = getBlockCls('Layout')
+const blockCls = getBlockCls('Container')
 
 const Container = defineComponent({
-  name: getCompName('Layout'),
+  name: getCompName('Container'),
   props: {
     direction: {
       type: String as PropType<'horizontal' | 'vertical'>,
@@ -24,8 +23,7 @@ const Container = defineComponent({
   },
   computed: {
     isHorizontal(): boolean {
-      // @ts-ignore
-      return this.direction || this.hasAside
+      return this.direction === 'horizontal' || this.hasAside
     }
   },
   render() {

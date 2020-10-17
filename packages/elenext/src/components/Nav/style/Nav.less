@@ -1,0 +1,53 @@
+@nav-item-padding-vertical: @global-padding-horizontal;
+@nav-item-padding-horizontal: @global-padding-horizontal;
+@nav-item-active-background-color: mix(@global-color-white, @global-color-primary, 90%);;
+@nav-item-active-color: @global-color-primary;
+
+.@{prefix}-nav {
+  .reset-component();
+  position: relative;
+  &.is-collapse{
+    width: 64px;
+  }
+}
+.@{prefix}-nav-item{
+  position: relative;
+  display: block;
+  height: 56px;
+  line-height: 56px;
+  padding: 0 20px;
+  list-style: none;
+  cursor: pointer;
+  transition: border-color .3s, background-color .3s, color .3s;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-decoration: none;
+  * {
+    vertical-align: middle;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: @nav-item-active-background-color;
+  }
+
+  &.is-disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    background: none !important;
+  }
+  &.is-active {
+    color: @nav-item-active-color;
+    i {
+      color: inherit;
+    }
+  }
+  & [class^="el-icon-"] {
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+    vertical-align: middle;
+  } 
+}

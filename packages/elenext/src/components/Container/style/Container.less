@@ -1,7 +1,7 @@
-@layout-header-padding: 0 50px;
-@layout-footer-padding: 24px 50px;
+@container-header-padding: 0 @global-padding-horizontal;
+@container-footer-padding: 0 @global-padding-horizontal;
 
-.@{prefix}-layout {
+.@{prefix}-container {
   display: flex;
   flex: auto;
   flex-direction: column;
@@ -10,20 +10,20 @@
   &.is-horizontal {
     flex-direction: column;
     flex-direction: row;
-    > .@{prefix}-layout,
-    > .@{prefix}-layout-content {
+    > .@{prefix}-container,
+    > .@{prefix}-container-content {
       overflow-x: hidden;
     }
   }
 }
 
 .@{prefix}-header {
-  padding: @layout-header-padding;
+  padding: @container-header-padding;
   flex: 0 0 auto;
 }
 
 .@{prefix}-footer {
-  padding: @layout-footer-padding;
+  padding: @container-footer-padding;
   flex: 0 0 auto;
 }
 
@@ -31,7 +31,8 @@
   position: relative;
   min-width: 0;
   transition: all 0.2s;
-  overflow: auto;
+  overflow-y: auto;
+  flex: none;
 }
 
 .@{prefix}-main {

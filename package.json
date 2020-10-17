@@ -35,7 +35,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@ant-design-vue/babel-plugin-jsx": "^1.0.0-rc.1",
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -51,6 +50,7 @@
     "@rollup/plugin-replace": "^2.3.3",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.1",
+    "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/test-utils": "^2.0.0-beta.5",
     "autoprefixer": "^9.8.6",
