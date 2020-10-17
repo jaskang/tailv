@@ -1,4 +1,4 @@
-import { defineComponent, provide, reactive, watchEffect } from 'vue'
+import { defineComponent, provide, reactive } from 'vue'
 import { getBlockCls, getCompName } from '../../config'
 import { NavInjKey } from './NavItem'
 
@@ -11,13 +11,9 @@ const Nav = defineComponent({
     const state = reactive({
       activeId: ''
     })
-
     const onSelectHandler = () => {
       console.log(onSelectHandler)
     }
-    watchEffect(() => {
-      console.log(state.activeId)
-    })
     provide(NavInjKey, {
       state,
       select(id) {

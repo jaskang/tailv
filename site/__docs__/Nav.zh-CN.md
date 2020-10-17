@@ -15,6 +15,7 @@
         <el-nav-item>123</el-nav-item>
       </el-nav>
     </el-tile>
+    <el-tile :span="2"></el-tile>
     <el-tile>
       <el-nav>
         <el-nav-item>123</el-nav-item>
@@ -25,6 +26,11 @@
     </el-tile>
   </el-tile>
 </template>
+<style scoped>
+.el-nav {
+  border: 1px solid #ebebeb;
+}
+</style>
 ```
 
 ### Container Attributes
