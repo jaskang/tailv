@@ -9,5 +9,7 @@
   },
   "vetur.validation.template": false,
   "path-autocomplete.extensionOnImport": true,
-  "liveServer.settings.root": "/site/build/"
+  "liveServer.settings.root": "/site/build/",
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn"
 }

@@ -43,6 +43,11 @@ export const router = createRouter({
           component: async () => import('./__docs__/Tile.zh-CN.md')
         },
         {
+          path: '/breadcrumb',
+          name: 'breadcrumb',
+          component: async () => import('./__docs__/Breadcrumb.zh-CN.md')
+        },
+        {
           path: '/nav',
           name: 'nav',
           component: async () => import('./__docs__/Nav.zh-CN.md')
