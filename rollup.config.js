@@ -9,15 +9,11 @@ import babel from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
-if (!process.env.TARGET) {
-  throw new Error('TARGET package must be specified via --environment flag.')
-}
+
 const extensions = ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs']
-const packagesDir = path.resolve(__dirname, 'packages')
-const packageDir = path.resolve(packagesDir, process.env.TARGET)
-const name = path.basename(packageDir)
-const resolve = p => path.resolve(packageDir, p)
+const resolve = p => path.resolve(__dirname, p)
 const pkg = require(resolve(`package.json`))
+const name = pkg.name
 
 function createConfig(format, output, hasTSChecked, plugins = []) {
   if (!output) {
@@ -74,7 +70,7 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       }),
       ts({
         check: process.env.NODE_ENV === 'production' && !hasTSChecked,
-        tsconfig: resolve('tsconfig.json'),
+        tsconfig: resolve('tsconfig.build.json'),
         cacheRoot: path.resolve(__dirname, 'node_modules/.rts2_cache'),
         tsconfigOverride: {
           compilerOptions: {
@@ -92,9 +88,7 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       }),
 
       replace({
-        'process.env.NODE_ENV': JSON.stringify(
-          process.env.NODE_ENV || 'development'
-        )
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
       }),
       ...plugins
     ],

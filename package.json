@@ -1,17 +1,19 @@
 {
-  "name": "root",
-  "version": "0.1.1",
-  "author": "jaskang",
+  "name": "elenext",
+  "version": "0.3.0",
+  "description": "A Vue.js 3.0 UI Toolkit for Web, Element-UI by Vue 3.0",
+  "author": "jaskang <jaskang@qq.com>",
+  "homepage": "https://github.com/JasKang/elenext#readme",
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*",
-    "site"
-  ],
-  "homepage": "https://github.com/kcmbiu/elenext",
+  "main": "src/index.js",
+  "module": "dist/elenext.esm.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kcmbiu/elenext.git"
+    "url": "git+https://github.com/JasKang/elenext.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JasKang/elenext/issues"
   },
   "keywords": [
     "vue3",
@@ -19,21 +21,23 @@
     "element",
     "elementUI"
   ],
-  "bugs": {
-    "url": "https://github.com/kcmbiu/elenext/issues"
-  },
   "files": [
-    "dist"
+    "dist",
+    "types",
+    "index.js"
   ],
+  "sideEffects": true,
   "scripts": {
-    "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js",
-    "docs:dev": "yarn workspace site dev",
-    "docs:build": "yarn workspace site build",
+    "dev": "rimraf dist && rollup -wc",
+    "build": "rimraf dist && rollup -c",
+    "docs:dev": "vite serve",
+    "docs:build": "rimraf build && vite build",
     "test": "jest --runInBand",
     "test:coverage": "jest --coverage --runInBand"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@popperjs/core": "^2.4.4"
+  },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
@@ -56,16 +60,17 @@
     "autoprefixer": "^9.8.6",
     "babel-jest": "^26.3.0",
     "chalk": "^4.1.0",
+    "chokidar": "^3.4.3",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "eslint": "^7.6.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.0.0-beta.1",
-    "execa": "^4.0.3",
     "jest": "^26.4.2",
-    "lerna": "^3.22.1",
     "less": "^3.12.2",
-    "minimist": "^1.2.5",
+    "markdown-it-container": "^3.0.0",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.23.0",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-terser": "^6.1.0",
@@ -74,6 +79,11 @@
     "sass": "^1.26.11",
     "ts-jest": "^26.4.0",
     "typescript": "^3.9.7",
-    "vue": "^3.0.0"
+    "vite": "^1.0.0-rc.4",
+    "vite-plugin-vuedoc": "^0.0.7"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.1",
+    "vue-router": "^4.0.0-beta.13"
   }
 }

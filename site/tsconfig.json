@@ -1,9 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "target": "ES2016",
-    "baseUrl": ".",
-    "paths": {}
-  },
-  "include": ["src"]
-}
