@@ -1,6 +1,6 @@
 {
   "name": "elenext",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "> TODO: description",
   "author": "jaskang <jaskang@qq.com>",
   "homepage": "https://github.com/kcmbiu/elenext#readme",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.4.4",
-    "elehooks": "^0.1.0"
+    "elehooks": "^0.1.1"
   },
   "peerDependencies": {
     "vue": "^3.0.0"

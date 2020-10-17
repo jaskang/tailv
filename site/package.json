@@ -1,13 +1,13 @@
 {
   "name": "site",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "private": "true",
   "dependencies": {
-    "elenext": "^0.2.0",
+    "elenext": "^0.3.0",
     "uikit": "^3.5.7",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-beta.13"
