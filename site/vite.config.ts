@@ -1,4 +1,3 @@
-import path from 'path'
 import type { UserConfig } from 'vite'
 import vitePluginVuedoc from 'vite-plugin-vuedoc'
 import vitePluginSyncmd from './script/vitePluginSyncmd'
@@ -9,7 +8,12 @@ const config: UserConfig = {
   optimizeDeps: {
     exclude: ['elenext']
   },
-  plugins: [vitePluginVuedoc(), vitePluginSyncmd()]
+  plugins: [
+    vitePluginVuedoc({
+      markdownPlugins: [[require('markdown-it-container'), 'tip']]
+    }),
+    vitePluginSyncmd()
+  ]
 }
 
 export default config

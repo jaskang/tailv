@@ -35,9 +35,9 @@ const Popover = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
-    const onUpdate = (value: boolean) => {
-      emit('update:modelValue', value)
-    }
+    // const onUpdate = (value: boolean) => {
+    //   emit('update:modelValue', value)
+    // }
     return () => (
       <ElPopper
         popperClass={normalizeClass([
@@ -47,10 +47,7 @@ const Popover = defineComponent({
           props.content && 'el-popover--plain'
         ])}
         trigger={props.trigger}
-        modelValue={props.modelValue}
-        on={{
-          'update:modelValue': onUpdate
-        }}
+        v-model={[props.modelValue, 'modelValue']}
         // TODO: vueComponent/jsx parseEvents ?
         // vOn={[onUpdate,'update:modelValue']}
         v-slots={{

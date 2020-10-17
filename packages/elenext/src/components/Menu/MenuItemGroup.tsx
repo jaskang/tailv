@@ -12,10 +12,7 @@ const ElMenuItemGroup = defineComponent({
     // const { parent } = useElMenuContext()
     return () => (
       <li class="el-menu-item-group">
-        <div
-          class="el-menu-item-group__title"
-          style={{ paddingLeft: 20 + 'px' }}
-        >
+        <div class="el-menu-item-group__title" style={{ paddingLeft: 20 + 'px' }}>
           {slots.title ? slots.title() : props.title}
         </div>
         <ul>{slots.default?.()}</ul>

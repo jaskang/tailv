@@ -1,12 +1,13 @@
 import { Component, Plugin } from 'vue'
 import { Row, Col } from './components/Grid'
 import { Tile } from './components/Tile'
-import { Layout, ElAside, ElMain, ElFooter, ElHeader } from './components/Layout'
+import { Container, ElAside, ElMain, ElFooter, ElHeader } from './components/Container'
 import { ElButton, ElButtonGroup } from './components/Button'
 import { ElLink } from './components/Link'
 import { ElIcon } from './components/Icon'
 import { ElPopover } from './components/Popover'
-import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from './components/Menu'
+import { Nav, NavItem } from './components/Nav'
+// import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from './components/Menu'
 import { ElAlert } from './components/Alert'
 import './styles/index.less'
 export { default as injectCss } from './utils/injectCss'
@@ -15,7 +16,7 @@ export {
   Row,
   Col,
   Tile,
-  Layout,
+  Container,
   ElAside,
   ElMain,
   ElHeader,
@@ -25,10 +26,6 @@ export {
   ElLink,
   ElIcon,
   ElPopover,
-  ElMenu,
-  ElMenuItem,
-  ElSubmenu,
-  ElMenuItemGroup,
   ElAlert
 }
 
@@ -45,8 +42,10 @@ export const elenext: Plugin = {
     useComponent(Row)
     useComponent(Col)
     useComponent(Tile)
+    useComponent(Nav)
+    useComponent(NavItem)
 
-    useComponent(Layout)
+    useComponent(Container)
     useComponent(ElAside)
     useComponent(ElMain)
     useComponent(ElHeader)
@@ -57,10 +56,7 @@ export const elenext: Plugin = {
     useComponent(ElLink)
     useComponent(ElIcon)
     useComponent(ElPopover)
-    useComponent(ElMenu)
-    useComponent(ElMenuItem)
-    useComponent(ElSubmenu)
-    useComponent(ElMenuItemGroup)
+
     useComponent(ElAlert)
   }
 }

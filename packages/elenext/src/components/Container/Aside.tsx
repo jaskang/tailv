@@ -1,14 +1,17 @@
 import { defineComponent, getCurrentInstance } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
 
-const ElAside = defineComponent({
-  name: 'ElAside',
+const blockCls = getBlockCls('Aside')
+
+const Aside = defineComponent({
+  name: getCompName('Aside'),
   props: {
     width: {
       type: String,
       default: '250px'
     }
   },
-  setup(props, { slots, attrs }) {
+  setup(props, { slots }) {
     const self = getCurrentInstance()
     console.log(self?.parent)
     // @ts-ignore
@@ -17,11 +20,11 @@ const ElAside = defineComponent({
       self.parent.ctx.setHorizontal()
     }
     return () => (
-      <aside class="el-aside" style={{ width: props.width }} {...attrs}>
+      <aside class={blockCls} style={{ width: props.width }}>
         {slots.default?.()}
       </aside>
     )
   }
 })
 
-export default ElAside
+export default Aside

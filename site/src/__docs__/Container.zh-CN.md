@@ -2,7 +2,7 @@
 
 用于布局的容器组件，方便快速搭建页面的基本结构：
 
-`<el-layout>`：外层容器。当子元素中包含 `<el-header>` 或 `<el-footer>` 时，全部子元素会垂直上下排列，否则会水平左右排列。
+`<el-container>`：外层容器。当子元素中包含 `<el-header>` 或 `<el-footer>` 时，全部子元素会垂直上下排列，否则会水平左右排列。
 
 `<el-header>`：顶栏容器。
 
@@ -12,102 +12,43 @@
 
 `<el-footer>`：底栏容器。
 
-:::tip
-以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`<el-layout>` 的子元素只能是后四者，后四者的父元素也只能是 `<el-layout>`。
-:::
+以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`<el-container>` 的子元素只能是后四者，后四者的父元素也只能是 `<el-container>`。
 
 ### 常见页面布局
 
 ```vue
 <template>
-  <el-layout class="testel-layout">
-    <el-header>Header</el-header>
-    <el-main>Main</el-main>
-  </el-layout>
-
-  <el-layout>
+  <el-container>
     <el-header>Header</el-header>
     <el-main>Main</el-main>
     <el-footer>Footer</el-footer>
-  </el-layout>
+  </el-container>
+</template>
+```
 
-  <el-layout>
-    <el-aside width="200px">Aside</el-aside>
-    <el-main>Main</el-main>
-  </el-layout>
-
-  <el-layout>
+```vue
+<template>
+  <el-container>
     <el-header>Header</el-header>
-    <el-layout>
+    <el-container>
       <el-aside width="200px">Aside</el-aside>
       <el-main>Main</el-main>
-    </el-layout>
-  </el-layout>
+    </el-container>
+  </el-container>
+</template>
+```
 
-  <el-layout>
-    <el-header>Header</el-header>
-    <el-layout>
-      <el-aside width="200px">Aside</el-aside>
-      <el-layout>
-        <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
-      </el-layout>
-    </el-layout>
-  </el-layout>
-
-  <el-layout>
+```vue
+<template>
+  <el-container>
     <el-aside width="200px">Aside</el-aside>
-    <el-layout>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-    </el-layout>
-  </el-layout>
-
-  <el-layout>
-    <el-aside width="200px">Aside</el-aside>
-    <el-layout>
+    <el-container>
       <el-header>Header</el-header>
       <el-main>Main</el-main>
       <el-footer>Footer</el-footer>
-    </el-layout>
-  </el-layout>
+    </el-container>
+  </el-container>
 </template>
-<style scoped>
-.el-header,
-.el-footer {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-
-body > .el-layout {
-  margin-bottom: 40px;
-}
-
-.el-layout:nth-child(5) .el-aside,
-.el-layout:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-layout:nth-child(7) .el-aside {
-  line-height: 320px;
-}
-</style>
 ```
 
 ### 实例
@@ -116,7 +57,7 @@ body > .el-layout {
 
 ```vue
 <template>
-  <el-layout style="height: 500px; border: 1px solid #eee">
+  <el-container style="height: 500px; border: 1px solid #eee">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu :default-openeds="['1', '3']">
         <el-submenu index="1">
@@ -167,7 +108,7 @@ body > .el-layout {
       </el-menu>
     </el-aside>
 
-    <el-layout>
+    <el-container>
       <el-header style="text-align: right; font-size: 12px">
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
@@ -187,18 +128,31 @@ body > .el-layout {
           <el-table-column prop="address" label="地址"> </el-table-column>
         </el-table>
       </el-main>
-    </el-layout>
-  </el-layout>
+    </el-container>
+  </el-container>
 </template>
-<style>
-.el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  line-height: 60px;
-}
+<style lang="less">
+.vuedoc-demo {
+  .el-header,
+  .el-footer {
+    background-color: #b3c0d1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
 
-.el-aside {
-  color: #333;
+  .el-aside {
+    background-color: #d3dce6;
+    color: #333;
+    text-align: center;
+  }
+
+  .el-main {
+    background-color: #e9eef3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
 }
 </style>
 

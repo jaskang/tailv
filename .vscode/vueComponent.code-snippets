@@ -1,0 +1,25 @@
+{
+  "Elenext defineComponent": {
+    "scope": "vue,typescript,typescriptreact",
+    "prefix": "defineComponent",
+    "body": [
+      "import { defineComponent } from 'vue'",
+      "import { getBlockCls, getCompName } from '@/config'",
+      "import { normalizeClass } from '@/utils/dom'",
+      "",
+      "const blockCls = getBlockCls('${1}')",
+      "",
+      "const ${1} = defineComponent({",
+      "  name: getCompName('${1}'),",
+      "  props: { name: String },",
+      "  setup(props) {",
+      "    const clsNames = normalizeClass(blockCls)",
+      "    return () => <div class={clsNames}></div>",
+      "  }",
+      "})",
+      "",
+      "export default ${1}"
+    ],
+    "description": "elenext component"
+  }
+}

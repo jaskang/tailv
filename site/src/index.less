@@ -10,7 +10,57 @@ body {
   padding: 30px;
 }
 
+.vuedoc {
+  h2 {
+    margin: 55px 0 20px;
+  }
+  p {
+    font-size: 14px;
+    color: #5e6d82;
+    margin: 1em 0;
+  }
+  table {
+    width: 100%;
+    tr {
+      &:first-child {
+        th {
+          border-top: 1px solid rgb(234, 238, 251);
+        }
+      }
+      th,
+      td {
+        border-right: 1px solid rgb(234, 238, 251);
+        border-bottom: 1px solid rgb(234, 238, 251);
+        padding: 10px;
+        &:first-child {
+          border-left: 1px solid rgb(234, 238, 251);
+        }
+      }
+    }
+  }
+  code {
+    color: #5e6d82;
+    background-color: #e6effb;
+    margin: 0 4px;
+    display: inline-block;
+    padding: 1px 5px;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+  .tip {
+    padding: 8px 16px;
+    border-left: 5px solid #409eff;
+    background-color: #ecf5ff;
+    border-radius: 4px;
+    margin: 20px 0;
+    code {
+      background-color: hsla(0, 0%, 100%, 0.7);
+      color: #445368;
+    }
+  }
+}
 .vuedoc-demo {
+  margin-bottom: 20px;
   .el-row + .el-row {
     margin-top: 20px;
   }
@@ -27,5 +77,8 @@ body {
         background: #d3dce6;
       }
     }
+  }
+  code {
+    background-color: inherit;
   }
 }
