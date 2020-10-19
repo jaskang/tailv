@@ -12,8 +12,10 @@
           </template>
         </ElNav>
       </ElAside>
-      <ElMain class="site-content">
-        <router-view></router-view>
+      <ElMain>
+        <div class="site-content">
+          <router-view></router-view>
+        </div>
       </ElMain>
     </ElContainer>
   </div>

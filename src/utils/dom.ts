@@ -12,7 +12,9 @@ export function removeEl(el: Element) {
   if (el.parentNode) el.parentNode.removeChild(el)
 }
 
-export function normalizeClass(value: unknown): string {
+type classAttr = string | Record<string, boolean> | classAttr[]
+
+export function normalizeClass(value: classAttr): string {
   let res = ''
   if (typeof value === 'string') {
     res = value

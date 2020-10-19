@@ -9,7 +9,9 @@ const Nav = defineComponent({
   props: {},
   setup(props, { slots }) {
     const state = reactive({
-      activeId: ''
+      activeId: '',
+      children: [],
+      activePath: []
     })
     const onSelectHandler = () => {
       console.log(onSelectHandler)

@@ -14,18 +14,42 @@ export const NavInjKey: InjectionKey<{
 const Navitem = defineComponent({
   name: getCompName('NavItem'),
   props: { name: String },
-  setup(props, { slots }) {
-    const id = uniqueId('NavItem')
-    const { state, select } = inject(NavInjKey) || {}
-    const onClickHandler = () => {
-      select?.(id)
+  data() {
+    return {
+      id: uniqueId('NavItem')
     }
-    return () => (
-      <div class={[blockCls, state?.activeId === id ? 'is-active' : '']} onClick={onClickHandler}>
-        {slots.default?.()}
+  },
+  computed: {
+    parent(): any {
+      return this.$parent
+    },
+    isActive(): boolean {
+      return this.parent?.$data.activeId === this.id
+    }
+  },
+  methods: {
+    onClickHandler(): void {
+      this.parent?.select?.(this.id)
+    }
+  },
+  render() {
+    return (
+      <div class={[blockCls, this.isActive ? 'is-active' : '']} onClick={this.onClickHandler}>
+        {this.$slots.default?.()}
       </div>
     )
   }
+  // setup(props, { slots }) {
+  //   const id = uniqueId('NavItem')
+  //   const onClickHandler = () => {
+  //     select?.(id)
+  //   }
+  //   return () => (
+  //     <div class={[blockCls, state?.activeId === id ? 'is-active' : '']} onClick={onClickHandler}>
+  //       {slots.default?.()}
+  //     </div>
+  //   )
+  // }
 })
 
 export default Navitem

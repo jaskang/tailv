@@ -1,14 +1,17 @@
-import { inject, computed, defineComponent, PropType } from 'vue'
-import { ElFormSymbol, ElFormItemSymbol, useGlobal } from '../../provides/index'
+import { computed, defineComponent, PropType } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
+import { normalizeClass } from '@/utils/dom'
 
-// import './Button.scss'
-
+const cls = getBlockCls('Button')
 const Button = defineComponent({
-  name: 'ElButton',
+  name: getCompName('Button'),
   props: {
     type: {
       type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'>,
       default: 'default'
+    },
+    plain: {
+      type: Boolean
     },
     shape: {
       type: String as PropType<'round' | 'circle'>,
@@ -20,35 +23,33 @@ const Button = defineComponent({
     },
     nativeType: { type: String as PropType<'button' | 'submit' | 'reset'>, default: 'button' },
     icon: { type: String, default: '' },
-    loading: { type: Boolean },
+    loading: { type: Boolean, default: false },
     disabled: { type: Boolean }
   },
-  setup(props, { emit, attrs, slots }) {
-    const elForm = inject(ElFormSymbol, null)
-    const elFormItem = inject(ElFormItemSymbol, null)
-    const elGlobalConfig = useGlobal()
+  setup(props, { slots }) {
     const buttonSize = computed(() => {
-      return props.size || elFormItem?.elFormItemSize || elGlobalConfig?.size
+      return props.size
     })
     const buttonDisabled = computed(() => {
-      return props.disabled || elForm?.disabled
+      return props.disabled || false
     })
-
+    const classNames = computed(() =>
+      normalizeClass([
+        cls,
+        `${cls}-${props.type}`,
+        buttonSize.value ? `${cls}-${buttonSize.value}` : '',
+        props.shape ? `is-${props.shape}` : '',
+        {
+          'is-disabled': buttonDisabled.value,
+          'is-loading': props.loading
+        }
+      ])
+    )
     return () => (
       <button
         disabled={buttonDisabled.value || props.loading}
         type={props.nativeType as 'button'}
-        class={[
-          'el-button',
-          `el-button-${props.type}`,
-          buttonSize.value ? 'el-button-' + buttonSize.value : '',
-          props.shape ? `is-${props.shape}` : '',
-          {
-            'is-disabled': buttonDisabled.value,
-            'is-loading': props.loading
-          }
-        ]}
-        {...attrs}
+        class={classNames.value}
       >
         {props.loading && <i class="el-icon-loading"></i>}
         {props.icon && !props.loading && <i class={props.icon}></i>}
