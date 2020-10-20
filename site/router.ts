@@ -1,6 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from './components/Layout.vue'
 
+import Button from './__docs__/Button.zh-CN.md'
+import Grid from './__docs__/Grid.zh-CN.md'
+import Container from './__docs__/Container.zh-CN.md'
+import Link from './__docs__/Link.zh-CN.md'
+import Icon from './__docs__/Icon.zh-CN.md'
+import Tile from './__docs__/Tile.zh-CN.md'
+import Breadcrumb from './__docs__/Breadcrumb.zh-CN.md'
+import Nav from './__docs__/Nav.zh-CN.md'
+
 export const router = createRouter({
   history: createWebHistory(),
   strict: true,
@@ -14,43 +23,42 @@ export const router = createRouter({
         {
           path: '/button',
           name: 'button',
-          // component: async () => import('elenext/src/components/Button/__docs__/Button.zh-CN.md')
-          component: async () => import('./__docs__/Button.zh-CN.md')
+          component: Button
         },
         {
           path: '/grid',
           name: 'grid',
-          component: async () => import('./__docs__/Grid.zh-CN.md')
+          component: Grid
         },
         {
           path: '/container',
           name: 'container',
-          component: async () => import('./__docs__/Container.zh-CN.md')
+          component: Container
         },
         {
           path: '/link',
           name: 'link',
-          component: async () => import('./__docs__/Link.zh-CN.md')
+          component: Link
         },
         {
           path: '/icon',
           name: 'icon',
-          component: async () => import('./__docs__/Icon.zh-CN.md')
+          component: Icon
         },
         {
           path: '/tile',
           name: 'tile',
-          component: async () => import('./__docs__/Tile.zh-CN.md')
+          component: Tile
         },
         {
           path: '/breadcrumb',
           name: 'breadcrumb',
-          component: async () => import('./__docs__/Breadcrumb.zh-CN.md')
+          component: Breadcrumb
         },
         {
           path: '/nav',
           name: 'nav',
-          component: async () => import('./__docs__/Nav.zh-CN.md')
+          component: Nav
         }
 
         // {
