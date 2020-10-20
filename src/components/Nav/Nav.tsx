@@ -27,7 +27,7 @@ const Nav = defineComponent({
   props: {
     width: {
       type: String,
-      default: '250px'
+      default: '100%'
     }
   },
   setup(props, { slots }) {
