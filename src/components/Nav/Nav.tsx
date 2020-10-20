@@ -1,8 +1,13 @@
 import { defineComponent, inject, InjectionKey, provide, reactive } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import CollapseTransition from '../Transition/CollapseTransition'
+import { mixColor } from '../../utils/tools'
 
 type NavState = {
+  textColor: string
+  activeTextColor: string
+  backgroundColor: string
+  hoverBackgroundColor: string
   activeId: string
   children: any[]
   activePath: string[]
@@ -25,14 +30,29 @@ export const NAV_ITEM_PADDING = 20
 const Nav = defineComponent({
   name: getCompName('Nav'),
   props: {
-    width: {
+    backgroundColor: {
       type: String,
-      default: '100%'
+      default: ''
+    },
+    textColor: {
+      type: String,
+      default: ''
+    },
+    activeTextColor: {
+      type: String,
+      default: ''
     }
   },
   setup(props, { slots }) {
     const parent = inject(NAV_INJKEY, null)
     const state = reactive<NavState>({
+      textColor: parent?.state.textColor || props.textColor,
+      activeTextColor: parent?.state.activeTextColor || props.activeTextColor,
+      backgroundColor: parent?.state.backgroundColor || props.backgroundColor,
+      hoverBackgroundColor:
+        parent?.state.backgroundColor || props.backgroundColor
+          ? mixColor(parent?.state.backgroundColor || props.backgroundColor, 0.2)
+          : '',
       activeId: '',
       children: [],
       activePath: [],
@@ -56,11 +76,7 @@ const Nav = defineComponent({
     })
     return () =>
       state.isRoot ? (
-        <ul
-          class={[blockCls]}
-          style={{ paddingLeft: state.padding + 'px', width: props.width }}
-          onSelect={onSelectHandler}
-        >
+        <ul class={[blockCls]} style={{ paddingLeft: state.padding + 'px' }} onSelect={onSelectHandler}>
           {slots.default?.()}
         </ul>
       ) : (

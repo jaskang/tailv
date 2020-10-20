@@ -62,11 +62,6 @@ export function addClass(el: Element, cls: string) {
   }
 }
 
-/* istanbul ignore next */
-const trim = function (str: string) {
-  return (str || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '')
-}
-
 export function removeClass(el: Element, cls: string) {
   if (!el || !cls) return
   var classes = cls.split(' ')
@@ -83,6 +78,6 @@ export function removeClass(el: Element, cls: string) {
     }
   }
   if (!el.classList) {
-    el.className = trim(curClass)
+    el.className = trim((curClass || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, ''))
   }
 }
