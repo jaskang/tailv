@@ -12,5 +12,13 @@
   "liveServer.settings.root": "/site/build/",
   "eslint.format.enable": true,
   "eslint.packageManager": "yarn",
-  "conventionalCommits.scopes": ["Row", "Col", "Container", "Button", "Nav", "NavItem"]
+  "conventionalCommits.scopes": [
+    "Row",
+    "Col",
+    "Container",
+    "Button",
+    "Nav",
+    "NavItem",
+    "Nav"
+  ]
 }

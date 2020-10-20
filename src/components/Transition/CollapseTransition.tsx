@@ -1,14 +1,14 @@
-import { defineComponent, render, Transition } from 'vue'
+import { defineComponent, Transition, TransitionProps } from 'vue'
 import { addClass, removeClass } from '../../utils/dom'
+import { getCompName } from '../../config'
 
-const CollapseTransitionProps = {
+const CollapseTransitionProps: TransitionProps = {
   onBeforeEnter(_el: Element) {
     const el = _el as HTMLElement
     addClass(el, 'collapse-transition')
-    if (!el.dataset) {
-      // @ts-ignore
-      el.dataset = {}
-    }
+    // @ts-ignore
+    if (!el.dataset) el.dataset = {}
+
     el.dataset.oldPaddingTop = el.style.paddingTop
     el.dataset.oldPaddingBottom = el.style.paddingBottom
 
@@ -35,7 +35,6 @@ const CollapseTransitionProps = {
 
   onAfterEnter(_el: Element) {
     const el = _el as HTMLElement
-    // for safari: remove class then reset height is necessary
     removeClass(el, 'collapse-transition')
     el.style.height = ''
     el.style.overflow = el.dataset.oldOverflow || ''
@@ -43,10 +42,8 @@ const CollapseTransitionProps = {
 
   onBeforeLeave(_el: Element) {
     const el = _el as HTMLElement
-    if (!el.dataset) {
-      // @ts-ignore
-      el.dataset = {}
-    }
+    // @ts-ignore
+    if (!el.dataset) el.dataset = {}
     el.dataset.oldPaddingTop = el.style.paddingTop
     el.dataset.oldPaddingBottom = el.style.paddingBottom
     el.dataset.oldOverflow = el.style.overflow
@@ -77,12 +74,8 @@ const CollapseTransitionProps = {
 }
 
 export default defineComponent({
-  name: 'ElCollapseTransition',
-  setup(props, { attrs, slots }) {
-    return () => (
-      <Transition {...attrs} {...CollapseTransitionProps}>
-        {slots.default?.()}
-      </Transition>
-    )
+  name: getCompName('CollapseTransition'),
+  setup(props, { slots }) {
+    return () => <Transition {...CollapseTransitionProps} v-slots={slots}></Transition>
   }
 })

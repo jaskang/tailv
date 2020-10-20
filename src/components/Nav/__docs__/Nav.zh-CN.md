@@ -1,6 +1,6 @@
 ## Nav 布局容器
 
-用于布局的容器组件，方便快速搭建页面的基本结构：
+用于菜单的容器组件，方便快速搭建页面的基本结构：
 
 ### 常见页面布局
 
@@ -9,28 +9,44 @@
   <el-tile>
     <el-tile>
       <el-nav>
-        <el-nav-item>123</el-nav-item>
-        <el-nav-item>123</el-nav-item>
-        <el-nav-item>123</el-nav-item>
-        <el-nav-item>123</el-nav-item>
+        <el-nav-item><i class="el-icon-location" />导航一</el-nav-item>
+        <el-nav>
+          <template #title>
+            <i class="el-icon-location" />
+            <span>导航二</span>
+          </template>
+          <el-nav-item-group title="分组一">
+            <el-nav-item>导航三</el-nav-item>
+            <el-nav-item>导航三</el-nav-item>
+          </el-nav-item-group>
+          <el-nav-item-group title="分组二">
+            <el-nav-item>导航三</el-nav-item>
+            <el-nav>
+              <template #title>
+                <span>导航二</span>
+              </template>
+              <el-nav-item><i class="el-icon-document" />导航三</el-nav-item>
+              <el-nav-item><i class="el-icon-document" />导航三</el-nav-item>
+              <el-nav-item><i class="el-icon-document" />导航三</el-nav-item>
+            </el-nav>
+          </el-nav-item-group>
+        </el-nav>
+        <el-nav-item><i class="el-icon-document" />导航三</el-nav-item>
+        <el-nav-item><i class="el-icon-setting" />导航四</el-nav-item>
       </el-nav>
     </el-tile>
     <el-tile :span="2"></el-tile>
     <el-tile>
       <el-nav>
-        <el-nav-item>123</el-nav-item>
-        <el-nav-item>123</el-nav-item>
-        <el-nav-item>123</el-nav-item>
-        <el-nav-item>123</el-nav-item>
+        <el-nav-item><i class="el-icon-location" />导航一</el-nav-item>
+        <el-nav-item><i class="el-icon-menu" />导航二</el-nav-item>
+        <el-nav-item><i class="el-icon-document" />导航三</el-nav-item>
+        <el-nav-item><i class="el-icon-setting" />导航四</el-nav-item>
       </el-nav>
     </el-tile>
   </el-tile>
 </template>
-<style scoped>
-.el-nav {
-  border: 1px solid #ebebeb;
-}
-</style>
+<style scoped></style>
 ```
 
 ### Container Attributes

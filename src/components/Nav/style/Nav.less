@@ -1,20 +1,16 @@
+@nav-background-color: @global-color-white;
 @nav-item-padding-vertical: @global-padding-horizontal;
 @nav-item-padding-horizontal: @global-padding-horizontal;
-@nav-item-active-background-color: mix(@global-color-white, @global-color-primary, 90%);;
+@nav-item-hover-background-color: mix(@global-color-white, @global-color-primary, 90%);;
 @nav-item-active-color: @global-color-primary;
+@nav-item-font-color: @nav-background-color;
 
-.@{prefix}-nav {
-  .reset-component();
-  position: relative;
-  &.is-collapse{
-    width: 64px;
-  }
-}
-.@{prefix}-nav-item{
+.nav-item(){
   position: relative;
   display: block;
   height: 56px;
   line-height: 56px;
+  color: @global-color-text-primary;
   padding: 0 20px;
   list-style: none;
   cursor: pointer;
@@ -25,24 +21,37 @@
   * {
     vertical-align: middle;
   }
-
+  i {
+    color: @global-color-text-secondary;
+  }
   &:hover,
   &:focus {
     outline: none;
-    background-color: @nav-item-active-background-color;
+    background-color: @nav-item-hover-background-color;
   }
-
   &.is-disabled {
     opacity: 0.25;
     cursor: not-allowed;
     background: none !important;
   }
-  &.is-active {
-    color: @nav-item-active-color;
-    i {
-      color: inherit;
-    }
+}
+
+.@{prefix}-nav {
+  .reset-component();
+  border-right: solid 1px #e6e6e6;
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding-left: 0;
+  background-color: @nav-item-font-color;
+  &.is-collapse{
+    width: 64px;
   }
+}
+
+.@{prefix}-nav-item{
+  .nav-item;
+
   & [class^="el-icon-"] {
     margin-right: 5px;
     width: 24px;
@@ -50,4 +59,80 @@
     font-size: 18px;
     vertical-align: middle;
   } 
+  &.is-active {
+    color: @nav-item-active-color;
+    i {
+      color: inherit;
+    }
+  }
+}
+
+.@{prefix}-nav-inner{
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  &__title{
+    .nav-item;
+    &:hover {
+      background-color: @nav-item-hover-background-color;
+    }
+  }
+  &__body{
+    transition: height .3s
+  }
+  & .@{prefix}-nav {
+    border: none;
+  }
+  & .@{prefix}-nav-item {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 45px;
+    min-width: 200px;
+  }
+  &__icon-arrow {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -7px;
+    transition: transform 0.3s;
+    font-size: 12px;
+  }
+  &.is-active {
+    .@{prefix}-nav-inner__title {
+      border-bottom-color: @nav-item-active-color;
+    }
+  }
+  &.is-opened {
+    > .@{prefix}-nav-inner__title .@{prefix}-nav-inner__icon-arrow {
+      transform: rotateZ(180deg);
+    }
+  }
+  &.is-disabled {
+    .@{prefix}-nav-inner__title,
+    .@{prefix}-nav-item {
+      opacity: 0.25;
+      cursor: not-allowed;
+      background: none !important;
+    }
+  }
+  [class^='el-icon-'] {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+}
+
+.@{prefix}-nav-item-group {
+  > ul {
+    padding: 0;
+  }
+  &__title {
+    padding: 7px 0 7px 20px;
+    line-height: normal;
+    font-size: 12px;
+    color: @global-color-text-secondary;
+  }
 }
