@@ -1,31 +1,49 @@
-import { defineComponent, onMounted, getCurrentInstance, Teleport, PropType, reactive, watch, watchEffect } from 'vue'
+import {
+  defineComponent,
+  onMounted,
+  getCurrentInstance,
+  Teleport,
+  PropType,
+  reactive,
+  watch,
+  watchEffect,
+  ref,
+  cloneVNode,
+  createVNode,
+  h,
+  nextTick
+} from 'vue'
 
-import { usePopper, Placement } from './usePopper'
+import { usePopper } from './usePopper2'
 import useClickAway from '../../hooks/useClickAway'
+import { Placement } from '@popperjs/core'
+import { getBlockCls, getCompName } from '../../config'
+import { uniqueId } from '@/utils/uniqueId'
+import { createEl } from '@/utils/dom'
 // import vClickAway from '../../directives/v-click-away'
 
-const PopperInner = defineComponent({
-  props: {
-    setRootEl: {
-      type: Function as PropType<(el: HTMLElement | null) => void>,
-      required: true
-    }
-  },
-  setup({ setRootEl }, { slots }) {
-    onMounted(() => {
-      const instance = getCurrentInstance()
-      let node = instance!.vnode.el
-      while (node && !node.tagName) {
-        node = node.nextSibling
-      }
-      setRootEl(node as HTMLElement | null)
-    })
-    return () => (slots.default ? slots.default() : <span></span>)
-  }
-})
-
+// const PopperInner = defineComponent({
+//   props: {
+//     setRootEl: {
+//       type: Function as PropType<(el: HTMLElement | null) => void>,
+//       required: true
+//     }
+//   },
+//   setup({ setRootEl }, { slots }) {
+//     onMounted(() => {
+//       const instance = getCurrentInstance()
+//       let node = instance!.vnode.el
+//       while (node && !node.tagName) {
+//         node = node.nextSibling
+//       }
+//       setRootEl(node as HTMLElement | null)
+//     })
+//     return () => (slots.default ? slots.default() : <span></span>)
+//   }
+// })
+const blockCls = getBlockCls('Popper')
 const Popper = defineComponent({
-  name: 'ElPopper',
+  name: getCompName('Popper'),
   emits: ['update:modelValue'],
   props: {
     modelValue: {
@@ -51,66 +69,55 @@ const Popper = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
-    const { state: popperState, popperEl, setReferenceEl } = usePopper(props.popperClass, {
-      placement: props.placement as Placement,
-      modifiers: props.modifiers,
-      strategy: props.strategy as 'absolute' | 'fixed'
-    })
-    const state = reactive({
-      focusPopper: false,
-      visible: props.modelValue
-    })
-    const setVisible = (visible: boolean) => {
-      if (popperState.focus && visible === false) {
-      } else {
-        state.visible = visible
-        emit('update:modelValue', visible)
-      }
-    }
-    watchEffect(() => {
-      popperState.visible = state.visible
-    })
-    watch(
-      () => props.modelValue,
-      value => {
-        state.visible = value
-      }
-    )
+    const id = uniqueId('el-popper-teleport')
+    const popperTeleportEl = createEl(id)
 
-    const setRootEl = (el: HTMLElement | null) => {
-      if (!el) {
-        throw new Error('reference root dom required')
-      }
-      setReferenceEl(el)
-      if (props.trigger === 'click') {
-        el.addEventListener('click', () => {
-          setVisible(!state.visible)
+    const { referenceEl, popperEl, state: popperState } = usePopper({})
+    const state = reactive({
+      show: false
+    })
+    watchEffect(onInvalidate => {
+      if (referenceEl.value) {
+        console.log('mouseenter')
+
+        referenceEl.value.addEventListener('mouseenter', () => {
+          state.show = true
         })
-        useClickAway(() => {
-          setVisible(false)
-        }, el)
-      } else if (props.trigger === 'hover') {
-        el.addEventListener('mouseenter', () => {
-          setVisible(true)
-        })
-        el.addEventListener('mouseleave', () => {
-          setVisible(false)
-        })
-      } else if (props.trigger === 'focus') {
-        el.addEventListener('focus', () => {
-          setVisible(true)
-        })
-        el.addEventListener('blur', () => {
-          setVisible(false)
+        referenceEl.value.addEventListener('mouseleave', () => {
+          state.show = false
         })
       }
-    }
+    })
 
     return () => {
+      const slotContent = slots.default ? slots.default() : []
+
+      const transformedSlotContent = slotContent.map((vnode, index) => {
+        if (index === 0) {
+          console.log(vnode)
+          if (typeof vnode.type === 'string') {
+            return cloneVNode(vnode, { ref: referenceEl })
+          } else if (typeof vnode.type === 'object') {
+            return cloneVNode(vnode, { ref: referenceEl })
+          }
+          return h('span', { ref: referenceEl }, cloneVNode(vnode))
+        }
+        return cloneVNode(vnode)
+      })
+
       return (
         <>
-          <Teleport to={`#${popperEl.id}`}>{slots.popper?.()}</Teleport>
-          <PopperInner setRootEl={setRootEl}>{slots.default?.()}</PopperInner>
+          <Teleport to={`#${popperTeleportEl.id}`}>
+            <div
+              ref={popperEl}
+              v-show={state.show}
+              style={popperState.styles.popper}
+              {...popperState.attributes.popper}
+            >
+              {slots.popper?.()}
+            </div>
+          </Teleport>
+          {transformedSlotContent}
         </>
       )
     }

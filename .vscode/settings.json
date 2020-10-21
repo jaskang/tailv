@@ -19,6 +19,7 @@
     "Button",
     "Nav",
     "NavItem",
-    "Nav"
+    "Nav",
+    "Popper"
   ]
 }

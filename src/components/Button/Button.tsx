@@ -26,7 +26,7 @@ const Button = defineComponent({
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean }
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const buttonSize = computed(() => {
       return props.size
     })

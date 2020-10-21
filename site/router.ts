@@ -9,6 +9,8 @@ import Icon from './__docs__/Icon.zh-CN.md'
 import Tile from './__docs__/Tile.zh-CN.md'
 import Breadcrumb from './__docs__/Breadcrumb.zh-CN.md'
 import Nav from './__docs__/Nav.zh-CN.md'
+import Popper from './__docs__/Popper.zh-CN.md'
+import Popover from './__docs__/Popover.zh-CN.md'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -59,6 +61,16 @@ export const router = createRouter({
           path: '/nav',
           name: 'nav',
           component: Nav
+        },
+        {
+          path: '/popper',
+          name: 'popper',
+          component: Popper
+        },
+        {
+          path: '/popover',
+          name: 'popover',
+          component: Popover
         }
 
         // {
@@ -71,11 +83,7 @@ export const router = createRouter({
         //   name: 'alert',
         //   component: async () => import('/@docs/Alert/__docs__/Alert.md')
         // },
-        // {
-        //   path: '/popover',
-        //   name: 'popover',
-        //   component: async () => import('/@docs/Popover/__docs__/Popover.md')
-        // },
+
         // {
         //   path: '/test',
         //   name: 'test',

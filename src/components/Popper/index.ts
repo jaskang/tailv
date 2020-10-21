@@ -1,2 +1,2 @@
-export { default as ElPopper } from './Popper'
+export { default as Popper } from './Popper'
 export { usePopper } from './usePopper'

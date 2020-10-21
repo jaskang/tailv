@@ -5,6 +5,7 @@ import { Container, ElAside, ElMain, ElFooter, ElHeader } from './components/Con
 import { ElButton, ElButtonGroup } from './components/Button'
 import { ElLink } from './components/Link'
 import { ElIcon } from './components/Icon'
+import { Popper } from './components/Popper'
 import { ElPopover } from './components/Popover'
 import { Nav, NavItem, NavItemGroup } from './components/Nav'
 // import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from './components/Menu'
@@ -59,6 +60,7 @@ export const elenext: Plugin = {
     useComponent(ElButtonGroup)
     useComponent(ElLink)
     useComponent(ElIcon)
+    useComponent(Popper)
     useComponent(ElPopover)
 
     useComponent(Alert)

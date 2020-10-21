@@ -74,6 +74,7 @@ const Nav = defineComponent({
         }
       }
     })
+
     return () =>
       state.isRoot ? (
         <ul class={[blockCls]} style={{ paddingLeft: state.padding + 'px' }} onSelect={onSelectHandler}>

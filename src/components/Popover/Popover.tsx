@@ -1,6 +1,6 @@
 import { defineComponent, PropType } from 'vue'
 
-import { ElPopper } from '../Popper'
+import { Popper as ElPopper } from '../Popper'
 
 // import './Popover.scss'
 import { normalizeClass } from '../../utils/dom'

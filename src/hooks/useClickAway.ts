@@ -1,17 +1,14 @@
-import { watchEffect } from 'vue'
-
-// 鼠标点击事件，click 不会监听右键
-const defaultEvent = 'click'
+import { Ref, watchEffect } from 'vue'
 
 type EventType = MouseEvent | TouchEvent
 
 export default function useClickAway(
   onClickAway: (event: EventType) => void,
-  target: HTMLElement,
-  eventName: string = defaultEvent
+  targetRef: Ref<HTMLElement>,
+  eventName: string = 'click'
 ) {
   const handler = (event: any) => {
-    if (!target || target.contains(event.target)) {
+    if (!targetRef.value || targetRef.value.contains(event.target)) {
       return
     }
     onClickAway(event)
