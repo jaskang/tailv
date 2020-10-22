@@ -27,25 +27,22 @@ const Popper = defineComponent({
   name: getCompName('Popper'),
   emits: ['update:modelValue'],
   props: {
-    modelValue: {
-      type: Boolean,
-      default: false
-    },
-    transitionName: {
-      type: String,
-      default: ''
-    },
+    modelValue: Boolean,
     popperClass: {
       type: String,
       default: ''
+    },
+    placement: {
+      type: String as PropType<Placement>,
+      default: 'top'
     },
     trigger: {
       type: String as PropType<'click' | 'hover'>,
       default: 'click'
     },
-    placement: {
-      type: String as PropType<Placement>,
-      default: 'top'
+    transition: {
+      type: String,
+      default: ''
     },
     modifiers: {
       type: Array as PropType<Partial<Modifier<any, any>>[]>,
@@ -136,7 +133,7 @@ const Popper = defineComponent({
       return (
         <>
           <Teleport to={`#${teleportEl.id}`}>
-            <Transition name={props.transitionName}>
+            <Transition name={props.transition}>
               <div
                 class={[blockCls, props.popperClass]}
                 ref={popperEl}
@@ -145,6 +142,7 @@ const Popper = defineComponent({
                 {...popperState.attributes.popper}
               >
                 {slots.popper?.()}
+                <div class={`${blockCls}__arrow`} data-popper-arrow></div>
               </div>
             </Transition>
           </Teleport>

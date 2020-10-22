@@ -10,6 +10,7 @@ import Tile from './__docs__/Tile.zh-CN.md'
 import Breadcrumb from './__docs__/Breadcrumb.zh-CN.md'
 import Nav from './__docs__/Nav.zh-CN.md'
 import Popper from './__docs__/Popper.zh-CN.md'
+import Tooltip from './__docs__/Tooltip.zh-CN.md'
 import Popover from './__docs__/Popover.zh-CN.md'
 
 export const router = createRouter({
@@ -66,6 +67,11 @@ export const router = createRouter({
           path: '/popper',
           name: 'popper',
           component: Popper
+        },
+        {
+          path: '/tooltip',
+          name: 'tooltip',
+          component: Tooltip
         },
         {
           path: '/popover',

@@ -13,6 +13,6 @@ export default [
   },
   {
     title: 'Others',
-    items: ['popper', 'popover']
+    items: ['popper', 'tooltip', 'popover']
   }
 ]
