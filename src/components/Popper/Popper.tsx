@@ -1,46 +1,27 @@
-import {
-  defineComponent,
-  onMounted,
-  getCurrentInstance,
-  Teleport,
-  PropType,
-  reactive,
-  watch,
-  watchEffect,
-  ref,
-  cloneVNode,
-  createVNode,
-  h,
-  nextTick
-} from 'vue'
-
-import { usePopper } from './usePopper2'
-import useClickAway from '../../hooks/useClickAway'
-import { Placement } from '@popperjs/core'
-import { getBlockCls, getCompName } from '../../config'
+import { defineComponent, Teleport, PropType, reactive, watchEffect, cloneVNode, h, Transition, onUnmounted } from 'vue'
+import { Modifier } from '@popperjs/core'
+import { getBlockCls, getCompName } from '@/config'
 import { uniqueId } from '@/utils/uniqueId'
-import { createEl } from '@/utils/dom'
-// import vClickAway from '../../directives/v-click-away'
+import { createEl, removeEl } from '@/utils/dom'
+import { usePopper } from './usePopper'
 
-// const PopperInner = defineComponent({
-//   props: {
-//     setRootEl: {
-//       type: Function as PropType<(el: HTMLElement | null) => void>,
-//       required: true
-//     }
-//   },
-//   setup({ setRootEl }, { slots }) {
-//     onMounted(() => {
-//       const instance = getCurrentInstance()
-//       let node = instance!.vnode.el
-//       while (node && !node.tagName) {
-//         node = node.nextSibling
-//       }
-//       setRootEl(node as HTMLElement | null)
-//     })
-//     return () => (slots.default ? slots.default() : <span></span>)
-//   }
-// })
+export type Placement =
+  | 'auto'
+  | 'auto-start'
+  | 'auto-end'
+  | 'top'
+  | 'bottom'
+  | 'right'
+  | 'left'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'right-start'
+  | 'right-end'
+  | 'left-start'
+  | 'left-end'
+
 const blockCls = getBlockCls('Popper')
 const Popper = defineComponent({
   name: getCompName('Popper'),
@@ -49,6 +30,10 @@ const Popper = defineComponent({
     modelValue: {
       type: Boolean,
       default: false
+    },
+    transitionName: {
+      type: String,
+      default: ''
     },
     popperClass: {
       type: String,
@@ -62,33 +47,72 @@ const Popper = defineComponent({
       type: String as PropType<Placement>,
       default: 'top'
     },
-    modifiers: { type: Array, default: [] },
+    modifiers: {
+      type: Array as PropType<Partial<Modifier<any, any>>[]>,
+      default: []
+    },
     strategy: {
       type: String as PropType<'absolute' | 'fixed'>,
-      default: 'bottom'
+      default: 'absolute'
     }
   },
   setup(props, { attrs, slots, emit }) {
     const id = uniqueId('el-popper-teleport')
-    const popperTeleportEl = createEl(id)
+    const teleportEl = createEl(id)
+    const { referenceEl, popperEl, popperRef, state: popperState } = usePopper({
+      placement: props.placement,
+      strategy: props.strategy,
+      modifiers: props.modifiers
+    })
 
-    const { referenceEl, popperEl, state: popperState } = usePopper({})
     const state = reactive({
       show: false
     })
-    watchEffect(onInvalidate => {
-      if (referenceEl.value) {
-        console.log('mouseenter')
 
-        referenceEl.value.addEventListener('mouseenter', () => {
-          state.show = true
+    const showHandler = () => {
+      state.show = true
+    }
+    const hideHandler = () => {
+      state.show = false
+    }
+    const clickAwayHandler = (event: any) => {
+      if (referenceEl.value && !referenceEl.value.contains(event.target)) {
+        state.show = false
+      }
+    }
+    watchEffect(() => {
+      if (state.show) {
+        popperRef.value?.update()
+      }
+    })
+    watchEffect(onInvalidate => {
+      if (props.trigger === 'hover') {
+        if (referenceEl.value) {
+          referenceEl.value.addEventListener('mouseenter', showHandler)
+          referenceEl.value.addEventListener('mouseleave', hideHandler)
+        }
+        onInvalidate(() => {
+          if (referenceEl.value) {
+            referenceEl.value.removeEventListener('mouseenter', showHandler)
+            referenceEl.value.removeEventListener('mouseleave', hideHandler)
+          }
         })
-        referenceEl.value.addEventListener('mouseleave', () => {
-          state.show = false
+      } else {
+        if (referenceEl.value) {
+          referenceEl.value.addEventListener('click', showHandler)
+          document.addEventListener('click', clickAwayHandler)
+        }
+        onInvalidate(() => {
+          if (referenceEl.value) {
+            referenceEl.value.removeEventListener('click', showHandler)
+            document.removeEventListener('click', clickAwayHandler)
+          }
         })
       }
     })
-
+    onUnmounted(() => {
+      removeEl(teleportEl)
+    })
     return () => {
       const slotContent = slots.default ? slots.default() : []
 
@@ -98,7 +122,11 @@ const Popper = defineComponent({
           if (typeof vnode.type === 'string') {
             return cloneVNode(vnode, { ref: referenceEl })
           } else if (typeof vnode.type === 'object') {
-            return cloneVNode(vnode, { ref: referenceEl })
+            return cloneVNode(vnode, {
+              ref: (instance: any) => {
+                referenceEl.value = instance?.$el ?? null
+              }
+            })
           }
           return h('span', { ref: referenceEl }, cloneVNode(vnode))
         }
@@ -107,15 +135,18 @@ const Popper = defineComponent({
 
       return (
         <>
-          <Teleport to={`#${popperTeleportEl.id}`}>
-            <div
-              ref={popperEl}
-              v-show={state.show}
-              style={popperState.styles.popper}
-              {...popperState.attributes.popper}
-            >
-              {slots.popper?.()}
-            </div>
+          <Teleport to={`#${teleportEl.id}`}>
+            <Transition name={props.transitionName}>
+              <div
+                class={[blockCls, props.popperClass]}
+                ref={popperEl}
+                v-show={state.show}
+                style={popperState.styles.popper}
+                {...popperState.attributes.popper}
+              >
+                {slots.popper?.()}
+              </div>
+            </Transition>
           </Teleport>
           {transformedSlotContent}
         </>

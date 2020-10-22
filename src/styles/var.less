@@ -68,8 +68,14 @@
 //
 
 @global-border-width: 1px;
-@global-border: #e5e5e5;
 
+@global-border-base: #dcdfe6;
+/// color|1|Border Color|3
+@global-border-light: #e4e7ed;
+/// color|1|Border Color|3
+@global-border-lighter: #ebeef5;
+/// color|1|Border Color|3
+@global-border-extra-light: #f2f6fc;
 //
 // line-height
 //
@@ -79,14 +85,13 @@
 @global-line-height-small: 32px;
 @global-line-height-mini: 28px;
 
-//
-// Box-Shadows
-//
-
-@global-small-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-@global-medium-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-@global-large-box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
-@global-xlarge-box-shadow: 0 28px 50px rgba(0, 0, 0, 0.16);
+// Box-shadow
+/// boxShadow|1|Shadow|1
+@global-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+// boxShadow|1|Shadow|1
+@global-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.12);
+/// boxShadow|1|Shadow|1
+@global-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
 //
 // Spacings
@@ -104,12 +109,11 @@
 @global-padding-horizontal-small: 15px;
 @global-padding-horizontal-mini: 15px;
 
-//
-// Z-index
-//
-
-@global-z-index: 1000;
-
+/* z-index
+-------------------------- */
+@global-index-normal: 1;
+@global-index-top: 1000;
+@global-index-popper: 2000;
 //
 // Transition
 //

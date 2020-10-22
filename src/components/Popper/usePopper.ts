@@ -1,117 +1,91 @@
-import { reactive, computed, ref, watchEffect, onUnmounted, onMounted, InjectionKey } from 'vue'
-import { createPopper, Instance as Popper } from '@popperjs/core'
-import { normalizeClass, createEl, removeEl } from '../../utils/dom'
-import { uniqueId } from '../../utils/uniqueId'
+import { createPopper, Instance as PopperInstance, Options as PopperOptions } from '@popperjs/core'
+import { computed, reactive, ref, watch, watchEffect } from 'vue'
 
-// import './popper.scss'
-import useChildren from '../../hooks/useChildren'
+type Options = Partial<PopperOptions>
 
-export type Placement =
-  | 'auto'
-  | 'auto-start'
-  | 'auto-end'
-  | 'top'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'right'
-  | 'right-start'
-  | 'right-end'
-  | 'left'
-  | 'left-start'
-  | 'left-end'
+function fromEntries(entries: Array<[string, any]>) {
+  return entries.reduce((acc, [key, value]) => {
+    acc[key] = value
+    return acc
+  }, {} as any)
+}
 
-export type Strategy = 'absolute' | 'fixed'
+export const usePopper = (options: Options = {}) => {
+  const referenceEl = ref<HTMLElement>()
+  const popperEl = ref<HTMLElement>()
+  const popperRef = ref<PopperInstance | null>(null)
 
-const popperInject: InjectionKey<{
-  id: symbol
-  visible: boolean
-}> = Symbol('popper')
-
-export function usePopper(
-  popperClass?: string | string[],
-  popperOptions?: {
-    trigger?: 'click' | 'hover' | 'focus' | 'manual'
-    placement?: Placement
-    modifiers?: Array<any>
-    strategy?: Strategy
+  const optionsWithDefaults = {
+    onFirstUpdate: options.onFirstUpdate,
+    placement: options.placement || 'bottom',
+    strategy: options.strategy || 'absolute',
+    modifiers: options.modifiers || []
   }
-) {
-  const { placement = 'bottom', modifiers = [], strategy = 'absolute' } = popperOptions || {}
-  const id = uniqueId('el-popper')
-  const popperEl = createEl(id, normalizeClass(['el-popper', popperClass]))
-  const popper = ref<Popper>()
-  let referenceEl: HTMLElement | null = null
 
-  const setReferenceEl = (el: HTMLElement) => {
-    if (referenceEl === el) {
+  const state = reactive<any>({
+    styles: {
+      popper: {
+        position: optionsWithDefaults.strategy,
+        left: '0',
+        top: '0'
+      }
+    },
+    attributes: {}
+  })
+
+  const popperOptions = computed(() => {
+    return {
+      onFirstUpdate: options.onFirstUpdate,
+      placement: options.placement || 'bottom-start',
+      strategy: options.strategy || 'absolute',
+      modifiers: [
+        ...(options.modifiers || []),
+        {
+          name: 'updateState',
+          enabled: true,
+          phase: 'write',
+          fn: ({ state: popperState }: any) => {
+            console.log(popperState)
+
+            const elements = Object.keys(popperState.elements)
+            state.styles = fromEntries(elements.map(element => [element, popperState.styles[element] || {}]))
+            state.attributes = fromEntries(elements.map(element => [element, popperState.attributes[element]]))
+          },
+          requires: ['computeStyles']
+        },
+        { name: 'applyStyles', enabled: false }
+      ]
+    }
+  })
+  watch(popperOptions, (value, prevVaule, onInvalidate) => {
+    if (popperRef.value) {
+      popperRef.value.setOptions(popperOptions.value)
+    }
+  })
+
+  watchEffect(onInvalidate => {
+    if (referenceEl?.value == null || popperEl?.value == null) {
       return
     }
-    if (popper.value) {
-      popper.value.destroy()
-    }
-    popper.value = createPopper(el, popperEl, {
-      placement,
-      modifiers,
-      strategy
+    console.log('createPopper')
+
+    const popperInstance = createPopper(referenceEl.value, popperEl.value, popperOptions.value as any)
+
+    popperRef.value = popperInstance
+    console.log(popperInstance)
+
+    onInvalidate(() => {
+      if (popperRef.value) {
+        popperRef.value.destroy()
+      }
+      popperRef.value = null
     })
-  }
-
-  const state = reactive({
-    focus: false,
-    visible: false,
-    childrenVisible: false
-  })
-
-  const realVisible = computed(() => state.visible || state.focus || state.childrenVisible)
-
-  const provideData = reactive({
-    id: id,
-    visible: realVisible
-  })
-  useChildren(popperInject, provideData, children => {
-    state.childrenVisible = children.some(item => item.visible)
-    console.log(`${id}:${state.childrenVisible}`)
-    console.log(children)
-  })
-
-  watchEffect(() => {
-    if (realVisible.value) {
-      popper.value?.update().then(() => {
-        popperEl.setAttribute('data-show', '')
-      })
-    } else {
-      popperEl.removeAttribute('data-show')
-    }
-  })
-
-  const events: Array<[string, () => void]> = [
-    ['mouseenter', () => (state.focus = true)],
-    ['mouseleave', () => (state.focus = false)]
-  ]
-
-  onMounted(() => {
-    events.forEach(event => {
-      popperEl.addEventListener(event[0], event[1])
-    })
-  })
-  onUnmounted(() => {
-    if (popper.value) {
-      popper.value.destroy()
-      popper.value = undefined
-    }
-    events.forEach(event => {
-      popperEl.removeEventListener(event[0], event[1])
-    })
-    removeEl(popperEl)
   })
 
   return {
-    popper,
-    popperEl: popperEl,
-    setReferenceEl,
-    state: state
+    popperEl,
+    referenceEl,
+    popperRef,
+    state
   }
 }

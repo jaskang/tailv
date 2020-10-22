@@ -1,12 +1,15 @@
 import { defineComponent, PropType } from 'vue'
 
-import { Popper as ElPopper } from '../Popper'
+import { Popper } from '../Popper'
 
 // import './Popover.scss'
-import { normalizeClass } from '../../utils/dom'
+import { normalizeClass } from '@/utils/dom'
+import { getBlockCls, getCompName } from '@/config'
+
+const blockCls = getBlockCls('Popover')
 
 const Popover = defineComponent({
-  name: 'ElPopver',
+  name: getCompName('Popover'),
   emits: ['update:modelValue'],
   props: {
     modelValue: {
@@ -35,21 +38,10 @@ const Popover = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
-    // const onUpdate = (value: boolean) => {
-    //   emit('update:modelValue', value)
-    // }
     return () => (
-      <ElPopper
-        popperClass={normalizeClass([
-          'el-popover',
-          'el-popper',
-          props.popperClass,
-          props.content && 'el-popover--plain'
-        ])}
+      <Popper
+        popperClass={normalizeClass([blockCls, props.popperClass, props.content && 'el-popover--plain'])}
         trigger={props.trigger}
-        v-model={[props.modelValue, 'modelValue']}
-        // TODO: vueComponent/jsx parseEvents ?
-        // vOn={[onUpdate,'update:modelValue']}
         v-slots={{
           popper: () => (
             <div ref="popper" style={{ width: props.width + 'px' }} role="tooltip" id="tooltipId">
@@ -59,7 +51,7 @@ const Popover = defineComponent({
           ),
           default: slots.default
         }}
-      ></ElPopper>
+      ></Popper>
     )
   }
 })
