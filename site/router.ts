@@ -11,7 +11,7 @@ import Breadcrumb from './__docs__/Breadcrumb.zh-CN.md'
 import Nav from './__docs__/Nav.zh-CN.md'
 import Popper from './__docs__/Popper.zh-CN.md'
 import Tooltip from './__docs__/Tooltip.zh-CN.md'
-import Popover from './__docs__/Popover.zh-CN.md'
+import Popover from './__docs__/doc.zh-CN.md'
 
 export const router = createRouter({
   history: createWebHistory(),
