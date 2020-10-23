@@ -12,6 +12,7 @@ import Nav from './__docs__/Nav.zh-CN.md'
 import Popper from './__docs__/Popper.zh-CN.md'
 import Tooltip from './__docs__/Tooltip.zh-CN.md'
 import Popover from './__docs__/Popover.zh-CN.md'
+import Alert from './__docs__/Alert.zh-CN.md'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -77,17 +78,17 @@ export const router = createRouter({
           path: '/popover',
           name: 'popover',
           component: Popover
+        },
+        {
+          path: '/alert',
+          name: 'alert',
+          component: Alert
         }
 
         // {
         //   path: '/menu',
         //   name: 'menu',
         //   component: async () => import('/@docs/Menu/__docs__/Menu.md')
-        // },
-        // {
-        //   path: '/alert',
-        //   name: 'alert',
-        //   component: async () => import('/@docs/Alert/__docs__/Alert.md')
         // },
 
         // {
