@@ -1,19 +1,19 @@
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
+import { normalizeClass } from '@/utils/dom'
 // import './Link.scss'
 
+const blockCls = getBlockCls('Link')
 const Link = defineComponent({
-  name: 'ElLink',
+  name: getCompName('Link'),
   inheritAttrs: false,
   emits: ['click'],
   props: {
     type: {
-      type: String,
+      type: String as PropType<'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>,
       default: 'default'
     },
-    underline: {
-      type: Boolean,
-      default: true
-    },
+    underline: { type: Boolean, default: true },
     disabled: Boolean,
     href: String,
     icon: String
@@ -26,18 +26,16 @@ const Link = defineComponent({
         }
       }
     }
+    const clsNames = normalizeClass([
+      blockCls,
+      `${blockCls}--${props.type}`,
+      {
+        'is-disabled': !!props.disabled,
+        'is-underline': !!props.underline && !props.disabled
+      }
+    ])
     return () => (
-      <a
-        class={[
-          'el-link',
-          props.type ? `el-link--${props.type}` : '',
-          props.disabled && 'is-disabled',
-          props.underline && !props.disabled && 'is-underline'
-        ]}
-        href={props.disabled ? undefined : props.href}
-        {...{ ...attrs, onClick: handleClick }}
-        // onClick={handleClick}
-      >
+      <a class={clsNames} href={props.disabled ? undefined : props.href} {...attrs} onClick={handleClick}>
         {props.icon && <i class={props.icon}></i>}
         <span class="el-link--inner">{slots.default?.()}</span>
       </a>

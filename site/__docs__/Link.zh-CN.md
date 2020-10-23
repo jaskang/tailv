@@ -1,15 +1,15 @@
-## Link 文字链接
+# Link 文字链接
 
 文字超链接
 
-### 基础用法
+## 基础用法
 
 基础的文字链接用法。
 
 ```vue
 <template>
   <div>
-    <el-link href="https://element.eleme.io" target="_blank">默认链接</el-link>
+    <el-link>默认链接</el-link>
     <el-link type="primary">主要链接</el-link>
     <el-link type="success">成功链接</el-link>
     <el-link type="warning">警告链接</el-link>
@@ -19,7 +19,7 @@
 </template>
 ```
 
-### 禁用状态
+## 禁用状态
 
 文字链接不可用状态。
 
@@ -36,7 +36,7 @@
 </template>
 ```
 
-### 下划线
+## 下划线
 
 文字链接下划线。
 
@@ -49,7 +49,9 @@
 </template>
 ```
 
-### 图标 带图标的文字链接可增强辨识度。
+## 图标
+
+带图标的文字链接可增强辨识度。
 
 ```vue
 <template>
@@ -60,7 +62,7 @@
 </template>
 ```
 
-### Attributes
+## Attributes
 
 | 参数      | 说明           | 类型    | 可选值                                     | 默认值  |
 | --------- | -------------- | ------- | ------------------------------------------ | ------- |

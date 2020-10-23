@@ -26,16 +26,16 @@
   transition: opacity 0.2s;
 
   &.is-light {
-    .el-alert__closebtn {
+    .@{prefix}-alert__closebtn {
       color: @global-color-text-placeholder;
     }
   }
 
   &.is-dark {
-    .el-alert__closebtn {
+    .@{prefix}-alert__closebtn {
       color: @global-color-white;
     }
-    .el-alert__description {
+    .@{prefix}-alert__description {
       color: @global-color-white;
     }
   }
@@ -49,7 +49,7 @@
       background-color: @alert-success-color;
       color: @global-color-success;
 
-      .el-alert__description {
+      .@{prefix}-alert__description {
         color: @global-color-success;
       }
     }
@@ -71,7 +71,7 @@
       color: @global-color-white;
     }
 
-    .el-alert__description {
+    .@{prefix}-alert__description {
       color: @global-color-info;
     }
   }
@@ -81,7 +81,7 @@
       background-color: @alert-warning-color;
       color: @global-color-warning;
 
-      .el-alert__description {
+      .@{prefix}-alert__description {
         color: @global-color-warning;
       }
     }
@@ -97,7 +97,7 @@
       background-color: @alert-danger-color;
       color: @global-color-danger;
 
-      .el-alert__description {
+      .@{prefix}-alert__description {
         color: @global-color-danger;
       }
     }
@@ -130,7 +130,7 @@
     }
   }
 
-  & .el-alert__description {
+  & .@{prefix}-alert__description {
     font-size: @alert-description-font-size;
     margin: 5px 0 0 0;
   }

@@ -57,7 +57,7 @@ const Alert = defineComponent({
       emit('close')
     }
     return () => (
-      <Transition name="el-alert-fade">
+      <Transition name={`${blockCls}-fade`}>
         <div
           class={[blockCls, typeClass.value, props.center ? 'is-center' : '', 'is-' + props.effect]}
           v-show={data.visible}
