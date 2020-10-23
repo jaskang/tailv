@@ -3,13 +3,6 @@ import { computed, reactive, ref, watch, watchEffect } from 'vue'
 
 type Options = Partial<PopperOptions>
 
-function fromEntries(entries: Array<[string, any]>) {
-  return entries.reduce((acc, [key, value]) => {
-    acc[key] = value
-    return acc
-  }, {} as any)
-}
-
 export const usePopper = (options: Options = {}) => {
   const referenceEl = ref<HTMLElement>()
   const popperEl = ref<HTMLElement>()
@@ -47,9 +40,8 @@ export const usePopper = (options: Options = {}) => {
           fn: ({ state: popperState }: any) => {
             console.log(popperState)
 
-            const elements = Object.keys(popperState.elements)
-            state.styles = fromEntries(elements.map(element => [element, popperState.styles[element] || {}]))
-            state.attributes = fromEntries(elements.map(element => [element, popperState.attributes[element]]))
+            state.styles = { ...popperState.styles }
+            state.attributes = { ...popperState.attributes }
           },
           requires: ['computeStyles']
         },

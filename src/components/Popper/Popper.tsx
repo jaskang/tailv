@@ -142,7 +142,7 @@ const Popper = defineComponent({
                 {...popperState.attributes.popper}
               >
                 {slots.popper?.()}
-                <div class={`${blockCls}__arrow`} data-popper-arrow></div>
+                <div class={`${blockCls}__arrow`} style={popperState.styles.arrow} data-popper-arrow></div>
               </div>
             </Transition>
           </Teleport>
