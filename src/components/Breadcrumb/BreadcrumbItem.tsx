@@ -1,8 +1,9 @@
-import { defineComponent, reactive, inject, onMounted, getCurrentInstance } from 'vue'
-import { ElBreadcrumbSymbol } from '../../provides'
+import { defineComponent, getCurrentInstance, computed } from 'vue'
+import { getBlockCls, getCompName } from '../../config'
 
+const blockCls = getBlockCls('Breadcrumb')
 const BreadcrumbItem = defineComponent({
-  name: 'ElBreadcrumbItem',
+  name: getCompName('BreadcrumbItem'),
   props: {
     to: {
       type: Object,
@@ -13,16 +14,15 @@ const BreadcrumbItem = defineComponent({
     replace: Boolean
   },
   setup(props, { slots }) {
-    const elBread = inject(ElBreadcrumbSymbol)
-    const data = reactive({
-      separator: '',
-      separatorClass: ''
-    })
     const instance = getCurrentInstance()
-    onMounted(() => {
-      data.separator = elBread.props.separator
-      data.separatorClass = elBread.props.separatorClass
+
+    const separatorRef = computed(() => {
+      return {
+        separator: instance?.parent?.props.separator,
+        separatorClass: instance?.parent?.props.separatorClass
+      }
     })
+
     const onLinkClick = () => {
       const { to } = props
       const $router = (instance as any)?.ctx?.$router
@@ -30,14 +30,14 @@ const BreadcrumbItem = defineComponent({
       props.replace ? $router.replace(to) : $router.push(to)
     }
     return () => (
-      <span class="el-breadcrumb__item">
-        <span class={['el-breadcrumb__inner', props.to ? 'is-link' : '']} role="link" onClick={onLinkClick}>
+      <span class={`${blockCls}__item`}>
+        <span class={[`${blockCls}__inner`, props.to ? 'is-link' : '']} role="link" onClick={onLinkClick}>
           {slots.default?.()}
         </span>
-        {data.separatorClass ? (
-          <i class={['el-breadcrumb__separator', data.separatorClass]}></i>
+        {separatorRef.value.separatorClass ? (
+          <i class={[`${blockCls}__separator`, separatorRef.value.separatorClass]}></i>
         ) : (
-          <span class="el-breadcrumb__separator">{data.separator}</span>
+          <span class={`${blockCls}__separator`}>{separatorRef.value.separator}</span>
         )}
       </span>
     )

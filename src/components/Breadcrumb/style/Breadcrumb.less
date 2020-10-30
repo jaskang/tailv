@@ -1,6 +1,6 @@
-@root: ~'@{prefix}-breadcrumb';
+@breadcrumb: ~'@{prefix}-breadcrumb';
 
-.@{root} {
+.@{breadcrumb} {
   font-size: 14px;
   // line-height: 1;
   &__separator {
@@ -16,7 +16,7 @@
   &__item {
     // float: left;
     &:last-child {
-      .@{root}__separator {
+      .@{breadcrumb}__separator {
         display: none;
       }
     }

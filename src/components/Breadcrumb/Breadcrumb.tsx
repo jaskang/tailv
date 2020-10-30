@@ -1,8 +1,9 @@
 import { defineComponent, provide, getCurrentInstance } from 'vue'
-import { ElBreadcrumbSymbol } from '../../provides'
+import { getBlockCls, getCompName } from '@/config'
 
+const blockCls = getBlockCls('Breadcrumb')
 const Breadcrumb = defineComponent({
-  name: 'ElBreadcrumb',
+  name: getCompName('Breadcrumb'),
   props: {
     separator: {
       type: String,
@@ -14,8 +15,7 @@ const Breadcrumb = defineComponent({
     }
   },
   setup(prop, { slots }) {
-    provide(ElBreadcrumbSymbol, getCurrentInstance())
-    return () => <div class="el-breadcrumb">{slots.default?.()}</div>
+    return () => <div class={blockCls}>{slots.default?.()}</div>
   }
 })
 
