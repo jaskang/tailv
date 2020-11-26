@@ -78,6 +78,6 @@ export function removeClass(el: Element, cls: string) {
     }
   }
   if (!el.classList) {
-    el.className = trim((curClass || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, ''))
+    el.className = (curClass || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '').trim()
   }
 }
