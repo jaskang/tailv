@@ -27,10 +27,14 @@ const Row = defineComponent({
     justify: {
       type: String as PropType<'start' | 'end' | 'center' | 'space-around' | 'space-between'>,
       default: 'start'
+    },
+    wrap: {
+      type: Boolean as PropType<boolean>,
+      default: true
     }
   },
   setup(props, { slots }) {
-    const { screens } = useBreakpoint()
+    const screens = useBreakpoint()
     const gutter = computed(() => {
       const propGutter = props.gutter
       const getTuple = (arg: number | GutterTuple) => {
@@ -59,6 +63,7 @@ const Row = defineComponent({
       normalizeClass([
         blockCls,
         {
+          [`${blockCls}-no-wrap`]: props.wrap === false,
           [`${blockCls}-${props.justify}`]: props.justify,
           [`${blockCls}-${props.align}`]: props.align
         }
@@ -86,7 +91,6 @@ const Row = defineComponent({
 
     provide(RowInjectKey, { gutter })
     return () => {
-      // style={style.value}
       return (
         <div class={classes.value} style={style.value}>
           {slots.default?.()}

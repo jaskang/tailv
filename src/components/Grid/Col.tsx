@@ -1,4 +1,4 @@
-import { defineComponent, computed, inject, PropType, ref, ComputedRef, CSSProperties } from 'vue'
+import { defineComponent, computed, inject, PropType, ref, CSSProperties } from 'vue'
 import { getCompName, getBlockCls } from '../../config'
 import { RowInjectKey, GutterTuple } from './Row'
 import { normalizeClass } from '../../utils/dom'
@@ -15,6 +15,7 @@ type SizeProp = {
 }
 
 type FlexType = number | 'none' | 'auto' | string
+
 function parseFlex(flex: FlexType): string {
   if (typeof flex === 'number') {
     return `${flex} ${flex} auto`
@@ -58,7 +59,7 @@ const Col = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { gutter } = inject(RowInjectKey, { gutter: ref([0, 0]) } as { gutter: ComputedRef<GutterTuple> })
+    const { gutter } = inject(RowInjectKey, { gutter: ref([0, 0] as GutterTuple) })
 
     const classes = computed(() => {
       let sizeObjs: any[] = []

@@ -1,5 +1,5 @@
 import { Component, Plugin } from 'vue'
-import { Row, Col } from './components/Grid'
+import { Row, Col, useBreakpoint } from './components/Grid'
 import { Tile } from './components/Tile'
 import { Container, ElAside, ElMain, ElFooter, ElHeader } from './components/Container'
 import { ElButton, ElButtonGroup } from './components/Button'
@@ -31,7 +31,8 @@ export {
   ElPopover,
   Alert,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  useBreakpoint
 }
 
 export const elenext: Plugin = {

@@ -12,20 +12,23 @@ export function removeEl(el: Element) {
   if (el.parentNode) el.parentNode.removeChild(el)
 }
 
-type classAttr = string | Record<string, boolean> | classAttr[]
+type ClassValue = ClassValue[] | { [id: string]: any } | string | number | null | boolean | undefined
 
-export function normalizeClass(value: classAttr): string {
+export function normalizeClass(...classes: ClassValue[]): string {
   let res = ''
-  if (typeof value === 'string') {
-    res = value
-  } else if (Array.isArray(value)) {
-    for (let i = 0; i < value.length; i++) {
-      res += normalizeClass(value[i]) + ' '
-    }
-  } else if (value !== null && typeof value === 'object') {
-    for (const name in value) {
-      if ((value as Record<string, boolean>)[name]) {
-        res += name + ' '
+  for (let index = 0; index < classes.length; index++) {
+    const cls = classes[index]
+    if (typeof cls === 'string' || typeof cls === 'number') {
+      res += ` ${cls}`
+    } else if (Array.isArray(cls)) {
+      res += ` ${normalizeClass(...cls)}`
+    } else if (typeof cls === 'object') {
+      if (cls) {
+        for (const key in cls) {
+          if (cls[key]) {
+            res += ` ${key}`
+          }
+        }
       }
     }
   }

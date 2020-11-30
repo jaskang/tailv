@@ -34,7 +34,8 @@ export const MenuDataSymbol: InjectionKey<MenuInject> = Symbol('MenuData')
 export const MenuConfigSymbol: InjectionKey<MenuConfig> = Symbol('MenuConfig')
 
 export function findMenuData(id: symbol, chlidren: MenuData[]): MenuData | null {
-  for (const item of chlidren) {
+  for (let index = 0; index < chlidren.length; index++) {
+    const item = chlidren[index]
     if (item.id === id) {
       return item
     }
