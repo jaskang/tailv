@@ -1,6 +1,6 @@
 <template>
   <div class="demo-layout">
-    <el-container>
+    <el-layout>
       <el-aside class="demo-aside">
         <HelloWorld msg="Elenext UI" />
         <el-nav>
@@ -18,7 +18,7 @@
           <router-view></router-view>
         </div>
       </el-main>
-    </el-container>
+    </el-layout>
   </div>
 </template>
 <script lang="ts">

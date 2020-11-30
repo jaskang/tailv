@@ -1,8 +1,8 @@
-## Container 布局容器
+## Layout 布局容器
 
 用于布局的容器组件，方便快速搭建页面的基本结构：
 
-`<el-container>`：外层容器。当子元素中包含 `<el-header>` 或 `<el-footer>` 时，全部子元素会垂直上下排列，否则会水平左右排列。
+`<el-layout>`：外层容器。当子元素中包含 `<el-header>` 或 `<el-footer>` 时，全部子元素会垂直上下排列，否则会水平左右排列。
 
 `<el-header>`：顶栏容器。
 
@@ -12,42 +12,42 @@
 
 `<el-footer>`：底栏容器。
 
-以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`<el-container>` 的子元素只能是后四者，后四者的父元素也只能是 `<el-container>`。
+以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`<el-layout>` 的子元素只能是后四者，后四者的父元素也只能是 `<el-layout>`。
 
 ### 常见页面布局
 
 ```vue
 <template>
-  <el-container>
+  <el-layout>
     <el-header>Header</el-header>
     <el-main>Main</el-main>
     <el-footer>Footer</el-footer>
-  </el-container>
+  </el-layout>
 </template>
 ```
 
 ```vue
 <template>
-  <el-container>
+  <el-layout>
     <el-header>Header</el-header>
-    <el-container>
+    <el-layout>
       <el-aside width="200px">Aside</el-aside>
       <el-main>Main</el-main>
-    </el-container>
-  </el-container>
+    </el-layout>
+  </el-layout>
 </template>
 ```
 
 ```vue
 <template>
-  <el-container>
+  <el-layout>
     <el-aside width="200px">Aside</el-aside>
-    <el-container>
+    <el-layout>
       <el-header>Header</el-header>
       <el-main>Main</el-main>
       <el-footer>Footer</el-footer>
-    </el-container>
-  </el-container>
+    </el-layout>
+  </el-layout>
 </template>
 ```
 
@@ -55,7 +55,7 @@
 
 ```vue
 <template>
-  <el-container style="height: 500px; border: 1px solid #eee">
+  <el-layout style="height: 500px; border: 1px solid #eee">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-nav width="200px" :default-openeds="['1', '3']">
         <el-nav index="1">
@@ -106,7 +106,7 @@
       </el-nav>
     </el-aside>
 
-    <el-container>
+    <el-layout>
       <el-header style="text-align: right; font-size: 12px">
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
@@ -126,8 +126,8 @@
           <el-table-column prop="address" label="地址"> </el-table-column>
         </el-table>
       </el-main>
-    </el-container>
-  </el-container>
+    </el-layout>
+  </el-layout>
 </template>
 <style lang="less">
 .vuedoc-demo {
@@ -170,7 +170,7 @@ export default {
 </script>
 ```
 
-### Container Attributes
+### Layout Attributes
 
 | 参数      | 说明             | 类型   | 可选值                | 默认值                                                                 |
 | --------- | ---------------- | ------ | --------------------- | ---------------------------------------------------------------------- |

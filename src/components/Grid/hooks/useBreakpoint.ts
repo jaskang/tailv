@@ -32,7 +32,7 @@ function useBreakpoint() {
         const mql = window.matchMedia(matchMediaQuery)
         const listener = (event: { matches: boolean }) => {
           const { matches } = event
-          console.log(event)
+          // console.log(event)
           screens[screen] = matches
         }
         mql.addEventListener('change', listener)

@@ -1,7 +1,7 @@
-@container-header-padding: 0 @global-padding-horizontal;
-@container-footer-padding: 0 @global-padding-horizontal;
+@layout-header-padding: 0 @global-padding-horizontal;
+@layout-footer-padding: 0 @global-padding-horizontal;
 
-.@{prefix}-container {
+.@{prefix}-layout {
   display: flex;
   flex: auto;
   flex-direction: column;
@@ -10,20 +10,20 @@
   &.is-horizontal {
     flex-direction: column;
     flex-direction: row;
-    > .@{prefix}-container,
-    > .@{prefix}-container-content {
+    > .@{prefix}-layout,
+    > .@{prefix}-layout-content {
       overflow-x: hidden;
     }
   }
 }
 
 .@{prefix}-header {
-  padding: @container-header-padding;
+  padding: @layout-header-padding;
   flex: 0 0 auto;
 }
 
 .@{prefix}-footer {
-  padding: @container-footer-padding;
+  padding: @layout-footer-padding;
   flex: 0 0 auto;
 }
 

@@ -1,7 +1,7 @@
 import { Component, Plugin } from 'vue'
 import { Row, Col, useBreakpoint } from './components/Grid'
 import { Tile } from './components/Tile'
-import { Container, ElAside, ElMain, ElFooter, ElHeader } from './components/Container'
+import { Layout, Aside, Main, Footer, Header } from './components/Layout'
 import { ElButton, ElButtonGroup } from './components/Button'
 import { ElLink } from './components/Link'
 import { ElIcon } from './components/Icon'
@@ -19,11 +19,11 @@ export {
   Row,
   Col,
   Tile,
-  Container,
-  ElAside,
-  ElMain,
-  ElHeader,
-  ElFooter,
+  Layout,
+  Aside,
+  Main,
+  Header,
+  Footer,
   ElButton,
   ElButtonGroup,
   ElLink,
@@ -52,11 +52,11 @@ export const elenext: Plugin = {
     useComponent(NavItem)
     useComponent(NavItemGroup)
 
-    useComponent(Container)
-    useComponent(ElAside)
-    useComponent(ElMain)
-    useComponent(ElHeader)
-    useComponent(ElFooter)
+    useComponent(Layout)
+    useComponent(Aside)
+    useComponent(Main)
+    useComponent(Header)
+    useComponent(Footer)
 
     useComponent(ElButton)
     useComponent(ElButtonGroup)

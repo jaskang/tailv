@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Layout from './components/Layout.vue'
+import Main from './components/Layout.vue'
 
 import Button from './__docs__/Button.zh-CN.md'
 import Grid from './__docs__/Grid.zh-CN.md'
-import Container from './__docs__/Container.zh-CN.md'
+import Layout from './__docs__/Layout.zh-CN.md'
 import Link from './__docs__/Link.zh-CN.md'
 import Icon from './__docs__/Icon.zh-CN.md'
 import Tile from './__docs__/Tile.zh-CN.md'
@@ -22,7 +22,8 @@ export const router = createRouter({
     {
       path: '/',
       name: 'Layout',
-      component: Layout,
+      component: Main,
+      redirect: '/grid',
       children: [
         {
           path: '/button',
@@ -35,9 +36,9 @@ export const router = createRouter({
           component: Grid
         },
         {
-          path: '/container',
-          name: 'container',
-          component: Container
+          path: '/layout',
+          name: 'layout',
+          component: Layout
         },
         {
           path: '/link',

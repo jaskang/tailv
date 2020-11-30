@@ -3,11 +3,11 @@ import { getBlockCls, getCompName } from '@/config'
 
 const blockCls = getBlockCls('Main')
 
-const ElMain = defineComponent({
+const Main = defineComponent({
   name: getCompName('Main'),
   setup(_, { slots }) {
     return () => <main class={blockCls}>{slots.default?.()}</main>
   }
 })
 
-export default ElMain
+export default Main
