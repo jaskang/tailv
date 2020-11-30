@@ -1,4 +1,4 @@
-import { computed, CSSProperties, defineComponent, inject, ref } from 'vue'
+import { App, computed, CSSProperties, defineComponent, inject, ref } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { uniqueId } from '@/utils/uniqueId'
 import { NAV_INJKEY, NAV_ITEM_PADDING } from './Nav'
@@ -52,5 +52,9 @@ const Navitem = defineComponent({
     )
   }
 })
+
+Navitem.install = (app: App): void => {
+  app.component(Navitem.name, Navitem)
+}
 
 export default Navitem

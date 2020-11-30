@@ -1,4 +1,4 @@
-import { defineComponent, getCurrentInstance, inject } from 'vue'
+import { App, defineComponent, getCurrentInstance, inject } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { LayoutInjectKey } from './Layout'
 
@@ -22,5 +22,9 @@ const Aside = defineComponent({
     )
   }
 })
+
+Aside.install = (app: App): void => {
+  app.component(Aside.name, Aside)
+}
 
 export default Aside

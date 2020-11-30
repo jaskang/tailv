@@ -1,6 +1,6 @@
-import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef } from 'vue'
-import { normalizeClass } from '../../utils/dom'
-import { getBlockCls, getCompName } from '../../config'
+import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef, App } from 'vue'
+import { normalizeClass } from '@/utils/dom'
+import { getBlockCls, getCompName } from '@/config'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 
 export type GutterTuple = [number, number]
@@ -99,5 +99,9 @@ const Row = defineComponent({
     }
   }
 })
+
+Row.install = (app: App): void => {
+  app.component(Row.name, Row)
+}
 
 export default Row

@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from 'vue'
+import { App, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { normalizeClass } from '@/utils/dom'
 // import './Link.scss'
@@ -42,5 +42,9 @@ const Link = defineComponent({
     )
   }
 })
+
+Link.install = (app: App): void => {
+  app.component(Link.name, Link)
+}
 
 export default Link

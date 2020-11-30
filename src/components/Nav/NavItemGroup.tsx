@@ -1,4 +1,4 @@
-import { computed, defineComponent, inject } from 'vue'
+import { App, computed, defineComponent, inject } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { NAV_INJKEY, NAV_ITEM_PADDING } from './Nav'
 
@@ -27,5 +27,9 @@ const NavItemGroup = defineComponent({
     )
   }
 })
+
+NavItemGroup.install = (app: App): void => {
+  app.component(NavItemGroup.name, NavItemGroup)
+}
 
 export default NavItemGroup

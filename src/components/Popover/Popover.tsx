@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType } from 'vue'
+import { App, computed, defineComponent, PropType } from 'vue'
 
 import { Popper } from '../Popper'
 
@@ -56,5 +56,9 @@ const Popover = defineComponent({
     )
   }
 })
+
+Popover.install = (app: App): void => {
+  app.component(Popover.name, Popover)
+}
 
 export default Popover

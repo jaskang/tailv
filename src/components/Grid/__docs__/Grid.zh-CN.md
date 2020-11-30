@@ -290,7 +290,7 @@ export default {
 </script>
 ```
 
-## Row
+### Row
 
 | props   | description               | type    | Accepted Values                             | default |
 | ------- | ------------------------- | ------- | ------------------------------------------- | ------- |
@@ -299,7 +299,7 @@ export default {
 | gutter  | 栅格间隔                  | number  | `number/object / array`                     | 0       |
 | wrap    | 自动换行                  | boolean | -                                           | true    |
 
-## Col
+### Col
 
 | props  | description                            | type                                        | Accepted Values | default |
 | ------ | -------------------------------------- | ------------------------------------------- | --------------- | ------- |

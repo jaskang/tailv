@@ -1,6 +1,6 @@
-import { defineComponent, Transition, TransitionProps } from 'vue'
-import { addClass, removeClass } from '../../utils/dom'
-import { getCompName } from '../../config'
+import { App, defineComponent, Transition, TransitionProps } from 'vue'
+import { addClass, removeClass } from '@/utils/dom'
+import { getCompName } from '@/config'
 
 const CollapseTransitionProps: TransitionProps = {
   onBeforeEnter(_el: Element) {
@@ -73,9 +73,15 @@ const CollapseTransitionProps: TransitionProps = {
   }
 }
 
-export default defineComponent({
+const CollapseTransition = defineComponent({
   name: getCompName('CollapseTransition'),
   setup(props, { slots }) {
     return () => <Transition {...CollapseTransitionProps} v-slots={slots}></Transition>
   }
 })
+
+CollapseTransition.install = (app: App): void => {
+  app.component(CollapseTransition.name, CollapseTransition)
+}
+
+export default CollapseTransition

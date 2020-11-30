@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { App, defineComponent } from 'vue'
 
 const ButtonGroup = defineComponent({
   name: 'ElButtonGroup',
@@ -10,5 +10,9 @@ const ButtonGroup = defineComponent({
     )
   }
 })
+
+ButtonGroup.install = (app: App): void => {
+  app.component(ButtonGroup.name, ButtonGroup)
+}
 
 export default ButtonGroup

@@ -1,4 +1,15 @@
-import { defineComponent, Teleport, PropType, reactive, watchEffect, cloneVNode, h, Transition, onUnmounted } from 'vue'
+import {
+  defineComponent,
+  Teleport,
+  PropType,
+  reactive,
+  watchEffect,
+  cloneVNode,
+  h,
+  Transition,
+  onUnmounted,
+  App
+} from 'vue'
 import { Modifier } from '@popperjs/core'
 import { getBlockCls, getCompName } from '@/config'
 import { uniqueId } from '@/utils/uniqueId'
@@ -152,5 +163,9 @@ const Popper = defineComponent({
     }
   }
 })
+
+Popper.install = (app: App): void => {
+  app.component(Popper.name, Popper)
+}
 
 export default Popper

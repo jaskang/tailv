@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { App, defineComponent } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 
 const blockCls = getBlockCls('Footer')
@@ -19,4 +19,9 @@ const Footer = defineComponent({
     )
   }
 })
+
+Footer.install = (app: App): void => {
+  app.component(Footer.name, Footer)
+}
+
 export default Footer

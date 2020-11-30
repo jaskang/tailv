@@ -1,6 +1,6 @@
-import { computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
+import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
-import { normalizeClass } from '../../utils/dom'
+import { normalizeClass } from '@/utils/dom'
 
 export const LayoutInjectKey: InjectionKey<{
   uid: number
@@ -38,33 +38,10 @@ const Layout = defineComponent({
       return <div class={classes.value}>{slots.default?.()}</div>
     }
   }
-  // data() {
-  //   return {
-  //     hasAside: false
-  //   }
-  // },
-  // methods: {
-  //   setHorizontal() {
-  //     this.hasAside = true
-  //   }
-  // },
-  // computed: {
-  //   isHorizontal(): boolean {
-  //     return this.direction === 'horizontal' || this.hasAside
-  //   }
-  // },
-  // render() {
-  //   return (
-  //     <section
-  //       class={{
-  //         [blockCls]: true,
-  //         'is-horizontal': this.isHorizontal
-  //       }}
-  //     >
-  //       {this.$slots.default?.()}
-  //     </section>
-  //   )
-  // }
 })
+
+Layout.install = (app: App): void => {
+  app.component(Layout.name, Layout)
+}
 
 export default Layout

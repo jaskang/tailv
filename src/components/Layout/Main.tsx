@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { App, defineComponent } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 
 const blockCls = getBlockCls('Main')
@@ -9,5 +9,9 @@ const Main = defineComponent({
     return () => <main class={blockCls}>{slots.default?.()}</main>
   }
 })
+
+Main.install = (app: App): void => {
+  app.component(Main.name, Main)
+}
 
 export default Main

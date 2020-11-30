@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { App, defineComponent } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 
 const blockCls = getBlockCls('Header')
@@ -19,5 +19,9 @@ const Header = defineComponent({
     )
   }
 })
+
+Header.install = (app: App): void => {
+  app.component(Header.name, Header)
+}
 
 export default Header

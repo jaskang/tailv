@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType } from 'vue'
+import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { normalizeClass } from '@/utils/dom'
 
@@ -58,5 +58,9 @@ const Button = defineComponent({
     )
   }
 })
+
+Button.install = (app: App): void => {
+  app.component(Button.name, Button)
+}
 
 export default Button

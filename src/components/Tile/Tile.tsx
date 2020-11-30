@@ -1,6 +1,6 @@
 import { Component, computed, defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
-import useClassNames from '../../hooks/useClassNames'
+import { getBlockCls, getCompName } from '@/config'
+import useClassNames from '@/hooks/useClassNames'
 
 const blockCls = getBlockCls('tile')
 

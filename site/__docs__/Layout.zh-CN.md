@@ -170,31 +170,31 @@ export default {
 </script>
 ```
 
-### Layout Attributes
+### Layout
 
 | 参数      | 说明             | 类型   | 可选值                | 默认值                                             |
 | --------- | ---------------- | ------ | --------------------- | -------------------------------------------------- |
 | direction | 子元素的排列方向 | string | horizontal / vertical | 子元素中有 `Aside` 时为 horizontal 否则为 vertical |
 
-### Header Attributes
+### Header
 
 | 参数   | 说明     | 类型   | 可选值 | 默认值 |
 | ------ | -------- | ------ | ------ | ------ |
 | height | 顶栏高度 | string | —      | 60px   |
 
-### Aside Attributes
+### Aside
 
 | 参数  | 说明       | 类型   | 可选值 | 默认值 |
 | ----- | ---------- | ------ | ------ | ------ |
 | width | 侧边栏宽度 | string | —      | 250px  |
 
-### Footer Attributes
+### Footer
 
 | 参数   | 说明     | 类型   | 可选值 | 默认值 |
 | ------ | -------- | ------ | ------ | ------ |
 | height | 底栏高度 | string | —      | 60px   |
 
-### Main Attributes
+### Main
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | ---- | ---- | ---- | ------ | ------ |

@@ -1,5 +1,5 @@
-import { defineComponent, Transition, computed, PropType, reactive } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+import { defineComponent, Transition, computed, PropType, reactive, App } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
 
 // import './Alert.scss'
 
@@ -88,5 +88,9 @@ const Alert = defineComponent({
     )
   }
 })
+
+Alert.install = (app: App): void => {
+  app.component(Alert.name, Alert)
+}
 
 export default Alert

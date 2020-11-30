@@ -1,6 +1,6 @@
-import { computed, defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
-import { normalizeClass } from '../../utils/dom'
+import { App, computed, defineComponent, PropType } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
+import { normalizeClass } from '@/utils/dom'
 import { Popper } from '../Popper'
 import { Placement } from '../Popper/Popper'
 
@@ -62,5 +62,9 @@ const Tooltip = defineComponent({
     )
   }
 })
+
+Tooltip.install = (app: App): void => {
+  app.component(Tooltip.name, Tooltip)
+}
 
 export default Tooltip

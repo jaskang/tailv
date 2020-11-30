@@ -1,7 +1,7 @@
-import { defineComponent, inject, InjectionKey, provide, reactive } from 'vue'
+import { App, defineComponent, inject, InjectionKey, provide, reactive } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
+import { mixColor } from '@/utils/tools'
 import CollapseTransition from '../Transition/CollapseTransition'
-import { mixColor } from '../../utils/tools'
 
 type NavState = {
   textColor: string
@@ -106,5 +106,9 @@ const Nav = defineComponent({
       )
   }
 })
+
+Nav.install = (app: App): void => {
+  app.component(Nav.name, Nav)
+}
 
 export default Nav

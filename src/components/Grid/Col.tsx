@@ -1,8 +1,8 @@
-import { defineComponent, computed, inject, PropType, ref, CSSProperties } from 'vue'
-import { getCompName, getBlockCls } from '../../config'
+import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } from 'vue'
 import { RowInjectKey, GutterTuple } from './Row'
-import { normalizeClass } from '../../utils/dom'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
+import { getCompName, getBlockCls } from '@/config'
+import { normalizeClass } from '@/utils/dom'
 
 type ColPropType = number | string
 
@@ -125,5 +125,9 @@ const Col = defineComponent({
     )
   }
 })
+
+Col.install = (app: App): void => {
+  app.component(Col.name, Col)
+}
 
 export default Col
