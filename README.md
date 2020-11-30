@@ -57,18 +57,18 @@ Skip this part if you just want to use Element.
   - [x] Row
   - [x] Col
 - [x] Layout
-  - [x] container
-  - [x] main
-  - [x] aside
-  - [x] footer
-  - [x] header
-- [x] button
-- [x] menu
-- [x] icon
-- [x] link
-- [x] alert
+  - [x] Layout
+  - [x] Main
+  - [x] Aside
+  - [x] Footer
+  - [x] Header
+- [x] Button
+- [x] Menu
+- [x] Icon
+- [x] Link
+- [x] Alert
+- [x] Breadcrumb
 - [ ] badge
-- [ ] breadcrumb
 - [ ] calendar
 - [ ] card
 - [ ] checkbox

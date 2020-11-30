@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '../../config'
 import { normalizeClass } from '../../utils/dom'
 import { Popper } from '../Popper'
@@ -39,11 +39,11 @@ const Tooltip = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const clsNames = normalizeClass([blockCls, props.popperClass, 'is-' + props.effect])
+    const classes = computed(() => normalizeClass(blockCls, props.popperClass, 'is-' + props.effect))
     return () => (
       <Popper
         modelValue={props.modelValue}
-        popperClass={clsNames}
+        popperClass={classes.value}
         placement={props.placement}
         trigger={props.trigger}
         modifiers={[

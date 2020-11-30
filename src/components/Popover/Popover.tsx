@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 
 import { Popper } from '../Popper'
 
@@ -38,9 +38,10 @@ const Popover = defineComponent({
     }
   },
   setup(props, { attrs, slots, emit }) {
+    const classes = computed(() => normalizeClass(blockCls, props.popperClass, props.content && 'el-popover--plain'))
     return () => (
       <Popper
-        popperClass={normalizeClass([blockCls, props.popperClass, props.content && 'el-popover--plain'])}
+        popperClass={classes.value}
         trigger={props.trigger}
         v-slots={{
           popper: () => (
