@@ -242,17 +242,51 @@ export default {
 
 ```vue
 <template>
-  <el-row :gutter="[48, 48]">
-    <el-col :span="12" />
-    <el-col :span="12" />
-  </el-row>
-  <el-row :gutter="[48, 48]">
-    <el-col :span="12" />
-    <el-col :span="12" />
+  <div style="margin-bottom: 40px">
+    Horizontal Gutter (px):
+    <label><input type="radio" name="x" :value="8" v-model="data.x" /> 8 </label>
+    <label><input type="radio" name="x" :value="16" v-model="data.x" /> 16 </label>
+    <label><input type="radio" name="x" :value="24" v-model="data.x" /> 24 </label>
+    <label><input type="radio" name="x" :value="32" v-model="data.x" /> 32 </label>
+    <label><input type="radio" name="x" :value="40" v-model="data.x" /> 40 </label>
+    <br />
+    Vertical Gutter (px):
+    <label><input type="radio" name="y" :value="8" v-model="data.y" /> 8 </label>
+    <label><input type="radio" name="y" :value="16" v-model="data.y" /> 16 </label>
+    <label><input type="radio" name="y" :value="24" v-model="data.y" /> 24 </label>
+    <label><input type="radio" name="y" :value="32" v-model="data.y" /> 32 </label>
+    <label><input type="radio" name="y" :value="40" v-model="data.y" /> 40 </label>
+    <br />
+    Column Count:
+    <label><input type="radio" name="total" :value="2" v-model="data.colTotal" /> 2 </label>
+    <label><input type="radio" name="total" :value="4" v-model="data.colTotal" /> 4 </label>
+    <label><input type="radio" name="total" :value="6" v-model="data.colTotal" /> 6 </label>
+    <label><input type="radio" name="total" :value="8" v-model="data.colTotal" /> 8 </label>
+    <label><input type="radio" name="total" :value="12" v-model="data.colTotal" /> 12 </label>
+  </div>
+  <el-row :gutter="[data.x, data.y]">
+    <el-col v-for="i in data.colTotal" :span="24 / data.colTotal">
+      <div>span:{{ 24 / data.colTotal }}</div>
+    </el-col>
+    <el-col v-for="i in data.colTotal" :span="24 / data.colTotal">
+      <div>span:{{ 24 / data.colTotal }}</div>
+    </el-col>
   </el-row>
 </template>
 <script>
-export default {}
+import { reactive } from 'vue'
+export default {
+  setup() {
+    const data = reactive({
+      x: 8,
+      y: 8,
+      colTotal: 4
+    })
+    return {
+      data
+    }
+  }
+}
 </script>
 ```
 

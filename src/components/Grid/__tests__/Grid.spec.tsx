@@ -52,6 +52,14 @@ test('Row align', () => {
   expect(wrapper.classes()).toContain('el-row-bottom')
 })
 
+test('Row wrap', () => {
+  const wrapper = mount({
+    render() {
+      return <Row wrap={false}></Row>
+    }
+  })
+  expect(wrapper.classes()).toContain('el-row-no-wrap')
+})
 test('Col create', () => {
   const wrapper = mount({
     render() {
