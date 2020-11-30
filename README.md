@@ -53,31 +53,34 @@ Skip this part if you just want to use Element.
 
 :sparkles: **组件库** :sparkles:
 
+- [x] Grid
+  - [x] Row
+  - [x] Col
+- [x] Layout
+  - [x] container
+  - [x] main
+  - [x] aside
+  - [x] footer
+  - [x] header
+- [x] button
+- [x] menu
+- [x] icon
+- [x] link
 - [x] alert
-- [x] aside
 - [ ] badge
 - [ ] breadcrumb
-- [x] button
 - [ ] calendar
 - [ ] card
 - [ ] checkbox
-- [x] col
-- [x] container
 - [ ] date-picker
 - [ ] dialog
 - [ ] divider
 - [ ] drawer
 - [ ] dropdown
-- [x] footer
 - [ ] form
-- [x] header
-- [x] icon
 - [ ] image
 - [ ] input
-- [ ] link
 - [ ] loading
-- [ ] main
-- [x] menu
 - [ ] message
 - [ ] notification
 - [ ] option
