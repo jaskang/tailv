@@ -1,3 +1,8 @@
+---
+title: Grid
+wrapperClass: md-grid
+---
+
 # Grid 布局
 
 基于 flex 的 24 分栏栅格化系统，迅速简便地创建布局。

@@ -6,8 +6,8 @@
 
 ```vue
 <template>
-  <el-tile>
-    <el-tile>
+  <el-row :gutter="[40, 0]">
+    <el-col flex="250px">
       <el-nav>
         <el-nav-item><i class="el-icon-location" />导航一</el-nav-item>
         <el-nav>
@@ -34,17 +34,16 @@
         <el-nav-item><i class="el-icon-document" />导航三</el-nav-item>
         <el-nav-item><i class="el-icon-setting" />导航四</el-nav-item>
       </el-nav>
-    </el-tile>
-    <el-tile :span="2"></el-tile>
-    <el-tile>
+    </el-col>
+    <el-col flex="250px">
       <el-nav background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         <el-nav-item><i class="el-icon-location" />导航一</el-nav-item>
         <el-nav-item><i class="el-icon-menu" />导航二</el-nav-item>
         <el-nav-item><i class="el-icon-document" />导航三</el-nav-item>
         <el-nav-item><i class="el-icon-setting" />导航四</el-nav-item>
       </el-nav>
-    </el-tile>
-  </el-tile>
+    </el-col>
+  </el-row>
 </template>
 <style scoped></style>
 ```

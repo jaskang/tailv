@@ -9450,10 +9450,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-plugin-vuedoc@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.npmjs.org/vite-plugin-vuedoc/-/vite-plugin-vuedoc-0.0.9.tgz#e1f1e56d46ca337bd7cf3b2c0447c73e9c90860b"
-  integrity sha512-4MSU3RpdiotPml2CKVLVprwN9Mv94s7FmesdchIU+ti6ulIRFS8JEGe+jbVhWg7I/tVSjVgSEu/es9h9ISpIDQ==
+vite-plugin-vuedoc@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/vite-plugin-vuedoc/-/vite-plugin-vuedoc-0.1.1.tgz#166d1b3cf98c1b4428616ae3acf14388b5fcf7af"
+  integrity sha512-CCxc0y1jK7u5nvHBRWW+wq/u5l0WHLxK1Nk28p4aU20vzHTYl/qN6j0ziU4Hij2SGnqHPhNO/nbGACMaUsBMpw==
   dependencies:
     escape-html "^1.0.3"
     etag "^1.8.1"
