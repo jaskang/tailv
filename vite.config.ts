@@ -11,7 +11,9 @@ const config: UserConfig = {
   },
   plugins: [
     vitePluginVuedoc({
-      markdownPlugins: []
+      prism: {
+        theme: 'okaidia'
+      }
     }),
     vitePluginSyncmd()
   ]

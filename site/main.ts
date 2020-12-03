@@ -1,6 +1,4 @@
 // import './index.css'
-
-import 'vite-plugin-vuedoc/style.css'
 import './index.less'
 import { createApp } from 'vue'
 import { router } from './router'

@@ -10035,10 +10035,10 @@ vfile@^4.0.0:
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
 
-vite-plugin-vuedoc@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/vite-plugin-vuedoc/-/vite-plugin-vuedoc-1.1.0.tgz#ca303db2a05284e845c73d5fad250f1035259f8a"
-  integrity sha512-4bNbquHPPr01nAsGPIyKjz4wPl0jw2F3PZr73lWFB+GJlC/CghtWC9aM+WQqVmiE3PfSyLojqJA3Js9voNX7sg==
+vite-plugin-vuedoc@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/vite-plugin-vuedoc/-/vite-plugin-vuedoc-1.2.0.tgz#e544c330daeb705831599325f5ca37afd75c1ffc"
+  integrity sha512-gdVKuJvkCY3OiBWzBlxuFAHhR65dLcQWubvsKdzUP/xC4Xf69P9ERnhqbpQq79LGkmYVgWFkGvWPi82ad17Fog==
   dependencies:
     fs-extra "^9.0.1"
     js-yaml "^3.14.0"
