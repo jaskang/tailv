@@ -6,7 +6,7 @@
 
 直接通过设置类名为 `el-icon-iconName` 来使用即可。例如：
 
-```vue
+```vue demo
 <template>
   <i class="el-icon-edit"></i>
   <i class="el-icon-share"></i>
@@ -17,7 +17,7 @@
 
 ### 图标集合
 
-```vue
+```vue demo
 <template>
   <ul class="icon-list">
     <li v-for="name in icons" :key="name">

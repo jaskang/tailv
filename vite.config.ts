@@ -1,4 +1,3 @@
-import path from 'path'
 import type { UserConfig } from 'vite'
 import vitePluginVuedoc from 'vite-plugin-vuedoc'
 import vitePluginSyncmd from './scripts/vitePluginSyncmd'
@@ -12,7 +11,7 @@ const config: UserConfig = {
   },
   plugins: [
     vitePluginVuedoc({
-      markdownPlugins: [[require('markdown-it-container'), 'tip']]
+      markdownPlugins: []
     }),
     vitePluginSyncmd()
   ]

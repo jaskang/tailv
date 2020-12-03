@@ -14,7 +14,7 @@ wrapperClass: md-grid
 从堆叠到水平排列。  
 使用单一的一组 `row` 和 `col` 栅格组件，就可以创建一个基本的栅格系统，所有列 `col` 必须放在 `row` 内。
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-col :span="24"><div>col-24</div></el-col>
@@ -44,7 +44,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 如果需要垂直间距，可以写成数组形式 [水平间距, 垂直间距]  
 如果要支持响应式，可以写成 { xs: 8, sm: 16, md: 24, lg: [32, 32], xl: [40, 40] }
 
-```vue
+```vue demo
 <template>
   <el-row :gutter="16">
     <el-col :span="6"><div>col-6</div></el-col>
@@ -76,7 +76,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 使用 `offset` 可以将列向右侧偏。例如，offset={6} 将元素向右侧偏移了 6 个列（col）的宽度。
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-col :span="8"><div>col-8</div></el-col>
@@ -97,7 +97,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 通过使用 `push` 和 `pull` 类就可以很容易的改变列（col）的位置。  
 向右移动: `push` 向左移动: `pull`
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-col :span="18" :push="6"><div>col-18 col-push-6</div></el-col>
@@ -112,7 +112,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 通过设置 `row` 的 `align` 属性来指定 top, middle, bottom 其中的值来定义子元素的横向对齐方式
 
-```vue
+```vue demo
 <template>
   <el-row justify="center" align="top" style="background:#F2F6FC;height:60px">
     <el-col :span="4">
@@ -165,7 +165,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 通过 `order` 来改变 `col` 元素的排序。
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-col :span="6" :order="4"><div>1 col-order-4</div></el-col>
@@ -180,7 +180,7 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 Col 提供 flex 属性以支持填充
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-col :flex="2"><div>2 / 5</div></el-col>
@@ -212,7 +212,7 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg xl xxl 属�
 
 其中 xs="6" 相当于 xs="{ span: 6 }"
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10"><div>Col</div></el-col>
@@ -224,7 +224,7 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg xl xxl 属�
 
 ## useBreakpoint Hook
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-col>
@@ -245,7 +245,7 @@ export default {
 
 ## 例子
 
-```vue
+```vue demo
 <template>
   <div style="margin-bottom: 40px">
     Horizontal Gutter (px):

@@ -72,7 +72,6 @@
     "eslint-plugin-vue": "^7.1.0",
     "jest": "^26.6.3",
     "less": "^3.12.2",
-    "markdown-it-container": "^3.0.0",
     "prettier": "^2.2.1",
     "release-it": "^14.2.2",
     "rimraf": "^3.0.2",
@@ -85,7 +84,7 @@
     "ts-jest": "^26.4.4",
     "typescript": "^3.9.7",
     "vite": "^1.0.0-rc.13",
-    "vite-plugin-vuedoc": "^0.1.1",
+    "vite-plugin-vuedoc": "^1.1.0",
     "vue": "^3.0.3",
     "vue-router": "^4.0.0-rc.5"
   },

@@ -6,7 +6,7 @@
 
 基础的文字链接用法。
 
-```vue
+```vue demo
 <template>
   <div>
     <el-link>默认链接</el-link>
@@ -23,7 +23,7 @@
 
 文字链接不可用状态。
 
-```vue
+```vue demo
 <template>
   <div>
     <el-link disabled>默认链接</el-link>
@@ -40,7 +40,7 @@
 
 文字链接下划线。
 
-```vue
+```vue demo
 <template>
   <div>
     <el-link :underline="false">无下划线</el-link>
@@ -53,7 +53,7 @@
 
 带图标的文字链接可增强辨识度。
 
-```vue
+```vue demo
 <template>
   <div>
     <el-link icon="el-icon-edit">编辑</el-link>

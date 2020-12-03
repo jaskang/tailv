@@ -8,7 +8,7 @@
 
 Alert 组件提供四种主题，由`type`属性指定，默认值为`info`。
 
-```vue
+```vue demo
 <template>
   <el-alert title="成功提示的文案" type="success"> </el-alert>
   <el-alert title="消息提示的文案" type="info"> </el-alert>
@@ -23,7 +23,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 通过设置`effect`属性来改变主题，默认为`light`。
 
-```vue
+```vue demo
 <template>
   <el-alert title="成功提示的文案" type="success" effect="dark"> </el-alert>
   <el-alert title="消息提示的文案" type="info" effect="dark"> </el-alert>
@@ -38,7 +38,7 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 在 Alert 组件中，你可以设置是否可关闭，关闭按钮的文本以及关闭时的回调函数。`closable`属性决定是否可关闭，接受`boolean`，默认为`true`。你可以设置`close-text`属性来代替右侧的关闭图标，注意：`close-text`必须为文本。设置`close`事件来设置关闭时的回调。
 
-```vue
+```vue demo
 <template>
   <el-alert title="不可关闭的 alert" type="success" :closable="false"> </el-alert>
   <el-alert title="自定义 close-text" type="info" close-text="知道了"> </el-alert>
@@ -61,7 +61,7 @@ export default {
 
 通过设置`show-icon`属性来显示 Alert 的 icon，这能更有效地向用户展示你的显示意图。
 
-```vue
+```vue demo
 <template>
   <el-alert title="成功提示的文案" type="success" show-icon> </el-alert>
   <el-alert title="消息提示的文案" type="info" show-icon> </el-alert>
@@ -74,7 +74,7 @@ export default {
 
 使用 `center` 属性让文字水平居中。
 
-```vue
+```vue demo
 <template>
   <el-alert title="成功提示的文案" type="success" center show-icon> </el-alert>
   <el-alert title="消息提示的文案" type="info" center show-icon> </el-alert>
@@ -89,7 +89,7 @@ export default {
 
 除了必填的`title`属性外，你可以设置`description`属性来帮助你更好地介绍，我们称之为辅助性文字。辅助性文字只能存放单行文本，会自动换行显示。
 
-```vue
+```vue demo
 <template>
   <el-alert
     title="带辅助性文字介绍"
@@ -104,7 +104,7 @@ export default {
 
 最后，这是一个同时具有 icon 和辅助性文字的样例。
 
-```vue
+```vue demo
 <template>
   <el-alert
     title="成功提示的文案"

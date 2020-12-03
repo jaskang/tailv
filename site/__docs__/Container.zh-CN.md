@@ -16,7 +16,7 @@
 
 ### 常见页面布局
 
-```vue
+```vue demo
 <template>
   <el-container>
     <el-header>Header</el-header>
@@ -26,7 +26,7 @@
 </template>
 ```
 
-```vue
+```vue demo
 <template>
   <el-container>
     <el-header>Header</el-header>
@@ -38,7 +38,7 @@
 </template>
 ```
 
-```vue
+```vue demo
 <template>
   <el-container>
     <el-aside width="200px">Aside</el-aside>
@@ -53,7 +53,7 @@
 
 ### 实例
 
-```vue
+```vue demo
 <template>
   <el-container style="height: 500px; border: 1px solid #eee">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">

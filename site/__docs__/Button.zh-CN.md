@@ -11,7 +11,7 @@ wrapperClass: md-button
 
 使用`type`属性来定义 Button 的颜色。 使用`shape`属性来定义 Button 的样式。
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-button>默认按钮</el-button>
@@ -46,7 +46,7 @@ wrapperClass: md-button
 
 你可以使用`disabled`属性来定义按钮是否可用，它接受一个`Boolean`值。
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-button disabled>默认按钮12</el-button>
@@ -72,7 +72,7 @@ wrapperClass: md-button
 
 没有边框和背景色的按钮。
 
-```vue
+```vue demo
 <template>
   <el-button type="text">文字按钮</el-button>
   <el-button type="text" disabled>文字按钮</el-button>
@@ -85,7 +85,7 @@ wrapperClass: md-button
 
 设置`icon`属性即可，icon 的列表可以参考 Element 的 icon 组件，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
 
-```vue
+```vue demo
 <template>
   <el-row>
     <el-button type="primary" icon="el-icon-edit" @click="testclick"></el-button>
@@ -112,7 +112,7 @@ export default {
 
 使用`<el-button-group>`标签来嵌套你的按钮。
 
-```vue
+```vue demo
 <template>
   <el-button-group>
     <el-button type="primary" icon="el-icon-arrow-left">上一页</el-button>
@@ -132,7 +132,7 @@ export default {
 
 要设置为 loading 状态，只要设置`loading`属性为`true`即可。
 
-```vue
+```vue demo
 <template>
   <el-button type="primary" :loading="true">加载中</el-button>
 </template>
@@ -144,7 +144,7 @@ Button 组件提供除了默认值以外的三种尺寸，可以在不同场景�
 
 额外的尺寸：`medium`、`small`、`mini`，通过设置`size`属性来配置它们。
 
-```vue
+```vue demo demo
 <template>
   <el-row>
     <el-button>默认按钮</el-button>

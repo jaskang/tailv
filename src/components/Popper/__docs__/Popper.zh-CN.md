@@ -2,7 +2,7 @@
 
 ### 基础用法
 
-```vue
+```vue demo
 <template>
   <el-popper>
     <el-button>top button</el-button>

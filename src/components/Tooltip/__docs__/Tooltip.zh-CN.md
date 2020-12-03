@@ -8,7 +8,7 @@
 
 使用`content`属性来决定`hover`时的提示信息。由`placement`属性决定展示效果：`placement`属性值为：`方向-对齐位置`；四个方向：`top`、`left`、`right`、`bottom`；三种对齐位置：`start`, `end`，默认为空。如`placement="left-end"`，则提示信息出现在目标元素的左侧，且提示信息的底部与目标元素的底部对齐。
 
-```vue
+```vue demo
 <template>
   <div class="box">
     <div class="top">
@@ -101,7 +101,7 @@ Tooltip 组件提供了两个不同的主题：`dark`和`light`。
 
 通过设置`effect`属性来改变主题，默认为`dark`。
 
-```vue
+```vue demo
 <template>
   <el-tooltip content="Top center" placement="top">
     <el-button>Dark</el-button>
@@ -118,7 +118,7 @@ Tooltip 组件提供了两个不同的主题：`dark`和`light`。
 
 用具名 slot 分发`content`，替代`tooltip`中的`content`属性。
 
-```vue
+```vue demo
 <template>
   <el-tooltip placement="top">
     <template #content>

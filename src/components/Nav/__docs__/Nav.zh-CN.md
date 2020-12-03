@@ -4,7 +4,7 @@
 
 ### 常见页面布局
 
-```vue
+```vue demo
 <template>
   <el-row :gutter="[40, 0]">
     <el-col flex="250px">

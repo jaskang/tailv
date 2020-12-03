@@ -8,7 +8,7 @@
 
 ### 常见页面布局
 
-```vue
+```vue demo
 <template>
   <el-tile>
     <el-tile mode="vertical" :span="18">

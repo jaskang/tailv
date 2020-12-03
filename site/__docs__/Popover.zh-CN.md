@@ -4,7 +4,7 @@
 
 `trigger`属性用于设置何时触发 Popover，支持四种触发方式：`hover`，`click`，`focus` 和 `manual`。对于触发 Popover 的元素，有两种写法：使用 `slot="reference"` 的具名插槽，或使用自定义指令`v-popover`指向 Popover 的索引`ref`。
 
-```vue
+```vue demo
 <template>
   <el-popover
     placement="top-start"
@@ -70,7 +70,7 @@ export default {
 
 利用分发取代`content`属性
 
-```vue
+```vue demo
 <template>
   <el-popover placement="right" width="400" trigger="click">
     <template #popper>
@@ -119,7 +119,7 @@ export default {
 
 当然，你还可以嵌套操作，这相比 Dialog 更为轻量：
 
-```vue
+```vue demo
 <template>
   <el-popover placement="top" width="160" v-model="visible">
     <template #popper>
