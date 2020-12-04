@@ -1,6 +1,6 @@
 @button-link-default-font-color: @global-color-primary;
 @button-link-default-active-color: mix(@global-color-primary, #fff, 80%);
-@button-link-disabled-font-color: mix(@global-color-primary, #fff, 50%);
+@button-disabled-font-color: @global-color-text-placeholder;
 
 @button-height-large: 40px;
 @button-height: 32px;
@@ -53,7 +53,7 @@
   &:disabled,
   &.is-disabled {
     cursor: not-allowed;
-    color: mix(@global-color-text-regular, #fff, 50%);
+    color: @button-disabled-font-color;
     background-color: @global-background-muted;
     border-color: @global-border-color-base;
   }
@@ -89,7 +89,7 @@
     }
     &:disabled {
       text-decoration: none;
-      color: mix(@global-color-text-regular, #fff, 50%);
+      color: @button-disabled-font-color;
       border: none;
       background: none;
     }
@@ -158,7 +158,7 @@
     &:disabled,
     &.is-disabled {
       cursor: not-allowed;
-      color: mix(@global-color-text-regular, #fff, 50%);
+      color: @button-disabled-font-color;
       background-color: @global-background-muted;
       border-color: @global-border-color-base;
     }
@@ -190,7 +190,7 @@
         color: @button-link-default-font-color;
       }
       &:disabled {
-        color: mix(@global-color-text-regular, #fff, 50%);
+        color: @button-disabled-font-color;
         text-decoration: none;
       }
     }

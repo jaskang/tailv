@@ -1,4 +1,4 @@
-import { App, defineComponent, PropType } from 'vue'
+import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { mergeCls } from '@/utils/tools'
 // import './Link.scss'
@@ -9,7 +9,7 @@ const Link = defineComponent({
   inheritAttrs: false,
   emits: ['click'],
   props: {
-    type: {
+    color: {
       type: String as PropType<'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>,
       default: 'default'
     },
@@ -18,7 +18,7 @@ const Link = defineComponent({
     href: String,
     icon: String
   },
-  setup(props, { emit, slots, attrs }) {
+  setup(props, { emit, slots }) {
     const handleClick = (event: MouseEvent) => {
       if (!props.disabled) {
         if (!props.href) {
@@ -26,16 +26,18 @@ const Link = defineComponent({
         }
       }
     }
-    const clsNames = mergeCls([
-      blockCls,
-      `${blockCls}--${props.type}`,
-      {
-        'is-disabled': !!props.disabled,
-        'is-underline': !!props.underline && !props.disabled
-      }
-    ])
+    const classes = computed(() =>
+      mergeCls([
+        blockCls,
+        `${blockCls}--${props.color}`,
+        {
+          'is-disabled': !!props.disabled,
+          'is-underline': !!props.underline && !props.disabled
+        }
+      ])
+    )
     return () => (
-      <a class={clsNames} href={props.disabled ? undefined : props.href} {...attrs} onClick={handleClick}>
+      <a class={classes.value} href={props.disabled ? undefined : props.href} onClick={handleClick}>
         {props.icon && <i class={props.icon}></i>}
         <span class="el-link--inner">{slots.default?.()}</span>
       </a>

@@ -10,11 +10,11 @@
 <template>
   <div>
     <el-link>默认链接</el-link>
-    <el-link type="primary">主要链接</el-link>
-    <el-link type="success">成功链接</el-link>
-    <el-link type="warning">警告链接</el-link>
-    <el-link type="danger">危险链接</el-link>
-    <el-link type="info">信息链接</el-link>
+    <el-link color="primary">主要链接</el-link>
+    <el-link color="success">成功链接</el-link>
+    <el-link color="warning">警告链接</el-link>
+    <el-link color="danger">危险链接</el-link>
+    <el-link color="info">信息链接</el-link>
   </div>
 </template>
 ```
@@ -27,11 +27,11 @@
 <template>
   <div>
     <el-link disabled>默认链接</el-link>
-    <el-link type="primary" disabled>主要链接</el-link>
-    <el-link type="success" disabled>成功链接</el-link>
-    <el-link type="warning" disabled>警告链接</el-link>
-    <el-link type="danger" disabled>危险链接</el-link>
-    <el-link type="info" disabled>信息链接</el-link>
+    <el-link color="primary" disabled>主要链接</el-link>
+    <el-link color="success" disabled>成功链接</el-link>
+    <el-link color="warning" disabled>警告链接</el-link>
+    <el-link color="danger" disabled>危险链接</el-link>
+    <el-link color="info" disabled>信息链接</el-link>
   </div>
 </template>
 ```
@@ -64,10 +64,10 @@
 
 ## Attributes
 
-| 参数      | 说明           | 类型    | 可选值                                     | 默认值  |
-| --------- | -------------- | ------- | ------------------------------------------ | ------- |
-| type      | 类型           | string  | primary / success / warning / danger /info | default |
-| underline | 是否下划线     | boolean | —                                          | true    |
-| disabled  | 是否禁用状态   | boolean | —                                          | false   |
-| href      | 原生 href 属性 | string  | —                                          | -       |
-| icon      | 图标类名       | string  | —                                          | -       |
+| 参数      | 说明           | 类型                                                              | 默认值  |
+| --------- | -------------- | ----------------------------------------------------------------- | ------- |
+| color     | 类型           | 'default' / 'primary' / 'success' / 'warning' / 'danger' / 'info' | default |
+| underline | 是否下划线     | boolean                                                           | true    |
+| disabled  | 是否禁用状态   | boolean                                                           | false   |
+| href      | 原生 href 属性 | string                                                            | -       |
+| icon      | 图标类名       | string                                                            | -       |
