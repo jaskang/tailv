@@ -999,6 +999,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@elenext/icons@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/@elenext/icons/-/icons-0.1.2.tgz#20c00d935cc9e38f6cbaf92545db0541ea5cef31"
+  integrity sha512-2kxt7IDs6NqQC5i81cgG5APx+EgT/Qii1zjH+KYtQSLcp9LGKsPoHsuRuXrfBOSFGaSKYFG4njTH4qveo+WiuQ==
+
 "@eslint/eslintrc@^0.2.1":
   version "0.2.1"
   resolved "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-0.2.1.tgz#f72069c330461a06684d119384435e12a5d76e3c"

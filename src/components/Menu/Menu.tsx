@@ -2,7 +2,7 @@ import { App, defineComponent, inject, InjectionKey, PropType, provide, reactive
 import { getBlockCls, getCompName } from '@/config'
 import { mixColor } from '@/utils/tools'
 import CollapseTransition from '@/components/Transition/CollapseTransition'
-
+import { IconChevronDown } from '@elenext/icons'
 type MenuState = {
   textColor: string
   activeTextColor: string
@@ -91,7 +91,9 @@ const Menu = defineComponent({
             onClick={onSelectHandler}
           >
             {slots.title?.()}
-            <i class={[`${blockCls}-inner__icon-arrow`, `el-icon-arrow-down`]}></i>
+            <span class={`${blockCls}-inner__icon-arrow`}>
+              <IconChevronDown />
+            </span>
           </div>
           <CollapseTransition>
             <ul v-show={state.isOpen} class={blockCls}>
