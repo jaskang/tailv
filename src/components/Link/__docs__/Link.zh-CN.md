@@ -1,3 +1,8 @@
+---
+title: Link
+wrapperClass: md-link
+---
+
 # Link 文字链接
 
 文字超链接
@@ -8,14 +13,14 @@
 
 ```vue demo
 <template>
-  <div>
+  <el-row>
     <el-link>默认链接</el-link>
     <el-link color="primary">主要链接</el-link>
     <el-link color="success">成功链接</el-link>
     <el-link color="warning">警告链接</el-link>
     <el-link color="danger">危险链接</el-link>
     <el-link color="info">信息链接</el-link>
-  </div>
+  </el-row>
 </template>
 ```
 
@@ -25,14 +30,14 @@
 
 ```vue demo
 <template>
-  <div>
+  <el-row>
     <el-link disabled>默认链接</el-link>
     <el-link color="primary" disabled>主要链接</el-link>
     <el-link color="success" disabled>成功链接</el-link>
     <el-link color="warning" disabled>警告链接</el-link>
     <el-link color="danger" disabled>危险链接</el-link>
     <el-link color="info" disabled>信息链接</el-link>
-  </div>
+  </el-row>
 </template>
 ```
 
@@ -42,10 +47,10 @@
 
 ```vue demo
 <template>
-  <div>
+  <el-row>
     <el-link :underline="false">无下划线</el-link>
     <el-link>有下划线</el-link>
-  </div>
+  </el-row>
 </template>
 ```
 
@@ -55,10 +60,10 @@
 
 ```vue demo
 <template>
-  <div>
+  <el-row>
     <el-link icon="el-icon-edit">编辑</el-link>
     <el-link>查看<i class="el-icon-view el-icon--right"></i> </el-link>
-  </div>
+  </el-row>
 </template>
 ```
 

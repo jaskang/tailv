@@ -1,5 +1,5 @@
 ---
-title: Grid
+title: Button
 wrapperClass: md-button
 ---
 
@@ -11,7 +11,7 @@ wrapperClass: md-button
 
 使用`color`属性来定义 Button 的颜色
 
-`color`: PropType<'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' >
+`color`: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger'
 
 ```vue demo
 <template>
@@ -30,7 +30,7 @@ wrapperClass: md-button
 
 使用`type`属性来定义 Button 的样式
 
-`type` : PropType<'round' | 'circle' | 'link'>
+`type` : 'round' | 'circle' | 'link'
 
 ::: tips link 类型的按钮没有颜色区分，需要此功能可使用 Link 组件
 
@@ -61,12 +61,7 @@ wrapperClass: md-button
     <el-button type="circle" color="danger">危</el-button>
   </el-row>
   <el-row align="middle">
-    <el-button type="link">默认按钮</el-button>
-    <el-button type="link" color="primary">主要按钮</el-button>
-    <el-button type="link" color="success">成功按钮</el-button>
-    <el-button type="link" color="info">信息按钮</el-button>
-    <el-button type="link" color="warning">警告按钮</el-button>
-    <el-button type="link" color="danger">危险按钮</el-button>
+    <el-button type="link">链接按钮</el-button>
   </el-row>
 </template>
 ```
@@ -75,7 +70,7 @@ wrapperClass: md-button
 
 使用`zise`属性来定义 Button 的大小
 
-`size`: PropType<'large' | 'small'>
+`size`: 'large' | 'small'
 
 ```vue demo
 <template>
