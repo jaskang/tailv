@@ -12,7 +12,7 @@ const config: UserConfig = {
   plugins: [
     vitePluginVuedoc({
       prism: {
-        theme: 'okaidia'
+        theme: 'tomorrow'
       }
     }),
     vitePluginSyncmd()

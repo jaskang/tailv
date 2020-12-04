@@ -1,56 +1,45 @@
 import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
-import { normalizeClass } from '@/utils/dom'
+import { mergeCls } from '@/utils/tools'
 
 const cls = getBlockCls('Button')
 const Button = defineComponent({
   name: getCompName('Button'),
+  emits: ['click'],
   props: {
-    type: {
-      type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger' | 'text'>,
+    color: {
+      type: String as PropType<'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger'>,
       default: 'default'
     },
-    plain: {
-      type: Boolean
-    },
-    shape: {
-      type: String as PropType<'round' | 'circle'>,
-      default: ''
+    type: {
+      type: String as PropType<'link' | 'round' | 'circle'>
     },
     size: {
-      type: String as PropType<'large' | 'small'>,
-      default: ''
+      type: String as PropType<'large' | 'small'>
     },
     nativeType: { type: String as PropType<'button' | 'submit' | 'reset'>, default: 'button' },
     icon: { type: String, default: '' },
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean }
   },
-  setup(props, { slots, attrs }) {
-    const buttonSize = computed(() => {
-      return props.size
-    })
-    const buttonDisabled = computed(() => {
-      return props.disabled || false
-    })
-    const classNames = computed(() =>
-      normalizeClass([
-        cls,
-        `${cls}-${props.type}`,
-        buttonSize.value ? `${cls}-${buttonSize.value}` : '',
-        props.shape ? `is-${props.shape}` : '',
+  setup(props, { slots, emit, attrs }) {
+    const classes = computed(() =>
+      mergeCls(cls, `${cls}-${props.color}`, [
+        props.size ? `${cls}-${props.size}` : '',
+        props.type ? `is-${props.type}` : '',
         {
-          'is-disabled': buttonDisabled.value,
-          'is-loading': props.loading
+          'is-loading': props.loading,
+          'is-disabled': props.disabled
         }
       ])
     )
+    const onClick = (e: MouseEvent) => {
+      if (!props.disabled && !props.loading) {
+        emit('click', e)
+      }
+    }
     return () => (
-      <button
-        disabled={buttonDisabled.value || props.loading}
-        type={props.nativeType as 'button'}
-        class={classNames.value}
-      >
+      <button disabled={props.disabled} type={props.nativeType as 'button'} class={classes.value} onClick={onClick}>
         {props.loading && <i class="el-icon-loading"></i>}
         {props.icon && !props.loading && <i class={props.icon}></i>}
         <span>{slots.default?.()}</span>

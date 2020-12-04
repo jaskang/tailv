@@ -1,6 +1,6 @@
 import { App, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
-import { normalizeClass } from '@/utils/dom'
+import { mergeCls } from '@/utils/tools'
 // import './Link.scss'
 
 const blockCls = getBlockCls('Link')
@@ -26,7 +26,7 @@ const Link = defineComponent({
         }
       }
     }
-    const clsNames = normalizeClass([
+    const clsNames = mergeCls([
       blockCls,
       `${blockCls}--${props.type}`,
       {

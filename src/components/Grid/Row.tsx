@@ -1,5 +1,5 @@
 import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef, App } from 'vue'
-import { normalizeClass } from '@/utils/dom'
+import { mergeCls } from '@/utils/tools'
 import { getBlockCls, getCompName } from '@/config'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 
@@ -60,7 +60,7 @@ const Row = defineComponent({
     })
 
     const classes = computed(() =>
-      normalizeClass([
+      mergeCls([
         blockCls,
         {
           [`${blockCls}-no-wrap`]: props.wrap === false,

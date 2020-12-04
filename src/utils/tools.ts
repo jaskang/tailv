@@ -1,4 +1,4 @@
-function getColorChannels(_color: string) {
+function getColorRGB(_color: string) {
   let color = _color.replace('#', '')
   if (/^[0-9a-fA-F]{3}$/.test(color)) {
     const colorArr = color.split('')
@@ -21,8 +21,9 @@ function getColorChannels(_color: string) {
     }
   }
 }
+
 export function mixColor(color: string, percent: number) {
-  let { red, green, blue } = getColorChannels(color)
+  let { red, green, blue } = getColorRGB(color)
   if (percent > 0) {
     // shade given color
     red *= 1 - percent
@@ -35,4 +36,27 @@ export function mixColor(color: string, percent: number) {
     blue += (255 - blue) * percent
   }
   return `rgb(${Math.round(red)}, ${Math.round(green)}, ${Math.round(blue)})`
+}
+
+export type ClassValue = ClassValue[] | { [id: string]: any } | string | number | null | boolean | undefined
+
+export function mergeCls(...classes: ClassValue[]): string {
+  let res = ''
+  for (let index = 0; index < classes.length; index++) {
+    const cls = classes[index]
+    if (typeof cls === 'string' || typeof cls === 'number') {
+      res += ` ${cls}`
+    } else if (Array.isArray(cls)) {
+      res += ` ${mergeCls(...cls)}`
+    } else if (typeof cls === 'object') {
+      if (cls) {
+        for (const key in cls) {
+          if (cls[key]) {
+            res += ` ${key}`
+          }
+        }
+      }
+    }
+  }
+  return res.trim()
 }

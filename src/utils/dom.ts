@@ -12,29 +12,6 @@ export function removeEl(el: Element) {
   if (el.parentNode) el.parentNode.removeChild(el)
 }
 
-type ClassValue = ClassValue[] | { [id: string]: any } | string | number | null | boolean | undefined
-
-export function normalizeClass(...classes: ClassValue[]): string {
-  let res = ''
-  for (let index = 0; index < classes.length; index++) {
-    const cls = classes[index]
-    if (typeof cls === 'string' || typeof cls === 'number') {
-      res += ` ${cls}`
-    } else if (Array.isArray(cls)) {
-      res += ` ${normalizeClass(...cls)}`
-    } else if (typeof cls === 'object') {
-      if (cls) {
-        for (const key in cls) {
-          if (cls[key]) {
-            res += ` ${key}`
-          }
-        }
-      }
-    }
-  }
-  return res.trim()
-}
-
 export function hasClass(el: Element, cls: string) {
   if (!el || !cls) return false
   if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.')

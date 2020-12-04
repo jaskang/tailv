@@ -297,25 +297,25 @@ export default {
 
 ### Row
 
-| props   | description               | type    | Accepted Values                             | default |
-| ------- | ------------------------- | ------- | ------------------------------------------- | ------- |
-| align   | flex 布局下的垂直排列方式 | string  | top/middle/bottom                           | top     |
-| justify | flex 布局下的水平排列方式 | string  | start/end/center/space-around/space-between | start   |
-| gutter  | 栅格间隔                  | number  | `number/object / array`                     | 0       |
-| wrap    | 自动换行                  | boolean | -                                           | true    |
+| props   | description               | type                                                  | default |
+| ------- | ------------------------- | ----------------------------------------------------- | ------- |
+| align   | flex 布局下的垂直排列方式 | 'top'/'middle'/'bottom'                               | top     |
+| justify | flex 布局下的水平排列方式 | 'start'/'end'/'center'/'space-around'/'space-between' | start   |
+| gutter  | 栅格间隔                  | number /object / array                                | 0       |
+| wrap    | 自动换行                  | boolean                                               | true    |
 
 ### Col
 
-| props  | description                            | type                                        | Accepted Values | default |
-| ------ | -------------------------------------- | ------------------------------------------- | --------------- | ------- |
-| flex   | flex 属性                              | string/number                               | —               | -       |
-| span   | 栅格占据的列数                         | number                                      | —               | -       |
-| push   | 栅格向右移动格数                       | number                                      | —               | 0       |
-| pull   | 栅格向左移动格数                       | number                                      | —               | 0       |
-| offset | 栅格左侧的间隔格数，间隔内不可以有栅格 | number                                      | —               | 0       |
-| order  | 栅格顺序                               | number                                      | —               | 0       |
-| xs     | `<768px` 响应式栅格数或者栅格属性对象  | number/object (例如： {span: 4, offset: 4}) | —               | —       |
-| sm     | `≥768px` 响应式栅格数或者栅格属性对象  | number/object (例如： {span: 4, offset: 4}) | —               | —       |
-| md     | `≥1024px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —               | —       |
-| lg     | `≥1200px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —               | —       |
-| xl     | `≥1400px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —               | —       |
+| props  | description                            | type                                        | default |
+| ------ | -------------------------------------- | ------------------------------------------- | ------- |
+| flex   | flex 属性                              | string/number                               | -       |
+| span   | 栅格占据的列数                         | number                                      | -       |
+| push   | 栅格向右移动格数                       | number                                      | 0       |
+| pull   | 栅格向左移动格数                       | number                                      | 0       |
+| offset | 栅格左侧的间隔格数，间隔内不可以有栅格 | number                                      | 0       |
+| order  | 栅格顺序                               | number                                      | 0       |
+| xs     | `<768px` 响应式栅格数或者栅格属性对象  | number/object (例如： {span: 4, offset: 4}) | —       |
+| sm     | `≥768px` 响应式栅格数或者栅格属性对象  | number/object (例如： {span: 4, offset: 4}) | —       |
+| md     | `≥1024px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —       |
+| lg     | `≥1200px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —       |
+| xl     | `≥1400px` 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | —       |

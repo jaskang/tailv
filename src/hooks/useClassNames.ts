@@ -1,6 +1,6 @@
 import { computed } from 'vue'
-import { normalizeClass } from '../utils/dom'
+import { ClassValue, mergeCls } from '@/utils/tools'
 
-const useClassNames = <T>(getter: (ctx?: any) => T) => computed(() => normalizeClass(getter()))
+const useMergeClass = (getter: () => ClassValue) => computed(() => mergeCls(getter()))
 
-export default useClassNames
+export default useMergeClass

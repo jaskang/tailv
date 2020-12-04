@@ -1,6 +1,6 @@
 import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
-import { normalizeClass } from '@/utils/dom'
+import { mergeCls } from '@/utils/tools'
 import { Popper } from '../Popper'
 import { Placement } from '../Popper/Popper'
 
@@ -39,7 +39,7 @@ const Tooltip = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const classes = computed(() => normalizeClass(blockCls, props.popperClass, 'is-' + props.effect))
+    const classes = computed(() => mergeCls(blockCls, props.popperClass, 'is-' + props.effect))
     return () => (
       <Popper
         modelValue={props.modelValue}

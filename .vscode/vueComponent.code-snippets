@@ -5,7 +5,7 @@
     "body": [
       "import { App, defineComponent } from 'vue'",
       "import { getBlockCls, getCompName } from '@/config'",
-      "import { normalizeClass } from '@/utils/dom'",
+      "import { mergeCls } from '@/utils/tool'",
       "",
       "const blockCls = getBlockCls('${1}')",
       "",
@@ -13,7 +13,7 @@
       "  name: getCompName('${1}'),",
       "  props: { name: String },",
       "  setup(props) {",
-      "    const classes = normalizeClass(blockCls)",
+      "    const classes = mergeCls(blockCls)",
       "    return () => <div class={classes}></div>",
       "  }",
       "})",

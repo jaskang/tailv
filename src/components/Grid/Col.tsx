@@ -2,7 +2,7 @@ import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } 
 import { RowInjectKey, GutterTuple } from './Row'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { getCompName, getBlockCls } from '@/config'
-import { normalizeClass } from '@/utils/dom'
+import { mergeCls } from '@/utils/tools'
 
 type ColPropType = number | string
 
@@ -81,7 +81,7 @@ const Col = defineComponent({
           })
         }
       })
-      const ret = normalizeClass([
+      const ret = mergeCls([
         blockCls,
         {
           [`${blockCls}-${props.span}`]: props.span,

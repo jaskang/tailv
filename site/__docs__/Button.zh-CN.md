@@ -7,75 +7,113 @@ wrapperClass: md-button
 
 常用的操作按钮
 
-## 基础用法
+## 按钮颜色
 
-使用`type`属性来定义 Button 的颜色。 使用`shape`属性来定义 Button 的样式。
+使用`color`属性来定义 Button 的颜色
+
+`color`: PropType<'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' >
 
 ```vue demo
 <template>
   <el-row>
     <el-button>默认按钮</el-button>
-    <el-button type="primary">主要按钮</el-button>
-    <el-button type="success">成功按钮</el-button>
-    <el-button type="info">信息按钮</el-button>
-    <el-button type="warning">警告按钮</el-button>
-    <el-button type="danger">危险按钮</el-button>
+    <el-button color="primary">主要按钮</el-button>
+    <el-button color="success">成功按钮</el-button>
+    <el-button color="info">信息按钮</el-button>
+    <el-button color="warning">警告按钮</el-button>
+    <el-button color="danger">危险按钮</el-button>
   </el-row>
+</template>
+```
 
-  <el-row>
-    <el-button shape="round">圆角按钮</el-button>
-    <el-button type="primary" shape="round">主要按钮</el-button>
-    <el-button type="success" shape="round">成功按钮</el-button>
-    <el-button type="info" shape="round">信息按钮</el-button>
-    <el-button type="warning" shape="round">警告按钮</el-button>
-    <el-button type="danger" shape="round">危险按钮</el-button>
+## 按钮类型
+
+使用`type`属性来定义 Button 的样式
+
+`type` : PropType<'round' | 'circle' | 'link'>
+
+::: tips link 类型的按钮没有颜色区分，需要此功能可使用 Link 组件
+
+```vue demo
+<template>
+  <el-row align="middle">
+    <el-button>默认按钮</el-button>
+    <el-button color="primary">主要按钮</el-button>
+    <el-button color="success">成功按钮</el-button>
+    <el-button color="info">信息按钮</el-button>
+    <el-button color="warning">警告按钮</el-button>
+    <el-button color="danger">危险按钮</el-button>
   </el-row>
+  <el-row align="middle">
+    <el-button type="round">默认按钮</el-button>
+    <el-button type="round" color="primary">主要按钮</el-button>
+    <el-button type="round" color="success">成功按钮</el-button>
+    <el-button type="round" color="info">信息按钮</el-button>
+    <el-button type="round" color="warning">警告按钮</el-button>
+    <el-button type="round" color="danger">危险按钮</el-button>
+  </el-row>
+  <el-row align="middle">
+    <el-button type="circle">默</el-button>
+    <el-button type="circle" color="primary">主</el-button>
+    <el-button type="circle" color="success">成</el-button>
+    <el-button type="circle" color="info">信</el-button>
+    <el-button type="circle" color="warning">警</el-button>
+    <el-button type="circle" color="danger">危</el-button>
+  </el-row>
+  <el-row align="middle">
+    <el-button type="link">默认按钮</el-button>
+    <el-button type="link" color="primary">主要按钮</el-button>
+    <el-button type="link" color="success">成功按钮</el-button>
+    <el-button type="link" color="info">信息按钮</el-button>
+    <el-button type="link" color="warning">警告按钮</el-button>
+    <el-button type="link" color="danger">危险按钮</el-button>
+  </el-row>
+</template>
+```
 
-  <el-row>
-    <el-button icon="el-icon-search" shape="circle"></el-button>
-    <el-button type="primary" icon="el-icon-edit" shape="circle"></el-button>
-    <el-button type="success" icon="el-icon-check" shape="circle"></el-button>
-    <el-button type="info" icon="el-icon-message" shape="circle"></el-button>
-    <el-button type="warning" icon="el-icon-star-off" shape="circle"></el-button>
-    <el-button type="danger" icon="el-icon-delete" shape="circle"></el-button>
+## 按钮尺寸
+
+使用`zise`属性来定义 Button 的大小
+
+`size`: PropType<'large' | 'small'>
+
+```vue demo
+<template>
+  <el-row align="middle">
+    <el-button color="primary" size="large">大型按钮</el-button>
+    <el-button color="primary">默认按钮</el-button>
+    <el-button color="primary" size="small">小型按钮</el-button>
+  </el-row>
+  <el-row align="middle">
+    <el-button color="primary" type="round" size="large">大型按钮</el-button>
+    <el-button color="primary" type="round">默认按钮</el-button>
+    <el-button color="primary" type="round" size="small">小型按钮</el-button>
   </el-row>
 </template>
 ```
 
 ## 禁用状态
 
-你可以使用`disabled`属性来定义按钮是否可用，它接受一个`Boolean`值。
+使用`disabled`属性来定义按钮是否可用，它接受一个`Boolean`值。
 
 ```vue demo
 <template>
   <el-row>
-    <el-button disabled>默认按钮12</el-button>
-    <el-button disabled type="primary">主要按钮</el-button>
-    <el-button disabled type="success">成功按钮</el-button>
-    <el-button disabled type="info">信息按钮</el-button>
-    <el-button disabled type="warning">警告按钮</el-button>
-    <el-button disabled type="danger">危险按钮</el-button>
-  </el-row>
-
-  <el-row>
-    <el-button disabled shape="round">圆角按钮</el-button>
-    <el-button disabled type="primary" shape="round">主要按钮</el-button>
-    <el-button disabled type="success" shape="round">成功按钮</el-button>
-    <el-button disabled type="info" shape="round">信息按钮</el-button>
-    <el-button disabled type="warning" shape="round">警告按钮</el-button>
-    <el-button disabled type="danger" shape="round">危险按钮</el-button>
+    <el-button disabled color="primary">主要按钮</el-button>
+    <el-button disabled color="primary" type="round">主要按钮</el-button>
+    <el-button disabled color="primary" type="circle">主</el-button>
+    <el-button disabled color="primary" type="link">主要按钮</el-button>
   </el-row>
 </template>
 ```
 
-## 文字按钮
+## 加载状态
 
-没有边框和背景色的按钮。
+使用`loading`属性来定义按钮是否处于加载中状态，它接受一个`Boolean`值。
 
 ```vue demo
 <template>
-  <el-button type="text">文字按钮</el-button>
-  <el-button type="text" disabled>文字按钮</el-button>
+  <el-button color="primary" :loading="true">加载中</el-button>
 </template>
 ```
 
@@ -83,16 +121,16 @@ wrapperClass: md-button
 
 带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。
 
-设置`icon`属性即可，icon 的列表可以参考 Element 的 icon 组件，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
+设置`icon`属性即可，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
 
 ```vue demo
 <template>
   <el-row>
-    <el-button type="primary" icon="el-icon-edit" @click="testclick"></el-button>
-    <el-button type="primary" icon="el-icon-share"></el-button>
-    <el-button type="primary" icon="el-icon-delete"></el-button>
-    <el-button type="primary" icon="el-icon-search">搜索</el-button>
-    <el-button type="primary"> 上传<i class="el-icon-upload el-icon--right"></i> </el-button>
+    <el-button color="primary" icon="el-icon-edit" @click="testclick"></el-button>
+    <el-button color="primary" icon="el-icon-share"></el-button>
+    <el-button color="primary" icon="el-icon-delete"></el-button>
+    <el-button color="primary" icon="el-icon-search">搜索</el-button>
+    <el-button color="primary"> 上传<i class="el-icon-upload el-icon--right"></i> </el-button>
   </el-row>
 </template>
 <script>
@@ -108,68 +146,30 @@ export default {
 
 ## 按钮组
 
-以按钮组的方式出现，常用于多项类似操作。
-
-使用`<el-button-group>`标签来嵌套你的按钮。
+使用`button-group`组件来嵌套你的按钮
 
 ```vue demo
 <template>
   <el-button-group>
-    <el-button type="primary" icon="el-icon-arrow-left">上一页</el-button>
-    <el-button type="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+    <el-button color="primary" icon="el-icon-arrow-left">上一页</el-button>
+    <el-button color="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
   </el-button-group>
   <el-button-group>
-    <el-button type="primary" icon="el-icon-edit"></el-button>
-    <el-button type="primary" icon="el-icon-share"></el-button>
-    <el-button type="primary" icon="el-icon-delete"></el-button>
+    <el-button color="primary" icon="el-icon-edit"></el-button>
+    <el-button color="primary" icon="el-icon-share"></el-button>
+    <el-button color="primary" icon="el-icon-delete"></el-button>
   </el-button-group>
-</template>
-```
-
-## 加载中
-
-点击按钮后进行数据加载操作，在按钮上显示加载状态。
-
-要设置为 loading 状态，只要设置`loading`属性为`true`即可。
-
-```vue demo
-<template>
-  <el-button type="primary" :loading="true">加载中</el-button>
-</template>
-```
-
-## 不同尺寸
-
-Button 组件提供除了默认值以外的三种尺寸，可以在不同场景下选择合适的按钮尺寸。
-
-额外的尺寸：`medium`、`small`、`mini`，通过设置`size`属性来配置它们。
-
-```vue demo demo
-<template>
-  <el-row>
-    <el-button>默认按钮</el-button>
-    <el-button size="medium">中等按钮</el-button>
-    <el-button size="small">小型按钮</el-button>
-    <el-button size="mini">超小按钮</el-button>
-  </el-row>
-  <el-row>
-    <el-button type="primary" shape="round">默认按钮</el-button>
-    <el-button type="primary" shape="round" size="medium">中等按钮</el-button>
-    <el-button type="primary" shape="round" size="small">小型按钮</el-button>
-    <el-button type="primary" shape="round" size="mini">超小按钮</el-button>
-  </el-row>
 </template>
 ```
 
 ## Attributes
 
-| 参数        | 说明           | 类型    | 可选值                                             | 默认值 |
-| ----------- | -------------- | ------- | -------------------------------------------------- | ------ |
-| size        | 尺寸           | string  | medium / small / mini                              | —      |
-| type        | 类型           | string  | primary / success / warning / danger / info / text | —      |
-| shape       | 是否朴素按钮   | boolean | round / circle                                     | -      |
-| loading     | 是否加载中状态 | boolean | —                                                  | false  |
-| disabled    | 是否禁用状态   | boolean | —                                                  | false  |
-| icon        | 图标类名       | string  | —                                                  | —      |
-| autofocus   | 是否默认聚焦   | boolean | —                                                  | false  |
-| native-type | 原生 type 属性 | string  | button / submit / reset                            | button |
+| 参数        | 说明           | 类型                                                                         | 默认值  |
+| ----------- | -------------- | ---------------------------------------------------------------------------- | ------- |
+| color       | 类型           | 'default' / 'primary' / 'success' / 'warning' / 'danger' / 'info' / 'string' | default |
+| size        | 尺寸           | 'large' / 'small'                                                            | —       |
+| type        | 类型           | 'round' / 'circle'                                                           | -       |
+| loading     | 是否加载中状态 | boolean                                                                      | false   |
+| disabled    | 是否禁用状态   | boolean                                                                      | false   |
+| native-type | 原生 type 属性 | 'button' / 'submit' / 'reset'                                                | button  |
+| icon        | 图标类名       | string                                                                       | —       |
