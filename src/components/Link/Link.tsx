@@ -5,7 +5,6 @@ import { mergeCls } from '@/utils/tools'
 const blockCls = getBlockCls('Link')
 const Link = defineComponent({
   name: getCompName('Link'),
-  inheritAttrs: false,
   emits: ['click'],
   props: {
     color: {

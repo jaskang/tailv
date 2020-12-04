@@ -78,7 +78,7 @@ test('props autofocus', async () => {
 test('props shape', async () => {
   const wrapper = mount({
     render() {
-      return <Button shape="round"></Button>
+      return <Button type="round"></Button>
     }
   })
   expect(wrapper.find('.is-round').exists()).toBe(true)
@@ -87,7 +87,7 @@ test('props shape', async () => {
 test('props circle', async () => {
   const wrapper = mount({
     render() {
-      return <Button shape="circle"></Button>
+      return <Button type="circle"></Button>
     }
   })
   expect(wrapper.find('.is-circle').exists()).toBe(true)
