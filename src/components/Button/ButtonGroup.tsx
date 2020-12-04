@@ -5,7 +5,7 @@ const cls = getBlockCls('ButtonGroup')
 const ButtonGroup = defineComponent({
   name: getCompName('ButtonGroup'),
   setup(props, { attrs, slots }) {
-    return () => <div class={`${cls}-group`}>{slots.default?.()}</div>
+    return () => <div class={cls}>{slots.default?.()}</div>
   }
 })
 
