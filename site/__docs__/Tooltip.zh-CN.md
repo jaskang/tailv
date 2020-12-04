@@ -12,49 +12,49 @@
 <template>
   <div class="box">
     <div class="top">
-      <el-tooltip class="item" effect="dark" content="Top Left 提示文字" placement="top-start">
-        <el-button>上左</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Top Center 提示文字" placement="top">
-        <el-button>上边</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Top Right 提示文字" placement="top-end">
-        <el-button>上右</el-button>
-      </el-tooltip>
+      <Tooltip class="item" effect="dark" content="Top Left 提示文字" placement="top-start">
+        <Button>上左</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Top Center 提示文字" placement="top">
+        <Button>上边</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Top Right 提示文字" placement="top-end">
+        <Button>上右</Button>
+      </Tooltip>
     </div>
     <div class="left">
-      <el-tooltip class="item" effect="dark" content="Left Top 提示文字" placement="left-start">
-        <el-button>左上</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Left Center 提示文字" placement="left">
-        <el-button>左边</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Left Bottom 提示文字" placement="left-end">
-        <el-button>左下</el-button>
-      </el-tooltip>
+      <Tooltip class="item" effect="dark" content="Left Top 提示文字" placement="left-start">
+        <Button>左上</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Left Center 提示文字" placement="left">
+        <Button>左边</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Left Bottom 提示文字" placement="left-end">
+        <Button>左下</Button>
+      </Tooltip>
     </div>
 
     <div class="right">
-      <el-tooltip class="item" effect="dark" content="Right Top 提示文字" placement="right-start">
-        <el-button>右上</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Right Center 提示文字" placement="right">
-        <el-button>右边</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Right Bottom 提示文字" placement="right-end">
-        <el-button>右下</el-button>
-      </el-tooltip>
+      <Tooltip class="item" effect="dark" content="Right Top 提示文字" placement="right-start">
+        <Button>右上</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Right Center 提示文字" placement="right">
+        <Button>右边</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Right Bottom 提示文字" placement="right-end">
+        <Button>右下</Button>
+      </Tooltip>
     </div>
     <div class="bottom">
-      <el-tooltip class="item" effect="dark" content="Bottom Left 提示文字" placement="bottom-start">
-        <el-button>下左</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Bottom Center 提示文字" placement="bottom">
-        <el-button>下边</el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Bottom Right 提示文字" placement="bottom-end">
-        <el-button>下右</el-button>
-      </el-tooltip>
+      <Tooltip class="item" effect="dark" content="Bottom Left 提示文字" placement="bottom-start">
+        <Button>下左</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Bottom Center 提示文字" placement="bottom">
+        <Button>下边</Button>
+      </Tooltip>
+      <Tooltip class="item" effect="dark" content="Bottom Right 提示文字" placement="bottom-end">
+        <Button>下右</Button>
+      </Tooltip>
     </div>
   </div>
 </template>
@@ -87,8 +87,8 @@
     margin: 4px;
   }
 
-  .left .el-tooltip__popper,
-  .right .el-tooltip__popper {
+  .left .Tooltip__popper,
+  .right .Tooltip__popper {
     padding: 8px 10px;
   }
 }
@@ -103,12 +103,12 @@ Tooltip 组件提供了两个不同的主题：`dark`和`light`。
 
 ```vue demo
 <template>
-  <el-tooltip content="Top center" placement="top">
-    <el-button>Dark</el-button>
-  </el-tooltip>
-  <el-tooltip content="Bottom center" placement="bottom" effect="light">
-    <el-button>Light</el-button>
-  </el-tooltip>
+  <Tooltip content="Top center" placement="top">
+    <Button>Dark</Button>
+  </Tooltip>
+  <Tooltip content="Bottom center" placement="bottom" effect="light">
+    <Button>Light</Button>
+  </Tooltip>
 </template>
 ```
 
@@ -120,12 +120,12 @@ Tooltip 组件提供了两个不同的主题：`dark`和`light`。
 
 ```vue demo
 <template>
-  <el-tooltip placement="top">
+  <Tooltip placement="top">
     <template #content>
       <div>多行信息<br />第二行信息</div>
     </template>
-    <el-button>Top center</el-button>
-  </el-tooltip>
+    <Button>Top center</Button>
+  </Tooltip>
 </template>
 ```
 
@@ -141,9 +141,9 @@ Tooltip 组件提供了两个不同的主题：`dark`和`light`。
 
 ```html
 <template>
-  <el-tooltip :disabled="disabled" content="点击关闭 tooltip 功能" placement="bottom" effect="light">
-    <el-button @click="disabled = !disabled">点击{{disabled ? '开启' : '关闭'}} tooltip 功能</el-button>
-  </el-tooltip>
+  <Tooltip :disabled="disabled" content="点击关闭 tooltip 功能" placement="bottom" effect="light">
+    <button @click="disabled = !disabled">点击{{disabled ? '开启' : '关闭'}} tooltip 功能</button>
+  </Tooltip>
 </template>
 <script>
   export default {

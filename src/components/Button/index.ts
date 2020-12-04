@@ -1,2 +1,2 @@
-export { default as ElButton } from './Button'
-export { default as ElButtonGroup } from './ButtonGroup'
+export { default as Button } from './Button'
+export { default as ButtonGroup } from './ButtonGroup'

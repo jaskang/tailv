@@ -1,4 +1,4 @@
-import { App, defineComponent, getCurrentInstance, inject } from 'vue'
+import { App, defineComponent, inject } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { LayoutInjectKey } from './Layout'
 

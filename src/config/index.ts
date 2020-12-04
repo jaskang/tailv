@@ -6,7 +6,7 @@ const config = {
 }
 
 export function getCompName(name: string) {
-  return pascalCase(config.prefixCls) + pascalCase(name)
+  return pascalCase(name)
 }
 
 export function getBlockCls(block: string) {

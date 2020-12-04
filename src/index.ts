@@ -1,37 +1,35 @@
 import { Component, Plugin } from 'vue'
 import { Row, Col, useBreakpoint } from './components/Grid'
-import { Tile } from './components/Tile'
 import { Layout, Aside, Main, Footer, Header } from './components/Layout'
-import { ElButton, ElButtonGroup } from './components/Button'
-import { ElLink } from './components/Link'
-import { ElIcon } from './components/Icon'
+import { Button, ButtonGroup } from './components/Button'
+import { Link } from './components/Link'
+import { Icon } from './components/Icon'
 import { Alert } from './components/Alert'
 import { Popper } from './components/Popper'
 import { Tooltip } from './components/Tooltip'
-import { ElPopover } from './components/Popover'
-import { Nav, NavItem, NavItemGroup } from './components/Nav'
-// import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from './components/Menu'
-import { ElBreadcrumb, ElBreadcrumbItem } from './components/Breadcrumb'
+import { Popover } from './components/Popover'
+import { Menu, MenuItem, MenuItemGroup } from './components/Menu'
+// import { Menu, MenuItem, Submenu, MenuItemGroup } from './components/Menu'
+import { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb'
 import './styles/index.less'
 export { default as injectCss } from './utils/injectCss'
 
 export {
   Row,
   Col,
-  Tile,
   Layout,
   Aside,
   Main,
   Header,
   Footer,
-  ElButton,
-  ElButtonGroup,
-  ElLink,
-  ElIcon,
-  ElPopover,
+  Button,
+  ButtonGroup,
+  Link,
+  Icon,
+  Popover,
   Alert,
-  ElBreadcrumb,
-  ElBreadcrumbItem,
+  Breadcrumb,
+  BreadcrumbItem,
   useBreakpoint
 }
 
@@ -47,10 +45,9 @@ export const elenext: Plugin = {
 
     useComponent(Row)
     useComponent(Col)
-    useComponent(Tile)
-    useComponent(Nav)
-    useComponent(NavItem)
-    useComponent(NavItemGroup)
+    useComponent(Menu)
+    useComponent(MenuItem)
+    useComponent(MenuItemGroup)
 
     useComponent(Layout)
     useComponent(Aside)
@@ -58,17 +55,17 @@ export const elenext: Plugin = {
     useComponent(Header)
     useComponent(Footer)
 
-    useComponent(ElButton)
-    useComponent(ElButtonGroup)
-    useComponent(ElLink)
-    useComponent(ElIcon)
+    useComponent(Button)
+    useComponent(ButtonGroup)
+    useComponent(Link)
+    useComponent(Icon)
     useComponent(Popper)
     useComponent(Tooltip)
-    useComponent(ElPopover)
+    useComponent(Popover)
 
     useComponent(Alert)
 
-    useComponent(ElBreadcrumb)
-    useComponent(ElBreadcrumbItem)
+    useComponent(Breadcrumb)
+    useComponent(BreadcrumbItem)
   }
 }

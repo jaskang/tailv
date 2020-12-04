@@ -1,1 +1,1 @@
-export { default as ElIcon } from './Icon'
+export { default as Icon } from './Icon'

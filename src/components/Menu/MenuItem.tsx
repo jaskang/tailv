@@ -1,17 +1,17 @@
 import { App, computed, CSSProperties, defineComponent, inject, ref } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { uniqueId } from '@/utils/uniqueId'
-import { NAV_INJKEY, NAV_ITEM_PADDING } from './Nav'
+import { MENU_INJKEY, MENU_ITEM_PADDING } from './Menu'
 
-const blockCls = getBlockCls('nav-item')
+const blockCls = getBlockCls('MenuItem')
 
-const Navitem = defineComponent({
-  name: getCompName('NavItem'),
+const Menuitem = defineComponent({
+  name: getCompName('MenuItem'),
   props: { name: String },
   setup(props, { slots }) {
-    const id = uniqueId('NavItem')
+    const id = uniqueId('MenuItem')
     const el = ref<HTMLDivElement>()
-    const parent = inject(NAV_INJKEY)
+    const parent = inject(MENU_INJKEY)
 
     const isActive = computed(() => {
       return (parent?.state?.activeId || -1) === id
@@ -20,7 +20,7 @@ const Navitem = defineComponent({
       return {
         color: isActive.value ? parent?.state.activeTextColor : parent?.state.textColor,
         backgroundColor: parent?.state.backgroundColor,
-        paddingLeft: `${(parent?.state.padding || 0) + NAV_ITEM_PADDING}px`
+        paddingLeft: `${(parent?.state.padding || 0) + MENU_ITEM_PADDING}px`
       }
     })
 
@@ -53,8 +53,8 @@ const Navitem = defineComponent({
   }
 })
 
-Navitem.install = (app: App): void => {
-  app.component(Navitem.name, Navitem)
+Menuitem.install = (app: App): void => {
+  app.component(Menuitem.name, Menuitem)
 }
 
-export default Navitem
+export default Menuitem

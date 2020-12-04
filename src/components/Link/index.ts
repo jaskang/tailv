@@ -1,1 +1,1 @@
-export { default as ElLink } from './Link'
+export { default as Link } from './Link'

@@ -1,1 +1,1 @@
-export { default as ElPopover } from './Popover'
+export { default as Popover } from './Popover'

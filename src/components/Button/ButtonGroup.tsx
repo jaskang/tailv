@@ -1,13 +1,11 @@
 import { App, defineComponent } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
 
+const cls = getBlockCls('ButtonGroup')
 const ButtonGroup = defineComponent({
-  name: 'ElButtonGroup',
+  name: getCompName('ButtonGroup'),
   setup(props, { attrs, slots }) {
-    return () => (
-      <div class="el-button-group" {...attrs}>
-        {slots.default?.()}
-      </div>
-    )
+    return () => <div class={`${cls}-group`}>{slots.default?.()}</div>
   }
 })
 

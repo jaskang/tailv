@@ -1,3 +1,8 @@
+---
+title: Layout
+wrapperClass: md-layout
+---
+
 ## Layout 布局容器
 
 用于布局的容器组件，方便快速搭建页面的基本结构：
@@ -18,36 +23,36 @@
 
 ```vue demo
 <template>
-  <el-layout>
-    <el-header>Header</el-header>
-    <el-main>Main</el-main>
-    <el-footer>Footer</el-footer>
-  </el-layout>
+  <Layout>
+    <Header>Header</Header>
+    <Main>Main</Main>
+    <Footer>Footer</Footer>
+  </Layout>
 </template>
 ```
 
 ```vue demo
 <template>
-  <el-layout>
-    <el-header>Header</el-header>
-    <el-layout>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main</el-main>
-    </el-layout>
-  </el-layout>
+  <Layout>
+    <Header>Header</Header>
+    <Layout>
+      <Aside width="200px">Aside</Aside>
+      <Main>Main</Main>
+    </Layout>
+  </Layout>
 </template>
 ```
 
 ```vue demo
 <template>
-  <el-layout>
-    <el-aside width="200px">Aside</el-aside>
-    <el-layout>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
-    </el-layout>
-  </el-layout>
+  <Layout>
+    <Aside width="200px">Aside</Aside>
+    <Layout>
+      <Header>Header</Header>
+      <Main>Main</Main>
+      <Footer>Footer</Footer>
+    </Layout>
+  </Layout>
 </template>
 ```
 
@@ -55,104 +60,80 @@
 
 ```vue demo
 <template>
-  <el-layout style="height: 500px; border: 1px solid #eee">
-    <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-nav width="200px" :default-openeds="['1', '3']">
-        <el-nav index="1">
+  <Layout style="height: 500px; border: 1px solid #eee">
+    <Aside width="200px" style="background-color: rgb(238, 241, 246)">
+      <Menu width="200px" :default-openeds="['1', '3']">
+        <Menu index="1">
           <template #title> <i class="el-icon-message"></i>导航一 </template>
-          <el-nav-item-group>
+          <MenuItemGroup>
             <template #title>分组一</template>
-            <el-nav-item index="1-1">选项1</el-nav-item>
-            <el-nav-item index="1-2">选项2</el-nav-item>
-          </el-nav-item-group>
-          <el-nav-item-group title="分组2">
-            <el-nav-item index="1-3">选项3</el-nav-item>
-          </el-nav-item-group>
-          <el-nav index="1-4">
+            <MenuItem index="1-1">选项1</MenuItem>
+            <MenuItem index="1-2">选项2</MenuItem>
+          </MenuItemGroup>
+          <MenuItemGroup title="分组2">
+            <MenuItem index="1-3">选项3</MenuItem>
+          </MenuItemGroup>
+          <Menu index="1-4">
             <template #title>选项4</template>
-            <el-nav-item index="1-4-1">选项4-1</el-nav-item>
-          </el-nav>
-        </el-nav>
-        <el-nav index="2">
+            <MenuItem index="1-4-1">选项4-1</MenuItem>
+          </Menu>
+        </Menu>
+        <Menu index="2">
           <template #title><i class="el-icon-menu"></i>导航二</template>
-          <el-nav-item-group>
+          <MenuItemGroup>
             <template #title>分组一</template>
-            <el-nav-item index="2-1">选项1</el-nav-item>
-            <el-nav-item index="2-2">选项2</el-nav-item>
-          </el-nav-item-group>
-          <el-nav-item-group title="分组2">
-            <el-nav-item index="2-3">选项3</el-nav-item>
-          </el-nav-item-group>
-          <el-nav index="2-4">
+            <MenuItem index="2-1">选项1</MenuItem>
+            <MenuItem index="2-2">选项2</MenuItem>
+          </MenuItemGroup>
+          <MenuItemGroup title="分组2">
+            <MenuItem index="2-3">选项3</MenuItem>
+          </MenuItemGroup>
+          <Menu index="2-4">
             <template #title>选项4</template>
-            <el-nav-item index="2-4-1">选项4-1</el-nav-item>
-          </el-nav>
-        </el-nav>
-        <el-nav index="3">
+            <MenuItem index="2-4-1">选项4-1</MenuItem>
+          </Menu>
+        </Menu>
+        <Menu index="3">
           <template #title> <i class="el-icon-setting"></i>导航三 </template>
-          <el-nav-item-group>
+          <MenuItemGroup>
             <template #title>分组一</template>
-            <el-nav-item index="3-1">选项1</el-nav-item>
-            <el-nav-item index="3-2">选项2</el-nav-item>
-          </el-nav-item-group>
-          <el-nav-item-group title="分组2">
-            <el-nav-item index="3-3">选项3</el-nav-item>
-          </el-nav-item-group>
-          <el-nav index="3-4">
+            <MenuItem index="3-1">选项1</MenuItem>
+            <MenuItem index="3-2">选项2</MenuItem>
+          </MenuItemGroup>
+          <MenuItemGroup title="分组2">
+            <MenuItem index="3-3">选项3</MenuItem>
+          </MenuItemGroup>
+          <Menu index="3-4">
             <template #title>选项4</template>
-            <el-nav-item index="3-4-1">选项4-1</el-nav-item>
-          </el-nav>
-        </el-nav>
-      </el-nav>
-    </el-aside>
+            <MenuItem index="3-4-1">选项4-1</MenuItem>
+          </Menu>
+        </Menu>
+      </Menu>
+    </Aside>
 
-    <el-layout>
-      <el-header style="text-align: right; font-size: 12px">
-        <el-dropdown>
+    <Layout>
+      <Header style="text-align: right; font-size: 12px">
+        <Dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
-          <el-dropdown-menu #dropdown>
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+          <DropdownMenu #dropdown>
+            <Dropdown-item>查看</Dropdown-item>
+            <Dropdown-item>新增</Dropdown-item>
+            <Dropdown-item>删除</Dropdown-item>
+          </DropdownMenu>
+        </Dropdown>
         <span>王小虎</span>
-      </el-header>
+      </Header>
 
-      <el-main>
-        <el-table :data="tableData">
-          <el-table-column prop="date" label="日期" width="140"> </el-table-column>
-          <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
-          <el-table-column prop="address" label="地址"> </el-table-column>
-        </el-table>
-      </el-main>
-    </el-layout>
-  </el-layout>
+      <Main>
+        <Table :data="tableData">
+          <TableColumn prop="date" label="日期" width="140"> </TableColumn>
+          <TableColumn prop="name" label="姓名" width="120"> </TableColumn>
+          <TableColumn prop="address" label="地址"> </TableColumn>
+        </Table>
+      </Main>
+    </Layout>
+  </Layout>
 </template>
-<style lang="less">
-.vuedoc-demo {
-  .el-header,
-  .el-footer {
-    background-color: #b3c0d1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .el-aside {
-    background-color: #d3dce6;
-    color: #333;
-    /* text-align: center; */
-  }
-
-  .el-main {
-    background-color: #e9eef3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-}
-</style>
 
 <script>
 export default {

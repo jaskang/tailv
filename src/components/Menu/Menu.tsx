@@ -1,9 +1,9 @@
-import { App, defineComponent, inject, InjectionKey, provide, reactive } from 'vue'
+import { App, defineComponent, inject, InjectionKey, PropType, provide, reactive } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { mixColor } from '@/utils/tools'
-import CollapseTransition from '../Transition/CollapseTransition'
+import CollapseTransition from '@/components/Transition/CollapseTransition'
 
-type NavState = {
+type MenuState = {
   textColor: string
   activeTextColor: string
   backgroundColor: string
@@ -16,20 +16,23 @@ type NavState = {
   padding: number
 }
 
-const blockCls = getBlockCls('Nav')
-
-export const NAV_INJKEY: InjectionKey<{
-  readonly state: NavState
+export const MENU_INJKEY: InjectionKey<{
+  readonly state: MenuState
   action: {
     select: (id: string) => void
   }
-}> = Symbol('Nav')
+}> = Symbol('Menu')
 
-export const NAV_ITEM_PADDING = 20
+export const MENU_ITEM_PADDING = 20
 
-const Nav = defineComponent({
-  name: getCompName('Nav'),
+const blockCls = getBlockCls('Menu')
+const Menu = defineComponent({
+  name: getCompName('Menu'),
   props: {
+    mode: {
+      type: String as PropType<'vertical' | 'horizontal' | 'popper'>,
+      default: 'horizontal'
+    },
     backgroundColor: {
       type: String,
       default: ''
@@ -44,8 +47,8 @@ const Nav = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const parent = inject(NAV_INJKEY, null)
-    const state = reactive<NavState>({
+    const parent = inject(MENU_INJKEY, null)
+    const state = reactive<MenuState>({
       textColor: parent?.state.textColor || props.textColor,
       activeTextColor: parent?.state.activeTextColor || props.activeTextColor,
       backgroundColor: parent?.state.backgroundColor || props.backgroundColor,
@@ -58,7 +61,7 @@ const Nav = defineComponent({
       activePath: [],
       isOpen: false,
       isRoot: !Boolean(parent),
-      padding: parent ? parent.state.padding + NAV_ITEM_PADDING : 0
+      padding: parent ? parent.state.padding + MENU_ITEM_PADDING : 0
     })
     const onSelectHandler = () => {
       if (!state.isRoot) {
@@ -66,7 +69,7 @@ const Nav = defineComponent({
       }
     }
 
-    provide(NAV_INJKEY, {
+    provide(MENU_INJKEY, {
       state,
       action: {
         select: (id: string) => {
@@ -81,14 +84,7 @@ const Nav = defineComponent({
           {slots.default?.()}
         </ul>
       ) : (
-        <li
-          class={[
-            `${blockCls}-inner`,
-            {
-              'is-opened': state.isOpen
-            }
-          ]}
-        >
+        <li class={{ [`${blockCls}-inner`]: true, 'is-opened': state.isOpen }}>
           <div
             class={[`${blockCls}-inner__title`]}
             style={{ paddingLeft: state.padding + 'px' }}
@@ -107,8 +103,8 @@ const Nav = defineComponent({
   }
 })
 
-Nav.install = (app: App): void => {
-  app.component(Nav.name, Nav)
+Menu.install = (app: App): void => {
+  app.component(Menu.name, Menu)
 }
 
-export default Nav
+export default Menu

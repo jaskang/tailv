@@ -15,14 +15,14 @@ wrapperClass: md-button
 
 ```vue demo
 <template>
-  <el-row>
-    <el-button>默认按钮</el-button>
-    <el-button color="primary">主要按钮</el-button>
-    <el-button color="success">成功按钮</el-button>
-    <el-button color="info">信息按钮</el-button>
-    <el-button color="warning">警告按钮</el-button>
-    <el-button color="danger">危险按钮</el-button>
-  </el-row>
+  <Row>
+    <Button>默认按钮</Button>
+    <Button color="primary">主要按钮</Button>
+    <Button color="success">成功按钮</Button>
+    <Button color="info">信息按钮</Button>
+    <Button color="warning">警告按钮</Button>
+    <Button color="danger">危险按钮</Button>
+  </Row>
 </template>
 ```
 
@@ -36,33 +36,33 @@ wrapperClass: md-button
 
 ```vue demo
 <template>
-  <el-row align="middle">
-    <el-button>默认按钮</el-button>
-    <el-button color="primary">主要按钮</el-button>
-    <el-button color="success">成功按钮</el-button>
-    <el-button color="info">信息按钮</el-button>
-    <el-button color="warning">警告按钮</el-button>
-    <el-button color="danger">危险按钮</el-button>
-  </el-row>
-  <el-row align="middle">
-    <el-button type="round">默认按钮</el-button>
-    <el-button type="round" color="primary">主要按钮</el-button>
-    <el-button type="round" color="success">成功按钮</el-button>
-    <el-button type="round" color="info">信息按钮</el-button>
-    <el-button type="round" color="warning">警告按钮</el-button>
-    <el-button type="round" color="danger">危险按钮</el-button>
-  </el-row>
-  <el-row align="middle">
-    <el-button type="circle">默</el-button>
-    <el-button type="circle" color="primary">主</el-button>
-    <el-button type="circle" color="success">成</el-button>
-    <el-button type="circle" color="info">信</el-button>
-    <el-button type="circle" color="warning">警</el-button>
-    <el-button type="circle" color="danger">危</el-button>
-  </el-row>
-  <el-row align="middle">
-    <el-button type="link">链接按钮</el-button>
-  </el-row>
+  <Row align="middle">
+    <Button>默认按钮</Button>
+    <Button color="primary">主要按钮</Button>
+    <Button color="success">成功按钮</Button>
+    <Button color="info">信息按钮</Button>
+    <Button color="warning">警告按钮</Button>
+    <Button color="danger">危险按钮</Button>
+  </Row>
+  <Row align="middle">
+    <Button type="round">默认按钮</Button>
+    <Button type="round" color="primary">主要按钮</Button>
+    <Button type="round" color="success">成功按钮</Button>
+    <Button type="round" color="info">信息按钮</Button>
+    <Button type="round" color="warning">警告按钮</Button>
+    <Button type="round" color="danger">危险按钮</Button>
+  </Row>
+  <Row align="middle">
+    <Button type="circle">默</Button>
+    <Button type="circle" color="primary">主</Button>
+    <Button type="circle" color="success">成</Button>
+    <Button type="circle" color="info">信</Button>
+    <Button type="circle" color="warning">警</Button>
+    <Button type="circle" color="danger">危</Button>
+  </Row>
+  <Row align="middle">
+    <Button type="link">链接按钮</Button>
+  </Row>
 </template>
 ```
 
@@ -74,16 +74,16 @@ wrapperClass: md-button
 
 ```vue demo
 <template>
-  <el-row align="middle">
-    <el-button color="primary" size="large">大型按钮</el-button>
-    <el-button color="primary">默认按钮</el-button>
-    <el-button color="primary" size="small">小型按钮</el-button>
-  </el-row>
-  <el-row align="middle">
-    <el-button color="primary" type="round" size="large">大型按钮</el-button>
-    <el-button color="primary" type="round">默认按钮</el-button>
-    <el-button color="primary" type="round" size="small">小型按钮</el-button>
-  </el-row>
+  <Row align="middle">
+    <Button color="primary" size="large">大型按钮</Button>
+    <Button color="primary">默认按钮</Button>
+    <Button color="primary" size="small">小型按钮</Button>
+  </Row>
+  <Row align="middle">
+    <Button color="primary" type="round" size="large">大型按钮</Button>
+    <Button color="primary" type="round">默认按钮</Button>
+    <Button color="primary" type="round" size="small">小型按钮</Button>
+  </Row>
 </template>
 ```
 
@@ -93,12 +93,12 @@ wrapperClass: md-button
 
 ```vue demo
 <template>
-  <el-row>
-    <el-button disabled color="primary">主要按钮</el-button>
-    <el-button disabled color="primary" type="round">主要按钮</el-button>
-    <el-button disabled color="primary" type="circle">主</el-button>
-    <el-button disabled color="primary" type="link">主要按钮</el-button>
-  </el-row>
+  <Row>
+    <Button disabled color="primary">主要按钮</Button>
+    <Button disabled color="primary" type="round">主要按钮</Button>
+    <Button disabled color="primary" type="circle">主</Button>
+    <Button disabled color="primary" type="link">主要按钮</Button>
+  </Row>
 </template>
 ```
 
@@ -108,7 +108,7 @@ wrapperClass: md-button
 
 ```vue demo
 <template>
-  <el-button color="primary" :loading="true">加载中</el-button>
+  <Button color="primary" :loading="true">加载中</Button>
 </template>
 ```
 
@@ -120,13 +120,13 @@ wrapperClass: md-button
 
 ```vue demo
 <template>
-  <el-row>
-    <el-button color="primary" icon="el-icon-edit" @click="testclick"></el-button>
-    <el-button color="primary" icon="el-icon-share"></el-button>
-    <el-button color="primary" icon="el-icon-delete"></el-button>
-    <el-button color="primary" icon="el-icon-search">搜索</el-button>
-    <el-button color="primary"> 上传<i class="el-icon-upload el-icon--right"></i> </el-button>
-  </el-row>
+  <Row>
+    <Button color="primary" icon="el-icon-edit" @click="testclick"></Button>
+    <Button color="primary" icon="el-icon-share"></Button>
+    <Button color="primary" icon="el-icon-delete"></Button>
+    <Button color="primary" icon="el-icon-search">搜索</Button>
+    <Button color="primary"> 上传<i class="el-icon-upload el-icon--right"></i> </Button>
+  </Row>
 </template>
 <script>
 export default {
@@ -145,15 +145,15 @@ export default {
 
 ```vue demo
 <template>
-  <el-button-group>
-    <el-button color="primary" icon="el-icon-arrow-left">上一页</el-button>
-    <el-button color="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
-  </el-button-group>
-  <el-button-group>
-    <el-button color="primary" icon="el-icon-edit"></el-button>
-    <el-button color="primary" icon="el-icon-share"></el-button>
-    <el-button color="primary" icon="el-icon-delete"></el-button>
-  </el-button-group>
+  <Button-group>
+    <Button color="primary" icon="el-icon-arrow-left">上一页</Button>
+    <Button color="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></Button>
+  </Button-group>
+  <Button-group>
+    <Button color="primary" icon="el-icon-edit"></Button>
+    <Button color="primary" icon="el-icon-share"></Button>
+    <Button color="primary" icon="el-icon-delete"></Button>
+  </Button-group>
 </template>
 ```
 

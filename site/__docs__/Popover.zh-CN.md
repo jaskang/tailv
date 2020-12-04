@@ -6,27 +6,27 @@
 
 ```vue demo
 <template>
-  <el-popover
+  <Popover
     placement="top-start"
     title="标题"
     width="200"
     trigger="hover"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
-    <el-button>hover 激活</el-button>
-  </el-popover>
+    <Button>hover 激活</Button>
+  </Popover>
 
-  <el-popover
+  <Popover
     placement="bottom"
     title="标题"
     width="200"
     trigger="click"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
-    <el-button>click 激活</el-button>
-  </el-popover>
+    <Button>click 激活</Button>
+  </Popover>
 
-  <el-popover
+  <Popover
     ref="popover"
     placement="right"
     title="标题"
@@ -34,9 +34,9 @@
     trigger="focus"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
-    <el-button>focus 激活</el-button>
-  </el-popover>
-  <el-popover
+    <Button>focus 激活</Button>
+  </Popover>
+  <Popover
     placement="bottom"
     title="标题"
     width="200"
@@ -44,8 +44,8 @@
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
     v-model="visible"
   >
-    <el-button @click="click">手动激活</el-button>
-  </el-popover>
+    <Button @click="click">手动激活</Button>
+  </Popover>
 </template>
 <script>
 export default {
@@ -72,16 +72,16 @@ export default {
 
 ```vue demo
 <template>
-  <el-popover placement="right" width="400" trigger="click">
+  <Popover placement="right" width="400" trigger="click">
     <template #popper>
-      <el-table :data="gridData">
-        <el-table-column width="150" property="date" label="日期"></el-table-column>
-        <el-table-column width="100" property="name" label="姓名"></el-table-column>
-        <el-table-column width="300" property="address" label="地址"></el-table-column>
-      </el-table>
+      <Table :data="gridData">
+        <TableColumn width="150" property="date" label="日期"></TableColumn>
+        <TableColumn width="100" property="name" label="姓名"></TableColumn>
+        <TableColumn width="300" property="address" label="地址"></TableColumn>
+      </Table>
     </template>
-    <el-button>click 激活</el-button>
-  </el-popover>
+    <Button>click 激活</Button>
+  </Popover>
 </template>
 <script>
 export default {
@@ -121,16 +121,16 @@ export default {
 
 ```vue demo
 <template>
-  <el-popover placement="top" width="160" v-model="visible">
+  <Popover placement="top" width="160" v-model="visible">
     <template #popper>
       <p>这是一段内容这是一段内容确定删除吗？</p>
       <div style="text-align: right; margin: 0">
-        <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-        <el-button type="primary" size="mini" @click="visible = false">确定</el-button>
+        <Button size="mini" type="text" @click="visible = false">取消</Button>
+        <Button type="primary" size="mini" @click="visible = false">确定</Button>
       </div>
     </template>
-    <el-button>删除</el-button>
-  </el-popover>
+    <Button>删除</Button>
+  </Popover>
 </template>
 <script>
 export default {

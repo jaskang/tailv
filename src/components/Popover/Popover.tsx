@@ -7,7 +7,6 @@ import { mergeCls } from '@/utils/tools'
 import { getBlockCls, getCompName } from '@/config'
 
 const blockCls = getBlockCls('Popover')
-
 const Popover = defineComponent({
   name: getCompName('Popover'),
   emits: ['update:modelValue'],

@@ -4,24 +4,24 @@
 
 ```vue demo
 <template>
-  <el-popper>
-    <el-button>top button</el-button>
+  <Popper>
+    <Button>top button</Button>
     <template #popper> 12312342 </template>
-  </el-popper>
+  </Popper>
   <br />
-  <el-popper placement="left">
-    <el-button>left button</el-button>
+  <Popper placement="left">
+    <Button>left button</Button>
     <template #popper> 12312342 </template>
-  </el-popper>
+  </Popper>
   <br />
-  <el-popper placement="right">
-    <el-button>right button</el-button>
+  <Popper placement="right">
+    <Button>right button</Button>
     <template #popper> 12312342 </template>
-  </el-popper>
+  </Popper>
   <br />
-  <el-popper placement="bottom">
-    <el-button>bottom button</el-button>
+  <Popper placement="bottom">
+    <Button>bottom button</Button>
     <template #popper> 12312342 </template>
-  </el-popper>
+  </Popper>
 </template>
 ```

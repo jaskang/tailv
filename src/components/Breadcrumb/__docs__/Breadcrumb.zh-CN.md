@@ -6,16 +6,16 @@
 
 适用广泛的基础用法。
 
-在 el-breadcrumb 中使用 el-breadcrumb-item 标签表示从首页开始的每一级。Element 提供了一个 separator 属性，在 el-breadcrumb 标签中设置它来决定分隔符，它只能是字符串，默认为斜杠/。
+在 Breadcrumb 中使用 BreadcrumbItem 标签表示从首页开始的每一级。Elenext 提供了一个 separator 属性，在 Breadcrumb 标签中设置它来决定分隔符，它只能是字符串，默认为斜杠/。
 
 ```vue demo
 <template>
-  <el-breadcrumb separator="/">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-  </el-breadcrumb>
+  <Breadcrumb separator="/">
+    <BreadcrumbItem :to="{ path: '/' }">首页</BreadcrumbItem>
+    <BreadcrumbItem><a href="/">活动管理</a></BreadcrumbItem>
+    <BreadcrumbItem>活动列表</BreadcrumbItem>
+    <BreadcrumbItem>活动详情</BreadcrumbItem>
+  </Breadcrumb>
 </template>
 ```
 
@@ -25,11 +25,11 @@
 
 ```vue demo
 <template>
-  <el-breadcrumb separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
-    <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
-    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-  </el-breadcrumb>
+  <Breadcrumb separator-class="el-icon-arrow-right">
+    <BreadcrumbItem :to="{ path: '/' }">首页</BreadcrumbItem>
+    <BreadcrumbItem :to="{ path: '/' }">活动管理</BreadcrumbItem>
+    <BreadcrumbItem :to="{ path: '/' }">活动列表</BreadcrumbItem>
+    <BreadcrumbItem>活动详情</BreadcrumbItem>
+  </Breadcrumb>
 </template>
 ```

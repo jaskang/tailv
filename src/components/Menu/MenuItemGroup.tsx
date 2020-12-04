@@ -1,11 +1,11 @@
 import { App, computed, defineComponent, inject } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
-import { NAV_INJKEY, NAV_ITEM_PADDING } from './Nav'
+import { MENU_INJKEY, MENU_ITEM_PADDING } from './Menu'
 
-const blockCls = getBlockCls('NavItemGroup')
+const blockCls = getBlockCls('MenuItemGroup')
 
-const NavItemGroup = defineComponent({
-  name: getCompName('NavItemGroup'),
+const MenuItemGroup = defineComponent({
+  name: getCompName('MenuItemGroup'),
   props: {
     title: {
       type: String,
@@ -13,9 +13,9 @@ const NavItemGroup = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const parent = inject(NAV_INJKEY)
+    const parent = inject(MENU_INJKEY)
     const padding = computed(() => {
-      return (parent?.state.padding || 0) + NAV_ITEM_PADDING
+      return (parent?.state.padding || 0) + MENU_ITEM_PADDING
     })
     return () => (
       <li class={blockCls}>
@@ -28,8 +28,8 @@ const NavItemGroup = defineComponent({
   }
 })
 
-NavItemGroup.install = (app: App): void => {
-  app.component(NavItemGroup.name, NavItemGroup)
+MenuItemGroup.install = (app: App): void => {
+  app.component(MenuItemGroup.name, MenuItemGroup)
 }
 
-export default NavItemGroup
+export default MenuItemGroup

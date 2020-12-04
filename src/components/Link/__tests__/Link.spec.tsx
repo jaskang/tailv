@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils'
-import { ElLink } from '../'
+import { Link } from '../'
 
 it('create', () => {
   const wrapper = mount({
     render() {
-      return <ElLink type="primary"></ElLink>
+      return <Link color="primary"></Link>
     }
   })
   expect(wrapper.classes()).toContain('el-link--primary')
@@ -12,7 +12,7 @@ it('create', () => {
 it('icon', () => {
   const wrapper = mount({
     render() {
-      return <ElLink icon="el-icon-search"></ElLink>
+      return <Link icon="el-icon-search"></Link>
     }
   })
   expect(wrapper.element.querySelector('.el-icon-search')).toBeDefined()
@@ -20,7 +20,7 @@ it('icon', () => {
 it('href', () => {
   const wrapper = mount({
     render() {
-      return <ElLink href="https://element.eleme.io/"></ElLink>
+      return <Link href="https://element.eleme.io/"></Link>
     }
   })
   expect(wrapper.element.getAttribute('href')).toEqual('https://element.eleme.io/')
@@ -29,9 +29,9 @@ it('target', () => {
   const wrapper = mount({
     render() {
       return (
-        <ElLink href="https://element.eleme.io/" target="_blank">
+        <Link href="https://element.eleme.io/" target="_blank">
           default
-        </ElLink>
+        </Link>
       )
     }
   })
@@ -40,7 +40,7 @@ it('target', () => {
 it('disabled', () => {
   const wrapper = mount({
     render() {
-      return <ElLink disabled>default</ElLink>
+      return <Link disabled>default</Link>
     }
   })
   expect(wrapper.classes()).toContain('is-disabled')
@@ -60,9 +60,9 @@ it('click', async () => {
         times++
       }
       return () => (
-        <ElLink disabled={props.disabled} onClick={handleClick}>
+        <Link disabled={props.disabled} onClick={handleClick}>
           default
-        </ElLink>
+        </Link>
       )
     }
   })
