@@ -11,6 +11,7 @@ import Popper from './__docs__/Popper.zh-CN.md'
 import Tooltip from './__docs__/Tooltip.zh-CN.md'
 import Popover from './__docs__/Popover.zh-CN.md'
 import Alert from './__docs__/Alert.zh-CN.md'
+import Icon from './docs/Icon.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -46,7 +47,7 @@ export const router = createRouter({
         {
           path: '/icon',
           name: 'icon',
-          component: import('./docs/Icon.vue')
+          component: Icon
         },
         {
           path: '/breadcrumb',

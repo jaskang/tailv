@@ -8,8 +8,8 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-app.use(router)
 app.component(IconChevronDown.name, IconArrowClockwise)
 app.component(IconArrowClockwise.name, IconArrowClockwise)
 app.use(elenext)
+app.use(router)
 app.mount('#app')

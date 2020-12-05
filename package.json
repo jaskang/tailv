@@ -85,7 +85,7 @@
     "ts-jest": "^26.4.4",
     "typescript": "^3.9.7",
     "vite": "^1.0.0-rc.13",
-    "vite-plugin-vuedoc": "^1.2.0",
+    "vite-plugin-vuedoc": "^1.2.1",
     "vue": "^3.0.3",
     "vue-router": "^4.0.0-rc.5"
   },
