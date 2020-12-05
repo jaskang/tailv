@@ -138,18 +138,20 @@ body {
   display: flex;
   flex-wrap: wrap;
   .icon-item {
-    width: 100px;
+    width: 120px;
     // height: 100px;
     border: 1px solid #f0f0f0;
     margin: 0 10px 10px 0;
-    > div:first-child {
+    &__icon {
       font-size: 32px;
-      padding: 20px 0;
+      line-height: 48px;
+      padding: 25px 0 15px 0;
     }
     &__text {
-      line-height: 26px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 14px;
+      word-break: break-all;
+      height: 38px;
+      padding: 5px;
     }
   }
 }

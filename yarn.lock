@@ -999,10 +999,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@elenext/icons@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.npmjs.org/@elenext/icons/-/icons-0.2.4.tgz#510f5d32d92eb8afbd1012ed38130ef1d95a44a2"
-  integrity sha512-5CfmQtwX6x2Qc7fLnbWUgknT89IbPZVEHfSwVpXsqF0wmFVftOJg9Gm4bTQRGFaWSdIHiUy/+ZVnPPJz8pezUQ==
+"@elenext/icons@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/@elenext/icons/-/icons-0.4.0.tgz#90240208bb1d62fa0bc7971a3e370f2e58e64653"
+  integrity sha512-7/jJ3ymVbgPSOPd+C7+Wm7KJw7pvkiDvFV54+hHEX/aupDaRFzlI7s+GBSSau1hCfRsqmcB9HaW2jjHQHhe7mg==
 
 "@eslint/eslintrc@^0.2.1":
   version "0.2.1"
@@ -10040,10 +10040,10 @@ vfile@^4.0.0:
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
 
-vite-plugin-vuedoc@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/vite-plugin-vuedoc/-/vite-plugin-vuedoc-1.2.1.tgz#f21e185f6ce5a2c5c582a627ab620b2ee70387ac"
-  integrity sha512-qANYyzZ45Fxhb6tlS9xFGfhxpgLbBrT03bsNwBYPXNoT9phILabngTb+Xcj1N3c70N7ZhPzcrpqviEtA2rWthQ==
+vite-plugin-vuedoc@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/vite-plugin-vuedoc/-/vite-plugin-vuedoc-1.2.2.tgz#ed1536db9f5e123a7b0380b53f48caa2a0632068"
+  integrity sha512-3kK6KPyAQEMPswu/PQ2cCJRkDcHnKxl+FexWwPd/Dk+2v2tC0HYisUmRikDBipgNyxIt/iN4rJhDMJBGMtFJDw==
   dependencies:
     fs-extra "^9.0.1"
     js-yaml "^3.14.0"

@@ -112,30 +112,50 @@ wrapperClass: md-button
 </template>
 ```
 
-## 图标按钮
+## 图标
 
 带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。
 
-设置`icon`属性即可，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
+设置 `icon` slot
 
 ```vue demo
 <template>
   <Row>
-    <Button color="primary" icon="el-icon-edit" @click="testclick"></Button>
-    <Button color="primary" icon="el-icon-share"></Button>
-    <Button color="primary" icon="el-icon-delete"></Button>
-    <Button color="primary" icon="el-icon-search">搜索</Button>
-    <Button color="primary"> 上传<i class="el-icon-upload el-icon--right"></i> </Button>
+    <Button color="primary" @click="testclick">
+      <template #icon><IconPlusSquare /></template>
+      IconPlusSquare
+    </Button>
+    <Button color="primary">
+      <template #icon> <IconTrash /></template>IconTrash
+    </Button>
+    <Button color="primary">
+      <template #icon><IconPencilSquare /></template>IconPencilSquare
+    </Button>
+    <Button color="primary">
+      <template #icon><IconSearch /></template>IconSearch
+    </Button>
+    <Button color="primary"> <template #icon></template> 上传<i class="el-icon-upload el-icon--right"></i> </Button>
   </Row>
 </template>
 <script>
-export default {
-  methods: {
-    testclick() {
+import { defineComponent } from 'vue'
+import { IconPlusSquare, IconTrash, IconPencilSquare, IconSearch } from '@elenext/icons'
+export default defineComponent({
+  components: {
+    IconPlusSquare,
+    IconTrash,
+    IconPencilSquare,
+    IconSearch
+  },
+  setup() {
+    const testclick = () => {
       alert('testclick111222')
     }
+    return {
+      testclick
+    }
   }
-}
+})
 </script>
 ```
 

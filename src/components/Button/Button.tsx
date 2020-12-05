@@ -1,7 +1,7 @@
-import { App, computed, defineComponent, PropType } from 'vue'
+import { App, ComponentOptions, computed, defineComponent, FunctionalComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { mergeCls } from '@/utils/tools'
-
+import { IconArrowClockwise } from '@elenext/icons'
 const cls = getBlockCls('Button')
 const Button = defineComponent({
   name: getCompName('Button'),
@@ -18,7 +18,6 @@ const Button = defineComponent({
       type: String as PropType<'large' | 'small'>
     },
     nativeType: { type: String as PropType<'button' | 'submit' | 'reset'>, default: 'button' },
-    icon: { type: String, default: '' },
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean }
   },
@@ -38,13 +37,15 @@ const Button = defineComponent({
         emit('click', e)
       }
     }
-    return () => (
-      <button disabled={props.disabled} type={props.nativeType as 'button'} class={classes.value} onClick={onClick}>
-        {props.loading && <i class="el-icon-loading"></i>}
-        {props.icon && !props.loading && <i class={props.icon}></i>}
-        <span>{slots.default?.()}</span>
-      </button>
-    )
+    return () => {
+      return (
+        <button disabled={props.disabled} type={props.nativeType as 'button'} class={classes.value} onClick={onClick}>
+          {props.loading && <IconArrowClockwise spin />}
+          {slots.icon && !props.loading && slots.icon()}
+          <span>{slots.default?.()}</span>
+        </button>
+      )
+    }
   }
 })
 
