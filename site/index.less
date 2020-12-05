@@ -6,15 +6,6 @@ body {
   height: 100%;
 }
 
-@font-face {
-  font-family: 'element-icons';
-  src: url('./assets/element-icons.woff') format('woff'),
-    /* chrome, firefox */ url('./assets/element-icons.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  font-weight: normal;
-  font-display: auto;
-  font-style: normal;
-}
-
 .site-content {
   width: 100%;
   padding: 30px;
@@ -134,5 +125,31 @@ body {
     color: #333;
     text-align: center;
     line-height: 160px;
+  }
+}
+
+.md-icon {
+  .el-button + .el-button {
+    margin-left: 10px;
+  }
+}
+.icon-items {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  .icon-item {
+    width: 100px;
+    // height: 100px;
+    border: 1px solid #f0f0f0;
+    margin: 0 10px 10px 0;
+    > div:first-child {
+      font-size: 32px;
+      padding: 20px 0;
+    }
+    &__text {
+      line-height: 26px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 }
