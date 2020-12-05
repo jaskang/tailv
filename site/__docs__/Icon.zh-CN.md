@@ -20,12 +20,6 @@ wrapperClass: md-icon
     </Col>
   </Row>
 </template>
-<script>
-import { IconChevronDown, IconArrowClockwise } from '@elenext/icons'
-export default {
-  components: { IconChevronDown, IconArrowClockwise }
-}
-</script>
 ```
 
 ### 图标集合
