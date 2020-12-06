@@ -1,4 +1,4 @@
-import { App, ComponentOptions, computed, defineComponent, FunctionalComponent, PropType } from 'vue'
+import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { mergeCls } from '@/utils/tools'
 import { IconArrowClockwise } from '@elenext/icons'

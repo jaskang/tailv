@@ -9,6 +9,7 @@ module.exports = {
     }
   },
   verbose: true,
+  moduleDirectories: ['node_modules'],
   moduleFileExtensions: ['vue', 'js', 'json', 'jsx', 'ts', 'tsx', 'node'],
   testMatch: ['<rootDir>/src/**/__tests__/**/*spec.[jt]s?(x)'],
   coverageDirectory: 'coverage',
@@ -20,6 +21,7 @@ module.exports = {
     '^.+\\.(ts|tsx)$': '<rootDir>/node_modules/babel-jest'
   },
   moduleNameMapper: {
+    '@elenext/icons': '<rootDir>/node_modules/@elenext/icons/dist/index.cjs.js',
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|less|scss)$': '<rootDir>/scripts/__mocks__/styleMock.js',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':

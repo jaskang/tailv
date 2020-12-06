@@ -26,7 +26,7 @@
     "types",
     "index.js"
   ],
-  "sideEffects": true,
+  "sideEffects": "false",
   "scripts": {
     "dev": "rimraf dist && rollup -wc",
     "build": "rimraf dist && rollup -c",
@@ -37,7 +37,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@elenext/icons": "^0.4.0",
+    "@elenext/icons": "^0.4.1",
     "@popperjs/core": "^2.5.4",
     "param-case": "^3.0.3",
     "pascal-case": "^3.1.1"

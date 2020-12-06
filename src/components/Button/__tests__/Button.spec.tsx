@@ -1,3 +1,4 @@
+import { IconPlusSquare } from '@elenext/icons'
 import { mount } from '@vue/test-utils'
 import { Button } from '../'
 
@@ -33,10 +34,16 @@ test('props size', async () => {
 test('props icon', async () => {
   const wrapper = mount({
     render() {
-      return <Button icon="el-icon-search"></Button>
+      return (
+        <Button
+          v-slots={{
+            icon: () => <IconPlusSquare />
+          }}
+        ></Button>
+      )
     }
   })
-  expect(wrapper.find('.el-icon-search').exists()).toBe(true)
+  expect(wrapper.find('.el-icon-plus-square').exists()).toBe(true)
 })
 
 test('props nativeType', async () => {
