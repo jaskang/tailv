@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Main from './components/Layout.vue'
+import AppLayout from './components/AppLayout.vue'
 
 import Button from './__docs__/Button.zh-CN.md'
 import Grid from './__docs__/Grid.zh-CN.md'
@@ -21,7 +21,7 @@ export const router = createRouter({
     {
       path: '/',
       name: 'Layout',
-      component: Main,
+      component: AppLayout,
       redirect: '/grid',
       children: [
         {

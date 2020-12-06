@@ -27,6 +27,7 @@ import { useRouter, RouteLocationRaw } from 'vue-router'
 import menus from '../menus'
 import HelloWorld from './HelloWorld.vue'
 export default defineComponent({
+  name: 'AppLayout',
   components: {
     HelloWorld
   },
