@@ -37,7 +37,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@elenext/icons": "^0.5.2",
+    "@elenext/icons": "^0.5.3",
     "@popperjs/core": "^2.5.4",
     "param-case": "^3.0.4",
     "pascal-case": "^3.1.2"

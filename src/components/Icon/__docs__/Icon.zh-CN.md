@@ -5,7 +5,7 @@ wrapperClass: md-icon
 
 ## Icon 图标
 
-@elenext/icons 提供了一套 1k+ 的图标集合, 图标 svg 源文件源于 [bootstrap-icons](https://github.com/twbs/icons)
+@elenext/icons 提供了一套 200+ 的图标集合, 图标 svg 源文件源于 [bootstrap-icons](https://github.com/twbs/icons)
 
 ### 使用方法
 

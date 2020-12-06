@@ -1,5 +1,5 @@
-import { IconPlusSquare } from '@elenext/icons'
 import { mount } from '@vue/test-utils'
+import { IconPlusSquare } from '@elenext/icons'
 import { Button } from '../'
 
 // const { mount } = require('@vue/test-utils')
@@ -43,6 +43,8 @@ test('props icon', async () => {
       )
     }
   })
+  console.log(wrapper.html())
+
   expect(wrapper.find('.el-icon-plus-square').exists()).toBe(true)
 })
 
