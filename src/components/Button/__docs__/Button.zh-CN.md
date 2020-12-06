@@ -139,13 +139,13 @@ wrapperClass: md-button
 </template>
 <script>
 import { defineComponent } from 'vue'
-import { IconPlusSquare, IconTrash, IconPencilSquare, IconSearch } from '@elenext/icons'
+// import { IconPlusSquare, IconTrash, IconPencilSquare, IconSearch } from '@elenext/icons'
 export default defineComponent({
   components: {
-    IconPlusSquare,
-    IconTrash,
-    IconPencilSquare,
-    IconSearch
+    // IconPlusSquare,
+    // IconTrash,
+    // IconPencilSquare,
+    // IconSearch
   },
   setup() {
     const testclick = () => {

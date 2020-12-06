@@ -4,18 +4,20 @@ import vitePluginSyncmd from './scripts/vitePluginSyncmd'
 
 const config: UserConfig = {
   outDir: 'build',
-  minify: false,
   assetsDir: 'site/assets',
+  optimizeDeps: {
+    exclude: ['elenext', '@elenext/icons']
+  },
   alias: {
     elenext: '/dist/elenext.esm.js'
   },
   plugins: [
+    vitePluginSyncmd(),
     vitePluginVuedoc({
       prism: {
         theme: 'tomorrow'
       }
-    }),
-    vitePluginSyncmd()
+    })
   ]
 }
 

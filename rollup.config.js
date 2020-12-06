@@ -45,12 +45,14 @@ function createConfig(format, output, hasTSChecked, plugins = []) {
       }),
       postcss({
         // support import style with id
-        inject: (css, fileId) => {
-          const id = path.relative(resolve('src'), fileId).replace(/\//g, '_')
-          return `
-            import injectCss from '@/utils/injectCss';
-            injectCss(${css},'${id}');`
-        },
+        // inject: true,
+        // inject: (css, fileId) => {
+        //   const id = path.relative(resolve('src'), fileId).replace(/\//g, '_')
+        //   return `
+        //     import injectCss from '@/utils/injectCss';
+        //     injectCss(${css},'${id}');`
+        // },
+        extract: true,
         plugins: [
           autoprefixer(),
           cssnano({
