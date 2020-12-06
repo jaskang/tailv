@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "rimraf dist && rollup -wc",
     "build": "rimraf dist && rollup -c",
-    "docs:dev": "vite serve --debug",
+    "docs:dev": "vite serve",
     "docs:build": "rimraf build && vite build",
     "test": "jest --runInBand",
     "test:coverage": "jest --coverage --runInBand",
