@@ -8,7 +8,7 @@ const blockCls = getBlockCls('MenuItem')
 const Menuitem = defineComponent({
   name: getCompName('MenuItem'),
   props: { name: String },
-  setup(props, { slots }) {
+  setup(_props, { slots }) {
     const id = uniqueId('MenuItem')
     const el = ref<HTMLDivElement>()
     const parent = inject(MENU_INJKEY)

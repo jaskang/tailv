@@ -75,7 +75,7 @@ const CollapseTransitionProps: TransitionProps = {
 
 const CollapseTransition = defineComponent({
   name: getCompName('CollapseTransition'),
-  setup(props, { slots }) {
+  setup(_props, { slots }) {
     return () => <Transition {...CollapseTransitionProps} v-slots={slots}></Transition>
   }
 })

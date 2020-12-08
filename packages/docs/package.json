@@ -1,0 +1,13 @@
+{
+  "name": "@elenext/docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vite": "^1.0.0-rc.13",
+    "vite-plugin-vuedoc": "^1.2.2"
+  }
+}

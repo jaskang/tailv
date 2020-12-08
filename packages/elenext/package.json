@@ -1,16 +1,13 @@
 {
   "name": "elenext",
+  "version": "0.4.0",
   "description": "A Vue.js 3.0 UI Toolkit for Web, Element-UI by Vue 3.0",
   "author": "jaskang <jaskang@qq.com>",
   "homepage": "https://github.com/JasKang/elenext#readme",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "index.js",
   "module": "dist/elenext.esm.js",
   "types": "dist/index.d.ts",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JasKang/elenext.git"
@@ -31,21 +28,22 @@
   ],
   "sideEffects": "false",
   "scripts": {
+    "dev": "rimraf dist && tsrv dev --debug",
+    "build": "rimraf dist && tsrv build --debug",
+    "docs:dev": "vite serve",
+    "docs:build": "rimraf build && vite build",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --coverage --runInBand",
     "release": "release-it"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "cross-env": "^7.0.3",
-    "eslint": "^7.15.0",
-    "eslint-plugin-prettier": "^3.2.0",
-    "eslint-plugin-vue": "^7.2.0",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "release-it": "^14.2.2",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^26.4.4",
-    "typescript": "^3.9.7",
-    "vue": "^3.0.4",
-    "vue-router": "^4.0.0-rc.6"
+  "dependencies": {
+    "@elenext/icons": "^0.5.3",
+    "@popperjs/core": "^2.5.4",
+    "param-case": "^3.0.4",
+    "pascal-case": "^3.1.2"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.3",
+    "vue-router": "^4.0.0-rc.5"
   }
 }

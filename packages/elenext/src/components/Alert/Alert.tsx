@@ -40,7 +40,7 @@ const Alert = defineComponent({
       default: 'light'
     }
   },
-  setup(props, { emit, attrs, slots }) {
+  setup(props, { emit, slots }) {
     const data = reactive({
       visible: true
     })

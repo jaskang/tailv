@@ -14,7 +14,7 @@ const Breadcrumb = defineComponent({
       default: ''
     }
   },
-  setup(prop, { slots }) {
+  setup(_props, { slots }) {
     return () => <div class={blockCls}>{slots.default?.()}</div>
   }
 })

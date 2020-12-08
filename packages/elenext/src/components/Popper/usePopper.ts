@@ -49,7 +49,7 @@ export const usePopper = (options: Options = {}) => {
       ]
     }
   })
-  watch(popperOptions, (value, prevVaule, onInvalidate) => {
+  watch(popperOptions, (_value, _prevVaule) => {
     if (popperRef.value) {
       popperRef.value.setOptions(popperOptions.value)
     }

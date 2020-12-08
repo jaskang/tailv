@@ -4,7 +4,7 @@ import { getBlockCls, getCompName } from '@/config'
 const cls = getBlockCls('ButtonGroup')
 const ButtonGroup = defineComponent({
   name: getCompName('ButtonGroup'),
-  setup(props, { attrs, slots }) {
+  setup(_props, { slots }) {
     return () => <div class={cls}>{slots.default?.()}</div>
   }
 })

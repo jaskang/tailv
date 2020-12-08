@@ -21,7 +21,7 @@ const Button = defineComponent({
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean }
   },
-  setup(props, { slots, emit, attrs }) {
+  setup(props, { slots, emit }) {
     const classes = computed(() =>
       mergeCls(cls, `${cls}-${props.color}`, [
         props.size ? `${cls}-${props.size}` : '',

@@ -36,7 +36,7 @@ const Popover = defineComponent({
       default: ''
     }
   },
-  setup(props, { attrs, slots, emit }) {
+  setup(props, { slots }) {
     const classes = computed(() => mergeCls(blockCls, props.popperClass, props.content && 'el-popover--plain'))
     return () => (
       <Popper

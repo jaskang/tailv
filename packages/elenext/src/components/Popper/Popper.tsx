@@ -64,7 +64,7 @@ const Popper = defineComponent({
       default: 'absolute'
     }
   },
-  setup(props, { attrs, slots, emit }) {
+  setup(props, { slots }) {
     const id = uniqueId('el-popper-teleport')
     const teleportEl = createEl(id)
     const { referenceEl, popperEl, popperRef, state: popperState } = usePopper({
