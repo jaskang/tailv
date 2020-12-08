@@ -1,10 +1,8 @@
 {
-  // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
-  "include": ["src", "types"],
   "compilerOptions": {
-    "lib": ["dom", "esnext"],
+    "baseUrl": ".",
     "jsx": "preserve",
-    "baseUrl": "./",
+    "types": ["jest", "node"],
     "paths": {
       "@/*": ["src/*"]
     }

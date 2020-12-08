@@ -5,27 +5,25 @@ import { Button } from '../'
 // const { mount } = require('@vue/test-utils')
 // const { Button } = require('../')
 test('default', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button color="primary"></Button>
-    }
+  const wrapper = mount(Button, {
+    props: { color: 'primary' }
   })
   expect(wrapper.classes()).toContain('el-button-primary')
 })
 
 test('slots', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button color="primary">button text</Button>
+  const wrapper = mount(Button, {
+    slots: {
+      default: 'button text'
     }
   })
   expect(wrapper.findComponent(Button).element.textContent).toContain('button text')
 })
 
 test('props size', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button size="small"></Button>
+  const wrapper = mount(Button, {
+    props: {
+      size: 'small'
     }
   })
   expect(wrapper.find('.el-button-small').exists()).toBe(true)
@@ -49,54 +47,54 @@ test('props icon', async () => {
 })
 
 test('props nativeType', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button nativeType="submit"></Button>
+  const wrapper = mount(Button, {
+    props: {
+      nativeType: 'submit'
     }
   })
   expect(wrapper.element.getAttribute('type')).toBe('submit')
 })
 
 test('props loading', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button loading></Button>
+  const wrapper = mount(Button, {
+    props: {
+      loading: true
     }
   })
   expect(wrapper.find('.is-loading').exists()).toBe(true)
 })
 
 test('props disabled', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button disabled></Button>
+  const wrapper = mount(Button, {
+    props: {
+      disabled: true
     }
   })
   expect(wrapper.find('.is-disabled').exists()).toBe(true)
 })
 
 test('props autofocus', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button autofocus></Button>
+  const wrapper = mount(Button, {
+    attrs: {
+      autofocus: true
     }
   })
   expect(wrapper.element.hasAttribute('autofocus')).toBe(true)
 })
 
 test('props shape', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button type="round"></Button>
+  const wrapper = mount(Button, {
+    props: {
+      type: 'round'
     }
   })
   expect(wrapper.find('.is-round').exists()).toBe(true)
 })
 
 test('props circle', async () => {
-  const wrapper = mount({
-    render() {
-      return <Button type="circle"></Button>
+  const wrapper = mount(Button, {
+    props: {
+      type: 'circle'
     }
   })
   expect(wrapper.find('.is-circle').exists()).toBe(true)

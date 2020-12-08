@@ -30,9 +30,9 @@
   "scripts": {
     "dev": "rimraf dist && tsrv dev --debug",
     "build": "rimraf dist && tsrv build --debug",
+    "test": "tsrv test",
     "docs:dev": "vite serve",
     "docs:build": "rimraf build && vite build",
-    "test": "jest --runInBand",
     "test:coverage": "jest --coverage --runInBand",
     "release": "release-it"
   },
@@ -45,5 +45,8 @@
   "peerDependencies": {
     "vue": "^3.0.3",
     "vue-router": "^4.0.0-rc.5"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.0.0-beta.12"
   }
 }

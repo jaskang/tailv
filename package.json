@@ -35,6 +35,8 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/jest": "^26.0.17",
+    "@types/node": "^14.14.10",
     "cross-env": "^7.0.3",
     "eslint": "^7.15.0",
     "eslint-plugin-prettier": "^3.2.0",
@@ -43,7 +45,7 @@
     "prettier": "^2.2.1",
     "release-it": "^14.2.2",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.4.4",
+    "tsrv": "^0.7.5",
     "typescript": "^3.9.7",
     "vue": "^3.0.4",
     "vue-router": "^4.0.0-rc.6"
