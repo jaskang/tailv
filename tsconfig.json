@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "sourceMap": false,
+    "target": "es2015",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "lib": ["esnext", "dom"],
+    "types": ["jest", "node"]
+  },
+  "include": ["shims-vue.d.ts", "packages/*/src/**/*", "packages/*/__tests/**/*"]
+}

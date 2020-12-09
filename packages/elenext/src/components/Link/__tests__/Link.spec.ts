@@ -47,16 +47,15 @@ it('disabled', () => {
 })
 
 it('click', async () => {
-  let times = 0
-
   const wrapper = mount(Link, {
     props: {
       disabled: false
     }
   })
-  await wrapper.find('.el-link').trigger('click')
-  expect(times).toBe(1)
+  wrapper.find('a').trigger('click')
+  const incrementEvent = wrapper.emitted('click')
+  expect(incrementEvent).toHaveLength(1)
   await wrapper.setProps({ disabled: true })
-  await wrapper.find('.el-link').trigger('click')
-  expect(times).toBe(1)
+  wrapper.find('a').trigger('click')
+  expect(incrementEvent).toHaveLength(1)
 })

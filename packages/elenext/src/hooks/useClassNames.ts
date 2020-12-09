@@ -1,6 +1,6 @@
 import { computed } from 'vue'
-import { ClassValue, mergeCls } from '@/utils/tools'
+import { ClassValue, mergeClass } from '../../utils/tools'
 
-const useMergeClass = (getter: () => ClassValue) => computed(() => mergeCls(getter()))
+const useMergeClass = (getter: () => ClassValue) => computed(() => mergeClass(getter()))
 
 export default useMergeClass

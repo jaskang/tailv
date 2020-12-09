@@ -1,5 +1,5 @@
 import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
+import { getBlockCls, getCompName } from '../../config'
 
 const blockCls = getBlockCls('Footer')
 

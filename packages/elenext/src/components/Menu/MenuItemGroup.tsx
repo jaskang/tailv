@@ -1,5 +1,5 @@
 import { App, computed, defineComponent, inject } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
+import { getBlockCls, getCompName } from '../../config'
 import { MENU_INJKEY, MENU_ITEM_PADDING } from './Menu'
 
 const blockCls = getBlockCls('MenuItemGroup')

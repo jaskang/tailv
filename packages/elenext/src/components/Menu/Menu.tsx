@@ -1,7 +1,7 @@
 import { App, defineComponent, inject, InjectionKey, PropType, provide, reactive } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
-import { mixColor } from '@/utils/tools'
-import CollapseTransition from '@/components/Transition/CollapseTransition'
+import { getBlockCls, getCompName } from '../../config'
+import { mixColor } from '../../utils/tools'
+import CollapseTransition from '../Transition/CollapseTransition.vue'
 import { IconChevronDown } from '@elenext/icons'
 type MenuState = {
   textColor: string

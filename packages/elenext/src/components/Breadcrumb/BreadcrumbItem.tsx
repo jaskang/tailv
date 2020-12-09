@@ -1,5 +1,5 @@
 import { defineComponent, getCurrentInstance, computed, App } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
+import { getBlockCls, getCompName } from '../../config'
 
 const blockCls = getBlockCls('Breadcrumb')
 const BreadcrumbItem = defineComponent({

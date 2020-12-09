@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { IconPlusCircle } from '@elenext/icons'
+// import { IconPlusCircle } from '@elenext/icons'
 import { Button } from '../'
 
 // const { mount } = require('@vue/test-utils')
@@ -30,15 +30,9 @@ test('props size', async () => {
 })
 
 test('props icon', async () => {
-  const wrapper = mount({
-    render() {
-      return (
-        <Button
-          v-slots={{
-            icon: () => <IconPlusCircle />
-          }}
-        ></Button>
-      )
+  const wrapper = mount(Button, {
+    slots: {
+      icon: 'icon'
     }
   })
   console.log(wrapper.html())

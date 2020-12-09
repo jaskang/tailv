@@ -1,6 +1,6 @@
 import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
-import { mergeCls } from '@/utils/tools'
+import { getBlockCls, getCompName } from '../../config'
+import { mergeClass } from '../../utils/tools'
 
 export const LayoutInjectKey: InjectionKey<{
   uid: number
@@ -23,7 +23,7 @@ const Layout = defineComponent({
       hasAside: false
     })
     const classes = computed(() =>
-      mergeCls({
+      mergeClass({
         [blockCls]: true,
         'is-horizontal': props.direction === 'horizontal' || data.hasAside
       })

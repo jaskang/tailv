@@ -3,8 +3,8 @@ import { App, computed, defineComponent, PropType } from 'vue'
 import { Popper } from '../Popper'
 
 // import './Popover.scss'
-import { mergeCls } from '@/utils/tools'
-import { getBlockCls, getCompName } from '@/config'
+import { mergeClass } from '../../utils/tools'
+import { getBlockCls, getCompName } from '../../config'
 
 const blockCls = getBlockCls('Popover')
 const Popover = defineComponent({
@@ -37,7 +37,7 @@ const Popover = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const classes = computed(() => mergeCls(blockCls, props.popperClass, props.content && 'el-popover--plain'))
+    const classes = computed(() => mergeClass(blockCls, props.popperClass, props.content && 'el-popover--plain'))
     return () => (
       <Popper
         popperClass={classes.value}

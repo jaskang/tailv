@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
-import { mergeCls } from '@/utils/tools'
+import { getBlockCls, getCompName } from '../../config'
+import { mergeClass } from '../../utils/tools'
 import { IconArrowClockwise } from '@elenext/icons'
 
 const cls = getBlockCls('Button')
@@ -37,7 +37,7 @@ const Button = defineComponent({
   },
   setup(props, { emit }) {
     const classes = computed(() =>
-      mergeCls(cls, `${cls}-${props.color}`, [
+      mergeClass(cls, `${cls}-${props.color}`, [
         props.size ? `${cls}-${props.size}` : '',
         props.type ? `is-${props.type}` : '',
         {

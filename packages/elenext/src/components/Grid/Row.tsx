@@ -1,6 +1,6 @@
 import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef, App } from 'vue'
-import { mergeCls } from '@/utils/tools'
-import { getBlockCls, getCompName } from '@/config'
+import { mergeClass } from '../../utils/tools'
+import { getBlockCls, getCompName } from '../../config'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 
 export type GutterTuple = [number, number]
@@ -60,7 +60,7 @@ const Row = defineComponent({
     })
 
     const classes = computed(() =>
-      mergeCls([
+      mergeClass([
         blockCls,
         {
           [`${blockCls}-no-wrap`]: props.wrap === false,

@@ -1,5 +1,5 @@
 import { App, defineComponent, inject } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
+import { getBlockCls, getCompName } from '../../config'
 import { LayoutInjectKey } from './Layout'
 
 const blockCls = getBlockCls('Aside')

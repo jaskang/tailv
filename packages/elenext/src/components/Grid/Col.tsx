@@ -1,8 +1,8 @@
 import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } from 'vue'
 import { RowInjectKey, GutterTuple } from './Row'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
-import { getCompName, getBlockCls } from '@/config'
-import { mergeCls } from '@/utils/tools'
+import { getCompName, getBlockCls } from '../../config'
+import { mergeClass } from '../../utils/tools'
 
 type ColPropType = number | string
 
@@ -81,7 +81,7 @@ const Col = defineComponent({
           })
         }
       })
-      const ret = mergeCls([
+      const ret = mergeClass([
         blockCls,
         {
           [`${blockCls}-${props.span}`]: props.span,

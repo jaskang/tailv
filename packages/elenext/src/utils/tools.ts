@@ -40,14 +40,14 @@ export function mixColor(color: string, percent: number) {
 
 export type ClassValue = ClassValue[] | { [id: string]: any } | string | number | null | boolean | undefined
 
-export function mergeCls(...classes: ClassValue[]): string {
+export function mergeClass(...classes: ClassValue[]): string {
   let res = ''
   for (let index = 0; index < classes.length; index++) {
     const cls = classes[index]
     if (typeof cls === 'string' || typeof cls === 'number') {
       res += ` ${cls}`
     } else if (Array.isArray(cls)) {
-      res += ` ${mergeCls(...cls)}`
+      res += ` ${mergeClass(...cls)}`
     } else if (typeof cls === 'object') {
       if (cls) {
         for (const key in cls) {

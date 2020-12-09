@@ -1,8 +1,13 @@
+<template>
+  <transition v-bind="collapseTransitionProps"></transition>
+</template>
+
+<script lang="ts">
 import { App, defineComponent, Transition, TransitionProps } from 'vue'
 import { addClass, removeClass } from '@/utils/dom'
-import { getCompName } from '@/config'
+import { getCompName } from '../../config'
 
-const CollapseTransitionProps: TransitionProps = {
+const collapseTransitionProps: TransitionProps = {
   onBeforeEnter(_el: Element) {
     const el = _el as HTMLElement
     addClass(el, 'collapse-transition')
@@ -76,7 +81,9 @@ const CollapseTransitionProps: TransitionProps = {
 const CollapseTransition = defineComponent({
   name: getCompName('CollapseTransition'),
   setup(_props, { slots }) {
-    return () => <Transition {...CollapseTransitionProps} v-slots={slots}></Transition>
+    return {
+      collapseTransitionProps
+    }
   }
 })
 
@@ -85,3 +92,4 @@ CollapseTransition.install = (app: App): void => {
 }
 
 export default CollapseTransition
+</script>
