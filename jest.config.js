@@ -18,7 +18,7 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   moduleNameMapper: {
-    '^@/(.*?)$': '<rootDir>/packages/elenext/src/$1'
+    // '^@/(.*?)$': '<rootDir>/packages/elenext/src/$1'
   },
   moduleFileExtensions: ['vue', 'js', 'jsx', 'ts', 'tsx', 'json', 'node'],
   coverageDirectory: 'coverage',

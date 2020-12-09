@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import { App, defineComponent, Transition, TransitionProps } from 'vue'
-import { addClass, removeClass } from '@/utils/dom'
+import { App, defineComponent, TransitionProps } from 'vue'
+import { addClass, removeClass } from '../../utils/dom'
 import { getCompName } from '../../config'
 
 const collapseTransitionProps: TransitionProps = {

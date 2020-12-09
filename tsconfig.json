@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "sourceMap": false,
-    "target": "es2015",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
     "jsx": "preserve",
     "moduleResolution": "node",
     "noUnusedLocals": true,

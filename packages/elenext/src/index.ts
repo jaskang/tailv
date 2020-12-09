@@ -3,7 +3,6 @@ import { Row, Col, useBreakpoint } from './components/Grid'
 import { Layout, Aside, Main, Footer, Header } from './components/Layout'
 import { Button, ButtonGroup } from './components/Button'
 import { Link } from './components/Link'
-import { Alert } from './components/Alert'
 import { Popper } from './components/Popper'
 import { Tooltip } from './components/Tooltip'
 import { Popover } from './components/Popover'
@@ -25,7 +24,6 @@ export {
   ButtonGroup,
   Link,
   Popover,
-  Alert,
   Breadcrumb,
   BreadcrumbItem,
   useBreakpoint
@@ -60,8 +58,6 @@ export const elenext: Plugin = {
     useComponent(Popper)
     useComponent(Tooltip)
     useComponent(Popover)
-
-    useComponent(Alert)
 
     useComponent(Breadcrumb)
     useComponent(BreadcrumbItem)
