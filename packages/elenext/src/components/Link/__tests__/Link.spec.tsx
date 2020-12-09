@@ -2,45 +2,45 @@ import { mount } from '@vue/test-utils'
 import { Link } from '../'
 
 it('create', () => {
-  const wrapper = mount({
-    render() {
-      return <Link color="primary"></Link>
+  const wrapper = mount(Link, {
+    props: {
+      color: 'primary'
     }
   })
   expect(wrapper.classes()).toContain('el-link--primary')
 })
 it('icon', () => {
-  const wrapper = mount({
-    render() {
-      return <Link icon="el-icon-search"></Link>
+  const wrapper = mount(Link, {
+    props: {
+      icon: 'el-icon-search'
     }
   })
   expect(wrapper.element.querySelector('.el-icon-search')).toBeDefined()
 })
 it('href', () => {
-  const wrapper = mount({
-    render() {
-      return <Link href="https://element.eleme.io/"></Link>
+  const wrapper = mount(Link, {
+    props: {
+      href: 'https://element.eleme.io/'
     }
   })
+
   expect(wrapper.element.getAttribute('href')).toEqual('https://element.eleme.io/')
 })
 it('target', () => {
-  const wrapper = mount({
-    render() {
-      return (
-        <Link href="https://element.eleme.io/" target="_blank">
-          default
-        </Link>
-      )
+  const wrapper = mount(Link, {
+    props: {
+      href: 'https://element.eleme.io/'
+    },
+    attrs: {
+      target: '_blank'
     }
   })
   expect(wrapper.element.getAttribute('target')).toEqual('_blank')
 })
 it('disabled', () => {
-  const wrapper = mount({
-    render() {
-      return <Link disabled>default</Link>
+  const wrapper = mount(Link, {
+    props: {
+      disabled: true
     }
   })
   expect(wrapper.classes()).toContain('is-disabled')
@@ -49,21 +49,9 @@ it('disabled', () => {
 it('click', async () => {
   let times = 0
 
-  const wrapper = mount({
+  const wrapper = mount(Link, {
     props: {
-      disabled: {
-        type: Boolean
-      }
-    },
-    setup(props) {
-      const handleClick = () => {
-        times++
-      }
-      return () => (
-        <Link disabled={props.disabled} onClick={handleClick}>
-          default
-        </Link>
-      )
+      disabled: false
     }
   })
   await wrapper.find('.el-link').trigger('click')

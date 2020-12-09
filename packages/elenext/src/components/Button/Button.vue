@@ -11,6 +11,7 @@ import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 import { mergeCls } from '@/utils/tools'
 import { IconArrowClockwise } from '@elenext/icons'
+
 const cls = getBlockCls('Button')
 
 const Button = defineComponent({
@@ -45,14 +46,14 @@ const Button = defineComponent({
         }
       ])
     )
-    const onClick = (e: MouseEvent) => {
+    const handleClick = (e: MouseEvent) => {
       if (!props.disabled && !props.loading) {
         emit('click', e)
       }
     }
     return {
       classes,
-      onClick
+      handleClick
     }
   }
 })

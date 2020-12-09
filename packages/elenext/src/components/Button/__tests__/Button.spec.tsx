@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { IconPlusSquare } from '@elenext/icons'
+import { IconPlusCircle } from '@elenext/icons'
 import { Button } from '../'
 
 // const { mount } = require('@vue/test-utils')
@@ -35,7 +35,7 @@ test('props icon', async () => {
       return (
         <Button
           v-slots={{
-            icon: () => <IconPlusSquare />
+            icon: () => <IconPlusCircle />
           }}
         ></Button>
       )
