@@ -1,4 +1,8 @@
-export default function injectCss(id: string, css: string, top: boolean = false) {
+const styleSet = new Set<string>()
+export function injectCss(id: string, css: string, top: boolean = false) {
+  if (styleSet.has(id)) {
+    return
+  }
   const head = document.head || document.getElementsByTagName('head')[0]
   const style = document.createElement('style')
   style.setAttribute('type', 'text/css')
@@ -9,4 +13,5 @@ export default function injectCss(id: string, css: string, top: boolean = false)
   } else {
     head.appendChild(style)
   }
+  styleSet.add(id)
 }

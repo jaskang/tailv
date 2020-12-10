@@ -5,7 +5,7 @@
     "body": [
       "import { App, defineComponent } from 'vue'",
       "import { getBlockCls, getCompName } from '../../config'",
-      "import { mergeClass } from '@/utils/tool'",
+      "import { mergeClass } from '@elenext/shared'",
       "",
       "const blockCls = getBlockCls('${1}')",
       "",

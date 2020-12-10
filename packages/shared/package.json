@@ -1,6 +1,15 @@
 {
   "name": "@elenext/shared",
   "version": "0.0.1",
-  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/shared.esm.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rimraf dist && tsrv dev --debug",
+    "build": "rimraf dist && tsrv build --debug"
+  },
   "dependencies": {}
 }

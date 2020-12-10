@@ -1,0 +1,48 @@
+{
+  "name": "@elenext/icons",
+  "version": "0.5.3",
+  "description": "A Vue.js 3.0 Icons by bootstrap-icons",
+  "author": "jaskang <jaskang@qq.com>",
+  "homepage": "https://github.com/JasKang/icons#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/icons.esm.js",
+  "jsnext:main": "dist/icons.esm.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasKang/icons.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/JasKang/icons/issues"
+  },
+  "keywords": [
+    "vue3",
+    "@elenext/icons",
+    "svg",
+    "bootstrap-icons"
+  ],
+  "files": [
+    "dist",
+    "icons.json",
+    "icondoc.html",
+    "index.js"
+  ],
+  "scripts": {
+    "makeicons": "node ./scripts/makeicon.js",
+    "dev": "rimraf dist && tsrv dev --debug",
+    "build": "rimraf dist && tsrv build --debug",
+    "release": "release-it",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "@elenext/shared": "0.0.1"
+  },
+  "devDependencies": {
+    "bootstrap-icons": "^1.1.0",
+    "ejs": "^3.1.5"
+  }
+}
