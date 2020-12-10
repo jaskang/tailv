@@ -4040,13 +4040,6 @@ commander@^5.1.0:
   resolved "https://registry.npmjs.org/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
   integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
 
-commitlint@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.npmjs.org/commitlint/-/commitlint-11.0.0.tgz#a60f759b938c97c5d601c881cfe71b1d4051d219"
-  integrity sha512-nTmP1tM52gfi39tDCN8dAlRRWJyVoJY2JuYgVhSONETGJ2MY69K/go0YbCzlIEDO/bUka5ybeI6CJz5ZicvNzg==
-  dependencies:
-    "@commitlint/cli" "^11.0.0"
-
 commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
