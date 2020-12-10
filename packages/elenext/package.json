@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "rimraf dist && tsrv dev --debug",
     "build": "rimraf dist && tsrv build --debug",
-    "test": "jest -i",
+    "test": "tsrv test",
     "test:coverage": "jest -i --coverage",
     "docs:dev": "vite serve",
     "docs:build": "rimraf build && vite build",
