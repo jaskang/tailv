@@ -32,11 +32,11 @@
     "index.js"
   ],
   "scripts": {
-    "makeicons": "node ./scripts/makeicon.js",
-    "dev": "rimraf dist && tsrv dev --debug",
-    "build": "rimraf dist && tsrv build --debug",
-    "release": "release-it",
-    "prepublishOnly": "yarn build"
+    "dev": "rimraf dist && tsrv dev",
+    "build": "rimraf dist && tsrv build",
+    "test": "tsrv test",
+    "prepublishOnly": "yarn build",
+    "makeicons": "node ./scripts/makeicon.js"
   },
   "dependencies": {
     "@elenext/shared": "0.0.2"

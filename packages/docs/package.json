@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build"
+    "build": "rimraf build && vite build"
   },
   "dependencies": {
     "vite": "^1.0.0-rc.13",

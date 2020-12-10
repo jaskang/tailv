@@ -28,13 +28,11 @@
   ],
   "sideEffects": "false",
   "scripts": {
-    "dev": "rimraf dist && tsrv dev --debug",
-    "build": "rimraf dist && tsrv build --debug",
+    "dev": "rimraf dist && tsrv dev",
+    "build": "rimraf dist && tsrv build",
     "test": "tsrv test",
-    "test:coverage": "jest -i --coverage",
-    "docs:dev": "vite serve",
-    "docs:build": "rimraf build && vite build",
-    "release": "release-it"
+    "prepublishOnly": "yarn build",
+    "test:coverage": "jest -i --coverage"
   },
   "dependencies": {
     "@elenext/icons": "0.5.4",
