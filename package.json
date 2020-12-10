@@ -30,8 +30,12 @@
     "index.js"
   ],
   "scripts": {
+    "start": "yarn workspace @elenext/docs dev",
+    "build": "yarn workspace @elenext/docs build",
+    "dev": "yarn workspace elenext dev",
+    "test": "yarn workspaces run test",
     "postinstall": "husky install",
-    "release": "release-it"
+    "publish": "lerna publish"
   },
   "dependencies": {},
   "devDependencies": {
@@ -39,11 +43,13 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@types/jest": "^26.0.17",
     "@types/node": "^14.14.10",
+    "@vue/compiler-sfc": "@^3.0.4",
     "@vue/test-utils": "^2.0.0-beta.12",
     "cross-env": "^7.0.3",
     "eslint": "^7.15.0",
     "eslint-plugin-prettier": "^3.2.0",
     "eslint-plugin-vue": "^7.2.0",
+    "execa": "^5.0.0",
     "fs-extra": "^9.0.1",
     "husky": "^5.0.4",
     "lerna": "^3.22.1",
@@ -51,7 +57,7 @@
     "release-it": "^14.2.2",
     "rimraf": "^3.0.2",
     "tsrv": "^0.8.8",
-    "typescript": "^3.9.7",
+    "typescript": "^4.1.2",
     "vue": "^3.0.4"
   }
 }

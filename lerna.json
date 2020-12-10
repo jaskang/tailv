@@ -9,9 +9,7 @@
       "ignoreChanges": ["ignored-file", "*.md", "**/test/**"],
       "message": "chore(release): publish"
     },
-    "bootstrap": {
-      "ignore": "component-*"
-    },
+    "bootstrap": {},
     "version": {
       "conventionalCommits": true,
       "exact": true,

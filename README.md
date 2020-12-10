@@ -13,7 +13,7 @@ A Vue.js 3.0 UI Toolkit for Web
 
 ## Foreword
 
-> 这个项目目的并不是为了照搬 Element 2，使用 Vue3 API 重新实现一遍，并不会以兼容为第一优先级。而是为了实现一个更加符合 Vue3 的现代化的 UI 框架，中间会大量使用 Composition API。
+> 这个项目目的并不是为了照搬 Element 2，使用 Vue3 重新实现一遍，并不会以兼容为第一优先级。而是为了实现一个更加符合 Vue3 的现代化的 UI 框架，中间会大量使用 Composition API。
 > 如果你的项目追求的是 api 的兼容，强烈建议移步 Element Plus
 
 ## 附加项目

@@ -1,19 +1,21 @@
 import type { UserConfig } from 'vite'
-import vitePluginVuedoc from 'vite-plugin-vuedoc'
-import vitePluginSyncmd from './scripts/vitePluginSyncmd'
-
+import path from 'path'
+// const createVueDocPlugin = require('vite-plugin-vuedoc')
+import createVueDocPlugin from 'vite-plugin-vuedoc'
+// import vitePluginSyncmd from './scripts/vitePluginSyncmd'
+const resolve = (...args) => {
+  return path.join(__dirname, ...args)
+}
 const config: UserConfig = {
-  outDir: 'build',
-  assetsDir: 'site/assets',
+  // root: ,
+  assetsDir: 'src/assets',
   optimizeDeps: {
-    exclude: ['elenext', '@elenext/icons']
+    link: ['elenext', '@elenext/icons']
+    // link: ['optimize-linked']
   },
-  alias: {
-    elenext: '/dist/elenext.esm.js'
-  },
+  alias: {},
   plugins: [
-    vitePluginSyncmd(),
-    vitePluginVuedoc({
+    createVueDocPlugin({
       prism: {
         theme: 'tomorrow'
       }
