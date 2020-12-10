@@ -4,11 +4,18 @@
   "useWorkspaces": true,
   "command": {
     "publish": {
-      "ignoreChanges": ["ignored-file", "*.md"],
+      "verifyAccess": false,
+      "verifyRegistry": false,
+      "ignoreChanges": ["ignored-file", "*.md", "**/test/**"],
       "message": "chore(release): publish"
     },
     "bootstrap": {
       "ignore": "component-*"
+    },
+    "version": {
+      "conventionalCommits": true,
+      "exact": true,
+      "message": "chore(release): publish"
     }
   },
   "packages": ["packages/*"]
