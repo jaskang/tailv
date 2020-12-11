@@ -18,12 +18,6 @@ const screens = reactive<ScreenMap>({
 })
 
 function useBreakpoint() {
-  // const headlers = {} as {
-  //   [prop: string]: {
-  //     mql: MediaQueryList
-  //     listener: (this: MediaQueryList, ev: MediaQueryListEvent) => any
-  //   }
-  // }
   onBeforeMount(() => {
     if (Object.keys(screens).length < RESPONSIVE_ARRAY.length) {
       const keys = Object.keys(RESPONSIVE_MAP) as Breakpoint[]
