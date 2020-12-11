@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.8.0](https://github.com/JasKang/elenext/compare/v0.7.0...v0.8.0) (2020-12-11)
+
+
+### Features
+
+* test changelog ([98d835e](https://github.com/JasKang/elenext/commit/98d835e906f7dca19eeceeb3559193908d90f9af))
+
+
+
+
+
 # [0.7.0](https://github.com/JasKang/elenext/compare/0.4.0...v0.7.0) (2020-12-11)
 
 
@@ -45,6 +61,3 @@
 * **Breadcrumb:** add files ([0a87871](https://github.com/JasKang/elenext/commit/0a87871ca4ca8dc3a5e907024f6b87601fd36ccf))
 * **Breadcrumb:** finished ([c4f9a90](https://github.com/JasKang/elenext/commit/c4f9a905fa68c6ec9592acdaa16c41989bc7de34))
 * usePopper ([fb079eb](https://github.com/JasKang/elenext/commit/fb079eb2e657578aac96acae36e10714f2b84506))
-
-
-

@@ -1,6 +1,6 @@
 {
   "name": "@elenext/docs",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -8,8 +8,8 @@
     "test": "tsrv test"
   },
   "dependencies": {
-    "@elenext/icons": "^0.7.0",
-    "elenext": "^0.7.0",
+    "@elenext/icons": "^0.8.0",
+    "elenext": "^0.8.0",
     "vue": "^3.0.4",
     "vue-router": "^4.0.1"
   },
