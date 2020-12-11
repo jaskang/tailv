@@ -8,7 +8,7 @@ import { Tooltip } from './components/Tooltip'
 import { Popover } from './components/Popover'
 import { Menu, MenuItem, MenuItemGroup } from './components/Menu'
 import { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb'
-// import './styles/index.less'
+import './styles/index.less'
 
 export {
   Row,

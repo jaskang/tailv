@@ -1,5 +1,5 @@
 import './index.less'
-// import 'elenext/dist/'
+import 'elenext/dist/elenext.esm.css'
 import { createApp } from 'vue'
 import { router } from './router'
 import { elenext } from 'elenext'
