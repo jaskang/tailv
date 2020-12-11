@@ -19,4 +19,4 @@ jobs:
         uses: yarn
 
       - name: Test package
-        run: yarn test
+        run: yarn build && yarn test

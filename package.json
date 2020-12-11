@@ -32,7 +32,7 @@
   "scripts": {
     "start": "yarn workspace @elenext/docs dev",
     "dev": "yarn workspace elenext dev",
-    "build": "yarn workspaces run build",
+    "build": "yarn workspace @elenext/shared build && yarn workspace @elenext/icons build && yarn workspace elenext build && yarn workspace @elenext/docs build",
     "test": "yarn workspaces run test",
     "postinstall": "husky install",
     "release": "lerna publish"
