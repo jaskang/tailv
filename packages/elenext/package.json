@@ -1,0 +1,47 @@
+{
+  "name": "elenext",
+  "version": "0.4.2",
+  "description": "A Vue.js 3.0 UI Toolkit for Web, Element-UI by Vue 3.0",
+  "author": "jaskang <jaskang@qq.com>",
+  "homepage": "https://github.com/JasKang/elenext#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/elenext.esm.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasKang/elenext.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JasKang/elenext/issues"
+  },
+  "keywords": [
+    "vue3",
+    "vue-next",
+    "element",
+    "elementUI"
+  ],
+  "files": [
+    "dist",
+    "types",
+    "index.js"
+  ],
+  "sideEffects": "false",
+  "scripts": {
+    "dev": "rimraf dist && tsrv dev",
+    "build": "rimraf dist && tsrv build",
+    "test": "tsrv test",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "@elenext/icons": "0.5.5",
+    "@elenext/shared": "0.0.3",
+    "@popperjs/core": "^2.5.4",
+    "param-case": "^3.0.4",
+    "pascal-case": "^3.1.2"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.3",
+    "vue-router": "^4.0.0-rc.5"
+  }
+}

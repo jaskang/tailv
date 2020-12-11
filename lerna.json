@@ -1,0 +1,20 @@
+{
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "verifyAccess": false,
+      "verifyRegistry": false,
+      "ignoreChanges": ["ignored-file", "*.md", "**/test/**"],
+      "message": "chore(release): publish"
+    },
+    "bootstrap": {},
+    "version": {
+      "conventionalCommits": true,
+      "exact": true,
+      "message": "chore(release): publish"
+    }
+  },
+  "packages": ["packages/*"]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@elenext/docs",
+  "version": "0.0.3",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "rimraf build && vite build",
+    "test": "tsrv test"
+  },
+  "dependencies": {
+    "@elenext/icons": "0.5.5",
+    "elenext": "0.4.2",
+    "vue": "^3.0.4",
+    "vue-router": "^4.0.1"
+  },
+  "devDependencies": {
+    "vite": "^1.0.0-rc.13",
+    "vite-plugin-vuedoc": "^1.2.2"
+  }
+}

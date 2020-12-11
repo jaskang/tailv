@@ -1,0 +1,7 @@
+{
+  "exclude": ["../../tsconfig.json"],
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": ["../../shims.d.ts", "src"]
+}

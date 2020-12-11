@@ -22,4 +22,4 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'vue/component-tags-order': 'off'
   }
-};
+}
