@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.0](https://github.com/JasKang/elenext/compare/v0.8.0...v0.9.0) (2020-12-11)
+
+
+### Features
+
+* test changelog ([d73b6b9](https://github.com/JasKang/elenext/commit/d73b6b9f256eb60e570a1bcb44b75cff3cd2ec9d))
+
+
+
 # [0.8.0](https://github.com/JasKang/elenext/compare/v0.7.0...v0.8.0) (2020-12-11)
 
 
