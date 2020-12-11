@@ -7,16 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Begin CI...
-        uses: actions/checkout@v2
-
-      - name: Use Node 12
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          node-version: 12.x
-
-      - name: Install deps
-        uses: yarn
-
-      - name: Test package
-        run: yarn build && yarn test
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build # will run `yarn build` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: test # will run `yarn test` command
