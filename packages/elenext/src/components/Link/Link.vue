@@ -11,7 +11,6 @@ import { getBlockCls, getCompName } from '../../config'
 import { mergeClass } from '@elenext/shared'
 
 const blockCls = getBlockCls('Link')
-
 const Link = defineComponent({
   name: getCompName('Link'),
   emits: ['click'],
