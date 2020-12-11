@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/JasKang/elenext/compare/v0.9.0...v0.10.0) (2020-12-11)
+
+
+### Features
+
+* angular ([68414be](https://github.com/JasKang/elenext/commit/68414be1f76fdf463ad8b25ea586bf7c98e02cc7))
+
+
+
+
+
 ## [0.9.0](https://github.com/JasKang/elenext/compare/v0.8.0...v0.9.0) (2020-12-11)
 
 
