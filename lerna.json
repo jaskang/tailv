@@ -2,6 +2,7 @@
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
+  "packages": ["packages/*"],
   "command": {
     "publish": {
       "verifyAccess": false,
@@ -9,12 +10,15 @@
       "ignoreChanges": ["ignored-file", "*.md", "**/test/**"],
       "message": "chore(release): publish"
     },
-    "bootstrap": {},
+    "bootstrap": {
+      "hoist": true,
+      "npmClientArgs": ["--no-package-lock", "--no-ci"]
+    },
     "version": {
+      "allowBranch": ["master"],
       "conventionalCommits": true,
-      "exact": true,
+      "amend": false,
       "message": "chore(release): publish"
     }
-  },
-  "packages": ["packages/*"]
+  }
 }
