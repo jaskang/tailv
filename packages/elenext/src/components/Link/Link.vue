@@ -36,10 +36,8 @@ const Link = defineComponent({
       ])
     )
     const handleClick = (event: MouseEvent) => {
-      if (!props.disabled) {
-        if (!props.href) {
-          emit('click', event)
-        }
+      if (!props.disabled && !props.href) {
+        emit('click', event)
       }
     }
     return { classes, handleClick }
