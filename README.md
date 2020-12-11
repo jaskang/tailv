@@ -18,9 +18,9 @@ A Vue.js 3.0 UI Toolkit for Web
 
 ## 附加项目
 
-#### [tsrv](https://github.com/JasKang/tsrv) 零配置打包组件库
+- ### [tsrv](https://github.com/JasKang/tsrv) 零配置打包组件库
 
-#### [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) 基于 vite 的组件库文档插件，支持 markdown 文档预览/代码高亮
+- ### [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) 基于 vite 的组件库文档插件，支持 markdown 文档预览/代码高亮
 
 ## Docs & Demo
 
