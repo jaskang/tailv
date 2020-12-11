@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Install deps
+        uses: yarn
 
       - name: Test package
         run: yarn test
