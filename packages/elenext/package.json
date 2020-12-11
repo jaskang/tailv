@@ -1,6 +1,6 @@
 {
   "name": "elenext",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A Vue.js 3.0 UI Toolkit for Web, Element-UI by Vue 3.0",
   "author": "jaskang <jaskang@qq.com>",
   "homepage": "https://github.com/JasKang/elenext#readme",
@@ -34,8 +34,8 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@elenext/icons": "0.5.4",
-    "@elenext/shared": "0.0.2",
+    "@elenext/icons": "0.5.5",
+    "@elenext/shared": "0.0.3",
     "@popperjs/core": "^2.5.4",
     "param-case": "^3.0.4",
     "pascal-case": "^3.1.2"

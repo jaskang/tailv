@@ -1,6 +1,6 @@
 {
   "name": "@elenext/icons",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "A Vue.js 3.0 Icons by bootstrap-icons",
   "author": "jaskang <jaskang@qq.com>",
   "homepage": "https://github.com/JasKang/icons#readme",
@@ -39,7 +39,7 @@
     "makeicons": "node ./scripts/makeicon.js"
   },
   "dependencies": {
-    "@elenext/shared": "0.0.2"
+    "@elenext/shared": "0.0.3"
   },
   "devDependencies": {
     "bootstrap-icons": "^1.1.0",
