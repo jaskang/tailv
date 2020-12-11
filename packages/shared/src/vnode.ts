@@ -1,6 +1,6 @@
-type ClassValue = ClassValue[] | { [id: string]: any } | string | number | null | boolean | undefined
+export type MergeClassValue = MergeClassValue[] | { [id: string]: any } | string | number | null | boolean | undefined
 
-export function mergeClass(...classes: ClassValue[]): string {
+export function mergeClass(...classes: MergeClassValue[]): string {
   let res = ''
   for (let index = 0; index < classes.length; index++) {
     const cls = classes[index]

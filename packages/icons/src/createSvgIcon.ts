@@ -54,6 +54,7 @@ const CreateIcon = (compName: string, className: string, svgSource: string) => {
     props: { spin: Boolean },
     setup(props) {
       injectCss(injectCssId, iconStyles, true)
+
       return () =>
         createVNode('span', {
           class: {
