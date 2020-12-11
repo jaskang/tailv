@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "rimraf build && vite build",
-    "test": "echo 'docs'"
+    "test": "tsrv test"
   },
   "dependencies": {
     "@elenext/icons": "^0.5.4",

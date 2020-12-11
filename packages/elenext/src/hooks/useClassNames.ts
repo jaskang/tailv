@@ -1,6 +1,6 @@
 import { computed } from 'vue'
-import { ClassValue, mergeClass } from '../../utils/tools'
+import { mergeClass } from '@elenext/shared'
 
-const useMergeClass = (getter: () => ClassValue) => computed(() => mergeClass(getter()))
+const useMergeClass = (getter: () => Parameters<typeof mergeClass>) => computed(() => mergeClass(getter()))
 
 export default useMergeClass

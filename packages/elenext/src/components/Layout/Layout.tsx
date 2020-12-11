@@ -1,6 +1,6 @@
 import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
 import { getBlockCls, getCompName } from '../../config'
-import { mergeClass } from '../../utils/tools'
+import { mergeClass } from '@elenext/shared'
 
 export const LayoutInjectKey: InjectionKey<{
   uid: number

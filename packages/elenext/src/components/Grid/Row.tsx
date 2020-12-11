@@ -1,5 +1,5 @@
 import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef, App } from 'vue'
-import { mergeClass } from '../../utils/tools'
+import { mergeClass } from '@elenext/shared'
 import { getBlockCls, getCompName } from '../../config'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 

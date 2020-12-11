@@ -2,7 +2,7 @@ import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } 
 import { RowInjectKey, GutterTuple } from './Row'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { getCompName, getBlockCls } from '../../config'
-import { mergeClass } from '../../utils/tools'
+import { mergeClass } from '@elenext/shared'
 
 type ColPropType = number | string
 

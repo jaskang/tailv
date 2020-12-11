@@ -3,7 +3,7 @@ import { App, computed, defineComponent, PropType } from 'vue'
 import { Popper } from '../Popper'
 
 // import './Popover.scss'
-import { mergeClass } from '../../utils/tools'
+import { mergeClass } from '@elenext/shared'
 import { getBlockCls, getCompName } from '../../config'
 
 const blockCls = getBlockCls('Popover')

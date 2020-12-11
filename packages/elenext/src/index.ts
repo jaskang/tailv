@@ -10,7 +10,7 @@ import { Menu, MenuItem, MenuItemGroup } from './components/Menu'
 // import { Menu, MenuItem, Submenu, MenuItemGroup } from './components/Menu'
 import { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb'
 // export { default as injectCss } from './utils/injectCss'
-// import './styles/index.less'
+import './styles/index.less'
 
 export {
   Row,

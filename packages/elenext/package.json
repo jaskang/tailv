@@ -31,8 +31,7 @@
     "dev": "rimraf dist && tsrv dev",
     "build": "rimraf dist && tsrv build",
     "test": "tsrv test",
-    "prepublishOnly": "yarn build",
-    "test:coverage": "jest -i --coverage"
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@elenext/icons": "0.5.4",

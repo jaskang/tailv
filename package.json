@@ -31,8 +31,8 @@
   ],
   "scripts": {
     "start": "yarn workspace @elenext/docs dev",
-    "build": "yarn workspace @elenext/docs build",
     "dev": "yarn workspace elenext dev",
+    "build": "yarn workspaces run build",
     "test": "yarn workspaces run test",
     "postinstall": "husky install",
     "publish": "lerna publish"
@@ -56,7 +56,7 @@
     "prettier": "^2.2.1",
     "release-it": "^14.2.2",
     "rimraf": "^3.0.2",
-    "tsrv": "^0.8.8",
+    "tsrv": "^0.8.10",
     "typescript": "^4.1.2",
     "vue": "^3.0.4"
   }

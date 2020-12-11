@@ -9,7 +9,7 @@
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '../../config'
-import { mergeClass } from '../../utils/tools'
+import { mergeClass } from '@elenext/shared'
 import { IconArrowClockwise } from '@elenext/icons'
 
 const cls = getBlockCls('Button')
