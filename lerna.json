@@ -2,33 +2,26 @@
   "version": "0.8.0",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "command": {
     "publish": {
       "verifyAccess": false,
       "verifyRegistry": false,
-      "ignoreChanges": [
-        "ignored-file",
-        "*.md",
-        "**/__tests__/**"
-      ]
+      "ignoreChanges": ["ignored-file", "*.md", "**/__tests__/**"]
     },
     "bootstrap": {
       "hoist": true,
-      "npmClientArgs": [
-        "--no-package-lock",
-        "--no-ci"
-      ]
+      "npmClientArgs": ["--no-package-lock", "--no-ci"]
     },
     "version": {
-      "allowBranch": [
-        "master"
-      ],
+      "allowBranch": ["master"],
       "conventionalCommits": true,
       "amend": false,
       "message": "chore(release): publish %s"
     }
+  },
+  "changelogPreset": {
+    "name": "conventionalcommits",
+    "issueUrlFormat": "{{host}}/{{owner}}/{{repository}}/issues/{{id}}"
   }
 }
