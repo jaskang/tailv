@@ -1,7 +1,12 @@
-import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+<template>
+  <header class="el-header" :style="{ height: height }">
+    <slot />
+  </header>
+</template>
 
-const blockCls = getBlockCls('Header')
+<script lang="ts">
+import { App, defineComponent } from 'vue'
+import { getCompName } from '../../utils'
 
 const Header = defineComponent({
   name: getCompName('Header'),
@@ -10,13 +15,6 @@ const Header = defineComponent({
       type: String,
       default: '60px'
     }
-  },
-  setup(props, { slots }) {
-    return () => (
-      <header class={blockCls} style={{ height: props.height }}>
-        {slots.default?.()}
-      </header>
-    )
   }
 })
 
@@ -25,3 +23,6 @@ Header.install = (app: App): void => {
 }
 
 export default Header
+</script>
+
+<style></style>

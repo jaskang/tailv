@@ -1,0 +1,45 @@
+@use '../mixins/col';
+
+$screen-xs: 767px;
+$screen-xs-max: $screen-xs;
+
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+
+$screen-lg: 1200px;
+$screen-lg-min: $screen-lg;
+
+$screen-xl: 1400px;
+$screen-xl-min: $screen-xl;
+
+.el-col {
+  position: relative;
+  max-width: 100%;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+}
+
+@include col.grid-columns();
+
+@media (max-width: $screen-xs-max) {
+  @include col.grid-columns(-xs);
+}
+
+@media (min-width: $screen-sm-min) {
+  @include col.grid-columns(-sm);
+}
+
+@media (min-width: $screen-md-min) {
+  @include col.grid-columns(-md);
+}
+
+@media (min-width: $screen-lg-min) {
+  @include col.grid-columns(-lg);
+}
+
+@media (min-width: $screen-xl-min) {
+  @include col.grid-columns(-xl);
+}

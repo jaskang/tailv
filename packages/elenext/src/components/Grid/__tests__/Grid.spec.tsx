@@ -41,7 +41,7 @@ describe('Row', () => {
         return <Row justify="end"></Row>
       }
     })
-    expect(wrapper.classes()).toContain('el-row-end')
+    expect(wrapper.classes()).toContain('el-row--end')
   })
   test('Row align', () => {
     const wrapper = mount({
@@ -49,7 +49,7 @@ describe('Row', () => {
         return <Row align="bottom"></Row>
       }
     })
-    expect(wrapper.classes()).toContain('el-row-bottom')
+    expect(wrapper.classes()).toContain('el-row--bottom')
   })
 
   test('Row wrap', () => {
@@ -58,7 +58,7 @@ describe('Row', () => {
         return <Row wrap={false}></Row>
       }
     })
-    expect(wrapper.classes()).toContain('el-row-no-wrap')
+    expect(wrapper.classes()).toContain('el-row--no-wrap')
   })
 })
 describe('Col', () => {

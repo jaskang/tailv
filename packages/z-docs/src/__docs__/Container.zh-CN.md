@@ -129,7 +129,7 @@
     </el-container>
   </el-container>
 </template>
-<style lang="less">
+<style lang="scss">
 .vuedoc-demo {
   .el-header,
   .el-footer {

@@ -1,11 +1,14 @@
-import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
-import { mergeClass } from '@elenext/shared'
+<template>
+  <div :class="classes">
+    <slot />
+  </div>
+</template>
 
-export const LayoutInjectKey: InjectionKey<{
-  uid: number
-  setAside: () => void
-}> = Symbol('Layout')
+<script lang="ts">
+import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
+import { layoutInjectKey } from './core'
+import { mergeClass } from '@elenext/shared'
+import { getBlockCls, getCompName } from '../../utils'
 
 const blockCls = getBlockCls('Layout')
 
@@ -14,11 +17,10 @@ const Layout = defineComponent({
   props: {
     direction: {
       type: String as PropType<'horizontal' | 'vertical'>,
-      required: false
+      default: undefined
     }
   },
   setup(props, { slots }) {
-    const self = getCurrentInstance()
     const data = reactive({
       hasAside: false
     })
@@ -28,14 +30,13 @@ const Layout = defineComponent({
         'is-horizontal': props.direction === 'horizontal' || data.hasAside
       })
     )
-    provide(LayoutInjectKey, {
-      uid: self!.uid,
+    provide(layoutInjectKey, {
       setAside: () => {
         data.hasAside = true
       }
     })
-    return () => {
-      return <div class={classes.value}>{slots.default?.()}</div>
+    return {
+      classes
     }
   }
 })
@@ -45,3 +46,4 @@ Layout.install = (app: App): void => {
 }
 
 export default Layout
+</script>

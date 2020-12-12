@@ -58,7 +58,7 @@
     </div>
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .box {
   width: 400px;
 

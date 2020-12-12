@@ -1,0 +1,79 @@
+@use '../var';
+
+$typeMap: (
+  primary: var.$color-primary,
+  success: var.$color-success,
+  info: var.$color-primary,
+  warning: var.$color-warning,
+  danger: var.$color-danger
+);
+
+.el-link {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: var.$link-font-size;
+  // font-weight: $--link-font-weight;
+
+  &.is-underline {
+    &:hover:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 0;
+      bottom: 0;
+      border-bottom: 1px solid var.$link-default-active-color;
+    }
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  & [class*='el-icon-'] {
+    & + span {
+      margin-left: 5px;
+    }
+  }
+
+  &.el-link--default {
+    color: var.$link-default-font-color;
+    &:hover {
+      color: var.$link-default-active-color;
+    }
+    &:after {
+      border-color: var.$link-default-active-color;
+    }
+    &.is-disabled {
+      color: var.$link-disabled-font-color;
+    }
+  }
+
+  @each $type, $color in $typeMap {
+    &.el-link--#{$type} {
+      color: $color;
+      &:hover {
+        color: mix($color, var.$color-white, 80%);
+      }
+      &:after {
+        border-color: $color;
+      }
+      &.is-disabled {
+        color: mix($color, var.$color-white, 50%);
+      }
+      &.is-underline {
+        &:hover:after {
+          border-color: $color;
+        }
+      }
+    }
+  }
+}

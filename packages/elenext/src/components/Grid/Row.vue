@@ -1,18 +1,17 @@
+<template>
+  <div :class="classes" :style="styles">
+    <slot />
+  </div>
+</template>
+
+<script lang="ts">
 import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef, App } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { getBlockCls, getCompName } from '../../config'
+import { getBlockCls, getCompName } from '../../utils'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
-
-export type GutterTuple = [number, number]
-
-type Gutter = number | GutterTuple | Partial<Record<Breakpoint, number | GutterTuple>>
-
-export const RowInjectKey: InjectionKey<{
-  gutter: ComputedRef<GutterTuple>
-}> = Symbol('Row')
+import { Gutter, GutterTuple, rowInjectKey } from './configs'
 
 const blockCls = getBlockCls('row')
-
 const Row = defineComponent({
   name: getCompName('Row'),
   props: {
@@ -63,14 +62,14 @@ const Row = defineComponent({
       mergeClass([
         blockCls,
         {
-          [`${blockCls}-no-wrap`]: props.wrap === false,
-          [`${blockCls}-${props.justify}`]: props.justify,
-          [`${blockCls}-${props.align}`]: props.align
+          [`${blockCls}--no-wrap`]: props.wrap === false,
+          [`${blockCls}--${props.justify}`]: props.justify,
+          [`${blockCls}--${props.align}`]: props.align
         }
       ])
     )
 
-    const style = computed(() => {
+    const styles = computed(() => {
       const [x, y] = gutter.value
       let ret: CSSProperties = {
         ...(x > 0
@@ -89,13 +88,10 @@ const Row = defineComponent({
       return ret
     })
 
-    provide(RowInjectKey, { gutter })
-    return () => {
-      return (
-        <div class={classes.value} style={style.value}>
-          {slots.default?.()}
-        </div>
-      )
+    provide(rowInjectKey, { gutter })
+    return {
+      classes,
+      styles
     }
   }
 })
@@ -105,3 +101,4 @@ Row.install = (app: App): void => {
 }
 
 export default Row
+</script>

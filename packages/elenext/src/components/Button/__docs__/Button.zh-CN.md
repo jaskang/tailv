@@ -7,7 +7,7 @@ wrapperClass: md-button
 
 常用的操作按钮
 
-## 按钮颜色
+## 按钮颜色 11222
 
 使用`color`属性来定义 Button 的颜色
 
@@ -16,12 +16,14 @@ wrapperClass: md-button
 ```vue demo
 <template>
   <Row>
-    <Button>默认按钮</Button>
-    <Button color="primary">主要按钮</Button>
-    <Button color="success">成功按钮</Button>
-    <Button color="info">信息按钮</Button>
-    <Button color="warning">警告按钮</Button>
-    <Button color="danger">危险按钮</Button>
+    <Col>
+      <Button>默认按钮</Button>
+      <Button color="primary">主要按钮</Button>
+      <Button color="success">成功按钮</Button>
+      <Button color="info">信息按钮</Button>
+      <Button color="warning">警告按钮</Button>
+      <Button color="danger">危险按钮</Button>
+    </Col>
   </Row>
 </template>
 ```
@@ -30,38 +32,56 @@ wrapperClass: md-button
 
 使用`type`属性来定义 Button 的样式
 
-`type` : 'round' | 'circle' | 'link'
+`type` : 'round' | 'circle' | 'link' | 'plain'
 
 ::: tips link 类型的按钮没有颜色区分，需要此功能可使用 Link 组件
 
 ```vue demo
 <template>
   <Row align="middle">
-    <Button>默认按钮</Button>
-    <Button color="primary">主要按钮</Button>
-    <Button color="success">成功按钮</Button>
-    <Button color="info">信息按钮</Button>
-    <Button color="warning">警告按钮</Button>
-    <Button color="danger">危险按钮</Button>
+    <Col>
+      <Button>默认按钮</Button>
+      <Button color="primary">主要颜色</Button>
+      <Button color="success">成功颜色</Button>
+      <Button color="info">信息颜色</Button>
+      <Button color="warning">警告颜色</Button>
+      <Button color="danger">危险颜色</Button>
+    </Col>
   </Row>
   <Row align="middle">
-    <Button type="round">默认按钮</Button>
-    <Button type="round" color="primary">主要按钮</Button>
-    <Button type="round" color="success">成功按钮</Button>
-    <Button type="round" color="info">信息按钮</Button>
-    <Button type="round" color="warning">警告按钮</Button>
-    <Button type="round" color="danger">危险按钮</Button>
+    <Col>
+      <Button type="plain">plain 按钮</Button>
+      <Button type="plain" color="primary">主要颜色</Button>
+      <Button type="plain" color="success">成功颜色</Button>
+      <Button type="plain" color="info">信息颜色</Button>
+      <Button type="plain" color="warning">警告颜色</Button>
+      <Button type="plain" color="danger">危险颜色</Button>
+    </Col>
   </Row>
   <Row align="middle">
-    <Button type="circle">默</Button>
-    <Button type="circle" color="primary">主</Button>
-    <Button type="circle" color="success">成</Button>
-    <Button type="circle" color="info">信</Button>
-    <Button type="circle" color="warning">警</Button>
-    <Button type="circle" color="danger">危</Button>
+    <Col>
+      <Button type="round">round 按钮</Button>
+      <Button type="round" color="primary">主要颜色</Button>
+      <Button type="round" color="success">成功颜色</Button>
+      <Button type="round" color="info">信息颜色</Button>
+      <Button type="round" color="warning">警告颜色</Button>
+      <Button type="round" color="danger">危险颜色</Button>
+    </Col>
   </Row>
   <Row align="middle">
-    <Button type="link">链接按钮</Button>
+    <Col>
+      <Button type="circle">圆</Button>
+      <Button type="circle" color="primary">主</Button>
+      <Button type="circle" color="success">成</Button>
+      <Button type="circle" color="info">信</Button>
+      <Button type="circle" color="warning">警</Button>
+      <Button type="circle" color="danger">危</Button>
+    </Col>
+  </Row>
+  <Row align="middle">
+    <Col>
+      <Button type="link">链接按钮</Button>
+    </Col>
   </Row>
 </template>
 ```
@@ -75,14 +95,32 @@ wrapperClass: md-button
 ```vue demo
 <template>
   <Row align="middle">
-    <Button color="primary" size="large">大型按钮</Button>
-    <Button color="primary">默认按钮</Button>
-    <Button color="primary" size="small">小型按钮</Button>
+    <Col>
+      <Button size="large">大型按钮</Button>
+      <Button color="primary">默认按钮</Button>
+      <Button color="danger" size="small">小型按钮</Button>
+    </Col>
   </Row>
   <Row align="middle">
-    <Button color="primary" type="round" size="large">大型按钮</Button>
-    <Button color="primary" type="round">默认按钮</Button>
-    <Button color="primary" type="round" size="small">小型按钮</Button>
+    <Col>
+      <Button type="round" size="large">大型按钮</Button>
+      <Button color="primary" type="round">默认按钮</Button>
+      <Button color="danger" type="round" size="small">小型按钮</Button>
+    </Col>
+  </Row>
+  <Row align="middle">
+    <Col>
+      <Button type="circle" size="large">P</Button>
+      <Button color="primary" type="circle">S</Button>
+      <Button color="danger" type="circle" size="small">D</Button>
+    </Col>
+  </Row>
+  <Row align="middle">
+    <Col>
+      <Button type="link" size="large">大型按钮</Button>
+      <Button color="primary" type="link">默认按钮</Button>
+      <Button color="danger" type="link" size="small">小型按钮</Button>
+    </Col>
   </Row>
 </template>
 ```
@@ -94,10 +132,22 @@ wrapperClass: md-button
 ```vue demo
 <template>
   <Row>
-    <Button disabled color="primary">主要按钮</Button>
-    <Button disabled color="primary" type="round">主要按钮</Button>
-    <Button disabled color="primary" type="circle">主</Button>
-    <Button disabled color="primary" type="link">主要按钮</Button>
+    <Col>
+      <Button disabled>默认按钮</Button>
+      <Button disabled type="round">默认按钮</Button>
+      <Button disabled type="plain">默认按钮</Button>
+      <Button disabled type="circle">默</Button>
+      <Button disabled type="link">默认按钮</Button>
+    </Col>
+  </Row>
+  <Row>
+    <Col>
+      <Button disabled color="primary">主要按钮</Button>
+      <Button disabled color="primary" type="round">主要按钮</Button>
+      <Button disabled color="primary" type="plain">主要按钮</Button>
+      <Button disabled color="primary" type="circle">主</Button>
+      <Button disabled color="primary" type="link">主要按钮</Button>
+    </Col>
   </Row>
 </template>
 ```
@@ -108,7 +158,11 @@ wrapperClass: md-button
 
 ```vue demo
 <template>
-  <Button color="primary" :loading="true">加载中</Button>
+  <Row>
+    <Col>
+      <Button color="primary" :loading="true">加载中</Button>
+    </Col>
+  </Row>
 </template>
 ```
 
@@ -121,20 +175,22 @@ wrapperClass: md-button
 ```vue demo
 <template>
   <Row>
-    <Button color="primary" @click="testclick">
-      <template #icon><IconPlusSquare /></template>
-      IconPlusSquare
-    </Button>
-    <Button color="primary">
-      <template #icon> <IconTrash /></template>IconTrash
-    </Button>
-    <Button color="primary">
-      <template #icon><IconPencilSquare /></template>IconPencilSquare
-    </Button>
-    <Button color="primary">
-      <template #icon><IconSearch /></template>IconSearch
-    </Button>
-    <Button color="primary"> <template #icon></template> 上传<i class="el-icon-upload el-icon--right"></i> </Button>
+    <Col>
+      <Button color="primary" @click="testclick">
+        <template #icon><IconPlusSquare /></template>
+        IconPlusSquare
+      </Button>
+      <Button color="primary">
+        <template #icon> <IconTrash /></template>IconTrash
+      </Button>
+      <Button color="primary">
+        <template #icon><IconPencilSquare /></template>IconPencilSquare
+      </Button>
+      <Button color="primary">
+        <template #icon><IconSearch /></template>IconSearch
+      </Button>
+      <Button color="primary"> <template #icon></template> 上传<i class="el-icon-upload el-icon--right"></i> </Button>
+    </Col>
   </Row>
 </template>
 <script>

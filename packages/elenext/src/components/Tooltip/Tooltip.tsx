@@ -1,5 +1,5 @@
 import { App, computed, defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+import { getBlockCls, getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
 import { Popper } from '../Popper'
 import { Placement } from '../Popper/Popper'

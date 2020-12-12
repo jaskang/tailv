@@ -1,7 +1,12 @@
-import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+<template>
+  <footer class="el-footer" :style="{ height: height }">
+    <slot />
+  </footer>
+</template>
 
-const blockCls = getBlockCls('Footer')
+<script lang="ts">
+import { App, defineComponent } from 'vue'
+import { getBlockCls, getCompName } from '../../utils'
 
 const Footer = defineComponent({
   name: getCompName('Footer'),
@@ -10,13 +15,6 @@ const Footer = defineComponent({
       type: String,
       default: '60px'
     }
-  },
-  setup(props, { slots }) {
-    return () => (
-      <footer class={blockCls} style={{ height: props.height }}>
-        {slots.default?.()}
-      </footer>
-    )
   }
 })
 
@@ -25,3 +23,6 @@ Footer.install = (app: App): void => {
 }
 
 export default Footer
+</script>
+
+<style></style>

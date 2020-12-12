@@ -33,7 +33,7 @@
       "  }",
       "})",
       "</script>",
-      "<style lang=\"less\"></style>",
+      "<style lang=\"scss\"></style>",
       ""
     ],
     "description": "Vue SFC"

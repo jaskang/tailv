@@ -11,7 +11,7 @@ import {
   App
 } from 'vue'
 import { Modifier } from '@popperjs/core'
-import { getBlockCls, getCompName } from '../../config'
+import { getBlockCls, getCompName } from '../../utils'
 import { uniqueId } from '../../utils/uniqueId'
 import { createEl, removeEl } from '../../utils/dom'
 import { usePopper } from './usePopper'

@@ -1,0 +1,113 @@
+@use '../var';
+
+@mixin button-plain($background-color) {
+  color: $background-color;
+  background: mix(var.$color-white, $background-color, 90%);
+  border-color: mix(var.$color-white, $background-color, 60%);
+
+  &:hover,
+  &:focus {
+    background: $background-color;
+    border-color: $background-color;
+    color: var.$color-white;
+  }
+
+  &:active {
+    background: mix(var.$color-black, $background-color, 10%);
+    border-color: mix(var.$color-black, $background-color, 10%);
+    color: var.$color-white;
+    outline: none;
+  }
+  &:disabled,
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: mix(var.$color-white, $background-color, 40%);
+      background-color: mix(var.$color-white, $background-color, 90%);
+      border-color: mix(var.$color-white, $background-color, 80%);
+    }
+  }
+}
+
+@mixin button-link($color) {
+  user-select: none;
+  background: none;
+  border-color: transparent;
+  color: $color;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+
+  &:hover,
+  &:focus {
+    color: mix(var.$color-white, $color, 20%);
+    border-color: transparent;
+    background-color: transparent;
+  }
+  &:active {
+    color: mix(var.$color-white, $color, 10%);
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus {
+    border-color: transparent;
+  }
+}
+
+@mixin button-color($background-color) {
+  color: var.$color-white;
+  background: $background-color;
+  border: 1px solid $background-color;
+  &:hover,
+  &:focus {
+    color: var.$color-white;
+    background: mix(var.$color-white, $background-color, 20%);
+    border-color: mix(var.$color-white, $background-color, 20%);
+  }
+  &:active,
+  &.is-active {
+    color: var.$color-white;
+    background: mix(var.$color-black, $background-color, 10%);
+    border-color: mix(var.$color-black, $background-color, 10%);
+  }
+  &:disabled,
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: var.$color-white;
+      background-color: mix($background-color, var.$color-white);
+      border-color: mix($background-color, var.$color-white);
+    }
+  }
+
+  &.el-button--plain {
+    @include button-plain($background-color);
+  }
+}
+
+@mixin button-size($font-size, $height, $border-radius) {
+  $padding-vertical: ($height - $font-size) / 2 - 1;
+  $padding-horizontal: $padding-vertical * 1.5;
+  font-size: $font-size;
+  padding: $padding-vertical $padding-horizontal;
+  border-radius: $border-radius;
+  &.el-button--round {
+    padding: $padding-vertical $padding-horizontal;
+    border-radius: $height / 2;
+  }
+  &.el-button--circle {
+    border-radius: 50%;
+    width: $height;
+    padding: $padding-vertical 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

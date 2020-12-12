@@ -4,7 +4,7 @@ import { Popper } from '../Popper'
 
 // import './Popover.scss'
 import { mergeClass } from '@elenext/shared'
-import { getBlockCls, getCompName } from '../../config'
+import { getBlockCls, getCompName } from '../../utils'
 
 const blockCls = getBlockCls('Popover')
 const Popover = defineComponent({
