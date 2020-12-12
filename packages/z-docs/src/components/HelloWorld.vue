@@ -18,7 +18,7 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .hello {
   padding: 30px 0;
   text-align: center;

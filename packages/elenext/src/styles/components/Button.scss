@@ -1,0 +1,191 @@
+@use '../var';
+@use '../mixins/button' as button;
+
+.el-button {
+  margin: 0;
+  border: none;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  background: var.$button-default-background-color;
+  border: 1px solid var.$button-default-border-color;
+  color: var.$button-default-font-color;
+
+  @include button.button-size(var.$button-font-size, var.$global-item-height, 4px);
+  & + & {
+    margin-left: 10px;
+  }
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  &:hover,
+  &:focus {
+    color: var.$color-primary;
+    border-color: mix(var.$color-white, var.$color-primary, 70%);
+    background-color: mix(var.$color-white, var.$color-primary, 90%);
+  }
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:active,
+  &.is-active {
+    color: mix(var.$color-black, var.$color-primary, 10%);
+    border-color: mix(var.$color-black, var.$color-primary, 10%);
+  }
+
+  &:disabled,
+  &.is-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover,
+    &:focus {
+      color: var.$button-disabled-font-color;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: var.$button-disabled-background-color;
+      border-color: var.$button-disabled-border-color;
+    }
+
+    &.el-button--link {
+      background-color: transparent;
+    }
+
+    &.el-button--plain {
+      &,
+      &:hover,
+      &:focus {
+        background-color: var.$color-white;
+        border-color: var.$button-disabled-border-color;
+        color: var.$button-disabled-font-color;
+      }
+    }
+  }
+
+  &--primary {
+    @include button.button-color(var.$color-primary);
+  }
+  &--success {
+    @include button.button-color(var.$color-success);
+  }
+  &--warning {
+    @include button.button-color(var.$color-warning);
+  }
+  &--danger {
+    @include button.button-color(var.$color-danger);
+  }
+  &--info {
+    @include button.button-color(var.$color-info);
+  }
+
+  &--round {
+    border-radius: var.$global-item-height / 2;
+  }
+  &--circle {
+    $padding: (var.$global-item-height - var.$button-font-size) / 2 - 1;
+    border-radius: 50%;
+    width: var.$global-item-height;
+    padding: $padding 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &--link {
+    @include button.button-link(var.$color-primary);
+  }
+  &--large {
+    @include button.button-size(var.$button-font-size-large, var.$global-item-height-large, 4px);
+  }
+  &--small {
+    @include button.button-size(var.$button-font-size-small, var.$global-item-height-small, 4px);
+  }
+}
+
+/* Group
+ ========================================================================== */
+
+.el-button-group {
+  display: inline-block;
+  vertical-align: middle;
+
+  & > .el-button {
+    float: left;
+    position: relative;
+    & + .el-button {
+      margin-left: 0;
+    }
+    &.is-disabled {
+      z-index: 1;
+    }
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &:first-child:last-child {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+
+      &.el-button--round {
+        border-radius: 20px;
+      }
+
+      &.el-button--circle {
+        border-radius: 50%;
+      }
+    }
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.is-active {
+      z-index: 1;
+    }
+  }
+
+  & > .el-dropdown {
+    & > .el-button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left-color: rgba(var.$color-white, 50%);
+    }
+  }
+
+  @each $type in (primary, success, warning, danger, info) {
+    .el-button--#{$type} {
+      &:first-child {
+        border-right-color: rgba(var.$color-white, 50%);
+      }
+      &:last-child {
+        border-left-color: rgba(var.$color-white, 50%);
+      }
+      &:not(:first-child):not(:last-child) {
+        border-left-color: rgba(var.$color-white, 50%);
+        border-right-color: rgba(var.$color-white, 50%);
+      }
+    }
+  }
+}

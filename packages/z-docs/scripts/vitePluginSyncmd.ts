@@ -12,8 +12,8 @@ function docFileName(path: string) {
 }
 
 function syncdocServer({ root }) {
-  const componentsDir = path.join(root, 'src/components')
-  const docsPath = file => path.join(root, 'site/__docs__', file)
+  const componentsDir = path.join(root, '../elenext/src/components')
+  const docsPath = file => path.join(root, 'src/__docs__', file)
   const watcher = chokidar.watch(`${componentsDir}/**/__docs__/*.md`)
   watcher
     .on('add', async path => {

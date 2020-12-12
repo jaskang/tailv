@@ -3718,7 +3718,7 @@ chardet@^0.7.0:
   resolved "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chokidar@^3.4.2:
+"chokidar@>=2.0.0 <4.0.0", chokidar@^3.4.2:
   version "3.4.3"
   resolved "https://registry.npmjs.org/chokidar/-/chokidar-3.4.3.tgz#c1df38231448e45ca4ac588e6c79573ba6a57d5b"
   integrity sha512-DtM3g7juCXQxFVSNPNByEC2+NImtBuxQQvWlHunpJIS5Ocr0lG306cC7FCi7cEA0fzmybPUIl4txBIobk1gGOQ==
@@ -10834,6 +10834,13 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
+sass@^1.30.0:
+  version "1.30.0"
+  resolved "https://registry.npmjs.org/sass/-/sass-1.30.0.tgz#60bbbbaf76ba10117e61c6c24f00161c3d60610e"
+  integrity sha512-26EUhOXRLaUY7+mWuRFqGeGGNmhB1vblpTENO1Z7mAzzIZeVxZr9EZoaY1kyGLFWdSOZxRMAufiN2mkbO6dAlw==
+  dependencies:
+    chokidar ">=2.0.0 <4.0.0"
+
 sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -11825,10 +11832,10 @@ tslib@^2.0.3:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tsrv@^0.8.13:
-  version "0.8.13"
-  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.8.13.tgz#ad7a727e50f41702565a8139f4c14d5991db6b1f"
-  integrity sha512-k+6S4n6numKNPvrf181UT6HJt1QJItf++wlLpzAyNxtvABs76Vtm1sQrr0pQA3UNf153ApW04bcJHipnAzKesw==
+tsrv@^0.8.14:
+  version "0.8.14"
+  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.8.14.tgz#b23634dcc611b0e22d69ee6705301486e196a3c6"
+  integrity sha512-JjXttPJan+Dl0I3ptd/43lQUCpRt6yi+MUMy0nvmHq6GbqnXyrjwlvH707CyZxDkByIadS2HGic6B2esFImUgg==
   dependencies:
     "@babel/core" "^7.12.9"
     "@babel/plugin-proposal-class-properties" "^7.12.1"
@@ -11875,6 +11882,7 @@ tsrv@^0.8.13:
     rollup-plugin-postcss "^4.0.0"
     rollup-plugin-typescript2 "^0.29.0"
     rollup-plugin-vue "^6.0.0"
+    sass "^1.30.0"
     ts-jest "^26.4.4"
     typescript "^4.1.2"
     vue "^3.0.4"

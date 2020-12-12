@@ -21,6 +21,15 @@ declare module '*.module.less' {
   const classes: { readonly [key: string]: string }
   export default classes
 }
+declare module '*.scss' {
+  const classes: string
+  export default classes
+}
+
+declare module '*.module.scss' {
+  const classes: { readonly [key: string]: string }
+  export default classes
+}
 
 declare namespace JSX {
   interface IntrinsicAttributes {

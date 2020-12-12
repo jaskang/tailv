@@ -22,11 +22,10 @@ const Button = defineComponent({
   emits: ['click'],
   props: {
     color: {
-      type: String as PropType<'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger'>,
-      default: 'default'
+      type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger'>
     },
     type: {
-      type: String as PropType<'link' | 'round' | 'circle'>
+      type: String as PropType<'link' | 'round' | 'circle' | 'plain'>
     },
     size: {
       type: String as PropType<'large' | 'small'>
@@ -37,9 +36,11 @@ const Button = defineComponent({
   },
   setup(props, { emit }) {
     const classes = computed(() =>
-      mergeClass(cls, `${cls}-${props.color}`, [
-        props.size ? `${cls}-${props.size}` : '',
-        props.type ? `is-${props.type}` : '',
+      mergeClass(cls, [
+        // link 类型不需要颜色
+        props.color && props.type !== 'link' ? `${cls}--${props.color}` : '',
+        props.type ? `${cls}--${props.type}` : '',
+        props.size ? `${cls}--${props.size}` : '',
         {
           'is-loading': props.loading,
           'is-disabled': props.disabled

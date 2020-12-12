@@ -1,0 +1,38 @@
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+
+$color-primary: #409eff !default;
+$color-success: #67c23a !default;
+$color-warning: #e6a23c !default;
+$color-danger: #f56c6c !default;
+$color-info: #909399 !default;
+
+// =================================================
+// global
+// =================================================
+$global-color-text-regular: #606266 !default;
+$global-color-text-placeholder: #c0c4cc !default;
+
+$global-disabled-font-color: $global-color-text-placeholder !default;
+
+$global-item-height-large: 40px !default;
+$global-item-height: 32px !default;
+$global-item-height-small: 28px !default;
+
+$global-border-color-base: #dcdfe6 !default;
+$global-border-color-light: #e4e7ed !default;
+$global-border-color-lighter: #ebeef5 !default;
+$global-border-color-extra-light: #f2f6fc !default;
+
+// =================================================
+// Button
+// =================================================
+$button-font-size-large: 16px !default;
+$button-font-size: 14px !default;
+$button-font-size-small: 12px !default;
+$button-default-font-color: $global-color-text-regular !default;
+$button-default-background-color: $color-white !default;
+$button-default-border-color: $global-border-color-base !default;
+$button-disabled-font-color: $global-disabled-font-color !default;
+$button-disabled-background-color: $color-white !default;
+$button-disabled-border-color: $global-border-color-lighter !default;
