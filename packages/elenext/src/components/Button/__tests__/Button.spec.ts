@@ -8,7 +8,7 @@ test('default', async () => {
   const wrapper = mount(Button, {
     props: { color: 'primary' }
   })
-  expect(wrapper.classes()).toContain('el-button-primary')
+  expect(wrapper.classes()).toContain('el-button--primary')
 })
 
 test('slots', async () => {
@@ -26,7 +26,7 @@ test('props size', async () => {
       size: 'small'
     }
   })
-  expect(wrapper.find('.el-button-small').exists()).toBe(true)
+  expect(wrapper.find('.el-button--small').exists()).toBe(true)
 })
 
 test('props icon', async () => {
@@ -80,7 +80,7 @@ test('props shape', async () => {
       type: 'round'
     }
   })
-  expect(wrapper.find('.is-round').exists()).toBe(true)
+  expect(wrapper.find('.el-button--round').exists()).toBe(true)
 })
 
 test('props circle', async () => {
@@ -89,7 +89,7 @@ test('props circle', async () => {
       type: 'circle'
     }
   })
-  expect(wrapper.find('.is-circle').exists()).toBe(true)
+  expect(wrapper.find('.el-button--circle').exists()).toBe(true)
 })
 // type: { type: String, default: 'default', required: false },
 //     size: { type: String, default: '', required: false },
