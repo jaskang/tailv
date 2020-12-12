@@ -90,9 +90,6 @@
   &.el-button--plain {
     @include button-plain($background-color);
   }
-  // &.el-button--link {
-  //   @include button-link(var.$color-primary);
-  // }
 }
 
 @mixin button-size($font-size, $height, $border-radius) {

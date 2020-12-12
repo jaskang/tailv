@@ -1,16 +1,16 @@
 <template>
-  <transition v-bind="collapseTransitionProps"></transition>
+  <transition v-bind="collapseTransitionProps" />
 </template>
 
 <script lang="ts">
 import { App, defineComponent, TransitionProps } from 'vue'
 import { addClass, removeClass } from '../../utils/dom'
-import { getCompName } from '../../config'
+import { getCompName } from '../../utils'
 
 const collapseTransitionProps: TransitionProps = {
   onBeforeEnter(_el: Element) {
     const el = _el as HTMLElement
-    addClass(el, 'collapse-transition')
+    addClass(el, 'el-collapse-transition')
     // @ts-ignore
     if (!el.dataset) el.dataset = {}
 
@@ -40,7 +40,7 @@ const collapseTransitionProps: TransitionProps = {
 
   onAfterEnter(_el: Element) {
     const el = _el as HTMLElement
-    removeClass(el, 'collapse-transition')
+    removeClass(el, 'el-collapse-transition')
     el.style.height = ''
     el.style.overflow = el.dataset.oldOverflow || ''
   },
@@ -61,7 +61,7 @@ const collapseTransitionProps: TransitionProps = {
     const el = _el as HTMLElement
     if (el.scrollHeight !== 0) {
       // for safari: add class after set height, or it will jump to zero height suddenly, weired
-      addClass(el, 'collapse-transition')
+      addClass(el, 'el-collapse-transition')
       el.style.height = '0'
       el.style.paddingTop = '0'
       el.style.paddingBottom = '0'
@@ -70,7 +70,7 @@ const collapseTransitionProps: TransitionProps = {
 
   onAfterLeave(_el: Element) {
     const el = _el as HTMLElement
-    removeClass(el, 'collapse-transition')
+    removeClass(el, 'el-collapse-transition')
     el.style.height = ''
     el.style.overflow = el.dataset.oldOverflow || ''
     el.style.paddingTop = el.dataset.oldPaddingTop || ''

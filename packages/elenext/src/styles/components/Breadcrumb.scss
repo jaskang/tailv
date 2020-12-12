@@ -1,0 +1,40 @@
+@use '../var';
+@use '../mixins/tools';
+
+.el-breadcrumb {
+  font-size: var.$breadcrumb-font-size;
+  line-height: 1;
+  @include tools.clearfix();
+}
+
+.el-breadcrumb-item {
+  &__inner {
+    color: var.$breadcrumb-font-color;
+    &.is-link,
+    & a {
+      font-weight: bold;
+      text-decoration: none;
+      transition: var.$global-transition-color;
+      color: var.$global-color-text-primary;
+      &:hover {
+        color: var.$color-primary;
+        cursor: pointer;
+      }
+    }
+  }
+  &:last-child {
+    .el-breadcrumb-item__separator {
+      display: none;
+    }
+  }
+  &__separator {
+    margin: 0 9px;
+    font-weight: bold;
+    color: var.$breadcrumb-separator-font-color;
+
+    &[class*='icon'] {
+      margin: 0 6px;
+      font-weight: normal;
+    }
+  }
+}

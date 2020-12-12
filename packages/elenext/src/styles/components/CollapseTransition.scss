@@ -1,0 +1,5 @@
+@use '../var';
+
+.el-collapse-transition {
+  transition: var.$global-transition-all;
+}

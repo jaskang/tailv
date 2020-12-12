@@ -1,5 +1,12 @@
-import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+<template>
+  <div class="el-breadcrumb">
+    <slot />
+  </div>
+</template>
+
+<script lang="ts">
+import { App, defineComponent, provide } from 'vue'
+import { getBlockCls, getCompName } from '../../utils'
 
 const blockCls = getBlockCls('Breadcrumb')
 const Breadcrumb = defineComponent({
@@ -8,14 +15,7 @@ const Breadcrumb = defineComponent({
     separator: {
       type: String,
       default: '/'
-    },
-    separatorClass: {
-      type: String,
-      default: ''
     }
-  },
-  setup(_props, { slots }) {
-    return () => <div class={blockCls}>{slots.default?.()}</div>
   }
 })
 
@@ -24,3 +24,4 @@ Breadcrumb.install = (app: App): void => {
 }
 
 export default Breadcrumb
+</script>

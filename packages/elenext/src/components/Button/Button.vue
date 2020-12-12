@@ -1,14 +1,14 @@
 <template>
-  <button :disabled="disabled" :type="nativeType" :class="classes" @click="onClick">
-    <IconArrowClockwise spin v-if="loading" />
-    <slot name="icon" v-if="!loading" />
+  <button :disabled="disabled" :type="nativeType" :class="classes" @click="clickHandler">
+    <IconArrowClockwise v-if="loading" spin />
+    <slot v-if="!loading" name="icon" />
     <span><slot /></span>
   </button>
 </template>
 
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+import { getBlockCls, getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
 import { IconArrowClockwise } from '@elenext/icons'
 
@@ -19,21 +19,24 @@ const Button = defineComponent({
   components: {
     IconArrowClockwise
   },
-  emits: ['click'],
   props: {
     color: {
-      type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger'>
+      type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger'>,
+      default: undefined
     },
     type: {
-      type: String as PropType<'link' | 'round' | 'circle' | 'plain'>
+      type: String as PropType<'link' | 'round' | 'circle' | 'plain'>,
+      default: undefined
     },
     size: {
-      type: String as PropType<'large' | 'small'>
+      type: String as PropType<'large' | 'small'>,
+      default: undefined
     },
     nativeType: { type: String as PropType<'button' | 'submit' | 'reset'>, default: 'button' },
     loading: { type: Boolean, default: false },
     disabled: { type: Boolean }
   },
+  emits: ['click'],
   setup(props, { emit }) {
     const classes = computed(() =>
       mergeClass(cls, [
@@ -47,14 +50,14 @@ const Button = defineComponent({
         }
       ])
     )
-    const handleClick = (e: MouseEvent) => {
+    const clickHandler = (e: MouseEvent) => {
       if (!props.disabled && !props.loading) {
         emit('click', e)
       }
     }
     return {
       classes,
-      handleClick
+      clickHandler
     }
   }
 })

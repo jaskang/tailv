@@ -1,7 +1,14 @@
+<template>
+  <div :class="classes" :style="styles">
+    <slot />
+  </div>
+</template>
+
+<script lang="ts">
 import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } from 'vue'
-import { RowInjectKey, GutterTuple } from './Row'
+import { rowInjectKey, GutterTuple } from './configs'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
-import { getCompName, getBlockCls } from '../../config'
+import { getCompName, getBlockCls } from '../../utils'
 import { mergeClass } from '@elenext/shared'
 
 type ColPropType = number | string
@@ -55,11 +62,11 @@ const Col = defineComponent({
     xl: sizePropItem,
     flex: {
       type: [Number, String] as PropType<FlexType>,
-      required: false
+      default: undefined
     }
   },
   setup(props, { slots }) {
-    const { gutter } = inject(RowInjectKey, { gutter: ref([0, 0] as GutterTuple) })
+    const { gutter } = inject(rowInjectKey, { gutter: ref([0, 0] as GutterTuple) })
 
     const classes = computed(() => {
       let sizeObjs: any[] = []
@@ -112,17 +119,16 @@ const Col = defineComponent({
             }
           : {})
       }
-      if (props.flex) {
+      if (typeof props.flex !== undefined) {
         ret.flex = parseFlex(props.flex)
       }
       return ret
     })
 
-    return () => (
-      <div class={classes.value} style={styles.value}>
-        {slots.default?.()}
-      </div>
-    )
+    return {
+      classes,
+      styles
+    }
   }
 })
 
@@ -131,3 +137,4 @@ Col.install = (app: App): void => {
 }
 
 export default Col
+</script>

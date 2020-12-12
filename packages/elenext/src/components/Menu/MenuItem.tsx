@@ -1,5 +1,5 @@
 import { App, computed, CSSProperties, defineComponent, inject, ref } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+import { getBlockCls, getCompName } from '../../utils'
 import { uniqueId } from '../../utils/uniqueId'
 import { MENU_INJKEY, MENU_ITEM_PADDING } from './Menu'
 

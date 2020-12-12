@@ -1,5 +1,5 @@
 import { App, defineComponent, inject, InjectionKey, PropType, provide, reactive } from 'vue'
-import { getBlockCls, getCompName } from '../../config'
+import { getBlockCls, getCompName } from '../../utils'
 import { mixColor } from '@elenext/shared'
 import CollapseTransition from '../Transition/CollapseTransition.vue'
 import { IconChevronDown } from '@elenext/icons'

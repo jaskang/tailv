@@ -12,5 +12,3 @@ export function getCompName(name: string) {
 export function getBlockCls(block: string) {
   return `${config.prefixCls}-${paramCase(block)}`
 }
-
-export default config
