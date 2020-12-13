@@ -1,5 +1,7 @@
 <template>
-  <transition v-bind="collapseTransitionProps" />
+  <transition v-bind="collapseTransitionProps">
+    <slot />
+  </transition>
 </template>
 
 <script lang="ts">
@@ -25,6 +27,7 @@ const collapseTransitionProps: TransitionProps = {
   onEnter(_el: Element) {
     const el = _el as HTMLElement
     el.dataset.oldOverflow = el.style.overflow
+    el.style.transitionProperty = 'all'
     if (el.scrollHeight !== 0) {
       el.style.height = el.scrollHeight + 'px'
       el.style.paddingTop = el.dataset.oldPaddingTop || ''
@@ -34,7 +37,6 @@ const collapseTransitionProps: TransitionProps = {
       el.style.paddingTop = el.dataset.oldPaddingTop || ''
       el.style.paddingBottom = el.dataset.oldPaddingBottom || ''
     }
-
     el.style.overflow = 'hidden'
   },
 
@@ -59,6 +61,7 @@ const collapseTransitionProps: TransitionProps = {
 
   onLeave(_el: Element) {
     const el = _el as HTMLElement
+    el.style.transitionProperty = 'all'
     if (el.scrollHeight !== 0) {
       // for safari: add class after set height, or it will jump to zero height suddenly, weired
       addClass(el, 'el-collapse-transition')

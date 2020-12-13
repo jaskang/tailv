@@ -5,7 +5,7 @@ import vitePluginSyncmd from './scripts/vitePluginSyncmd'
 const config: UserConfig = {
   assetsDir: 'src/assets',
   optimizeDeps: {
-    link: ['elenext', '@elenext/icons']
+    exclude: ['elenext', '@elenext/icons']
     // link: ['optimize-linked']
   },
   alias: {},

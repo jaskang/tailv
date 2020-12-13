@@ -53,7 +53,7 @@ $button-disabled-border-color: $global-border-color-lighter !default;
 // =================================================
 // Link
 // =================================================
-$link-font-size: $global-font-size-base;
+$link-font-size: $global-font-size-base !default;
 $link-default-font-color: $global-color-text-regular !default;
 $link-default-active-color: $color-primary !default;
 $link-disabled-font-color: $global-color-text-placeholder !default;
@@ -61,13 +61,17 @@ $link-disabled-font-color: $global-color-text-placeholder !default;
 // =================================================
 // Breadcrumb
 // =================================================
-$breadcrumb-font-size: $global-font-size-base;
-$breadcrumb-font-color: $global-color-text-regular;
-$breadcrumb-separator-font-color: $global-color-text-regular;
+$breadcrumb-font-size: $global-font-size-base !default;
+$breadcrumb-font-color: $global-color-text-regular !default;
+$breadcrumb-separator-font-color: $global-color-text-regular !default;
 
 // =================================================
 // Layout
 // =================================================
 
-$layout-header-padding: 0 $global-padding-horizontal;
-$layout-footer-padding: 0 $global-padding-horizontal;
+$layout-header-padding: 0 $global-padding-horizontal !default;
+$layout-footer-padding: 0 $global-padding-horizontal !default;
+
+// =================================================
+// Menu
+// =================================================

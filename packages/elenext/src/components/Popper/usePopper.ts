@@ -1,5 +1,5 @@
 import { createPopper, Instance as PopperInstance, Options as PopperOptions } from '@popperjs/core'
-import { computed, reactive, ref, watch, watchEffect } from 'vue'
+import { computed, reactive, ref, watchEffect } from 'vue'
 
 type Options = Partial<PopperOptions>
 
@@ -49,14 +49,14 @@ export const usePopper = (options: Options = {}) => {
       ]
     }
   })
-  watch(popperOptions, (_value, _prevVaule) => {
+  watchEffect(() => {
     if (popperRef.value) {
       popperRef.value.setOptions(popperOptions.value)
     }
   })
 
   watchEffect(onInvalidate => {
-    if (referenceEl?.value == null || popperEl?.value == null) {
+    if (!referenceEl?.value || !popperEl?.value) {
       return
     }
     console.log('createPopper')
