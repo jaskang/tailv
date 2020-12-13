@@ -1,3 +1,23 @@
+<template>
+  <teleport :to="`#${teleportEl.id}`">
+    <Transition name="transition">
+      <div
+        v-show="isVisible"
+        ref="popperEl"
+        :class="['el-popper', popperClass]"
+        :style="popperState.styles.popper"
+        v-bind="popperState.attributes.popper"
+      >
+        <slot name="popper" />
+        <div class="el-popper__arrow" :style="popperState.styles.arrow" data-popper-arrow />
+      </div>
+    </Transition>
+  </teleport>
+  <DomSlot @root-init="initReference">
+    <slot />
+  </DomSlot>
+</template>
+<script lang="ts">
 import {
   defineComponent,
   Teleport,
@@ -5,38 +25,26 @@ import {
   reactive,
   watchEffect,
   cloneVNode,
+  getCurrentInstance,
   h,
   Transition,
   onUnmounted,
-  App
+  App,
+  ref,
+  onUpdated,
+  onMounted
 } from 'vue'
 import { Modifier } from '@popperjs/core'
 import { getBlockCls, getCompName } from '../../utils'
 import { uniqueId } from '../../utils/uniqueId'
 import { createEl, removeEl } from '../../utils/dom'
+import DomSlot from './DomSlot'
 import { usePopper } from './usePopper'
+import { Placement } from './core'
 
-export type Placement =
-  | 'auto'
-  | 'auto-start'
-  | 'auto-end'
-  | 'top'
-  | 'bottom'
-  | 'right'
-  | 'left'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'right-start'
-  | 'right-end'
-  | 'left-start'
-  | 'left-end'
-
-const blockCls = getBlockCls('Popper')
 const Popper = defineComponent({
-  name: getCompName('Popper'),
-  emits: ['update:modelValue'],
+  name: 'Popper',
+  components: { DomSlot },
   props: {
     modelValue: Boolean,
     popperClass: {
@@ -64,7 +72,9 @@ const Popper = defineComponent({
       default: 'absolute'
     }
   },
-  setup(props, { slots }) {
+  emits: ['update:modelValue'],
+  setup(props, { attrs, slots, emit }) {
+    const self = getCurrentInstance()
     const id = uniqueId('el-popper-teleport')
     const teleportEl = createEl(id)
     const { referenceEl, popperEl, popperRef, state: popperState } = usePopper({
@@ -73,23 +83,18 @@ const Popper = defineComponent({
       modifiers: props.modifiers
     })
 
-    const state = reactive({
-      show: false
-    })
+    const isVisible = ref(false)
 
-    const showHandler = () => {
-      state.show = true
-    }
-    const hideHandler = () => {
-      state.show = false
-    }
+    const showHandler = () => (isVisible.value = true)
+    const hideHandler = () => (isVisible.value = false)
+
     const clickAwayHandler = (event: any) => {
       if (referenceEl.value && !referenceEl.value.contains(event.target)) {
-        state.show = false
+        isVisible.value = false
       }
     }
     watchEffect(() => {
-      if (state.show) {
+      if (isVisible.value) {
         popperRef.value?.update()
       }
     })
@@ -118,54 +123,26 @@ const Popper = defineComponent({
         })
       }
     })
+
+    const initReference = el => {
+      console.log(el)
+      referenceEl.value = el
+    }
     onUnmounted(() => {
       removeEl(teleportEl)
     })
-    return () => {
-      const slotContent = slots.default ? slots.default() : []
 
-      const transformedSlotContent = slotContent.map((vnode, index) => {
-        if (index === 0) {
-          console.log(vnode)
-          if (typeof vnode.type === 'string') {
-            return cloneVNode(vnode, { ref: referenceEl })
-          } else if (typeof vnode.type === 'object') {
-            return cloneVNode(vnode, {
-              ref: (instance: any) => {
-                referenceEl.value = instance?.$el ?? null
-              }
-            })
-          }
-          return h('span', { ref: referenceEl }, cloneVNode(vnode))
-        }
-        return cloneVNode(vnode)
-      })
-
-      return (
-        <>
-          <Teleport to={`#${teleportEl.id}`}>
-            <Transition name={props.transition}>
-              <div
-                class={[blockCls, props.popperClass]}
-                ref={popperEl}
-                v-show={state.show}
-                style={popperState.styles.popper}
-                {...popperState.attributes.popper}
-              >
-                {slots.popper?.()}
-                <div class={`${blockCls}__arrow`} style={popperState.styles.arrow} data-popper-arrow></div>
-              </div>
-            </Transition>
-          </Teleport>
-          {transformedSlotContent}
-        </>
-      )
+    return {
+      isVisible,
+      teleportEl,
+      popperEl,
+      popperState,
+      initReference
     }
   }
 })
-
 Popper.install = (app: App): void => {
   app.component(Popper.name, Popper)
 }
-
 export default Popper
+</script>

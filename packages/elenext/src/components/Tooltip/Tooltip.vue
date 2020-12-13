@@ -1,12 +1,36 @@
+<template>
+  <Popper
+    :model-value="modelValue"
+    :popper-class="classes"
+    :placement="placement"
+    :trigger="trigger"
+    :modifiers="[
+      {
+        name: 'offset',
+        options: { offset: [0, offset] }
+      }
+    ]"
+  >
+    <template #popper>
+      <slot name="content">
+        {{ content }}
+      </slot>
+    </template>
+    <slot />
+  </Popper>
+</template>
+<script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
-import { Popper } from '../Popper'
-import { Placement } from '../Popper/Popper'
+import { getBlockCls, getCompName } from '../../utils'
+import { Popper, Placement } from '../Popper'
 
 const blockCls = getBlockCls('Tooltip')
 const Tooltip = defineComponent({
   name: getCompName('Tooltip'),
+  components: {
+    Popper
+  },
   props: {
     effect: {
       type: String as PropType<'dark' | 'light'>,
@@ -40,26 +64,9 @@ const Tooltip = defineComponent({
   },
   setup(props, { slots }) {
     const classes = computed(() => mergeClass(blockCls, props.popperClass, 'is-' + props.effect))
-    return () => (
-      <Popper
-        modelValue={props.modelValue}
-        popperClass={classes.value}
-        placement={props.placement}
-        trigger={props.trigger}
-        modifiers={[
-          {
-            name: 'offset',
-            options: {
-              offset: [0, props.offset]
-            }
-          }
-        ]}
-        v-slots={{
-          popper: slots.content ? slots.content : () => props.content,
-          default: slots.default
-        }}
-      />
-    )
+    return {
+      classes
+    }
   }
 })
 
@@ -68,3 +75,4 @@ Tooltip.install = (app: App): void => {
 }
 
 export default Tooltip
+</script>

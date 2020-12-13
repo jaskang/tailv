@@ -1,3 +1,3 @@
 export { injectCss } from './dom'
-export { mixColor } from './color'
+export { colorLighten, colorDarken } from './color'
 export { mergeClass, MergeClassValue } from './vnode'
