@@ -1,11 +1,11 @@
 <template>
   <Popper :popper-class="classes" :trigger="trigger">
-    <template #popper>
+    <template #content>
       <div ref="popper" :style="{ width: width }" role="popper">
         <div v-if="title" class="el-popover__title">
           {{ title }}
         </div>
-        <slot name="popper">
+        <slot name="content">
           {{ content }}
         </slot>
       </div>

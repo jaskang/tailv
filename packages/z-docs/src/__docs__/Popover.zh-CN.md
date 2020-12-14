@@ -73,7 +73,7 @@ export default {
 ```vue demo
 <template>
   <Popover placement="right" width="400" trigger="click">
-    <template #popper>
+    <template #content>
       <Table :data="gridData">
         <TableColumn width="150" property="date" label="日期"></TableColumn>
         <TableColumn width="100" property="name" label="姓名"></TableColumn>
@@ -122,7 +122,7 @@ export default {
 ```vue demo
 <template>
   <Popover placement="top" width="160" v-model="visible">
-    <template #popper>
+    <template #content>
       <p>这是一段内容这是一段内容确定删除吗？</p>
       <div style="text-align: right; margin: 0">
         <Button size="mini" type="text" @click="visible = false">取消</Button>

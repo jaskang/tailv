@@ -1,83 +1,113 @@
+import { computed, getCurrentInstance, onUnmounted, reactive, Ref, ref, watchEffect } from 'vue'
 import { createPopper, Instance as PopperInstance, Options as PopperOptions } from '@popperjs/core'
-import { computed, reactive, ref, watchEffect } from 'vue'
+import { createEl, removeEl } from '../../utils/dom'
 
-type Options = Partial<PopperOptions>
+export type Placement =
+  | 'auto'
+  | 'auto-start'
+  | 'auto-end'
+  | 'top'
+  | 'bottom'
+  | 'right'
+  | 'left'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'right-start'
+  | 'right-end'
+  | 'left-start'
+  | 'left-end'
 
-export const usePopper = (options: Options = {}) => {
-  const referenceEl = ref<HTMLElement>()
-  const popperEl = ref<HTMLElement>()
-  const popperRef = ref<PopperInstance | null>(null)
+export type Strategy = 'absolute' | 'fixed'
 
-  const optionsWithDefaults = {
-    onFirstUpdate: options.onFirstUpdate,
-    placement: options.placement || 'bottom',
-    strategy: options.strategy || 'absolute',
-    modifiers: options.modifiers || []
-  }
+interface UsePopperOptions {
+  placement?: Placement
+  // strategy?: 'absolute' | 'fixed'
+  offset?: number
+}
 
-  const state = reactive<any>({
-    styles: {
-      popper: {
-        position: optionsWithDefaults.strategy,
-        left: '0',
-        top: '0'
-      }
-    },
-    attributes: {}
+export const fromEntries = (entries: Array<[string, any]>) =>
+  entries.reduce((acc, [key, value]) => {
+    acc[key] = value
+    return acc
+  }, {})
+
+export const usePopper = (referenceRef: Ref<Element>, popperRef: Ref<HTMLElement>, options: UsePopperOptions = {}) => {
+  const self = getCurrentInstance()
+  const teleportEl = createEl(`el-popper-${self.uid}`)
+
+  const state = reactive<{
+    instance: PopperInstance | null
+    teleportEl: HTMLElement
+    attrs: {
+      styles: any
+      attributes: Record<string, any>
+    }
+  }>({
+    instance: null,
+    teleportEl: teleportEl,
+    attrs: {
+      styles: {
+        popper: {
+          position: 'absolute',
+          left: '0',
+          top: '0'
+        },
+        arrow: {
+          position: 'absolute'
+        }
+      },
+      attributes: {}
+    }
   })
 
   const popperOptions = computed(() => {
     return {
-      onFirstUpdate: options.onFirstUpdate,
       placement: options.placement || 'bottom-start',
-      strategy: options.strategy || 'absolute',
+      strategy: 'absolute' as Strategy,
       modifiers: [
-        ...(options.modifiers || []),
         {
           name: 'updateState',
           enabled: true,
           phase: 'write',
           fn: ({ state: popperState }: any) => {
-            console.log(popperState)
-
-            state.styles = { ...popperState.styles }
-            state.attributes = { ...popperState.attributes }
+            const elements = Object.keys(popperState.elements)
+            state.attrs = {
+              styles: fromEntries(elements.map(element => [element, popperState.styles[element] || {}])),
+              attributes: fromEntries(elements.map(element => [element, popperState.attributes[element]]))
+            }
+            // console.log(state.attrs)
           },
           requires: ['computeStyles']
         },
-        { name: 'applyStyles', enabled: false }
+        { name: 'applyStyles', enabled: false },
+        { name: 'offset', options: { offset: [0, options.offset || 0] } }
       ]
     }
   })
+
   watchEffect(() => {
-    if (popperRef.value) {
-      popperRef.value.setOptions(popperOptions.value)
+    if (state.instance) {
+      state.instance.setOptions(popperOptions.value)
     }
   })
 
   watchEffect(onInvalidate => {
-    if (!referenceEl?.value || !popperEl?.value) {
-      return
-    }
-    console.log('createPopper')
-
-    const popperInstance = createPopper(referenceEl.value, popperEl.value, popperOptions.value as any)
-
-    popperRef.value = popperInstance
-    console.log(popperInstance)
-
     onInvalidate(() => {
-      if (popperRef.value) {
-        popperRef.value.destroy()
+      if (state.instance) {
+        state.instance.destroy()
       }
-      popperRef.value = null
+      state.instance = null
     })
+    if (referenceRef.value && popperRef.value) {
+      state.instance = createPopper(referenceRef.value, popperRef.value, popperOptions.value as any)
+    }
   })
 
-  return {
-    popperEl,
-    referenceEl,
-    popperRef,
-    state
-  }
+  onUnmounted(() => {
+    removeEl(teleportEl)
+  })
+
+  return state
 }

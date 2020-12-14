@@ -1,17 +1,6 @@
 <template>
-  <Popper
-    :model-value="modelValue"
-    :popper-class="classes"
-    :placement="placement"
-    :trigger="trigger"
-    :modifiers="[
-      {
-        name: 'offset',
-        options: { offset: [0, offset] }
-      }
-    ]"
-  >
-    <template #popper>
+  <Popper :model-value="modelValue" :popper-class="classes" :placement="placement" :trigger="trigger" :offset="offset">
+    <template #content>
       <slot name="content">
         {{ content }}
       </slot>

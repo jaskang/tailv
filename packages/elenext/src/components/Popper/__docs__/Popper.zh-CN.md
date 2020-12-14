@@ -5,40 +5,40 @@
 ```vue demo
 <template>
   <Popper>
+    <template #content> 12312342 </template>
     <Button>top button</Button>
-    <template #popper> 12312342 </template>
   </Popper>
   <Popper>
+    <template #content> 12312342 </template>
     text123213
-    <template #popper> 12312342 </template>
   </Popper>
   <br />
   <Popper placement="left">
+    <template #content> 12312342 </template>
     <Button>left button</Button>
-    <template #popper> 12312342 </template>
   </Popper>
   <br />
   <Popper placement="right">
     <Button>right button</Button>
-    <template #popper> 12312342 </template>
+    <template #content> 12312342 </template>
   </Popper>
   <br />
   <Popper placement="bottom">
     <Button>bottom button</Button>
-    <template #popper> 12312342 </template>
+    <template #content> 12312342 </template>
   </Popper>
 
   <Popper>
     <span>span</span>
-    <template #popper> 12312342 </template>
+    <template #content> 12312342 </template>
   </Popper>
   <Popper>
     <Link><span>Link -> span</span></Link>
-    <template #popper> 12312342 </template>
+    <template #content> 12312342 </template>
   </Popper>
   <Popper>
     <Button @click="tgShow"> button</Button>
-    <template #popper> 12312342 </template>
+    <template #content> 12312342 </template>
   </Popper>
 </template>
 <script>

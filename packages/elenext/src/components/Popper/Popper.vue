@@ -1,19 +1,19 @@
 <template>
-  <teleport :to="`#${teleportEl.id}`">
+  <teleport :to="`#${state.teleportEl.id}`">
     <Transition name="transition">
       <div
         v-show="isVisible"
-        ref="popperEl"
+        ref="popperRef"
         :class="['el-popper', popperClass]"
-        :style="popperState.styles.popper"
-        v-bind="popperState.attributes.popper"
+        :style="state.attrs.styles.popper"
+        v-bind="state.attrs.attributes.popper"
       >
-        <slot name="popper" />
-        <div class="el-popper__arrow" :style="popperState.styles.arrow" data-popper-arrow />
+        <slot name="content" />
+        <div class="el-popper__arrow" :style="state.attrs.styles.arrow" data-popper-arrow />
       </div>
     </Transition>
   </teleport>
-  <DomSlot @root-init="initReference">
+  <DomSlot :init="referenceInitHandler">
     <slot />
   </DomSlot>
 </template>
@@ -31,6 +31,7 @@ import {
   onUnmounted,
   App,
   ref,
+  Ref,
   onUpdated,
   onMounted
 } from 'vue'
@@ -39,8 +40,7 @@ import { getBlockCls, getCompName } from '../../utils'
 import { uniqueId } from '../../utils/uniqueId'
 import { createEl, removeEl } from '../../utils/dom'
 import DomSlot from './DomSlot'
-import { usePopper } from './usePopper'
-import { Placement } from './core'
+import { usePopper, Placement } from './usePopper'
 
 const Popper = defineComponent({
   name: 'Popper',
@@ -57,87 +57,95 @@ const Popper = defineComponent({
     },
     trigger: {
       type: String as PropType<'click' | 'hover'>,
-      default: 'click'
+      default: null
     },
     transition: {
       type: String,
-      default: ''
+      default: undefined
     },
-    modifiers: {
-      type: Array as PropType<Partial<Modifier<any, any>>[]>,
-      default: []
+    offset: {
+      type: Number as PropType<number>,
+      default: 0
     },
-    strategy: {
-      type: String as PropType<'absolute' | 'fixed'>,
-      default: 'absolute'
+    mode: {
+      type: String as PropType<'outer' | 'inner'>,
+      default: 'inner'
+    },
+    reference: {
+      type: Object as PropType<Element>,
+      default: undefined
     }
   },
   emits: ['update:modelValue'],
   setup(props, { attrs, slots, emit }) {
-    const self = getCurrentInstance()
-    const id = uniqueId('el-popper-teleport')
-    const teleportEl = createEl(id)
-    const { referenceEl, popperEl, popperRef, state: popperState } = usePopper({
-      placement: props.placement,
-      strategy: props.strategy,
-      modifiers: props.modifiers
+    const referenceRef: Ref<Element> = ref()
+    const popperRef: Ref<HTMLElement> = ref()
+    const state = usePopper(referenceRef, popperRef, {
+      placement: props.placement
     })
 
-    const isVisible = ref(false)
+    const isVisible = ref(props.modelValue)
 
-    const showHandler = () => (isVisible.value = true)
-    const hideHandler = () => (isVisible.value = false)
+    const emitValue = (value: boolean) => {
+      isVisible.value = value
+      emit('update:modelValue', value)
+    }
+
+    const showHandler = () => emitValue(true)
+    const hideHandler = () => emitValue(false)
 
     const clickAwayHandler = (event: any) => {
-      if (referenceEl.value && !referenceEl.value.contains(event.target)) {
-        isVisible.value = false
+      if (referenceRef.value && !referenceRef.value.contains(event.target)) {
+        hideHandler()
       }
     }
     watchEffect(() => {
+      isVisible.value = props.modelValue
+    })
+    watchEffect(() => {
       if (isVisible.value) {
-        popperRef.value?.update()
+        state.instance?.update()
       }
     })
     watchEffect(onInvalidate => {
       if (props.trigger === 'hover') {
-        if (referenceEl.value) {
-          referenceEl.value.addEventListener('mouseenter', showHandler)
-          referenceEl.value.addEventListener('mouseleave', hideHandler)
+        if (referenceRef.value) {
+          referenceRef.value.addEventListener('mouseenter', showHandler)
+          referenceRef.value.addEventListener('mouseleave', hideHandler)
         }
         onInvalidate(() => {
-          if (referenceEl.value) {
-            referenceEl.value.removeEventListener('mouseenter', showHandler)
-            referenceEl.value.removeEventListener('mouseleave', hideHandler)
+          if (referenceRef.value) {
+            referenceRef.value.removeEventListener('mouseenter', showHandler)
+            referenceRef.value.removeEventListener('mouseleave', hideHandler)
           }
         })
-      } else {
-        if (referenceEl.value) {
-          referenceEl.value.addEventListener('click', showHandler)
+      }
+      if (props.trigger === 'click') {
+        if (referenceRef.value) {
+          referenceRef.value.addEventListener('click', showHandler)
           document.addEventListener('click', clickAwayHandler)
         }
         onInvalidate(() => {
-          if (referenceEl.value) {
-            referenceEl.value.removeEventListener('click', showHandler)
+          if (referenceRef.value) {
+            referenceRef.value.removeEventListener('click', showHandler)
             document.removeEventListener('click', clickAwayHandler)
           }
         })
       }
     })
-
-    const initReference = el => {
-      console.log(el)
-      referenceEl.value = el
-    }
-    onUnmounted(() => {
-      removeEl(teleportEl)
+    watchEffect(() => {
+      if (props.mode !== 'inner' && props.reference) {
+        referenceRef.value = props.reference
+        console.log(props.reference)
+      }
     })
+    const referenceInitHandler = props.mode === 'inner' ? el => (referenceRef.value = el) : undefined
 
     return {
       isVisible,
-      teleportEl,
-      popperEl,
-      popperState,
-      initReference
+      state,
+      popperRef,
+      referenceInitHandler
     }
   }
 })

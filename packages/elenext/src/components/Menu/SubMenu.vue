@@ -1,43 +1,30 @@
 <template>
   <li :class="{ 'el-sub-menu': true, 'is-opened': isOpen }">
+    <div
+      ref="titleElRef"
+      class="el-sub-menu__title"
+      :style="styles"
+      @mouseenter="mouseenterHandler"
+      @mouseleave="mouseleaveHandler"
+      @click="clickHandler"
+    >
+      <slot name="title">
+        {{ title }}
+      </slot>
+      <span class="el-sub-menu__arrow">
+        <IconChevronRight />
+      </span>
+    </div>
     <template v-if="mode === 'popper'">
-      <Popper>
-        <div
-          class="el-sub-menu__title"
-          :style="styles"
-          @mouseenter="mouseenterHandler"
-          @mouseleave="mouseleaveHandler"
-          @click="clickHandler"
-        >
-          <slot name="title">
-            {{ title }}
-          </slot>
-          <span class="el-sub-menu__arrow">
-            <IconChevronRight />
-          </span>
-        </div>
-        <template #popper>
-          <ul v-show="isOpen" class="el-menu">
+      <Popper v-model="isOpen" trigger="click" mode="outer" :reference="titleElRef">
+        <template #content>
+          <ul class="el-menu">
             <slot />
           </ul>
         </template>
       </Popper>
     </template>
     <template v-else>
-      <div
-        class="el-sub-menu__title"
-        :style="styles"
-        @mouseenter="mouseenterHandler"
-        @mouseleave="mouseleaveHandler"
-        @click="clickHandler"
-      >
-        <slot name="title">
-          {{ title }}
-        </slot>
-        <span class="el-sub-menu__arrow">
-          <IconChevronRight />
-        </span>
-      </div>
       <CollapseTransition>
         <ul v-show="isOpen" class="el-menu">
           <slot />
@@ -81,6 +68,7 @@ const SubMenu = defineComponent({
   },
   setup(props, { attrs, slots, emit }) {
     const self = getCurrentInstance()
+    const titleElRef = ref()
     const menuProvider = inject(MENU_IJK)
     const state = reactive({
       rootState: menuProvider.state.rootState,
@@ -132,6 +120,7 @@ const SubMenu = defineComponent({
       mode: menuProvider.state.rootState.mode,
       isOpen,
       styles,
+      titleElRef,
       clickHandler,
       mouseenterHandler,
       mouseleaveHandler

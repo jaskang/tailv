@@ -8,12 +8,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'TestInner',
   emits: {
-    // No validation
-    click: () => {
-      // console.log('valid')
-      return false
-    },
-
+    click: true,
     // Validate submit event
     submit: ({ email, password }: any) => {
       if (email && password) {

@@ -1,3 +1,2 @@
 export { default as Popper } from './Popper.vue'
-export { usePopper } from './usePopper'
-export { Placement } from './core'
+export { usePopper, Placement } from './usePopper'

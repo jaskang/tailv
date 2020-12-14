@@ -3,7 +3,7 @@
 $typeMap: (
   primary: var.$color-primary,
   success: var.$color-success,
-  info: var.$color-primary,
+  info: var.$color-info,
   warning: var.$color-warning,
   danger: var.$color-danger
 );
@@ -21,7 +21,11 @@ $typeMap: (
   padding: 0;
   font-size: var.$link-font-size;
   // font-weight: $--link-font-weight;
-
+  &:hover,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
   &.is-underline {
     &:hover:after {
       content: '';

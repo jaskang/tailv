@@ -78,19 +78,17 @@ export const router = createRouter({
           path: '/alert',
           name: 'alert',
           component: Alert
+        },
+        {
+          path: '/test',
+          name: 'test',
+          component: async () => import('./components/Test.vue')
         }
-
         // {
         //   path: '/menu',
         //   name: 'menu',
         //   component: async () => import('/@docs/Menu/__docs__/Menu.md')
         // },
-
-        // {
-        //   path: '/test',
-        //   name: 'test',
-        //   component: async () => import('./components/Test.vue')
-        // }
       ]
     }
   ]

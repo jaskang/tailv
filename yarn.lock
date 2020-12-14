@@ -11877,10 +11877,10 @@ tslib@^2.0.3:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tsrv@^0.8.14:
-  version "0.8.14"
-  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.8.14.tgz#b23634dcc611b0e22d69ee6705301486e196a3c6"
-  integrity sha512-JjXttPJan+Dl0I3ptd/43lQUCpRt6yi+MUMy0nvmHq6GbqnXyrjwlvH707CyZxDkByIadS2HGic6B2esFImUgg==
+tsrv@^0.8.15:
+  version "0.8.15"
+  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.8.15.tgz#b8226218c04cfe5adb583c5f5f97853da81a0b4a"
+  integrity sha512-BaDkD2UmpYFg+Li1MfD3SWw9CnwH0fwVFQUzxFqb0uS6PzSp+P1tGEp7yVzIt/8ulT6bv/B+7mxRs/3I+mofFA==
   dependencies:
     "@babel/core" "^7.12.9"
     "@babel/plugin-proposal-class-properties" "^7.12.1"
