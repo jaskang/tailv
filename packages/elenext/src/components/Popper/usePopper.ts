@@ -77,7 +77,6 @@ export const usePopper = (referenceRef: Ref<Element>, popperRef: Ref<HTMLElement
               styles: fromEntries(elements.map(element => [element, popperState.styles[element] || {}])),
               attributes: fromEntries(elements.map(element => [element, popperState.attributes[element]]))
             }
-            // console.log(state.attrs)
           },
           requires: ['computeStyles']
         },

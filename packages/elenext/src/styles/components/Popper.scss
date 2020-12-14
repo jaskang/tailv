@@ -1,0 +1,96 @@
+@use '../var';
+
+.el-popper {
+  position: absolute;
+  border: 1px solid var.$popper-border-color;
+  background-color: var.$popper-background-color;
+  &[data-show] {
+    display: block;
+  }
+  &__arrow,
+  &__arrow::after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  &__arrow {
+    border-width: var.$popper-arrow-size;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+  }
+
+  &__arrow::after {
+    content: ' ';
+    border-width: var.$popper-arrow-size;
+  }
+
+  &[data-popper-placement^='top'] {
+    margin-bottom: var.$popper-arrow-size + 6;
+  }
+
+  &[data-popper-placement^='top'] .el-popper__arrow {
+    bottom: var.$popper-arrow-size * -1;
+    border-top-color: var.$popper-border-color;
+    border-bottom-width: 0;
+    &::after {
+      bottom: 1px;
+      margin-left: var.$popper-arrow-size * -1;
+      border-top-color: var.$popper-background-color;
+      border-bottom-width: 0;
+    }
+  }
+
+  &[data-popper-placement^='bottom'] {
+    margin-top: var.$popper-arrow-size + 6;
+  }
+
+  &[data-popper-placement^='bottom'] .el-popper__arrow {
+    top: var.$popper-arrow-size * -1;
+    border-bottom-color: var.$popper-border-color;
+    border-top-width: 0;
+
+    &::after {
+      top: 1px;
+      margin-left: var.$popper-arrow-size * -1;
+      border-bottom-color: var.$popper-background-color;
+      border-top-width: 0;
+    }
+  }
+
+  &[data-popper-placement^='right'] {
+    margin-left: var.$popper-arrow-size + 6;
+  }
+
+  &[data-popper-placement^='right'] .el-popper__arrow {
+    left: var.$popper-arrow-size * -1;
+    border-right-color: var.$popper-border-color;
+    border-left-width: 0;
+
+    &::after {
+      left: 1px;
+      margin-top: var.$popper-arrow-size * -1;
+      border-right-color: var.$popper-background-color;
+      border-left-width: 0;
+    }
+  }
+
+  &[data-popper-placement^='left'] {
+    margin-right: var.$popper-arrow-size + 6;
+  }
+
+  &[data-popper-placement^='left'] .el-popper__arrow {
+    right: var.$popper-arrow-size * -1;
+    border-left-color: var.$popper-border-color;
+    border-right-width: 0;
+
+    &::after {
+      right: 1px;
+      margin-top: var.$popper-arrow-size * -1;
+      border-left-color: var.$popper-background-color;
+      border-right-width: 0;
+    }
+  }
+}

@@ -9,7 +9,7 @@
         v-bind="state.attrs.attributes.popper"
       >
         <slot name="content" />
-        <div class="el-popper__arrow" :style="state.attrs.styles.arrow" data-popper-arrow />
+        <div v-if="arrow" class="el-popper__arrow" :style="state.attrs.styles.arrow" data-popper-arrow />
       </div>
     </Transition>
   </teleport>
@@ -33,7 +33,8 @@ import {
   ref,
   Ref,
   onUpdated,
-  onMounted
+  onMounted,
+  isReadonly
 } from 'vue'
 import { Modifier } from '@popperjs/core'
 import { getBlockCls, getCompName } from '../../utils'
@@ -50,6 +51,10 @@ const Popper = defineComponent({
     popperClass: {
       type: String,
       default: ''
+    },
+    arrow: {
+      type: Boolean as PropType<boolean>,
+      default: true
     },
     placement: {
       type: String as PropType<Placement>,

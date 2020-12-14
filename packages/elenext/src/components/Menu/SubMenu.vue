@@ -16,7 +16,14 @@
       </span>
     </div>
     <template v-if="mode === 'popper'">
-      <Popper v-model="isOpen" trigger="click" mode="outer" :reference="titleElRef">
+      <Popper
+        v-model="isOpen"
+        placement="right-start"
+        trigger="click"
+        mode="outer"
+        :arrow="false"
+        :reference="titleElRef"
+      >
         <template #content>
           <ul class="el-menu">
             <slot />
