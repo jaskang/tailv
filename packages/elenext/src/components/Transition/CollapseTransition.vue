@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { App, defineComponent, TransitionProps } from 'vue'
-import { addClass, removeClass } from '../../utils/dom'
+import { addClass, removeClass } from '@elenext/shared'
 import { getCompName } from '../../utils'
 
 const collapseTransitionProps: TransitionProps = {

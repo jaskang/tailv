@@ -5,23 +5,25 @@ export type PType<T = any> = {
 }
 
 const PropTypes = {
-  string() {
-    return { type: String as PropType<string> }
+  string(value?: string) {
+    return { type: String as PropType<string>, default: value }
   },
-  number() {
-    return { type: Number as PropType<number> }
+  number(value?: number) {
+    return { type: Number as PropType<number>, default: value }
   },
-  boolean() {
-    return { type: Boolean as PropType<boolean> }
+  boolean(value?: boolean) {
+    return { type: Boolean as PropType<boolean>, default: value }
   },
-  array<T = any>() {
-    return { type: Array as PropType<Array<T>> }
+  array<T = any>(value: T[] = []) {
+    return { type: Array as PropType<Array<T>>, default: value }
   },
-  object<T = any>() {
-    return { type: Object as PropType<T> }
+  object<T = any>(value?: T) {
+    return { type: Object as PropType<T>, default: value }
   },
-  func<T extends (...args: any) => any>() {
-    return { type: Function as PropType<T> }
-  },
-  oneOf<T = any>() {}
+  func<T extends (...args: any) => any>(value?: T) {
+    return { type: Function as PropType<T>, default: value }
+  }
+  // oneOfString<T = 'any' | 'sd'>(value: T) {
+  //   return { type: String as PropType<T>, default: value }
+  // }
 }

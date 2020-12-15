@@ -6,10 +6,10 @@
 
 <script lang="ts">
 import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } from 'vue'
-import { rowInjectKey, GutterTuple } from './configs'
+import { mergeClass } from '@elenext/shared'
+import { rowInjectKey, GutterTuple } from './core'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { getCompName, getBlockCls } from '../../utils'
-import { mergeClass } from '@elenext/shared'
 
 type ColPropType = number | string
 

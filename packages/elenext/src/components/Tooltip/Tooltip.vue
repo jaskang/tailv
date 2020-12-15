@@ -12,7 +12,7 @@
 import { App, computed, defineComponent, PropType } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { getBlockCls, getCompName } from '../../utils'
-import { Popper, Placement } from '../Popper'
+import { Popper, PlacementType, TriggerType } from '../Popper'
 
 const blockCls = getBlockCls('Tooltip')
 const Tooltip = defineComponent({
@@ -39,11 +39,11 @@ const Tooltip = defineComponent({
       default: ''
     },
     placement: {
-      type: String as PropType<Placement>,
+      type: String as PropType<PlacementType>,
       default: 'top'
     },
     trigger: {
-      type: String as PropType<'click' | 'hover'>,
+      type: String as PropType<TriggerType>,
       default: 'hover'
     },
     transition: {

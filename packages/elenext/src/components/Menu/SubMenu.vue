@@ -19,7 +19,7 @@
       <Popper
         v-model="isOpen"
         placement="right-start"
-        trigger="click"
+        trigger="hover"
         mode="outer"
         :arrow="false"
         :reference="titleElRef"

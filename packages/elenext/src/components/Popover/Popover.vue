@@ -1,5 +1,5 @@
 <template>
-  <Popper :popper-class="classes" :trigger="trigger">
+  <Popper :model-value="modelValue" :popper-class="classes" :trigger="trigger" @update:model-value="onChange">
     <template #content>
       <div ref="popper" :style="{ width: width }" role="popper">
         <div v-if="title" class="el-popover__title">
@@ -49,10 +49,14 @@ const Popover = defineComponent({
     }
   },
   emits: ['update:modelValue'],
-  setup(props, { slots }) {
+  setup(props, { emit, slots }) {
     const classes = computed(() => mergeClass('el-popover', props.popperClass, props.content && 'el-popover--plain'))
+    const onChange = (...arg) => {
+      emit('update:modelValue', ...arg)
+    }
     return {
-      classes
+      classes,
+      onChange
     }
   }
 })
