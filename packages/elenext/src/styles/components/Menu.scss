@@ -1,71 +1,96 @@
 @use '../var';
 
+@mixin el-menu-item--vertical($height) {
+  position: relative;
+  display: block;
+  height: $height;
+  line-height: $height;
+  padding: 0 20px;
+  list-style: none;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: var.$global-font-size-base;
+  color: var.$global-color-text-primary;
+  transition: var.$global-transition-all;
+  border-right: 4px solid transparent;
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+@mixin el-sub-menu__arrow {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-top: -7px;
+  transition: transform 0.3s;
+  font-size: 12px;
+  line-height: 12px;
+  width: 12px;
+  height: 12px;
+}
 .el-menu {
   list-style: none;
   position: relative;
   margin: 0;
   padding: 0;
+  line-height: 50px;
+  border: 0;
+  box-shadow: none;
   background-color: transparent;
 }
 
-.el-menu--vertical {
-  line-height: 50px;
-  border: 0;
-  border-bottom: 1px solid #f0f0f0;
-  box-shadow: none;
+.el-menu--vertical,
+.el-menu--popper {
   .el-menu-item,
   .el-sub-menu__title {
-    position: relative;
-    display: block;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 20px;
-    list-style: none;
-    box-sizing: border-box;
-    white-space: nowrap;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: var.$global-font-size-base;
-    color: var.$global-color-text-primary;
-    transition: var.$global-transition-all;
-    border-right: 4px solid transparent;
-    &:hover,
-    &:focus {
-      outline: none;
-    }
+    @include el-menu-item--vertical(50px);
+  }
+  .el-sub-menu__arrow {
+    @include el-sub-menu__arrow();
   }
   .el-sub-menu {
     position: relative;
     display: block;
     transition: var.$global-transition-all;
-    &__arrow {
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      margin-top: -7px;
-      transition: transform 0.3s;
-      font-size: 12px;
-      line-height: 12px;
-      width: 12px;
-      height: 12px;
-    }
-    &__body {
-      transition: height 0.3s;
-    }
+
     &.is-opened {
       > .el-sub-menu__title > .el-sub-menu__arrow {
-        transform: rotateZ(90deg);
+        transform: rotateZ(180deg);
       }
     }
   }
   .el-menu-item-group {
     &__title {
-      padding: 7px 0 7px 20px;
+      padding: 6px 0 6px 20px;
       line-height: normal;
       font-size: 12px;
       color: var.$global-color-text-placeholder;
     }
-    &__body {
+  }
+}
+
+.el-popper.el-sub-menu {
+  position: absolute;
+  // border-radius: 3px;
+  .el-menu-item,
+  .el-sub-menu__title {
+    @include el-menu-item--vertical(40px);
+    border-right: none;
+    padding: 0 30px 0 20px;
+  }
+  .el-sub-menu__arrow {
+    @include el-sub-menu__arrow();
+    right: 8px;
+  }
+  .el-menu-item-group {
+    &__title {
+      padding: 10px 0 6px 20px;
+      line-height: normal;
+      font-size: 10px;
+      color: var.$global-color-text-placeholder;
     }
   }
 }

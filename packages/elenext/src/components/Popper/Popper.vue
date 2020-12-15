@@ -2,7 +2,7 @@
   <teleport :to="`#${state.teleportEl.id}`">
     <Transition name="transition">
       <div
-        v-show="isVisible || holdChildren.length > 0"
+        v-show="realVisible"
         :ref="popperInitHandler"
         :class="['el-popper', popperClass]"
         :style="state.attrs.styles.popper"
@@ -22,7 +22,6 @@ import {
   defineComponent,
   Teleport,
   PropType,
-  reactive,
   watchEffect,
   cloneVNode,
   getCurrentInstance,
@@ -35,16 +34,11 @@ import {
   App,
   ref,
   Ref,
-  onUpdated,
-  onMounted,
-  isReadonly,
   watch,
   computed
 } from 'vue'
-import { Modifier } from '@popperjs/core'
-import { getCompName } from '../../utils'
-import DomSlot from './DomSlot'
 import { usePopper, PlacementType, TriggerType } from './core'
+import DomSlot from './DomSlot'
 
 const POPPER_IJK: InjectionKey<{
   action: {
@@ -91,30 +85,23 @@ const Popper = defineComponent({
       default: undefined
     }
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
     const parentProvider = inject(POPPER_IJK, {
       action: { addHoldChild: teleportId => {}, removeHoldChild: teleportId => {} }
     })
-    const referenceRef: Ref<Element> = ref(null)
-    const popperRef: Ref<HTMLElement> = ref(null)
-
+    const referenceRef = ref<Element>(null)
+    const popperRef = ref<HTMLElement>(null)
+    // 打开状态子 popper
     const holdChildren = ref<string[]>([])
+    // 本体 visible 状态
     const innerValue = ref(false)
-
-    const isVisible = computed({
-      get: () => {
-        if (props.trigger === 'manual') {
-          return props.modelValue
-        }
-        return innerValue.value
-      },
-      set: val => {
-        if (props.trigger === 'manual') {
-          emit('update:modelValue', val)
-        }
-        innerValue.value = val
+    // 最终 visible 状态
+    const realVisible = computed<boolean>(() => {
+      if (props.trigger === 'manual') {
+        return props.modelValue
       }
+      return innerValue.value || holdChildren.value.length > 0
     })
 
     const state = usePopper({
@@ -124,8 +111,8 @@ const Popper = defineComponent({
       offset: props.offset,
       trigger: props.trigger,
       onTrigger(teleportId, val) {
-        const realVal = typeof val === 'undefined' ? !isVisible.value : val
-        isVisible.value = realVal
+        const realVal = typeof val === 'undefined' ? !innerValue.value : val
+        innerValue.value = realVal
         if (realVal) {
           parentProvider.action.addHoldChild(teleportId)
         } else {
@@ -134,16 +121,23 @@ const Popper = defineComponent({
       }
     })
 
-    watch(isVisible, () => {
+    // 状态变化
+    watch(realVisible, () => {
+      // 事件
+      emit('change', realVisible.value)
+      // 更新样式
       state.instance?.update()
     })
-    watchEffect(() => {
-      isVisible.value = props.modelValue
+
+    watch([() => props.modelValue, () => props.trigger], () => {
+      if (props.trigger === 'manual') {
+        holdChildren.value = []
+        innerValue.value = props.modelValue
+      }
     })
     watchEffect(() => {
       if (props.mode !== 'inner' && props.reference) {
         referenceRef.value = props.reference
-        console.log(props.reference)
       }
     })
     const popperInitHandler = el => (popperRef.value = el || null)
@@ -167,10 +161,13 @@ const Popper = defineComponent({
     })
 
     onUnmounted(() => {
+      // 销毁的时候 change false
+      emit('change', false)
+      // 溢出 hold 数组
       parentProvider.action.removeHoldChild(state.teleportEl.id)
     })
     return {
-      isVisible,
+      realVisible,
       holdChildren,
       state,
       popperInitHandler,

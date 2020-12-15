@@ -45,6 +45,8 @@ const MenuItem = defineComponent({
     const isHover = ref(false)
     const isActive = computed(() => menuProvider.state.rootState.activeUid === self.uid)
 
+    const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && state.deep > 1)
+
     const classes = computed(() => {
       return mergeClass(blockCls, {
         'is-active': isActive.value
@@ -52,6 +54,7 @@ const MenuItem = defineComponent({
     })
 
     const styles = computed<CSSProperties>(() => {
+      const mode = menuProvider.state.rootState.mode
       return {
         color: isActive.value ? menuProvider.state.rootState.activeTextColor : menuProvider.state.rootState.textColor,
         backgroundColor: isActive.value
@@ -59,8 +62,8 @@ const MenuItem = defineComponent({
           : isHover.value
           ? menuProvider.state.rootState.activeBackgroundColor
           : menuProvider.state.rootState.backgroundColor,
-        borderColor: isActive.value ? menuProvider.state.rootState.activeTextColor : 'transparent',
-        paddingLeft: state.deep * MENU_ITEM_PADDING + 'px'
+        borderColor: !isPopper.value && isActive.value ? menuProvider.state.rootState.activeTextColor : 'transparent',
+        paddingLeft: isPopper.value ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
       }
     })
 

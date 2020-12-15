@@ -21,6 +21,7 @@
     "NavItem",
     "Popper",
     "Tooltip",
-    "elenext"
+    "elenext",
+    "menu"
   ]
 }

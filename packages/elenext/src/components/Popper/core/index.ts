@@ -99,7 +99,8 @@ export const usePopper = (params: UsePopperOptions) => {
     clearTimeout(timers.showTimer)
   }
 
-  const togglePopper = () => {
+  const togglePopper = (event: MouseEvent) => {
+    event.stopPropagation()
     onTrigger(teleportEl.id)
   }
   const showPopper = () => {

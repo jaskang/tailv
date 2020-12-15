@@ -15,8 +15,8 @@ const Menu = defineComponent({
   name: getCompName('Menu'),
   props: {
     mode: {
-      type: String as PropType<'vertical' | 'horizontal' | 'popper'>,
-      default: 'vertical'
+      type: String as PropType<'horizontal' | 'vertical' | 'popper'>,
+      default: 'horizontal'
     },
     uniqueOpened: Boolean,
     textColor: {
@@ -63,6 +63,7 @@ const Menu = defineComponent({
       action: {
         select: node => {
           if (Array.isArray(node.children)) {
+            // is SubMenu
             const index = state.rootState.openedUids.indexOf(node.uid)
             if (index !== -1) {
               state.rootState.openedUids.splice(index, 1)
@@ -74,6 +75,8 @@ const Menu = defineComponent({
               }
             }
           } else {
+            // is MenuItem
+            state.rootState.activeUidPath = [...node.uidPath]
             state.rootState.activeUid = node.uid
           }
         },

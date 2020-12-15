@@ -2,8 +2,10 @@
 
 .el-popper {
   position: absolute;
-  border: 1px solid var.$popper-border-color;
   background-color: var.$popper-background-color;
+  box-shadow: var.$global-box-shadow-base;
+  border-radius: var.$global-border-radius-small;
+  overflow: hidden;
   &[data-show] {
     display: block;
   }

@@ -1,6 +1,6 @@
 <template>
   <li class="el-menu-item-group">
-    <div class="el-menu-item-group__title" :style="{ paddingLeft: paddingLeft + 'px' }">
+    <div class="el-menu-item-group__title" :style="{ paddingLeft: paddingLeft }">
       <slot name="title">
         {{ title }}
       </slot>
@@ -27,7 +27,12 @@ const MenuItemGroup = defineComponent({
   setup(props, { slots }) {
     const menuProvider = inject(MENU_IJK)
 
-    const paddingLeft = computed(() => (menuProvider.state.deep + 1) * MENU_ITEM_PADDING)
+    const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && menuProvider.state.deep > 0)
+
+    const paddingLeft = computed(() => {
+      return isPopper.value ? `${MENU_ITEM_PADDING}px` : `${(menuProvider.state.deep + 1) * MENU_ITEM_PADDING}px`
+    })
+
     return {
       paddingLeft
     }

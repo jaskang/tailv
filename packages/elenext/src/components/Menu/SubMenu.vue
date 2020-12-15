@@ -1,5 +1,5 @@
 <template>
-  <li :class="{ 'el-sub-menu': true, 'is-opened': isOpen }">
+  <li :class="{ 'el-sub-menu': true, 'is-opened': isOpen }" :style="{ backgroundColor: backgroundColor }">
     <div
       ref="titleElRef"
       class="el-sub-menu__title"
@@ -12,20 +12,22 @@
         {{ title }}
       </slot>
       <span class="el-sub-menu__arrow">
-        <IconChevronRight />
+        <IconChevronUp v-if="mode === 'vertical'" />
+        <IconChevronRight v-if="mode === 'popper'" />
       </span>
     </div>
     <template v-if="mode === 'popper'">
       <Popper
-        v-model="isOpen"
+        popper-class="el-sub-menu"
         placement="right-start"
-        trigger="hover"
+        trigger="click"
         mode="outer"
         :arrow="false"
         :reference="titleElRef"
+        @change="popperChangneHandler"
       >
         <template #content>
-          <ul class="el-menu">
+          <ul class="el-sub-menu__body" :style="{ backgroundColor: backgroundColor }">
             <slot />
           </ul>
         </template>
@@ -33,7 +35,7 @@
     </template>
     <template v-else>
       <CollapseTransition>
-        <ul v-show="isOpen" class="el-menu">
+        <ul v-show="isOpen" class="el-sub-menu__body">
           <slot />
         </ul>
       </CollapseTransition>
@@ -55,7 +57,7 @@ import {
   CSSProperties
 } from 'vue'
 import { mergeClass, colorLighten } from '@elenext/shared'
-import { IconChevronRight } from '@elenext/icons'
+import { IconChevronUp, IconChevronRight } from '@elenext/icons'
 import { CollapseTransition } from '../Transition'
 import { Popper } from '../Popper'
 import { MENU_IJK, MENU_ITEM_PADDING } from './core'
@@ -65,6 +67,7 @@ const SubMenu = defineComponent({
   components: {
     CollapseTransition,
     Popper,
+    IconChevronUp,
     IconChevronRight
   },
   props: {
@@ -88,27 +91,35 @@ const SubMenu = defineComponent({
     const isHover = ref(false)
     const isOpen = computed(() => state.rootState.openedUids.indexOf(state.uid) !== -1)
 
+    const isPopperVisible = ref(false)
+    const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && state.deep > 1)
+
     const styles = computed<CSSProperties>(() => {
+      const mode = menuProvider.state.rootState.mode
       return {
-        color: menuProvider.state.rootState.textColor,
-        backgroundColor: isHover.value
-          ? menuProvider.state.rootState.activeBackgroundColor
-          : menuProvider.state.rootState.backgroundColor,
+        color: isPopperVisible.value
+          ? menuProvider.state.rootState.activeTextColor
+          : menuProvider.state.rootState.textColor,
+        backgroundColor:
+          isHover.value || isPopperVisible.value
+            ? menuProvider.state.rootState.activeBackgroundColor
+            : menuProvider.state.rootState.backgroundColor,
         borderColor: 'transparent',
-        paddingLeft: state.deep * MENU_ITEM_PADDING + 'px'
+        paddingLeft: isPopper.value ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
       }
     })
 
     const clickHandler = (event: MouseEvent) => {
-      menuProvider.action.select(state)
+      if (menuProvider.state.rootState.mode === 'vertical') {
+        menuProvider.action.select(state)
+      }
     }
     const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
     const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
 
-    onBeforeUnmount(() => {
-      menuProvider.action.remove(state)
-    })
-    menuProvider.action.add(state)
+    const popperChangneHandler = (visible: boolean) => {
+      isPopperVisible.value = visible
+    }
 
     provide(MENU_IJK, {
       state: state,
@@ -123,14 +134,22 @@ const SubMenu = defineComponent({
         }
       }
     })
+
+    onBeforeUnmount(() => {
+      menuProvider.action.remove(state)
+    })
+    menuProvider.action.add(state)
+
     return {
       mode: menuProvider.state.rootState.mode,
       isOpen,
       styles,
+      backgroundColor: menuProvider.state.rootState.backgroundColor,
       titleElRef,
       clickHandler,
       mouseenterHandler,
-      mouseleaveHandler
+      mouseleaveHandler,
+      popperChangneHandler
     }
   }
 })
