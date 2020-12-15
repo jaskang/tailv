@@ -1,5 +1,13 @@
 <template>
-  <Popper :model-value="modelValue" :popper-class="classes" :placement="placement" :trigger="trigger" :offset="offset">
+  <Popper
+    arrow
+    :background-color="backgroundColor"
+    :model-value="modelValue"
+    :popper-class="classes"
+    :placement="placement"
+    :trigger="trigger"
+    :offset="offset"
+  >
     <template #content>
       <slot name="content">
         {{ content }}
@@ -21,9 +29,10 @@ const Tooltip = defineComponent({
     Popper
   },
   props: {
-    effect: {
-      type: String as PropType<'dark' | 'light'>,
-      default: 'dark'
+    modelValue: Boolean,
+    backgroundColor: {
+      type: String as PropType<string>,
+      default: undefined
     },
     content: {
       type: String,
@@ -33,7 +42,6 @@ const Tooltip = defineComponent({
       type: Number,
       default: 0
     },
-    modelValue: Boolean,
     popperClass: {
       type: String,
       default: ''
@@ -52,7 +60,7 @@ const Tooltip = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const classes = computed(() => mergeClass(blockCls, props.popperClass, 'is-' + props.effect))
+    const classes = computed(() => mergeClass(blockCls, props.popperClass))
     return {
       classes
     }

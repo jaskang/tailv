@@ -3,17 +3,24 @@
     <Transition name="transition">
       <div
         v-show="realVisible"
-        :ref="popperInitHandler"
+        :ref="popperRefInitHandler"
         :class="['el-popper', popperClass]"
-        :style="state.attrs.styles.popper"
+        :style="{ ...state.attrs.styles.popper, ...{ backgroundColor: backgroundColor } }"
         v-bind="state.attrs.attributes.popper"
       >
         <slot name="content" />
-        <div v-if="arrow" class="el-popper__arrow" :style="state.attrs.styles.arrow" data-popper-arrow />
+        <div v-if="arrow" class="el-popper__arrow-shadow" :style="state.attrs.styles.arrow" data-popper-arrow />
+        <div
+          v-if="arrow"
+          :ref="arrowRefInitHandler"
+          class="el-popper__arrow"
+          :style="{ ...state.attrs.styles.arrow, ...arrowColorStyle }"
+          data-popper-arrow
+        />
       </div>
     </Transition>
   </teleport>
-  <DomSlot :init="referenceInitHandler">
+  <DomSlot :init="referenceRefInitHandler">
     <slot />
   </DomSlot>
 </template>
@@ -60,6 +67,10 @@ const Popper = defineComponent({
       type: Boolean as PropType<boolean>,
       default: true
     },
+    backgroundColor: {
+      type: String as PropType<string>,
+      default: ''
+    },
     placement: {
       type: String as PropType<PlacementType>,
       default: 'top'
@@ -92,6 +103,8 @@ const Popper = defineComponent({
     })
     const referenceRef = ref<Element>(null)
     const popperRef = ref<HTMLElement>(null)
+    const arrowRef = ref<HTMLElement>(null)
+
     // 打开状态子 popper
     const holdChildren = ref<string[]>([])
     // 本体 visible 状态
@@ -121,6 +134,18 @@ const Popper = defineComponent({
       }
     })
 
+    const arrowColorStyle = computed(() => {
+      if (props.backgroundColor) {
+        const _placement: string = state.attrs.attributes.popper?.['data-popper-placement']
+        if (_placement) {
+          const _pos = _placement.split('-')[0]
+          return {
+            [`border-${_pos}-color`]: props.backgroundColor
+          }
+        }
+      }
+      return {}
+    })
     // 状态变化
     watch(realVisible, () => {
       // 事件
@@ -140,8 +165,10 @@ const Popper = defineComponent({
         referenceRef.value = props.reference
       }
     })
-    const popperInitHandler = el => (popperRef.value = el || null)
-    const referenceInitHandler = props.mode === 'inner' ? el => (referenceRef.value = el) : undefined
+
+    const referenceRefInitHandler = props.mode === 'inner' ? el => (referenceRef.value = el) : undefined
+    const popperRefInitHandler = el => (popperRef.value = el || null)
+    const arrowRefInitHandler = el => (arrowRef.value = el || null)
 
     provide(POPPER_IJK, {
       action: {
@@ -170,8 +197,9 @@ const Popper = defineComponent({
       realVisible,
       holdChildren,
       state,
-      popperInitHandler,
-      referenceInitHandler
+      popperRefInitHandler,
+      referenceRefInitHandler,
+      arrowColorStyle
     }
   }
 })

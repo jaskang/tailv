@@ -20,7 +20,7 @@
       <Popper
         popper-class="el-sub-menu"
         placement="right-start"
-        trigger="hover"
+        trigger="click"
         mode="outer"
         :arrow="false"
         :reference="titleElRef"

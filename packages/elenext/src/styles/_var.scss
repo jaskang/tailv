@@ -16,7 +16,9 @@ $global-color-text-placeholder: #c0c4cc !default;
 
 $global-disabled-font-color: $global-color-text-placeholder !default;
 
+$global-font-size-large: 16px !default;
 $global-font-size-base: 14px !default;
+$global-font-size-small: 12px !default;
 
 $global-row-height-large: 40px !default;
 $global-row-height: 32px !default;
@@ -45,12 +47,15 @@ $global-transition-md-fade: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opac
 $global-transition-border: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
 $global-transition-color: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
 
+$global-index-normal: 1 !default;
+$global-index-top: 1000 !default;
+$global-index-popper: 2000 !default;
 // =================================================
 // Button
 // =================================================
-$button-font-size-large: 16px !default;
+$button-font-size-large: $global-font-size-large !default;
 $button-font-size: $global-font-size-base !default;
-$button-font-size-small: 12px !default;
+$button-font-size-small: $global-font-size-small !default;
 $button-default-font-color: $global-color-text-regular !default;
 $button-default-background-color: $color-white !default;
 $button-default-border-color: $global-border-color-base !default;
@@ -92,5 +97,16 @@ $layout-footer-padding: 0 $global-padding-horizontal !default;
 // =================================================
 
 $popper-arrow-size: 6px;
+$popper-gutter: $popper-arrow-size * 2;
 $popper-border-color: $global-border-color-lighter;
 $popper-background-color: $color-white;
+
+// =================================================
+// Tooltip
+// =================================================
+
+$tooltip-padding: 10px;
+$tooltip-color: $color-white;
+$tooltip-font-size: $global-font-size-small;
+$tooltip-background-color: $global-color-text-primary;
+$tooltip-index: $global-index-popper;

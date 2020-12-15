@@ -30,6 +30,7 @@ interface UsePopperOptions {
   onTrigger: (teleportId: string, value?: boolean) => void
   placement?: PlacementType
   offset?: number
+  hideDaly?: number
 }
 
 interface usePopperState {
@@ -47,9 +48,9 @@ export const fromEntries = (entries: Array<[string, any]>) =>
     return acc
   }, {})
 
-export const usePopper = (params: UsePopperOptions) => {
+export const usePopper = (props: UsePopperOptions) => {
   const teleportEl = createEl(uniqueId('el-popper'))
-  const { referenceRef, popperRef, trigger, onTrigger, ...options } = params
+  const { referenceRef, popperRef } = props
   const timers = { showTimer: null, hideTimer: null }
 
   const state = reactive<usePopperState>({
@@ -72,7 +73,7 @@ export const usePopper = (params: UsePopperOptions) => {
 
   const popperOptions = computed<PopperOptions>(() => {
     return {
-      placement: options.placement || 'bottom-start',
+      placement: props.placement || 'bottom-start',
       strategy: 'absolute' as StrategyType,
       modifiers: [
         {
@@ -89,7 +90,7 @@ export const usePopper = (params: UsePopperOptions) => {
           requires: ['computeStyles']
         },
         { name: 'applyStyles', enabled: false },
-        { name: 'offset', options: { offset: [0, options.offset || 0] } }
+        { name: 'offset', options: { offset: [0, props.offset || 0] } }
       ]
     }
   })
@@ -101,23 +102,27 @@ export const usePopper = (params: UsePopperOptions) => {
 
   const togglePopper = (event: MouseEvent) => {
     event.stopPropagation()
-    onTrigger(teleportEl.id)
+    props.onTrigger(teleportEl.id)
   }
   const showPopper = () => {
     clearScheduled()
     timers.showTimer = setTimeout(() => {
-      onTrigger(teleportEl.id, true)
+      props.onTrigger(teleportEl.id, true)
     }, 0)
   }
   const hidePopper = () => {
     clearScheduled()
     timers.hideTimer = setTimeout(() => {
-      onTrigger(teleportEl.id, false)
-    }, 200)
+      props.onTrigger(teleportEl.id, false)
+    }, props.hideDaly || 200)
   }
   const outSideClickHandler = (event: MouseEvent) => {
     if (popperRef.value && !popperRef.value.contains(event.target as Node)) {
-      hidePopper()
+      if (props.trigger === 'hover' && referenceRef.value && referenceRef.value.contains(event.target as Node)) {
+        return
+      } else {
+        hidePopper()
+      }
     }
   }
 
@@ -126,20 +131,20 @@ export const usePopper = (params: UsePopperOptions) => {
     const popperEl = popperRef.value
     const event = isReg ? 'addEventListener' : 'removeEventListener'
     if (referenceEl && popperEl) {
-      if (trigger === 'hover') {
+      if (props.trigger === 'hover') {
         referenceEl[event]('mouseenter', showPopper)
         popperEl[event]('mouseenter', showPopper)
         referenceEl[event]('mouseleave', hidePopper)
-        popperEl[event]('mouseleave', hidePopper)
       }
-      if (trigger === 'click') {
+      if (props.trigger === 'click') {
         referenceEl[event]('click', togglePopper)
       }
-      if (trigger === 'focus') {
+      if (props.trigger === 'focus') {
         referenceEl[event]('focus', showPopper)
         referenceEl[event]('blur', hidePopper)
       }
-      if (trigger !== 'manual') {
+      if (props.trigger !== 'manual') {
+        popperEl[event]('mouseleave', hidePopper)
         document[event]('click', outSideClickHandler)
       }
     }

@@ -1,32 +1,24 @@
 @use '../var';
 
-.el-popper {
-  position: absolute;
-  background-color: var.$popper-background-color;
-  box-shadow: var.$global-box-shadow-base;
-  border-radius: var.$global-border-radius-small;
-  &[data-show] {
-    display: block;
-  }
-
-  &__arrow,
-  &__arrow-shadow {
-    border-width: var.$popper-arrow-size;
-    width: var.$popper-arrow-size;
-    height: var.$popper-arrow-size;
-    border-style: solid;
-    background-color: transparent;
-    border-color: transparent;
-  }
-  &__arrow-shadow {
-    border-color: transparent;
-    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+.el-tooltip {
+  border-radius: 4px;
+  padding: var.$tooltip-padding;
+  z-index: var.$tooltip-index;
+  font-size: var.$tooltip-font-size;
+  line-height: 1.2;
+  min-width: 10px;
+  word-wrap: break-word;
+  color: var.$tooltip-color;
+  background-color: var.$tooltip-background-color;
+  &:focus:not(.focusing),
+  &:focus:hover {
+    outline-width: 0;
   }
   &[data-popper-placement^='top'] {
     margin-bottom: var.$popper-gutter;
     .el-popper__arrow {
       bottom: var.$popper-arrow-size * -1 + 1;
-      border-top-color: var.$popper-background-color;
+      border-top-color: var.$tooltip-background-color;
       border-bottom-width: 0;
     }
     .el-popper__arrow-shadow {
@@ -40,7 +32,7 @@
     margin-top: var.$popper-gutter;
     .el-popper__arrow {
       top: var.$popper-arrow-size * -1 + 1;
-      border-bottom-color: var.$popper-background-color;
+      border-bottom-color: var.$tooltip-background-color;
       border-top-width: 0;
     }
     .el-popper__arrow-shadow {
@@ -54,7 +46,7 @@
     margin-left: var.$popper-gutter;
     .el-popper__arrow {
       left: var.$popper-arrow-size * -1 + 1;
-      border-right-color: var.$popper-background-color;
+      border-right-color: var.$tooltip-background-color;
       border-left-width: 0;
     }
     .el-popper__arrow-shadow {
@@ -68,7 +60,7 @@
     margin-right: var.$popper-gutter;
     .el-popper__arrow {
       right: var.$popper-arrow-size * -1 + 1;
-      border-left-color: var.$popper-background-color;
+      border-left-color: var.$tooltip-background-color;
       border-right-width: 0;
     }
     .el-popper__arrow-shadow {
