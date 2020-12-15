@@ -5,7 +5,7 @@ export default [
   },
   {
     title: 'Navigation',
-    items: ['nav', 'breadcrumb']
+    items: ['menu', 'breadcrumb']
   },
   {
     title: 'Notice',
