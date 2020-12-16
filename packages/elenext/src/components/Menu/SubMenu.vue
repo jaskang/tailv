@@ -20,9 +20,9 @@
       <Popper
         popper-class="el-sub-menu"
         placement="right-start"
-        trigger="click"
+        trigger="hover"
         mode="outer"
-        :arrow="false"
+        :visible-arrow="false"
         :reference="titleElRef"
         @change="popperChangneHandler"
       >
@@ -90,6 +90,7 @@ const SubMenu = defineComponent({
     })
     const isHover = ref(false)
     const isOpen = computed(() => state.rootState.openedUids.indexOf(state.uid) !== -1)
+    const isActive = computed(() => state.rootState.activeUidPath.indexOf(state.uid) !== -1)
 
     const isPopperVisible = ref(false)
     const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && state.deep > 1)
@@ -97,11 +98,9 @@ const SubMenu = defineComponent({
     const styles = computed<CSSProperties>(() => {
       const mode = menuProvider.state.rootState.mode
       return {
-        color: isPopperVisible.value
-          ? menuProvider.state.rootState.activeTextColor
-          : menuProvider.state.rootState.textColor,
+        color: isActive.value ? menuProvider.state.rootState.activeTextColor : menuProvider.state.rootState.textColor,
         backgroundColor:
-          isHover.value || isPopperVisible.value
+          isActive.value || isHover.value || isPopperVisible.value
             ? menuProvider.state.rootState.activeBackgroundColor
             : menuProvider.state.rootState.backgroundColor,
         borderColor: 'transparent',

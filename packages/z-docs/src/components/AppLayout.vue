@@ -3,10 +3,10 @@
     <Layout>
       <Aside class="demo-aside">
         <HelloWorld msg="Elenext UI" />
-        <Menu>
+        <Menu mode="vertical">
           <template v-for="menu in menus" :key="menu.title">
             <MenuItemGroup :title="menu.title">
-              <MenuItem v-for="item in menu.items" @click="push({ name: item })">
+              <MenuItem v-for="item in menu.items" :key="item" @click="push({ name: item })">
                 {{ item }}
               </MenuItem>
             </MenuItemGroup>
@@ -15,7 +15,7 @@
       </Aside>
       <Main>
         <div class="site-content">
-          <router-view></router-view>
+          <router-view />
         </div>
       </Main>
     </Layout>

@@ -11,7 +11,7 @@ wrapperClass: md-button
 
 使用`color`属性来定义 Button 的颜色
 
-`color`: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger'
+`color`: 'primary' | 'success' | 'info' | 'warning' | 'danger'
 
 ```vue demo
 <template>
@@ -235,12 +235,11 @@ export default defineComponent({
 
 ## Attributes
 
-| 参数        | 说明           | 类型                                                                         | 默认值  |
-| ----------- | -------------- | ---------------------------------------------------------------------------- | ------- |
-| color       | 类型           | 'default' / 'primary' / 'success' / 'warning' / 'danger' / 'info' / 'string' | default |
-| size        | 尺寸           | 'large' / 'small'                                                            | —       |
-| type        | 类型           | 'round' / 'circle'                                                           | -       |
-| loading     | 是否加载中状态 | boolean                                                                      | false   |
-| disabled    | 是否禁用状态   | boolean                                                                      | false   |
-| native-type | 原生 type 属性 | 'button' / 'submit' / 'reset'                                                | button  |
-| icon        | 图标类名       | string                                                                       | —       |
+| 参数        | 说明           | 类型                                                             | 默认值 |
+| ----------- | -------------- | ---------------------------------------------------------------- | ------ |
+| color       | 类型           | 'primary' / 'success' / 'warning' / 'danger' / 'info' / 'string' | -      |
+| size        | 尺寸           | 'large' / 'small'                                                | -      |
+| type        | 类型           | 'round' / 'circle' / 'link' / 'plain'                            | -      |
+| loading     | 是否加载中状态 | boolean                                                          | false  |
+| disabled    | 是否禁用状态   | boolean                                                          | false  |
+| native-type | 原生 type 属性 | 'button' / 'submit' / 'reset'                                    | button |

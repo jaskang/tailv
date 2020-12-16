@@ -34,7 +34,7 @@
     trigger="focus"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
-    <Button>focus 激活</Button>
+    <input value="focus 激活" />
   </Popover>
   <Popover
     placement="bottom"

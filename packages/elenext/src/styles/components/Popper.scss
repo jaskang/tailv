@@ -78,3 +78,12 @@
     }
   }
 }
+
+.el-popper-fade-enter-active,
+.el-popper-fade-leave-active {
+  transition: opacity 200ms linear;
+}
+.el-popper-fade-enter-from,
+.el-popper-fade-leave-to {
+  opacity: 0;
+}

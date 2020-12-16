@@ -7,6 +7,7 @@
     :placement="placement"
     :trigger="trigger"
     :offset="offset"
+    @change="visibleHandler"
   >
     <template #content>
       <slot name="content">
@@ -17,10 +18,11 @@
   </Popper>
 </template>
 <script lang="ts">
-import { App, computed, defineComponent, PropType } from 'vue'
+import { App, computed, defineComponent, PropType, ref } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { getBlockCls, getCompName } from '../../utils'
 import { Popper, PlacementType, TriggerType } from '../Popper'
+import { emit } from 'process'
 
 const blockCls = getBlockCls('Tooltip')
 const Tooltip = defineComponent({
@@ -59,10 +61,18 @@ const Tooltip = defineComponent({
       default: ''
     }
   },
-  setup(props, { slots }) {
-    const classes = computed(() => mergeClass(blockCls, props.popperClass))
+  emits: ['update:modelValue'],
+  setup(props, { emit, slots }) {
+    const innerValue = ref(false)
+    const classes = computed(() => mergeClass('el-tooltip', props.popperClass))
+    const visibleHandler = (visible: boolean) => {
+      innerValue.value = visible
+      emit('update:modelValue', visible)
+    }
     return {
-      classes
+      classes,
+      innerValue,
+      visibleHandler
     }
   }
 })

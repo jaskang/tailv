@@ -1,6 +1,6 @@
 <template>
   <teleport :to="`#${state.teleportEl.id}`">
-    <Transition name="transition">
+    <Transition :name="transition">
       <div
         v-show="realVisible"
         :ref="popperRefInitHandler"
@@ -9,9 +9,9 @@
         v-bind="state.attrs.attributes.popper"
       >
         <slot name="content" />
-        <div v-if="arrow" class="el-popper__arrow-shadow" :style="state.attrs.styles.arrow" data-popper-arrow />
+        <div v-if="visibleArrow" class="el-popper__arrow-shadow" :style="state.attrs.styles.arrow" data-popper-arrow />
         <div
-          v-if="arrow"
+          v-if="visibleArrow"
           :ref="arrowRefInitHandler"
           class="el-popper__arrow"
           :style="{ ...state.attrs.styles.arrow, ...arrowColorStyle }"
@@ -42,7 +42,8 @@ import {
   ref,
   Ref,
   watch,
-  computed
+  computed,
+  isRef
 } from 'vue'
 import { usePopper, PlacementType, TriggerType } from './core'
 import DomSlot from './DomSlot'
@@ -63,17 +64,17 @@ const Popper = defineComponent({
       type: String,
       default: ''
     },
-    arrow: {
+    visibleArrow: {
       type: Boolean as PropType<boolean>,
       default: true
-    },
-    backgroundColor: {
-      type: String as PropType<string>,
-      default: ''
     },
     placement: {
       type: String as PropType<PlacementType>,
       default: 'top'
+    },
+    offset: {
+      type: Number as PropType<number>,
+      default: 0
     },
     trigger: {
       type: String as PropType<TriggerType>,
@@ -81,11 +82,11 @@ const Popper = defineComponent({
     },
     transition: {
       type: String,
-      default: undefined
+      default: 'el-popper-fade'
     },
-    offset: {
-      type: Number as PropType<number>,
-      default: 0
+    backgroundColor: {
+      type: String as PropType<string>,
+      default: ''
     },
     mode: {
       type: String as PropType<'outer' | 'inner'>,
@@ -108,12 +109,9 @@ const Popper = defineComponent({
     // 打开状态子 popper
     const holdChildren = ref<string[]>([])
     // 本体 visible 状态
-    const innerValue = ref(false)
+    const innerValue = ref(!!props.modelValue)
     // 最终 visible 状态
     const realVisible = computed<boolean>(() => {
-      if (props.trigger === 'manual') {
-        return props.modelValue
-      }
       return innerValue.value || holdChildren.value.length > 0
     })
 
@@ -146,23 +144,35 @@ const Popper = defineComponent({
       }
       return {}
     })
+
     // 状态变化
     watch(realVisible, () => {
-      // 事件
       emit('change', realVisible.value)
-      // 更新样式
-      state.instance?.update()
-    })
-
-    watch([() => props.modelValue, () => props.trigger], () => {
-      if (props.trigger === 'manual') {
-        holdChildren.value = []
-        innerValue.value = props.modelValue
+      emit('update:modelValue', realVisible.value)
+      console.log(realVisible.value)
+      if (realVisible.value) {
+        // 更新样式
+        state.instance?.update()
       }
     })
+
+    watch(
+      () => props.modelValue,
+      (val, oldVal) => {
+        if (val !== oldVal) {
+          holdChildren.value = []
+          innerValue.value = props.modelValue
+        }
+      }
+    )
+    // 内部 reference 模式
     watchEffect(() => {
       if (props.mode !== 'inner' && props.reference) {
-        referenceRef.value = props.reference
+        if (isRef(props.reference) && props.reference.value) {
+          referenceRef.value = props.reference.value as Element
+        } else {
+          referenceRef.value = props.reference
+        }
       }
     })
 
@@ -197,8 +207,9 @@ const Popper = defineComponent({
       realVisible,
       holdChildren,
       state,
-      popperRefInitHandler,
       referenceRefInitHandler,
+      popperRefInitHandler,
+      arrowRefInitHandler,
       arrowColorStyle
     }
   }

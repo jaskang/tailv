@@ -118,7 +118,11 @@ export const usePopper = (props: UsePopperOptions) => {
   }
   const outSideClickHandler = (event: MouseEvent) => {
     if (popperRef.value && !popperRef.value.contains(event.target as Node)) {
-      if (props.trigger === 'hover' && referenceRef.value && referenceRef.value.contains(event.target as Node)) {
+      if (
+        ['hover', 'focus'].indexOf(props.trigger) !== -1 &&
+        referenceRef.value &&
+        referenceRef.value.contains(event.target as Node)
+      ) {
         return
       } else {
         hidePopper()
@@ -135,16 +139,18 @@ export const usePopper = (props: UsePopperOptions) => {
         referenceEl[event]('mouseenter', showPopper)
         popperEl[event]('mouseenter', showPopper)
         referenceEl[event]('mouseleave', hidePopper)
+        popperEl[event]('mouseleave', hidePopper)
       }
       if (props.trigger === 'click') {
         referenceEl[event]('click', togglePopper)
+        popperEl[event]('mouseenter', showPopper)
+        popperEl[event]('mouseleave', hidePopper)
       }
       if (props.trigger === 'focus') {
         referenceEl[event]('focus', showPopper)
         referenceEl[event]('blur', hidePopper)
       }
       if (props.trigger !== 'manual') {
-        popperEl[event]('mouseleave', hidePopper)
         document[event]('click', outSideClickHandler)
       }
     }
