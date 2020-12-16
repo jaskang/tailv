@@ -45,6 +45,7 @@ import {
   computed,
   isRef
 } from 'vue'
+import { propTypes } from '../../utils/PropTypes'
 import { usePopper, PlacementType, TriggerType } from './core'
 import DomSlot from './DomSlot'
 
@@ -59,43 +60,16 @@ const Popper = defineComponent({
   name: 'Popper',
   components: { DomSlot },
   props: {
-    modelValue: Boolean,
-    popperClass: {
-      type: String,
-      default: ''
-    },
-    visibleArrow: {
-      type: Boolean as PropType<boolean>,
-      default: true
-    },
-    placement: {
-      type: String as PropType<PlacementType>,
-      default: 'top'
-    },
-    offset: {
-      type: Number as PropType<number>,
-      default: 0
-    },
-    trigger: {
-      type: String as PropType<TriggerType>,
-      default: 'hover'
-    },
-    transition: {
-      type: String,
-      default: 'el-popper-fade'
-    },
-    backgroundColor: {
-      type: String as PropType<string>,
-      default: ''
-    },
-    mode: {
-      type: String as PropType<'outer' | 'inner'>,
-      default: 'inner'
-    },
-    reference: {
-      type: Object as PropType<Element>,
-      default: undefined
-    }
+    modelValue: propTypes.boolean(),
+    popperClass: propTypes.string(''),
+    visibleArrow: propTypes.boolean(true),
+    placement: propTypes.oneOfString<PlacementType>('top'),
+    offset: propTypes.number(0),
+    trigger: propTypes.oneOfString<TriggerType>('hover'),
+    transition: propTypes.string('el-popper-fade'),
+    backgroundColor: propTypes.string(''),
+    mode: propTypes.oneOfString<'outer' | 'inner'>('inner'),
+    reference: propTypes.object<Element>()
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {

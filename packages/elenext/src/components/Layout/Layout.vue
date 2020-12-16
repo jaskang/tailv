@@ -9,16 +9,14 @@ import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropT
 import { layoutInjectKey } from './core'
 import { mergeClass } from '@elenext/shared'
 import { getBlockCls, getCompName } from '../../utils'
+import { propTypes } from '../../utils/PropTypes'
 
 const blockCls = getBlockCls('Layout')
 
 const Layout = defineComponent({
   name: getCompName('Layout'),
   props: {
-    direction: {
-      type: String as PropType<'horizontal' | 'vertical'>,
-      default: undefined
-    }
+    direction: propTypes.oneOfString<'horizontal' | 'vertical'>()
   },
   setup(props, { slots }) {
     const data = reactive({

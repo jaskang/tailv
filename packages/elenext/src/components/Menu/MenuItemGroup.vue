@@ -15,15 +15,13 @@
 import comp from '*.md'
 import { App, computed, defineComponent, inject } from 'vue'
 import { getCompName } from '../../utils'
+import { propTypes } from '../../utils/PropTypes'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const MenuItemGroup = defineComponent({
   name: getCompName('MenuItemGroup'),
   props: {
-    title: {
-      type: String,
-      default: ''
-    }
+    title: propTypes.string('')
   },
   setup(props, { slots }) {
     const state = inject(MENU_IJK)

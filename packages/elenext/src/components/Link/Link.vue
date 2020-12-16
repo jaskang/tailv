@@ -9,19 +9,17 @@
 import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
+import { propTypes } from '../../utils/PropTypes'
 
 const blockCls = getBlockCls('Link')
 const Link = defineComponent({
   name: getCompName('Link'),
   props: {
-    color: {
-      type: String as PropType<'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>,
-      default: 'default'
-    },
-    underline: { type: Boolean, default: true },
-    disabled: Boolean,
-    href: { type: String as PropType<string>, default: undefined },
-    icon: { type: String as PropType<string>, default: undefined }
+    color: propTypes.oneOfString<'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>('default'),
+    underline: propTypes.boolean(true),
+    disabled: propTypes.boolean(),
+    href: propTypes.string(),
+    icon: propTypes.string()
   },
   emits: ['click'],
   setup(props, { emit, slots }) {

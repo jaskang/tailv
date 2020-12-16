@@ -11,6 +11,7 @@ import { App, computed, defineComponent, PropType } from 'vue'
 import { getBlockCls, getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
 import { IconArrowClockwise } from '@elenext/icons'
+import { propTypes } from '../../utils/PropTypes'
 
 const cls = getBlockCls('Button')
 
@@ -20,21 +21,12 @@ const Button = defineComponent({
     IconArrowClockwise
   },
   props: {
-    color: {
-      type: String as PropType<'primary' | 'success' | 'info' | 'warning' | 'danger'>,
-      default: undefined
-    },
-    type: {
-      type: String as PropType<'link' | 'round' | 'circle' | 'plain'>,
-      default: undefined
-    },
-    size: {
-      type: String as PropType<'large' | 'small'>,
-      default: undefined
-    },
-    nativeType: { type: String as PropType<'button' | 'submit' | 'reset'>, default: 'button' },
-    loading: { type: Boolean, default: false },
-    disabled: { type: Boolean }
+    color: propTypes.oneOfString<'primary' | 'success' | 'info' | 'warning' | 'danger'>(),
+    type: propTypes.oneOfString<'link' | 'round' | 'circle' | 'plain'>(),
+    size: propTypes.oneOfString<'large' | 'small'>(),
+    nativeType: propTypes.oneOfString<'button' | 'submit' | 'reset'>('button'),
+    loading: propTypes.boolean(),
+    disabled: propTypes.boolean()
   },
   emits: ['click'],
   setup(props, { emit }) {

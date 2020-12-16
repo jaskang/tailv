@@ -10,6 +10,7 @@ import { mergeClass } from '@elenext/shared'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { Gutter, GutterTuple, rowInjectKey } from './core'
 import { getBlockCls, getCompName } from '../../utils'
+import { propTypes } from '../../utils/PropTypes'
 
 const blockCls = getBlockCls('row')
 const Row = defineComponent({
@@ -19,18 +20,9 @@ const Row = defineComponent({
       type: [Number, Array, Object] as PropType<Gutter>,
       default: 0
     },
-    align: {
-      type: String as PropType<'top' | 'middle' | 'bottom'>,
-      default: 'top'
-    },
-    justify: {
-      type: String as PropType<'start' | 'end' | 'center' | 'space-around' | 'space-between'>,
-      default: 'start'
-    },
-    wrap: {
-      type: Boolean as PropType<boolean>,
-      default: true
-    }
+    align: propTypes.oneOfString<'top' | 'middle' | 'bottom'>('top'),
+    justify: propTypes.oneOfString<'start' | 'end' | 'center' | 'space-around' | 'space-between'>('start'),
+    wrap: propTypes.boolean(true)
   },
   setup(props, { slots }) {
     const screens = useBreakpoint()

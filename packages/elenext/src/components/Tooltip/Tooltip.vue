@@ -23,6 +23,7 @@ import { mergeClass } from '@elenext/shared'
 import { getBlockCls, getCompName } from '../../utils'
 import { Popper, PlacementType, TriggerType } from '../Popper'
 import { emit } from 'process'
+import { propTypes } from '../../utils/PropTypes'
 
 const blockCls = getBlockCls('Tooltip')
 const Tooltip = defineComponent({
@@ -31,35 +32,14 @@ const Tooltip = defineComponent({
     Popper
   },
   props: {
-    modelValue: Boolean,
-    backgroundColor: {
-      type: String as PropType<string>,
-      default: undefined
-    },
-    content: {
-      type: String,
-      default: ''
-    },
-    offset: {
-      type: Number,
-      default: 0
-    },
-    popperClass: {
-      type: String,
-      default: ''
-    },
-    placement: {
-      type: String as PropType<PlacementType>,
-      default: 'top'
-    },
-    trigger: {
-      type: String as PropType<TriggerType>,
-      default: 'hover'
-    },
-    transition: {
-      type: String,
-      default: ''
-    }
+    modelValue: propTypes.boolean(),
+    backgroundColor: propTypes.string(''),
+    content: propTypes.string(),
+    offset: propTypes.number(0),
+    popperClass: propTypes.string(''),
+    placement: propTypes.oneOfString<PlacementType>('top'),
+    trigger: propTypes.oneOfString<TriggerType>('hover'),
+    transition: propTypes.string('el-popper-fade')
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {

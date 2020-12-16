@@ -17,36 +17,19 @@
 import { App, computed, defineComponent, PropType } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { Popper } from '../Popper'
+import { propTypes } from '../../utils/PropTypes'
 const Popover = defineComponent({
   name: 'Popover',
   components: {
     Popper
   },
   props: {
-    modelValue: {
-      type: Boolean,
-      default: false
-    },
-    trigger: {
-      type: String as PropType<'click' | 'hover'>,
-      default: 'click'
-    },
-    popperClass: {
-      type: String,
-      default: ''
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    content: {
-      type: String,
-      default: ''
-    },
-    width: {
-      type: String,
-      default: ''
-    }
+    modelValue: propTypes.boolean(),
+    trigger: propTypes.oneOfString<'click' | 'hover'>('click'),
+    popperClass: propTypes.string(''),
+    title: propTypes.string(''),
+    content: propTypes.string(''),
+    width: propTypes.string('')
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {

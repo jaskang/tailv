@@ -8,14 +8,12 @@
 import { App, defineComponent, inject } from 'vue'
 import { layoutInjectKey } from './core'
 import { getBlockCls, getCompName } from '../../utils'
+import { propTypes } from '../../utils/PropTypes'
 
 const Aside = defineComponent({
   name: getCompName('Aside'),
   props: {
-    width: {
-      type: String,
-      default: '250px'
-    }
+    width: propTypes.string('250px')
   },
   setup(props, { slots }) {
     const layout = inject(layoutInjectKey)
