@@ -62,52 +62,52 @@ wrapperClass: md-layout
 <template>
   <Layout style="height: 500px; border: 1px solid #eee">
     <Aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <Menu width="200px" :default-openeds="['1', '3']">
-        <Menu index="1">
-          <template #title> <i class="el-icon-message"></i>导航一 </template>
-          <MenuItemGroup>
-            <template #title>分组一</template>
-            <MenuItem index="1-1">选项1</MenuItem>
-            <MenuItem index="1-2">选项2</MenuItem>
+      <Menu unique-opened mode="vertical">
+        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
+        <SubMenu>
+          <template #title>
+            <i class="el-icon-location" />
+            <span>导航二</span>
+          </template>
+          <MenuItemGroup title="分组一">
+            <MenuItem>导航三</MenuItem>
+            <MenuItem>导航三导航三导航三导航三导航三</MenuItem>
           </MenuItemGroup>
-          <MenuItemGroup title="分组2">
-            <MenuItem index="1-3">选项3</MenuItem>
+          <MenuItemGroup title="分组二">
+            <MenuItem>导航三</MenuItem>
+            <SubMenu>
+              <template #title>
+                <span>导航二</span>
+              </template>
+              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+            </SubMenu>
           </MenuItemGroup>
-          <Menu index="1-4">
-            <template #title>选项4</template>
-            <MenuItem index="1-4-1">选项4-1</MenuItem>
-          </Menu>
-        </Menu>
-        <Menu index="2">
-          <template #title><i class="el-icon-menu"></i>导航二</template>
-          <MenuItemGroup>
-            <template #title>分组一</template>
-            <MenuItem index="2-1">选项1</MenuItem>
-            <MenuItem index="2-2">选项2</MenuItem>
+        </SubMenu>
+        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+        <SubMenu>
+          <template #title>
+            <i class="el-icon-location" />
+            <span>导航二</span>
+          </template>
+          <MenuItemGroup title="分组一">
+            <MenuItem>导航三</MenuItem>
+            <MenuItem>导航三</MenuItem>
           </MenuItemGroup>
-          <MenuItemGroup title="分组2">
-            <MenuItem index="2-3">选项3</MenuItem>
+          <MenuItemGroup title="分组二">
+            <MenuItem>导航三</MenuItem>
+            <SubMenu>
+              <template #title>
+                <span>导航二</span>
+              </template>
+              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+            </SubMenu>
           </MenuItemGroup>
-          <Menu index="2-4">
-            <template #title>选项4</template>
-            <MenuItem index="2-4-1">选项4-1</MenuItem>
-          </Menu>
-        </Menu>
-        <Menu index="3">
-          <template #title> <i class="el-icon-setting"></i>导航三 </template>
-          <MenuItemGroup>
-            <template #title>分组一</template>
-            <MenuItem index="3-1">选项1</MenuItem>
-            <MenuItem index="3-2">选项2</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组2">
-            <MenuItem index="3-3">选项3</MenuItem>
-          </MenuItemGroup>
-          <Menu index="3-4">
-            <template #title>选项4</template>
-            <MenuItem index="3-4-1">选项4-1</MenuItem>
-          </Menu>
-        </Menu>
+        </SubMenu>
+        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
       </Menu>
     </Aside>
 

@@ -105,7 +105,11 @@ const SubMenu = defineComponent({
       return {
         color: state.isActive ? state.root.activeTextColor : state.root.textColor,
         backgroundColor:
-          state.isActive || state.isOpen || isHover.value
+          state.root.mode === 'vertical'
+            ? isHover.value
+              ? state.root.activeBackgroundColor
+              : state.root.backgroundColor
+            : state.isActive || state.isOpen || isHover.value
             ? state.root.activeBackgroundColor
             : state.root.backgroundColor,
         borderColor: mode === 'horizontal' && state.isActive ? state.root.activeTextColor : 'transparent',
