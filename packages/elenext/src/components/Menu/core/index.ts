@@ -23,7 +23,7 @@ export type MenuState = {
 export const MENU_IJK: InjectionKey<{
   readonly state: MenuState
   action: {
-    select: (node: MenuState) => void
+    select: (node: MenuState, childrenVisible?: boolean) => void
     add: (node: MenuState) => void
     remove: (node: MenuState) => void
   }

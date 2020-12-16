@@ -1,33 +1,36 @@
 <template>
-  <li :class="{ 'el-sub-menu': true, 'is-opened': isOpen }" :style="{ backgroundColor: backgroundColor }">
+  <li
+    :class="{ 'el-sub-menu': true, 'is-opened': state.isOpen }"
+    :style="{ backgroundColor: state.rootState.backgroundColor }"
+  >
     <div
       ref="titleElRef"
       class="el-sub-menu__title"
       :style="styles"
       @mouseenter="mouseenterHandler"
       @mouseleave="mouseleaveHandler"
-      @click="clickHandler"
+      @click="titleClickHandler"
     >
       <slot name="title">
         {{ title }}
       </slot>
       <span class="el-sub-menu__arrow">
-        <IconChevronUp v-if="mode === 'vertical'" />
-        <IconChevronRight v-if="mode === 'popper'" />
+        <IconChevronUp v-if="state.rootState.mode === 'vertical'" />
+        <IconChevronRight v-if="state.rootState.mode === 'popper'" />
       </span>
     </div>
-    <template v-if="mode === 'popper'">
+    <template v-if="state.rootState.mode !== 'vertical'">
       <Popper
         popper-class="el-sub-menu"
-        placement="right-start"
         trigger="hover"
         mode="outer"
+        :placement="state.rootState.mode === 'popper' || state.deep > 1 ? 'right-start' : 'bottom'"
         :visible-arrow="false"
         :reference="titleElRef"
         @change="popperChangneHandler"
       >
         <template #content>
-          <ul class="el-sub-menu__body" :style="{ backgroundColor: backgroundColor }">
+          <ul class="el-sub-menu__body" :style="{ backgroundColor: state.rootState.backgroundColor }">
             <slot />
           </ul>
         </template>
@@ -35,7 +38,7 @@
     </template>
     <template v-else>
       <CollapseTransition>
-        <ul v-show="isOpen" class="el-sub-menu__body">
+        <ul v-show="state.isOpen" class="el-sub-menu__body">
           <slot />
         </ul>
       </CollapseTransition>
@@ -84,15 +87,14 @@ const SubMenu = defineComponent({
       rootState: menuProvider.state.rootState,
       uid: self.uid,
       uidPath: [...menuProvider.state.uidPath, self.uid],
-      isOpen: false,
+      // isOpen: false,
+      isOpen: computed(() => menuProvider.state.rootState.openedUids.indexOf(self.uid) !== -1),
       deep: menuProvider.state.deep + 1,
       children: []
     })
     const isHover = ref(false)
-    const isOpen = computed(() => state.rootState.openedUids.indexOf(state.uid) !== -1)
     const isActive = computed(() => state.rootState.activeUidPath.indexOf(state.uid) !== -1)
 
-    const isPopperVisible = ref(false)
     const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && state.deep > 1)
 
     const styles = computed<CSSProperties>(() => {
@@ -100,24 +102,27 @@ const SubMenu = defineComponent({
       return {
         color: isActive.value ? menuProvider.state.rootState.activeTextColor : menuProvider.state.rootState.textColor,
         backgroundColor:
-          isActive.value || isHover.value || isPopperVisible.value
+          isActive.value || isHover.value || state.isOpen
             ? menuProvider.state.rootState.activeBackgroundColor
             : menuProvider.state.rootState.backgroundColor,
-        borderColor: 'transparent',
+        borderColor:
+          mode === 'horizontal' && (isActive.value || state.isOpen)
+            ? menuProvider.state.rootState.activeTextColor
+            : 'transparent',
         paddingLeft: isPopper.value ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
       }
     })
 
-    const clickHandler = (event: MouseEvent) => {
+    const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
+    const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
+
+    const titleClickHandler = (event: MouseEvent) => {
       if (menuProvider.state.rootState.mode === 'vertical') {
         menuProvider.action.select(state)
       }
     }
-    const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
-    const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
-
     const popperChangneHandler = (visible: boolean) => {
-      isPopperVisible.value = visible
+      menuProvider.action.select(state, visible)
     }
 
     provide(MENU_IJK, {
@@ -140,12 +145,10 @@ const SubMenu = defineComponent({
     menuProvider.action.add(state)
 
     return {
-      mode: menuProvider.state.rootState.mode,
-      isOpen,
+      state,
       styles,
-      backgroundColor: menuProvider.state.rootState.backgroundColor,
       titleElRef,
-      clickHandler,
+      titleClickHandler,
       mouseenterHandler,
       mouseleaveHandler,
       popperChangneHandler

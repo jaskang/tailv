@@ -61,17 +61,25 @@ const Menu = defineComponent({
     provide(MENU_IJK, {
       state,
       action: {
-        select: node => {
+        select: (node, childrenVisible) => {
           if (Array.isArray(node.children)) {
-            // is SubMenu
             const index = state.rootState.openedUids.indexOf(node.uid)
-            if (index !== -1) {
-              state.rootState.openedUids.splice(index, 1)
-            } else {
-              if (props.uniqueOpened) {
-                state.rootState.openedUids = [...node.uidPath]
+            if (props.mode === 'vertical') {
+              if (index !== -1) {
+                state.rootState.openedUids.splice(index, 1)
               } else {
+                if (props.uniqueOpened) {
+                  state.rootState.openedUids = [...node.uidPath]
+                } else {
+                  state.rootState.openedUids.push(node.uid)
+                }
+              }
+            } else {
+              if (index === -1 && childrenVisible) {
                 state.rootState.openedUids.push(node.uid)
+              }
+              if (index >= 0 && !childrenVisible) {
+                state.rootState.openedUids.splice(index, 1)
               }
             }
           } else {

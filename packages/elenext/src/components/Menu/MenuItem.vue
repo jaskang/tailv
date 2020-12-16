@@ -19,6 +19,7 @@ import {
   getCurrentInstance,
   inject,
   onBeforeUnmount,
+  PropType,
   reactive,
   ref
 } from 'vue'
@@ -29,7 +30,13 @@ import { MENU_IJK, MENU_ITEM_PADDING } from './core'
 const blockCls = getBlockCls('MenuItem')
 const MenuItem = defineComponent({
   name: getCompName('MenuItem'),
-  setup() {
+  props: {
+    to: {
+      type: Object as PropType<any>,
+      default: null
+    }
+  },
+  setup(props, { emit }) {
     const self = getCurrentInstance()
     const elRef = ref()
     const menuProvider = inject(MENU_IJK)
@@ -69,6 +76,8 @@ const MenuItem = defineComponent({
 
     const clickHandler = (event: MouseEvent) => {
       menuProvider.action.select(state)
+      const { to } = props
+      console.log(self)
     }
     const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
     const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
@@ -80,6 +89,7 @@ const MenuItem = defineComponent({
 
     return {
       elRef,
+      state,
       classes,
       styles,
       clickHandler,

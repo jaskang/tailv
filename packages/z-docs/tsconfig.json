@@ -8,5 +8,5 @@
     "lib": ["esnext", "dom"],
     "baseUrl": "."
   },
-  "include": ["../../shims.d.ts", "src"]
+  "include": ["../../shims.d.ts", "src/**/*"]
 }

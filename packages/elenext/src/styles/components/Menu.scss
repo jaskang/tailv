@@ -1,8 +1,8 @@
 @use '../var';
 
-@mixin el-menu-item--vertical($height) {
+@mixin el-menu-item--horizontal($height) {
+  display: inline-block;
   position: relative;
-  display: block;
   height: $height;
   line-height: $height;
   padding: 0 20px;
@@ -11,6 +11,31 @@
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var.$global-font-size-base;
+  color: var.$global-color-text-primary;
+  transition: var.$global-transition-all;
+  border-bottom: 2px solid transparent;
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin el-menu-item--vertical($height) {
+  display: block;
+  position: relative;
+  height: $height;
+  line-height: $height;
+  padding: 0 20px;
+  list-style: none;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: var.$global-font-size-base;
   color: var.$global-color-text-primary;
   transition: var.$global-transition-all;
@@ -24,13 +49,14 @@
   position: absolute;
   top: 50%;
   right: 20px;
-  margin-top: -7px;
+  margin-top: -6px;
   transition: transform 0.3s;
   font-size: 12px;
   line-height: 12px;
   width: 12px;
   height: 12px;
 }
+
 .el-menu {
   list-style: none;
   position: relative;
@@ -40,6 +66,30 @@
   border: 0;
   box-shadow: none;
   background-color: transparent;
+  .el-sub-menu {
+    font-size: 0;
+    line-height: 0;
+  }
+}
+
+.el-menu--horizontal {
+  .el-menu-item,
+  .el-sub-menu__title {
+    @include el-menu-item--horizontal(50px);
+  }
+  .el-sub-menu__arrow {
+    @include el-sub-menu__arrow();
+  }
+  .el-sub-menu {
+    display: inline-block;
+    position: relative;
+    transition: var.$global-transition-all;
+    &.is-opened {
+      > .el-sub-menu__title > .el-sub-menu__arrow {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
 }
 
 .el-menu--vertical,
@@ -75,6 +125,10 @@
 .el-popper.el-sub-menu {
   position: absolute;
   // border-radius: 3px;
+  .el-sub-menu__body {
+    overflow: hidden;
+    border-radius: var.$global-border-radius-base;
+  }
   .el-menu-item,
   .el-sub-menu__title {
     @include el-menu-item--vertical(40px);
@@ -84,6 +138,11 @@
   .el-sub-menu__arrow {
     @include el-sub-menu__arrow();
     right: 8px;
+  }
+  .el-sub-menu.is-opened {
+    .el-sub-menu__title > .el-sub-menu__arrow {
+      transform: rotateZ(180deg);
+    }
   }
   .el-menu-item-group {
     &__title {
