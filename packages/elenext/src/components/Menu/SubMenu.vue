@@ -1,7 +1,7 @@
 <template>
   <li
     :class="{ 'el-sub-menu': true, 'is-opened': state.isOpen }"
-    :style="{ backgroundColor: state.rootState.backgroundColor }"
+    :style="{ backgroundColor: state.root.backgroundColor }"
   >
     <div
       ref="titleElRef"
@@ -15,22 +15,22 @@
         {{ title }}
       </slot>
       <span class="el-sub-menu__arrow">
-        <IconChevronUp v-if="state.rootState.mode === 'vertical'" />
-        <IconChevronRight v-if="state.rootState.mode === 'popper'" />
+        <IconChevronUp v-if="state.root.mode === 'vertical'" />
+        <IconChevronRight v-if="state.root.mode === 'popper'" />
       </span>
     </div>
-    <template v-if="state.rootState.mode !== 'vertical'">
+    <template v-if="state.root.mode !== 'vertical'">
       <Popper
         popper-class="el-sub-menu"
         trigger="hover"
         mode="outer"
-        :placement="state.rootState.mode === 'popper' || state.deep > 1 ? 'right-start' : 'bottom'"
+        :placement="state.root.mode === 'popper' || state.deep > 1 ? 'right-start' : 'bottom'"
         :visible-arrow="false"
         :reference="titleElRef"
         @change="popperChangneHandler"
       >
         <template #content>
-          <ul class="el-sub-menu__body" :style="{ backgroundColor: state.rootState.backgroundColor }">
+          <ul class="el-sub-menu__body" :style="{ backgroundColor: state.root.backgroundColor }">
             <slot />
           </ul>
         </template>
@@ -57,13 +57,15 @@ import {
   onBeforeUnmount,
   App,
   PropType,
-  CSSProperties
+  CSSProperties,
+  watch,
+  watchEffect
 } from 'vue'
 import { mergeClass, colorLighten } from '@elenext/shared'
 import { IconChevronUp, IconChevronRight } from '@elenext/icons'
 import { CollapseTransition } from '../Transition'
 import { Popper } from '../Popper'
-import { MENU_IJK, MENU_ITEM_PADDING } from './core'
+import { MenuState, MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const SubMenu = defineComponent({
   name: 'SubMenu',
@@ -83,33 +85,33 @@ const SubMenu = defineComponent({
     const self = getCurrentInstance()
     const titleElRef = ref()
     const menuProvider = inject(MENU_IJK)
-    const state = reactive({
-      rootState: menuProvider.state.rootState,
+    const state = reactive<MenuState>({
+      root: menuProvider.root,
+      type: MENU_TYPE.SUB,
       uid: self.uid,
-      uidPath: [...menuProvider.state.uidPath, self.uid],
-      // isOpen: false,
-      isOpen: computed(() => menuProvider.state.rootState.openedUids.indexOf(self.uid) !== -1),
-      deep: menuProvider.state.deep + 1,
-      children: []
+      uidPath: [...menuProvider.uidPath, self.uid],
+      deep: menuProvider.deep + 1,
+      isOpen: menuProvider.root.openedSet.has(self.uid),
+      isActive: menuProvider.root.activePath.indexOf(self.uid) !== -1,
+      isPopper: menuProvider.root.mode !== 'vertical' && menuProvider.deep + 1 > 1
+    })
+    watchEffect(() => {
+      state.isOpen = menuProvider.root.openedSet.has(self.uid)
+      state.isActive = menuProvider.root.activePath.indexOf(self.uid) !== -1
+      state.isPopper = menuProvider.root.mode !== 'vertical' && menuProvider.deep + 1 > 1
     })
     const isHover = ref(false)
-    const isActive = computed(() => state.rootState.activeUidPath.indexOf(state.uid) !== -1)
-
-    const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && state.deep > 1)
 
     const styles = computed<CSSProperties>(() => {
-      const mode = menuProvider.state.rootState.mode
+      const mode = state.root.mode
       return {
-        color: isActive.value ? menuProvider.state.rootState.activeTextColor : menuProvider.state.rootState.textColor,
+        color: state.isActive ? state.root.activeTextColor : state.root.textColor,
         backgroundColor:
-          isActive.value || isHover.value || state.isOpen
-            ? menuProvider.state.rootState.activeBackgroundColor
-            : menuProvider.state.rootState.backgroundColor,
-        borderColor:
-          mode === 'horizontal' && (isActive.value || state.isOpen)
-            ? menuProvider.state.rootState.activeTextColor
-            : 'transparent',
-        paddingLeft: isPopper.value ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
+          state.isActive || state.isOpen || isHover.value
+            ? state.root.activeBackgroundColor
+            : state.root.backgroundColor,
+        borderColor: mode === 'horizontal' && state.isActive ? state.root.activeTextColor : 'transparent',
+        paddingLeft: `${(state.isPopper ? 1 : state.deep) * MENU_ITEM_PADDING}px`
       }
     })
 
@@ -117,41 +119,24 @@ const SubMenu = defineComponent({
     const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
 
     const titleClickHandler = (event: MouseEvent) => {
-      if (menuProvider.state.rootState.mode === 'vertical') {
-        menuProvider.action.select(state)
+      if (state.root.mode === 'vertical') {
+        state.root.methods.select(state)
       }
     }
     const popperChangneHandler = (visible: boolean) => {
-      menuProvider.action.select(state, visible)
+      state.root.methods.select(state)
     }
 
-    provide(MENU_IJK, {
-      state: state,
-      action: {
-        select: menuProvider.action.select,
-        add: node => {
-          state.children.push(node)
-        },
-        remove: node => {
-          const index = state.children.indexOf(node)
-          state.children.splice(index, 1)
-        }
-      }
-    })
-
-    onBeforeUnmount(() => {
-      menuProvider.action.remove(state)
-    })
-    menuProvider.action.add(state)
+    provide(MENU_IJK, state)
 
     return {
       state,
       styles,
       titleElRef,
       titleClickHandler,
+      popperChangneHandler,
       mouseenterHandler,
-      mouseleaveHandler,
-      popperChangneHandler
+      mouseleaveHandler
     }
   }
 })

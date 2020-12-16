@@ -1,7 +1,9 @@
 <template>
   <li
-    ref="elRef"
-    :class="classes"
+    :class="{
+      'el-menu-item': true,
+      'is-active': state.isActive
+    }"
     :style="styles"
     @mouseenter="mouseenterHandler"
     @mouseleave="mouseleaveHandler"
@@ -21,13 +23,13 @@ import {
   onBeforeUnmount,
   PropType,
   reactive,
-  ref
+  ref,
+  watchEffect
 } from 'vue'
 import { mergeClass, colorLighten } from '@elenext/shared'
-import { getBlockCls, getCompName } from '../../utils'
-import { MENU_IJK, MENU_ITEM_PADDING } from './core'
+import { getCompName } from '../../utils'
+import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
-const blockCls = getBlockCls('MenuItem')
 const MenuItem = defineComponent({
   name: getCompName('MenuItem'),
   props: {
@@ -38,59 +40,43 @@ const MenuItem = defineComponent({
   },
   setup(props, { emit }) {
     const self = getCurrentInstance()
-    const elRef = ref()
     const menuProvider = inject(MENU_IJK)
 
     const state = reactive({
-      rootState: menuProvider.state.rootState,
+      root: menuProvider.root,
+      type: MENU_TYPE.ITEM,
       uid: self.uid,
-      uidPath: [...menuProvider.state.uidPath, self.uid],
+      uidPath: [...menuProvider.uidPath, self.uid],
+      deep: menuProvider.deep + 1,
       isOpen: false,
-      deep: menuProvider.state.deep + 1,
-      children: undefined
+      isActive: menuProvider.root.activeId === self.uid,
+      isPopper: menuProvider.root.mode !== 'vertical' && menuProvider.type === MENU_TYPE.SUB
+    })
+    watchEffect(() => {
+      state.isActive = menuProvider.root.activeId === self.uid
+      state.isPopper = menuProvider.root.mode !== 'vertical' && menuProvider.type === MENU_TYPE.SUB
     })
     const isHover = ref(false)
-    const isActive = computed(() => menuProvider.state.rootState.activeUid === self.uid)
-
-    const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && state.deep > 1)
-
-    const classes = computed(() => {
-      return mergeClass(blockCls, {
-        'is-active': isActive.value
-      })
-    })
 
     const styles = computed<CSSProperties>(() => {
-      const mode = menuProvider.state.rootState.mode
+      const mode = state.root.mode
       return {
-        color: isActive.value ? menuProvider.state.rootState.activeTextColor : menuProvider.state.rootState.textColor,
-        backgroundColor: isActive.value
-          ? menuProvider.state.rootState.activeBackgroundColor
-          : isHover.value
-          ? menuProvider.state.rootState.activeBackgroundColor
-          : menuProvider.state.rootState.backgroundColor,
-        borderColor: !isPopper.value && isActive.value ? menuProvider.state.rootState.activeTextColor : 'transparent',
-        paddingLeft: isPopper.value ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
+        color: state.isActive ? state.root.activeTextColor : state.root.textColor,
+        backgroundColor:
+          state.isActive || isHover.value ? state.root.activeBackgroundColor : state.root.backgroundColor,
+        borderColor: !state.isPopper && state.isActive ? state.root.activeTextColor : 'transparent',
+        paddingLeft: state.isPopper ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
       }
     })
 
     const clickHandler = (event: MouseEvent) => {
-      menuProvider.action.select(state)
-      const { to } = props
-      console.log(self)
+      state.root.methods.select(state)
     }
     const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
     const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
 
-    onBeforeUnmount(() => {
-      menuProvider.action.remove(state)
-    })
-    menuProvider.action.add(state)
-
     return {
-      elRef,
       state,
-      classes,
       styles,
       clickHandler,
       mouseenterHandler,

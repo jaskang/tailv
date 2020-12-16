@@ -1,6 +1,6 @@
 <template>
   <li class="el-menu-item-group">
-    <div class="el-menu-item-group__title" :style="{ paddingLeft: paddingLeft }">
+    <div class="el-menu-item-group__title" :style="styles">
       <slot name="title">
         {{ title }}
       </slot>
@@ -12,9 +12,10 @@
 </template>
 
 <script lang="ts">
+import comp from '*.md'
 import { App, computed, defineComponent, inject } from 'vue'
 import { getCompName } from '../../utils'
-import { MENU_IJK, MENU_ITEM_PADDING } from './core'
+import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const MenuItemGroup = defineComponent({
   name: getCompName('MenuItemGroup'),
@@ -25,16 +26,19 @@ const MenuItemGroup = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const menuProvider = inject(MENU_IJK)
+    const state = inject(MENU_IJK)
 
-    const isPopper = computed(() => menuProvider.state.rootState.mode !== 'vertical' && menuProvider.state.deep > 0)
-
-    const paddingLeft = computed(() => {
-      return isPopper.value ? `${MENU_ITEM_PADDING}px` : `${(menuProvider.state.deep + 1) * MENU_ITEM_PADDING}px`
+    const isPopperInner = computed(() => {
+      return state.root.mode !== 'vertical' && state.type === MENU_TYPE.SUB
+    })
+    const styles = computed(() => {
+      return {
+        paddingLeft: `${(isPopperInner.value ? 1 : state.deep + 1) * MENU_ITEM_PADDING}px`
+      }
     })
 
     return {
-      paddingLeft
+      styles
     }
   }
 })
