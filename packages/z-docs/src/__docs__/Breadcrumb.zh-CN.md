@@ -11,7 +11,7 @@
 ```vue demo
 <template>
   <Breadcrumb separator="/">
-    <BreadcrumbItem :to="{ path: '/' }">首页</BreadcrumbItem>
+    <BreadcrumbItem path="/">首页</BreadcrumbItem>
     <BreadcrumbItem><a href="/">活动管理</a></BreadcrumbItem>
     <BreadcrumbItem>活动列表</BreadcrumbItem>
     <BreadcrumbItem>活动详情</BreadcrumbItem>
@@ -26,9 +26,9 @@
 ```vue demo
 <template>
   <Breadcrumb separator-class="el-icon-arrow-right">
-    <BreadcrumbItem :to="{ path: '/' }">首页</BreadcrumbItem>
-    <BreadcrumbItem :to="{ path: '/' }">活动管理</BreadcrumbItem>
-    <BreadcrumbItem :to="{ path: '/' }">活动列表</BreadcrumbItem>
+    <BreadcrumbItem path="/">首页</BreadcrumbItem>
+    <BreadcrumbItem path="/layout">layout</BreadcrumbItem>
+    <BreadcrumbItem path="/button">button</BreadcrumbItem>
     <BreadcrumbItem>活动详情</BreadcrumbItem>
   </Breadcrumb>
 </template>

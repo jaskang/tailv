@@ -15,7 +15,7 @@ const BreadcrumbItem = defineComponent({
   name: getCompName('BreadcrumbItem'),
   props: {
     path: {
-      type: Object,
+      type: [String, Object],
       default: () => {
         return null
       }
@@ -31,8 +31,9 @@ const BreadcrumbItem = defineComponent({
       const { path } = props
       const router = self.appContext.config.globalProperties.$router
 
-      if (router) return
-      props.replace ? router.replace(path) : router.push(path)
+      if (router) {
+        props.replace ? router.replace(path) : router.push(path)
+      }
     }
     return {
       separator,
