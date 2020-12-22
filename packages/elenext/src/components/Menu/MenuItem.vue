@@ -33,11 +33,12 @@ import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 const MenuItem = defineComponent({
   name: getCompName('MenuItem'),
   props: {
-    to: {
+    path: {
       type: Object as PropType<any>,
       default: null
     }
   },
+  emits: ['click'],
   setup(props, { emit }) {
     const self = getCurrentInstance()
     const menuProvider = inject(MENU_IJK)
@@ -71,6 +72,11 @@ const MenuItem = defineComponent({
 
     const clickHandler = (event: MouseEvent) => {
       state.root.methods.select(state)
+      emit('click', event)
+      const router = self.appContext.config.globalProperties.$router
+      if (router && props.path) {
+        router.push(props.path)
+      }
     }
     const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
     const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)

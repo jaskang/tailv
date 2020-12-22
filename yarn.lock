@@ -2841,7 +2841,7 @@
     "@vue/compiler-core" "3.0.4"
     "@vue/shared" "3.0.4"
 
-"@vue/compiler-sfc@@^3.0.4", "@vue/compiler-sfc@^3.0.3", "@vue/compiler-sfc@^3.0.4":
+"@vue/compiler-sfc@^3.0.3", "@vue/compiler-sfc@^3.0.4":
   version "3.0.4"
   resolved "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-3.0.4.tgz#2119fe1e68d2c268aafa20461c82c139a9adf8e0"
   integrity sha512-brDn6HTuK6R3oBCjtMPPsIpyJEZFinlnxjtBXww/goFJOJBAU9CrsdegwyZItNnixCFUIg4CLv4Nj1Eg/eKlfg==

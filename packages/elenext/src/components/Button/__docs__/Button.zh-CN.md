@@ -223,14 +223,31 @@ export default defineComponent({
 <template>
   <Button-group>
     <Button color="primary" icon="el-icon-arrow-left">上一页</Button>
-    <Button color="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></Button>
+    <Button color="primary">下一页</Button>
   </Button-group>
   <Button-group>
-    <Button color="primary" icon="el-icon-edit"></Button>
-    <Button color="primary" icon="el-icon-share"></Button>
-    <Button color="primary" icon="el-icon-delete"></Button>
+    <Button color="primary">
+      <template #icon><IconTrash /></template>
+    </Button>
+    <Button color="primary">
+      <template #icon><IconPencilSquare /></template>
+    </Button>
+    <Button color="primary" icon="el-icon-delete">
+      <template #icon><IconPlusSquare /></template>
+    </Button>
   </Button-group>
 </template>
+<script>
+import { defineComponent } from 'vue'
+import { IconPlusSquare, IconTrash, IconPencilSquare } from '@elenext/icons'
+export default defineComponent({
+  components: {
+    IconPlusSquare,
+    IconTrash,
+    IconPencilSquare
+  }
+})
+</script>
 ```
 
 ## Attributes

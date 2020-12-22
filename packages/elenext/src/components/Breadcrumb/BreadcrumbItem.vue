@@ -1,9 +1,9 @@
 <template>
-  <span :class="blockCls">
-    <span :class="[`${blockCls}__inner`, to ? 'is-link' : '']" role="link" @click="clickHandler">
+  <span class="el-breadcrumb-item">
+    <span :class="[`el-breadcrumb-item__inner`, path ? 'is-link' : '']" role="link" @click="clickHandler">
       <slot />
     </span>
-    <span :class="`${blockCls}__separator`" v-text="separator" />
+    <span class="el-breadcrumb-item__separator" v-text="separator" />
   </span>
 </template>
 
@@ -11,11 +11,10 @@
 import { defineComponent, getCurrentInstance, computed, App } from 'vue'
 import { getBlockCls, getCompName } from '../../utils'
 
-const blockCls = getBlockCls('BreadcrumbItem')
 const BreadcrumbItem = defineComponent({
   name: getCompName('BreadcrumbItem'),
   props: {
-    to: {
+    path: {
       type: Object,
       default: () => {
         return null
@@ -24,18 +23,18 @@ const BreadcrumbItem = defineComponent({
     replace: Boolean
   },
   setup(props, { slots }) {
-    const instance = getCurrentInstance()
+    const self = getCurrentInstance()
 
-    const separator = computed<string>(() => instance?.parent?.props.separator as string)
+    const separator = computed<string>(() => self?.parent?.props.separator as string)
 
     const clickHandler = (event: MouseEvent) => {
-      const { to } = props
-      const $router = (instance as any)?.ctx?.$router
-      if (!to || !$router) return
-      props.replace ? $router.replace(to) : $router.push(to)
+      const { path } = props
+      const router = self.appContext.config.globalProperties.$router
+
+      if (router) return
+      props.replace ? router.replace(path) : router.push(path)
     }
     return {
-      blockCls,
       separator,
       clickHandler
     }
