@@ -34,7 +34,7 @@ const MenuItem = defineComponent({
   name: getCompName('MenuItem'),
   props: {
     path: {
-      type: Object as PropType<any>,
+      type: [String, Object] as PropType<any>,
       default: null
     }
   },
