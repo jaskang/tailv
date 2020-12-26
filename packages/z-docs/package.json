@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "elenext": "^0.12.1",
+    "@elenext/icons": "^0.12.1",
     "vue": "^3.0.4",
     "vue-router": "^4.0.1"
   },

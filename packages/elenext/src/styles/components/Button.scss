@@ -21,6 +21,10 @@
   border: 1px solid var.$button-default-border-color;
   color: var.$button-default-font-color;
 
+  > .el-icon + span {
+    margin-left: 4px;
+  }
+
   @include button.button-size(var.$button-font-size, var.$global-row-height, 4px);
   & + & {
     margin-left: 10px;

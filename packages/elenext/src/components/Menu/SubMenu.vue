@@ -15,8 +15,8 @@
         {{ title }}
       </slot>
       <span class="el-sub-menu__arrow">
-        <Icon v-if="state.root.mode === 'vertical'" type="chevron-up" />
-        <Icon v-if="state.root.mode === 'popper'" type="chevron-right" />
+        <IconChevronUp v-if="state.root.mode === 'vertical'" />
+        <IconChevronRight v-if="state.root.mode === 'popper'" />
       </span>
     </div>
     <template v-if="state.root.mode !== 'vertical'">
@@ -62,7 +62,7 @@ import {
   watchEffect
 } from 'vue'
 import { mergeClass, colorLighten } from '@elenext/shared'
-import { Icon } from '../Icon'
+import { IconChevronUp, IconChevronRight } from '@elenext/icons'
 import { CollapseTransition } from '../Transition'
 import { Popper } from '../Popper'
 import { MenuState, MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
@@ -73,7 +73,8 @@ const SubMenu = defineComponent({
   components: {
     CollapseTransition,
     Popper,
-    Icon
+    IconChevronUp,
+    IconChevronRight
   },
   props: {
     title: propTypes.string('')

@@ -176,11 +176,24 @@ wrapperClass: md-button
 <template>
   <Row>
     <Col>
-      <Button color="primary" icon="plus-square" @click="testclick"> IconPlusSquare </Button>
-      <Button color="primary" icon="trash"> IconTrash </Button>
-      <Button color="primary" icon="pencil-square"> IconPencilSquare </Button>
-      <Button color="primary" icon="search">IconSearch </Button>
-      <Button color="primary" icon="upload">上传 </Button>
+      <Button color="primary" @click="testclick">
+        <template #icon><IconPlusCircle /></template>
+      </Button>
+      <Button color="primary">
+        <template #icon><IconDashCircle /></template>
+      </Button>
+      <Button color="primary">
+        <template #icon><IconSearch /></template>
+      </Button>
+      <Button color="primary">
+        <template #icon><IconPencil /></template>
+      </Button>
+      <Button color="primary">
+        <template #icon><IconSearch /></template>IconSearch
+      </Button>
+      <Button color="primary">
+        <template #icon><IconUpload /></template>IconUpload
+      </Button>
     </Col>
   </Row>
 </template>
@@ -206,13 +219,24 @@ export default defineComponent({
 ```vue demo
 <template>
   <Button-group>
-    <Button color="primary" icon="el-icon-arrow-left">上一页</Button>
-    <Button color="primary">下一页</Button>
+    <Button color="primary">
+      <template #icon><IconChevronLeft /></template>上一页
+    </Button>
+    <Button color="primary"> 下一页 <IconChevronRight /> </Button>
   </Button-group>
   <Button-group>
-    <Button color="primary" icon="trash"> </Button>
-    <Button color="primary" icon="pencil-square"> </Button>
-    <Button color="primary" icon="plus-square"> </Button>
+    <Button color="primary">
+      <template #icon><IconPlus /></template>
+    </Button>
+    <Button color="primary">
+      <template #icon><IconPencil /></template>
+    </Button>
+    <Button color="primary">
+      <template #icon><IconTrash /></template>
+    </Button>
+    <Button color="primary">
+      <template #icon><IconDash /></template>
+    </Button>
   </Button-group>
 </template>
 ```

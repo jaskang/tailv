@@ -2,7 +2,7 @@
   <button :disabled="disabled" :type="nativeType" :class="classes" @click="clickHandler">
     <IconArrowClockwise v-if="loading" spin />
     <slot v-if="!loading" name="icon" />
-    <span><slot /></span>
+    <span v-if="hasDefaultSlot"><slot /></span>
   </button>
 </template>
 
@@ -29,7 +29,7 @@ const Button = defineComponent({
     disabled: propTypes.boolean()
   },
   emits: ['click'],
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     const classes = computed(() =>
       mergeClass(cls, [
         // link 类型不需要颜色
@@ -49,7 +49,8 @@ const Button = defineComponent({
     }
     return {
       classes,
-      clickHandler
+      clickHandler,
+      hasDefaultSlot: slots.default
     }
   }
 })
