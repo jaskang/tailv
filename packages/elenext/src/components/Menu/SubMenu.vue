@@ -90,6 +90,7 @@ const SubMenu = defineComponent({
       uidPath: [...menuProvider.uidPath, self.uid],
       deep: menuProvider.deep + 1,
       isOpen: menuProvider.root.openedSet.has(self.uid),
+      isHover: false,
       isActive: menuProvider.root.activePath.indexOf(self.uid) !== -1,
       isPopper: menuProvider.root.mode !== 'vertical' && menuProvider.deep + 1 > 1
     })
@@ -98,7 +99,6 @@ const SubMenu = defineComponent({
       state.isActive = menuProvider.root.activePath.indexOf(self.uid) !== -1
       state.isPopper = menuProvider.root.mode !== 'vertical' && menuProvider.deep + 1 > 1
     })
-    const isHover = ref(false)
 
     const styles = computed<CSSProperties>(() => {
       const mode = state.root.mode
@@ -106,10 +106,10 @@ const SubMenu = defineComponent({
         color: state.isActive ? state.root.activeTextColor : state.root.textColor,
         backgroundColor:
           state.root.mode === 'vertical'
-            ? isHover.value
+            ? state.isHover
               ? state.root.activeBackgroundColor
               : state.root.backgroundColor
-            : state.isActive || state.isOpen || isHover.value
+            : state.isActive || state.isOpen || state.isHover
             ? state.root.activeBackgroundColor
             : state.root.backgroundColor,
         borderColor: mode === 'horizontal' && state.isActive ? state.root.activeTextColor : 'transparent',
@@ -117,8 +117,8 @@ const SubMenu = defineComponent({
       }
     })
 
-    const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
-    const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
+    const mouseenterHandler = (event: MouseEvent) => (state.isHover = true)
+    const mouseleaveHandler = (event: MouseEvent) => (state.isHover = false)
 
     const titleClickHandler = (event: MouseEvent) => {
       if (state.root.mode === 'vertical') {

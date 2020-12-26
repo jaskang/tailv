@@ -123,7 +123,6 @@ const Popper = defineComponent({
     watch(realVisible, () => {
       emit('change', realVisible.value)
       emit('update:modelValue', realVisible.value)
-      console.log(realVisible.value)
       if (realVisible.value) {
         // 更新样式
         state.instance?.update()

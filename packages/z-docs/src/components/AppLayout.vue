@@ -3,10 +3,10 @@
     <Layout>
       <Aside class="demo-aside">
         <HelloWorld msg="Elenext UI" />
-        <Menu mode="vertical">
+        <Menu mode="vertical" :current-path="route.path">
           <template v-for="menu in menus" :key="menu.title">
             <MenuItemGroup :title="menu.title">
-              <MenuItem v-for="item in menu.items" :key="item" @click="push({ name: item })">
+              <MenuItem v-for="item in menu.items" :key="item" :path="`/${item}`">
                 {{ item }}
               </MenuItem>
             </MenuItemGroup>
@@ -22,8 +22,8 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useRouter, RouteLocationRaw } from 'vue-router'
+import { defineComponent, watchEffect } from 'vue'
+import { useRouter, useRoute, RouteLocationRaw } from 'vue-router'
 import menus from '../menus'
 import HelloWorld from './HelloWorld.vue'
 export default defineComponent({
@@ -33,11 +33,16 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const route = useRoute()
+    watchEffect(() => {
+      console.log(route.path)
+    })
     const push = (e: RouteLocationRaw) => {
       router.push(e)
     }
     return {
       push,
+      route,
       menus
     }
   }

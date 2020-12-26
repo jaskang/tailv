@@ -16,6 +16,7 @@ export type MenuState = {
     backgroundColor: string
     activeBackgroundColor: string
     // ====== 路径 ======
+    children: Array<MenuState>
     activeId: number
     activePath: number[]
     openedSet: Set<number>
@@ -23,13 +24,15 @@ export type MenuState = {
       select: (node: MenuState) => void
     }
   }
+  path?: string
   type: MENU_TYPE
   uid: number
   uidPath: number[]
   deep: number
-  isPopper: boolean
   isOpen: boolean
+  isHover: boolean
   isActive: boolean
+  isPopper: boolean
 }
 
 export const MENU_IJK: InjectionKey<UnwrapRef<MenuState>> = Symbol('Menu')

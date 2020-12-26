@@ -21,6 +21,8 @@ import {
   getCurrentInstance,
   inject,
   onBeforeUnmount,
+  onMounted,
+  onUnmounted,
   PropType,
   reactive,
   ref,
@@ -29,27 +31,28 @@ import {
 import { mergeClass, colorLighten } from '@elenext/shared'
 import { getCompName } from '../../utils'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
+import { propTypes } from 'src/utils/PropTypes'
 
 const MenuItem = defineComponent({
   name: getCompName('MenuItem'),
   props: {
-    path: {
-      type: [String, Object] as PropType<any>,
-      default: null
-    }
+    path: propTypes.string()
   },
   emits: ['click'],
   setup(props, { emit }) {
     const self = getCurrentInstance()
+
     const menuProvider = inject(MENU_IJK)
 
     const state = reactive({
       root: menuProvider.root,
+      path: props.path,
       type: MENU_TYPE.ITEM,
       uid: self.uid,
       uidPath: [...menuProvider.uidPath, self.uid],
       deep: menuProvider.deep + 1,
       isOpen: false,
+      isHover: false,
       isActive: menuProvider.root.activeId === self.uid,
       isPopper: menuProvider.root.mode !== 'vertical' && menuProvider.type === MENU_TYPE.SUB
     })
@@ -57,14 +60,13 @@ const MenuItem = defineComponent({
       state.isActive = menuProvider.root.activeId === self.uid
       state.isPopper = menuProvider.root.mode !== 'vertical' && menuProvider.type === MENU_TYPE.SUB
     })
-    const isHover = ref(false)
 
     const styles = computed<CSSProperties>(() => {
       const mode = state.root.mode
       return {
         color: state.isActive ? state.root.activeTextColor : state.root.textColor,
         backgroundColor:
-          state.isActive || isHover.value ? state.root.activeBackgroundColor : state.root.backgroundColor,
+          state.isActive || state.isHover ? state.root.activeBackgroundColor : state.root.backgroundColor,
         borderColor: !state.isPopper && state.isActive ? state.root.activeTextColor : 'transparent',
         paddingLeft: state.isPopper ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
       }
@@ -78,9 +80,17 @@ const MenuItem = defineComponent({
         router.push(props.path)
       }
     }
-    const mouseenterHandler = (event: MouseEvent) => (isHover.value = true)
-    const mouseleaveHandler = (event: MouseEvent) => (isHover.value = false)
+    const mouseenterHandler = (event: MouseEvent) => (state.isHover = true)
+    const mouseleaveHandler = (event: MouseEvent) => (state.isHover = false)
 
+    onMounted(() => {
+      menuProvider.root.children.push(state)
+    })
+
+    onUnmounted(() => {
+      const index = menuProvider.root.children.indexOf(state)
+      menuProvider.root.children.splice(index, 1)
+    })
     return {
       state,
       styles,

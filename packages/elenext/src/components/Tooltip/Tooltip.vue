@@ -1,6 +1,6 @@
 <template>
   <Popper
-    arrow
+    visible-arrow
     :background-color="backgroundColor"
     :model-value="modelValue"
     :popper-class="classes"

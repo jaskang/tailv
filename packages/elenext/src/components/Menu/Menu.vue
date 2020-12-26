@@ -6,7 +6,18 @@
 
 <script lang="ts">
 import { mergeClass } from '@elenext/shared'
-import { App, computed, defineComponent, getCurrentInstance, PropType, provide, reactive, ref } from 'vue'
+import {
+  App,
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  PropType,
+  provide,
+  reactive,
+  ref,
+  watch,
+  watchEffect
+} from 'vue'
 import { getBlockCls, getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 import { MenuState, MENU_IJK, MENU_TYPE } from './core'
@@ -20,7 +31,8 @@ const Menu = defineComponent({
     backgroundColor: propTypes.hexColor('#fff'),
     activeTextColor: propTypes.hexColor('#409EFF'),
     activeBackgroundColor: propTypes.hexColor('#ecf5ff'),
-    uniqueOpened: Boolean
+    uniqueOpened: Boolean,
+    currentPath: propTypes.string()
   },
   setup(props) {
     const self = getCurrentInstance()
@@ -31,6 +43,7 @@ const Menu = defineComponent({
         activeTextColor: props.activeTextColor,
         backgroundColor: props.backgroundColor,
         activeBackgroundColor: props.activeBackgroundColor,
+        children: [],
         activeId: -1,
         activePath: [],
         openedSet: new Set(),
@@ -58,13 +71,18 @@ const Menu = defineComponent({
       uid: self.uid,
       uidPath: [self.uid],
       deep: 0,
-      isPopper: false,
       isOpen: false,
-      isActive: false
+      isHover: false,
+      isActive: false,
+      isPopper: false
     })
-
+    watchEffect(() => {
+      const activeChild = state.root.children.filter(item => item.path === props.currentPath)
+      if (props.currentPath && activeChild.length > 0) {
+        state.root.methods.select(activeChild[0])
+      }
+    })
     provide(MENU_IJK, state)
-
     return { state }
   }
 })
