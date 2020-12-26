@@ -1,6 +1,6 @@
 {
   "name": "@elenext/icons",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/icons.esm.js",
@@ -15,7 +15,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@elenext/shared": "^0.12.0"
+    "@elenext/shared": "^0.13.0"
   },
   "peerDependencies": {
     "vue": "^3.0.3"
