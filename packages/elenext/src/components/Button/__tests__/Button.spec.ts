@@ -1,5 +1,4 @@
 import { mount } from '@vue/test-utils'
-// import { IconPlusCircle } from '@elenext/icons'
 import { Button } from '../'
 
 // const { mount } = require('@vue/test-utils')

@@ -176,33 +176,17 @@ wrapperClass: md-button
 <template>
   <Row>
     <Col>
-      <Button color="primary" @click="testclick">
-        <template #icon><IconPlusSquare /></template>
-        IconPlusSquare
-      </Button>
-      <Button color="primary">
-        <template #icon> <IconTrash /></template>IconTrash
-      </Button>
-      <Button color="primary">
-        <template #icon><IconPencilSquare /></template>IconPencilSquare
-      </Button>
-      <Button color="primary">
-        <template #icon><IconSearch /></template>IconSearch
-      </Button>
-      <Button color="primary"> <template #icon></template> 上传<i class="el-icon-upload el-icon--right"></i> </Button>
+      <Button color="primary" icon="plus-square" @click="testclick"> IconPlusSquare </Button>
+      <Button color="primary" icon="trash"> IconTrash </Button>
+      <Button color="primary" icon="pencil-square"> IconPencilSquare </Button>
+      <Button color="primary" icon="search">IconSearch </Button>
+      <Button color="primary" icon="upload">上传 </Button>
     </Col>
   </Row>
 </template>
 <script>
 import { defineComponent } from 'vue'
-import { IconPlusSquare, IconTrash, IconPencilSquare, IconSearch } from '@elenext/icons'
 export default defineComponent({
-  components: {
-    IconPlusSquare,
-    IconTrash,
-    IconPencilSquare,
-    IconSearch
-  },
   setup() {
     const testclick = () => {
       alert('testclick111222')
@@ -226,28 +210,11 @@ export default defineComponent({
     <Button color="primary">下一页</Button>
   </Button-group>
   <Button-group>
-    <Button color="primary">
-      <template #icon><IconTrash /></template>
-    </Button>
-    <Button color="primary">
-      <template #icon><IconPencilSquare /></template>
-    </Button>
-    <Button color="primary" icon="el-icon-delete">
-      <template #icon><IconPlusSquare /></template>
-    </Button>
+    <Button color="primary" icon="trash"> </Button>
+    <Button color="primary" icon="pencil-square"> </Button>
+    <Button color="primary" icon="plus-square"> </Button>
   </Button-group>
 </template>
-<script>
-import { defineComponent } from 'vue'
-import { IconPlusSquare, IconTrash, IconPencilSquare } from '@elenext/icons'
-export default defineComponent({
-  components: {
-    IconPlusSquare,
-    IconTrash,
-    IconPencilSquare
-  }
-})
-</script>
 ```
 
 ## Attributes
