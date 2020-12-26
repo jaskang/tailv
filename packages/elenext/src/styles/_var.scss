@@ -20,6 +20,11 @@ $global-font-size-large: 16px !default;
 $global-font-size-base: 14px !default;
 $global-font-size-small: 12px !default;
 
+$global-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default;
+
+$global-line-height: 1.5;
+
 $global-row-height-large: 40px !default;
 $global-row-height: 32px !default;
 $global-row-height-small: 28px !default;
@@ -110,3 +115,14 @@ $tooltip-color: $color-white;
 $tooltip-font-size: $global-font-size-small;
 $tooltip-background-color: $global-color-text-primary;
 $tooltip-index: $global-index-popper;
+
+// =================================================
+// Alert
+// =================================================
+
+$alert-padding: 8px 16px !default;
+$alert-border-radius: $global-border-radius-base !default;
+$alert-icon-size: 16px !default;
+$alert-title-font-size: 13px !default;
+$alert-close-font-size: 13px !default;
+$alert-description-font-size: 12px !default;

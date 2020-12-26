@@ -1,0 +1,129 @@
+@use '../var';
+@use '../mixins/tools';
+
+.el-alert {
+  width: 100%;
+  padding: var.$alert-padding;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: var.$alert-border-radius;
+  position: relative;
+  background-color: var.$color-white;
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+
+  &.is-light {
+    .el-alert__closebtn {
+      color: var.$global-color-text-placeholder;
+    }
+  }
+
+  &.is-dark {
+    .el-alert__closebtn {
+      color: var.$color-white;
+    }
+    .el-alert__description {
+      color: var.$color-white;
+    }
+  }
+
+  &--success {
+    &.is-light {
+      background-color: mix(var.$color-white, var.$color-success, 90%);
+      color: var.$color-success;
+      .el-alert__description {
+        color: var.$color-success;
+      }
+    }
+
+    &.is-dark {
+      background-color: var.$color-success;
+      color: var.$color-white;
+    }
+  }
+
+  &--info {
+    &.is-light {
+      background-color: mix(var.$color-white, var.$color-info, 90%);
+      color: var.$color-info;
+    }
+
+    &.is-dark {
+      background-color: var.$color-info;
+      color: var.$color-white;
+    }
+
+    .el-alert__description {
+      color: var.$color-info;
+    }
+  }
+
+  &--warning {
+    &.is-light {
+      background-color: mix(var.$color-white, var.$color-warning, 90%);
+      color: var.$color-warning;
+
+      .el-alert__description {
+        color: var.$color-warning;
+      }
+    }
+
+    &.is-dark {
+      background-color: var.$color-warning;
+      color: var.$color-white;
+    }
+  }
+
+  &--error {
+    &.is-light {
+      background-color: mix(var.$color-white, var.$color-danger, 90%);
+      color: var.$color-danger;
+
+      .el-alert__description {
+        color: var.$color-danger;
+      }
+    }
+
+    &.is-dark {
+      background-color: var.$color-danger;
+      color: var.$color-white;
+    }
+  }
+
+  &__icon {
+    font-size: var.$alert-icon-size;
+    width: var.$alert-icon-size;
+  }
+
+  &__content {
+    display: table-cell;
+    padding: 0 8px;
+  }
+
+  &__title {
+    font-size: var.$alert-title-font-size;
+    line-height: 18px;
+  }
+
+  &__description {
+    font-size: var.$alert-description-font-size;
+    margin: 5px 0 0 0;
+  }
+
+  &__closebtn {
+    font-size: var.$alert-close-font-size;
+    opacity: 1;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    cursor: pointer;
+  }
+}
+
+.el-alert-fade-enter,
+.el-alert-fade-leave-active {
+  opacity: 0;
+}

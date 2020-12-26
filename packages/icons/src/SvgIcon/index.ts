@@ -9,7 +9,7 @@ const iconStyles = `
   line-height: 0;
   text-align: center;
   text-transform: none;
-  vertical-align: -0.18em;
+  vertical-align: -0.143em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -49,7 +49,7 @@ const createSvgIcon = (compName: string, className: string, svgSource: string) =
       injectCss(injectCssId, iconStyles, true)
 
       return () =>
-        createVNode('span', {
+        createVNode('i', {
           class: {
             'el-icon': true,
             [`el-icon-${className}`]: true,

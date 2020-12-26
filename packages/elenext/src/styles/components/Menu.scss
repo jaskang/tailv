@@ -72,7 +72,13 @@
     line-height: 0;
   }
 }
-
+.el-sub-menu {
+  &__body {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}
 .el-menu--horizontal {
   .el-menu-item,
   .el-sub-menu__title {
@@ -120,6 +126,10 @@
       font-size: 12px;
       color: var.$global-color-text-placeholder;
     }
+    &__body {
+      padding: 0;
+      list-style: none;
+    }
   }
 }
 
@@ -151,6 +161,11 @@
       line-height: normal;
       font-size: 10px;
       color: var.$global-color-text-placeholder;
+    }
+    &__body {
+      padding: 0;
+      margin: 0;
+      list-style: none;
     }
   }
 }

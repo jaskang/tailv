@@ -8,7 +8,7 @@ import { Tooltip } from './components/Tooltip'
 import { Popover } from './components/Popover'
 import { Menu, SubMenu, MenuItem, MenuItemGroup } from './components/Menu'
 import { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb'
-import './styles/index.less'
+import { Alert } from './components/Alert'
 import './styles/index.scss'
 
 export {
@@ -25,6 +25,7 @@ export {
   Popover,
   Breadcrumb,
   BreadcrumbItem,
+  Alert,
   useBreakpoint
 }
 
@@ -61,5 +62,7 @@ export const elenext: Plugin = {
 
     useComponent(Breadcrumb)
     useComponent(BreadcrumbItem)
+
+    useComponent(Alert)
   }
 }
