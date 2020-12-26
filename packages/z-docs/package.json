@@ -8,8 +8,8 @@
     "test": "tsrv test"
   },
   "dependencies": {
-    "elenext": "^0.12.1",
-    "@elenext/icons": "^0.12.1",
+    "elenext": "^0.12.0",
+    "@elenext/icons": "^0.12.0",
     "vue": "^3.0.4",
     "vue-router": "^4.0.1"
   },

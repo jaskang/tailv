@@ -60,9 +60,11 @@ async function build() {
   ]
     .concat(components)
     .concat(
-      `export const regIcons = (app: any) => {
-      ${compNames.map(item => `app.component('${item}', ${item})`).join('\n')}
-  }`
+      `export const plugin = {
+        install: (app:any) => {
+          ${compNames.map(item => `app.component('${item}', ${item})`).join('\n')}
+        }
+      }`
     )
     .join('\n')
 
