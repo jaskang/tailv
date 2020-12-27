@@ -8,7 +8,6 @@
 <template>
   <Popover
     placement="top-start"
-    title="标题"
     width="200"
     trigger="hover"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
@@ -124,10 +123,12 @@ export default {
   <Popover placement="top" width="160" v-model="visible">
     <template #content>
       <p>这是一段内容这是一段内容确定删除吗？</p>
-      <div style="text-align: right; margin: 0">
-        <Button size="mini" type="text" @click="visible = false">取消</Button>
-        <Button type="primary" size="mini" @click="visible = false">确定</Button>
-      </div>
+      <Row justify="end" style="margin-top: 10px;">
+        <Col>
+          <Button type="link" size="small" @click="visible = false">取消</Button>
+          <Button color="primary" size="small" @click="visible = false">确定</Button>
+        </Col>
+      </Row>
     </template>
     <Button>删除</Button>
   </Popover>

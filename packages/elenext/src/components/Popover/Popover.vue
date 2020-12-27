@@ -1,7 +1,7 @@
 <template>
   <Popper :model-value="modelValue" :popper-class="classes" :trigger="trigger" @update:model-value="onChange">
     <template #content>
-      <div ref="popper" :style="{ width: width }" role="popper">
+      <div ref="popper" :style="{ width: width }" class="el-popover__content" role="popper">
         <div v-if="title" class="el-popover__title">
           {{ title }}
         </div>

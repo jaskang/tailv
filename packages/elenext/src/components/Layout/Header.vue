@@ -13,7 +13,7 @@ const Header = defineComponent({
   props: {
     height: {
       type: String,
-      default: '60px'
+      default: undefined
     }
   }
 })

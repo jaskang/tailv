@@ -1,4 +1,4 @@
-import { PropType } from 'vue'
+import { isRef, PropType, Ref } from 'vue'
 
 type HexColorType = `#${string}`
 
@@ -26,5 +26,16 @@ export const propTypes = {
   },
   oneOfString<T extends string>(value?: T) {
     return { type: (String as unknown) as PropType<T>, default: value }
+  },
+  ref<T = any>(value?: Ref<T>, options = {}) {
+    return {
+      type: Object as PropType<Ref<T>>,
+      default: value,
+      required: false,
+      validator: function (value: any) {
+        return isRef(value)
+      },
+      ...options
+    }
   }
 }

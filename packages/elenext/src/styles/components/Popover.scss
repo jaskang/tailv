@@ -1,0 +1,40 @@
+@use '../var';
+
+.el-popover {
+  position: absolute;
+  background: var.$popover-background-color;
+  min-width: 150px;
+  border-radius: 4px;
+  border: 1px solid var.$popover-border-color;
+  padding: var.$popover-padding;
+  line-height: 1.4;
+  text-align: justify;
+  font-size: var.$popover-font-size;
+  color: var.$global-color-text-regular;
+  box-shadow: var.$global-box-shadow-light;
+  z-index: var.$global-index-popper;
+  word-break: break-all;
+
+  // &--plain {
+  //   padding: var.$popover-padding-large;
+  // }
+
+  &__title {
+    color: var.$popover-title-font-color;
+    font-size: var.$popover-title-font-size;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  &__reference {
+    &:focus:not(.focusing),
+    &:focus:hover {
+      outline-width: 0;
+    }
+  }
+
+  &:focus:active,
+  &:focus {
+    outline-width: 0;
+  }
+}

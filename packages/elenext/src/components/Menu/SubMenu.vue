@@ -23,7 +23,6 @@
       <Popper
         popper-class="el-sub-menu"
         trigger="hover"
-        mode="outer"
         :placement="state.root.mode === 'popper' || state.deep > 1 ? 'right-start' : 'bottom'"
         :visible-arrow="false"
         :reference="titleElRef"

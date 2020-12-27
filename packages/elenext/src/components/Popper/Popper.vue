@@ -68,8 +68,7 @@ const Popper = defineComponent({
     trigger: propTypes.oneOfString<TriggerType>('hover'),
     transition: propTypes.string('el-popper-fade'),
     backgroundColor: propTypes.string(''),
-    mode: propTypes.oneOfString<'outer' | 'inner'>('inner'),
-    reference: propTypes.object<Element>()
+    reference: propTypes.object()
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
@@ -140,7 +139,7 @@ const Popper = defineComponent({
     )
     // 内部 reference 模式
     watchEffect(() => {
-      if (props.mode !== 'inner' && props.reference) {
+      if (props.reference) {
         if (isRef(props.reference) && props.reference.value) {
           referenceRef.value = props.reference.value as Element
         } else {
@@ -149,7 +148,7 @@ const Popper = defineComponent({
       }
     })
 
-    const referenceRefInitHandler = props.mode === 'inner' ? el => (referenceRef.value = el) : undefined
+    const referenceRefInitHandler = props.reference ? undefined : el => (referenceRef.value = el)
     const popperRefInitHandler = el => (popperRef.value = el || null)
     const arrowRefInitHandler = el => (arrowRef.value = el || null)
 

@@ -10,9 +10,11 @@
     @change="visibleHandler"
   >
     <template #content>
-      <slot name="content">
-        {{ content }}
-      </slot>
+      <div class="el-tooltip__content">
+        <slot name="content">
+          {{ content }}
+        </slot>
+      </div>
     </template>
     <slot />
   </Popper>

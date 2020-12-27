@@ -117,6 +117,19 @@ $tooltip-background-color: $global-color-text-primary;
 $tooltip-index: $global-index-popper;
 
 // =================================================
+// Popover
+// =================================================
+
+$popover-padding: 12px !default;
+$popover-padding-large: 18px 20px !default;
+$popover-background-color: $color-white;
+$popover-border-color: $global-border-color-lighter !default;
+$popover-font-size: $global-font-size-base !default;
+$popover-title-font-size: $global-font-size-large !default;
+$popover-title-font-color: $global-color-text-primary !default;
+$popover-index: $global-index-popper;
+
+// =================================================
 // Alert
 // =================================================
 

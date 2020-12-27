@@ -1,4 +1,5 @@
 @use '../var';
+@use '../mixins/tools';
 
 @mixin el-menu-item--horizontal($height) {
   display: inline-block;
@@ -67,6 +68,7 @@
   box-shadow: none;
   background-color: transparent;
   text-align: left;
+  // @include tools.clearfix();
   .el-sub-menu {
     font-size: 0;
     line-height: 0;
@@ -80,6 +82,7 @@
   }
 }
 .el-menu--horizontal {
+  display: flex;
   .el-menu-item,
   .el-sub-menu__title {
     @include el-menu-item--horizontal(50px);

@@ -61,18 +61,17 @@ export default {
 
 ### Props
 
-| 参数                 | 说明                                                | 类型                             | 默认值            |
-| -------------------- | --------------------------------------------------- | -------------------------------- | ----------------- |
-| mode-value / v-model | 状态是否可见                                        | Boolean                          | false             |
-| popper-class         | 为 Popper 添加类名                                  | String                           | -                 |
-| visible-arrow        | 是否显示 Popper 箭头，                              | Boolean                          | true              |
-| placement            | Popper 的出现位置                                   | [PlacementType](#placementtype)  | 'bottom'          |
-| offset               | 出现位置的偏移量                                    | Number                           | 0                 |
-| trigger              | 控制模式                                            | 'click'/'hover'/'focus'/'manual' | 'hover'           |
-| transition           | 定义渐变动画                                        | String                           | el-fade-in-linear |
-| background-color     | 背景颜色                                            | String                           | -                 |
-| mode                 | outer 模式需指定一个外部元素做为 popper 的定位元素  | 'outer'/'inner'                  | 'inner'           |
-| reference            | outer 模式下的定位元素，popper 讲显示在定位元素周围 | String                           | -                 |
+| 参数                 | 说明                                                         | 类型                             | 默认值            |
+| -------------------- | ------------------------------------------------------------ | -------------------------------- | ----------------- |
+| mode-value / v-model | 状态是否可见                                                 | Boolean                          | false             |
+| popper-class         | 为 Popper 添加类名                                           | String                           | -                 |
+| visible-arrow        | 是否显示 Popper 箭头，                                       | Boolean                          | true              |
+| placement            | Popper 的出现位置                                            | [PlacementType](#placementtype)  | 'bottom'          |
+| offset               | 出现位置的偏移量                                             | Number                           | 0                 |
+| trigger              | 控制模式                                                     | 'click'/'hover'/'focus'/'manual' | 'hover'           |
+| transition           | 定义渐变动画                                                 | String                           | el-fade-in-linear |
+| background-color     | 背景颜色                                                     | String                           | -                 |
+| reference            | 指定 reference 模式下的定位元素，popper 讲显示在定位元素周围 | String                           | -                 |
 
 #### PlacementType
 

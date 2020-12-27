@@ -13,11 +13,27 @@
           </template>
         </Menu>
       </Aside>
-      <Main>
-        <div class="site-content">
-          <router-view />
-        </div>
-      </Main>
+      <Layout>
+        <Header class="demo-header">
+          <Row>
+            <Col flex="1" />
+            <Col>
+              <Menu mode="horizontal">
+                <MenuItem><i class="el-icon-location" />导航一</MenuItem>
+                <MenuItem><i class="el-icon-document" />导航三</MenuItem>
+                <MenuItem>
+                  <a href="https://github.com/JasKang/elenext" target="__blank">GitHub</a>
+                </MenuItem>
+              </Menu>
+            </Col>
+          </Row>
+        </Header>
+        <Main>
+          <div class="site-content">
+            <router-view />
+          </div>
+        </Main>
+      </Layout>
     </Layout>
   </div>
 </template>
@@ -81,8 +97,9 @@ export default defineComponent({
 }
 .demo-aside {
   border-right: solid 1px #e6e6e6;
-  .el-menu {
-    border: none;
-  }
+}
+.demo-header {
+  border-bottom: solid 1px #e6e6e6;
+  // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 </style>
