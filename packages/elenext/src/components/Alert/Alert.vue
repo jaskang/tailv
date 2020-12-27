@@ -1,6 +1,11 @@
 <template>
   <transition name="el-alert-fade">
-    <div class="el-alert" :class="[`el-alert--${type}`, 'is-' + effect]" v-show="state.visible" role="alert">
+    <div
+      v-show="state.visible"
+      class="el-alert"
+      :class="[`el-alert--${type}`, hasDescription ? 'is-large' : '', 'is-' + effect]"
+      role="alert"
+    >
       <div v-if="$slots.icon || type" class="el-alert__icon">
         <slot name="icon">
           <IconCheckCircleFill v-if="type === 'success'" />
@@ -13,7 +18,7 @@
         <span v-if="title || $slots.title" class="el-alert__title">
           <slot name="title">{{ title }}</slot>
         </span>
-        <p v-if="$slots.default || description" class="el-alert__description">
+        <p v-if="hasDescription" class="el-alert__description">
           <slot>{{ description }}</slot>
         </p>
         <span v-show="closable" class="el-alert__closebtn" @click="closeHandler">
@@ -24,7 +29,7 @@
   </transition>
 </template>
 <script lang="ts">
-import { App, defineComponent, reactive } from 'vue'
+import { App, computed, defineComponent, reactive } from 'vue'
 import {
   IconInfoCircleFill,
   IconExclamationCircleFill,
@@ -55,12 +60,16 @@ const Alert = defineComponent({
     const state = reactive({
       visible: true
     })
+    const hasDescription = computed(() => {
+      return slots.default || props.description
+    })
     const closeHandler = (e: MouseEvent) => {
       emit('close', e)
       state.visible = false
     }
     return {
       state,
+      hasDescription,
       closeHandler
     }
   }

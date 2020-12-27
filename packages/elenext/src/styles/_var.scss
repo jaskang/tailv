@@ -122,7 +122,8 @@ $tooltip-index: $global-index-popper;
 
 $alert-padding: 8px 16px !default;
 $alert-border-radius: $global-border-radius-base !default;
-$alert-icon-size: 16px !default;
-$alert-title-font-size: 13px !default;
-$alert-close-font-size: 13px !default;
-$alert-description-font-size: 12px !default;
+$alert-icon-size: $global-font-size-large !default;
+$alert-icon-size-large: $global-font-size-base * 2 !default;
+$alert-title-font-size: $global-font-size-base !default;
+$alert-close-font-size: $global-font-size-large !default;
+$alert-description-font-size: $global-font-size-small !default;

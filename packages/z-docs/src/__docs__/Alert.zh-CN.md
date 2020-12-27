@@ -6,22 +6,24 @@
 
 页面中的非浮层元素，不会自动消失。
 
-Alert 组件提供四种主题，由`type`属性指定，默认值为`info`。
+Alert 组件提供四种类型，'success' | 'warning' | 'info' | 'error'，默认值为`info`。
+
+通过设置`type`属性来改变类型，默认为`info`。
 
 ```vue demo
 <template>
   <Row :gutter="[10, 10]">
     <Col :span="24">
-      <Alert title="成功提示的文案" type="success"> </Alert>
+      <Alert title="成功提示的文案" type="success" />
     </Col>
     <Col :span="24">
-      <Alert title="消息提示的文案" type="info"> </Alert>
+      <Alert title="消息提示的文案" type="info" />
     </Col>
     <Col :span="24">
-      <Alert title="警告提示的文案" type="warning"> </Alert>
+      <Alert title="警告提示的文案" type="warning" />
     </Col>
     <Col :span="24">
-      <Alert title="错误提示的文案" type="error"> </Alert>
+      <Alert title="错误提示的文案" type="error" />
     </Col>
   </Row>
 </template>
@@ -37,16 +39,16 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 <template>
   <Row :gutter="[10, 10]">
     <Col :span="24">
-      <Alert title="成功提示的文案" type="success" effect="dark"> </Alert>
+      <Alert title="成功提示的文案" type="success" effect="dark" />
     </Col>
     <Col :span="24">
-      <Alert title="消息提示的文案" type="info" effect="dark"> </Alert>
+      <Alert title="消息提示的文案" type="info" effect="dark" />
     </Col>
     <Col :span="24">
-      <Alert title="警告提示的文案" type="warning" effect="dark"> </Alert>
+      <Alert title="警告提示的文案" type="warning" effect="dark" />
     </Col>
     <Col :span="24">
-      <Alert title="错误提示的文案" type="error" effect="dark"> </Alert>
+      <Alert title="错误提示的文案" type="error" effect="dark" />
     </Col>
     <Col :span="24"> </Col>
   </Row>
@@ -63,13 +65,13 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 <template>
   <Row :gutter="[10, 10]">
     <Col :span="24">
-      <Alert title="不可关闭的 alert" type="success" :closable="false"> </Alert>
+      <Alert title="不可关闭的 alert" type="success" :closable="false" />
     </Col>
     <Col :span="24">
-      <Alert title="自定义 close-text" type="info" close-text="知道了"> </Alert>
+      <Alert title="自定义 close-text" type="info" close-text="知道了" />
     </Col>
     <Col :span="24">
-      <Alert title="设置了回调的 alert" type="warning" @close="hello"> </Alert>
+      <Alert title="设置了回调的 alert" type="warning" @close="hello" />
     </Col>
   </Row>
 </template>
@@ -88,45 +90,20 @@ export default {
 
 表示某种状态时提升可读性。
 
-通过设置`show-icon`属性来显示 Alert 的 icon，这能更有效地向用户展示你的显示意图。
+通过设置 具名 slot `name` 显示自定义 Alert 的 icon，这能更有效地向用户展示你的显示意图。
 
 ```vue demo
 <template>
   <Row :gutter="[10, 10]">
     <Col :span="24">
-      <Alert title="成功提示的文案" type="success" show-icon> </Alert>
+      <Alert title="添加成功" type="success">
+        <template #icon><IconPlus /></template>
+      </Alert>
     </Col>
     <Col :span="24">
-      <Alert title="消息提示的文案" type="info" show-icon> </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert title="警告提示的文案" type="warning" show-icon> </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert title="错误提示的文案" type="error" show-icon> </Alert>
-    </Col>
-  </Row>
-</template>
-```
-
-### 文字居中
-
-使用 `center` 属性让文字水平居中。
-
-```vue demo
-<template>
-  <Row :gutter="[10, 10]">
-    <Col :span="24">
-      <Alert title="成功提示的文案" type="success" center show-icon> </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert title="消息提示的文案" type="info" center show-icon> </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert title="警告提示的文案" type="warning" center show-icon> </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert title="错误提示的文案" type="error" center show-icon> </Alert>
+      <Alert title="删除了" type="error">
+        <template #icon><IconTrash /></template>
+      </Alert>
     </Col>
   </Row>
 </template>
@@ -138,58 +115,23 @@ export default {
 
 除了必填的`title`属性外，你可以设置`description`属性来帮助你更好地介绍，我们称之为辅助性文字。辅助性文字只能存放单行文本，会自动换行显示。
 
-```vue demo
-<template>
-  <Alert
-    title="带辅助性文字介绍"
-    type="success"
-    description="这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。 黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰……"
-  >
-  </Alert>
-</template>
-```
-
-### 带有 icon 和辅助性文字介绍
-
-最后，这是一个同时具有 icon 和辅助性文字的样例。
+同样也可以使用默认 slot 来代替 description 属性
 
 ```vue demo
 <template>
   <Row :gutter="[10, 10]">
     <Col :span="24">
       <Alert
-        title="成功提示的文案"
+        title="带辅助性文字介绍"
         type="success"
-        description="文字说明文字说明文字说明文字说明文字说明文字说明"
-        show-icon
+        description="这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。 黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰……"
       >
       </Alert>
     </Col>
     <Col :span="24">
-      <Alert
-        title="消息提示的文案"
-        type="info"
-        description="文字说明文字说明文字说明文字说明文字说明文字说明"
-        show-icon
-      >
-      </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert
-        title="警告提示的文案"
-        type="warning"
-        description="文字说明文字说明文字说明文字说明文字说明文字说明"
-        show-icon
-      >
-      </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert
-        title="错误提示的文案"
-        type="error"
-        description="文字说明文字说明文字说明文字说明文字说明文字说明"
-        show-icon
-      >
+      <Alert title="带辅助性文字介绍" type="warning">
+        这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。
+        黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰
       </Alert>
     </Col>
   </Row>
@@ -204,17 +146,14 @@ export default {
 | type        | 主题                               | string  | success/warning/info/error | info   |
 | description | 辅助性文字。也可通过默认 slot 传入 | string  | —                          | —      |
 | closable    | 是否可关闭                         | boolean | —                          | true   |
-| center      | 文字是否居中                       | boolean | —                          | true   |
-| close-text  | 关闭按钮自定义文本                 | string  | —                          | —      |
-| show-icon   | 是否显示图标                       | boolean | —                          | false  |
 | effect      | 选择提供的主题                     | string  | light/dark                 | light  |
 
 ### Slot
 
-| Name        | Description |
-| ----------- | ----------- |
-| description | 描述        |
-| title       | 标题的内容  |
+| Name    | Description         |
+| ------- | ------------------- |
+| defalut | 同 description 属性 |
+| title   | 标题的内容          |
 
 ### Events
 
