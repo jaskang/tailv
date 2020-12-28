@@ -79,7 +79,8 @@ describe('EAside', () => {
         <EAside></EAside>
       </ELayout>`
     })
-    expect(wrapper.findComponent('EAside')).not.toBeNull()
+    expect(wrapper.find('.el-aside').element).not.toBeNull()
+    expect(wrapper.find<HTMLElement>('.el-aside').element.style.width).toEqual('250px')
   })
 
   test('width', () => {
@@ -89,6 +90,7 @@ describe('EAside', () => {
         <EAside width="200px"></EAside>
       </ELayout>`
     })
-    expect(wrapper.findComponent('EAside').vm.$el.style.width).toEqual('200px')
+
+    expect(wrapper.find<HTMLElement>('.el-aside').element.style.width).toEqual('200px')
   })
 })
