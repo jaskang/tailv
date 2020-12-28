@@ -35,7 +35,7 @@ interface UsePopperOptions {
 
 interface usePopperState {
   instance: PopperInstance | null
-  teleportEl: HTMLElement
+  popperId: string
   attrs: {
     styles: any
     attributes: Record<string, any>
@@ -49,13 +49,13 @@ export const fromEntries = (entries: Array<[string, any]>) =>
   }, {})
 
 export const usePopper = (props: UsePopperOptions) => {
-  const teleportEl = createEl(uniqueId('el-popper'))
+  const popperId = uniqueId('el-popper')
   const { referenceRef, popperRef } = props
   const timers = { showTimer: null, hideTimer: null }
 
   const state = reactive<usePopperState>({
     instance: null,
-    teleportEl: teleportEl,
+    popperId,
     attrs: {
       styles: {
         popper: {
@@ -102,18 +102,18 @@ export const usePopper = (props: UsePopperOptions) => {
 
   const togglePopper = (event: MouseEvent) => {
     event.stopPropagation()
-    props.onTrigger(teleportEl.id)
+    props.onTrigger(popperId)
   }
   const showPopper = () => {
     clearScheduled()
     timers.showTimer = setTimeout(() => {
-      props.onTrigger(teleportEl.id, true)
+      props.onTrigger(popperId, true)
     }, 0)
   }
   const hidePopper = () => {
     clearScheduled()
     timers.hideTimer = setTimeout(() => {
-      props.onTrigger(teleportEl.id, false)
+      props.onTrigger(popperId, false)
     }, props.hideDaly || 200)
   }
   const outSideClickHandler = (event: MouseEvent) => {
@@ -188,7 +188,6 @@ export const usePopper = (props: UsePopperOptions) => {
     if (state.instance) {
       state.instance.destroy()
     }
-    removeEl(teleportEl)
   })
 
   return state

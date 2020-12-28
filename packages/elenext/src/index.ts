@@ -9,6 +9,7 @@ import { Popover } from './components/Popover'
 import { Menu, SubMenu, MenuItem, MenuItemGroup } from './components/Menu'
 import { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb'
 import { Alert } from './components/Alert'
+import { Pagination } from './components/Pagination'
 import './styles/index.scss'
 
 export {
@@ -26,6 +27,7 @@ export {
   Breadcrumb,
   BreadcrumbItem,
   Alert,
+  Pagination,
   useBreakpoint
 }
 
@@ -64,5 +66,6 @@ export const elenext: Plugin = {
     useComponent(BreadcrumbItem)
 
     useComponent(Alert)
+    useComponent(Pagination)
   }
 }

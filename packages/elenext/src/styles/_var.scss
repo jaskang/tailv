@@ -14,8 +14,6 @@ $global-color-text-primary: #303133 !default;
 $global-color-text-regular: #606266 !default;
 $global-color-text-placeholder: #c0c4cc !default;
 
-$global-disabled-font-color: $global-color-text-placeholder !default;
-
 $global-font-size-large: 16px !default;
 $global-font-size-base: 14px !default;
 $global-font-size-small: 12px !default;
@@ -45,6 +43,10 @@ $global-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.
 $global-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.12) !default;
 $global-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
 
+$global-disabled-font-color: $global-color-text-placeholder !default;
+$global-disabled-background-color: #f5f7fa !default;
+$global-disabled-border-color: $global-border-color-lighter !default;
+
 $global-transition-all: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
 $global-transition-fade: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
 $global-transition-fade-linear: opacity 200ms linear !default;
@@ -66,7 +68,7 @@ $button-default-background-color: $color-white !default;
 $button-default-border-color: $global-border-color-base !default;
 $button-disabled-font-color: $global-disabled-font-color !default;
 $button-disabled-background-color: $color-white !default;
-$button-disabled-border-color: $global-border-color-lighter !default;
+$button-disabled-border-color: $global-disabled-border-color !default;
 
 // =================================================
 // Link
@@ -74,7 +76,7 @@ $button-disabled-border-color: $global-border-color-lighter !default;
 $link-font-size: $global-font-size-base !default;
 $link-default-font-color: $global-color-text-regular !default;
 $link-default-active-color: $color-primary !default;
-$link-disabled-font-color: $global-color-text-placeholder !default;
+$link-disabled-font-color: $global-disabled-font-color !default;
 
 // =================================================
 // Breadcrumb
@@ -120,8 +122,7 @@ $tooltip-index: $global-index-popper;
 // Popover
 // =================================================
 
-$popover-padding: 12px !default;
-$popover-padding-large: 18px 20px !default;
+$popover-padding: 15px !default;
 $popover-background-color: $color-white;
 $popover-border-color: $global-border-color-lighter !default;
 $popover-font-size: $global-font-size-base !default;
@@ -140,3 +141,23 @@ $alert-icon-size-large: $global-font-size-base * 2 !default;
 $alert-title-font-size: $global-font-size-base !default;
 $alert-close-font-size: $global-font-size-large !default;
 $alert-description-font-size: $global-font-size-small !default;
+
+// =================================================
+// Pagination
+// =================================================
+/// fontSize||Font|1
+$pagination-font-size: $global-font-size-base !default;
+$pagination-font-color: $global-color-text-regular !default;
+
+$pagination-item-width: 30px !default;
+$pagination-item-height: 30px !default;
+
+$pagination-item-font-color: $global-color-text-primary !default;
+$pagination-item-background-color: $color-white !default;
+$pagination-item-border-color: $global-border-color-light !default;
+$pagination-item-border-radius: 3px !default;
+$pagination-item-active-color: $color-primary !default;
+$pagination-item-active-border-color: $color-primary !default;
+$pagination-item-disabled-color: $global-disabled-font-color !default;
+$pagination-item-disabled-background-color: $global-disabled-background-color !default;
+$pagination-item-disabled-border-color: $global-disabled-border-color !default;

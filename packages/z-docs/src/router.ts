@@ -11,6 +11,7 @@ import Popper from './__docs__/Popper.zh-CN.md'
 import Tooltip from './__docs__/Tooltip.zh-CN.md'
 import Popover from './__docs__/Popover.zh-CN.md'
 import Alert from './__docs__/Alert.zh-CN.md'
+import Pagination from './__docs__/Pagination.zh-CN.md'
 import Icon from './__docs__/Icon.zh-CN.md'
 
 export const router = createRouter({
@@ -78,6 +79,11 @@ export const router = createRouter({
           path: '/alert',
           name: 'alert',
           component: Alert
+        },
+        {
+          path: '/pagination',
+          name: 'pagination',
+          component: Pagination
         },
         {
           path: '/test',

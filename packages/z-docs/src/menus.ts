@@ -8,6 +8,10 @@ export default [
     items: ['menu', 'breadcrumb']
   },
   {
+    title: 'Data',
+    items: ['pagination']
+  },
+  {
     title: 'Notice',
     items: ['alert']
   },

@@ -1,8 +1,9 @@
 <template>
-  <teleport :to="`#${state.teleportEl.id}`">
+  <teleport to="body">
     <Transition :name="transition">
       <div
         v-show="realVisible"
+        :id="state.popperId"
         :ref="popperRefInitHandler"
         :class="['el-popper', popperClass]"
         :style="{ ...state.attrs.styles.popper, ...{ backgroundColor: backgroundColor } }"
@@ -154,14 +155,14 @@ const Popper = defineComponent({
 
     provide(POPPER_IJK, {
       action: {
-        addHoldChild: teleportId => {
-          const index = holdChildren.value.indexOf(teleportId)
+        addHoldChild: popperId => {
+          const index = holdChildren.value.indexOf(popperId)
           if (index === -1) {
-            holdChildren.value.push(teleportId)
+            holdChildren.value.push(popperId)
           }
         },
-        removeHoldChild: teleportId => {
-          const index = holdChildren.value.indexOf(teleportId)
+        removeHoldChild: popperId => {
+          const index = holdChildren.value.indexOf(popperId)
           if (index !== -1) {
             holdChildren.value.splice(index, 1)
           }
@@ -173,7 +174,7 @@ const Popper = defineComponent({
       // 销毁的时候 change false
       emit('change', false)
       // 溢出 hold 数组
-      parentProvider.action.removeHoldChild(state.teleportEl.id)
+      parentProvider.action.removeHoldChild(state.popperId)
     })
     return {
       realVisible,

@@ -15,10 +15,6 @@
   z-index: var.$global-index-popper;
   word-break: break-all;
 
-  // &--plain {
-  //   padding: var.$popover-padding-large;
-  // }
-
   &__title {
     color: var.$popover-title-font-color;
     font-size: var.$popover-title-font-size;

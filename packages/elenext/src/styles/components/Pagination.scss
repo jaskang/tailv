@@ -1,0 +1,83 @@
+@use '../var';
+@use '../mixins/tools';
+
+.el-pagination {
+  white-space: nowrap;
+  padding: 2px 5px;
+  font-size: var.$pagination-font-size;
+  color: var.$pagination-font-color;
+  // font-weight: bold;
+  @include tools.clearfix();
+  &__slot {
+    display: inline-block;
+    vertical-align: top;
+    height: var.$pagination-item-height;
+    line-height: var.$pagination-item-height;
+    padding: 0 10px;
+  }
+  .el-pager {
+    user-select: none;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+    font-size: var.$pagination-font-size;
+    color: var.$pagination-font-color;
+    .more::before {
+      line-height: 30px;
+    }
+
+    li {
+      padding: 0 4px;
+      background: var.$pagination-item-background-color;
+      vertical-align: top;
+      display: inline-block;
+      min-width: var.$pagination-item-width;
+      height: var.$pagination-item-height;
+      line-height: var.$pagination-item-height - 2;
+      border: 1px solid var.$pagination-item-border-color;
+      border-radius: var.$pagination-item-border-radius;
+      cursor: pointer;
+      box-sizing: border-box;
+      text-align: center;
+      margin: 0;
+      cursor: pointer;
+      transition: all 0.2 ease-in-out;
+      + li {
+        margin-left: 6px;
+      }
+      &:hover {
+        color: var.$pagination-item-active-color;
+        border-color: var.$pagination-item-active-border-color;
+      }
+
+      &.is-active {
+        color: var.$pagination-item-active-color;
+        border-color: var.$pagination-item-active-border-color;
+        cursor: default;
+      }
+      &.is-disabled {
+        color: var.$pagination-item-disabled-color;
+        background-color: var.$pagination-item-disabled-background-color;
+        border-color: var.$pagination-item-disabled-border-color;
+        cursor: not-allowed;
+      }
+
+      &.more {
+        border-color: transparent;
+        > .el-icon:last-child {
+          display: none;
+        }
+        &:hover {
+          > .el-icon:first-child {
+            display: none;
+          }
+          > .el-icon:last-child {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
