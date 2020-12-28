@@ -85,7 +85,7 @@
   display: flex;
   .el-menu-item,
   .el-sub-menu__title {
-    @include el-menu-item--horizontal(50px);
+    @include el-menu-item--horizontal(60px);
   }
   .el-sub-menu__arrow {
     @include el-sub-menu__arrow();

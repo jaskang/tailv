@@ -20,7 +20,7 @@
       </span>
     </div>
     <template v-if="state.root.mode !== 'vertical'">
-      <Popper
+      <e-popper
         popper-class="el-sub-menu"
         trigger="hover"
         :placement="state.root.mode === 'popper' || state.deep > 1 ? 'right-start' : 'bottom'"
@@ -33,14 +33,14 @@
             <slot />
           </ul>
         </template>
-      </Popper>
+      </e-popper>
     </template>
     <template v-else>
-      <CollapseTransition>
+      <e-collapse-transition>
         <ul v-show="state.isOpen" class="el-sub-menu__body">
           <slot />
         </ul>
-      </CollapseTransition>
+      </e-collapse-transition>
     </template>
   </li>
 </template>
@@ -62,16 +62,16 @@ import {
 } from 'vue'
 import { mergeClass, colorLighten } from '@elenext/shared'
 import { IconChevronUp, IconChevronRight } from '@elenext/icons'
-import { CollapseTransition } from '../Transition'
-import { Popper } from '../Popper'
+import { ECollapseTransition } from '../Transition'
+import { EPopper } from '../Popper'
 import { MenuState, MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 import { propTypes } from '../../utils/PropTypes'
 
-const SubMenu = defineComponent({
-  name: 'SubMenu',
+const ESubMenu = defineComponent({
+  name: 'ESubMenu',
   components: {
-    CollapseTransition,
-    Popper,
+    ECollapseTransition,
+    EPopper,
     IconChevronUp,
     IconChevronRight
   },
@@ -141,8 +141,8 @@ const SubMenu = defineComponent({
     }
   }
 })
-SubMenu.install = (app: App): void => {
-  app.component(SubMenu.name, SubMenu)
+ESubMenu.install = (app: App): void => {
+  app.component(ESubMenu.name, ESubMenu)
 }
-export default SubMenu
+export default ESubMenu
 </script>

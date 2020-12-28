@@ -1,3 +1,4 @@
+import { getCompName } from 'src/utils'
 import { App, cloneVNode, defineComponent, PropType, ref, Ref, VNode, watchEffect } from 'vue'
 
 function setRootDomHook(vNodes: VNode[], ref: Ref<Element>): [vNodes: VNode[], hasEl: boolean] {
@@ -37,8 +38,8 @@ function setRootDomHook(vNodes: VNode[], ref: Ref<Element>): [vNodes: VNode[], h
   return [newVNodes, hasEl]
 }
 
-const DomSlot = defineComponent({
-  name: 'DomSlot',
+const EDomSlot = defineComponent({
+  name: getCompName('EDomSlot'),
   // inheritAttrs: false,
   props: {
     init: {
@@ -62,8 +63,8 @@ const DomSlot = defineComponent({
   }
 })
 
-DomSlot.install = (app: App): void => {
-  app.component(DomSlot.name, DomSlot)
+EDomSlot.install = (app: App): void => {
+  app.component(EDomSlot.name, EDomSlot)
 }
 
-export default DomSlot
+export default EDomSlot

@@ -16,57 +16,57 @@ wrapperClass: md-grid
 
 ```vue demo
 <template>
-  <Row>
-    <Col :span="24"><div>col-24</div></Col>
-  </Row>
-  <Row>
-    <Col :span="12"><div>col-12</div></Col>
-    <Col :span="12"><div>col-12</div></Col>
-  </Row>
-  <Row>
-    <Col :span="8"><div>col-8</div></Col>
-    <Col :span="8"><div>col-8</div></Col>
-    <Col :span="8"><div>col-8</div></Col>
-  </Row>
-  <Row>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-  </Row>
+  <e-row>
+    <e-col :span="24"><div>col-24</div></e-col>
+  </e-row>
+  <e-row>
+    <e-col :span="12"><div>col-12</div></e-col>
+    <e-col :span="12"><div>col-12</div></e-col>
+  </e-row>
+  <e-row>
+    <e-col :span="8"><div>col-8</div></e-col>
+    <e-col :span="8"><div>col-8</div></e-col>
+    <e-col :span="8"><div>col-8</div></e-col>
+  </e-row>
+  <e-row>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+  </e-row>
 </template>
 ```
 
 ## 区块间隔
 
 分栏之间存在间隔。  
-Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间隔为 0。  
+e-row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间隔为 0。  
 如果需要垂直间距，可以写成数组形式 [水平间距, 垂直间距]  
 如果要支持响应式，可以写成 { xs: 8, sm: 16, md: 24, lg: [32, 32], xl: [40, 40] }
 
 ```vue demo
 <template>
-  <Row :gutter="16">
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-  </Row>
+  <e-row :gutter="16">
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+  </e-row>
   <br />
-  <Row :gutter="[30, 14]">
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-    <Col :span="6"><div>col-6</div></Col>
-  </Row>
+  <e-row :gutter="[30, 14]">
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+    <e-col :span="6"><div>col-6</div></e-col>
+  </e-row>
 </template>
 ```
 
@@ -78,17 +78,17 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 ```vue demo
 <template>
-  <Row>
-    <Col :span="8"><div>col-8</div></Col>
-    <Col :span="8" :offset="8"><div>col-8 offset-8</div></Col>
-  </Row>
-  <Row>
-    <Col :span="6" :offset="6"><div>col-6 col-offset-6</div></Col>
-    <Col :span="6" :offset="6"><div>col-6 col-offset-6</div></Col>
-  </Row>
-  <Row>
-    <Col :span="12" :offset="6"><div>col-12 col-offset-6</div></Col>
-  </Row>
+  <e-row>
+    <e-col :span="8"><div>col-8</div></e-col>
+    <e-col :span="8" :offset="8"><div>col-8 offset-8</div></e-col>
+  </e-row>
+  <e-row>
+    <e-col :span="6" :offset="6"><div>col-6 col-offset-6</div></e-col>
+    <e-col :span="6" :offset="6"><div>col-6 col-offset-6</div></e-col>
+  </e-row>
+  <e-row>
+    <e-col :span="12" :offset="6"><div>col-12 col-offset-6</div></e-col>
+  </e-row>
 </template>
 ```
 
@@ -99,10 +99,10 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 ```vue demo
 <template>
-  <Row>
-    <Col :span="18" :push="6"><div>col-18 col-push-6</div></Col>
-    <Col :span="6" :pull="18"><div>col-6 col-pull-18</div></Col>
-  </Row>
+  <e-row>
+    <e-col :span="18" :push="6"><div>col-18 col-push-6</div></e-col>
+    <e-col :span="6" :pull="18"><div>col-6 col-pull-18</div></e-col>
+  </e-row>
 </template>
 ```
 
@@ -114,50 +114,50 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 ```vue demo
 <template>
-  <Row justify="center" align="top" style="background:#F2F6FC;height:60px">
-    <Col :span="4">
+  <e-row justify="center" align="top" style="background:#F2F6FC;height:60px">
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-  </Row>
+    </e-col>
+  </e-row>
 
-  <Row justify="space-around" align="middle" style="background:#F2F6FC;height:60px">
-    <Col :span="4">
+  <e-row justify="space-around" align="middle" style="background:#F2F6FC;height:60px">
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-  </Row>
+    </e-col>
+  </e-row>
 
-  <Row justify="space-between" align="bottom" style="background:#F2F6FC;height:60px">
-    <Col :span="4">
+  <e-row justify="space-between" align="bottom" style="background:#F2F6FC;height:60px">
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-    <Col :span="4">
+    </e-col>
+    <e-col :span="4">
       <div>col-4</div>
-    </Col>
-  </Row>
+    </e-col>
+  </e-row>
 </template>
 ```
 
@@ -167,40 +167,40 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间�
 
 ```vue demo
 <template>
-  <Row>
-    <Col :span="6" :order="4"><div>1 col-order-4</div></Col>
-    <Col :span="6" :order="3"><div>2 col-order-3</div></Col>
-    <Col :span="6" :order="2"><div>3 col-order-2</div></Col>
-    <Col :span="6" :order="1"><div>4 col-order-1</div></Col>
-  </Row>
+  <e-row>
+    <e-col :span="6" :order="4"><div>1 col-order-4</div></e-col>
+    <e-col :span="6" :order="3"><div>2 col-order-3</div></e-col>
+    <e-col :span="6" :order="2"><div>3 col-order-2</div></e-col>
+    <e-col :span="6" :order="1"><div>4 col-order-1</div></e-col>
+  </e-row>
 </template>
 ```
 
 ## Flex 填充
 
-Col 提供 flex 属性以支持填充
+e-col 提供 flex 属性以支持填充
 
 ```vue demo
 <template>
-  <Row>
-    <Col :flex="2"><div>2 / 5</div></Col>
-    <Col :flex="3"><div>3 / 5</div></Col>
-  </Row>
-  <Row>
-    <Col flex="100px"><div>100px</div></Col>
-    <Col flex="auto"><div>Fill Rest</div></Col>
-  </Row>
-  <Row>
-    <Col flex="1 1 200px"><div>1 1 200px</div></Col>
-    <Col flex="0 1 300px"><div>0 1 300px</div></Col>
-  </Row>
+  <e-row>
+    <e-col :flex="2"><div>2 / 5</div></e-col>
+    <e-col :flex="3"><div>3 / 5</div></e-col>
+  </e-row>
+  <e-row>
+    <e-col flex="100px"><div>100px</div></e-col>
+    <e-col flex="auto"><div>Fill Rest</div></e-col>
+  </e-row>
+  <e-row>
+    <e-col flex="1 1 200px"><div>1 1 200px</div></e-col>
+    <e-col flex="0 1 300px"><div>0 1 300px</div></e-col>
+  </e-row>
 
-  <Row :wrap="false">
-    <Col flex="none">
+  <e-row :wrap="false">
+    <e-col flex="none">
       <div style="padding: 0 16px">none</div>
-    </Col>
-    <Col flex="auto"><div>auto with no-wrap</div></Col>
-  </Row>
+    </e-col>
+    <e-col flex="auto"><div>auto with no-wrap</div></e-col>
+  </e-row>
 </template>
 ```
 
@@ -214,11 +214,11 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg xl xxl 属�
 
 ```vue demo
 <template>
-  <Row>
-    <Col :xs="2" :sm="4" :md="6" :lg="8" :xl="10"><div>Col</div></Col>
-    <Col :xs="20" :sm="16" :md="12" :lg="8" :xl="4"><div>Col</div></Col>
-    <Col :xs="2" :sm="4" :md="6" :lg="8" :xl="10"><div>Col</div></Col>
-  </Row>
+  <e-row>
+    <e-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10"><div>e-col</div></e-col>
+    <e-col :xs="20" :sm="16" :md="12" :lg="8" :xl="4"><div>e-col</div></e-col>
+    <e-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10"><div>e-col</div></e-col>
+  </e-row>
 </template>
 ```
 
@@ -226,11 +226,11 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg xl xxl 属�
 
 ```vue demo
 <template>
-  <Row>
-    <Col>
+  <e-row>
+    <e-col>
       <div style="background:#fff">Current break point:{{ screens }}</div>
-    </Col>
-  </Row>
+    </e-col>
+  </e-row>
 </template>
 <script>
 import { useBreakpoint } from 'elenext'
@@ -262,21 +262,21 @@ export default {
     <label><input type="radio" name="y" :value="32" v-model="data.y" /> 32 </label>
     <label><input type="radio" name="y" :value="40" v-model="data.y" /> 40 </label>
     <br />
-    Column Count:
+    e-column Count:
     <label><input type="radio" name="total" :value="2" v-model="data.colTotal" /> 2 </label>
     <label><input type="radio" name="total" :value="4" v-model="data.colTotal" /> 4 </label>
     <label><input type="radio" name="total" :value="6" v-model="data.colTotal" /> 6 </label>
     <label><input type="radio" name="total" :value="8" v-model="data.colTotal" /> 8 </label>
     <label><input type="radio" name="total" :value="12" v-model="data.colTotal" /> 12 </label>
   </div>
-  <Row :gutter="[data.x, data.y]">
-    <Col v-for="i in data.colTotal" :span="24 / data.colTotal">
+  <e-row :gutter="[data.x, data.y]">
+    <e-col v-for="i in data.colTotal" :span="24 / data.colTotal">
       <div>span:{{ 24 / data.colTotal }}</div>
-    </Col>
-    <Col v-for="i in data.colTotal" :span="24 / data.colTotal">
+    </e-col>
+    <e-col v-for="i in data.colTotal" :span="24 / data.colTotal">
       <div>span:{{ 24 / data.colTotal }}</div>
-    </Col>
-  </Row>
+    </e-col>
+  </e-row>
 </template>
 <script>
 import { reactive } from 'vue'
@@ -295,7 +295,7 @@ export default {
 </script>
 ```
 
-### Row
+### e-row
 
 | props   | description               | type                                                  | default |
 | ------- | ------------------------- | ----------------------------------------------------- | ------- |
@@ -304,7 +304,7 @@ export default {
 | gutter  | 栅格间隔                  | number /object / array                                | 0       |
 | wrap    | 自动换行                  | boolean                                               | true    |
 
-### Col
+### e-col
 
 | props  | description                            | type                                        | default |
 | ------ | -------------------------------------- | ------------------------------------------- | ------- |

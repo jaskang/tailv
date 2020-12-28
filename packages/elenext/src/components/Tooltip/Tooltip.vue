@@ -1,5 +1,5 @@
 <template>
-  <Popper
+  <e-popper
     visible-arrow
     :background-color="backgroundColor"
     :model-value="modelValue"
@@ -17,21 +17,20 @@
       </div>
     </template>
     <slot />
-  </Popper>
+  </e-popper>
 </template>
 <script lang="ts">
 import { App, computed, defineComponent, PropType, ref } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { getBlockCls, getCompName } from '../../utils'
-import { Popper, PlacementType, TriggerType } from '../Popper'
+import { getCompName } from '../../utils'
+import { EPopper, PlacementType, TriggerType } from '../Popper'
 import { emit } from 'process'
 import { propTypes } from '../../utils/PropTypes'
 
-const blockCls = getBlockCls('Tooltip')
-const Tooltip = defineComponent({
-  name: getCompName('Tooltip'),
+const ETooltip = defineComponent({
+  name: getCompName('ETooltip'),
   components: {
-    Popper
+    EPopper
   },
   props: {
     modelValue: propTypes.boolean(),
@@ -59,9 +58,9 @@ const Tooltip = defineComponent({
   }
 })
 
-Tooltip.install = (app: App): void => {
-  app.component(Tooltip.name, Tooltip)
+ETooltip.install = (app: App): void => {
+  app.component(ETooltip.name, ETooltip)
 }
 
-export default Tooltip
+export default ETooltip
 </script>

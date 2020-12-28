@@ -1,31 +1,31 @@
-## Popover 弹出框
+## e-popover 弹出框
 
 ### 基础用法
 
-`trigger`属性用于设置何时触发 Popover，支持四种触发方式：`hover`，`click`，`focus` 和 `manual`。对于触发 Popover 的元素，有两种写法：使用 `slot="reference"` 的具名插槽，或使用自定义指令`v-popover`指向 Popover 的索引`ref`。
+`trigger`属性用于设置何时触发 e-popover，支持四种触发方式：`hover`，`click`，`focus` 和 `manual`。对于触发 e-popover 的元素，有两种写法：使用 `slot="reference"` 的具名插槽，或使用自定义指令`v-popover`指向 e-popover 的索引`ref`。
 
 ```vue demo
 <template>
-  <Popover
+  <e-popover
     placement="top-start"
     width="200"
     trigger="hover"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
-    <Button>hover 激活</Button>
-  </Popover>
+    <e-button>hover 激活</e-button>
+  </e-popover>
 
-  <Popover
+  <e-popover
     placement="bottom"
     title="标题"
     width="200"
     trigger="click"
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
-    <Button>click 激活</Button>
-  </Popover>
+    <e-button>click 激活</e-button>
+  </e-popover>
 
-  <Popover
+  <e-popover
     ref="popover"
     placement="right"
     title="标题"
@@ -34,8 +34,8 @@
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
   >
     <input value="focus 激活" />
-  </Popover>
-  <Popover
+  </e-popover>
+  <e-popover
     placement="bottom"
     title="标题"
     width="200"
@@ -43,8 +43,8 @@
     content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
     v-model="visible"
   >
-    <Button @click="click">手动激活</Button>
-  </Popover>
+    <e-button @click="click">手动激活</e-button>
+  </e-popover>
 </template>
 <script>
 export default {
@@ -65,22 +65,22 @@ export default {
 
 ### 嵌套信息
 
-可以在 Popover 中嵌套多种类型信息，以下为嵌套表格的例子。
+可以在 e-popover 中嵌套多种类型信息，以下为嵌套表格的例子。
 
 利用分发取代`content`属性
 
 ```vue demo
 <template>
-  <Popover placement="right" width="400" trigger="click">
+  <e-popover placement="right" width="400" trigger="click">
     <template #content>
-      <Table :data="gridData">
-        <TableColumn width="150" property="date" label="日期"></TableColumn>
-        <TableColumn width="100" property="name" label="姓名"></TableColumn>
-        <TableColumn width="300" property="address" label="地址"></TableColumn>
-      </Table>
+      <e-table :data="gridData">
+        <e-table-column width="150" property="date" label="日期"></e-table-column>
+        <e-table-column width="100" property="name" label="姓名"></e-table-column>
+        <e-table-column width="300" property="address" label="地址"></e-table-column>
+      </e-table>
     </template>
-    <Button>click 激活</Button>
-  </Popover>
+    <e-button>click 激活</e-button>
+  </e-popover>
 </template>
 <script>
 export default {
@@ -120,18 +120,18 @@ export default {
 
 ```vue demo
 <template>
-  <Popover placement="top" width="160" v-model="visible">
+  <e-popover placement="top" width="160" v-model="visible">
     <template #content>
       <p>这是一段内容这是一段内容确定删除吗？</p>
-      <Row justify="end" style="margin-top: 10px;">
-        <Col>
-          <Button type="link" size="small" @click="visible = false">取消</Button>
-          <Button color="primary" size="small" @click="visible = false">确定</Button>
-        </Col>
-      </Row>
+      <e-row justify="end" style="margin-top: 10px;">
+        <e-col>
+          <e-button type="link" size="small" @click="visible = false">取消</e-button>
+          <e-button color="primary" size="small" @click="visible = false">确定</e-button>
+        </e-col>
+      </e-row>
     </template>
-    <Button>删除</Button>
-  </Popover>
+    <e-button>删除</e-button>
+  </e-popover>
 </template>
 <script>
 export default {
@@ -146,30 +146,30 @@ export default {
 
 ### Attributes
 
-| 参数            | 说明                                                                                                    | 类型           | 可选值                                                                                                    | 默认值                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| trigger         | 触发方式                                                                                                | String         | click/focus/hover/manual                                                                                  | click                                                   |
-| title           | 标题                                                                                                    | String         | —                                                                                                         | —                                                       |
-| content         | 显示的内容，也可以通过 `slot` 传入 DOM                                                                  | String         | —                                                                                                         | —                                                       |
-| width           | 宽度                                                                                                    | String, Number | —                                                                                                         | 最小宽度 150px                                          |
-| placement       | 出现位置                                                                                                | String         | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom                                                  |
-| disabled        | Popover 是否可用                                                                                        | Boolean        | —                                                                                                         | false                                                   |
-| value / v-model | 状态是否可见                                                                                            | Boolean        | —                                                                                                         | false                                                   |
-| offset          | 出现位置的偏移量                                                                                        | Number         | —                                                                                                         | 0                                                       |
-| transition      | 定义渐变动画                                                                                            | String         | —                                                                                                         | fade-in-linear                                          |
-| visible-arrow   | 是否显示 Tooltip 箭头，更多参数可见[Vue-popper](https://github.com/element-component/vue-popper)        | Boolean        | —                                                                                                         | true                                                    |
-| popper-options  | [popper.js](https://popper.js.org/documentation.html) 的参数                                            | Object         | 参考 [popper.js](https://popper.js.org/documentation.html) 文档                                           | `{ boundariesElement: 'body', gpuAcceleration: false }` |
-| popper-class    | 为 popper 添加类名                                                                                      | String         | —                                                                                                         | —                                                       |
-| open-delay      | 触发方式为 hover 时的显示延迟，单位为毫秒                                                               | Number         | —                                                                                                         | —                                                       |
-| close-delay     | 触发方式为 hover 时的隐藏延迟，单位为毫秒                                                               | number         | —                                                                                                         | 200                                                     |
-| tabindex        | Popover 组件的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) | number         | —                                                                                                         | 0                                                       |
+| 参数            | 说明                                                                                                      | 类型           | 可选值                                                                                                    | 默认值                                                  |
+| --------------- | --------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| trigger         | 触发方式                                                                                                  | String         | click/focus/hover/manual                                                                                  | click                                                   |
+| title           | 标题                                                                                                      | String         | —                                                                                                         | —                                                       |
+| content         | 显示的内容，也可以通过 `slot` 传入 DOM                                                                    | String         | —                                                                                                         | —                                                       |
+| width           | 宽度                                                                                                      | String, Number | —                                                                                                         | 最小宽度 150px                                          |
+| placement       | 出现位置                                                                                                  | String         | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom                                                  |
+| disabled        | e-popover 是否可用                                                                                        | Boolean        | —                                                                                                         | false                                                   |
+| value / v-model | 状态是否可见                                                                                              | Boolean        | —                                                                                                         | false                                                   |
+| offset          | 出现位置的偏移量                                                                                          | Number         | —                                                                                                         | 0                                                       |
+| transition      | 定义渐变动画                                                                                              | String         | —                                                                                                         | fade-in-linear                                          |
+| visible-arrow   | 是否显示 Tooltip 箭头，更多参数可见[Vue-popper](https://github.com/element-component/vue-popper)          | Boolean        | —                                                                                                         | true                                                    |
+| popper-options  | [popper.js](https://popper.js.org/documentation.html) 的参数                                              | Object         | 参考 [popper.js](https://popper.js.org/documentation.html) 文档                                           | `{ boundariesElement: 'body', gpuAcceleration: false }` |
+| popper-class    | 为 popper 添加类名                                                                                        | String         | —                                                                                                         | —                                                       |
+| open-delay      | 触发方式为 hover 时的显示延迟，单位为毫秒                                                                 | Number         | —                                                                                                         | —                                                       |
+| close-delay     | 触发方式为 hover 时的隐藏延迟，单位为毫秒                                                                 | number         | —                                                                                                         | 200                                                     |
+| tabindex        | e-popover 组件的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) | number         | —                                                                                                         | 0                                                       |
 
 ### Slot
 
-| 参数      | 说明                          |
-| --------- | ----------------------------- |
-| —         | Popover 内嵌 HTML 文本        |
-| reference | 触发 Popover 显示的 HTML 元素 |
+| 参数      | 说明                            |
+| --------- | ------------------------------- |
+| —         | e-popover 内嵌 HTML 文本        |
+| reference | 触发 e-popover 显示的 HTML 元素 |
 
 ### Events
 

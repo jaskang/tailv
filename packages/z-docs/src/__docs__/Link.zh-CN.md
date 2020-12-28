@@ -1,9 +1,9 @@
 ---
-title: Link
+title: e-link
 wrapperClass: md-link
 ---
 
-# Link 文字链接
+# e-link 文字链接
 
 文字超链接
 
@@ -13,14 +13,14 @@ wrapperClass: md-link
 
 ```vue demo
 <template>
-  <Row>
-    <Link>默认链接</Link>
-    <Link color="primary">主要链接</Link>
-    <Link color="success">成功链接</Link>
-    <Link color="warning">警告链接</Link>
-    <Link color="danger">危险链接</Link>
-    <Link color="info">信息链接</Link>
-  </Row>
+  <e-row>
+    <e-link>默认链接</e-link>
+    <e-link color="primary">主要链接</e-link>
+    <e-link color="success">成功链接</e-link>
+    <e-link color="warning">警告链接</e-link>
+    <e-link color="danger">危险链接</e-link>
+    <e-link color="info">信息链接</e-link>
+  </e-row>
 </template>
 ```
 
@@ -30,14 +30,14 @@ wrapperClass: md-link
 
 ```vue demo
 <template>
-  <Row>
-    <Link disabled>默认链接</Link>
-    <Link color="primary" disabled>主要链接</Link>
-    <Link color="success" disabled>成功链接</Link>
-    <Link color="warning" disabled>警告链接</Link>
-    <Link color="danger" disabled>危险链接</Link>
-    <Link color="info" disabled>信息链接</Link>
-  </Row>
+  <e-row>
+    <e-link disabled>默认链接</e-link>
+    <e-link color="primary" disabled>主要链接</e-link>
+    <e-link color="success" disabled>成功链接</e-link>
+    <e-link color="warning" disabled>警告链接</e-link>
+    <e-link color="danger" disabled>危险链接</e-link>
+    <e-link color="info" disabled>信息链接</e-link>
+  </e-row>
 </template>
 ```
 
@@ -47,10 +47,10 @@ wrapperClass: md-link
 
 ```vue demo
 <template>
-  <Row>
-    <Link :underline="false">无下划线</Link>
-    <Link>有下划线</Link>
-  </Row>
+  <e-row>
+    <e-link :underline="false">无下划线</e-link>
+    <e-link>有下划线</e-link>
+  </e-row>
 </template>
 ```
 
@@ -60,10 +60,10 @@ wrapperClass: md-link
 
 ```vue demo
 <template>
-  <Row>
-    <Link icon="el-icon-edit">编辑</Link>
-    <Link>查看<i class="el-icon-view el-icon--right"></i> </Link>
-  </Row>
+  <e-row>
+    <e-link icon="el-icon-edit">编辑</e-link>
+    <e-link>查看<i class="el-icon-view el-icon--right"></i> </e-link>
+  </e-row>
 </template>
 ```
 

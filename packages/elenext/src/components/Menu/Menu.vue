@@ -18,13 +18,12 @@ import {
   watch,
   watchEffect
 } from 'vue'
-import { getBlockCls, getCompName } from '../../utils'
+import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 import { MenuState, MENU_IJK, MENU_TYPE } from './core'
 
-const blockCls = getBlockCls('Menu')
-const Menu = defineComponent({
-  name: getCompName('Menu'),
+const EMenu = defineComponent({
+  name: getCompName('EMenu'),
   props: {
     mode: propTypes.oneOfString<'horizontal' | 'vertical' | 'popper'>('horizontal'),
     textColor: propTypes.hexColor('#303133'),
@@ -87,8 +86,8 @@ const Menu = defineComponent({
   }
 })
 
-Menu.install = (app: App): void => {
-  app.component(Menu.name, Menu)
+EMenu.install = (app: App): void => {
+  app.component(EMenu.name, EMenu)
 }
-export default Menu
+export default EMenu
 </script>

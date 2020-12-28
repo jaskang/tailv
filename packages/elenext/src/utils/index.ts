@@ -9,6 +9,6 @@ export function getCompName(name: string) {
   return pascalCase(name)
 }
 
-export function getBlockCls(block: string) {
-  return `${config.prefixCls}-${paramCase(block)}`
-}
+// export function getBlockCls(block: string) {
+//   return `${config.prefixCls}-${paramCase(block)}`
+// }

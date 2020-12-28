@@ -1,4 +1,4 @@
-## Alert 警告
+## e-alert 警告
 
 用于页面中展示重要的提示信息。
 
@@ -6,52 +6,52 @@
 
 页面中的非浮层元素，不会自动消失。
 
-Alert 组件提供四种类型，'success' | 'warning' | 'info' | 'error'，默认值为`info`。
+e-alert 组件提供四种类型，'success' | 'warning' | 'info' | 'error'，默认值为`info`。
 
 通过设置`type`属性来改变类型，默认为`info`。
 
 ```vue demo
 <template>
-  <Row :gutter="[10, 10]">
-    <Col :span="24">
-      <Alert title="成功提示的文案" type="success" />
-    </Col>
-    <Col :span="24">
-      <Alert title="消息提示的文案" type="info" />
-    </Col>
-    <Col :span="24">
-      <Alert title="警告提示的文案" type="warning" />
-    </Col>
-    <Col :span="24">
-      <Alert title="错误提示的文案" type="error" />
-    </Col>
-  </Row>
+  <e-row :gutter="[10, 10]">
+    <e-col :span="24">
+      <e-alert title="成功提示的文案" type="success" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="消息提示的文案" type="info" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="警告提示的文案" type="warning" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="错误提示的文案" type="error" />
+    </e-col>
+  </e-row>
 </template>
 ```
 
 ### 主题
 
-Alert 组件提供了两个不同的主题：`light`和`dark`。
+e-alert 组件提供了两个不同的主题：`light`和`dark`。
 
 通过设置`effect`属性来改变主题，默认为`light`。
 
 ```vue demo
 <template>
-  <Row :gutter="[10, 10]">
-    <Col :span="24">
-      <Alert title="成功提示的文案" type="success" effect="dark" />
-    </Col>
-    <Col :span="24">
-      <Alert title="消息提示的文案" type="info" effect="dark" />
-    </Col>
-    <Col :span="24">
-      <Alert title="警告提示的文案" type="warning" effect="dark" />
-    </Col>
-    <Col :span="24">
-      <Alert title="错误提示的文案" type="error" effect="dark" />
-    </Col>
-    <Col :span="24"> </Col>
-  </Row>
+  <e-row :gutter="[10, 10]">
+    <e-col :span="24">
+      <e-alert title="成功提示的文案" type="success" effect="dark" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="消息提示的文案" type="info" effect="dark" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="警告提示的文案" type="warning" effect="dark" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="错误提示的文案" type="error" effect="dark" />
+    </e-col>
+    <e-col :span="24"> </e-col>
+  </e-row>
 </template>
 ```
 
@@ -59,21 +59,21 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 自定义关闭按钮为文字或其他符号。
 
-在 Alert 组件中，你可以设置是否可关闭，关闭按钮的文本以及关闭时的回调函数。`closable`属性决定是否可关闭，接受`boolean`，默认为`true`。你可以设置`close-text`属性来代替右侧的关闭图标，注意：`close-text`必须为文本。设置`close`事件来设置关闭时的回调。
+在 e-alert 组件中，你可以设置是否可关闭，关闭按钮的文本以及关闭时的回调函数。`closable`属性决定是否可关闭，接受`boolean`，默认为`true`。你可以设置`close-text`属性来代替右侧的关闭图标，注意：`close-text`必须为文本。设置`close`事件来设置关闭时的回调。
 
 ```vue demo
 <template>
-  <Row :gutter="[10, 10]">
-    <Col :span="24">
-      <Alert title="不可关闭的 alert" type="success" :closable="false" />
-    </Col>
-    <Col :span="24">
-      <Alert title="自定义 close-text" type="info" close-text="知道了" />
-    </Col>
-    <Col :span="24">
-      <Alert title="设置了回调的 alert" type="warning" @close="hello" />
-    </Col>
-  </Row>
+  <e-row :gutter="[10, 10]">
+    <e-col :span="24">
+      <e-alert title="不可关闭的 alert" type="success" :closable="false" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="自定义 close-text" type="info" close-text="知道了" />
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="设置了回调的 alert" type="warning" @close="hello" />
+    </e-col>
+  </e-row>
 </template>
 <script>
 export default {
@@ -90,22 +90,22 @@ export default {
 
 表示某种状态时提升可读性。
 
-通过设置 具名 slot `name` 显示自定义 Alert 的 icon，这能更有效地向用户展示你的显示意图。
+通过设置 具名 slot `name` 显示自定义 e-alert 的 icon，这能更有效地向用户展示你的显示意图。
 
 ```vue demo
 <template>
-  <Row :gutter="[10, 10]">
-    <Col :span="24">
-      <Alert title="添加成功" type="success">
+  <e-row :gutter="[10, 10]">
+    <e-col :span="24">
+      <e-alert title="添加成功" type="success">
         <template #icon><IconPlus /></template>
-      </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert title="删除了" type="error">
+      </e-alert>
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="删除了" type="error">
         <template #icon><IconTrash /></template>
-      </Alert>
-    </Col>
-  </Row>
+      </e-alert>
+    </e-col>
+  </e-row>
 </template>
 ```
 
@@ -119,22 +119,22 @@ export default {
 
 ```vue demo
 <template>
-  <Row :gutter="[10, 10]">
-    <Col :span="24">
-      <Alert
+  <e-row :gutter="[10, 10]">
+    <e-col :span="24">
+      <e-alert
         title="带辅助性文字介绍"
         type="success"
         description="这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。 黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰……"
       >
-      </Alert>
-    </Col>
-    <Col :span="24">
-      <Alert title="带辅助性文字介绍" type="warning">
+      </e-alert>
+    </e-col>
+    <e-col :span="24">
+      <e-alert title="带辅助性文字介绍" type="warning">
         这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。
         黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰
-      </Alert>
-    </Col>
-  </Row>
+      </e-alert>
+    </e-col>
+  </e-row>
 </template>
 ```
 

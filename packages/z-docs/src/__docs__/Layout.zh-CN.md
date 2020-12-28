@@ -1,58 +1,58 @@
 ---
-title: Layout
+title: e-layout
 wrapperClass: md-layout
 ---
 
-## Layout 布局容器
+## e-layout 布局容器
 
 用于布局的容器组件，方便快速搭建页面的基本结构：
 
-`Layout`：外层容器。当子元素中包含 `Aside` 时，全部子元素会水平左右排列，否则会垂直上下排列。
+`e-layout`：外层容器。当子元素中包含 `e-aside` 时，全部子元素会水平左右排列，否则会垂直上下排列。
 
-`Header`：顶栏容器。
+`e-header`：顶栏容器。
 
-`Aside`：侧边栏容器。
+`e-aside`：侧边栏容器。
 
-`Main`：主要区域容器。
+`e-main`：主要区域容器。
 
-`Footer`：底栏容器。
+`e-footer`：底栏容器。
 
-以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`Layout` 的子元素只能是后四者，后四者的父元素也只能是 `Layout`。
+以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`e-layout` 的子元素只能是后四者，后四者的父元素也只能是 `e-layout`。
 
 ### 常见页面布局
 
 ```vue demo
 <template>
-  <Layout>
-    <Header>Header</Header>
-    <Main>Main</Main>
-    <Footer>Footer</Footer>
-  </Layout>
+  <e-layout>
+    <e-header>e-header</e-header>
+    <e-main>e-main</e-main>
+    <e-footer>e-footer</e-footer>
+  </e-layout>
 </template>
 ```
 
 ```vue demo
 <template>
-  <Layout>
-    <Header>Header</Header>
-    <Layout>
-      <Aside width="200px">Aside</Aside>
-      <Main>Main</Main>
-    </Layout>
-  </Layout>
+  <e-layout>
+    <e-header>e-header</e-header>
+    <e-layout>
+      <e-aside width="200px">e-aside</e-aside>
+      <e-main>e-main</e-main>
+    </e-layout>
+  </e-layout>
 </template>
 ```
 
 ```vue demo
 <template>
-  <Layout>
-    <Aside width="200px">Aside</Aside>
-    <Layout>
-      <Header>Header</Header>
-      <Main>Main</Main>
-      <Footer>Footer</Footer>
-    </Layout>
-  </Layout>
+  <e-layout>
+    <e-aside width="200px">e-aside</e-aside>
+    <e-layout>
+      <e-header>e-header</e-header>
+      <e-main>e-main</e-main>
+      <e-footer>e-footer</e-footer>
+    </e-layout>
+  </e-layout>
 </template>
 ```
 
@@ -60,79 +60,79 @@ wrapperClass: md-layout
 
 ```vue demo
 <template>
-  <Layout style="height: 500px; border: 1px solid #eee">
-    <Aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <Menu unique-opened mode="vertical">
-        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-        <SubMenu>
+  <e-layout style="height: 500px; border: 1px solid #eee">
+    <e-aside width="200px" style="background-color: rgb(238, 241, 246)">
+      <e-menu unique-opened mode="vertical">
+        <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三导航三导航三导航三导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三导航三导航三导航三导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
-      </Menu>
-    </Aside>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-setting" />导航四</e-menu-item>
+      </e-menu>
+    </e-aside>
 
-    <Layout>
-      <Header style="text-align: right; font-size: 12px">
+    <e-layout>
+      <e-header style="text-align: right; font-size: 12px">
         <Dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
-          <DropdownMenu #dropdown>
+          <Dropdowne-menu #dropdown>
             <Dropdown-item>查看</Dropdown-item>
             <Dropdown-item>新增</Dropdown-item>
             <Dropdown-item>删除</Dropdown-item>
-          </DropdownMenu>
+          </Dropdowne-menu>
         </Dropdown>
         <span>王小虎</span>
-      </Header>
+      </e-header>
 
-      <Main>
+      <e-main>
         <Table :data="tableData">
           <TableColumn prop="date" label="日期" width="140"> </TableColumn>
           <TableColumn prop="name" label="姓名" width="120"> </TableColumn>
           <TableColumn prop="address" label="地址"> </TableColumn>
         </Table>
-      </Main>
-    </Layout>
-  </Layout>
+      </e-main>
+    </e-layout>
+  </e-layout>
 </template>
 
 <script>
@@ -151,31 +151,31 @@ export default {
 </script>
 ```
 
-### Layout
+### e-layout
 
-| 参数      | 说明             | 类型                  | 默认值                                             |
-| --------- | ---------------- | --------------------- | -------------------------------------------------- |
-| direction | 子元素的排列方向 | horizontal / vertical | 子元素中有 `Aside` 时为 horizontal 否则为 vertical |
+| 参数      | 说明             | 类型                  | 默认值                                               |
+| --------- | ---------------- | --------------------- | ---------------------------------------------------- |
+| direction | 子元素的排列方向 | horizontal / vertical | 子元素中有 `e-aside` 时为 horizontal 否则为 vertical |
 
-### Header
+### e-header
 
 | 参数   | 说明     | 类型   | 默认值 |
 | ------ | -------- | ------ | ------ |
 | height | 顶栏高度 | string | 60px   |
 
-### Aside
+### e-aside
 
 | 参数  | 说明       | 类型   | 默认值 |
 | ----- | ---------- | ------ | ------ |
 | width | 侧边栏宽度 | string | 250px  |
 
-### Footer
+### e-footer
 
 | 参数   | 说明     | 类型   | 默认值 |
 | ------ | -------- | ------ | ------ |
 | height | 底栏高度 | string | 60px   |
 
-### Main
+### e-main
 
 | 参数 | 说明 | 类型 | 默认值 |
 | ---- | ---- | ---- | ------ |

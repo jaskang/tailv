@@ -11,7 +11,7 @@
     "@elenext/icons": "^0.13.0",
     "elenext": "^0.13.0",
     "vue": "^3.0.4",
-    "vue-router": "^4.0.1"
+    "vue-router": "^4.0.2"
   },
   "devDependencies": {
     "vite": "^1.0.0-rc.13",

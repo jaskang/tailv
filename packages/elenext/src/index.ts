@@ -1,33 +1,33 @@
 import { Component, Plugin } from 'vue'
-import { Row, Col, useBreakpoint } from './components/Grid'
-import { Layout, Aside, Main, Footer, Header } from './components/Layout'
-import { Button, ButtonGroup } from './components/Button'
-import { Link } from './components/Link'
-import { Popper } from './components/Popper'
-import { Tooltip } from './components/Tooltip'
-import { Popover } from './components/Popover'
-import { Menu, SubMenu, MenuItem, MenuItemGroup } from './components/Menu'
-import { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb'
-import { Alert } from './components/Alert'
-import { Pagination } from './components/Pagination'
+import { ERow, ECol, useBreakpoint } from './components/Grid'
+import { ELayout, EAside, EMain, EFooter, EHeader } from './components/Layout'
+import { EButton, EButtonGroup } from './components/Button'
+import { ELink } from './components/Link'
+import { EPopper } from './components/Popper'
+import { ETooltip } from './components/Tooltip'
+import { EPopover } from './components/Popover'
+import { EMenu, ESubMenu, EMenuItem, EMenuItemGroup } from './components/Menu'
+import { EBreadcrumb, EBreadcrumbItem } from './components/Breadcrumb'
+import { EAlert } from './components/Alert'
+import { EPagination } from './components/Pagination'
 import './styles/index.scss'
 
 export {
-  Row,
-  Col,
-  Layout,
-  Aside,
-  Main,
-  Header,
-  Footer,
-  Button,
-  ButtonGroup,
-  Link,
-  Popover,
-  Breadcrumb,
-  BreadcrumbItem,
-  Alert,
-  Pagination,
+  ERow,
+  ECol,
+  ELayout,
+  EAside,
+  EMain,
+  EHeader,
+  EFooter,
+  EButton,
+  EButtonGroup,
+  ELink,
+  EPopover,
+  EBreadcrumb,
+  EBreadcrumbItem,
+  EAlert,
+  EPagination,
   useBreakpoint
 }
 
@@ -41,31 +41,31 @@ export const elenext: Plugin = {
       }
     }
 
-    useComponent(Row)
-    useComponent(Col)
-    useComponent(Menu)
-    useComponent(SubMenu)
-    useComponent(MenuItem)
-    useComponent(MenuItemGroup)
+    useComponent(ERow)
+    useComponent(ECol)
+    useComponent(EMenu)
+    useComponent(ESubMenu)
+    useComponent(EMenuItem)
+    useComponent(EMenuItemGroup)
 
-    useComponent(Layout)
-    useComponent(Aside)
-    useComponent(Main)
-    useComponent(Header)
-    useComponent(Footer)
+    useComponent(ELayout)
+    useComponent(EAside)
+    useComponent(EMain)
+    useComponent(EHeader)
+    useComponent(EFooter)
 
-    useComponent(Button)
-    useComponent(ButtonGroup)
-    useComponent(Link)
-    // useComponent(Icon)
-    useComponent(Popper)
-    useComponent(Tooltip)
-    useComponent(Popover)
+    useComponent(EButton)
+    useComponent(EButtonGroup)
+    useComponent(ELink)
+    // useComponeEnt(Icon)
+    useComponent(EPopper)
+    useComponent(ETooltip)
+    useComponent(EPopover)
 
-    useComponent(Breadcrumb)
-    useComponent(BreadcrumbItem)
+    useComponent(EBreadcrumb)
+    useComponent(EBreadcrumbItem)
 
-    useComponent(Alert)
-    useComponent(Pagination)
+    useComponent(EAlert)
+    useComponent(EPagination)
   }
 }

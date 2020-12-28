@@ -69,8 +69,8 @@ import {
 
 const PAGE_SHOW_ITEM_COUNT = 7
 const PAGE_SHOW_ITEM_COUNT_HALF = 3
-const Pagination = defineComponent({
-  name: 'Pagination',
+const EPagination = defineComponent({
+  name: 'EPagination',
   components: {
     IconChevronLeft,
     IconChevronDoubleLeft,
@@ -81,7 +81,7 @@ const Pagination = defineComponent({
   props: {
     current: propTypes.number(),
     total: propTypes.number(),
-    pageSize: propTypes.number(10),
+    pageSize: propTypes.number(),
     pageSizeOptions: propTypes.array<number>([10, 20, 50, 100]),
     disabled: propTypes.boolean()
   },
@@ -89,14 +89,16 @@ const Pagination = defineComponent({
   setup(props, { attrs, slots, emit }) {
     const state = reactive({
       current: props.current || 1,
+      pageSize: props.pageSize || props.pageSizeOptions[0],
       pagers: [],
       pageTotal: 1,
       showPrevMore: false,
       showNextMore: false
     })
+
     watchEffect(() => {
       const pagers = []
-      const pageTotal = props.total ? Math.ceil(props.total / props.pageSize) : 1
+      const pageTotal = props.total ? Math.ceil(props.total / state.pageSize) : 1
       const current = state.current
 
       let showPrevMore = false
@@ -163,8 +165,8 @@ const Pagination = defineComponent({
     }
   }
 })
-Pagination.install = (app: App): void => {
-  app.component(Pagination.name, Pagination)
+EPagination.install = (app: App): void => {
+  app.component(EPagination.name, EPagination)
 }
-export default Pagination
+export default EPagination
 </script>

@@ -33,8 +33,8 @@ import { getCompName } from '../../utils'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 import { propTypes } from 'src/utils/PropTypes'
 
-const MenuItem = defineComponent({
-  name: getCompName('MenuItem'),
+const EMenuItem = defineComponent({
+  name: getCompName('EMenuItem'),
   props: {
     path: propTypes.string()
   },
@@ -101,5 +101,5 @@ const MenuItem = defineComponent({
   }
 })
 
-export default MenuItem
+export default EMenuItem
 </script>

@@ -81,8 +81,8 @@ const collapseTransitionProps: TransitionProps = {
   }
 }
 
-const CollapseTransition = defineComponent({
-  name: getCompName('CollapseTransition'),
+const ECollapseTransition = defineComponent({
+  name: getCompName('ECollapseTransition'),
   setup(_props, { slots }) {
     return {
       collapseTransitionProps
@@ -90,9 +90,9 @@ const CollapseTransition = defineComponent({
   }
 })
 
-CollapseTransition.install = (app: App): void => {
-  app.component(CollapseTransition.name, CollapseTransition)
+ECollapseTransition.install = (app: App): void => {
+  app.component(ECollapseTransition.name, ECollapseTransition)
 }
 
-export default CollapseTransition
+export default ECollapseTransition
 </script>

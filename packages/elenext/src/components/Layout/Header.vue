@@ -8,8 +8,8 @@
 import { App, defineComponent } from 'vue'
 import { getCompName } from '../../utils'
 
-const Header = defineComponent({
-  name: getCompName('Header'),
+const EHeader = defineComponent({
+  name: getCompName('EHeader'),
   props: {
     height: {
       type: String,
@@ -18,11 +18,11 @@ const Header = defineComponent({
   }
 })
 
-Header.install = (app: App): void => {
-  app.component(Header.name, Header)
+EHeader.install = (app: App): void => {
+  app.component(EHeader.name, EHeader)
 }
 
-export default Header
+export default EHeader
 </script>
 
 <style></style>

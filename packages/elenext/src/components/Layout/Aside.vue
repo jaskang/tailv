@@ -7,11 +7,11 @@
 <script lang="ts">
 import { App, defineComponent, inject } from 'vue'
 import { layoutInjectKey } from './core'
-import { getBlockCls, getCompName } from '../../utils'
+import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 
-const Aside = defineComponent({
-  name: getCompName('Aside'),
+const EAside = defineComponent({
+  name: getCompName('EAside'),
   props: {
     width: propTypes.string('250px')
   },
@@ -22,9 +22,9 @@ const Aside = defineComponent({
   }
 })
 
-Aside.install = (app: App): void => {
-  app.component(Aside.name, Aside)
+EAside.install = (app: App): void => {
+  app.component(EAside.name, EAside)
 }
 
-export default Aside
+export default EAside
 </script>

@@ -6,17 +6,17 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '../../utils'
+import { getCompName } from '../../utils'
 
-const Main = defineComponent({
-  name: getCompName('Main')
+const EMain = defineComponent({
+  name: getCompName('EMain')
 })
 
-Main.install = (app: App): void => {
-  app.component(Main.name, Main)
+EMain.install = (app: App): void => {
+  app.component(EMain.name, EMain)
 }
 
-export default Main
+export default EMain
 </script>
 
 <style></style>

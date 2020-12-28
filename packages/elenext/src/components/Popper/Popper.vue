@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <Transition :name="transition">
+    <transition :name="transition">
       <div
         v-show="realVisible"
         :id="state.popperId"
@@ -19,13 +19,14 @@
           data-popper-arrow
         />
       </div>
-    </Transition>
+    </transition>
   </teleport>
-  <DomSlot :init="referenceRefInitHandler">
+  <dom-slot :init="referenceRefInitHandler">
     <slot />
-  </DomSlot>
+  </dom-slot>
 </template>
 <script lang="ts">
+import { getCompName } from 'src/utils'
 import {
   defineComponent,
   Teleport,
@@ -37,7 +38,6 @@ import {
   provide,
   inject,
   h,
-  Transition,
   onUnmounted,
   App,
   ref,
@@ -58,7 +58,7 @@ const POPPER_IJK: InjectionKey<{
 }> = Symbol('Popper')
 
 const Popper = defineComponent({
-  name: 'Popper',
+  name: getCompName('Popper'),
   components: { DomSlot },
   props: {
     modelValue: propTypes.boolean(),

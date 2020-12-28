@@ -1,27 +1,27 @@
-## Pagination 分页
+## e-pagination 分页
 
 当数据量过多时，使用分页分解数据。
 
 ### 基础用法
 
-默认情况下，当总页数超过 7 页时，Pagination 会折叠多余的页码按钮。
+默认情况下，当总页数超过 7 e-p 时，Pagination 会折叠多余的页码按钮。
 
 ```vue demo
 <template>
-  <Row :gutter="[10, 10]">
-    <Col :span="24">
+  <e-row :gutter="[10, 10]">
+    <e-col :span="24">
       <span class="demonstration">页数较少时的效果</span>
-    </Col>
-    <Col :span="24">
-      <Pagination :total="50"> </Pagination>
-    </Col>
-    <Col :span="24">
+    </e-col>
+    <e-col :span="24">
+      <e-pagination :total="50"> </e-pagination>
+    </e-col>
+    <e-col :span="24">
       <span class="demonstration">大于 7 页时的效果</span>
-    </Col>
-    <Col :span="24">
-      <Pagination :total="1000"> </Pagination>
-    </Col>
-  </Row>
+    </e-col>
+    <e-col :span="24">
+      <e-pagination :total="1000"> </e-pagination>
+    </e-col>
+  </e-row>
 </template>
 ```
 
@@ -33,7 +33,7 @@
 
 ```vue demo
 <template>
-  <Pagination :page-size="20" :total="1000"> </Pagination>
+  <e-pagination :page-size="20" :total="1000"> </e-pagination>
 </template>
 ```
 
@@ -47,7 +47,7 @@
 <template>
   <div class="block">
     <span class="demonstration">显示总数</span>
-    <Pagination
+    <e-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page.sync="currentPage1"
@@ -55,11 +55,11 @@
       layout="total, prev, pager, next"
       :total="1000"
     >
-    </Pagination>
+    </e-pagination>
   </div>
   <div class="block">
     <span class="demonstration">调整每页显示条数</span>
-    <Pagination
+    <e-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page.sync="currentPage2"
@@ -68,11 +68,11 @@
       layout="sizes, prev, pager, next"
       :total="1000"
     >
-    </Pagination>
+    </e-pagination>
   </div>
   <div class="block">
     <span class="demonstration">直接前往</span>
-    <Pagination
+    <e-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page.sync="currentPage3"
@@ -80,11 +80,11 @@
       layout="prev, pager, next, jumper"
       :total="1000"
     >
-    </Pagination>
+    </e-pagination>
   </div>
   <div class="block">
     <span class="demonstration">完整功能</span>
-    <Pagination
+    <e-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage4"
@@ -93,7 +93,7 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="400"
     >
-    </Pagination>
+    </e-pagination>
   </div>
 </template>
 <script>
@@ -126,7 +126,7 @@ export default {
 <template>
   <div>
     <el-switch v-model="value"> </el-switch>
-    <Pagination :hide-on-single-page="value" :total="5"> </Pagination>
+    <e-pagination :hide-on-single-page="value" :total="5"> </e-pagination>
   </div>
 </template>
 <script>

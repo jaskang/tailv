@@ -7,13 +7,12 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
-import { getBlockCls, getCompName } from '../../utils'
+import { getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
 import { propTypes } from '../../utils/PropTypes'
 
-const blockCls = getBlockCls('Link')
-const Link = defineComponent({
-  name: getCompName('Link'),
+const ELink = defineComponent({
+  name: getCompName('ELink'),
   props: {
     color: propTypes.oneOfString<'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>('default'),
     underline: propTypes.boolean(true),
@@ -25,8 +24,8 @@ const Link = defineComponent({
   setup(props, { emit, slots }) {
     const classes = computed(() =>
       mergeClass([
-        blockCls,
-        `${blockCls}--${props.color}`,
+        'el-link',
+        `el-link--${props.color}`,
         {
           'is-disabled': !!props.disabled,
           'is-underline': !!props.underline && !props.disabled
@@ -42,9 +41,9 @@ const Link = defineComponent({
   }
 })
 
-Link.install = (app: App): void => {
-  app.component(Link.name, Link)
+ELink.install = (app: App): void => {
+  app.component(ELink.name, ELink)
 }
 
-export default Link
+export default ELink
 </script>

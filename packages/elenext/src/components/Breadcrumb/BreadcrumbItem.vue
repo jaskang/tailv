@@ -9,10 +9,10 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance, computed, App } from 'vue'
-import { getBlockCls, getCompName } from '../../utils'
+import { getCompName } from '../../utils'
 
-const BreadcrumbItem = defineComponent({
-  name: getCompName('BreadcrumbItem'),
+const EBreadcrumbItem = defineComponent({
+  name: getCompName('EBreadcrumbItem'),
   props: {
     path: {
       type: [String, Object],
@@ -42,9 +42,9 @@ const BreadcrumbItem = defineComponent({
   }
 })
 
-BreadcrumbItem.install = (app: App): void => {
-  app.component(BreadcrumbItem.name, BreadcrumbItem)
+EBreadcrumbItem.install = (app: App): void => {
+  app.component(EBreadcrumbItem.name, EBreadcrumbItem)
 }
 
-export default BreadcrumbItem
+export default EBreadcrumbItem
 </script>

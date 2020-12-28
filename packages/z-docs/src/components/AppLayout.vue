@@ -1,51 +1,53 @@
 <template>
   <div class="demo-layout">
-    <Layout>
-      <Aside class="demo-aside">
-        <HelloWorld msg="Elenext UI" />
-        <Menu mode="vertical" :current-path="route.path">
-          <template v-for="menu in menus" :key="menu.title">
-            <MenuItemGroup :title="menu.title">
-              <MenuItem v-for="item in menu.items" :key="item" :path="`/${item}`">
-                {{ item }}
-              </MenuItem>
-            </MenuItemGroup>
-          </template>
-        </Menu>
-      </Aside>
-      <Layout>
-        <Header class="demo-header">
-          <Row>
-            <Col flex="1" />
-            <Col>
-              <Menu mode="horizontal">
-                <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-                <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-                <MenuItem>
-                  <a href="https://github.com/JasKang/elenext" target="__blank">GitHub</a>
-                </MenuItem>
-              </Menu>
-            </Col>
-          </Row>
-        </Header>
-        <Main>
+    <e-layout>
+      <e-header class="demo-header">
+        <e-row align="middle">
+          <e-col flex="1">
+            <Logo />
+          </e-col>
+          <e-col>
+            <e-menu mode="horizontal">
+              <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item>
+                <a href="https://github.com/JasKang/elenext" target="__blank">GitHub</a>
+              </e-menu-item>
+            </e-menu>
+          </e-col>
+        </e-row>
+      </e-header>
+      <e-layout>
+        <e-aside class="demo-aside">
+          <div style="padding-top: 40px" />
+          <e-menu mode="vertical" :current-path="route.path">
+            <template v-for="menu in menus" :key="menu.title">
+              <e-menu-itemGroup :title="menu.title">
+                <e-menu-item v-for="item in menu.items" :key="item" :path="`/${item}`">
+                  {{ item }}
+                </e-menu-item>
+              </e-menu-itemGroup>
+            </template>
+          </e-menu>
+        </e-aside>
+        <e-main>
           <div class="site-content">
             <router-view />
           </div>
-        </Main>
-      </Layout>
-    </Layout>
+        </e-main>
+      </e-layout>
+    </e-layout>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, watchEffect } from 'vue'
 import { useRouter, useRoute, RouteLocationRaw } from 'vue-router'
 import menus from '../menus'
-import HelloWorld from './HelloWorld.vue'
+import Logo from './Logo.vue'
 export default defineComponent({
   name: 'AppLayout',
   components: {
-    HelloWorld
+    Logo
   },
   setup() {
     const router = useRouter()

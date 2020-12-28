@@ -13,12 +13,12 @@ wrapperClass: md-icon
 
 ```vue demo
 <template>
-  <Row>
-    <Col>
-      <Button color="primary"><IconChevronDown /></Button>
-      <Button color="primary"><IconArrowClockwise spin /></Button>
-    </Col>
-  </Row>
+  <e-row>
+    <e-col>
+      <e-button color="primary"><IconChevronDown /></e-button>
+      <e-button color="primary"><IconArrowClockwise spin /></e-button>
+    </e-col>
+  </e-row>
 </template>
 ```
 

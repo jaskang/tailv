@@ -8,13 +8,13 @@
 import { App, defineComponent } from 'vue'
 import { getCompName } from '../../utils'
 
-const ButtonGroup = defineComponent({
-  name: getCompName('ButtonGroup')
+const EButtonGroup = defineComponent({
+  name: getCompName('EButtonGroup')
 })
 
-ButtonGroup.install = (app: App): void => {
-  app.component(ButtonGroup.name, ButtonGroup)
+EButtonGroup.install = (app: App): void => {
+  app.component(EButtonGroup.name, EButtonGroup)
 }
 
-export default ButtonGroup
+export default EButtonGroup
 </script>

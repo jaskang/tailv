@@ -1,47 +1,47 @@
-## Popper
+## e-popper
 
-Popper 是一个基础组件，不推荐直接使用。Popover、Tooltip、Menu 等组件都是基于 Popper 的能力实现的
+e-popper 是一个基础组件，不推荐直接使用。Popover、Tooltip、Menu 等组件都是基于 e-popper 的能力实现的
 
-### 基础 Popper
+### 基础 e-popper
 
 ```vue demo
 <template>
-  <Popper>
+  <e-popper>
     <template #content> 12312342 </template>
-    <Button>top button</Button>
-  </Popper>
-  <Popper>
+    <e-button>top button</e-button>
+  </e-popper>
+  <e-popper>
     <template #content> 12312342 </template>
     text123213
-  </Popper>
+  </e-popper>
   <br />
-  <Popper placement="left">
+  <e-popper placement="left">
     <template #content> 12312342 </template>
-    <Button>left button</Button>
-  </Popper>
+    <e-button>left button</e-button>
+  </e-popper>
   <br />
-  <Popper placement="right">
-    <Button>right button</Button>
+  <e-popper placement="right">
+    <e-button>right button</e-button>
     <template #content> 12312342 </template>
-  </Popper>
+  </e-popper>
   <br />
-  <Popper placement="bottom">
-    <Button>bottom button</Button>
+  <e-popper placement="bottom">
+    <e-button>bottom button</e-button>
     <template #content> 12312342 </template>
-  </Popper>
+  </e-popper>
 
-  <Popper>
+  <e-popper>
     <span>span</span>
     <template #content> 12312342 </template>
-  </Popper>
-  <Popper>
-    <Button>button</Button>
+  </e-popper>
+  <e-popper>
+    <e-button>button</e-button>
     <template #content> 12312342 </template>
-  </Popper>
-  <Popper v-model="show">
-    <Button @click="tgShow"> click -> tgShow</Button>
+  </e-popper>
+  <e-popper v-model="show">
+    <e-button @click="tgShow"> click -> tgShow</e-button>
     <template #content> 12312342 </template>
-  </Popper>
+  </e-popper>
 </template>
 <script>
 export default {
@@ -64,9 +64,9 @@ export default {
 | 参数                 | 说明                                                         | 类型                             | 默认值            |
 | -------------------- | ------------------------------------------------------------ | -------------------------------- | ----------------- |
 | mode-value / v-model | 状态是否可见                                                 | Boolean                          | false             |
-| popper-class         | 为 Popper 添加类名                                           | String                           | -                 |
-| visible-arrow        | 是否显示 Popper 箭头，                                       | Boolean                          | true              |
-| placement            | Popper 的出现位置                                            | [PlacementType](#placementtype)  | 'bottom'          |
+| popper-class         | 为 e-popper 添加类名                                         | String                           | -                 |
+| visible-arrow        | 是否显示 e-popper 箭头，                                     | Boolean                          | true              |
+| placement            | e-popper 的出现位置                                          | [PlacementType](#placementtype)  | 'bottom'          |
 | offset               | 出现位置的偏移量                                             | Number                           | 0                 |
 | trigger              | 控制模式                                                     | 'click'/'hover'/'focus'/'manual' | 'hover'           |
 | transition           | 定义渐变动画                                                 | String                           | el-fade-in-linear |

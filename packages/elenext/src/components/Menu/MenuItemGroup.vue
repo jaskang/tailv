@@ -18,8 +18,8 @@ import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
-const MenuItemGroup = defineComponent({
-  name: getCompName('MenuItemGroup'),
+const EMenuItemGroup = defineComponent({
+  name: getCompName('EMenuItemGroup'),
   props: {
     title: propTypes.string('')
   },
@@ -41,9 +41,9 @@ const MenuItemGroup = defineComponent({
   }
 })
 
-MenuItemGroup.install = (app: App): void => {
-  app.component(MenuItemGroup.name, MenuItemGroup)
+EMenuItemGroup.install = (app: App): void => {
+  app.component(EMenuItemGroup.name, EMenuItemGroup)
 }
 
-export default MenuItemGroup
+export default EMenuItemGroup
 </script>

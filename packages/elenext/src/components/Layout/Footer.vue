@@ -6,10 +6,10 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '../../utils'
+import { getCompName } from '../../utils'
 
-const Footer = defineComponent({
-  name: getCompName('Footer'),
+const EFooter = defineComponent({
+  name: getCompName('EFooter'),
   props: {
     height: {
       type: String,
@@ -18,11 +18,11 @@ const Footer = defineComponent({
   }
 })
 
-Footer.install = (app: App): void => {
-  app.component(Footer.name, Footer)
+EFooter.install = (app: App): void => {
+  app.component(EFooter.name, EFooter)
 }
 
-export default Footer
+export default EFooter
 </script>
 
 <style></style>

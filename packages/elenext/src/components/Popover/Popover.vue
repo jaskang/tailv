@@ -1,5 +1,5 @@
 <template>
-  <Popper :model-value="modelValue" :popper-class="classes" :trigger="trigger" @update:model-value="onChange">
+  <e-popper :model-value="modelValue" :popper-class="classes" :trigger="trigger" @update:model-value="onChange">
     <template #content>
       <div ref="popper" :style="{ width: width }" class="el-popover__content" role="popper">
         <div v-if="title" class="el-popover__title">
@@ -11,17 +11,18 @@
       </div>
     </template>
     <slot />
-  </Popper>
+  </e-popper>
 </template>
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { Popper } from '../Popper'
+import { EPopper } from '../Popper'
 import { propTypes } from '../../utils/PropTypes'
-const Popover = defineComponent({
-  name: 'Popover',
+import { getCompName } from 'src/utils'
+const EPopover = defineComponent({
+  name: getCompName('EPopover'),
   components: {
-    Popper
+    EPopper
   },
   props: {
     modelValue: propTypes.boolean(),
@@ -43,8 +44,8 @@ const Popover = defineComponent({
     }
   }
 })
-Popover.install = (app: App): void => {
-  app.component(Popover.name, Popover)
+EPopover.install = (app: App): void => {
+  app.component(EPopover.name, EPopover)
 }
-export default Popover
+export default EPopover
 </script>

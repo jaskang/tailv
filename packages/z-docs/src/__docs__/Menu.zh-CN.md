@@ -1,6 +1,6 @@
-## Menu 菜单
+## e-menu 菜单
 
-Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定你需要的展现形式
+e-menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定你需要的展现形式
 
 `mode`: 'horizontal' | 'vertical' | 'popper' , 默认为 `horizontal`
 
@@ -10,112 +10,112 @@ Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定�
 
 ```vue demo
 <template>
-  <Row :gutter="[40, 0]">
-    <Col :flex="1">
-      <Menu>
-        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-        <SubMenu>
+  <e-row :gutter="[40, 0]">
+    <e-col :flex="1">
+      <e-menu>
+        <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
-      </Menu>
-    </Col>
-    <Col :flex="1">
-      <Menu
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-setting" />导航四</e-menu-item>
+      </e-menu>
+    </e-col>
+    <e-col :flex="1">
+      <e-menu
         mode="horizontal"
         text-color="#fff"
         active-text-color="#ffd04b"
         background-color="#545c64"
         active-background-color="#434a50"
       >
-        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-        <SubMenu>
+        <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
-      </Menu>
-    </Col>
-  </Row>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-setting" />导航四</e-menu-item>
+      </e-menu>
+    </e-col>
+  </e-row>
 </template>
 ```
 
@@ -125,9 +125,9 @@ Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定�
 
 ```vue demo
 <template>
-  <Row :gutter="[40, 0]">
-    <Col flex="250px">
-      <Menu
+  <e-row :gutter="[40, 0]">
+    <e-col flex="250px">
+      <e-menu
         unique-opened
         mode="vertical"
         text-color="#fff"
@@ -135,103 +135,103 @@ Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定�
         background-color="#545c64"
         active-background-color="#434a50"
       >
-        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-        <SubMenu>
+        <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三导航三导航三导航三导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三导航三导航三导航三导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
-      </Menu>
-    </Col>
-    <Col flex="250px">
-      <Menu unique-opened mode="vertical">
-        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-setting" />导航四</e-menu-item>
+      </e-menu>
+    </e-col>
+    <e-col flex="250px">
+      <e-menu unique-opened mode="vertical">
+        <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三导航三导航三导航三导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三导航三导航三导航三导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
-      </Menu>
-    </Col>
-  </Row>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-setting" />导航四</e-menu-item>
+      </e-menu>
+    </e-col>
+  </e-row>
 </template>
 ```
 
@@ -241,9 +241,9 @@ Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定�
 
 ```vue demo
 <template>
-  <Row :gutter="[40, 0]">
-    <Col flex="250px">
-      <Menu
+  <e-row :gutter="[40, 0]">
+    <e-col flex="250px">
+      <e-menu
         unique-opened
         mode="popper"
         text-color="#fff"
@@ -251,102 +251,102 @@ Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定�
         background-color="#545c64"
         active-background-color="#434a50"
       >
-        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-        <SubMenu>
+        <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三导航三导航三导航三导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三导航三导航三导航三导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
-      </Menu>
-    </Col>
-    <Col flex="250px">
-      <Menu unique-opened mode="popper">
-        <MenuItem><i class="el-icon-location" />导航一</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-setting" />导航四</e-menu-item>
+      </e-menu>
+    </e-col>
+    <e-col flex="250px">
+      <e-menu unique-opened mode="popper">
+        <e-menu-item><i class="el-icon-location" />导航一</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三导航三导航三导航三导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三导航三导航三导航三导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-        <SubMenu>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+        <e-sub-menu>
           <template #title>
             <i class="el-icon-location" />
             <span>导航二</span>
           </template>
-          <MenuItemGroup title="分组一">
-            <MenuItem>导航三</MenuItem>
-            <MenuItem>导航三</MenuItem>
-          </MenuItemGroup>
-          <MenuItemGroup title="分组二">
-            <MenuItem>导航三</MenuItem>
-            <SubMenu>
+          <e-menu-item-group title="分组一">
+            <e-menu-item>导航三</e-menu-item>
+            <e-menu-item>导航三</e-menu-item>
+          </e-menu-item-group>
+          <e-menu-item-group title="分组二">
+            <e-menu-item>导航三</e-menu-item>
+            <e-sub-menu>
               <template #title>
                 <span>导航二</span>
               </template>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-              <MenuItem><i class="el-icon-document" />导航三</MenuItem>
-            </SubMenu>
-          </MenuItemGroup>
-        </SubMenu>
-        <MenuItem><i class="el-icon-setting" />导航四</MenuItem>
-      </Menu>
-    </Col>
-  </Row>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+              <e-menu-item><i class="el-icon-document" />导航三</e-menu-item>
+            </e-sub-menu>
+          </e-menu-item-group>
+        </e-sub-menu>
+        <e-menu-item><i class="el-icon-setting" />导航四</e-menu-item>
+      </e-menu>
+    </e-col>
+  </e-row>
 </template>
 ```

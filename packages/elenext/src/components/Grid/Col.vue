@@ -9,7 +9,7 @@ import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } 
 import { mergeClass } from '@elenext/shared'
 import { rowInjectKey, GutterTuple } from './core'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
-import { getCompName, getBlockCls } from '../../utils'
+import { getCompName } from '../../utils'
 
 type ColPropType = number | string
 
@@ -45,10 +45,8 @@ const sizePropItem = {
   required: false
 }
 
-const blockCls = getBlockCls('col')
-
-const Col = defineComponent({
-  name: getCompName('Col'),
+const ECol = defineComponent({
+  name: getCompName('ECol'),
   props: {
     span: defalutPropItem,
     order: defalutPropItem,
@@ -80,22 +78,22 @@ const Col = defineComponent({
             sizeProps = propSize || {}
           }
           sizeObjs.push({
-            [`${blockCls}-${size}-${sizeProps.span}`]: sizeProps.span !== undefined,
-            [`${blockCls}-${size}-order-${sizeProps.order}`]: sizeProps.order || sizeProps.order === 0,
-            [`${blockCls}-${size}-offset-${sizeProps.offset}`]: sizeProps.offset || sizeProps.offset === 0,
-            [`${blockCls}-${size}-push-${sizeProps.push}`]: sizeProps.push || sizeProps.push === 0,
-            [`${blockCls}-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0
+            [`el-col-${size}-${sizeProps.span}`]: sizeProps.span !== undefined,
+            [`el-col-${size}-order-${sizeProps.order}`]: sizeProps.order || sizeProps.order === 0,
+            [`el-col-${size}-offset-${sizeProps.offset}`]: sizeProps.offset || sizeProps.offset === 0,
+            [`el-col-${size}-push-${sizeProps.push}`]: sizeProps.push || sizeProps.push === 0,
+            [`el-col-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0
           })
         }
       })
       const ret = mergeClass([
-        blockCls,
+        'el-col',
         {
-          [`${blockCls}-${props.span}`]: props.span,
-          [`${blockCls}-order-${props.order}`]: props.order,
-          [`${blockCls}-offset-${props.offset}`]: props.offset,
-          [`${blockCls}-push-${props.push}`]: props.push,
-          [`${blockCls}-pull-${props.pull}`]: props.pull
+          [`el-col-${props.span}`]: props.span,
+          [`el-col-order-${props.order}`]: props.order,
+          [`el-col-offset-${props.offset}`]: props.offset,
+          [`el-col-push-${props.push}`]: props.push,
+          [`el-col-pull-${props.pull}`]: props.pull
         },
         ...sizeObjs
       ])
@@ -132,9 +130,9 @@ const Col = defineComponent({
   }
 })
 
-Col.install = (app: App): void => {
-  app.component(Col.name, Col)
+ECol.install = (app: App): void => {
+  app.component(ECol.name, ECol)
 }
 
-export default Col
+export default ECol
 </script>

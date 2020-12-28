@@ -1,4 +1,4 @@
-## Tooltip 文字提示
+## e-tooltip 文字提示
 
 常用于展示鼠标 hover 时的提示信息。
 
@@ -10,65 +10,65 @@
 
 ```vue demo
 <template>
-  <Row>
-    <Col flex="100px" style="text-align:right;"></Col>
-    <Col flex="200px" style="text-align:center;">
-      <Tooltip content="Top Left 提示文字" placement="top-start">
-        <Button>上左</Button>
-      </Tooltip>
-      <Tooltip content="Top Center 提示文字" placement="top">
-        <Button>上边</Button>
-      </Tooltip>
-      <Tooltip content="Top Right 提示文字" placement="top-end">
-        <Button>上右</Button>
-      </Tooltip>
-    </Col>
-    <Col flex="100px" style="text-align:left;"></Col>
-  </Row>
-  <Row>
-    <Col flex="100px" style="text-align:right;">
-      <Tooltip content="Left Top 提示文字" placement="left-start">
-        <Button>左上</Button>
-      </Tooltip>
+  <e-row>
+    <e-col flex="100px" style="text-align:right;"></e-col>
+    <e-col flex="200px" style="text-align:center;">
+      <e-tooltip content="Top Left 提示文字" placement="top-start">
+        <e-button>上左</e-button>
+      </e-tooltip>
+      <e-tooltip content="Top Center 提示文字" placement="top">
+        <e-button>上边</e-button>
+      </e-tooltip>
+      <e-tooltip content="Top Right 提示文字" placement="top-end">
+        <e-button>上右</e-button>
+      </e-tooltip>
+    </e-col>
+    <e-col flex="100px" style="text-align:left;"></e-col>
+  </e-row>
+  <e-row>
+    <e-col flex="100px" style="text-align:right;">
+      <e-tooltip content="Left Top 提示文字" placement="left-start">
+        <e-button>左上</e-button>
+      </e-tooltip>
       <br />
-      <Tooltip content="Left Center 提示文字" placement="left">
-        <Button>左边</Button>
-      </Tooltip>
+      <e-tooltip content="Left Center 提示文字" placement="left">
+        <e-button>左边</e-button>
+      </e-tooltip>
       <br />
-      <Tooltip content="Left Bottom 提示文字" placement="left-end">
-        <Button>左下</Button>
-      </Tooltip>
-    </Col>
-    <Col flex="200px" style="text-align:center;"></Col>
-    <Col flex="100px" style="text-align:left;">
-      <Tooltip content="Right Top 提示文字" placement="right-start">
-        <Button>右上</Button>
-      </Tooltip>
+      <e-tooltip content="Left Bottom 提示文字" placement="left-end">
+        <e-button>左下</e-button>
+      </e-tooltip>
+    </e-col>
+    <e-col flex="200px" style="text-align:center;"></e-col>
+    <e-col flex="100px" style="text-align:left;">
+      <e-tooltip content="Right Top 提示文字" placement="right-start">
+        <e-button>右上</e-button>
+      </e-tooltip>
       <br />
-      <Tooltip content="Right Center 提示文字" placement="right">
-        <Button>右边</Button>
-      </Tooltip>
+      <e-tooltip content="Right Center 提示文字" placement="right">
+        <e-button>右边</e-button>
+      </e-tooltip>
       <br />
-      <Tooltip content="Right Bottom 提示文字" placement="right-end">
-        <Button>右下</Button>
-      </Tooltip>
-    </Col>
-  </Row>
-  <Row>
-    <Col flex="100px" style="text-align:right;"></Col>
-    <Col flex="200px" style="text-align:center;">
-      <Tooltip content="Bottom Left 提示文字" placement="bottom-start">
-        <Button>下左</Button>
-      </Tooltip>
-      <Tooltip content="Bottom Center 提示文字" placement="bottom">
-        <Button>下边</Button>
-      </Tooltip>
-      <Tooltip content="Bottom Right 提示文字" placement="bottom-end">
-        <Button>下右</Button>
-      </Tooltip>
-    </Col>
-    <Col flex="100px" style="text-align:left;"></Col>
-  </Row>
+      <e-tooltip content="Right Bottom 提示文字" placement="right-end">
+        <e-button>右下</e-button>
+      </e-tooltip>
+    </e-col>
+  </e-row>
+  <e-row>
+    <e-col flex="100px" style="text-align:right;"></e-col>
+    <e-col flex="200px" style="text-align:center;">
+      <e-tooltip content="Bottom Left 提示文字" placement="bottom-start">
+        <e-button>下左</e-button>
+      </e-tooltip>
+      <e-tooltip content="Bottom Center 提示文字" placement="bottom">
+        <e-button>下边</e-button>
+      </e-tooltip>
+      <e-tooltip content="Bottom Right 提示文字" placement="bottom-end">
+        <e-button>下右</e-button>
+      </e-tooltip>
+    </e-col>
+    <e-col flex="100px" style="text-align:left;"></e-col>
+  </e-row>
 </template>
 <style lang="scss" scoped></style>
 ```
@@ -79,24 +79,24 @@
 
 ```vue demo
 <template>
-  <Tooltip content="Top center" placement="top">
-    <Button>Default</Button>
-  </Tooltip>
-  <Tooltip background-color="#409eff" content="Bottom center" placement="top">
-    <Button>color-primary</Button>
-  </Tooltip>
-  <Tooltip background-color="#67c23a" content="Bottom center" placement="top">
-    <Button>color-success</Button>
-  </Tooltip>
-  <Tooltip background-color="#e6a23c" content="Bottom center" placement="top">
-    <Button>color-warning</Button>
-  </Tooltip>
-  <Tooltip background-color="#f56c6c" content="Bottom center" placement="top">
-    <Button>color-danger</Button>
-  </Tooltip>
-  <Tooltip background-color="#909399" content="Bottom center" placement="top">
-    <Button>color-info</Button>
-  </Tooltip>
+  <e-tooltip content="Top center" placement="top">
+    <e-button>Default</e-button>
+  </e-tooltip>
+  <e-tooltip background-color="#409eff" content="Bottom center" placement="top">
+    <e-button>color-primary</e-button>
+  </e-tooltip>
+  <e-tooltip background-color="#67c23a" content="Bottom center" placement="top">
+    <e-button>color-success</e-button>
+  </e-tooltip>
+  <e-tooltip background-color="#e6a23c" content="Bottom center" placement="top">
+    <e-button>color-warning</e-button>
+  </e-tooltip>
+  <e-tooltip background-color="#f56c6c" content="Bottom center" placement="top">
+    <e-button>color-danger</e-button>
+  </e-tooltip>
+  <e-tooltip background-color="#909399" content="Bottom center" placement="top">
+    <e-button>color-info</e-button>
+  </e-tooltip>
 </template>
 ```
 
@@ -108,12 +108,12 @@
 
 ```vue demo
 <template>
-  <Tooltip placement="top">
+  <e-tooltip placement="top">
     <template #content>
       <div>多行信息<br />第二行信息</div>
     </template>
-    <Button>Top center</Button>
-  </Tooltip>
+    <e-button>Top center</e-button>
+  </e-tooltip>
 </template>
 ```
 
@@ -125,13 +125,13 @@
 如果需要关闭 `tooltip` 功能，`disabled` 属性可以满足这个需求，它接受一个`Boolean`，设置为`true`即可。
 
 事实上，这是基于 [Vue-popper](https://github.com/element-component/vue-popper) 的扩展，你可以自定义任意 Vue-popper 中允许定义的字段。
-当然 Tooltip 组件实际上十分强大，文末的 API 文档会做一一说明。
+当然 e-tooltip 组件实际上十分强大，文末的 API 文档会做一一说明。
 
 ```html
 <template>
-  <Tooltip :disabled="disabled" content="点击关闭 tooltip 功能" placement="bottom"
+  <e-tooltip :disabled="disabled" content="点击关闭 tooltip 功能" placement="bottom"
     <button @click="disabled = !disabled">点击{{disabled ? '开启' : '关闭'}} tooltip 功能</button>
-  </Tooltip>
+  </e-tooltip>
 </template>
 <script>
   export default {
@@ -150,20 +150,20 @@ tooltip 内不支持 disabled form 元素，参考[MDN](https://developer.mozill
 
 ### Attributes
 
-| 参数            | 说明                                                                                                    | 类型    | 可选值                                                                                                    | 默认值                                                |
-| --------------- | ------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| effect          | 默认提供的主题                                                                                          | String  | dark/light                                                                                                | dark                                                  |
-| content         | 显示的内容，也可以通过 `slot#content` 传入 DOM                                                          | String  | —                                                                                                         | —                                                     |
-| placement       | Tooltip 的出现位置                                                                                      | String  | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom                                                |
-| value / v-model | 状态是否可见                                                                                            | Boolean | —                                                                                                         | false                                                 |
-| disabled        | Tooltip 是否可用                                                                                        | Boolean | —                                                                                                         | false                                                 |
-| offset          | 出现位置的偏移量                                                                                        | Number  | —                                                                                                         | 0                                                     |
-| transition      | 定义渐变动画                                                                                            | String  | —                                                                                                         | el-fade-in-linear                                     |
-| visible-arrow   | 是否显示 Tooltip 箭头，更多参数可见[Vue-popper](https://github.com/element-component/vue-popper)        | Boolean | —                                                                                                         | true                                                  |
-| popper-options  | [popper.js](https://popper.js.org/documentation.html) 的参数                                            | Object  | 参考 [popper.js](https://popper.js.org/documentation.html) 文档                                           | { boundariesElement: 'body', gpuAcceleration: false } |
-| open-delay      | 延迟出现，单位毫秒                                                                                      | Number  | —                                                                                                         | 0                                                     |
-| manual          | 手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效                                   | Boolean | —                                                                                                         | false                                                 |
-| popper-class    | 为 Tooltip 的 popper 添加类名                                                                           | String  | —                                                                                                         | —                                                     |
-| enterable       | 鼠标是否可进入到 tooltip 中                                                                             | Boolean | —                                                                                                         | true                                                  |
-| hide-after      | Tooltip 出现后自动隐藏延时，单位毫秒，为 0 则不会自动隐藏                                               | number  | —                                                                                                         | 0                                                     |
-| tabindex        | Tooltip 组件的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) | number  | —                                                                                                         | 0                                                     |
+| 参数            | 说明                                                                                                      | 类型    | 可选值                                                                                                    | 默认值                                                |
+| --------------- | --------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| effect          | 默认提供的主题                                                                                            | String  | dark/light                                                                                                | dark                                                  |
+| content         | 显示的内容，也可以通过 `slot#content` 传入 DOM                                                            | String  | —                                                                                                         | —                                                     |
+| placement       | e-tooltip 的出现位置                                                                                      | String  | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom                                                |
+| value / v-model | 状态是否可见                                                                                              | Boolean | —                                                                                                         | false                                                 |
+| disabled        | e-tooltip 是否可用                                                                                        | Boolean | —                                                                                                         | false                                                 |
+| offset          | 出现位置的偏移量                                                                                          | Number  | —                                                                                                         | 0                                                     |
+| transition      | 定义渐变动画                                                                                              | String  | —                                                                                                         | el-fade-in-linear                                     |
+| visible-arrow   | 是否显示 e-tooltip 箭头，更多参数可见[Vue-popper](https://github.com/element-component/vue-popper)        | Boolean | —                                                                                                         | true                                                  |
+| popper-options  | [popper.js](https://popper.js.org/documentation.html) 的参数                                              | Object  | 参考 [popper.js](https://popper.js.org/documentation.html) 文档                                           | { boundariesElement: 'body', gpuAcceleration: false } |
+| open-delay      | 延迟出现，单位毫秒                                                                                        | Number  | —                                                                                                         | 0                                                     |
+| manual          | 手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效                                     | Boolean | —                                                                                                         | false                                                 |
+| popper-class    | 为 e-tooltip 的 popper 添加类名                                                                           | String  | —                                                                                                         | —                                                     |
+| enterable       | 鼠标是否可进入到 tooltip 中                                                                               | Boolean | —                                                                                                         | true                                                  |
+| hide-after      | e-tooltip 出现后自动隐藏延时，单位毫秒，为 0 则不会自动隐藏                                               | number  | —                                                                                                         | 0                                                     |
+| tabindex        | e-tooltip 组件的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) | number  | —                                                                                                         | 0                                                     |

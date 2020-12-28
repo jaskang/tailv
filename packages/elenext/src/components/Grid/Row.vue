@@ -9,12 +9,11 @@ import { defineComponent, computed, provide, CSSProperties, PropType, InjectionK
 import { mergeClass } from '@elenext/shared'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { Gutter, GutterTuple, rowInjectKey } from './core'
-import { getBlockCls, getCompName } from '../../utils'
+import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 
-const blockCls = getBlockCls('row')
-const Row = defineComponent({
-  name: getCompName('Row'),
+const ERow = defineComponent({
+  name: getCompName('ERow'),
   props: {
     gutter: {
       type: [Number, Array, Object] as PropType<Gutter>,
@@ -52,11 +51,11 @@ const Row = defineComponent({
 
     const classes = computed(() =>
       mergeClass([
-        blockCls,
+        'el-row',
         {
-          [`${blockCls}--no-wrap`]: props.wrap === false,
-          [`${blockCls}--${props.justify}`]: props.justify,
-          [`${blockCls}--${props.align}`]: props.align
+          [`el-row--no-wrap`]: props.wrap === false,
+          [`el-row--${props.justify}`]: props.justify,
+          [`el-row--${props.align}`]: props.align
         }
       ])
     )
@@ -88,9 +87,9 @@ const Row = defineComponent({
   }
 })
 
-Row.install = (app: App): void => {
-  app.component(Row.name, Row)
+ERow.install = (app: App): void => {
+  app.component(ERow.name, ERow)
 }
 
-export default Row
+export default ERow
 </script>

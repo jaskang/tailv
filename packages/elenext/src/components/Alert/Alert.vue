@@ -39,8 +39,8 @@ import {
 } from '@elenext/icons'
 import { propTypes } from 'src/utils/PropTypes'
 
-const Alert = defineComponent({
-  name: 'Alert',
+const EAlert = defineComponent({
+  name: 'EAlert',
   components: {
     IconCheckCircleFill,
     IconExclamationCircleFill,
@@ -74,8 +74,8 @@ const Alert = defineComponent({
     }
   }
 })
-Alert.install = (app: App): void => {
-  app.component(Alert.name, Alert)
+EAlert.install = (app: App): void => {
+  app.component(EAlert.name, EAlert)
 }
-export default Alert
+export default EAlert
 </script>
