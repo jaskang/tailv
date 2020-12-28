@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { defineComponent } from 'vue'
-import { Row, Col } from '../'
+import { ERow, ECol } from '../'
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -15,14 +15,14 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn()
   }))
 })
-describe('Row', () => {
-  test('Row create', () => {
-    const wrapper = mount(Row)
+describe('ERow', () => {
+  test('ERow create', () => {
+    const wrapper = mount(ERow)
     expect(wrapper.classes()).toContain('el-row')
   })
 
-  test('Row gutter', () => {
-    const wrapper = mount(Row, {
+  test('ERow gutter', () => {
+    const wrapper = mount(ERow, {
       props: {
         gutter: 20
       }
@@ -32,16 +32,16 @@ describe('Row', () => {
     expect(rowElm.style.marginRight).toEqual('-10px')
   })
 
-  test('Row justify', () => {
-    const wrapper = mount(Row, {
+  test('ERow justify', () => {
+    const wrapper = mount(ERow, {
       props: {
         justify: 'end'
       }
     })
     expect(wrapper.classes()).toContain('el-row--end')
   })
-  test('Row align', () => {
-    const wrapper = mount(Row, {
+  test('ERow align', () => {
+    const wrapper = mount(ERow, {
       props: {
         align: 'bottom'
       }
@@ -49,8 +49,8 @@ describe('Row', () => {
     expect(wrapper.classes()).toContain('el-row--bottom')
   })
 
-  test('Row wrap', () => {
-    const wrapper = mount(Row, {
+  test('ERow wrap', () => {
+    const wrapper = mount(ERow, {
       props: {
         wrap: false
       }
@@ -58,22 +58,22 @@ describe('Row', () => {
     expect(wrapper.classes()).toContain('el-row--no-wrap')
   })
 })
-describe('Col', () => {
-  test('Col create', () => {
-    const wrapper = mount(Col)
+describe('ECol', () => {
+  test('ECol create', () => {
+    const wrapper = mount(ECol)
     expect(wrapper.classes()).toContain('el-col')
   })
 
-  it('Col span', () => {
-    const wrapper = mount(Col, {
+  it('ECol span', () => {
+    const wrapper = mount(ECol, {
       props: {
         span: 12
       }
     })
     expect(wrapper.classes()).toContain('el-col-12')
   })
-  it('Col pull', () => {
-    const wrapper = mount(Col, {
+  it('ECol pull', () => {
+    const wrapper = mount(ECol, {
       props: {
         span: 12,
         pull: 3
@@ -81,8 +81,8 @@ describe('Col', () => {
     })
     expect(wrapper.classes()).toContain('el-col-pull-3')
   })
-  it('Col push', () => {
-    const wrapper = mount(Col, {
+  it('ECol push', () => {
+    const wrapper = mount(ECol, {
       props: {
         span: 12,
         push: 3
@@ -90,21 +90,21 @@ describe('Col', () => {
     })
     expect(wrapper.classes()).toContain('el-col-push-3')
   })
-  it('Col gutter', () => {
+  it('ECol gutter', () => {
     const wrapper = mount({
-      components: { Row, Col },
-      template: `<Row :gutter="20"><Col :span="12" ></Col></Row>`
+      components: { ERow, ECol },
+      template: `<ERow :gutter="20"><ECol :span="12" ></ECol></ERow>`
     })
-    const col = wrapper.getComponent(Col)
+    const col = wrapper.getComponent(ECol)
     expect(col.vm.$el.style.paddingLeft === '10px').toBe(true)
     expect(col.vm.$el.style.paddingRight === '10px').toBe(true)
   })
-  it('Col responsive', () => {
+  it('ECol responsive', () => {
     const wrapper = mount({
-      components: { Row, Col },
-      template: `<Row :gutter="20"><Col :sm="{ span: 4, offset: 2 }" :md="8" :lg="{ span: 6, offset: 3 }"></Col></Row>`
+      components: { ERow, ECol },
+      template: `<ERow :gutter="20"><ECol :sm="{ span: 4, offset: 2 }" :md="8" :lg="{ span: 6, offset: 3 }"></ECol></ERow>`
     })
-    const col = wrapper.getComponent({ name: Col.name })
+    const col = wrapper.getComponent({ name: ECol.name })
 
     expect(col.classes()).toContain('el-col-sm-4')
     expect(col.classes()).toContain('el-col-sm-offset-2')

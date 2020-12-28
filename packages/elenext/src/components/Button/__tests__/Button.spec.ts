@@ -1,26 +1,26 @@
 import { mount } from '@vue/test-utils'
-import { Button } from '../'
+import { EButton } from '../'
 
 // const { mount } = require('@vue/test-utils')
-// const { Button } = require('../')
+// const { EButton } = require('../')
 test('default', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     props: { color: 'primary' }
   })
   expect(wrapper.classes()).toContain('el-button--primary')
 })
 
 test('slots', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     slots: {
       default: 'button text'
     }
   })
-  expect(wrapper.findComponent(Button).element.textContent).toContain('button text')
+  expect(wrapper.findComponent(EButton).element.textContent).toContain('button text')
 })
 
 test('props size', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     props: {
       size: 'small'
     }
@@ -29,7 +29,7 @@ test('props size', async () => {
 })
 
 test('props icon', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     slots: {
       icon: '<i class="testicon"></i>'
     }
@@ -38,7 +38,7 @@ test('props icon', async () => {
 })
 
 test('props nativeType', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     props: {
       nativeType: 'submit'
     }
@@ -47,7 +47,7 @@ test('props nativeType', async () => {
 })
 
 test('props loading', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     props: {
       loading: true
     }
@@ -56,7 +56,7 @@ test('props loading', async () => {
 })
 
 test('props disabled', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     props: {
       disabled: true
     }
@@ -65,7 +65,7 @@ test('props disabled', async () => {
 })
 
 test('props autofocus', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     attrs: {
       autofocus: true
     }
@@ -74,7 +74,7 @@ test('props autofocus', async () => {
 })
 
 test('props shape', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     props: {
       type: 'round'
     }
@@ -83,7 +83,7 @@ test('props shape', async () => {
 })
 
 test('props circle', async () => {
-  const wrapper = mount(Button, {
+  const wrapper = mount(EButton, {
     props: {
       type: 'circle'
     }

@@ -1,30 +1,30 @@
 import { mount } from '@vue/test-utils'
-import { Layout, Header, Footer, Main, Aside } from '..'
+import { ELayout, EHeader, EFooter, EMain, EAside } from '..'
 
-describe('Layout', () => {
+describe('ELayout', () => {
   test('create', () => {
-    const wrapper = mount(Layout)
+    const wrapper = mount(ELayout)
     expect(wrapper.element).not.toBeNull()
   })
 
   test('props direction', () => {
     const wrapper = mount({
-      components: { Layout, Header, Footer, Aside, Main },
-      template: `<Layout direction="horizontal">
-        <Header></Header>
-        <Main></Main>
-      </Layout>`
+      components: { ELayout, EHeader, EFooter, EAside, EMain },
+      template: `<ELayout direction="horizontal">
+        <EHeader></EHeader>
+        <EMain></EMain>
+      </ELayout>`
     })
     expect(wrapper.classes()).toContain('is-horizontal')
   })
 
   test('auto horizontal', () => {
     const wrapper = mount({
-      components: { Layout, Header, Footer, Aside, Main },
-      template: `<Layout>
-        <Aside></Aside>
-        <Main></Main>
-      </Layout>`
+      components: { ELayout, EHeader, EFooter, EAside, EMain },
+      template: `<ELayout>
+        <EAside></EAside>
+        <EMain></EMain>
+      </ELayout>`
     })
     setTimeout(() => {
       expect(wrapper.classes()).toContain('is-horizontal')
@@ -32,14 +32,14 @@ describe('Layout', () => {
   })
 })
 
-describe('Header', () => {
+describe('EHeader', () => {
   test('create', () => {
-    const wrapper = mount(Header)
+    const wrapper = mount(EHeader)
     expect(wrapper.element).not.toBeNull()
   })
 
   test('height', () => {
-    const wrapper = mount(Header, {
+    const wrapper = mount(EHeader, {
       props: {
         height: '100px'
       }
@@ -48,14 +48,14 @@ describe('Header', () => {
   })
 })
 
-describe('Footer', () => {
+describe('EFooter', () => {
   test('create', () => {
-    const wrapper = mount(Footer)
+    const wrapper = mount(EFooter)
     expect(wrapper.element).not.toBeNull()
   })
 
   test('height', () => {
-    const wrapper = mount(Footer, {
+    const wrapper = mount(EFooter, {
       props: {
         height: '100px'
       }
@@ -64,31 +64,31 @@ describe('Footer', () => {
   })
 })
 
-describe('Main', () => {
+describe('EMain', () => {
   test('create', () => {
-    const wrapper = mount(Main)
+    const wrapper = mount(EMain)
     expect(wrapper.element).not.toBeNull()
   })
 })
 
-describe('Aside', () => {
+describe('EAside', () => {
   test('create', () => {
     const wrapper = mount({
-      components: { Layout, Header, Footer, Aside, Main },
-      template: `<Layout>
-        <Aside></Aside>
-      </Layout>`
+      components: { ELayout, EHeader, EFooter, EAside, EMain },
+      template: `<ELayout>
+        <EAside></EAside>
+      </ELayout>`
     })
-    expect(wrapper.findComponent('Aside')).not.toBeNull()
+    expect(wrapper.findComponent('EAside')).not.toBeNull()
   })
 
   test('width', () => {
     const wrapper = mount({
-      components: { Layout, Header, Footer, Aside, Main },
-      template: `<Layout>
-        <Aside width="200px"></Aside>
-      </Layout>`
+      components: { ELayout, EHeader, EFooter, EAside, EMain },
+      template: `<ELayout>
+        <EAside width="200px"></EAside>
+      </ELayout>`
     })
-    expect(wrapper.findComponent('Aside').vm.$el.style.width).toEqual('200px')
+    expect(wrapper.findComponent('EAside').vm.$el.style.width).toEqual('200px')
   })
 })

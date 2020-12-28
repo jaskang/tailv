@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import { Link } from '../'
+import { ELink } from '../'
 
 it('create', () => {
-  const wrapper = mount(Link, {
+  const wrapper = mount(ELink, {
     props: {
       color: 'primary'
     }
@@ -10,7 +10,7 @@ it('create', () => {
   expect(wrapper.classes()).toContain('el-link--primary')
 })
 it('icon', () => {
-  const wrapper = mount(Link, {
+  const wrapper = mount(ELink, {
     props: {
       icon: 'el-icon-search'
     }
@@ -18,7 +18,7 @@ it('icon', () => {
   expect(wrapper.element.querySelector('.el-icon-search')).toBeDefined()
 })
 it('href', () => {
-  const wrapper = mount(Link, {
+  const wrapper = mount(ELink, {
     props: {
       href: 'https://element.eleme.io/'
     }
@@ -27,7 +27,7 @@ it('href', () => {
   expect(wrapper.element.getAttribute('href')).toEqual('https://element.eleme.io/')
 })
 it('target', () => {
-  const wrapper = mount(Link, {
+  const wrapper = mount(ELink, {
     props: {
       href: 'https://element.eleme.io/'
     },
@@ -38,7 +38,7 @@ it('target', () => {
   expect(wrapper.element.getAttribute('target')).toEqual('_blank')
 })
 it('disabled', () => {
-  const wrapper = mount(Link, {
+  const wrapper = mount(ELink, {
     props: {
       disabled: true
     }
@@ -47,7 +47,7 @@ it('disabled', () => {
 })
 
 it('click', async () => {
-  const wrapper = mount(Link, {
+  const wrapper = mount(ELink, {
     props: {
       disabled: false
     }
