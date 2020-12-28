@@ -26,6 +26,7 @@
     "tooltip",
     "Menu",
     "Alert",
-    "Pagination"
+    "Pagination",
+    "Input"
   ]
 }

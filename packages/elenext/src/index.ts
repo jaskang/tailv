@@ -10,9 +10,11 @@ import { EMenu, ESubMenu, EMenuItem, EMenuItemGroup } from './components/Menu'
 import { EBreadcrumb, EBreadcrumbItem } from './components/Breadcrumb'
 import { EAlert } from './components/Alert'
 import { EPagination } from './components/Pagination'
+import { EInput } from './components/Input'
 import './styles/index.scss'
 
 export {
+  useBreakpoint,
   ERow,
   ECol,
   ELayout,
@@ -28,7 +30,7 @@ export {
   EBreadcrumbItem,
   EAlert,
   EPagination,
-  useBreakpoint
+  EInput
 }
 
 export const elenext: Plugin = {
@@ -67,5 +69,6 @@ export const elenext: Plugin = {
 
     useComponent(EAlert)
     useComponent(EPagination)
+    useComponent(EInput)
   }
 }

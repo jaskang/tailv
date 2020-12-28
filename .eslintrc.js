@@ -10,6 +10,7 @@ module.exports = {
   },
   extends: ['plugin:vue/vue3-recommended'],
   rules: {
-    'vue/max-attributes-per-line': 'off'
+    'vue/max-attributes-per-line': 'off',
+    'vue/html-self-closing': 'off'
   }
 }

@@ -8,6 +8,10 @@ export default [
     items: ['menu', 'breadcrumb']
   },
   {
+    title: 'Form',
+    items: ['input']
+  },
+  {
     title: 'Data',
     items: ['pagination']
   },

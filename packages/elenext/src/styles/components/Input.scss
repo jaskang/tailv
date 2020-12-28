@@ -1,0 +1,50 @@
+@use '../var';
+@use '../mixins/tools';
+
+$input-background-color: var.$color-white !default;
+$input-border-radius: var.$global-border-radius-base !default;
+$input-border-color: var.$global-border-color-base !default;
+
+$input-font-color: var.$global-color-text-regular !default;
+$input-height: var.$global-row-height !default;
+
+$input-placeholder-color: var.$global-color-text-placeholder !default;
+$input-hover-border: var.$global-border-color-hover !default;
+$input-focus-border: var.$color-primary !default;
+.el-input {
+  position: relative;
+  font-size: var.$global-font-size-base;
+  display: inline-block;
+  width: 100%;
+  @include tools.scroll-bar();
+  &__inner {
+    -webkit-appearance: none;
+    background-color: $input-background-color;
+    background-image: none;
+    border-radius: $input-border-radius;
+    border: 1px solid $input-border-color;
+    box-sizing: border-box;
+    color: $input-font-color;
+    display: inline-block;
+    font-size: inherit;
+    height: $input-height;
+    line-height: $input-height - 2;
+    outline: none;
+    padding: 0 15px;
+    transition: var.$global-transition-border;
+    width: 100%;
+
+    &::placeholder {
+      color: $input-placeholder-color;
+    }
+
+    &:hover {
+      border-color: $input-hover-border;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $input-focus-border;
+    }
+  }
+}
