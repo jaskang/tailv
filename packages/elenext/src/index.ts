@@ -3,13 +3,13 @@ import { ERow, ECol, useBreakpoint } from './components/Grid'
 import { ELayout, EAside, EMain, EFooter, EHeader } from './components/Layout'
 import { EButton, EButtonGroup } from './components/Button'
 import { ELink } from './components/Link'
+import { EBreadcrumb, EBreadcrumbItem } from './components/Breadcrumb'
+import { EPagination } from './components/Pagination'
+import { EAlert } from './components/Alert'
 import { EPopper } from './components/Popper'
 import { ETooltip } from './components/Tooltip'
 import { EPopover } from './components/Popover'
 import { EMenu, ESubMenu, EMenuItem, EMenuItemGroup } from './components/Menu'
-import { EBreadcrumb, EBreadcrumbItem } from './components/Breadcrumb'
-import { EAlert } from './components/Alert'
-import { EPagination } from './components/Pagination'
 import { EInput, EInputGroup } from './components/Input'
 import './styles/index.scss'
 
@@ -25,11 +25,17 @@ export {
   EButton,
   EButtonGroup,
   ELink,
-  EPopover,
   EBreadcrumb,
   EBreadcrumbItem,
-  EAlert,
   EPagination,
+  EAlert,
+  EPopper,
+  ETooltip,
+  EPopover,
+  EMenu,
+  ESubMenu,
+  EMenuItem,
+  EMenuItemGroup,
   EInput,
   EInputGroup
 }

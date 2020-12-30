@@ -13,8 +13,9 @@ A Vue.js 3.0 UI Toolkit for Web
 
 ## Foreword
 
-> 这个项目目的并不是为了照搬 Element 2，使用 Vue3 重新实现一遍，并不会以兼容为第一优先级。而是为了实现一个更加符合 Vue3 的现代化的 UI 框架，中间会大量使用 Composition API。
-> 如果你的项目追求的是 api 的兼容，强烈建议移步 Element Plus
+> 这个项目目的并不是为了照搬 Element2，使用 Vue3 翻译一遍，且不会以 API 的兼容为优先级
+> 如果你习惯了 Element2 并想要在 Vue3 下使用它，建议移步 [Element Plus](https://github.com/element-plus/element-plus)。
+> 这个项目实现一个更加符合的现代浏览器的 UI 框架，中间会大量使用 Composition API。
 
 ## 附加项目
 
@@ -64,19 +65,28 @@ Skip this part if you just want to use Element.
   - [x] Row
   - [x] Col
 - [x] Layout
-  - [x] Layout
   - [x] Main
   - [x] Aside
   - [x] Footer
   - [x] Header
 - [x] Button
-- [x] Menu
-- [x] Icon
+  - [x] EButtonGroup
 - [x] Link
-- [x] Alert
 - [x] Breadcrumb
-- [ ] badge
-- [ ] calendar
+- [x] EPagination
+  - [x] EBreadcrumbItem
+- [x] Icon
+- [x] Alert
+- [x] EPopper
+- [x] ETooltip
+- [x] EPopover
+- [x] Menu
+  - [x] EMenu
+  - [x] ESubMenu
+  - [x] EMenuItem
+  - [x] EMenuItemGroup
+- [x] EInput
+  - [x] EInputGroup
 - [ ] card
 - [ ] checkbox
 - [ ] date-picker
@@ -86,7 +96,6 @@ Skip this part if you just want to use Element.
 - [ ] dropdown
 - [ ] form
 - [ ] image
-- [ ] input
 - [ ] loading
 - [ ] message
 - [ ] notification
