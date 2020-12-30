@@ -1,50 +1,72 @@
 @use '../var';
 @use '../mixins/tools';
 
-$input-background-color: var.$color-white !default;
-$input-border-radius: var.$global-border-radius-base !default;
-$input-border-color: var.$global-border-color-base !default;
-
-$input-font-color: var.$global-color-text-regular !default;
-$input-height: var.$global-row-height !default;
-
-$input-placeholder-color: var.$global-color-text-placeholder !default;
-$input-hover-border: var.$global-border-color-hover !default;
-$input-focus-border: var.$color-primary !default;
 .el-input {
   position: relative;
   font-size: var.$global-font-size-base;
   display: inline-block;
-  width: 100%;
-  @include tools.scroll-bar();
+  border-radius: var.$input-border-radius;
+  border: 1px solid var.$input-border-color;
+  background-color: var.$input-background-color;
+  &:hover {
+    border-color: var.$input-hover-border-color;
+  }
+
+  &:focus,
+  &.is-focus {
+    border-color: var.$input-focus-border-color;
+    z-index: 1;
+  }
+  // width: 100%;
+  // @include tools.scroll-bar();
+  &__prefix,
+  &__suffix {
+    position: absolute;
+    height: 2.142857143em;
+    width: 2.142857143em;
+    color: var.$input-icon-color;
+    line-height: var.$input-height - 2;
+    text-align: center;
+    // pointer-events: none;
+    position: absolute;
+    top: 1px;
+    z-index: 1;
+  }
+  &__prefix {
+    left: 1px;
+  }
+  &__suffix {
+    right: 0px;
+    &--close {
+      cursor: pointer;
+    }
+  }
+  &.has-prefix {
+    .el-input__inner {
+      padding-left: 2.142857143em;
+    }
+  }
+  &.has-suffix {
+    .el-input__inner {
+      padding-right: 2.142857143em;
+    }
+  }
   &__inner {
     -webkit-appearance: none;
-    background-color: $input-background-color;
     background-image: none;
-    border-radius: $input-border-radius;
-    border: 1px solid $input-border-color;
+    border-radius: var.$input-border-radius;
     box-sizing: border-box;
-    color: $input-font-color;
     display: inline-block;
-    font-size: inherit;
-    height: $input-height;
-    line-height: $input-height - 2;
-    outline: none;
+    height: var.$input-height;
+    color: var.$input-font-color;
+    border: 0 !important;
+    outline: none !important;
+    line-height: var.$input-height - 2;
     padding: 0 15px;
     transition: var.$global-transition-border;
     width: 100%;
-
     &::placeholder {
-      color: $input-placeholder-color;
-    }
-
-    &:hover {
-      border-color: $input-hover-border;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: $input-focus-border;
+      color: var.$input-placeholder-color;
     }
   }
 }

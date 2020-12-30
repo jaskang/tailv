@@ -18,6 +18,8 @@ $global-font-size-large: 16px !default;
 $global-font-size-base: 14px !default;
 $global-font-size-small: 12px !default;
 
+$global-background-color-base: #f5f7fa !default;
+
 $global-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default;
 
@@ -45,7 +47,7 @@ $global-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.
 $global-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
 
 $global-disabled-font-color: $global-color-text-placeholder !default;
-$global-disabled-background-color: #f5f7fa !default;
+$global-disabled-background-color: $global-background-color-base !default;
 $global-disabled-border-color: $global-border-color-lighter !default;
 
 $global-transition-all: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
@@ -146,19 +148,33 @@ $alert-description-font-size: $global-font-size-small !default;
 // =================================================
 // Pagination
 // =================================================
-/// fontSize||Font|1
 $pagination-font-size: $global-font-size-base !default;
 $pagination-font-color: $global-color-text-regular !default;
 
-$pagination-item-width: 30px !default;
-$pagination-item-height: 30px !default;
+$pagination-item-width: $global-row-height !default;
+$pagination-item-height: $global-row-height !default;
 
 $pagination-item-font-color: $global-color-text-primary !default;
 $pagination-item-background-color: $color-white !default;
 $pagination-item-border-color: $global-border-color-light !default;
-$pagination-item-border-radius: 3px !default;
+$pagination-item-border-radius: $global-border-radius-small !default;
 $pagination-item-active-color: $color-primary !default;
 $pagination-item-active-border-color: $color-primary !default;
 $pagination-item-disabled-color: $global-disabled-font-color !default;
 $pagination-item-disabled-background-color: $global-disabled-background-color !default;
 $pagination-item-disabled-border-color: $global-disabled-border-color !default;
+
+// =================================================
+// Input
+// =================================================
+$input-height: $global-row-height !default;
+$input-border-radius: $global-border-radius-base !default;
+
+$input-font-color: $global-color-text-regular !default;
+$input-border-color: $global-border-color-base !default;
+$input-placeholder-color: $global-color-text-placeholder !default;
+$input-background-color: $color-white !default;
+$input-hover-border-color: $global-border-color-hover !default;
+$input-focus-border-color: $color-primary !default;
+
+$input-icon-color: $global-color-text-placeholder !default;

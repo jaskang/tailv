@@ -45,11 +45,12 @@ const createSvgIcon = (compName: string, className: string, svgSource: string) =
   const Icon = defineComponent({
     name: compName,
     props: { spin: Boolean },
-    setup(props) {
+    setup(props, { attrs }) {
       injectCss(injectCssId, iconStyles, true)
 
       return () =>
         createVNode('i', {
+          ...attrs,
           class: {
             'el-icon': true,
             [`el-icon-${className}`]: true,
