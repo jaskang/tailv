@@ -1,8 +1,10 @@
-## e-popper
+## Popper
 
-e-popper 是一个基础组件，不推荐直接使用。Popover、Tooltip、Menu 等组件都是基于 e-popper 的能力实现的
+Popper 是一个基础组件，不推荐直接使用。
 
-### 基础 e-popper
+Popover、Tooltip、Menu 等组件都是基于 Popper 的能力实现的
+
+### 基础 Popper
 
 ```vue demo
 <template>

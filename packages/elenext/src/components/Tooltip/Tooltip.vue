@@ -1,12 +1,13 @@
 <template>
   <e-popper
     visible-arrow
-    :background-color="backgroundColor"
     :model-value="modelValue"
+    :background-color="backgroundColor"
     :popper-class="classes"
     :placement="placement"
     :trigger="trigger"
     :offset="offset"
+    :transition="transition"
     @change="visibleHandler"
   >
     <template #content>
@@ -34,10 +35,10 @@ const ETooltip = defineComponent({
   },
   props: {
     modelValue: propTypes.boolean(),
-    backgroundColor: propTypes.string(''),
     content: propTypes.string(),
-    offset: propTypes.number(0),
     popperClass: propTypes.string(''),
+    offset: propTypes.number(0),
+    backgroundColor: propTypes.string(''),
     placement: propTypes.oneOfString<PlacementType>('top'),
     trigger: propTypes.oneOfString<TriggerType>('hover'),
     transition: propTypes.string('el-popper-fade')

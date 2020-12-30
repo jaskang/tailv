@@ -21,9 +21,9 @@
       </div>
     </transition>
   </teleport>
-  <dom-slot :init="referenceRefInitHandler">
+  <e-dom-slot :init="referenceRefInitHandler">
     <slot />
-  </dom-slot>
+  </e-dom-slot>
 </template>
 <script lang="ts">
 import { getCompName } from 'src/utils'
@@ -48,7 +48,7 @@ import {
 } from 'vue'
 import { propTypes } from '../../utils/PropTypes'
 import { usePopper, PlacementType, TriggerType } from './core'
-import DomSlot from './DomSlot'
+import EDomSlot from './DomSlot'
 
 const POPPER_IJK: InjectionKey<{
   action: {
@@ -59,7 +59,7 @@ const POPPER_IJK: InjectionKey<{
 
 const EPopper = defineComponent({
   name: getCompName('EPopper'),
-  components: { DomSlot },
+  components: { EDomSlot },
   props: {
     modelValue: propTypes.boolean(),
     popperClass: propTypes.string(''),

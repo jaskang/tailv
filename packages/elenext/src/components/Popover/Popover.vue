@@ -1,5 +1,13 @@
 <template>
-  <e-popper :model-value="modelValue" :popper-class="classes" :trigger="trigger" @update:model-value="onChange">
+  <e-popper
+    visible-arrow
+    :model-value="modelValue"
+    :popper-class="classes"
+    :placement="placement"
+    :trigger="trigger"
+    :transition="transition"
+    @update:model-value="onChange"
+  >
     <template #content>
       <div ref="popper" :style="{ width: width }" class="el-popover__content" role="popper">
         <div v-if="title" class="el-popover__title">
@@ -16,7 +24,7 @@
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { EPopper } from '../Popper'
+import { EPopper, PlacementType, TriggerType } from '../Popper'
 import { propTypes } from '../../utils/PropTypes'
 import { getCompName } from 'src/utils'
 const EPopover = defineComponent({
@@ -26,10 +34,12 @@ const EPopover = defineComponent({
   },
   props: {
     modelValue: propTypes.boolean(),
-    trigger: propTypes.oneOfString<'click' | 'hover'>('click'),
-    popperClass: propTypes.string(''),
     title: propTypes.string(''),
     content: propTypes.string(''),
+    popperClass: propTypes.string(''),
+    placement: propTypes.oneOfString<PlacementType>('top'),
+    trigger: propTypes.oneOfString<TriggerType>('click'),
+    transition: propTypes.string('el-popper-fade'),
     width: propTypes.string('')
   },
   emits: ['update:modelValue'],
