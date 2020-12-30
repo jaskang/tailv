@@ -29,14 +29,14 @@
     text-align: center;
     // pointer-events: none;
     position: absolute;
-    top: 1px;
+    top: 0;
     z-index: 1;
   }
   &__prefix {
-    left: 1px;
+    left: 0;
   }
   &__suffix {
-    right: 0px;
+    right: 0;
     &--close {
       cursor: pointer;
     }
