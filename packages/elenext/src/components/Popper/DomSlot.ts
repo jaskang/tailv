@@ -1,5 +1,5 @@
 import { getCompName } from 'src/utils'
-import { App, cloneVNode, defineComponent, PropType, ref, Ref, VNode, watchEffect } from 'vue'
+import { App, cloneVNode, createVNode, defineComponent, PropType, ref, Ref, VNode, watchEffect } from 'vue'
 
 function setRootDomHook(vNodes: VNode[], ref: Ref<Element>): [vNodes: VNode[], hasEl: boolean] {
   // TODO: 内置组件判断
@@ -57,8 +57,19 @@ const EDomSlot = defineComponent({
         return slots.default?.() || []
       }
       const defaults = slots.default?.() || []
-      const [vNodes] = setRootDomHook(defaults, elRef)
-      return vNodes
+      const [vNodes, hasEl] = setRootDomHook(defaults, elRef)
+      if (hasEl) {
+        return vNodes
+      }
+      return createVNode(
+        'span',
+        {
+          ref: (arg: any) => {
+            elRef.value = arg?.nodeType === 1 ? arg : arg?.$el || null
+          }
+        },
+        vNodes
+      )
     }
   }
 })

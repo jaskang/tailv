@@ -57,8 +57,8 @@ const POPPER_IJK: InjectionKey<{
   }
 }> = Symbol('Popper')
 
-const Popper = defineComponent({
-  name: getCompName('Popper'),
+const EPopper = defineComponent({
+  name: getCompName('EPopper'),
   components: { DomSlot },
   props: {
     modelValue: propTypes.boolean(),
@@ -149,7 +149,11 @@ const Popper = defineComponent({
       }
     })
 
-    const referenceRefInitHandler = props.reference ? undefined : el => (referenceRef.value = el)
+    const referenceRefInitHandler = props.reference
+      ? undefined
+      : el => {
+          referenceRef.value = el
+        }
     const popperRefInitHandler = el => (popperRef.value = el || null)
     const arrowRefInitHandler = el => (arrowRef.value = el || null)
 
@@ -187,8 +191,8 @@ const Popper = defineComponent({
     }
   }
 })
-Popper.install = (app: App): void => {
-  app.component(Popper.name, Popper)
+EPopper.install = (app: App): void => {
+  app.component(EPopper.name, EPopper)
 }
-export default Popper
+export default EPopper
 </script>

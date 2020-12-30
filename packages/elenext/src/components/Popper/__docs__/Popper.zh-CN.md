@@ -7,39 +7,19 @@ e-popper 是一个基础组件，不推荐直接使用。Popover、Tooltip、Men
 ```vue demo
 <template>
   <e-popper>
-    <template #content> 12312342 </template>
+    <template #content> content </template>
     <e-button>top button</e-button>
   </e-popper>
   <e-popper>
-    <template #content> 12312342 </template>
+    <template #content> content </template>
     text123213
   </e-popper>
-  <br />
-  <e-popper placement="left">
-    <template #content> 12312342 </template>
-    <e-button>left button</e-button>
-  </e-popper>
-  <br />
-  <e-popper placement="right">
-    <e-button>right button</e-button>
-    <template #content> 12312342 </template>
-  </e-popper>
-  <br />
-  <e-popper placement="bottom">
-    <e-button>bottom button</e-button>
-    <template #content> 12312342 </template>
-  </e-popper>
-
   <e-popper>
+    <template #content> 12312342 </template>
     <span>span</span>
-    <template #content> 12312342 </template>
-  </e-popper>
-  <e-popper>
-    <e-button>button</e-button>
-    <template #content> 12312342 </template>
   </e-popper>
   <e-popper v-model="show">
-    <e-button @click="tgShow"> click -> tgShow</e-button>
+    <e-link @click="tgShow"> click -> show</e-link>
     <template #content> 12312342 </template>
   </e-popper>
 </template>
