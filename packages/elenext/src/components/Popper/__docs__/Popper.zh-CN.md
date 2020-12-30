@@ -41,6 +41,31 @@ export default {
 </script>
 ```
 
+### 基础 Popper
+
+```vue demo
+<template>
+  <e-popper v-model="show" :reference="reference">
+    <template #content> reference </template>
+  </e-popper>
+  <span ref="reference">reference</span>
+</template>
+<script>
+import { ref } from 'vue'
+export default {
+  setup() {
+    const show = ref(false)
+    const reference = ref()
+
+    return {
+      reference,
+      show
+    }
+  }
+}
+</script>
+```
+
 ### Props
 
 | 参数                 | 说明                                                         | 类型                             | 默认值            |

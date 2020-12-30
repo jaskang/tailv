@@ -21,7 +21,7 @@
       </div>
     </transition>
   </teleport>
-  <e-dom-slot :init="referenceRefInitHandler">
+  <e-dom-slot v-if="$slots.default" :init="referenceRefInitHandler">
     <slot />
   </e-dom-slot>
 </template>
