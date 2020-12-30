@@ -14,7 +14,9 @@ A Vue.js 3.0 UI Toolkit for Web
 ## Foreword
 
 > 这个项目目的并不是为了照搬 Element2，使用 Vue3 翻译一遍，且不会以 API 的兼容为优先级
+
 > 如果你习惯了 Element2 并想要在 Vue3 下使用它，建议移步 [Element Plus](https://github.com/element-plus/element-plus)。
+
 > 这个项目实现一个更加符合的现代浏览器的 UI 框架，中间会大量使用 Composition API。
 
 ## 附加项目
@@ -55,7 +57,7 @@ Modern browsers and Internet Explorer 11+.
 
 ## Development
 
-Skip this part if you just want to use Element.
+Skip this part if you just want to use Elenext.
 
 ## Todo
 

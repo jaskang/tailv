@@ -1,7 +1,7 @@
 {
   "name": "elenext",
   "version": "0.13.0",
-  "description": "A Vue.js 3.0 UI Toolkit for Web, Element-UI by Vue 3.0",
+  "description": "A Vue.js 3.0 UI Toolkit for Web, Elenext-UI by Vue 3.0",
   "author": "jaskang <jaskang@qq.com>",
   "homepage": "https://github.com/JasKang/elenext#readme",
   "license": "MIT",
@@ -18,8 +18,8 @@
   "keywords": [
     "vue3",
     "vue-next",
-    "element",
-    "elementUI"
+    "elenext",
+    "elenextUI"
   ],
   "files": [
     "dist",
