@@ -12,8 +12,8 @@ const config: UserConfig = {
   plugins: [
     vitePluginSyncmd(),
     createVueDocPlugin({
-      prism: {
-        theme: 'tomorrow'
+      highlight: {
+        theme: 'one-light'
       }
     })
   ]
