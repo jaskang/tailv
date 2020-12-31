@@ -1,12 +1,17 @@
-## e-alert 警告
+---
+title: Alert
+wrapperClass: md-alert
+---
+
+# Alert 警告
 
 用于页面中展示重要的提示信息。
 
-### 基本用法
+## 基本用法
 
 页面中的非浮层元素，不会自动消失。
 
-e-alert 组件提供四种类型，'success' | 'warning' | 'info' | 'error'，默认值为`info`。
+Alert 组件提供四种类型，'success' | 'warning' | 'info' | 'error'，默认值为`info`。
 
 通过设置`type`属性来改变类型，默认为`info`。
 
@@ -29,9 +34,9 @@ e-alert 组件提供四种类型，'success' | 'warning' | 'info' | 'error'，�
 </template>
 ```
 
-### 主题
+## 主题
 
-e-alert 组件提供了两个不同的主题：`light`和`dark`。
+Alert 组件提供了两个不同的主题：`light`和`dark`。
 
 通过设置`effect`属性来改变主题，默认为`light`。
 
@@ -55,7 +60,7 @@ e-alert 组件提供了两个不同的主题：`light`和`dark`。
 </template>
 ```
 
-### 自定义关闭按钮
+## 自定义关闭按钮
 
 自定义关闭按钮为文字或其他符号。
 
@@ -86,11 +91,11 @@ export default {
 </script>
 ```
 
-### 带有 icon
+## 带有 icon
 
 表示某种状态时提升可读性。
 
-通过设置 具名 slot `name` 显示自定义 e-alert 的 icon，这能更有效地向用户展示你的显示意图。
+通过设置 具名 slot `name` 显示自定义 Alert 的 icon，这能更有效地向用户展示你的显示意图。
 
 ```vue demo
 <template>
@@ -109,7 +114,7 @@ export default {
 </template>
 ```
 
-### 带有辅助性文字介绍
+## 带有辅助性文字介绍
 
 包含标题和内容，解释更详细的警告。
 
@@ -138,7 +143,7 @@ export default {
 </template>
 ```
 
-### Attributes
+## Alert Attributes
 
 | 参数        | 说明                               | 类型    | 可选值                     | 默认值 |
 | ----------- | ---------------------------------- | ------- | -------------------------- | ------ |
@@ -148,14 +153,14 @@ export default {
 | closable    | 是否可关闭                         | boolean | —                          | true   |
 | effect      | 选择提供的主题                     | string  | light/dark                 | light  |
 
-### Slot
+## Alert Slot
 
 | Name    | Description         |
 | ------- | ------------------- |
 | defalut | 同 description 属性 |
 | title   | 标题的内容          |
 
-### Events
+## Alert Events
 
 | 事件名称 | 说明                    | 回调参数 |
 | -------- | ----------------------- | -------- |

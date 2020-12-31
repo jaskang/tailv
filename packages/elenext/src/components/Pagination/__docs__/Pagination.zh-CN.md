@@ -1,10 +1,15 @@
-## e-pagination 分页
+---
+title: Pagination
+wrapperClass: md-pagination
+---
+
+# Pagination 分页
 
 当数据量过多时，使用分页分解数据。
 
-### 基础用法
+## 基础用法
 
-默认情况下，当总页数超过 7 e-p 时，Pagination 会折叠多余的页码按钮。
+默认情况下，当总页数超过 7 页时，Pagination 会折叠多余的页码按钮。
 
 ```vue demo
 <template>
@@ -27,7 +32,7 @@
 
 :::
 
-### 设置每页条数
+## 设置每页条数
 
 通过`page-size`属性可以设置每页条数
 
@@ -37,11 +42,11 @@
 </template>
 ```
 
-### 附加功能
+## 附加功能
 
 根据场景需要，可以添加其他功能模块。
 
-此例是一个完整的用例，使用了`size-change`和`current-change`事件来处理页码大小和当前页变动时候触发的事件。`page-sizes`接受一个整型数组，数组元素为展示的选择每页显示个数的选项，`[100, 200, 300, 400]`表示四个选项，每页显示 100 个，200 个，300 个或者 400 个。
+`page-sizes`接受一个整型数组，数组元素为展示的选择每页显示个数的选项，`[100, 200, 300, 400]`表示四个选项，每页显示 100 个，200 个，300 个或者 400 个。
 
 ```vue demo
 <template>
@@ -140,36 +145,18 @@ export default {
 </script>
 ```
 
-### Attributes
+## Pagination Props
 
-| 参数                | 说明                                                                                                                  | 类型     | 可选值                                                            | 默认值                                 |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------- | -------------------------------------- |
-| small               | 是否使用小型分页样式                                                                                                  | boolean  | —                                                                 | false                                  |
-| background          | 是否为分页按钮添加背景色                                                                                              | boolean  | —                                                                 | false                                  |
-| page-size           | 每页显示条目个数，支持 .sync 修饰符                                                                                   | number   | —                                                                 | 10                                     |
-| total               | 总条目数                                                                                                              | number   | —                                                                 | —                                      |
-| page-count          | 总页数，total 和 page-count 设置任意一个就可以达到显示页码的功能；如果要支持 page-sizes 的更改，则需要使用 total 属性 | Number   | —                                                                 | —                                      |
-| pager-count         | 页码按钮的数量，当总页数超过该值时会折叠                                                                              | number   | 大于等于 5 且小于等于 21 的奇数                                   | 7                                      |
-| current-page        | 当前页数，支持 .sync 修饰符                                                                                           | number   | —                                                                 | 1                                      |
-| layout              | 组件布局，子组件名用逗号分隔                                                                                          | String   | `sizes`, `prev`, `pager`, `next`, `jumper`, `->`, `total`, `slot` | 'prev, pager, next, jumper, ->, total' |
-| page-sizes          | 每页显示个数选择器的选项设置                                                                                          | number[] | —                                                                 | [10, 20, 30, 40, 50, 100]              |
-| popper-class        | 每页显示个数选择器的下拉框类名                                                                                        | string   | —                                                                 | —                                      |
-| prev-text           | 替代图标显示的上一页文字                                                                                              | string   | —                                                                 | —                                      |
-| next-text           | 替代图标显示的下一页文字                                                                                              | string   | —                                                                 | —                                      |
-| disabled            | 是否禁用                                                                                                              | boolean  | —                                                                 | false                                  |
-| hide-on-single-page | 只有一页时是否隐藏                                                                                                    | boolean  | —                                                                 | -                                      |
+| 参数              | 说明                         | 类型     | 默认值            |
+| ----------------- | ---------------------------- | -------- | ----------------- |
+| current           | 当前页数                     | number   | 1                 |
+| total             | 总条页数                     | number   | -                 |
+| page-size         | 每页显示条数                 | number   | 10                |
+| page-size-options | 每页显示条数选择器的选项设置 | number[] | [10, 20, 50, 100] |
+| disabled          | 是否禁用                     | boolean  | false             |
 
 ### Events
 
-| 事件名称       | 说明                               | 回调参数 |
-| -------------- | ---------------------------------- | -------- |
-| size-change    | pageSize 改变时会触发              | 每页条数 |
-| current-change | currentPage 改变时会触发           | 当前页   |
-| prev-click     | 用户点击上一页按钮改变当前页后触发 | 当前页   |
-| next-click     | 用户点击下一页按钮改变当前页后触发 | 当前页   |
-
-### Slot
-
-| name | 说明                                      |
-| ---- | ----------------------------------------- |
-| —    | 自定义内容，需要在 `layout` 中列出 `slot` |
+| 事件名称 | 说明                             | 回调参数           |
+| -------- | -------------------------------- | ------------------ |
+| change   | current 和 pageSize 改变时会触发 | {current,pageSize} |

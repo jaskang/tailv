@@ -1,10 +1,15 @@
-## e-menu 菜单
+---
+title: Menu
+wrapperClass: md-menu
+---
 
-e-menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定你需要的展现形式
+## Menu 菜单
+
+Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定你需要的展现形式
 
 `mode`: 'horizontal' | 'vertical' | 'popper' , 默认为 `horizontal`
 
-### 横向菜单
+## 横向菜单
 
 `mode`: 'horizontal'
 
@@ -119,7 +124,7 @@ e-menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指�
 </template>
 ```
 
-### 纵向菜单
+## 纵向菜单
 
 `mode`: 'vertical'
 
@@ -235,7 +240,7 @@ e-menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指�
 </template>
 ```
 
-### 弹出式菜单
+## 弹出式菜单
 
 `mode`: 'popper'
 

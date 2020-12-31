@@ -1,15 +1,15 @@
 ---
-title: e-button
+title: Button
 wrapperClass: md-button
 ---
 
-# e-button 按钮
+# Button 按钮
 
 常用的操作按钮
 
 ## 按钮颜色 11222
 
-使用`color`属性来定义 e-button 的颜色
+使用`color`属性来定义 Button 的颜色
 
 `color`: 'primary' | 'success' | 'info' | 'warning' | 'danger'
 
@@ -30,7 +30,7 @@ wrapperClass: md-button
 
 ## 按钮类型
 
-使用`type`属性来定义 e-button 的样式
+使用`type`属性来定义 Button 的样式
 
 `type` : 'round' | 'circle' | 'link' | 'plain'
 
@@ -88,7 +88,7 @@ wrapperClass: md-button
 
 ## 按钮尺寸
 
-使用`zise`属性来定义 e-button 的大小
+使用`zise`属性来定义 Button 的大小
 
 `size`: 'large' | 'small'
 
@@ -214,7 +214,7 @@ export default defineComponent({
 
 ## 按钮组
 
-使用`button-group`组件来嵌套你的按钮
+使用`ButtonGroup`组件来嵌套你的按钮
 
 ```vue demo
 <template>
@@ -241,7 +241,7 @@ export default defineComponent({
 </template>
 ```
 
-## Attributes
+## Button Props
 
 | 参数        | 说明           | 类型                                                             | 默认值 |
 | ----------- | -------------- | ---------------------------------------------------------------- | ------ |

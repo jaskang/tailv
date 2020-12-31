@@ -1,9 +1,9 @@
 ---
-title: e-link
+title: Link
 wrapperClass: md-link
 ---
 
-# e-link 文字链接
+# Link 文字链接
 
 文字超链接
 
@@ -67,7 +67,7 @@ wrapperClass: md-link
 </template>
 ```
 
-## Attributes
+## Link Props
 
 | 参数      | 说明           | 类型                                                              | 默认值  |
 | --------- | -------------- | ----------------------------------------------------------------- | ------- |

@@ -156,7 +156,7 @@ const EPagination = defineComponent({
       }
       if (newPage !== state.current) {
         state.current = newPage
-        emit('change', newPage)
+        emit('change', { current: newPage, pageSize: props.pageSize })
       }
     }
     return {

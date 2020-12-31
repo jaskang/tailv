@@ -1,8 +1,13 @@
-## e-popover 弹出框
+---
+title: Popover
+wrapperClass: md-popover
+---
+
+## Popover 弹出框
 
 ### 基础用法
 
-`trigger`属性用于设置何时触发 e-popover，支持四种触发方式：`hover`，`click`，`focus` 和 `manual`。对于触发 e-popover 的元素，有两种写法：使用 `slot="reference"` 的具名插槽，或使用自定义指令`v-popover`指向 e-popover 的索引`ref`。
+`trigger`属性用于设置何时触发 Popover，支持四种触发方式：`hover`，`click`，`focus` 和 `manual`。对于触发 Popover 的元素，有两种写法：使用 `slot="reference"` 的具名插槽，或使用自定义指令`v-popover`指向 Popover 的索引`ref`。
 
 ```vue demo
 <template>
@@ -65,7 +70,7 @@ export default {
 
 ### 嵌套信息
 
-可以在 e-popover 中嵌套多种类型信息，以下为嵌套表格的例子。
+可以在 Popover 中嵌套多种类型信息，以下为嵌套表格的例子。
 
 利用分发取代`content`属性
 
@@ -144,7 +149,7 @@ export default {
 </script>
 ```
 
-### Props
+## Popover Props
 
 | 参数        | 说明                                  | 类型                             | 默认值           |
 | ----------- | ------------------------------------- | -------------------------------- | ---------------- |

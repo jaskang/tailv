@@ -12,7 +12,7 @@ wrapperClass: md-grid
 使用单一分栏创建基础的栅格布局。
 
 从堆叠到水平排列。  
-使用单一的一组 `row` 和 `col` 栅格组件，就可以创建一个基本的栅格系统，所有列 `col` 必须放在 `row` 内。
+使用单一的一组 `Row` 和 `Col` 栅格组件，就可以创建一个基本的栅格系统，所有列 `Col` 必须放在 `Row` 内。
 
 ```vue demo
 <template>
@@ -40,7 +40,7 @@ wrapperClass: md-grid
 ## 区块间隔
 
 分栏之间存在间隔。  
-e-row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间隔为 0。  
+Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认间隔为 0。  
 如果需要垂直间距，可以写成数组形式 [水平间距, 垂直间距]  
 如果要支持响应式，可以写成 { xs: 8, sm: 16, md: 24, lg: [32, 32], xl: [40, 40] }
 
@@ -108,9 +108,9 @@ e-row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认�
 
 ## 对齐方式
 
-通过设置 `row` 的 `justify` 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的横向对齐方式
+通过设置 `Row` 的 `justify` 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的横向对齐方式
 
-通过设置 `row` 的 `align` 属性来指定 top, middle, bottom 其中的值来定义子元素的横向对齐方式
+通过设置 `Row` 的 `align` 属性来指定 top, middle, bottom 其中的值来定义子元素的横向对齐方式
 
 ```vue demo
 <template>
@@ -163,7 +163,7 @@ e-row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认�
 
 ## 栅格排序
 
-通过 `order` 来改变 `col` 元素的排序。
+通过 `order` 来改变 `Col` 元素的排序。
 
 ```vue demo
 <template>
@@ -178,7 +178,7 @@ e-row 组件 提供 `gutter` 属性来指定每一栏之间的间隔， 默认�
 
 ## Flex 填充
 
-e-col 提供 flex 属性以支持填充
+Col 提供 flex 属性以支持填充
 
 ```vue demo
 <template>
@@ -295,7 +295,7 @@ export default {
 </script>
 ```
 
-### e-row
+## Row Props
 
 | props   | description               | type                                                  | default |
 | ------- | ------------------------- | ----------------------------------------------------- | ------- |
@@ -304,7 +304,7 @@ export default {
 | gutter  | 栅格间隔                  | number /object / array                                | 0       |
 | wrap    | 自动换行                  | boolean                                               | true    |
 
-### e-col
+## Col Props
 
 | props  | description                            | type                                        | default |
 | ------ | -------------------------------------- | ------------------------------------------- | ------- |

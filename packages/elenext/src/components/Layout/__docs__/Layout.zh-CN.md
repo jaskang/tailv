@@ -1,23 +1,23 @@
 ---
-title: e-layout
+title: Layout
 wrapperClass: md-layout
 ---
 
-## e-layout 布局容器
+## Layout 布局容器
 
 用于布局的容器组件，方便快速搭建页面的基本结构：
 
-`e-layout`：外层容器。当子元素中包含 `e-aside` 时，全部子元素会水平左右排列，否则会垂直上下排列。
+`Layout`：外层容器。当子元素中包含 `Aside` 时，全部子元素会水平左右排列，否则会垂直上下排列。
 
-`e-header`：顶栏容器。
+`Header`：顶栏容器。
 
-`e-aside`：侧边栏容器。
+`Aside`：侧边栏容器。
 
-`e-main`：主要区域容器。
+`Main`：主要区域容器。
 
-`e-footer`：底栏容器。
+`Footer`：底栏容器。
 
-以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`e-layout` 的子元素只能是后四者，后四者的父元素也只能是 `e-layout`。
+以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`Layout` 的子元素只能是后四者，后四者的父元素也只能是 `Layout`。
 
 ### 常见页面布局
 
@@ -151,31 +151,31 @@ export default {
 </script>
 ```
 
-### e-layout
+## Layout Props
 
 | 参数      | 说明             | 类型                  | 默认值                                               |
 | --------- | ---------------- | --------------------- | ---------------------------------------------------- |
 | direction | 子元素的排列方向 | horizontal / vertical | 子元素中有 `e-aside` 时为 horizontal 否则为 vertical |
 
-### e-header
+## Header Props
 
 | 参数   | 说明     | 类型   | 默认值 |
 | ------ | -------- | ------ | ------ |
 | height | 顶栏高度 | string | 60px   |
 
-### e-aside
+## Aside Props
 
 | 参数  | 说明       | 类型   | 默认值 |
 | ----- | ---------- | ------ | ------ |
 | width | 侧边栏宽度 | string | 250px  |
 
-### e-footer
+## Footer Props
 
 | 参数   | 说明     | 类型   | 默认值 |
 | ------ | -------- | ------ | ------ |
 | height | 底栏高度 | string | 60px   |
 
-### e-main
+## Main Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 | ---- | ---- | ---- | ------ |

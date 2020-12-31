@@ -1,5 +1,5 @@
 ---
-title: Grid
+title: Icon
 wrapperClass: md-icon
 ---
 
@@ -7,7 +7,7 @@ wrapperClass: md-icon
 
 @elenext/icons 提供了一套 300+ 的图标集合, 图标 svg 源文件源于 [bootstrap-icons](https://github.com/twbs/icons)
 
-### 使用方法
+## 使用方法
 
 `spin` 属性能够使图标旋转
 
@@ -22,7 +22,7 @@ wrapperClass: md-icon
 </template>
 ```
 
-### 图标集合
+## 图标集合
 
 <h4 >base</h4>
 <div class="icon-items">

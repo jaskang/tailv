@@ -1,10 +1,15 @@
-## Popper
+---
+title: Popper
+wrapperClass: md-popper
+---
+
+# Popper
 
 Popper 是一个基础组件，不推荐直接使用。
 
 Popover、Tooltip、Menu 等组件都是基于 Popper 的能力实现的
 
-### 基础 Popper
+## 基础 Popper
 
 ```vue demo
 <template>
@@ -41,7 +46,7 @@ export default {
 </script>
 ```
 
-### 基础 Popper
+## 基础 Popper
 
 ```vue demo
 <template>
@@ -66,7 +71,7 @@ export default {
 </script>
 ```
 
-### Props
+## Popper Props
 
 | 参数                 | 说明                                                         | 类型                             | 默认值            |
 | -------------------- | ------------------------------------------------------------ | -------------------------------- | ----------------- |
@@ -80,15 +85,15 @@ export default {
 | background-color     | 背景颜色                                                     | String                           | -                 |
 | reference            | 指定 reference 模式下的定位元素，popper 讲显示在定位元素周围 | String                           | -                 |
 
-#### PlacementType
+### PlacementType
 
 | 类型          | 值                                                                                                                 |
 | ------------- | ------------------------------------------------------------------------------------------------------------------ |
 | PlacementType | top/top-start/top-end<br>bottom/bottom-start/bottom-end<br>left/left-start/left-end<br>right/right-start/right-end |
 
-### Slots
+## Popper Slots
 
 | 插槽    | 说明                |
 | ------- | ------------------- |
 | content | popper 弹出体的内容 |
-| -       | 原始                |
+| defalut | 默认 reference      |
