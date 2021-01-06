@@ -93,4 +93,24 @@
     color: var.$select-option-selected-font-color;
     background-color: var.$select-option-selected-background;
   }
+  &.is-multiple {
+    padding-right: var.$select-option-height;
+    &.is-selected {
+      .el-select-option__checked {
+        display: block;
+      }
+    }
+  }
+  &__checked {
+    position: absolute;
+    height: var.$select-option-height;
+    width: var.$select-option-height;
+    color: var.$select-option-selected-font-color;
+    font-size: var.$select-font-size + 2;
+    text-align: center;
+    // padding-right: 20px;
+    display: none;
+    top: 0;
+    right: 0;
+  }
 }

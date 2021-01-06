@@ -36,7 +36,8 @@ const ESelectDropdown = defineComponent({
   setup(props, { attrs, slots, emit }) {
     const state = reactive({
       selected: props.modelValue || [],
-      options: props.options
+      options: props.options,
+      multiple: props.multiple
     })
     const selectHandler = value => {
       const index = state.selected.indexOf(value)

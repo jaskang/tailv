@@ -2,17 +2,22 @@
   <li
     class="el-select-option"
     :class="{
+      'is-multiple': parentState.multiple,
       'is-selected': isSelected
     }"
     @click="selectHandler"
   >
     {{ label || value }}
+    <div class="el-select-option__checked">
+      <IconCheck />
+    </div>
   </li>
 </template>
 <script lang="ts">
 // 那是从荒诞生出美梦
-import { propTypes } from 'src/utils/PropTypes'
 import { App, computed, defineComponent, inject } from 'vue'
+import { IconCheck } from '@elenext/icons'
+import { propTypes } from 'src/utils/PropTypes'
 import { SELECTDROPDOWN_IJK } from './core'
 
 const ESelectOption = defineComponent({
@@ -34,6 +39,7 @@ const ESelectOption = defineComponent({
       emit('select', props.value)
     }
     return {
+      parentState,
       isSelected,
       selectHandler
     }

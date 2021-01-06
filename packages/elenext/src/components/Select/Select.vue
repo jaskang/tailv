@@ -13,6 +13,7 @@
       <e-select-dropdown
         v-model="innerValue"
         :options="options"
+        :multiple="multiple"
         :style="{ width: elRef ? `${elRef?.offsetWidth}px` : undefined }"
       >
         <slot></slot>
@@ -38,6 +39,7 @@ const ESelect = defineComponent({
   props: {
     modelValue: propTypes.stringOrArray(),
     options: propTypes.array<OptionType>(),
+    multiple: propTypes.boolean(),
     filterable: propTypes.boolean(false)
   },
   setup(props, { attrs, slots, emit }) {
