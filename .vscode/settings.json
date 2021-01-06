@@ -27,6 +27,7 @@
     "Menu",
     "Alert",
     "Pagination",
-    "Input"
+    "Input",
+    "Select"
   ]
 }

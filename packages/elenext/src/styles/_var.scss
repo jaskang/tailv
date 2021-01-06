@@ -178,3 +178,32 @@ $input-hover-border-color: $global-border-color-hover !default;
 $input-focus-border-color: $color-primary !default;
 
 $input-icon-color: $global-color-text-placeholder !default;
+
+// =================================================
+// Select
+// =================================================
+$select-font-size: $global-font-size-base !default;
+
+$select-option-color: $global-color-text-regular !default;
+$select-option-height: $global-row-height !default;
+
+$select-option-hover-background: $global-background-color-base !default;
+$select-option-selected-font-color: $color-primary !default;
+$select-option-selected-background: $global-background-color-base !default;
+
+$select-option-disabled-color: $global-color-text-placeholder !default;
+$select-option-disabled-background: $color-white !default;
+// =================================================
+// SelectDorpdown
+// =================================================
+$select-dropdown-border-color: $global-border-color-light !default;
+$select-dropdown-border-radius: $global-border-radius-base !default;
+$select-dropdown-background-color: $color-white !default;
+$select-dropdown-shadow: $global-box-shadow-light !default;
+
+$select-dropdown-font-color: $global-color-text-regular !default;
+$select-dropdown-placeholder-color: $global-color-text-placeholder !default;
+$select-dropdown-hover-border-color: $global-border-color-hover !default;
+$select-dropdown-focus-border-color: $color-primary !default;
+
+$select-dropdown-icon-color: $global-color-text-placeholder !default;

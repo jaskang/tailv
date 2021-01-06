@@ -14,6 +14,7 @@ import Alert from './__docs__/Alert.zh-CN.md'
 import Pagination from './__docs__/Pagination.zh-CN.md'
 import Icon from './__docs__/Icon.zh-CN.md'
 import Input from './__docs__/Input.zh-CN.md'
+import Select from './__docs__/Select.zh-CN.md'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -90,6 +91,11 @@ export const router = createRouter({
           path: '/input',
           name: 'input',
           component: Input
+        },
+        {
+          path: '/select',
+          name: 'select',
+          component: Select
         },
         {
           path: '/test',

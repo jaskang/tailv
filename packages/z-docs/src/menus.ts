@@ -9,7 +9,7 @@ export default [
   },
   {
     title: 'Form',
-    items: ['input']
+    items: ['input', 'select']
   },
   {
     title: 'Data',

@@ -3,6 +3,9 @@ import { isRef, PropType, Ref } from 'vue'
 type HexColorType = `#${string}`
 
 export const propTypes = {
+  stringOrArray(value?: string | string[]) {
+    return { type: [String, Array] as PropType<string | string[]>, default: value }
+  },
   string(value?: string) {
     return { type: String as PropType<string>, default: value }
   },
@@ -12,7 +15,7 @@ export const propTypes = {
   boolean(value?: boolean) {
     return { type: Boolean as PropType<boolean>, default: value }
   },
-  array<T = any>(value: T[] = []) {
+  array<T = any>(value?: T[]) {
     return { type: Array as PropType<T[]>, default: value }
   },
   object<T = any>(value?: T) {

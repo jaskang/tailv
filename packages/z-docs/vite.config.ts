@@ -14,7 +14,7 @@ const config: UserConfig = {
     vitePluginSyncmd(),
     createVueDocPlugin({
       highlight: {
-        theme: 'one-light'
+        theme: 'one-dark'
       }
     }),
     vue()

@@ -10,6 +10,7 @@
     <input
       type="text"
       class="el-input__inner"
+      :readonly="!allowInput"
       :value="innerValue"
       @input="inputHandler"
       @focus="focusHandler"
@@ -38,7 +39,7 @@
 </template>
 <script lang="ts">
 import { propTypes } from 'src/utils/PropTypes'
-import { App, computed, defineComponent, reactive, ref } from 'vue'
+import { App, computed, defineComponent, reactive, ref, watch } from 'vue'
 import { IconXCircleFill } from '@elenext/icons'
 const EInput = defineComponent({
   name: 'EInput',
@@ -50,7 +51,8 @@ const EInput = defineComponent({
     prefix: propTypes.string(),
     suffix: propTypes.string(),
     clearable: propTypes.boolean(),
-    disabled: propTypes.boolean()
+    disabled: propTypes.boolean(),
+    allowInput: propTypes.boolean(true)
   },
   emits: ['update:modelValue', 'input', 'focus', 'blur', 'change'],
   setup(props, { attrs, slots, emit }) {
@@ -58,7 +60,12 @@ const EInput = defineComponent({
     const hasPrefix = computed(() => slots.prefix || props.prefix)
     const hasSuffix = computed(() => slots.suffix || props.suffix)
     const innerValue = ref(props.modelValue)
-
+    watch(
+      () => props.modelValue,
+      (value, oldValue) => {
+        innerValue.value = value
+      }
+    )
     const updateEmit = value => {
       emit('update:modelValue', value)
       emit('input', value)
