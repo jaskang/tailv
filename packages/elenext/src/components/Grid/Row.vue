@@ -9,11 +9,10 @@ import { defineComponent, computed, provide, CSSProperties, PropType, InjectionK
 import { mergeClass } from '@elenext/shared'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { Gutter, GutterTuple, rowInjectKey } from './core'
-import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 
 const ERow = defineComponent({
-  name: getCompName('ERow'),
+  name: 'ERow',
   props: {
     gutter: {
       type: [Number, Array, Object] as PropType<Gutter>,

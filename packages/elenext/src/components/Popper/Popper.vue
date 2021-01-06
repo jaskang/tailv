@@ -26,7 +26,6 @@
   </e-dom-slot>
 </template>
 <script lang="ts">
-import { getCompName } from 'src/utils'
 import {
   defineComponent,
   Teleport,
@@ -58,7 +57,7 @@ const POPPER_IJK: InjectionKey<{
 }> = Symbol('Popper')
 
 const EPopper = defineComponent({
-  name: getCompName('EPopper'),
+  name: 'EPopper',
   components: { EDomSlot },
   props: {
     modelValue: propTypes.boolean(),

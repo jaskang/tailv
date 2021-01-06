@@ -29,12 +29,11 @@ import {
   watchEffect
 } from 'vue'
 import { mergeClass, colorLighten } from '@elenext/shared'
-import { getCompName } from '../../utils'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 import { propTypes } from 'src/utils/PropTypes'
 
 const EMenuItem = defineComponent({
-  name: getCompName('EMenuItem'),
+  name: 'EMenuItem',
   props: {
     path: propTypes.string()
   },

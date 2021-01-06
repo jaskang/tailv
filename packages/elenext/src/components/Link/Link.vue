@@ -7,12 +7,11 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
-import { getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
 import { propTypes } from '../../utils/PropTypes'
 
 const ELink = defineComponent({
-  name: getCompName('ELink'),
+  name: 'ELink',
   props: {
     color: propTypes.oneOfString<'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>('default'),
     underline: propTypes.boolean(true),

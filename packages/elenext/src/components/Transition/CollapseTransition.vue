@@ -7,7 +7,6 @@
 <script lang="ts">
 import { App, defineComponent, TransitionProps } from 'vue'
 import { addClass, removeClass } from '@elenext/shared'
-import { getCompName } from '../../utils'
 
 const collapseTransitionProps: TransitionProps = {
   onBeforeEnter(_el: Element) {
@@ -82,7 +81,7 @@ const collapseTransitionProps: TransitionProps = {
 }
 
 const ECollapseTransition = defineComponent({
-  name: getCompName('ECollapseTransition'),
+  name: 'ECollapseTransition',
   setup(_props, { slots }) {
     return {
       collapseTransitionProps

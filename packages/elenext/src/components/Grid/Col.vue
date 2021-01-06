@@ -9,7 +9,6 @@ import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } 
 import { mergeClass } from '@elenext/shared'
 import { rowInjectKey, GutterTuple } from './core'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
-import { getCompName } from '../../utils'
 
 type ColPropType = number | string
 
@@ -46,7 +45,7 @@ const sizePropItem = {
 }
 
 const ECol = defineComponent({
-  name: getCompName('ECol'),
+  name: 'ECol',
   props: {
     span: defalutPropItem,
     order: defalutPropItem,

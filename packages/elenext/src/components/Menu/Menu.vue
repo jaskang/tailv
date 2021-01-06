@@ -18,12 +18,11 @@ import {
   watch,
   watchEffect
 } from 'vue'
-import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 import { MenuState, MENU_IJK, MENU_TYPE } from './core'
 
 const EMenu = defineComponent({
-  name: getCompName('EMenu'),
+  name: 'EMenu',
   props: {
     mode: propTypes.oneOfString<'horizontal' | 'vertical' | 'popper'>('horizontal'),
     textColor: propTypes.hexColor('#303133'),

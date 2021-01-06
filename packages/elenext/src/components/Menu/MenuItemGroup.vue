@@ -12,14 +12,12 @@
 </template>
 
 <script lang="ts">
-import comp from '*.md'
 import { App, computed, defineComponent, inject } from 'vue'
-import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const EMenuItemGroup = defineComponent({
-  name: getCompName('EMenuItemGroup'),
+  name: 'EMenuItemGroup',
   props: {
     title: propTypes.string('')
   },

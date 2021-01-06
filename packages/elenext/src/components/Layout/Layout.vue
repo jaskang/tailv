@@ -8,11 +8,10 @@
 import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
 import { layoutInjectKey } from './core'
 import { mergeClass } from '@elenext/shared'
-import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 
 const ELayout = defineComponent({
-  name: getCompName('ELayout'),
+  name: 'ELayout',
   props: {
     direction: propTypes.oneOfString<'horizontal' | 'vertical'>()
   },

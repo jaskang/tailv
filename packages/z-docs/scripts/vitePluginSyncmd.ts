@@ -1,4 +1,4 @@
-import { Plugin, ServerPluginContext } from 'vite'
+import { Plugin } from 'vite'
 import chokidar from 'chokidar'
 import path from 'path'
 import fs from 'fs-extra'
@@ -50,7 +50,10 @@ function syncdocServer({ root }) {
 
 function vitePluginSyncmd(): Plugin {
   return {
-    configureServer: [syncdocServer]
+    name: 'Syncmd',
+    configureServer(server) {
+      syncdocServer({ root: server.config.root })
+    }
   }
 }
 

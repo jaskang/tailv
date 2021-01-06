@@ -8,13 +8,12 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, PropType } from 'vue'
-import { getCompName } from '../../utils'
 import { mergeClass } from '@elenext/shared'
 import { IconArrowClockwise } from '@elenext/icons'
 import { propTypes } from '../../utils/PropTypes'
 
 const EButton = defineComponent({
-  name: getCompName('EButton'),
+  name: 'EButton',
   components: {
     IconArrowClockwise
   },

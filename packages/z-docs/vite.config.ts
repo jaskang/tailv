@@ -4,15 +4,16 @@ import createVueDocPlugin from 'vite-plugin-vuedoc'
 import vitePluginSyncmd from './scripts/vitePluginSyncmd'
 
 const config: UserConfig = {
-  assetsDir: 'src/assets',
+  assetsInclude: ['src/assets'],
   optimizeDeps: {
     exclude: ['elenext']
-    // link: ['optimize-linked']
   },
-  alias: {},
   plugins: [
     vitePluginSyncmd(),
     createVueDocPlugin({
+      markdownIt: {
+        plugins: []
+      },
       highlight: {
         theme: 'one-dark'
       }

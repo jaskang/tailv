@@ -6,10 +6,9 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { getCompName } from '../../utils'
 
 const EButtonGroup = defineComponent({
-  name: getCompName('EButtonGroup')
+  name: 'EButtonGroup'
 })
 
 EButtonGroup.install = (app: App): void => {

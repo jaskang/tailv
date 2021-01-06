@@ -9,10 +9,9 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance, computed, App } from 'vue'
-import { getCompName } from '../../utils'
 
 const EBreadcrumbItem = defineComponent({
-  name: getCompName('EBreadcrumbItem'),
+  name: 'EBreadcrumbItem',
   props: {
     path: {
       type: [String, Object],

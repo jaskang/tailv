@@ -6,10 +6,9 @@
 
 <script lang="ts">
 import { App, defineComponent, provide } from 'vue'
-import { getCompName } from '../../utils'
 
 const EBreadcrumb = defineComponent({
-  name: getCompName('EBreadcrumb'),
+  name: 'EBreadcrumb',
   props: {
     separator: {
       type: String,

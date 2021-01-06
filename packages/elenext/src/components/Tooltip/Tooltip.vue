@@ -23,13 +23,12 @@
 <script lang="ts">
 import { App, computed, defineComponent, PropType, ref } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { getCompName } from '../../utils'
 import { EPopper, PlacementType, TriggerType } from '../Popper'
 import { emit } from 'process'
 import { propTypes } from '../../utils/PropTypes'
 
 const ETooltip = defineComponent({
-  name: getCompName('ETooltip'),
+  name: 'ETooltip',
   components: {
     EPopper
   },

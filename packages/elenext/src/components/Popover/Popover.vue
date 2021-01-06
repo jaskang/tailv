@@ -26,9 +26,8 @@ import { App, computed, defineComponent, PropType } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { EPopper, PlacementType, TriggerType } from '../Popper'
 import { propTypes } from '../../utils/PropTypes'
-import { getCompName } from 'src/utils'
 const EPopover = defineComponent({
-  name: getCompName('EPopover'),
+  name: 'EPopover',
   components: {
     EPopper
   },

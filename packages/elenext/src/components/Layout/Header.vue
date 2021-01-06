@@ -6,10 +6,9 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { getCompName } from '../../utils'
 
 const EHeader = defineComponent({
-  name: getCompName('EHeader'),
+  name: 'EHeader',
   props: {
     height: {
       type: String,

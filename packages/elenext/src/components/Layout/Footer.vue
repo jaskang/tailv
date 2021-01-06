@@ -6,10 +6,9 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { getCompName } from '../../utils'
 
 const EFooter = defineComponent({
-  name: getCompName('EFooter'),
+  name: 'EFooter',
   props: {
     height: {
       type: String,

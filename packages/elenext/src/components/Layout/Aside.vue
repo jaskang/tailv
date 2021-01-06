@@ -7,11 +7,10 @@
 <script lang="ts">
 import { App, defineComponent, inject } from 'vue'
 import { layoutInjectKey } from './core'
-import { getCompName } from '../../utils'
 import { propTypes } from '../../utils/PropTypes'
 
 const EAside = defineComponent({
-  name: getCompName('EAside'),
+  name: 'EAside',
   props: {
     width: propTypes.string('250px')
   },
