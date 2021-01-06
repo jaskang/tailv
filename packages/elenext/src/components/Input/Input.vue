@@ -10,7 +10,7 @@
     <input
       type="text"
       class="el-input__inner"
-      :value="modelValue"
+      :value="innerValue"
       @input="inputHandler"
       @focus="focusHandler"
       @blur="blurHandler"
@@ -54,14 +54,19 @@ const EInput = defineComponent({
   },
   emits: ['update:modelValue', 'input', 'focus', 'blur', 'change'],
   setup(props, { attrs, slots, emit }) {
+    const isFocus = ref(false)
     const hasPrefix = computed(() => slots.prefix || props.prefix)
     const hasSuffix = computed(() => slots.suffix || props.suffix)
-    const isFocus = ref(false)
+    const innerValue = ref(props.modelValue)
 
-    const inputHandler = (event: Event) => {
-      const { value } = event.target as HTMLInputElement
+    const updateEmit = value => {
       emit('update:modelValue', value)
       emit('input', value)
+    }
+    const inputHandler = (event: Event) => {
+      const { value } = event.target as HTMLInputElement
+      innerValue.value = value
+      updateEmit(value)
     }
     const focusHandler = (event: any) => {
       isFocus.value = true
@@ -82,6 +87,7 @@ const EInput = defineComponent({
       hasPrefix,
       hasSuffix,
       isFocus,
+      innerValue,
       inputHandler,
       focusHandler,
       blurHandler,

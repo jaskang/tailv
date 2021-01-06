@@ -33,7 +33,7 @@ export default {
 
 ```vue demo
 <template>
-  <e-input v-model="value" clearable> </e-input>
+  <e-input clearable> </e-input>
 </template>
 <script>
 export default {

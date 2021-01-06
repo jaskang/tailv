@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "@elenext/icons": "^0.13.0",
+    "@vitejs/plugin-vue": "^1.0.4",
     "elenext": "^0.13.0",
-    "vue": "^3.0.4",
+    "vue": "^3.0.5",
     "vue-router": "^4.0.2"
   },
   "devDependencies": {
