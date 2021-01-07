@@ -17,7 +17,7 @@
 // 那是从荒诞生出美梦
 import { App, computed, defineComponent, inject } from 'vue'
 import { IconCheck } from '@elenext/icons'
-import { propTypes } from 'src/utils/PropTypes'
+import { propTypes } from '../../utils/PropTypes'
 import { SELECTDROPDOWN_IJK } from './core'
 
 const ESelectOption = defineComponent({

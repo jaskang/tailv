@@ -38,7 +38,7 @@ yarn add elenext
 ## Quick Start
 
 ```javascript
-import 'elenext/dist/elenext.esm.css'
+import 'elenext/dist/elenext.css'
 import { createApp } from 'vue'
 import elenext from 'elenext'
 import App from './App.vue'

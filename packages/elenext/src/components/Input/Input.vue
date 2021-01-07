@@ -38,7 +38,7 @@
   </div>
 </template>
 <script lang="ts">
-import { propTypes } from 'src/utils/PropTypes'
+import { propTypes } from '../../utils/PropTypes'
 import { App, computed, defineComponent, reactive, ref, watch } from 'vue'
 import { IconXCircleFill } from '@elenext/icons'
 const EInput = defineComponent({

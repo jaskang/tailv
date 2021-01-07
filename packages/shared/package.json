@@ -8,8 +8,8 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "rimraf dist && tsrv dev",
-    "build": "rimraf dist && tsrv build",
+    "dev": "tsrv dev",
+    "build": "tsrv build",
     "test": "tsrv test",
     "prepublishOnly": "yarn build"
   }

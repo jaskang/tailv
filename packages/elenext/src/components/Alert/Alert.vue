@@ -37,7 +37,7 @@ import {
   IconXCircleFill,
   IconX
 } from '@elenext/icons'
-import { propTypes } from 'src/utils/PropTypes'
+import { propTypes } from '../../utils/PropTypes'
 
 const EAlert = defineComponent({
   name: 'EAlert',

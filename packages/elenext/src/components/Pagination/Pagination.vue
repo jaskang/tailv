@@ -57,8 +57,8 @@
   </div>
 </template>
 <script lang="ts">
-import { propTypes } from 'src/utils/PropTypes'
-import { App, computed, defineComponent, reactive, watchEffect } from 'vue'
+import { propTypes } from '../../utils/PropTypes'
+import { App, defineComponent, reactive, watchEffect } from 'vue'
 import {
   IconChevronLeft,
   IconChevronDoubleLeft,

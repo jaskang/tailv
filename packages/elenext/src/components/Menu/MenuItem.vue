@@ -30,7 +30,7 @@ import {
 } from 'vue'
 import { mergeClass, colorLighten } from '@elenext/shared'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
-import { propTypes } from 'src/utils/PropTypes'
+import { propTypes } from '../../utils/PropTypes'
 
 const EMenuItem = defineComponent({
   name: 'EMenuItem',

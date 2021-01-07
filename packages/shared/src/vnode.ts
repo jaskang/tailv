@@ -1,4 +1,4 @@
-export type MergeClassValue = MergeClassValue[] | { [id: string]: any } | string | number | null | boolean | undefined
+export type MergeClassValue = { [id: string]: any } | string | number | null | boolean | undefined
 
 export function mergeClass(...classes: MergeClassValue[]): string {
   let res = ''

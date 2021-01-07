@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, provide, CSSProperties, PropType, InjectionKey, ComputedRef, App } from 'vue'
+import { defineComponent, computed, provide, CSSProperties, PropType, App } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { Gutter, GutterTuple, rowInjectKey } from './core'

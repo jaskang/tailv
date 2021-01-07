@@ -28,8 +28,8 @@
   ],
   "sideEffects": "false",
   "scripts": {
-    "dev": "rimraf dist && tsrv dev",
-    "build": "rimraf dist && tsrv build",
+    "dev": "tsrv dev",
+    "build": "tsrv build",
     "build:font": "fantasticon",
     "font": "node ./scripts/build-font.js",
     "test": "tsrv test",

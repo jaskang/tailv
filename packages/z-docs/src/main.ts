@@ -1,5 +1,5 @@
 import './index.less'
-import 'elenext/dist/elenext.esm.css'
+import 'elenext/dist/elenext.css'
 import 'vite-plugin-vuedoc/style.css'
 import { createApp } from 'vue'
 import { router } from './router'
