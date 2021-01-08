@@ -13,6 +13,5 @@
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
     "types": ["jest", "node"]
-  },
-  "include": ["shims-vue.d.ts", "packages/*/src/**/*", "packages/*/__tests/**/*"]
+  }
 }

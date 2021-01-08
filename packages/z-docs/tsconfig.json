@@ -10,5 +10,5 @@
     "types": ["vite/client"],
     "baseUrl": "."
   },
-  "include": ["../../shims.d.ts", "src/**/*"]
+  "include": ["./shims.d.ts", "src/**/*"]
 }
