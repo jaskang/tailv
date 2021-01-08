@@ -27,15 +27,16 @@
     :reference="elRef"
   >
     <template #content>
-      <e-select-dropdown
+      <e-select-box
         v-model="innerValue"
         :options="options"
         :multiple="multiple"
+        :is-plain="false"
         :style="{ width: elRef ? `${elRef?.offsetWidth}px` : undefined }"
         @change="changeHandler"
       >
         <slot></slot>
-      </e-select-dropdown>
+      </e-select-box>
     </template>
   </e-popper>
 </template>
@@ -46,13 +47,13 @@ import { propTypes } from '../../utils/PropTypes'
 import { EInput } from '../Input'
 import { EPopper } from '../Popper'
 import { OptionType } from './core'
-import ESelectDropdown from './SelectDropdown.vue'
+import ESelectBox from './SelectBox.vue'
 const ESelect = defineComponent({
   name: 'ESelect',
   components: {
     EInput,
     EPopper,
-    ESelectDropdown
+    ESelectBox
   },
   props: {
     modelValue: propTypes.stringOrArray(),

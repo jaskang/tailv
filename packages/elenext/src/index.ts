@@ -11,7 +11,7 @@ import { ETooltip } from './components/Tooltip'
 import { EPopover } from './components/Popover'
 import { EMenu, ESubMenu, EMenuItem, EMenuItemGroup } from './components/Menu'
 import { EInput, EInputGroup } from './components/Input'
-import { ESelect } from './components/Select'
+import { ESelect, ESelectBox, ESelectOption } from './components/Select'
 import './styles/index.scss'
 
 export {
@@ -39,7 +39,9 @@ export {
   EMenuItemGroup,
   EInput,
   EInputGroup,
-  ESelect
+  ESelect,
+  ESelectBox,
+  ESelectOption
 }
 
 export const elenext: Plugin = {
@@ -82,5 +84,7 @@ export const elenext: Plugin = {
     useComponent(EInput)
     useComponent(EInputGroup)
     useComponent(ESelect)
+    useComponent(ESelectBox)
+    useComponent(ESelectOption)
   }
 }

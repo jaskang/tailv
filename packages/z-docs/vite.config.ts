@@ -11,7 +11,6 @@ const containers = ['success', 'warning', 'info', 'error'].map(type => {
     {
       validate: function (params: string) {
         const str = params.trim()
-        console.log(str)
         if (str === type || str.startsWith(`${type} `)) {
           return [str, str === type ? '' : str.substr(type.length + 1)]
         }

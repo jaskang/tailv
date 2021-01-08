@@ -1,5 +1,9 @@
 <template>
+  <li v-if="$slots.default" @click="selectHandler">
+    <slot :selected="isSelected" :multiple="parentState.multiple" />
+  </li>
   <li
+    v-else
     class="el-select-option"
     :class="{
       'is-multiple': parentState.multiple,
@@ -34,12 +38,15 @@ const ESelectOption = defineComponent({
   },
   emits: ['select'],
   setup(props, { attrs, slots, emit }) {
+    console.log(attrs)
+
     const parentState = inject(SELECTDROPDOWN_IJK)
     const isSelected = computed(() => {
       return parentState.selected.includes(props.value)
     })
-    const selectHandler = value => {
+    const selectHandler = event => {
       emit('select', props.value)
+      parentState.methods.onItemSelect(props.value)
     }
     return {
       parentState,

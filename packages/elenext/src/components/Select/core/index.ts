@@ -16,6 +16,9 @@ export type SelectDropdownState = {
   selected: Array<string | number>
   options: OptionType[]
   multiple: boolean
+  methods: {
+    onItemSelect: (value) => void
+  }
 }
 
 export const SELECTDROPDOWN_IJK: InjectionKey<UnwrapRef<SelectDropdownState>> = Symbol('SelectDropdown')
