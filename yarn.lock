@@ -9850,10 +9850,10 @@ rollup-plugin-typescript2@^0.29.0:
     resolve "1.17.0"
     tslib "2.0.1"
 
-rollup-plugin-vue@6.0.0-beta.10:
-  version "6.0.0-beta.10"
-  resolved "https://registry.npmjs.org/rollup-plugin-vue/-/rollup-plugin-vue-6.0.0-beta.10.tgz#66d9b9a8dd2d085267d1cc398ea0113360879ac1"
-  integrity sha512-8TZJmROiSRjWoHRR6id0/ktOBOUGuI302xDBq4YBiA/tnnXdoY3oFGtvRWzT5ldX0jTJ8QX40rrJOw2SvcWwxQ==
+rollup-plugin-vue@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/rollup-plugin-vue/-/rollup-plugin-vue-6.0.0.tgz#e379e93e5ae9a8648522f698be2e452e8672aaf2"
+  integrity sha512-oVvUd84d5u73M2HYM3XsMDLtZRIA/tw2U0dmHlXU2UWP5JARYHzh/U9vcxaN/x/9MrepY7VH3pHFeOhrWpxs/Q==
   dependencies:
     debug "^4.1.1"
     hash-sum "^2.0.0"
@@ -10882,10 +10882,10 @@ tslib@^2.0.3:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tsrv@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.9.1.tgz#3833e9664f0c725c516d469826bdef9935b714b9"
-  integrity sha512-BUSvGTNzwQ+tS+RlIT4Cf5KylXk0SPR4zwVoyQFMONJDZNPu1g9XYMvBrApeCr++o3wYFlNIPiXgXg/I+UjmPg==
+tsrv@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.9.2.tgz#3de48efd357dbf81c039dc7b3fb00873beaf3e97"
+  integrity sha512-XwmxdT4eLt2lX5R6jUH5MYBO0TJzjdnbH8em1twQmKc/X+yrho02XPyRjoC0P3pr8CY6ZRc5lwBqXi6ZnmYylQ==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-transform-typescript" "^7.12.1"
@@ -10922,7 +10922,7 @@ tsrv@^0.9.1:
     rollup-plugin-dts "^2.0.1"
     rollup-plugin-postcss "^4.0.0"
     rollup-plugin-typescript2 "^0.29.0"
-    rollup-plugin-vue "6.0.0-beta.10"
+    rollup-plugin-vue "^6.0.0"
     sass "^1.32.2"
     ts-jest "^26.4.4"
     typescript "^4.1.3"
