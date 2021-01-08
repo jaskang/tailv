@@ -1,7 +1,36 @@
 import type { UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import markdownItContainer from 'markdown-it-container'
 import createVueDocPlugin from 'vite-plugin-vuedoc'
 import vitePluginSyncmd from './scripts/vitePluginSyncmd'
+
+const containers = ['success', 'warning', 'info', 'error'].map(type => {
+  return [
+    markdownItContainer,
+    type,
+    {
+      validate: function (params: string) {
+        const str = params.trim()
+        console.log(str)
+        if (str === type || str.startsWith(`${type} `)) {
+          return [str, str === type ? '' : str.substr(type.length + 1)]
+        }
+        return null
+      },
+      render: function (tokens: any[], idx: number) {
+        const str = tokens[idx].info.trim()
+        const m = [str, str === type ? '' : str.substr(type.length + 1)]
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          return `<e-alert type="${type}" :closable="false" title="${m[1]}">`
+        } else {
+          // closing tag
+          return '</e-alert>'
+        }
+      }
+    }
+  ]
+})
 
 const config: UserConfig = {
   assetsInclude: ['src/assets'],
@@ -12,7 +41,7 @@ const config: UserConfig = {
     vitePluginSyncmd(),
     createVueDocPlugin({
       markdownIt: {
-        plugins: []
+        plugins: [...containers]
       },
       highlight: {
         theme: 'one-dark'

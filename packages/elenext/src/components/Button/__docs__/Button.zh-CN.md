@@ -34,7 +34,8 @@ wrapperClass: md-button
 
 `type` : 'round' | 'circle' | 'link' | 'plain'
 
-::: tips link 类型的按钮没有颜色区分，需要此功能可使用 Link 组件
+::: info link 类型的按钮没有颜色区分，需要此功能可使用 Link 组件
+:::
 
 ```vue demo
 <template>

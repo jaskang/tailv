@@ -24,6 +24,20 @@ wrapperClass: md-select
 
 设置属性 `multiple` 使 `Select` 组件支持多选
 
+::: success success asdfas
+asdfasdf
+:::
+
+::: warning warning 344324
+asdfasd
+:::
+
+::: info info 34253425
+:::
+
+::: error error
+:::
+
 ```vue demo
 <template>
   <e-select
