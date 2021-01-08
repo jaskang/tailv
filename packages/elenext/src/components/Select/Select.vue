@@ -1,8 +1,25 @@
 <template>
   <div ref="elRef" class="el-select">
-    <e-input :allow-input="filterable" :model-value="inputValue" />
+    <e-input
+      ref="inputRef"
+      :allow-input="filterable"
+      :model-value="inputValue"
+      :class="{
+        'is-focus': dropdownVisible
+      }"
+    >
+      <template #suffix>
+        <IconChevronDown
+          :class="{
+            'el-select-dropdown__icon': true,
+            'is-open': dropdownVisible
+          }"
+        />
+      </template>
+    </e-input>
   </div>
   <e-popper
+    v-model="dropdownVisible"
     popper-class="el-select-dropdown-popper"
     trigger="click"
     placement="bottom"
@@ -15,6 +32,7 @@
         :options="options"
         :multiple="multiple"
         :style="{ width: elRef ? `${elRef?.offsetWidth}px` : undefined }"
+        @change="changeHandler"
       >
         <slot></slot>
       </e-select-dropdown>
@@ -23,7 +41,7 @@
 </template>
 <script lang="ts">
 // 收余恨、免娇嗔、且自新、改性情、休恋逝水、苦海回身、早悟兰因
-import { App, computed, defineComponent, reactive, ref } from 'vue'
+import { App, computed, defineComponent, ref } from 'vue'
 import { propTypes } from '../../utils/PropTypes'
 import { EInput } from '../Input'
 import { EPopper } from '../Popper'
@@ -44,19 +62,27 @@ const ESelect = defineComponent({
   },
   setup(props, { attrs, slots, emit }) {
     const elRef = ref<HTMLDivElement>()
+    const inputRef = ref()
+    const dropdownVisible = ref(false)
 
     const innerValue = ref([])
     const inputValue = computed(() => {
       return innerValue.value.join(',')
     })
-    const state = reactive({
-      options: props.options,
-      innerValue: []
-    })
+
+    const changeHandler = (select: any[]) => {
+      if (!props.multiple) {
+        dropdownVisible.value = false
+        inputRef.value.inputEl.focus()
+      }
+    }
     return {
       elRef,
+      inputRef,
       innerValue,
-      inputValue
+      inputValue,
+      dropdownVisible,
+      changeHandler
     }
   }
 })

@@ -22,7 +22,7 @@ const containers = ['success', 'warning', 'info', 'error'].map(type => {
         const m = [str, str === type ? '' : str.substr(type.length + 1)]
         if (tokens[idx].nesting === 1) {
           // opening tag
-          return `<e-alert type="${type}" :closable="false" title="${m[1]}">`
+          return `<e-alert type="${type}" :closable="false" title="${m[1]}" >`
         } else {
           // closing tag
           return '</e-alert>'

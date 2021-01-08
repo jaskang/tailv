@@ -95,9 +95,23 @@ export default {
   <e-row :gutter="[20, 20]">
     <e-col :span="24">
       <e-input-group>
-        <e-input v-model="value1"></e-input>
+        <e-select
+          :options="[
+            { label: 'label1', value: 'value1' },
+            { label: 'label2', value: 'value2' },
+            { label: 'label3', value: 'value3' },
+            { label: 'label4', value: 'value4' }
+          ]"
+        ></e-select>
         <e-input v-model="value2"></e-input>
-        <e-input v-model="value3"></e-input>
+        <e-select
+          :options="[
+            { label: 'label1', value: 'value1' },
+            { label: 'label2', value: 'value2' },
+            { label: 'label3', value: 'value3' },
+            { label: 'label4', value: 'value4' }
+          ]"
+        ></e-select>
       </e-input-group>
     </e-col>
   </e-row>

@@ -3,6 +3,9 @@
 
 .el-select {
   display: inline-block;
+  .el-input__inner {
+    cursor: pointer;
+  }
 }
 
 .el-select-dropdown-popper {
@@ -17,6 +20,12 @@
   list-style: none;
   box-sizing: border-box;
   padding: 0;
+  &__icon {
+    transition: var.$global-transition-all;
+    &.is-open {
+      transform: rotateZ(180deg);
+    }
+  }
   // &.is-multiple {
   //   & .el-select-dropdown__item.selected {
   //     color: $--select-option-selected-font-color;
@@ -91,7 +100,7 @@
 
   &.is-selected {
     color: var.$select-option-selected-font-color;
-    background-color: var.$select-option-selected-background;
+    // background-color: var.$select-option-selected-background;
   }
   &.is-multiple {
     padding-right: var.$select-option-height;

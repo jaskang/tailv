@@ -100,8 +100,10 @@ export const usePopper = (props: UsePopperOptions) => {
     clearTimeout(timers.showTimer)
   }
 
+  let clickEvent = null
+
   const togglePopper = (event: MouseEvent) => {
-    event.stopPropagation()
+    clickEvent = event
     props.onTrigger(popperId)
   }
   const showPopper = () => {
@@ -117,6 +119,10 @@ export const usePopper = (props: UsePopperOptions) => {
     }, props.hideDaly || 200)
   }
   const outSideClickHandler = (event: MouseEvent) => {
+    // outSideClick 和 togglePopper 冲突
+    if (event === clickEvent) {
+      return
+    }
     if (popperRef.value && !popperRef.value.contains(event.target as Node)) {
       if (
         ['hover', 'focus'].indexOf(props.trigger) !== -1 &&
@@ -137,14 +143,14 @@ export const usePopper = (props: UsePopperOptions) => {
     if (referenceEl && popperEl) {
       if (props.trigger === 'hover') {
         referenceEl[event]('mouseenter', showPopper)
-        popperEl[event]('mouseenter', showPopper)
         referenceEl[event]('mouseleave', hidePopper)
+        popperEl[event]('mouseenter', showPopper)
         popperEl[event]('mouseleave', hidePopper)
       }
       if (props.trigger === 'click') {
         referenceEl[event]('click', togglePopper)
-        popperEl[event]('mouseenter', showPopper)
-        popperEl[event]('mouseleave', hidePopper)
+        // popperEl[event]('mouseenter', showPopper)
+        // popperEl[event]('mouseleave', hidePopper)
       }
       if (props.trigger === 'focus') {
         referenceEl[event]('focus', showPopper)

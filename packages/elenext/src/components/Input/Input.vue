@@ -8,6 +8,7 @@
     }"
   >
     <input
+      ref="inputEl"
       type="text"
       class="el-input__inner"
       :readonly="!allowInput"
@@ -56,6 +57,7 @@ const EInput = defineComponent({
   },
   emits: ['update:modelValue', 'input', 'focus', 'blur', 'change'],
   setup(props, { attrs, slots, emit }) {
+    const inputEl = ref<HTMLInputElement>()
     const isFocus = ref(false)
     const hasPrefix = computed(() => slots.prefix || props.prefix)
     const hasSuffix = computed(() => slots.suffix || props.suffix)
@@ -66,6 +68,7 @@ const EInput = defineComponent({
         innerValue.value = value
       }
     )
+
     const updateEmit = value => {
       emit('update:modelValue', value)
       emit('input', value)
@@ -91,6 +94,7 @@ const EInput = defineComponent({
       emit('update:modelValue', '')
     }
     return {
+      inputEl,
       hasPrefix,
       hasSuffix,
       isFocus,

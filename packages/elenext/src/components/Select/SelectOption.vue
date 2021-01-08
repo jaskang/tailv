@@ -22,6 +22,9 @@ import { SELECTDROPDOWN_IJK } from './core'
 
 const ESelectOption = defineComponent({
   name: 'ESelectOption',
+  components: {
+    IconCheck
+  },
   props: {
     label: propTypes.string(),
     value: {

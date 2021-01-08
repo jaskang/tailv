@@ -32,7 +32,7 @@ const ESelectDropdown = defineComponent({
     options: propTypes.array<OptionType>(),
     multiple: propTypes.boolean()
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
     const state = reactive({
       selected: props.modelValue || [],
@@ -54,8 +54,8 @@ const ESelectDropdown = defineComponent({
           state.selected = []
         }
       }
-
       emit('update:modelValue', state.selected)
+      emit('change', state.selected)
     }
     provide(SELECTDROPDOWN_IJK, state)
     return {

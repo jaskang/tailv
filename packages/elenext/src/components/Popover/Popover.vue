@@ -22,7 +22,7 @@
   </e-popper>
 </template>
 <script lang="ts">
-import { App, computed, defineComponent, PropType } from 'vue'
+import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { EPopper, PlacementType, TriggerType } from '../Popper'
 import { propTypes } from '../../utils/PropTypes'

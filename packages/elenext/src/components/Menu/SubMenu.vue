@@ -53,14 +53,10 @@ import {
   provide,
   reactive,
   ref,
-  onBeforeUnmount,
   App,
-  PropType,
   CSSProperties,
-  watch,
   watchEffect
 } from 'vue'
-import { mergeClass, colorLighten } from '@elenext/shared'
 import { IconChevronUp, IconChevronRight } from '@elenext/icons'
 import { ECollapseTransition } from '../Transition'
 import { EPopper } from '../Popper'
