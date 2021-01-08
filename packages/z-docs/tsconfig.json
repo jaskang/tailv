@@ -8,7 +8,8 @@
     "sourceMap": true,
     "lib": ["esnext", "dom"],
     "types": ["vite/client"],
-    "baseUrl": "."
+    "baseUrl": ".",
+    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
   "include": ["./shims.d.ts", "src/**/*"]
 }

@@ -2,7 +2,8 @@
   "exclude": ["../../tsconfig.json"],
   "compilerOptions": {
     "baseUrl": ".",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
   "include": ["./shims.d.ts", "src/**/*"]
 }

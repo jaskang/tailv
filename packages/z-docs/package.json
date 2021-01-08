@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.0.4",
-    "vite": "^2.0.0-beta.10",
+    "vite": "^2.0.0-beta.12",
     "vite-plugin-vuedoc": "^3.0.0"
   }
 }
