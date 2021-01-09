@@ -82,9 +82,7 @@ const EPagination = defineComponent({
     current: prop.number(),
     total: prop.number(),
     pageSize: prop.number(),
-    pageSizeOptions: prop.array<number>({
-      default: [10, 20, 50, 100]
-    }),
+    pageSizeOptions: prop.array<number>().def([10, 20, 50, 100]),
     disabled: prop.bool()
   },
   emits: ['change'],

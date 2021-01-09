@@ -3,17 +3,17 @@ import { InjectionKey, UnwrapRef } from 'vue'
 export type SelectValue = string | string[]
 
 export type OptionChildrenType = {
-  value: string | number
+  value: any
   label?: string
   children?: OptionChildrenType[]
 }
 export type OptionType = {
-  value: string | number
+  value: any
   label?: string
 }
 
 export type SelectDropdownState = {
-  selected: Array<string | number>
+  selected: Array<any>
   options: OptionType[]
   multiple: boolean
   methods: {

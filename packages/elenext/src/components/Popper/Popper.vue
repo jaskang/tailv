@@ -56,16 +56,16 @@ const EPopper = defineComponent({
   props: {
     modelValue: prop.bool(),
     popperClass: prop.string(),
-    visibleArrow: prop.bool({ default: true }),
-    offset: prop.number({ default: 0 }),
+    visibleArrow: prop.bool().def(true),
+    offset: prop.number().def(0),
     // TODO: oneOf
     // placement: prop.oneOf(placements, { default: 'top' }),
     // trigger: prop.oneOf(triggers, { default: 'hover' }),
-    placement: prop.string<PlacementType>({ default: 'top' }),
-    trigger: prop.string<TriggerType>({ default: 'hover' }),
-    transition: prop.string({ default: 'el-popper-fade' }),
+    placement: prop.string<PlacementType>().def('top'),
+    trigger: prop.string<TriggerType>().def('hover'),
+    transition: prop.string().def('el-popper-fade'),
     backgroundColor: prop.string(),
-    reference: prop.object()
+    reference: prop.object<HTMLElement>()
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {

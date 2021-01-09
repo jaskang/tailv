@@ -35,14 +35,14 @@ const ETooltip = defineComponent({
     modelValue: prop.bool(),
     content: prop.string(),
     popperClass: prop.string(),
-    offset: prop.number({ default: 0 }),
+    offset: prop.number().def(0),
     backgroundColor: prop.string(),
     // TODO: oneOf
     // placement: prop.oneOf(placements, { default: 'top' }),
     // trigger: prop.oneOf(triggers, { default: 'hover' }),
-    placement: prop.string<PlacementType>({ default: 'top' }),
-    trigger: prop.string<TriggerType>({ default: 'hover' }),
-    transition: prop.string({ default: 'el-popper-fade' })
+    placement: prop.string<PlacementType>().def('top'),
+    trigger: prop.string<TriggerType>().def('hover'),
+    transition: prop.string().def('el-popper-fade')
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {

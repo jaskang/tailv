@@ -18,10 +18,10 @@ const EButton = defineComponent({
     IconArrowClockwise
   },
   props: {
-    color: prop.oneOf(['primary', 'success', 'info', 'warning', 'danger']),
-    type: prop.oneOf(['link', 'round', 'circle', 'plain']),
-    size: prop.oneOf(['large', 'small']),
-    nativeType: prop.oneOf(['button', 'submit', 'reset'], { default: 'button' }),
+    color: prop.oneOf(['primary', 'success', 'info', 'warning', 'danger'] as const),
+    type: prop.oneOf(['link', 'round', 'circle', 'plain'] as const),
+    size: prop.oneOf(['large', 'small'] as const),
+    nativeType: prop.oneOf(['button', 'submit', 'reset'] as const).def('button'),
     loading: prop.bool(),
     disabled: prop.bool()
   },

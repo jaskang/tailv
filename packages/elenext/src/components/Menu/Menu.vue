@@ -12,11 +12,11 @@ import { prop } from '../../utils'
 const EMenu = defineComponent({
   name: 'EMenu',
   props: {
-    mode: prop.oneOf(['horizontal', 'vertical', 'popper'], { defalut: 'horizontal' }),
-    textColor: prop.hexColor('#303133'),
-    backgroundColor: prop.hexColor('#fff'),
-    activeTextColor: prop.hexColor('#409EFF'),
-    activeBackgroundColor: prop.hexColor('#ecf5ff'),
+    mode: prop.oneOf(['horizontal', 'vertical', 'popper'] as const).def('horizontal'),
+    textColor: prop.hexColor().def('#303133'),
+    backgroundColor: prop.hexColor().def('#fff'),
+    activeTextColor: prop.hexColor().def('#409EFF'),
+    activeBackgroundColor: prop.hexColor().def('#ecf5ff'),
     uniqueOpened: prop.bool(),
     currentPath: prop.string()
   },

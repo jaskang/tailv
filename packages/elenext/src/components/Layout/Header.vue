@@ -6,14 +6,12 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
+import { prop } from '../../utils'
 
 const EHeader = defineComponent({
   name: 'EHeader',
   props: {
-    height: {
-      type: String,
-      default: undefined
-    }
+    height: prop.string()
   }
 })
 

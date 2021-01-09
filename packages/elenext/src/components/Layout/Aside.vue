@@ -12,9 +12,11 @@ import { prop } from '../../utils'
 const EAside = defineComponent({
   name: 'EAside',
   props: {
-    width: prop.string({ default: '250px' })
+    width: prop.string().def('250px')
   },
   setup(props, { slots }) {
+    console.log(props.width)
+
     const layout = inject(layoutInjectKey)
     layout?.setAside()
     return {}

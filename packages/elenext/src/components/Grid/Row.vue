@@ -18,9 +18,9 @@ const ERow = defineComponent({
       type: [Number, Array, Object] as PropType<Gutter>,
       default: 0
     },
-    align: prop.oneOf(['top', 'middle', 'bottom'], { default: 'top' }),
-    justify: prop.oneOf(['start', 'end', 'center', 'space-around', 'space-between'], { default: 'start' }),
-    wrap: prop.bool({ default: true })
+    align: prop.oneOf(['top', 'middle', 'bottom'] as const).def('top'),
+    justify: prop.oneOf(['start', 'end', 'center', 'space-around', 'space-between'] as const).def('start'),
+    wrap: prop.bool().def(true)
   },
   setup(props, { slots }) {
     const screens = useBreakpoint()

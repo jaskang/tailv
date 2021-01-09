@@ -13,8 +13,8 @@ import { prop } from '../../utils'
 const ELink = defineComponent({
   name: 'ELink',
   props: {
-    color: prop.oneOf(['default', 'primary', 'success', 'warning', 'danger', 'info'], { default: 'default' }),
-    underline: prop.bool({ default: true }),
+    color: prop.oneOf(['default', 'primary', 'success', 'warning', 'danger', 'info'] as const).def('default'),
+    underline: prop.bool().def(true),
     disabled: prop.bool(),
     href: prop.string(),
     icon: prop.string()

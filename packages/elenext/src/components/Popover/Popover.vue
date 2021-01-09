@@ -39,9 +39,9 @@ const EPopover = defineComponent({
     // TODO: oneOf
     // placement: prop.oneOf(placements, { default: 'top' }),
     // trigger: prop.oneOf(triggers, { default: 'click' }),
-    placement: prop.string<PlacementType>({ default: 'top' }),
-    trigger: prop.string<TriggerType>({ default: 'click' }),
-    transition: prop.string({ default: 'el-popper-fade' }),
+    placement: prop.string<PlacementType>().def('top'),
+    trigger: prop.string<TriggerType>().def('click'),
+    transition: prop.string().def('el-popper-fade'),
     width: prop.string()
   },
   emits: ['update:modelValue'],

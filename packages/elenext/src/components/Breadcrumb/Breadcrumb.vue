@@ -11,7 +11,7 @@ import { prop } from '../../utils'
 const EBreadcrumb = defineComponent({
   name: 'EBreadcrumb',
   props: {
-    separator: prop.string({ default: '/' })
+    separator: prop.string().def('/')
   }
 })
 

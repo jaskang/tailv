@@ -49,11 +49,11 @@ const EAlert = defineComponent({
     IconX
   },
   props: {
-    type: prop.oneOf(['success', 'warning', 'info', 'error'], { default: 'info' }),
-    effect: prop.oneOf(['light', 'dark'], { default: 'light' }),
+    type: prop.oneOf(['success', 'warning', 'info', 'error'] as const).def('info'),
+    effect: prop.oneOf(['light', 'dark'] as const).def('light'),
     title: prop.string(),
     description: prop.string(),
-    closable: prop.bool({ default: true })
+    closable: prop.bool().def(true)
   },
   emits: ['close'],
   setup(props, { attrs, slots, emit }) {

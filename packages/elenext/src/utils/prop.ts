@@ -13,69 +13,80 @@ type HexColorType = `#${string}`
 //   symbol: SymbolConstructor as symbol
 // } as const
 
-type nativeKey = 'string' | 'number' | 'symbol' | 'object' | 'func' | 'bool'
+// type nativeKey = 'string' | 'number' | 'symbol' | 'object' | 'func' | 'bool'
 
-interface PropOptions<T = any> {
-  required?: boolean
-  default?: T | null | undefined
+interface PropOptions {
   validator?(value: unknown): boolean
 }
 
+function createProp<T = any>(type: T, options: PropOptions = {}) {
+  return {
+    type: (type as unknown) as PropType<T>,
+    default: undefined,
+    def(value?: T) {
+      this.default = value
+      return this
+    },
+    isRequired() {
+      this.required = true
+      return this
+    },
+    ...options
+  }
+}
+
 const prop = {
-  any(options: PropOptions<any> = {}) {
-    return { default: undefined, ...options }
+  any(options: PropOptions = {}) {
+    return createProp(undefined, options)
   },
-  array<T = any>(options: PropOptions<T[]> = {}) {
-    return { type: Array as PropType<T[]>, default: undefined, ...options }
+  array<T = any>(options: PropOptions = {}) {
+    return createProp((Array as unknown) as T[], options)
   },
-  string<T = string>(options: PropOptions<T> = {}) {
-    return { type: String as PropType<T>, default: undefined, ...options }
+  string<T extends string = string>(options: PropOptions = {}) {
+    return createProp((String as unknown) as T, options)
   },
-  symbol(options: PropOptions<symbol> = {}) {
-    return { type: Symbol as PropType<symbol>, default: undefined, ...options }
+  symbol(options: PropOptions = {}) {
+    return createProp((Symbol as unknown) as symbol, options)
   },
-  bool(options: PropOptions<boolean> = {}) {
-    return { type: Boolean as PropType<boolean>, default: undefined, ...options }
+  bool(options: PropOptions = {}) {
+    return createProp((Boolean as unknown) as boolean, options)
   },
-  func<T extends (...args: any) => any>(options: PropOptions<T> = {}) {
-    return { type: Function as PropType<T>, default: undefined, ...options }
+  func<T extends (...args: any) => any>(options: PropOptions = {}) {
+    return createProp((Function as unknown) as T, options)
   },
-  number(options: PropOptions<number> = {}) {
-    return { type: Number as PropType<number>, default: undefined, ...options }
+  number(options: PropOptions = {}) {
+    return createProp((Number as unknown) as number, options)
   },
-  integer(options: PropOptions<number> = {}) {
-    return {
-      type: Number as PropType<number>,
-      default: undefined,
+  integer(options: Prop<number> = {}) {
+    return createProp((Number as unknown) as number, {
       validator(value: unknown) {
         return typeof value === 'number' && isFinite(value) && Math.floor(value) === value
       },
       ...options
-    }
+    })
   },
-  object<T = any>(options: PropOptions<T> = {}) {
-    return { type: Object as PropType<T>, default: value, ...options }
+  object<T = any>(options: PropOptions = {}) {
+    return createProp((Object as unknown) as T, options)
   },
-  hexColor(options: PropOptions<HexColorType> = {}) {
-    return {
-      type: String as PropType<HexColorType>,
-      default: undefined,
+  hexColor() {
+    return createProp((String as unknown) as HexColorType, {
       validator: function (value: unknown) {
-        return /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value)
-      },
-      ...options
-    }
+        if (typeof value === 'string') {
+          return /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value)
+        }
+        return false
+      }
+    })
   },
-  oneOf<T = any>(arr: T, options: PropOptions<any> = {}) {
-    return {
-      type: [Object, Function, Number, Boolean, String, Symbol] as PropType<string>,
-      default: undefined,
+  oneOf<T extends readonly string[]>(valArr: T, options: PropOptions = {}) {
+    return createProp((String as unknown) as typeof valArr[number], {
       validator: function (value: string) {
-        return arr.indexOf(value) !== -1
+        return valArr.indexOf(value) !== -1
       },
       ...options
-    }
+    })
   }
+
   // oneOfType<T extends ReadonlyArray<nativeKey>>(types: T, options: PropOptions<NativeTypes[typeof T[number]]> = {}) {
   //   return {
   //     type: [Object, Function, Number, Boolean, String, Symbol] as PropType<NativeTypes[typeof T[number]]>,

@@ -13,7 +13,7 @@ import { prop } from '../../utils'
 const ELayout = defineComponent({
   name: 'ELayout',
   props: {
-    direction: prop.oneOf(['horizontal', 'vertical'])
+    direction: prop.oneOf(['horizontal', 'vertical'] as const)
   },
   setup(props, { slots }) {
     const data = reactive({

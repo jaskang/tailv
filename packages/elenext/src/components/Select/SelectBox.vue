@@ -22,10 +22,10 @@ const ESelectBox = defineComponent({
     ESelectOption
   },
   props: {
-    modelValue: prop.array<string>(),
+    modelValue: prop.array(),
     options: prop.array<OptionType>(),
     multiple: prop.bool(),
-    isPlain: prop.bool({ default: true })
+    isPlain: prop.bool().def(true)
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {

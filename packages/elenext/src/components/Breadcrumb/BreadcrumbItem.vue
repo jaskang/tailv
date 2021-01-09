@@ -15,6 +15,7 @@ const EBreadcrumbItem = defineComponent({
   name: 'EBreadcrumbItem',
   props: {
     path: prop.string(),
+    // TODO: oneOfType
     // path: prop.oneOfType(['string', 'object']),
     replace: prop.bool()
   },

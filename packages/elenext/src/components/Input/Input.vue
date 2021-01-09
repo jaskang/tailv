@@ -53,7 +53,7 @@ const EInput = defineComponent({
     suffix: prop.string(),
     clearable: prop.bool(),
     disabled: prop.bool(),
-    allowInput: prop.bool({ default: true })
+    allowInput: prop.bool().def(true)
   },
   emits: ['update:modelValue', 'input', 'focus', 'blur', 'change'],
   setup(props, { attrs, slots, emit }) {
