@@ -39,21 +39,21 @@
   </div>
 </template>
 <script lang="ts">
-import { propTypes } from '../../utils/PropTypes'
 import { App, computed, defineComponent, ref, watch } from 'vue'
 import { IconXCircleFill } from '@elenext/icons'
+import { prop } from '../../utils'
 const EInput = defineComponent({
   name: 'EInput',
   components: {
     IconXCircleFill
   },
   props: {
-    modelValue: propTypes.string(),
-    prefix: propTypes.string(),
-    suffix: propTypes.string(),
-    clearable: propTypes.boolean(),
-    disabled: propTypes.boolean(),
-    allowInput: propTypes.boolean(true)
+    modelValue: prop.string(),
+    prefix: prop.string(),
+    suffix: prop.string(),
+    clearable: prop.bool(),
+    disabled: prop.bool(),
+    allowInput: prop.bool({ default: true })
   },
   emits: ['update:modelValue', 'input', 'focus', 'blur', 'change'],
   setup(props, { attrs, slots, emit }) {

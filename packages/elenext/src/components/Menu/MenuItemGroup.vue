@@ -13,13 +13,13 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, inject } from 'vue'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const EMenuItemGroup = defineComponent({
   name: 'EMenuItemGroup',
   props: {
-    title: propTypes.string('')
+    title: prop.string()
   },
   setup(props, { slots }) {
     const state = inject(MENU_IJK)

@@ -6,18 +6,18 @@
 </template>
 
 <script lang="ts">
-import { App, computed, defineComponent, PropType } from 'vue'
+import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 
 const ELink = defineComponent({
   name: 'ELink',
   props: {
-    color: propTypes.oneOfString<'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'>('default'),
-    underline: propTypes.boolean(true),
-    disabled: propTypes.boolean(),
-    href: propTypes.string(),
-    icon: propTypes.string()
+    color: prop.oneOf(['default', 'primary', 'success', 'warning', 'danger', 'info'], { default: 'default' }),
+    underline: prop.bool({ default: true }),
+    disabled: prop.bool(),
+    href: prop.string(),
+    icon: prop.string()
   },
   emits: ['click'],
   setup(props, { emit, slots }) {

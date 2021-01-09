@@ -21,8 +21,8 @@
 // 那是从荒诞生出美梦
 import { App, computed, defineComponent, inject } from 'vue'
 import { IconCheck } from '@elenext/icons'
-import { propTypes } from '../../utils/PropTypes'
 import { SELECTDROPDOWN_IJK } from './core'
+import { prop } from '../../utils'
 
 const ESelectOption = defineComponent({
   name: 'ESelectOption',
@@ -30,11 +30,8 @@ const ESelectOption = defineComponent({
     IconCheck
   },
   props: {
-    label: propTypes.string(),
-    value: {
-      type: [Number, String],
-      required: true
-    }
+    label: prop.string(),
+    value: prop.any()
   },
   emits: ['select'],
   setup(props, { attrs, slots, emit }) {

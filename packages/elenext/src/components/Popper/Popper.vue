@@ -28,25 +28,19 @@
 <script lang="ts">
 import {
   defineComponent,
-  Teleport,
-  PropType,
   watchEffect,
-  cloneVNode,
-  getCurrentInstance,
   InjectionKey,
   provide,
   inject,
-  h,
   onUnmounted,
   App,
   ref,
-  Ref,
   watch,
   computed,
   isRef
 } from 'vue'
-import { propTypes } from '../../utils/PropTypes'
-import { usePopper, PlacementType, TriggerType } from './core'
+import { prop } from '../../utils'
+import { PlacementType, TriggerType, usePopper } from './core'
 import EDomSlot from './DomSlot'
 
 const POPPER_IJK: InjectionKey<{
@@ -60,15 +54,18 @@ const EPopper = defineComponent({
   name: 'EPopper',
   components: { EDomSlot },
   props: {
-    modelValue: propTypes.boolean(),
-    popperClass: propTypes.string(''),
-    visibleArrow: propTypes.boolean(true),
-    placement: propTypes.oneOfString<PlacementType>('top'),
-    offset: propTypes.number(0),
-    trigger: propTypes.oneOfString<TriggerType>('hover'),
-    transition: propTypes.string('el-popper-fade'),
-    backgroundColor: propTypes.string(''),
-    reference: propTypes.object()
+    modelValue: prop.bool(),
+    popperClass: prop.string(),
+    visibleArrow: prop.bool({ default: true }),
+    offset: prop.number({ default: 0 }),
+    // TODO: oneOf
+    // placement: prop.oneOf(placements, { default: 'top' }),
+    // trigger: prop.oneOf(triggers, { default: 'hover' }),
+    placement: prop.string<PlacementType>({ default: 'top' }),
+    trigger: prop.string<TriggerType>({ default: 'hover' }),
+    transition: prop.string({ default: 'el-popper-fade' }),
+    backgroundColor: prop.string(),
+    reference: prop.object()
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {

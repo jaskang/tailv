@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "start": "yarn workspace @elenext/docs dev",
-    "dev": "yarn workspace elenext dev",
+    "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
     "test": "yarn workspaces run test",
     "postinstall": "husky install",

@@ -61,7 +61,7 @@ import { IconChevronUp, IconChevronRight } from '@elenext/icons'
 import { ECollapseTransition } from '../Transition'
 import { EPopper } from '../Popper'
 import { MenuState, MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 
 const ESubMenu = defineComponent({
   name: 'ESubMenu',
@@ -72,7 +72,7 @@ const ESubMenu = defineComponent({
     IconChevronRight
   },
   props: {
-    title: propTypes.string('')
+    title: prop.string()
   },
   setup(props, { attrs, slots, emit }) {
     const self = getCurrentInstance()

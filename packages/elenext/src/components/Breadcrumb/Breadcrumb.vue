@@ -5,15 +5,13 @@
 </template>
 
 <script lang="ts">
-import { App, defineComponent, provide } from 'vue'
+import { App, defineComponent } from 'vue'
+import { prop } from '../../utils'
 
 const EBreadcrumb = defineComponent({
   name: 'EBreadcrumb',
   props: {
-    separator: {
-      type: String,
-      default: '/'
-    }
+    separator: prop.string({ default: '/' })
   }
 })
 

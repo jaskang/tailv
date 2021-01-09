@@ -5,15 +5,15 @@
 </template>
 
 <script lang="ts">
-import { App, computed, defineComponent, getCurrentInstance, InjectionKey, PropType, provide, reactive } from 'vue'
+import { App, computed, defineComponent, provide, reactive } from 'vue'
 import { layoutInjectKey } from './core'
 import { mergeClass } from '@elenext/shared'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 
 const ELayout = defineComponent({
   name: 'ELayout',
   props: {
-    direction: propTypes.oneOfString<'horizontal' | 'vertical'>()
+    direction: prop.oneOf(['horizontal', 'vertical'])
   },
   setup(props, { slots }) {
     const data = reactive({

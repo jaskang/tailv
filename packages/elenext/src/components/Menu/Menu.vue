@@ -5,32 +5,20 @@
 </template>
 
 <script lang="ts">
-import { mergeClass } from '@elenext/shared'
-import {
-  App,
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  PropType,
-  provide,
-  reactive,
-  ref,
-  watch,
-  watchEffect
-} from 'vue'
-import { propTypes } from '../../utils/PropTypes'
+import { App, defineComponent, getCurrentInstance, provide, reactive, watchEffect } from 'vue'
 import { MenuState, MENU_IJK, MENU_TYPE } from './core'
+import { prop } from '../../utils'
 
 const EMenu = defineComponent({
   name: 'EMenu',
   props: {
-    mode: propTypes.oneOfString<'horizontal' | 'vertical' | 'popper'>('horizontal'),
-    textColor: propTypes.hexColor('#303133'),
-    backgroundColor: propTypes.hexColor('#fff'),
-    activeTextColor: propTypes.hexColor('#409EFF'),
-    activeBackgroundColor: propTypes.hexColor('#ecf5ff'),
-    uniqueOpened: Boolean,
-    currentPath: propTypes.string()
+    mode: prop.oneOf(['horizontal', 'vertical', 'popper'], { defalut: 'horizontal' }),
+    textColor: prop.hexColor('#303133'),
+    backgroundColor: prop.hexColor('#fff'),
+    activeTextColor: prop.hexColor('#409EFF'),
+    activeBackgroundColor: prop.hexColor('#ecf5ff'),
+    uniqueOpened: prop.bool(),
+    currentPath: prop.string()
   },
   setup(props) {
     const self = getCurrentInstance()

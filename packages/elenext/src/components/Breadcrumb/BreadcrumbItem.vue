@@ -9,17 +9,14 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance, computed, App } from 'vue'
+import { prop } from '../../utils'
 
 const EBreadcrumbItem = defineComponent({
   name: 'EBreadcrumbItem',
   props: {
-    path: {
-      type: [String, Object],
-      default: () => {
-        return null
-      }
-    },
-    replace: Boolean
+    path: prop.string(),
+    // path: prop.oneOfType(['string', 'object']),
+    replace: prop.bool()
   },
   setup(props, { slots }) {
     const self = getCurrentInstance()

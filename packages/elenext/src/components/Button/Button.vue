@@ -7,10 +7,10 @@
 </template>
 
 <script lang="ts">
-import { App, computed, defineComponent, PropType } from 'vue'
+import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { IconArrowClockwise } from '@elenext/icons'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 
 const EButton = defineComponent({
   name: 'EButton',
@@ -18,12 +18,12 @@ const EButton = defineComponent({
     IconArrowClockwise
   },
   props: {
-    color: propTypes.oneOfString<'primary' | 'success' | 'info' | 'warning' | 'danger'>(),
-    type: propTypes.oneOfString<'link' | 'round' | 'circle' | 'plain'>(),
-    size: propTypes.oneOfString<'large' | 'small'>(),
-    nativeType: propTypes.oneOfString<'button' | 'submit' | 'reset'>('button'),
-    loading: propTypes.boolean(),
-    disabled: propTypes.boolean()
+    color: prop.oneOf(['primary', 'success', 'info', 'warning', 'danger']),
+    type: prop.oneOf(['link', 'round', 'circle', 'plain']),
+    size: prop.oneOf(['large', 'small']),
+    nativeType: prop.oneOf(['button', 'submit', 'reset'], { default: 'button' }),
+    loading: prop.bool(),
+    disabled: prop.bool()
   },
   emits: ['click'],
   setup(props, { emit, slots }) {

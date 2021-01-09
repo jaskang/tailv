@@ -20,22 +20,18 @@ import {
   defineComponent,
   getCurrentInstance,
   inject,
-  onBeforeUnmount,
   onMounted,
   onUnmounted,
-  PropType,
   reactive,
-  ref,
   watchEffect
 } from 'vue'
-import { mergeClass, colorLighten } from '@elenext/shared'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 
 const EMenuItem = defineComponent({
   name: 'EMenuItem',
   props: {
-    path: propTypes.string()
+    path: prop.string()
   },
   emits: ['click'],
   setup(props, { emit }) {

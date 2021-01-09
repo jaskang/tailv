@@ -43,7 +43,7 @@
 <script lang="ts">
 // 收余恨、免娇嗔、且自新、改性情、休恋逝水、苦海回身、早悟兰因
 import { App, computed, defineComponent, ref } from 'vue'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 import { EInput } from '../Input'
 import { EPopper } from '../Popper'
 import { OptionType } from './core'
@@ -56,10 +56,10 @@ const ESelect = defineComponent({
     ESelectBox
   },
   props: {
-    modelValue: propTypes.stringOrArray(),
-    options: propTypes.array<OptionType>(),
-    multiple: propTypes.boolean(),
-    filterable: propTypes.boolean(false)
+    modelValue: prop.any(),
+    options: prop.array<OptionType>(),
+    multiple: prop.bool(),
+    filterable: prop.bool()
   },
   setup(props, { attrs, slots, emit }) {
     const elRef = ref<HTMLDivElement>()

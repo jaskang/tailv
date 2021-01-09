@@ -7,12 +7,12 @@
 <script lang="ts">
 import { App, defineComponent, inject } from 'vue'
 import { layoutInjectKey } from './core'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 
 const EAside = defineComponent({
   name: 'EAside',
   props: {
-    width: propTypes.string('250px')
+    width: prop.string({ default: '250px' })
   },
   setup(props, { slots }) {
     const layout = inject(layoutInjectKey)

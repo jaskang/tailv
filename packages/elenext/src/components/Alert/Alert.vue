@@ -37,7 +37,7 @@ import {
   IconXCircleFill,
   IconX
 } from '@elenext/icons'
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 
 const EAlert = defineComponent({
   name: 'EAlert',
@@ -49,11 +49,11 @@ const EAlert = defineComponent({
     IconX
   },
   props: {
-    type: propTypes.oneOfString<'success' | 'warning' | 'info' | 'error'>('info'),
-    effect: propTypes.oneOfString<'light' | 'dark'>('light'),
-    title: propTypes.string(),
-    description: propTypes.string(),
-    closable: propTypes.boolean(true)
+    type: prop.oneOf(['success', 'warning', 'info', 'error'], { default: 'info' }),
+    effect: prop.oneOf(['light', 'dark'], { default: 'light' }),
+    title: prop.string(),
+    description: prop.string(),
+    closable: prop.bool({ default: true })
   },
   emits: ['close'],
   setup(props, { attrs, slots, emit }) {

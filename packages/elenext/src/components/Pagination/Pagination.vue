@@ -57,7 +57,7 @@
   </div>
 </template>
 <script lang="ts">
-import { propTypes } from '../../utils/PropTypes'
+import { prop } from '../../utils'
 import { App, defineComponent, reactive, watchEffect } from 'vue'
 import {
   IconChevronLeft,
@@ -79,11 +79,13 @@ const EPagination = defineComponent({
     IconThreeDots
   },
   props: {
-    current: propTypes.number(),
-    total: propTypes.number(),
-    pageSize: propTypes.number(),
-    pageSizeOptions: propTypes.array<number>([10, 20, 50, 100]),
-    disabled: propTypes.boolean()
+    current: prop.number(),
+    total: prop.number(),
+    pageSize: prop.number(),
+    pageSizeOptions: prop.array<number>({
+      default: [10, 20, 50, 100]
+    }),
+    disabled: prop.bool()
   },
   emits: ['change'],
   setup(props, { attrs, slots, emit }) {

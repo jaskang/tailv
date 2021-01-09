@@ -1,6 +1,6 @@
 import { computed, onUnmounted, reactive, Ref, ref, watch, watchEffect } from 'vue'
 import { createPopper, Instance as PopperInstance, Options as PopperOptions } from '@popperjs/core'
-import { createEl, removeEl, uniqueId } from '@elenext/shared'
+import { uniqueId } from '@elenext/shared'
 
 export type PlacementType =
   | 'auto'
@@ -18,10 +18,8 @@ export type PlacementType =
   | 'right-end'
   | 'left-start'
   | 'left-end'
-
-export type StrategyType = 'absolute' | 'fixed'
-
 export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
+export type StrategyType = 'absolute' | 'fixed'
 
 interface UsePopperOptions {
   referenceRef: Ref<Element>
@@ -74,7 +72,7 @@ export const usePopper = (props: UsePopperOptions) => {
   const popperOptions = computed<PopperOptions>(() => {
     return {
       placement: props.placement || 'bottom-start',
-      strategy: 'absolute' as StrategyType,
+      strategy: 'absolute',
       modifiers: [
         {
           name: 'updateState',
