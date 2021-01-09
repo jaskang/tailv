@@ -1,19 +1,20 @@
-import { isRef, Prop, PropType, Ref } from 'vue'
+import { Prop, PropType } from 'vue'
 
 type HexColorType = `#${string}`
 
 // type $Keys<T extends object> = keyof T
 
-// const nativeTypes = {
-//   object: ObjectConstructor as object,
-//   func: FunctionConstructor as (...args: any) => any,
-//   number: NumberConstructor as number,
-//   bool: BooleanConstructor as boolean,
-//   string: StringConstructor as string,
-//   symbol: SymbolConstructor as symbol
-// } as const
+const nativeTypes = {
+  object: Object as object,
+  func: Function as (...args: any) => any,
+  number: (Number as unknown) as number,
+  bool: (Boolean as unknown) as boolean,
+  string: (String as unknown) as string,
+  symbol: (Symbol as unknown) as symbol
+} as const
+type NativeTypes = typeof nativeTypes
 
-// type nativeKey = 'string' | 'number' | 'symbol' | 'object' | 'func' | 'bool'
+type nativeKey = 'string' | 'number' | 'symbol' | 'object' | 'func' | 'bool'
 
 interface PropOptions {
   validator?(value: unknown): boolean
@@ -85,25 +86,20 @@ const prop = {
       },
       ...options
     })
-  }
+  },
 
-  // oneOfType<T extends ReadonlyArray<nativeKey>>(types: T, options: PropOptions<NativeTypes[typeof T[number]]> = {}) {
-  //   return {
-  //     type: [Object, Function, Number, Boolean, String, Symbol] as PropType<NativeTypes[typeof T[number]]>,
-  //     default: undefined,
-  //     validator: function (value: unknown) {
-  //       const valueConstructor = value.constructor
-  //       const currentTypes = types.map(item => {
-  //         return nativeTypes[item]
-  //       })
-  //       return currentTypes.indexOf(valueConstructor) !== -1
-  //     },
-  //     ...options
-  //   }
-  // },
-  // stringOrArray(value?: string | string[], options: PropOptions<T> = {}) {
-  //   return { type: [String, Array] as PropType<string | string[]>, default: value, ...options }
-  // }
+  oneOfType<T extends readonly nativeKey[]>(types: T, options: PropOptions = {}) {
+    return createProp((String as unknown) as NativeTypes[typeof types[number]], {
+      validator: function (value: string) {
+        const valueConstructor = value.constructor
+        const currentTypes = types.map(item => {
+          return nativeTypes[item]
+        })
+        return currentTypes.indexOf(valueConstructor) !== -1
+      },
+      ...options
+    })
+  }
 }
 
 export default prop

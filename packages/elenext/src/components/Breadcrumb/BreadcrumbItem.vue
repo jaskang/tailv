@@ -14,9 +14,9 @@ import { prop } from '../../utils'
 const EBreadcrumbItem = defineComponent({
   name: 'EBreadcrumbItem',
   props: {
-    path: prop.string(),
+    // path: prop.string(),
     // TODO: oneOfType
-    // path: prop.oneOfType(['string', 'object']),
+    path: prop.oneOfType(['string', 'object']),
     replace: prop.bool()
   },
   setup(props, { slots }) {
