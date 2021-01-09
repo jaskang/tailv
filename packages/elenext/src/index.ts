@@ -12,7 +12,7 @@ import { EPopover } from './components/Popover'
 import { EMenu, ESubMenu, EMenuItem, EMenuItemGroup } from './components/Menu'
 import { EInput, EInputGroup } from './components/Input'
 import { ESelect, ESelectBox, ESelectOption } from './components/Select'
-import { ERadio } from './components/Radio'
+import { ERadio, ERadioGroup } from './components/Radio'
 import './styles/index.scss'
 
 export {
@@ -43,7 +43,8 @@ export {
   ESelect,
   ESelectBox,
   ESelectOption,
-  ERadio
+  ERadio,
+  ERadioGroup
 }
 
 export const elenext: Plugin = {
@@ -89,5 +90,6 @@ export const elenext: Plugin = {
     useComponent(ESelectBox)
     useComponent(ESelectOption)
     useComponent(ERadio)
+    useComponent(ERadioGroup)
   }
 }

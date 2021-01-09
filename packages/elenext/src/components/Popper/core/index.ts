@@ -1,4 +1,4 @@
-import { computed, onUnmounted, reactive, Ref, ref, watch, watchEffect } from 'vue'
+import { computed, onUnmounted, reactive, Ref, watch, watchEffect } from 'vue'
 import { createPopper, Instance as PopperInstance, Options as PopperOptions } from '@popperjs/core'
 import { uniqueId } from '@elenext/shared'
 

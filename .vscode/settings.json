@@ -28,6 +28,7 @@
     "Alert",
     "Pagination",
     "Input",
-    "Select"
+    "Select",
+    "Radio"
   ]
 }

@@ -57,7 +57,6 @@ const EMenuItem = defineComponent({
     })
 
     const styles = computed<CSSProperties>(() => {
-      const mode = state.root.mode
       return {
         color: state.isActive ? state.root.activeTextColor : state.root.textColor,
         backgroundColor:

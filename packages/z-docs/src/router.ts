@@ -13,6 +13,7 @@ import Popover from './__docs__/Popover.zh-CN.md'
 import Alert from './__docs__/Alert.zh-CN.md'
 import Pagination from './__docs__/Pagination.zh-CN.md'
 import Icon from './__docs__/Icon.zh-CN.md'
+import Radio from './__docs__/Radio.zh-CN.md'
 import Input from './__docs__/Input.zh-CN.md'
 import Select from './__docs__/Select.zh-CN.md'
 
@@ -86,6 +87,11 @@ export const router = createRouter({
           path: '/pagination',
           name: 'pagination',
           component: Pagination
+        },
+        {
+          path: '/radio',
+          name: 'Radio',
+          component: Radio
         },
         {
           path: '/input',

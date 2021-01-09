@@ -15,8 +15,6 @@ const EAside = defineComponent({
     width: prop.string().def('250px')
   },
   setup(props, { slots }) {
-    console.log(props.width)
-
     const layout = inject(layoutInjectKey)
     layout?.setAside()
     return {}

@@ -47,7 +47,7 @@ const EDomSlot = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const elRef = ref(null)
+    const elRef = ref<Element>(null)
     watchEffect(() => {
       props.init?.(elRef.value || null)
     })

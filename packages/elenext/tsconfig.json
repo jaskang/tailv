@@ -1,8 +1,18 @@
 {
-  "exclude": ["../../tsconfig.json"],
   "compilerOptions": {
-    "baseUrl": ".",
+    "sourceMap": false,
+    "target": "esnext",
+    "module": "esnext",
     "jsx": "preserve",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "lib": ["esnext", "dom"],
+    "types": ["jest", "node"],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
   "include": ["./shims.d.ts", "src/**/*"]

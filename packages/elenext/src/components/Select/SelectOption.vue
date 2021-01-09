@@ -35,8 +35,6 @@ const ESelectOption = defineComponent({
   },
   emits: ['select'],
   setup(props, { attrs, slots, emit }) {
-    console.log(attrs)
-
     const parentState = inject(SELECTDROPDOWN_IJK)
     const isSelected = computed(() => {
       return parentState.selected.includes(props.value)

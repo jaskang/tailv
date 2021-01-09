@@ -40,9 +40,7 @@ const WrapSlot = defineComponent({
   emits: ['root-init'],
   setup(props, { slots }) {
     const elRef = ref(null)
-    watchEffect(() => {
-      console.log(elRef.value)
-    })
+
     return () => {
       const defaults = slots.default ? slots.default() : []
       const [vNodes] = setRootDomHook(defaults, elRef)

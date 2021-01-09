@@ -203,3 +203,26 @@ $select-box-background-color: $color-white !default;
 $select-dropdown-border-color: $global-border-color-light !default;
 $select-dropdown-border-radius: $global-border-radius-base !default;
 $select-dropdown-shadow: $global-box-shadow-light !default;
+// =================================================
+// Radio
+// =================================================
+$radio-font-size: $global-font-size-base !default;
+$radio-font-color: $global-color-text-regular !default;
+$radio-checked-font-color: $color-primary !default;
+$radio-disabled-font-color: $global-color-text-placeholder !default;
+
+$radio-icon-background-color: $color-white !default;
+$radio-icon-border: $global-border-color-base !default;
+$radio-icon-border-radius: 100% !default;
+$radio-icon-width: 14px !default;
+$radio-icon-height: 14px !default;
+$radio-icon-hover-border-color: $color-primary !default;
+$radio-icon-checked-border-color: $color-primary !default;
+$radio-icon-checked-background-color: $color-primary !default;
+
+$radio-icon-disabled-border-color: $global-disabled-border-color !default;
+$radio-icon-disabled-background-color: $global-disabled-background-color !default;
+
+$radio-icon-disabled-checked-border-color: $global-disabled-border-color !default;
+$radio-icon-disabled-checked-background-color: $global-disabled-background-color !default;
+$radio-icon-disabled-checked-icon-color: $global-color-text-placeholder !default;
