@@ -17,6 +17,6 @@
     "@vitejs/plugin-vue": "^1.0.4",
     "markdown-it-container": "^3.0.0",
     "vite": "^2.0.0-beta.12",
-    "vite-plugin-vuedoc": "^3.0.0"
+    "vite-plugin-vuedoc": "^3.0.1"
   }
 }

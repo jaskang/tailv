@@ -24,6 +24,7 @@
     "Pagination",
     "Input",
     "Select",
-    "Radio"
+    "Radio",
+    "deps"
   ]
 }
