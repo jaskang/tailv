@@ -3,12 +3,7 @@
   "path-intellisense.mappings": {
     "@/": "${floder}/src/"
   },
-  "path-autocomplete.pathMappings": {
-    "@/": "${folder}/src", // the absolute root folder is now /src,
-    "elenext": "${folder}" // alias for /test
-  },
   "vetur.validation.template": false,
-  "path-autocomplete.extensionOnImport": true,
   "liveServer.settings.root": "/build",
   "eslint.format.enable": true,
   "eslint.packageManager": "yarn",

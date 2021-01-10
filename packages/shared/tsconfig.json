@@ -1,7 +1,8 @@
 {
-  "exclude": ["../../tsconfig.json"],
   "compilerOptions": {
+    "rootDir": ".",
+    "declaration": true,
     "baseUrl": "."
   },
-  "include": ["src"]
+  "include": ["src/**/*", "types/**/*"]
 }

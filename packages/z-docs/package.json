@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "rimraf build && vite build",
+    "build": "vite build",
     "test": "tsrv test"
   },
   "dependencies": {

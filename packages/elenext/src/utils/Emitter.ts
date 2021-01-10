@@ -1,6 +1,6 @@
 // An event handler can take an optional event argument
 
-import { uniqueId } from './uniqueId'
+import { uniqueId } from '@elenext/shared'
 
 // and should not return a value
 export type Handler = (...arg: any[]) => void

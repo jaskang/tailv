@@ -1,8 +1,20 @@
 {
-  "exclude": ["../../tsconfig.json"],
   "compilerOptions": {
+    "sourceMap": false,
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "noImplicitAny": true,
     "baseUrl": ".",
-    "jsx": "preserve"
+    "lib": ["esnext", "dom"],
+    "types": ["jest", "vue", "node"]
   },
   "include": ["src/**/*"]
 }

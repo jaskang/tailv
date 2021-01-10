@@ -5,8 +5,8 @@
   "author": "jaskang <jaskang@qq.com>",
   "homepage": "https://github.com/JasKang/elenext#readme",
   "license": "MIT",
-  "main": "index.js",
-  "module": "dist/elenext.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
     "build:font": "fantasticon",
     "font": "node ./scripts/build-font.js",
     "test": "tsrv test",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn run build"
   },
   "dependencies": {
     "@elenext/icons": "^0.13.0",
@@ -43,9 +43,7 @@
     "pascal-case": "^3.1.2"
   },
   "peerDependencies": {
-    "vue": "^3.0.3"
+    "vue": "^3.0.5"
   },
-  "devDependencies": {
-    "postcss-base64": "^0.7.1"
-  }
+  "devDependencies": {}
 }

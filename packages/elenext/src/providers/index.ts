@@ -1,4 +1,4 @@
-import { InjectionKey, inject, provide } from 'vue'
+import { InjectionKey, inject } from 'vue'
 
 export const ElGlobalConfigSymbol: InjectionKey<{
   size?: 'medium' | 'small' | 'mini'

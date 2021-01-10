@@ -5,6 +5,7 @@
     "module": "esnext",
     "jsx": "preserve",
     "moduleResolution": "node",
+    "declaration": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,

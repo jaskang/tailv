@@ -1,5 +1,4 @@
 import { mount } from '@vue/test-utils'
-import { defineComponent } from 'vue'
 import { ERow, ECol } from '../'
 
 Object.defineProperty(window, 'matchMedia', {
