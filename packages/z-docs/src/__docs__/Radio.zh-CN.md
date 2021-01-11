@@ -36,19 +36,26 @@ export default {
 
 ```vue demo
 <template>
-  <e-row :gutter="[40, 0]">
-    <e-col>
-      <e-radio v-model="value" :value="1" disabled>radio1</e-radio>
-      <e-radio v-model="value" :value="2" disabled>radio2</e-radio>
+  <e-row :gutter="[20, 20]">
+    <e-col :span="24">
+      <e-radio v-model="radio1" :value="1">radio1</e-radio>
+      <e-radio v-model="radio1" :value="2" disabled>radio2</e-radio>
+      <e-radio v-model="radio1" :value="3">radio2</e-radio>
     </e-col>
-    <e-col> value:{{ value }} </e-col>
+    <e-col :span="24">
+      <e-radio-group v-model="radio1" :disabled="disabled">
+        <e-radio :value="1" disabled>radio1</e-radio>
+        <e-radio :value="2" disabled>radio2</e-radio>
+        <e-radio :value="3" disabled>radio3</e-radio>
+      </e-radio-group>
+    </e-col>
   </e-row>
 </template>
 <script>
 export default {
   data() {
     return {
-      value: 1
+      radio1: 1
     }
   }
 }
