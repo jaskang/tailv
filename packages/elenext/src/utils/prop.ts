@@ -23,7 +23,8 @@ interface PropOptions {
 function createProp<T = any>(type: T, options: PropOptions = {}) {
   return {
     type: (type as unknown) as PropType<T>,
-    default: undefined,
+    default: undefined as undefined | T,
+    required: false,
     def(value?: T) {
       this.default = value
       return this

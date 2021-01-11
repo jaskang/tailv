@@ -10761,10 +10761,10 @@ tslib@^2.0.3:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
-tsrv@^0.10.5:
-  version "0.10.5"
-  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.10.5.tgz#bec1de4ce9182babe0264d23618f263ec47a9900"
-  integrity sha512-XAp7oWZkP9VMQWuJYPwDq88wvzkNAL2ixxybVXd78v0HUYdc1CJjNpsOIUry79rrIcJr8rY7yqzglFPpdr2I6g==
+tsrv@^0.10.6:
+  version "0.10.6"
+  resolved "https://registry.npmjs.org/tsrv/-/tsrv-0.10.6.tgz#0b49ffd0a56422437113a1a3596701940e40b2f7"
+  integrity sha512-ek89gsDh3kEYfK32F5QVFC25f93B3DUkZJ5q+3P1gdeJWdpbVXLujtIsrAegLknRvPMS1rlrHZf5PC6YK7lXqg==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-transform-typescript" "^7.12.1"
