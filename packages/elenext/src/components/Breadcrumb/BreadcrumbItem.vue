@@ -3,13 +3,15 @@
     <span :class="[`el-breadcrumb-item__inner`, path ? 'is-link' : '']" role="link" @click="clickHandler">
       <slot />
     </span>
-    <span class="el-breadcrumb-item__separator" v-text="separator" />
+    <span class="el-breadcrumb-item__separator">{{ separator }}</span>
   </span>
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, computed, App } from 'vue'
+import { defineComponent, getCurrentInstance, App } from 'vue'
+import { useParent } from '../../hooks/useParent'
 import { prop } from '../../utils'
+import { Breadcrumb_IJK } from './core'
 
 const EBreadcrumbItem = defineComponent({
   name: 'EBreadcrumbItem',
@@ -21,8 +23,7 @@ const EBreadcrumbItem = defineComponent({
   },
   setup(props, { slots }) {
     const self = getCurrentInstance()
-
-    const separator = computed<string>(() => self?.parent?.props.separator as string)
+    const { parent } = useParent(Breadcrumb_IJK)
 
     const clickHandler = (event: MouseEvent) => {
       const { path } = props
@@ -33,7 +34,7 @@ const EBreadcrumbItem = defineComponent({
       }
     }
     return {
-      separator,
+      separator: parent.separator,
       clickHandler
     }
   }

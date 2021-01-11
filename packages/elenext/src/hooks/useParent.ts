@@ -34,11 +34,11 @@ export const useParent = <T>(key: InjectionKey<ParentProvide<T>>) => {
   const instance = getCurrentInstance()
   const parent = inject(key)
 
-  const index = computed(() => parent?.children.indexOf(instance))
+  const index = computed(() => parent?.children.indexOf(instance!))
 
-  parent?.insert(instance)
+  parent?.insert(instance!)
   onUnmounted(() => {
-    parent?.remove(instance)
+    parent?.remove(instance!)
   })
 
   return { parent, index }

@@ -5,13 +5,20 @@
 </template>
 
 <script lang="ts">
-import { App, defineComponent } from 'vue'
+import { App, computed, defineComponent } from 'vue'
+import { useChildren } from '../../hooks/useParent'
 import { prop } from '../../utils'
-
+import { Breadcrumb_IJK } from './core'
 const EBreadcrumb = defineComponent({
   name: 'EBreadcrumb',
   props: {
     separator: prop.string().def('/')
+  },
+  setup(props) {
+    useChildren(Breadcrumb_IJK, {
+      separator: computed(() => props.separator)
+    })
+    return {}
   }
 })
 

@@ -7,7 +7,7 @@ import { EAlert } from '../'
 // description: prop.string(),
 // closable: prop.bool().def(true)
 
-test('default', async () => {
+test('create', async () => {
   const wrapper = mount(EAlert, {
     props: { title: 'title' }
   })
@@ -72,4 +72,18 @@ test('slots#default', async () => {
     }
   })
   expect(wrapper.find('.el-alert__description').text()).toBe('description')
+})
+
+test('event@close', async () => {
+  const wrapper = mount(EAlert, {
+    props: {
+      title: 'test title',
+      closable: true
+    },
+    slots: {
+      default: 'description'
+    }
+  })
+  wrapper.find('.el-alert__closebtn').trigger('click')
+  expect(wrapper.emitted()).toHaveProperty('close')
 })
