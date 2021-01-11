@@ -21,6 +21,7 @@
     "vue": "^3.0.3"
   },
   "devDependencies": {
-    "ejs": "^3.1.5"
+    "ejs": "^3.1.5",
+    "pascal-case": "^3.1.2"
   }
 }
