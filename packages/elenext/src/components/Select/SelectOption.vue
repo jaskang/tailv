@@ -37,14 +37,14 @@ const ESelectOption = defineComponent({
   setup(props, { attrs, slots, emit }) {
     const parentState = inject(SELECTDROPDOWN_IJK)
     const isSelected = computed(() => {
-      return parentState.selected.includes(props.value)
+      return parentState!.selected.includes(props.value)
     })
     const selectHandler = event => {
       emit('select', props.value)
-      parentState.methods.onItemSelect(props.value)
+      parentState!.methods.onItemSelect(props.value)
     }
     return {
-      parentState,
+      parentState: parentState!,
       isSelected,
       selectHandler
     }

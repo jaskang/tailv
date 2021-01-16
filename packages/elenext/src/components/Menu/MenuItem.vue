@@ -40,20 +40,20 @@ const EMenuItem = defineComponent({
     const menuProvider = inject(MENU_IJK)
 
     const state = reactive({
-      root: menuProvider.root,
+      root: menuProvider!.root,
       path: props.path,
       type: MENU_TYPE.ITEM,
-      uid: self.uid,
-      uidPath: [...menuProvider.uidPath, self.uid],
-      deep: menuProvider.deep + 1,
+      uid: self!.uid,
+      uidPath: [...menuProvider!.uidPath, self!.uid],
+      deep: menuProvider!.deep + 1,
       isOpen: false,
       isHover: false,
-      isActive: menuProvider.root.activeId === self.uid,
-      isPopper: menuProvider.root.mode !== 'vertical' && menuProvider.type === MENU_TYPE.SUB
+      isActive: menuProvider!.root.activeId === self!.uid,
+      isPopper: menuProvider!.root.mode !== 'vertical' && menuProvider!.type === MENU_TYPE.SUB
     })
     watchEffect(() => {
-      state.isActive = menuProvider.root.activeId === self.uid
-      state.isPopper = menuProvider.root.mode !== 'vertical' && menuProvider.type === MENU_TYPE.SUB
+      state.isActive = menuProvider!.root.activeId === self!.uid
+      state.isPopper = menuProvider!.root.mode !== 'vertical' && menuProvider!.type === MENU_TYPE.SUB
     })
 
     const styles = computed<CSSProperties>(() => {
@@ -69,7 +69,7 @@ const EMenuItem = defineComponent({
     const clickHandler = (event: MouseEvent) => {
       state.root.methods.select(state)
       emit('click', event)
-      const router = self.appContext.config.globalProperties.$router
+      const router = self!.appContext.config.globalProperties.$router
       if (router && props.path) {
         router.push(props.path)
       }
@@ -78,12 +78,12 @@ const EMenuItem = defineComponent({
     const mouseleaveHandler = (event: MouseEvent) => (state.isHover = false)
 
     onMounted(() => {
-      menuProvider.root.children.push(state)
+      menuProvider!.root.children.push(state)
     })
 
     onUnmounted(() => {
-      const index = menuProvider.root.children.indexOf(state)
-      menuProvider.root.children.splice(index, 1)
+      const index = menuProvider!.root.children.indexOf(state)
+      menuProvider!.root.children.splice(index, 1)
     })
     return {
       state,

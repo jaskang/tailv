@@ -78,21 +78,22 @@ const ESubMenu = defineComponent({
     const self = getCurrentInstance()
     const titleElRef = ref()
     const menuProvider = inject(MENU_IJK)
+
     const state = reactive<MenuState>({
-      root: menuProvider.root,
+      root: menuProvider!.root,
       type: MENU_TYPE.SUB,
-      uid: self.uid,
-      uidPath: [...menuProvider.uidPath, self.uid],
-      deep: menuProvider.deep + 1,
-      isOpen: menuProvider.root.openedSet.has(self.uid),
+      uid: self!.uid,
+      uidPath: [...menuProvider!.uidPath, self!.uid],
+      deep: menuProvider!.deep + 1,
+      isOpen: menuProvider!.root.openedSet.has(self!.uid),
       isHover: false,
-      isActive: menuProvider.root.activePath.indexOf(self.uid) !== -1,
-      isPopper: menuProvider.root.mode !== 'vertical' && menuProvider.deep + 1 > 1
+      isActive: menuProvider!.root.activePath.indexOf(self!.uid) !== -1,
+      isPopper: menuProvider!.root.mode !== 'vertical' && menuProvider!.deep + 1 > 1
     })
     watchEffect(() => {
-      state.isOpen = menuProvider.root.openedSet.has(self.uid)
-      state.isActive = menuProvider.root.activePath.indexOf(self.uid) !== -1
-      state.isPopper = menuProvider.root.mode !== 'vertical' && menuProvider.deep + 1 > 1
+      state.isOpen = menuProvider!.root.openedSet.has(self!.uid)
+      state.isActive = menuProvider!.root.activePath.indexOf(self!.uid) !== -1
+      state.isPopper = menuProvider!.root.mode !== 'vertical' && menuProvider!.deep + 1 > 1
     })
 
     const styles = computed<CSSProperties>(() => {

@@ -1,25 +1,97 @@
 @use '../var';
 @use '../mixins/button' as button;
 
+:root {
+  --e-button-color: var(--e-global-color-text-primary);
+  --e-button-border-color: var(--e-global-border-color-base);
+  --e-button-background-color: var(--e-global-color-white);
+
+  --e-button-hover-color: var(--e-global-color-primary);
+  --e-button-hover-border-color: var(--e-global-color-primary-lighter);
+  --e-button-hover-background-color: var(--e-global-color-primary-lightest);
+
+  --e-button-active-color: var(--e-global-color-primary);
+  --e-button-active-border-color: var(--e-global-color-primary-dark);
+  --e-button-active-background-color: var(--e-global-color-primary-lightest);
+
+  --e-button-disabled-color: var(--e-global-disabled-font-color);
+  --e-button-disabled-border-color: var(--e-global-disabled-border-color);
+  --e-button-disabled-background-color: var(--e-global-disabled-background-color);
+
+  --e-button-plain-color: var(--e-button-color);
+  --e-button-plain-border-color: var(--e-button-border-color);
+  --e-button-plain-background-color: var(--e-button-background-color);
+
+  --e-button-font-size: var(--e-global-font-size-base);
+  --e-button-font-size-small: var(--e-global-font-size-small);
+  --e-button-font-size-large: var(--e-global-font-size-large);
+
+  --e-button-height: var(--e-global-row-height);
+  --e-button-height-small: var(--e-global-row-height-small);
+  --e-button-height-large: var(--e-global-row-height-large);
+
+  --e-button-border-radius: var(--e-global-border-radius-base);
+
+  --e-button-padding-vertical: var(--e-global-row-padding-vertical);
+  --e-button-padding-horizontal: var(--e-global-padding-horizontal);
+}
+
+@mixin button-state {
+  &:hover,
+  &:focus {
+    color: var(--e-button-hover-color);
+    border-color: var(--e-button-hover-border-color);
+    background-color: var(--e-button-hover-background-color);
+  }
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:active,
+  &.is-active {
+    color: var(--e-button-active-color);
+    border-color: var(--e-button-active-border-color);
+    background-color: var(--e-button-active-background-color);
+  }
+
+  &:disabled,
+  &.is-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover,
+    &:focus {
+      color: var(--e-button-disabled-color);
+      border-color: var(--e-button-disabled-border-color);
+      background-color: var(--e-button-disabled-background-color);
+      cursor: not-allowed;
+      background-image: none;
+    }
+  }
+}
 .el-button {
   margin: 0;
-  border: none;
-  overflow: visible;
-  font: inherit;
-  color: inherit;
-  text-transform: none;
-  -webkit-appearance: none;
+  line-height: 1;
   display: inline-block;
   box-sizing: border-box;
-  vertical-align: middle;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
   text-align: center;
   text-decoration: none;
-  cursor: pointer;
   user-select: none;
-  line-height: 1;
-  background: var.$button-default-background-color;
-  border: 1px solid var.$button-default-border-color;
-  color: var.$button-default-font-color;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: visible;
+  transition: background-color 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
+
+  color: var(--e-button-color);
+  border: 1px solid var(--e-button-border-color);
+  border-radius: var(--e-button-border-radius);
+  background: var(--e-button-background-color);
+  font-size: var(--e-button-font-size);
+
+  padding: var(--e-button-padding-vertical) var(--e-button-padding-horizontal);
+
   > span {
     display: inline-block;
   }
@@ -27,7 +99,6 @@
     margin-left: 4px;
   }
 
-  @include button.button-size(var.$button-font-size, var.$global-row-height, 4px);
   & + & {
     margin-left: 10px;
   }
@@ -37,9 +108,9 @@
   }
   &:hover,
   &:focus {
-    color: var.$color-primary;
-    border-color: mix(var.$color-white, var.$color-primary, 70%);
-    background-color: mix(var.$color-white, var.$color-primary, 90%);
+    color: var(--e-button-hover-color);
+    border-color: var(--e-button-hover-border-color);
+    background-color: var(--e-button-hover-background-color);
   }
   &:focus,
   &:active {
@@ -47,8 +118,9 @@
   }
   &:active,
   &.is-active {
-    color: mix(var.$color-black, var.$color-primary, 10%);
-    border-color: mix(var.$color-black, var.$color-primary, 10%);
+    color: var(--e-button-active-color);
+    border-color: var(--e-button-active-border-color);
+    background-color: var(--e-button-active-background-color);
   }
 
   &:disabled,
@@ -57,67 +129,172 @@
     &,
     &:hover,
     &:focus {
-      color: var.$button-disabled-font-color;
+      color: var(--e-button-disabled-color);
+      border-color: var(--e-button-disabled-border-color);
+      background-color: var(--e-button-disabled-background-color);
       cursor: not-allowed;
       background-image: none;
-      background-color: var.$button-disabled-background-color;
-      border-color: var.$button-disabled-border-color;
     }
-
-    &.el-button--link {
-      background-color: transparent;
-    }
-
-    &.el-button--plain {
-      &,
-      &:hover,
-      &:focus {
-        background-color: var.$color-white;
-        border-color: var.$button-disabled-border-color;
-        color: var.$button-disabled-font-color;
-      }
-    }
-  }
-
-  &--primary {
-    @include button.button-color(var.$color-primary);
-  }
-  &--success {
-    @include button.button-color(var.$color-success);
-  }
-  &--warning {
-    @include button.button-color(var.$color-warning);
-  }
-  &--danger {
-    @include button.button-color(var.$color-danger);
-  }
-  &--info {
-    @include button.button-color(var.$color-info);
   }
 
   &--round {
-    border-radius: var.$global-row-height / 2;
+    border-radius: calc(var(--e-button-height) / 2);
   }
   &--circle {
-    $padding: (var.$global-row-height - var.$button-font-size) / 2 - 1;
+    padding: var(--e-button-padding-vertical) 0;
     border-radius: 50%;
-    width: var.$global-row-height;
-    padding: $padding 0;
-    text-align: center;
-    white-space: nowrap;
+    width: var(--e-button-height);
     overflow: hidden;
   }
-
-  &--link {
-    @include button.button-link(var.$color-primary);
+  &--plain {
+    color: var(--e-button-plain-color);
+    border-color: var(--e-button-plain-border-color);
+    background: var(--e-button-plain-background-color);
   }
+  &--link {
+    color: var(--e-global-color-primary);
+    user-select: none;
+    background: none;
+    border-color: transparent;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+      color: var(--e-global-color-primary-light);
+      border-color: transparent;
+      background-color: transparent;
+    }
+    &:active {
+      color: var(--e-global-color-primary-dark);
+      border-color: transparent;
+      background-color: transparent;
+    }
+    &:disabled,
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:focus {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+
   &--large {
-    @include button.button-size(var.$button-font-size-large, var.$global-row-height-large, 4px);
+    --e-button-height: var(--e-button-height-large);
+    --e-button-font-size: var(--e-button-font-size-large);
+    // --e-button-border-radius: var(--e-button-border-radius);
+    --e-button-padding-vertical: var(--e-global-row-padding-vertical-large);
+    --e-button-padding-horizontal: var(--e-global-row-padding-horizontal-large);
   }
   &--small {
-    @include button.button-size(var.$button-font-size-small, var.$global-row-height-small, 4px);
+    --e-button-height: var(--e-button-height-small);
+    --e-button-font-size: var(--e-button-font-size-small);
+    // --e-button-border-radius: var(--e-button-border-radius);
+    --e-button-padding-vertical: var(--e-global-row-padding-vertical-small);
+    --e-button-padding-horizontal: var(--e-global-row-padding-horizontal-small);
+  }
+  &--primary {
+    --e-button-color: var(--e-global-color-white);
+    --e-button-border-color: var(--e-global-color-primary);
+    --e-button-background-color: var(--e-global-color-primary);
+
+    --e-button-hover-color: var(--e-global-color-white);
+    --e-button-hover-border-color: var(--e-global-color-primary-light);
+    --e-button-hover-background-color: var(--e-global-color-primary-light);
+
+    --e-button-active-color: var(--e-global-color-white);
+    --e-button-active-border-color: var(--e-global-color-primary-dark);
+    --e-button-active-background-color: var(--e-global-color-primary-dark);
+
+    --e-button-disabled-color: var(--e-global-color-white);
+    --e-button-disabled-background-color: var(--e-global-color-primary-lighter);
+    --e-button-disabled-border-color: var(--e-global-color-primary-lighter);
+
+    --e-button-plain-color: var(--e-button-background-color);
+    --e-button-plain-border-color: var(--e-button-hover-border-color);
+    --e-button-plain-background-color: var(--e-global-color-primary-lightest);
+  }
+  &--success {
+    --e-button-color: var(--e-global-color-white);
+    --e-button-border-color: var(--e-global-color-success);
+    --e-button-background-color: var(--e-global-color-success);
+
+    --e-button-hover-color: var(--e-global-color-white);
+    --e-button-hover-border-color: var(--e-global-color-success-light);
+    --e-button-hover-background-color: var(--e-global-color-success-light);
+
+    --e-button-active-color: var(--e-global-color-white);
+    --e-button-active-border-color: var(--e-global-color-success-dark);
+    --e-button-active-background-color: var(--e-global-color-success-dark);
+
+    --e-button-disabled-color: var(--e-global-color-white);
+    --e-button-disabled-background-color: var(--e-global-color-success-lighter);
+    --e-button-disabled-border-color: var(--e-global-color-success-lighter);
+
+    --e-button-plain-color: var(--e-button-background-color);
+    --e-button-plain-border-color: var(--e-button-hover-border-color);
+    --e-button-plain-background-color: var(--e-global-color-success-lightest);
+  }
+  &--warning {
+    --e-button-color: var(--e-global-color-white);
+    --e-button-border-color: var(--e-global-color-warning);
+    --e-button-background-color: var(--e-global-color-warning);
+
+    --e-button-hover-color: var(--e-global-color-white);
+    --e-button-hover-border-color: var(--e-global-color-warning-light);
+    --e-button-hover-background-color: var(--e-global-color-warning-light);
+
+    --e-button-active-color: var(--e-global-color-white);
+    --e-button-active-border-color: var(--e-global-color-warning-dark);
+    --e-button-active-background-color: var(--e-global-color-warning-dark);
+
+    --e-button-disabled-color: var(--e-global-color-white);
+    --e-button-disabled-background-color: var(--e-global-color-warning-lighter);
+    --e-button-disabled-border-color: var(--e-global-color-warning-lighter);
+
+    --e-button-plain-color: var(--e-button-background-color);
+    --e-button-plain-border-color: var(--e-button-hover-border-color);
+    --e-button-plain-background-color: var(--e-global-color-warning-lightest);
+  }
+  &--danger {
+    --e-button-color: var(--e-global-color-white);
+    --e-button-border-color: var(--e-global-color-danger);
+    --e-button-background-color: var(--e-global-color-danger);
+
+    --e-button-hover-color: var(--e-global-color-white);
+    --e-button-hover-border-color: var(--e-global-color-danger-light);
+    --e-button-hover-background-color: var(--e-global-color-danger-light);
+
+    --e-button-active-color: var(--e-global-color-white);
+    --e-button-active-border-color: var(--e-global-color-danger-dark);
+    --e-button-active-background-color: var(--e-global-color-danger-dark);
+
+    --e-button-disabled-color: var(--e-global-color-white);
+    --e-button-disabled-background-color: var(--e-global-color-danger-lighter);
+    --e-button-disabled-border-color: var(--e-global-color-danger-lighter);
+
+    --e-button-plain-color: var(--e-button-background-color);
+    --e-button-plain-border-color: var(--e-button-hover-border-color);
+    --e-button-plain-background-color: var(--e-global-color-danger-lightest);
+  }
+  &--info {
+    --e-button-color: var(--e-global-color-white);
+    --e-button-border-color: var(--e-global-color-info);
+    --e-button-background-color: var(--e-global-color-info);
+
+    --e-button-hover-color: var(--e-global-color-white);
+    --e-button-hover-border-color: var(--e-global-color-info-light);
+    --e-button-hover-background-color: var(--e-global-color-info-light);
+
+    --e-button-active-color: var(--e-global-color-white);
+    --e-button-active-border-color: var(--e-global-color-info-dark);
+    --e-button-active-background-color: var(--e-global-color-info-dark);
+
+    --e-button-disabled-color: var(--e-global-color-white);
+    --e-button-disabled-background-color: var(--e-global-color-info-lighter);
+    --e-button-disabled-border-color: var(--e-global-color-info-lighter);
+
+    --e-button-plain-color: var(--e-button-background-color);
+    --e-button-plain-border-color: var(--e-button-hover-border-color);
+    --e-button-plain-background-color: var(--e-global-color-info-lightest);
   }
 }
-
-/* Group
- ========================================================================== */

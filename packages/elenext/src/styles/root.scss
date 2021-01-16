@@ -1,0 +1,90 @@
+:root {
+  --e-global-color-white: #ffffff;
+  --e-global-color-black: #000000;
+
+  --e-global-color-primary: #409eff;
+  // 10%
+  --e-global-color-primary-light: #66b1ff; // #fff 20%
+  --e-global-color-primary-lighter: #a0cfff; // #fff 50%
+  --e-global-color-primary-lightest: #d9ecff; // #fff 80%
+  --e-global-color-primary-dark: #337ecc; // #000 20%
+
+  --e-global-color-success: #67c23a;
+  --e-global-color-success-light: #85ce61;
+  --e-global-color-success-lighter: #b3e19d;
+  --e-global-color-success-lightest: #e1f3d8;
+  --e-global-color-success-dark: #529b2e;
+
+  --e-global-color-warning: #e6a23c;
+  --e-global-color-warning-light: #ebb563;
+  --e-global-color-warning-lighter: #f3d19e;
+  --e-global-color-warning-lightest: #faecd8;
+  --e-global-color-warning-dark: #b88230;
+
+  --e-global-color-danger: #f56c6c;
+  --e-global-color-danger-light: #f78989;
+  --e-global-color-danger-lighter: #fab6b6;
+  --e-global-color-danger-lightest: #fde2e2;
+  --e-global-color-danger-dark: #c45656;
+
+  --e-global-color-info: #909399;
+  --e-global-color-info-light: #a6a9ad;
+  --e-global-color-info-lighter: #c8c9cc;
+  --e-global-color-info-lightest: #e9e9eb;
+  --e-global-color-info-dark: #73767a;
+
+  --e-global-color-text-primary: #303133;
+  --e-global-color-text-regular: #606266;
+  --e-global-color-text-placeholder: #c0c4cc;
+
+  --e-global-border-color-base: #dcdfe6;
+  --e-global-border-color-hover: #c0c4cc;
+  --e-global-border-color-light: #e4e7ed;
+  --e-global-border-color-lighter: #ebeef5;
+  --e-global-border-color-extra-light: #f2f6fc;
+
+  --e-global-background-color-base: #f5f7fa;
+
+  --e-global-disabled-font-color: var(--e-global-color-text-placeholder);
+  --e-global-disabled-background-color: var(--e-global-background-color-base);
+  --e-global-disabled-border-color: var(--e-global-border-color-lighter);
+
+  --e-global-font-size-large: 16px;
+  --e-global-font-size-base: 14px;
+  --e-global-font-size-small: 12px;
+
+  --e-global-line-height: 1.5;
+
+  --e-global-row-height-large: 40px;
+  --e-global-row-height: 32px;
+  --e-global-row-height-small: 28px;
+  --e-global-row-padding-vertical-large: 11px;
+  --e-global-row-padding-vertical: 8px;
+  --e-global-row-padding-vertical-small: 7px;
+  --e-global-row-padding-horizontal-large: 16px;
+  --e-global-row-padding-horizontal: 12px;
+  --e-global-row-padding-horizontal-small: 10px;
+
+  --e-global-padding-vertical: 15px;
+  --e-global-padding-horizontal: 15px;
+
+  --e-global-border-radius-base: 4px;
+  --e-global-border-radius-small: 2px;
+  --e-global-border-radius-circle: 100%;
+
+  --e-global-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  --e-global-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.12);
+  --e-global-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+  --e-global-transition-all: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --e-global-transition-fade: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  --e-global-transition-fade-linear: opacity 200ms linear;
+  --e-global-transition-md-fade: transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  --e-global-transition-border: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --e-global-transition-color: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  --e-global-index-normal: 1;
+  --e-global-index-top: 1000;
+  --e-global-index-popper: 2000;
+}

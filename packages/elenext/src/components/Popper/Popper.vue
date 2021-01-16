@@ -72,9 +72,9 @@ const EPopper = defineComponent({
     const parentProvider = inject(POPPER_IJK, {
       action: { addHoldChild: teleportId => {}, removeHoldChild: teleportId => {} }
     })
-    const referenceRef = ref<Element>(null)
-    const popperRef = ref<HTMLElement>(null)
-    const arrowRef = ref<HTMLElement>(null)
+    const referenceRef = ref<Element>()
+    const popperRef = ref<HTMLElement>()
+    const arrowRef = ref<HTMLElement>()
 
     // 打开状态子 popper
     const holdChildren = ref<string[]>([])
@@ -150,8 +150,8 @@ const EPopper = defineComponent({
       : el => {
           referenceRef.value = el
         }
-    const popperRefInitHandler = el => (popperRef.value = el || null)
-    const arrowRefInitHandler = el => (arrowRef.value = el || null)
+    const popperRefInitHandler = el => (popperRef.value = el || undefined)
+    const arrowRefInitHandler = el => (arrowRef.value = el || undefined)
 
     provide(POPPER_IJK, {
       action: {

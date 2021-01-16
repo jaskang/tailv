@@ -25,11 +25,11 @@ const EMenuItemGroup = defineComponent({
     const state = inject(MENU_IJK)
 
     const isPopperInner = computed(() => {
-      return state.root.mode !== 'vertical' && state.type === MENU_TYPE.SUB
+      return state!.root.mode !== 'vertical' && state!.type === MENU_TYPE.SUB
     })
     const styles = computed(() => {
       return {
-        paddingLeft: `${(isPopperInner.value ? 1 : state.deep + 1) * MENU_ITEM_PADDING}px`
+        paddingLeft: `${(isPopperInner.value ? 1 : state!.deep + 1) * MENU_ITEM_PADDING}px`
       }
     })
 

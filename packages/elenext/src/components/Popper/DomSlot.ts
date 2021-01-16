@@ -1,6 +1,6 @@
 import { App, cloneVNode, createVNode, defineComponent, PropType, ref, Ref, VNode, watchEffect } from 'vue'
 
-function setRootDomHook(vNodes: VNode[], ref: Ref<Element>): [vNodes: VNode[], hasEl: boolean] {
+function setRootDomHook(vNodes: VNode[], ref: Ref<Element | null>): [vNodes: VNode[], hasEl: boolean] {
   // TODO: 内置组件判断
   // __isTeleport
   // __isSuspense
@@ -22,7 +22,7 @@ function setRootDomHook(vNodes: VNode[], ref: Ref<Element>): [vNodes: VNode[], h
         }
       })
     } else if (typeof node.type === 'symbol') {
-      if (Array.isArray(node.children)) {
+      if (Array.isArray(node.dynamicChildren)) {
         const dynamicIndexArray = node.dynamicChildren.map(child => (node.children as VNode[]).indexOf(child))
         // @ts-ignore
         const [_vnodes, _hasEl] = setRootDomHook(node.children, ref)
@@ -47,7 +47,7 @@ const EDomSlot = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const elRef = ref<Element>(null)
+    const elRef = ref<Element | null>(null)
     watchEffect(() => {
       props.init?.(elRef.value || null)
     })

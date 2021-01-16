@@ -22,9 +22,9 @@ export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
 export type StrategyType = 'absolute' | 'fixed'
 
 interface UsePopperOptions {
-  referenceRef: Ref<Element>
-  popperRef: Ref<HTMLElement>
-  trigger?: TriggerType
+  referenceRef: Ref<Element | undefined>
+  popperRef: Ref<HTMLElement | undefined>
+  trigger: TriggerType
   onTrigger: (teleportId: string, value?: boolean) => void
   placement?: PlacementType
   offset?: number
@@ -49,7 +49,10 @@ export const fromEntries = (entries: Array<[string, any]>) =>
 export const usePopper = (props: UsePopperOptions) => {
   const popperId = uniqueId('el-popper')
   const { referenceRef, popperRef } = props
-  const timers = { showTimer: null, hideTimer: null }
+  const timers: {
+    showTimer: any
+    hideTimer: any
+  } = { showTimer: undefined, hideTimer: undefined }
 
   const state = reactive<usePopperState>({
     instance: null,
@@ -98,7 +101,7 @@ export const usePopper = (props: UsePopperOptions) => {
     clearTimeout(timers.showTimer)
   }
 
-  let clickEvent = null
+  let clickEvent: any = null
 
   const togglePopper = (event: MouseEvent) => {
     clickEvent = event

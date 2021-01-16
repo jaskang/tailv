@@ -27,14 +27,14 @@ const EBreadcrumbItem = defineComponent({
 
     const clickHandler = (event: MouseEvent) => {
       const { path } = props
-      const router = self.appContext.config.globalProperties.$router
+      const router = self!.appContext.config.globalProperties.$router
 
       if (router) {
         props.replace ? router.replace(path) : router.push(path)
       }
     }
     return {
-      separator: parent.separator,
+      separator: parent?.separator || '/',
       clickHandler
     }
   }

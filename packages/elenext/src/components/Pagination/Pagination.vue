@@ -90,14 +90,14 @@ const EPagination = defineComponent({
     const state = reactive({
       current: props.current || 1,
       pageSize: props.pageSize || props.pageSizeOptions[0],
-      pagers: [],
+      pagers: [] as number[],
       pageTotal: 1,
       showPrevMore: false,
       showNextMore: false
     })
 
     watchEffect(() => {
-      const pagers = []
+      const pagers: number[] = []
       const pageTotal = props.total ? Math.ceil(props.total / state.pageSize) : 1
       const current = state.current
 

@@ -1,21 +1,21 @@
 <template>
   <label
-    class="el-radio"
+    class="el-checkbox"
     :class="{
       'is-focus': isFocus,
       'is-checked': isChecked,
       'is-disabled': isDisabled
     }"
   >
-    <span class="el-radio__input">
-      <span class="el-radio__icon"></span>
+    <span class="el-checkbox__input">
+      <span class="el-checkbox__icon"></span>
       <input
         ref="inputElRef"
         v-model="model"
         :value="value"
         :name="name"
         :disabled="disabled"
-        class="el-radio__original"
+        class="el-checkbox__original"
         type="radio"
         aria-hidden="true"
         tabindex="-1"
@@ -24,7 +24,7 @@
         @change="changeHandler"
       />
     </span>
-    <span class="el-radio__label">
+    <span class="el-checkbox__label">
       <slot>{{ label }}</slot>
     </span>
   </label>
@@ -33,10 +33,10 @@
 import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
 import { prop } from '../../utils'
-import { RADIOGROUP_IJK } from './core'
+import { CHECKBOXGROUP_IJK } from './core'
 
-const ERadio = defineComponent({
-  name: 'ERadio',
+const ECheckbox = defineComponent({
+  name: 'ECheckbox',
   props: {
     modelValue: prop.any(),
     label: prop.string(),
@@ -47,7 +47,7 @@ const ERadio = defineComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
-    const { parent } = useParent(RADIOGROUP_IJK)
+    const { parent } = useParent(CHECKBOXGROUP_IJK)
     const inputElRef = ref<HTMLInputElement>()
     const isFocus = ref(false)
     const isDisabled = computed(() => {
@@ -86,8 +86,8 @@ const ERadio = defineComponent({
     }
   }
 })
-ERadio.install = (app: App): void => {
-  app.component(ERadio.name, ERadio)
+ECheckbox.install = (app: App): void => {
+  app.component(ECheckbox.name, ECheckbox)
 }
-export default ERadio
+export default ECheckbox
 </script>

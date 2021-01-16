@@ -34,9 +34,7 @@ const containers = ['success', 'warning', 'info', 'error'].map(type => {
 
 const config: UserConfig = {
   assetsInclude: ['src/assets'],
-  alias: {
-    elenext: path.join(path.dirname(require.resolve('elenext')), '..')
-  },
+  alias: {},
   optimizeDeps: {
     exclude: ['elenext']
   },

@@ -21,7 +21,7 @@ const EMenu = defineComponent({
     currentPath: prop.string()
   },
   setup(props) {
-    const self = getCurrentInstance()
+    const instance = getCurrentInstance()
     const state = reactive<MenuState>({
       root: {
         mode: props.mode,
@@ -54,8 +54,8 @@ const EMenu = defineComponent({
         }
       },
       type: MENU_TYPE.ROOT,
-      uid: self.uid,
-      uidPath: [self.uid],
+      uid: instance!.uid,
+      uidPath: [instance!.uid],
       deep: 0,
       isOpen: false,
       isHover: false,

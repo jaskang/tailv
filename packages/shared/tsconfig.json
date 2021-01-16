@@ -1,8 +1,20 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
+    "sourceMap": false,
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "strictNullChecks": true,
     "declaration": true,
-    "baseUrl": "."
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "lib": ["esnext", "dom"],
+    "types": ["jest", "node"]
   },
   "include": ["src/**/*", "types/**/*"]
 }

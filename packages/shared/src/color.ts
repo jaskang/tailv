@@ -22,7 +22,7 @@ const HEX2RGB = (hex: string): RGBType => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value)
 
   if (!result) {
-    return null
+    throw new Error(`${hex} is not color string(#FFF/#00000)`)
   }
 
   return {
@@ -45,7 +45,7 @@ const parseAmount = (amount: number): number => {
 
 export const colorDarken = (color: string, amount: number): string => {
   let { r, g, b } = HEX2RGB(color)
-  let percent = parseAmount(amount)
+  const percent = parseAmount(amount)
   if (percent > 0) {
     r -= r * percent
     g -= g * percent

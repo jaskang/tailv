@@ -30,8 +30,8 @@ const EButton = defineComponent({
     const classes = computed(() =>
       mergeClass('el-button', [
         // link 类型不需要颜色
-        props.color && props.type !== 'link' ? `el-button--${props.color}` : '',
         props.type ? `el-button--${props.type}` : '',
+        props.color && props.type !== 'link' ? `el-button--${props.color}` : '',
         props.size ? `el-button--${props.size}` : '',
         {
           'is-loading': props.loading,

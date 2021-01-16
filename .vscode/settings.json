@@ -3,6 +3,9 @@
   "path-intellisense.mappings": {
     "@/": "${floder}/src/"
   },
+  "cssVariables.lookupFiles": [
+    "packages/elenext/src/styles/root.scss",
+  ],
   "vetur.validation.template": false,
   "liveServer.settings.root": "/build",
   "eslint.format.enable": true,

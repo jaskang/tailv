@@ -13,13 +13,9 @@ wrapperClass: md-radio
 
 ```vue demo
 <template>
-  <e-row :gutter="[40, 0]">
-    <e-col>
-      <e-radio v-model="value" :value="1">radio1</e-radio>
-      <e-radio v-model="value" :value="2">radio2</e-radio>
-    </e-col>
-    <e-col> value:{{ value }} </e-col>
-  </e-row>
+  <e-radio v-model="value" :value="1">radio1</e-radio>
+  <e-radio v-model="value" :value="2">radio2</e-radio>
+  <span> value:{{ value }} </span>
 </template>
 <script>
 export default {
@@ -68,22 +64,19 @@ export default {
 
 ```vue demo
 <template>
-  <e-row :gutter="[40, 0]">
-    <e-col>
-      <e-radio-group v-model="radio" :disabled="disabled">
-        <e-radio :value="3">备选项</e-radio>
-        <e-radio :value="6">备选项</e-radio>
-        <e-radio :value="9">备选项</e-radio>
-      </e-radio-group>
-    </e-col>
-    <e-col> value:{{ radio }} </e-col>
-  </e-row>
+  <e-radio-group v-model="radio" :disabled="disabled">
+    <e-radio :value="3">备选项</e-radio>
+    <e-radio :value="6">备选项</e-radio>
+    <e-radio :value="9">备选项</e-radio>
+  </e-radio-group>
+  <span>value:{{ radio }}</span>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      picked: false,
       radio: 3,
       disabled: false
     }
