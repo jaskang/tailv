@@ -55,7 +55,7 @@
 <script lang="ts">
 import { useBreakpoint } from 'elenext'
 import { defineComponent, watchEffect } from 'vue'
-import { useRouter, useRoute, RouteLocationRaw } from 'vue-router'
+import { useRoute } from 'vue-router'
 import menus from '../menus'
 import Logo from './Logo.vue'
 export default defineComponent({
@@ -64,7 +64,6 @@ export default defineComponent({
     Logo
   },
   setup() {
-    const router = useRouter()
     const route = useRoute()
     const screens = useBreakpoint()
     watchEffect(() => {

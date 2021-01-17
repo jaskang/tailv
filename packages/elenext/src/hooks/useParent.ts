@@ -15,7 +15,7 @@ export type ParentProvide<T> = T & {
   children: ComponentInternalInstance[]
 }
 
-export const useChildren = <T extends Record<string, any>>(key: InjectionKey<ParentProvide<T>>, data: T) => {
+export const useChildren = <T extends Record<string, unknown>>(key: InjectionKey<ParentProvide<T>>, data: T) => {
   const children: ComponentInternalInstance[] = reactive([])
   provide(key, {
     ...data,
@@ -31,13 +31,13 @@ export const useChildren = <T extends Record<string, any>>(key: InjectionKey<Par
 }
 
 export const useParent = <T>(key: InjectionKey<ParentProvide<T>>) => {
-  const instance = getCurrentInstance()
+  const instance = getCurrentInstance() as ComponentInternalInstance
   const parent = inject(key, null)
-  const index = computed(() => parent?.children.indexOf(instance!))
+  const index = computed(() => parent?.children.indexOf(instance))
 
-  parent?.insert(instance!)
+  parent?.insert(instance)
   onUnmounted(() => {
-    parent?.remove(instance!)
+    parent?.remove(instance)
   })
 
   return { parent, index }

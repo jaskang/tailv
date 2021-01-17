@@ -26,7 +26,7 @@ describe('ERow', () => {
         gutter: 20
       }
     })
-    let rowElm = wrapper.vm.$el
+    const rowElm = wrapper.vm.$el
     expect(rowElm.style.marginLeft).toEqual('-10px')
     expect(rowElm.style.marginRight).toEqual('-10px')
   })

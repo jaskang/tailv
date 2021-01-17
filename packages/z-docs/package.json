@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "test": "tsrv test"
+    "build": "vite build"
   },
   "dependencies": {
     "@elenext/icons": "^0.13.0",

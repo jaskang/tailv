@@ -35,7 +35,7 @@ import {
   IconExclamationCircleFill,
   IconCheckCircleFill,
   IconXCircleFill,
-  IconX
+  IconX,
 } from '@elenext/icons'
 import { prop } from '../../utils'
 
@@ -46,19 +46,19 @@ const EAlert = defineComponent({
     IconExclamationCircleFill,
     IconInfoCircleFill,
     IconXCircleFill,
-    IconX
+    IconX,
   },
   props: {
     type: prop.oneOf(['success', 'warning', 'info', 'error'] as const).def('info'),
     effect: prop.oneOf(['light', 'dark'] as const).def('light'),
     title: prop.string(),
     description: prop.string(),
-    closable: prop.bool().def(true)
+    closable: prop.bool().def(true),
   },
   emits: ['close'],
-  setup(props, { attrs, slots, emit }) {
+  setup(props, { slots, emit }) {
     const state = reactive({
-      visible: true
+      visible: true,
     })
     const hasDescription = computed(() => {
       return slots.default || props.description
@@ -70,9 +70,9 @@ const EAlert = defineComponent({
     return {
       state,
       hasDescription,
-      closeHandler
+      closeHandler,
     }
-  }
+  },
 })
 EAlert.install = (app: App): void => {
   app.component(EAlert.name, EAlert)

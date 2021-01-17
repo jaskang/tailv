@@ -10,7 +10,9 @@ const EInputGroup = defineComponent({
   name: 'EInputGroup',
   props: {},
   setup(props, { attrs, slots, emit }) {
-    const focusHandler = (event: any) => {}
+    const focusHandler = (event: any) => {
+      console.log(focus)
+    }
     return { focusHandler }
   }
 })

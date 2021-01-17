@@ -1,6 +1,6 @@
 const styleSet = new Set<string>()
 
-export function injectCss(id: string, css: string, top: boolean = false) {
+export function injectCss(id: string, css: string, top = false) {
   if (styleSet.has(id)) {
     return
   }
@@ -43,11 +43,11 @@ export function hasClass(el: Element, cls: string) {
 
 export function addClass(el: Element, cls: string) {
   if (!el) return
-  var curClass = el.className
-  var classes = (cls || '').split(' ')
+  let curClass = el.className
+  const classes = (cls || '').split(' ')
 
-  for (var i = 0, j = classes.length; i < j; i++) {
-    var clsName = classes[i]
+  for (let i = 0, j = classes.length; i < j; i++) {
+    const clsName = classes[i]
     if (!clsName) continue
 
     if (el.classList) {
@@ -63,11 +63,11 @@ export function addClass(el: Element, cls: string) {
 
 export function removeClass(el: Element, cls: string) {
   if (!el || !cls) return
-  var classes = cls.split(' ')
-  var curClass = ' ' + el.className + ' '
+  const classes = cls.split(' ')
+  let curClass = ' ' + el.className + ' '
 
-  for (var i = 0, j = classes.length; i < j; i++) {
-    var clsName = classes[i]
+  for (let i = 0, j = classes.length; i < j; i++) {
+    const clsName = classes[i]
     if (!clsName) continue
 
     if (el.classList) {

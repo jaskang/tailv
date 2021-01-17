@@ -5,6 +5,7 @@ type HexColorType = `#${string}`
 // type $Keys<T extends object> = keyof T
 
 const nativeTypes = {
+  // eslint-disable-next-line
   object: Object as object,
   func: Function as (...args: any) => any,
   number: (Number as unknown) as number,

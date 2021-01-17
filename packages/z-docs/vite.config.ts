@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue'
 import markdownItContainer from 'markdown-it-container'
 import createVueDocPlugin from 'vite-plugin-vuedoc'
 import vitePluginSyncmd from './scripts/vitePluginSyncmd'
-import path from 'path'
 
 const containers = ['success', 'warning', 'info', 'error'].map(type => {
   return [

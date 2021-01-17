@@ -5,7 +5,7 @@ function setRootDomHook(vNodes: VNode[], ref: Ref<Element | null>): [vNodes: VNo
   // __isTeleport
   // __isSuspense
   // __isFragment
-  let hasEl: boolean = false
+  let hasEl = false
   const newVNodes = vNodes.map(node => {
     if (hasEl) {
       return cloneVNode(node)

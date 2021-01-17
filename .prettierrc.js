@@ -6,9 +6,11 @@ module.exports = {
   singleQuote: true,
   quoteProps: 'as-needed',
   jsxSingleQuote: false,
-  trailingComma: 'none',
+  trailingComma: 'es5',
   bracketSpacing: true,
   jsxBracketSameLine: false,
   arrowParens: 'avoid',
-  proseWrap: 'preserve'
+  proseWrap: 'preserve',
+  htmlWhitespaceSensitivity: 'css',
+  vueIndentScriptAndStyle: false,
 }

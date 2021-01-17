@@ -7,28 +7,17 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'TestInner',
-  emits: {
-    click: true,
-    // Validate submit event
-    submit: ({ email, password }: any) => {
-      if (email && password) {
-        return true
-      } else {
-        console.warn('Invalid submit event payload!')
-        return false
-      }
-    }
-  },
+  emits: ['click'],
   methods: {
     onclick() {
       const ret = this.$emit('click')
       console.log(ret)
     },
     submitForm() {
-      this.$emit('submit', {})
+      this.$emit('click', {})
       // this.$emit('submit', { email: 'email', password: 'password' })
-    }
-  }
+    },
+  },
 })
 </script>
 <style lang="scss" scoped></style>

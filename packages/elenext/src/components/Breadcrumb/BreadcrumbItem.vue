@@ -21,7 +21,7 @@ const EBreadcrumbItem = defineComponent({
     path: prop.oneOfType(['string', 'object']),
     replace: prop.bool()
   },
-  setup(props, { slots }) {
+  setup(props, {}) {
     const self = getCurrentInstance()
     const { parent } = useParent(Breadcrumb_IJK)
 

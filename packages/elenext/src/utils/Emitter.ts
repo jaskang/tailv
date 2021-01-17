@@ -9,7 +9,7 @@ export type Handler = (...arg: any[]) => void
 export type EventHandlerMap = Map<string, Handler[]>
 
 class Emitter {
-  private prefix: string = ''
+  private prefix = ''
   private events: EventHandlerMap = new Map()
   constructor(prefix: string = uniqueId()) {
     this.prefix = prefix

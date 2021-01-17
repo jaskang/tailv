@@ -5,7 +5,7 @@ type EventType = MouseEvent | TouchEvent
 export default function useClickAway(
   onClickAway: (event: EventType) => void,
   targetRef: Ref<HTMLElement>,
-  eventName: string = 'click'
+  eventName = 'click'
 ) {
   const handler = (event: any) => {
     if (!targetRef.value || targetRef.value.contains(event.target)) {
