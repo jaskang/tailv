@@ -49,7 +49,7 @@ const EAlert = defineComponent({
     IconX,
   },
   props: {
-    type: prop.oneOf(['success', 'warning', 'info', 'error'] as const).def('info'),
+    type: prop.oneOf(['success', 'warning', 'info', 'error'] as const).def(),
     effect: prop.oneOf(['light', 'dark'] as const).def('light'),
     title: prop.string(),
     description: prop.string(),

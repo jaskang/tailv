@@ -41,15 +41,19 @@ wrapperClass: md-link
 </template>
 ```
 
-## 下划线
+## 无下划线
 
 文字链接下划线。
 
 ```vue demo
 <template>
   <e-row>
-    <e-link :underline="false">无下划线</e-link>
-    <e-link>有下划线</e-link>
+    <e-link no-underline>默认链接</e-link>
+    <e-link color="primary" no-underline>主要链接</e-link>
+    <e-link color="success" no-underline>成功链接</e-link>
+    <e-link color="warning" no-underline>警告链接</e-link>
+    <e-link color="danger" no-underline>危险链接</e-link>
+    <e-link color="info" no-underline>信息链接</e-link>
   </e-row>
 </template>
 ```
@@ -61,18 +65,23 @@ wrapperClass: md-link
 ```vue demo
 <template>
   <e-row>
-    <e-link icon="el-icon-edit">编辑</e-link>
-    <e-link>查看<i class="el-icon-view el-icon--right"></i> </e-link>
+    <e-link icon="el-icon-edit">
+      <template #icon><IconPencil /></template>
+      编辑
+    </e-link>
+    <e-link>
+      <template #icon><IconSearch /></template> 查看
+    </e-link>
   </e-row>
 </template>
 ```
 
 ## Link Props
 
-| 参数      | 说明           | 类型                                                              | 默认值  |
-| --------- | -------------- | ----------------------------------------------------------------- | ------- |
-| color     | 类型           | 'default' / 'primary' / 'success' / 'warning' / 'danger' / 'info' | default |
-| underline | 是否下划线     | boolean                                                           | true    |
-| disabled  | 是否禁用状态   | boolean                                                           | false   |
-| href      | 原生 href 属性 | string                                                            | -       |
-| icon      | 图标类名       | string                                                            | -       |
+| 参数         | 说明           | 类型                                                              | 默认值  |
+| ------------ | -------------- | ----------------------------------------------------------------- | ------- |
+| color        | 类型           | 'default' / 'primary' / 'success' / 'warning' / 'danger' / 'info' | default |
+| no-underline | 禁用下划线     | boolean                                                           | false   |
+| disabled     | 是否禁用状态   | boolean                                                           | false   |
+| href         | 原生 href 属性 | string                                                            | -       |
+| icon         | 图标类名       | string                                                            | -       |

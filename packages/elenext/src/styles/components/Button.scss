@@ -1,6 +1,3 @@
-@use '../var';
-@use '../mixins/button' as button;
-
 :root {
   --e-button-color: var(--e-global-color-text-primary);
   --e-button-border-color: var(--e-global-border-color-base);

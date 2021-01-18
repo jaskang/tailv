@@ -19,6 +19,9 @@ Alert 组件提供四种类型，'success' | 'warning' | 'info' | 'error'，默�
 <template>
   <e-row :gutter="[10, 10]">
     <e-col :span="24">
+      <e-alert title="成功提示的文案" />
+    </e-col>
+    <e-col :span="24">
       <e-alert title="成功提示的文案" type="success" />
     </e-col>
     <e-col :span="24">
@@ -85,8 +88,8 @@ export default {
   methods: {
     hello() {
       alert('Hello World!')
-    }
-  }
+    },
+  },
 }
 </script>
 ```

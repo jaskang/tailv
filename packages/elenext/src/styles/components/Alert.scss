@@ -1,107 +1,98 @@
-@use '../var';
-@use '../mixins/tools';
+:root {
+  --e-alert-padding: 8px 16px;
+  --e-alert-border-radius: var(--e-global-border-radius-base);
 
+  --e-alert-color: var(--e-global-color-primary);
+  --e-alert-close-color: var(--e-global-color-text-placeholder);
+  --e-alert-background-color: var(--e-global-color-primary-lightest);
+
+  --e-alert-icon-size: var(--e-global-font-size-large);
+  --e-alert-icon-size-large: calc(var(--e-global-font-size-base) * 2);
+
+  --e-alert-title-font-size: var(--e-global-font-size-base);
+  --e-alert-description-font-size: var(--e-global-font-size-small);
+  --e-alert-close-font-size: var(--e-global-font-size-large);
+}
 .el-alert {
   width: 100%;
-  padding: var.$alert-padding;
   margin: 0;
   box-sizing: border-box;
-  border-radius: var.$alert-border-radius;
   position: relative;
-  background-color: var.$color-white;
   overflow: hidden;
   opacity: 1;
   display: flex;
   align-items: flex-start;
   transition: opacity 0.2s;
-
-  &.is-light {
-    .el-alert__closebtn {
-      color: var.$global-color-text-placeholder;
-    }
+  padding: var(--e-alert-padding);
+  border-radius: var(--e-alert-border-radius);
+  color: var(--e-alert-color);
+  background-color: var(--e-alert-background-color);
+  .el-alert__closebtn {
+    color: var(--e-alert-close-color);
   }
 
   &.is-dark {
-    .el-alert__closebtn {
-      color: var.$color-white;
-    }
-    .el-alert__description {
-      color: var.$color-white;
-    }
+    --e-alert-color: var(--e-global-color-white);
+    --e-alert-close-color: var(--e-global-color-white);
   }
 
   &--success {
-    &.is-light {
-      background-color: mix(var.$color-white, var.$color-success, 90%);
-      color: var.$color-success;
-      .el-alert__description {
-        color: var.$color-success;
-      }
-    }
+    --e-alert-background-color: var(--e-global-color-success-lightest);
+    --e-alert-color: var(--e-global-color-success);
+    --e-alert-close-color: var(--e-global-color-success);
 
     &.is-dark {
-      background-color: var.$color-success;
-      color: var.$color-white;
+      --e-alert-background-color: var(--e-global-color-success);
+      --e-alert-color: var(--e-global-color-white);
+      --e-alert-close-color: var(--e-global-color-white);
     }
   }
 
   &--info {
-    &.is-light {
-      background-color: mix(var.$color-white, var.$color-info, 90%);
-      color: var.$color-info;
-    }
+    --e-alert-background-color: var(--e-global-color-info-lightest);
+    --e-alert-color: var(--e-global-color-info);
+    --e-alert-close-color: var(--e-global-color-info);
 
     &.is-dark {
-      background-color: var.$color-info;
-      color: var.$color-white;
-    }
-
-    .el-alert__description {
-      color: var.$color-info;
+      --e-alert-background-color: var(--e-global-color-info);
+      --e-alert-color: var(--e-global-color-white);
+      --e-alert-close-color: var(--e-global-color-white);
     }
   }
 
   &--warning {
-    &.is-light {
-      background-color: mix(var.$color-white, var.$color-warning, 90%);
-      color: var.$color-warning;
-
-      .el-alert__description {
-        color: var.$color-warning;
-      }
-    }
+    --e-alert-background-color: var(--e-global-color-warning-lightest);
+    --e-alert-color: var(--e-global-color-warning);
+    --e-alert-close-color: var(--e-global-color-warning);
 
     &.is-dark {
-      background-color: var.$color-warning;
-      color: var.$color-white;
+      --e-alert-background-color: var(--e-global-color-warning);
+      --e-alert-color: var(--e-global-color-white);
+      --e-alert-close-color: var(--e-global-color-white);
     }
   }
 
   &--error {
-    &.is-light {
-      background-color: mix(var.$color-white, var.$color-danger, 90%);
-      color: var.$color-danger;
-
-      .el-alert__description {
-        color: var.$color-danger;
-      }
-    }
+    --e-alert-background-color: var(--e-global-color-danger-lightest);
+    --e-alert-color: var(--e-global-color-danger);
+    --e-alert-close-color: var(--e-global-color-danger);
 
     &.is-dark {
-      background-color: var.$color-danger;
-      color: var.$color-white;
+      --e-alert-background-color: var(--e-global-color-danger);
+      --e-alert-color: var(--e-global-color-white);
+      --e-alert-close-color: var(--e-global-color-white);
     }
   }
 
   &__icon {
-    font-size: var.$alert-icon-size;
-    width: var.$alert-icon-size;
+    font-size: var(--e-alert-icon-size);
+    width: var(--e-alert-icon-size);
     line-height: 1.4;
   }
   &.is-large {
     .el-alert__icon {
-      font-size: var.$alert-icon-size-large;
-      width: var.$alert-icon-size-large;
+      font-size: var(--e-alert-icon-size-large);
+      width: var(--e-alert-icon-size-large);
     }
   }
   &__content {
@@ -110,17 +101,17 @@
   }
 
   &__title {
-    font-size: var.$alert-title-font-size;
+    font-size: var(--e-alert-title-font-size);
     line-height: 18px;
   }
 
   &__description {
-    font-size: var.$alert-description-font-size;
+    font-size: var(--e-alert-description-font-size);
     margin: 5px 0 0 0;
   }
 
   &__closebtn {
-    font-size: var.$alert-close-font-size;
+    font-size: var(--e-alert-close-font-size);
     opacity: 1;
     line-height: 1;
     position: absolute;

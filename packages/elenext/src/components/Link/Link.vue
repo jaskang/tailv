@@ -1,6 +1,6 @@
 <template>
   <a :class="classes" :href="disabled ? undefined : href" @click="handleClick">
-    <i v-if="icon" :class="icon" />
+    <slot name="icon" />
     <span class="el-link--inner"><slot /></span>
   </a>
 </template>
@@ -14,21 +14,20 @@ const ELink = defineComponent({
   name: 'ELink',
   props: {
     color: prop.oneOf(['default', 'primary', 'success', 'warning', 'danger', 'info'] as const).def('default'),
-    underline: prop.bool().def(true),
+    noUnderline: prop.bool().def(false),
     disabled: prop.bool(),
     href: prop.string(),
-    icon: prop.string()
   },
   emits: ['click'],
   setup(props, { emit, slots }) {
     const classes = computed(() =>
       mergeClass([
         'el-link',
-        `el-link--${props.color}`,
         {
+          'is-underline': !props.noUnderline && !props.disabled,
           'is-disabled': !!props.disabled,
-          'is-underline': !!props.underline && !props.disabled
-        }
+        },
+        `el-link--${props.color}`,
       ])
     )
     const handleClick = (event: MouseEvent) => {
@@ -37,7 +36,7 @@ const ELink = defineComponent({
       }
     }
     return { classes, handleClick }
-  }
+  },
 })
 
 ELink.install = (app: App): void => {
