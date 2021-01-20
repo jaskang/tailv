@@ -31,8 +31,8 @@
                   <e-menu mode="vertical" :current-path="route.path">
                     <template v-for="menu in menus" :key="menu.title">
                       <e-menu-itemGroup :title="menu.title">
-                        <e-menu-item v-for="item in menu.items" :key="item" :path="`/${item}`">
-                          {{ item }}
+                        <e-menu-item v-for="item in menu.items" :key="item" :path="`/${item.name.toLowerCase()}`">
+                          {{ item.name }}
                         </e-menu-item>
                       </e-menu-itemGroup>
                     </template>
@@ -61,7 +61,7 @@ import Logo from './Logo.vue'
 export default defineComponent({
   name: 'AppLayout',
   components: {
-    Logo
+    Logo,
   },
   setup() {
     const route = useRoute()
@@ -72,9 +72,9 @@ export default defineComponent({
     return {
       screens,
       route,
-      menus
+      menus,
     }
-  }
+  },
 })
 </script>
 <style lang="scss">

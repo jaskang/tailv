@@ -1,5 +1,7 @@
-@use '../var';
-
+:root {
+  --e-layout-header-padding: 0 var(--e-global-padding-horizontal);
+  --e-layout-footer-padding: 0 var(--e-global-padding-horizontal);
+}
 .el-layout {
   display: flex;
   flex: auto;
@@ -17,12 +19,12 @@
 }
 
 .el-header {
-  padding: var.$layout-header-padding;
+  padding: var(--e-layout-header-padding);
   flex: 0 0 auto;
 }
 
 .el-footer {
-  padding: var.$layout-footer-padding;
+  padding: var(--e-layout-footer-padding);
   flex: 0 0 auto;
 }
 

@@ -1,4 +1,7 @@
 :root {
+  --e-global-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
   --e-global-color-white: #ffffff;
   --e-global-color-black: #000000;
 
@@ -43,6 +46,10 @@
   --e-global-border-color-extra-light: #f2f6fc;
 
   --e-global-background-color-base: #f5f7fa;
+
+  --e-global-link-color: var(--e-global-color-primary);
+  --e-global-link-hover-color: var(--e-global-color-primary-light);
+  --e-global-link-active-color: var(--e-global-color-primary-dark);
 
   --e-global-disabled-font-color: var(--e-global-color-text-placeholder);
   --e-global-disabled-background-color: var(--e-global-background-color-base);

@@ -1,8 +1,27 @@
-@use '../var';
-@use '../mixins/tools';
+:root {
+  --e-radio-font-size: var(--e-global-font-size-base);
+  --e-radio-color: var(--e-global-color-text-regular);
+  --e-radio-checked-color: var(--e-global-color-primary);
 
+  --e-radio-icon-border: var(--e-global-border-color-base);
+  --e-radio-icon-background-color: var(--e-global-color-white);
+  --e-radio-icon-width: var(--e-global-font-size-base);
+  --e-radio-icon-height: var(--e-global-font-size-base);
+  --e-radio-icon-hover-border-color: var(--e-global-color-primary);
+  --e-radio-icon-checked-border-color: var(--e-global-color-primary);
+  --e-radio-icon-checked-background-color: var(--e-global-color-primary);
+
+  --e-radio-disabled-color: var(--e-global-disabled-font-color);
+
+  --e-radio-icon-disabled-border-color: var(--e-global-disabled-border-color);
+  --e-radio-icon-disabled-background-color: var(--e-global-disabled-background-color);
+
+  --e-radio-icon-disabled-checked-border-color: var(--e-global-disabled-border-color);
+  --e-radio-icon-disabled-checked-background-color: var(--e-global-disabled-background-color);
+  --e-radio-icon-disabled-checked-icon-color: var(--e-global-disabled-font-color);
+}
 .el-radio {
-  color: var.$radio-font-color;
+  color: var(--e-radio-color);
   font-weight: normal;
   line-height: 1;
   position: relative;
@@ -10,7 +29,7 @@
   display: inline-block;
   white-space: nowrap;
   outline: none;
-  font-size: var.$global-font-size-base;
+  font-size: var(--e-radio-font-size);
   margin-right: 20px;
   user-select: none;
   &:last-child {
@@ -26,25 +45,25 @@
     vertical-align: middle;
   }
   &__icon {
-    border: 1px solid var.$radio-icon-border;
-    border-radius: var.$radio-icon-border-radius;
-    width: var.$radio-icon-width;
-    height: var.$radio-icon-height;
-    background-color: var.$radio-icon-background-color;
+    border: 1px solid var(--e-radio-icon-border);
+    width: var(--e-radio-icon-width);
+    height: var(--e-radio-icon-height);
+    background-color: var(--e-radio-icon-background-color);
+    border-radius: 100%;
     position: relative;
     cursor: pointer;
     display: inline-block;
     box-sizing: border-box;
 
     &:hover {
-      border-color: var.$radio-icon-border;
+      border-color: var(--e-radio-icon-border);
     }
 
     &::after {
       width: 4px;
       height: 4px;
-      border-radius: var.$radio-icon-border-radius;
-      background-color: var.$color-white;
+      border-radius: 100%;
+      background-color: var(--e-radio-icon-background-color);
       content: '';
       position: absolute;
       left: 50%;
@@ -66,14 +85,13 @@
     margin: 0;
   }
   &__label {
-    font-size: var.$radio-font-size;
     padding-left: 10px;
   }
   &.is-checked {
-    color: var.$radio-checked-font-color;
+    color: var(--e-radio-checked-color);
     .el-radio__icon {
-      border-color: var.$radio-icon-checked-border-color;
-      background: var.$radio-icon-checked-background-color;
+      border-color: var(--e-radio-icon-checked-border-color);
+      background: var(--e-radio-icon-checked-background-color);
 
       &::after {
         transform: translate(-50%, -50%) scale(1);
@@ -82,19 +100,19 @@
   }
   &.is-focus {
     .el-radio__icon {
-      border-color: var.$radio-icon-hover-border-color;
+      border-color: var(--e-radio-icon-hover-border-color);
     }
   }
   &.is-disabled {
-    color: var.$radio-disabled-font-color;
+    color: var(--e-radio-disabled-color);
     .el-radio__icon {
-      background-color: var.$radio-icon-disabled-background-color;
-      border-color: var.$radio-icon-disabled-border-color;
+      border-color: var(--e-radio-icon-disabled-border-color);
+      background-color: var(--e-radio-icon-disabled-background-color);
       cursor: not-allowed;
 
       &::after {
         cursor: not-allowed;
-        background-color: var.$radio-icon-disabled-border-color;
+        background-color: var(--e-radio-icon-disabled-border-color);
       }
 
       & + .el-radio__label {
@@ -103,11 +121,11 @@
     }
     &.is-checked {
       .el-radio__icon {
-        background-color: var.$radio-icon-disabled-checked-background-color;
-        border-color: var.$radio-icon-disabled-checked-border-color;
+        border-color: var(--e-radio-icon-disabled-checked-border-color);
+        background-color: var(--e-radio-icon-disabled-checked-background-color);
 
         &::after {
-          background-color: var.$radio-icon-disabled-checked-icon-color;
+          background-color: var(--e-radio-icon-disabled-checked-icon-color);
         }
       }
     }

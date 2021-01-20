@@ -1,6 +1,6 @@
-@use '../var';
-@use '../mixins/tools';
-
+:root {
+  --e-input-group-border-radius: var(--e-global-border-radius-base);
+}
 .el-input-group {
   display: inline-block;
   white-space: nowrap;
@@ -18,21 +18,21 @@
     }
   }
   > :first-child {
-    border-top-left-radius: var.$input-border-radius;
-    border-bottom-left-radius: var.$input-border-radius;
+    border-top-left-radius: var(--e-input-group-border-radius);
+    border-bottom-left-radius: var(--e-input-group-border-radius);
     .el-input,
     input {
-      border-top-left-radius: var.$input-border-radius;
-      border-bottom-left-radius: var.$input-border-radius;
+      border-top-left-radius: var(--e-input-group-border-radius);
+      border-bottom-left-radius: var(--e-input-group-border-radius);
     }
   }
   > :last-child {
-    border-top-right-radius: var.$input-border-radius;
-    border-bottom-right-radius: var.$input-border-radius;
+    border-top-right-radius: var(--e-input-group-border-radius);
+    border-bottom-right-radius: var(--e-input-group-border-radius);
     .el-input,
     input {
-      border-top-right-radius: var.$input-border-radius;
-      border-bottom-right-radius: var.$input-border-radius;
+      border-top-right-radius: var(--e-input-group-border-radius);
+      border-bottom-right-radius: var(--e-input-group-border-radius);
     }
   }
 }

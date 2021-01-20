@@ -1,27 +1,11 @@
-@use '../var';
-@use '../mixins/tools';
+:root {
+  --e-menu-color: var(--e-global-color-text-primary);
+  --e-menu-font-size: var(--e-global-font-size-base);
+  --e-menu-horizontal-height: 60px;
 
-@mixin el-menu-item--horizontal($height) {
-  display: inline-block;
-  position: relative;
-  height: $height;
-  line-height: $height;
-  padding: 0 20px;
-  list-style: none;
-  box-sizing: border-box;
-  white-space: nowrap;
-  text-decoration: none;
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: var.$global-font-size-base;
-  color: var.$global-color-text-primary;
-  transition: var.$global-transition-all;
-  border-bottom: 2px solid transparent;
-  &:hover,
-  &:focus {
-    outline: none;
-  }
+  --e-menu-group-title-color: var(--e-global-color-text-placeholder);
+
+  --e-menu-dropdown-border-radius: var(--e-global-border-radius-base);
 }
 
 @mixin el-menu-item--vertical($height) {
@@ -37,9 +21,9 @@
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: var.$global-font-size-base;
-  color: var.$global-color-text-primary;
-  transition: var.$global-transition-all;
+  font-size: var(--e-menu-font-size);
+  color: var(--e-menu-color);
+  transition: var(--e-global-transition-all);
   border-right: 4px solid transparent;
   &:hover,
   &:focus {
@@ -68,7 +52,6 @@
   box-shadow: none;
   background-color: transparent;
   text-align: left;
-  // @include tools.clearfix();
   .el-sub-menu {
     font-size: 0;
     line-height: 0;
@@ -85,7 +68,26 @@
   display: flex;
   .el-menu-item,
   .el-sub-menu__title {
-    @include el-menu-item--horizontal(60px);
+    display: inline-block;
+    position: relative;
+    height: var(--e-menu-horizontal-height);
+    line-height: var(--e-menu-horizontal-height);
+    padding: 0 20px;
+    list-style: none;
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--e-menu-font-size);
+    color: var(--e-menu-color);
+    transition: var(--e-global-transition-all);
+    border-bottom: 2px solid transparent;
+    &:hover,
+    &:focus {
+      outline: none;
+    }
   }
   .el-sub-menu__arrow {
     @include el-sub-menu__arrow();
@@ -93,7 +95,7 @@
   .el-sub-menu {
     display: inline-block;
     position: relative;
-    transition: var.$global-transition-all;
+    transition: var(--e-global-transition-all);
     &.is-opened {
       > .el-sub-menu__title > .el-sub-menu__arrow {
         transform: rotateZ(180deg);
@@ -114,7 +116,7 @@
   .el-sub-menu {
     position: relative;
     display: block;
-    transition: var.$global-transition-all;
+    transition: var(--e-global-transition-all);
 
     &.is-opened {
       > .el-sub-menu__title > .el-sub-menu__arrow {
@@ -127,7 +129,7 @@
       padding: 6px 0 6px 20px;
       line-height: normal;
       font-size: 12px;
-      color: var.$global-color-text-placeholder;
+      color: var(--e-menu-group-title-color);
     }
     &__body {
       padding: 0;
@@ -141,7 +143,7 @@
   // border-radius: 3px;
   .el-sub-menu__body {
     overflow: hidden;
-    border-radius: var.$global-border-radius-base;
+    border-radius: var(--e-menu-dropdown-border-radius);
   }
   .el-menu-item,
   .el-sub-menu__title {
@@ -163,7 +165,7 @@
       padding: 10px 0 6px 20px;
       line-height: normal;
       font-size: 10px;
-      color: var.$global-color-text-placeholder;
+      color: var(--e-menu-group-title-color);
     }
     &__body {
       padding: 0;

@@ -13,17 +13,32 @@ A Vue.js 3.0 UI Toolkit for Web
 
 ## Foreword
 
-> 这个项目目的并不是为了照搬 Element2，使用 Vue3 翻译一遍，且不会以 API 的兼容为优先级
+> The purpose of this project is not to copy Element2 and translate it using Vue3, and compatibility is not a priority
 
-> 如果你习惯了 Element2 并想要在 Vue3 下使用它，建议移步 [Element Plus](https://github.com/element-plus/element-plus)。
+> If you are used to Element2 and want to use it under Vue3, we recommend moving to [Element Plus](https://github.com/element-plus/element-plus).
 
-> 这个项目实现一个更加符合的现代浏览器的 UI 框架，中间会大量使用 Composition API。
+> This project implements a more modern browser-compliant UI framework that makes extensive use of various new features.
 
-## 附加项目
+## Features
 
-- ### [tsrv](https://github.com/JasKang/tsrv) 零配置打包组件库
+- zero-configuration bundler for vue3 components
+  - [x] tsrv dev/build
+  - [x] tsrv test
+- vite docs/demo stie
+  - [x] docs stie
+  - [x] support markdown
+  - [x] demo preview
+- style
+  - [x] Reconfiguration style
+  - [x] use css variables
+- components
+  - [] something
 
-- ### [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) 基于 vite 的组件库文档插件，支持 markdown 文档预览/代码高亮
+## Additional Tools
+
+- ### [tsrv](https://github.com/JasKang/tsrv) Zero Configuration bundler for vue3 components
+
+- ### [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) Markdown document preview and code highlighting for vite
 
 ## Docs & Demo
 
@@ -64,21 +79,23 @@ Skip this part if you just want to use Elenext.
 :sparkles: **组件库** :sparkles:
 
 - [x] Grid
-  - [x] Row
-  - [x] Col
+  - [x] ERow
+  - [x] ECol
 - [x] Layout
-  - [x] Main
-  - [x] Aside
-  - [x] Footer
-  - [x] Header
+  - [x] ELayout
+  - [x] EMain
+  - [x] EAside
+  - [x] EFooter
+  - [x] EHeader
 - [x] Button
+  - [x] EButton
   - [x] EButtonGroup
-- [x] Link
-- [x] Breadcrumb
-- [x] EPagination
+- [x] ELink
+- [x] EBreadcrumb
   - [x] EBreadcrumbItem
+- [x] EPagination
 - [x] Icon
-- [x] Alert
+- [x] EAlert
 - [x] EPopper
 - [x] ETooltip
 - [x] EPopover
@@ -89,6 +106,7 @@ Skip this part if you just want to use Elenext.
   - [x] EMenuItemGroup
 - [x] EInput
   - [x] EInputGroup
+- [x] radio
 - [ ] card
 - [ ] checkbox
 - [ ] date-picker
@@ -104,7 +122,6 @@ Skip this part if you just want to use Elenext.
 - [ ] option
 - [ ] pagination
 - [ ] progress
-- [ ] radio
 
 ## Author
 

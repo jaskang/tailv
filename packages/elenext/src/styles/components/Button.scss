@@ -149,7 +149,7 @@
     background: var(--e-button-plain-background-color);
   }
   &--link {
-    color: var(--e-global-color-primary);
+    color: var(--e-global-link-color);
     user-select: none;
     background: none;
     border-color: transparent;
@@ -157,12 +157,12 @@
 
     &:hover,
     &:focus {
-      color: var(--e-global-color-primary-light);
+      color: var(--e-global-link-hover-color);
       border-color: transparent;
       background-color: transparent;
     }
     &:active {
-      color: var(--e-global-color-primary-dark);
+      color: var(--e-global-link-active-color);
       border-color: transparent;
       background-color: transparent;
     }
