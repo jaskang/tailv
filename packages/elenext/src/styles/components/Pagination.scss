@@ -51,7 +51,7 @@
       display: inline-block;
       min-width: var(--e-pagination-item-width);
       height: var(--e-pagination-item-height);
-      line-height: calc(var(--e-pagination-item-height) - 2);
+      line-height: calc(var(--e-pagination-item-height) - 2px);
       border: 1px solid var(--e-pagination-item-border-color);
       border-radius: var(--e-pagination-item-border-radius);
       cursor: pointer;

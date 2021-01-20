@@ -3,7 +3,7 @@ title: Layout
 wrapperClass: md-layout
 ---
 
-## Layout 布局容器
+# Layout 布局容器
 
 用于布局的容器组件，方便快速搭建页面的基本结构：
 
@@ -19,7 +19,7 @@ wrapperClass: md-layout
 
 以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，`Layout` 的子元素只能是后四者，后四者的父元素也只能是 `Layout`。
 
-### 常见页面布局
+## 常见页面布局
 
 ```vue demo
 <template>
@@ -56,7 +56,7 @@ wrapperClass: md-layout
 </template>
 ```
 
-### 实例
+## 实例
 
 ```vue demo
 <template>
@@ -141,12 +141,12 @@ export default {
     const item = {
       date: '2016-05-02',
       name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
+      address: '上海市普陀区金沙江路 1518 弄',
     }
     return {
-      tableData: Array(20).fill(item)
+      tableData: Array(20).fill(item),
     }
-  }
+  },
 }
 </script>
 ```

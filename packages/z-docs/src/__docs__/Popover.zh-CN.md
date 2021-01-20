@@ -3,9 +3,9 @@ title: Popover
 wrapperClass: md-popover
 ---
 
-## Popover 弹出框
+# Popover 弹出框
 
-### 基础用法
+## 基础用法
 
 `trigger`属性用于设置何时触发 Popover，支持四种触发方式：`hover`，`click`，`focus` 和 `manual`。对于触发 Popover 的元素，有两种写法：使用 `slot="reference"` 的具名插槽，或使用自定义指令`v-popover`指向 Popover 的索引`ref`。
 
@@ -55,20 +55,20 @@ wrapperClass: md-popover
 export default {
   data() {
     return {
-      visible: false
+      visible: false,
     }
   },
   methods: {
     click() {
       this.visible = !this.visible
       console.log(this.visible)
-    }
-  }
+    },
+  },
 }
 </script>
 ```
 
-### 嵌套信息
+## 嵌套信息
 
 可以在 Popover 中嵌套多种类型信息，以下为嵌套表格的例子。
 
@@ -95,31 +95,31 @@ export default {
         {
           date: '2016-05-02',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          address: '上海市普陀区金沙江路 1518 弄',
         },
         {
           date: '2016-05-04',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          address: '上海市普陀区金沙江路 1518 弄',
         },
         {
           date: '2016-05-01',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          address: '上海市普陀区金沙江路 1518 弄',
         },
         {
           date: '2016-05-03',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }
-      ]
+          address: '上海市普陀区金沙江路 1518 弄',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 ```
 
-### 嵌套操作
+## 嵌套操作
 
 当然，你还可以嵌套操作，这相比 Dialog 更为轻量：
 
@@ -142,9 +142,9 @@ export default {
 export default {
   data() {
     return {
-      visible: false
+      visible: false,
     }
-  }
+  },
 }
 </script>
 ```

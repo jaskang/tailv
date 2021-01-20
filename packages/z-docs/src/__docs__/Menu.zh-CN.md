@@ -3,7 +3,7 @@ title: Menu
 wrapperClass: md-menu
 ---
 
-## Menu 菜单
+# Menu 菜单
 
 Menu 通过了三种不同的菜单展现形式，通过 `mode` 属性来指定你需要的展现形式
 
