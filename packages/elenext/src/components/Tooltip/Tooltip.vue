@@ -29,7 +29,7 @@ import { prop } from '../../utils'
 const ETooltip = defineComponent({
   name: 'ETooltip',
   components: {
-    EPopper
+    EPopper,
   },
   props: {
     modelValue: prop.bool(),
@@ -42,12 +42,13 @@ const ETooltip = defineComponent({
     // trigger: prop.oneOf(triggers, { default: 'hover' }),
     placement: prop.string<PlacementType>().def('top'),
     trigger: prop.string<TriggerType>().def('hover'),
-    transition: prop.string().def('el-popper-fade')
+    transition: prop.string().def('el-popper-fade'),
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {
     const innerValue = ref(false)
     const classes = computed(() => mergeClass('el-tooltip', props.popperClass))
+
     const visibleHandler = (visible: boolean) => {
       innerValue.value = visible
       emit('update:modelValue', visible)
@@ -55,9 +56,9 @@ const ETooltip = defineComponent({
     return {
       classes,
       innerValue,
-      visibleHandler
+      visibleHandler,
     }
-  }
+  },
 })
 
 ETooltip.install = (app: App): void => {

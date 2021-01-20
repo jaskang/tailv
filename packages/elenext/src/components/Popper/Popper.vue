@@ -6,7 +6,7 @@
         :id="state.popperId"
         :ref="popperRefInitHandler"
         :class="['el-popper', popperClass]"
-        :style="{ ...state.attrs.styles.popper, ...{ backgroundColor: backgroundColor } }"
+        :style="styles"
         v-bind="state.attrs.attributes.popper"
       >
         <slot name="content" />
@@ -15,7 +15,7 @@
           v-if="visibleArrow"
           :ref="arrowRefInitHandler"
           class="el-popper__arrow"
-          :style="{ ...state.attrs.styles.arrow, ...arrowColorStyle }"
+          :style="state.attrs.styles.arrow"
           data-popper-arrow
         />
       </div>
@@ -37,7 +37,7 @@ import {
   ref,
   watch,
   computed,
-  isRef
+  isRef,
 } from 'vue'
 import { prop } from '../../utils'
 import { PlacementType, TriggerType, usePopper } from './core'
@@ -65,12 +65,12 @@ const EPopper = defineComponent({
     trigger: prop.string<TriggerType>().def('hover'),
     transition: prop.string().def('el-popper-fade'),
     backgroundColor: prop.string(),
-    reference: prop.object<HTMLElement>()
+    reference: prop.object<HTMLElement>(),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
     const parentProvider = inject(POPPER_IJK, {
-      action: { addHoldChild: teleportId => {}, removeHoldChild: teleportId => {} }
+      action: { addHoldChild: teleportId => {}, removeHoldChild: teleportId => {} },
     })
     const referenceRef = ref<Element>()
     const popperRef = ref<HTMLElement>()
@@ -99,20 +99,14 @@ const EPopper = defineComponent({
         } else {
           parentProvider.action.removeHoldChild(teleportId)
         }
-      }
+      },
     })
-
-    const arrowColorStyle = computed(() => {
+    const styles = computed(() => {
+      const _styles = { ...state.attrs.styles.popper }
       if (props.backgroundColor) {
-        const _placement: string = state.attrs.attributes.popper?.['data-popper-placement']
-        if (_placement) {
-          const _pos = _placement.split('-')[0]
-          return {
-            [`border-${_pos}-color`]: props.backgroundColor
-          }
-        }
+        _styles['--e-popper-background-color'] = props.backgroundColor
       }
-      return {}
+      return _styles
     })
 
     // 状态变化
@@ -166,8 +160,8 @@ const EPopper = defineComponent({
           if (index !== -1) {
             holdChildren.value.splice(index, 1)
           }
-        }
-      }
+        },
+      },
     })
 
     onUnmounted(() => {
@@ -183,9 +177,9 @@ const EPopper = defineComponent({
       referenceRefInitHandler,
       popperRefInitHandler,
       arrowRefInitHandler,
-      arrowColorStyle
+      styles,
     }
-  }
+  },
 })
 EPopper.install = (app: App): void => {
   app.component(EPopper.name, EPopper)

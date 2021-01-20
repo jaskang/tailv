@@ -2,10 +2,11 @@
   --e-tooltip-padding: 10px;
   --e-tooltip-color: var(--e-global-color-white);
   --e-tooltip-font-size: var(--e-global-font-size-small);
-  --e-tooltip-background-color: var(--e-global-color-text-primary);
+
   --e-tooltip-index: var(--e-global-index-popper);
 }
 .el-tooltip {
+  --e-popper-background-color: var(--e-global-color-text-primary);
   border-radius: 4px;
   padding: var(--e-tooltip-padding);
   z-index: var(--e-tooltip-index);
@@ -14,64 +15,8 @@
   min-width: 10px;
   word-wrap: break-word;
   color: var(--e-tooltip-color);
-  background-color: var(--e-tooltip-background-color);
   &:focus:not(.focusing),
   &:focus:hover {
     outline-width: 0;
-  }
-  &[data-popper-placement^='top'] {
-    margin-bottom: var(--e-popper-gutter);
-    .el-popper__arrow {
-      bottom: calc(var(--e-popper-arrow-size) * -1 + 1px);
-      border-top-color: var(--e-tooltip-background-color);
-      border-bottom-width: 0;
-    }
-    .el-popper__arrow-shadow {
-      bottom: calc(var(--e-popper-arrow-size) * -1);
-      border-top-color: var(--e-popper-border-color);
-      border-bottom-width: 0;
-    }
-  }
-
-  &[data-popper-placement^='bottom'] {
-    margin-top: var(--e-popper-gutter);
-    .el-popper__arrow {
-      top: calc(var(--e-popper-arrow-size) * -1 + 1px);
-      border-bottom-color: var(--e-tooltip-background-color);
-      border-top-width: 0;
-    }
-    .el-popper__arrow-shadow {
-      top: calc(var(--e-popper-arrow-size) * -1);
-      border-bottom-color: var(--e-popper-border-color);
-      border-top-width: 0;
-    }
-  }
-
-  &[data-popper-placement^='right'] {
-    margin-left: var(--e-popper-gutter);
-    .el-popper__arrow {
-      left: calc(var(--e-popper-arrow-size) * -1 + 1px);
-      border-right-color: var(--e-tooltip-background-color);
-      border-left-width: 0;
-    }
-    .el-popper__arrow-shadow {
-      left: calc(var(--e-popper-arrow-size) * -1);
-      border-right-color: var(--e-popper-border-color);
-      border-left-width: 0;
-    }
-  }
-
-  &[data-popper-placement^='left'] {
-    margin-right: var(--e-popper-gutter);
-    .el-popper__arrow {
-      right: calc(var(--e-popper-arrow-size) * -1 + 1px);
-      border-left-color: var(--e-tooltip-background-color);
-      border-right-width: 0;
-    }
-    .el-popper__arrow-shadow {
-      right: calc(var(--e-popper-arrow-size) * -1);
-      border-left-color: var(--e-popper-border-color);
-      border-right-width: 0;
-    }
   }
 }
