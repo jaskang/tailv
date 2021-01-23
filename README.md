@@ -21,10 +21,10 @@ A Vue.js 3.0 UI Toolkit for Web
 
 ## Features
 
-- zero-configuration bundler for vue3 components
+- zero-configuration bundler for vue3 components ==> [tsrv](https://github.com/JasKang/tsrv)
   - [x] tsrv dev/build
   - [x] tsrv test
-- vite docs/demo stie
+- vite docs/demo stie ==> [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc)
   - [x] docs stie
   - [x] support markdown
   - [x] demo preview
@@ -33,12 +33,6 @@ A Vue.js 3.0 UI Toolkit for Web
   - [x] use css variables
 - components
   - [] something
-
-## Additional Tools
-
-- ### [tsrv](https://github.com/JasKang/tsrv) Zero Configuration bundler for vue3 components
-
-- ### [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) Markdown document preview and code highlighting for vite
 
 ## Docs & Demo
 
@@ -122,6 +116,12 @@ Skip this part if you just want to use Elenext.
 - [ ] option
 - [ ] pagination
 - [ ] progress
+
+## Additional Tools
+
+- [tsrv](https://github.com/JasKang/tsrv) Zero Configuration bundler for vue3 components
+
+- [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) Markdown document preview and code highlighting for vite
 
 ## Author
 
