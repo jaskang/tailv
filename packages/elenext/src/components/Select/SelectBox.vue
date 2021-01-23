@@ -19,13 +19,13 @@ import { prop } from '../../utils'
 const ESelectBox = defineComponent({
   name: 'ESelectBox',
   components: {
-    ESelectOption
+    ESelectOption,
   },
   props: {
     modelValue: prop.array(),
-    options: prop.array<OptionType>(),
+    options: prop.array<OptionType>().def([]),
     multiple: prop.bool(),
-    isPlain: prop.bool().def(true)
+    isPlain: prop.bool().def(true),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
@@ -51,12 +51,12 @@ const ESelectBox = defineComponent({
           }
           emit('update:modelValue', state.selected)
           emit('change', state.selected)
-        }
-      }
+        },
+      },
     })
     provide(SELECTDROPDOWN_IJK, state)
     return {}
-  }
+  },
 })
 ESelectBox.install = (app: App): void => {
   app.component(ESelectBox.name, ESelectBox)

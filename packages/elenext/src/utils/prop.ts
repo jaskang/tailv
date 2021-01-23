@@ -28,7 +28,7 @@ export interface PropFactoryType<T = any, R = false> {
   type: PropType<T>
   required: R
   validator?(value: unknown): boolean
-  def: (value: T) => PropFactoryType<T>
+  def: (value: T) => PropFactoryType<T, true>
   isRequired: () => PropFactoryType<T, true>
 }
 
@@ -40,10 +40,11 @@ function createProp<T = any>(type: T, options: PropFactoryOptions = {}) {
   } as PropFactoryType<T>
 
   prop.def = (value: T) => {
+    // @ts-ignore
     return {
       ...prop,
       default: value,
-    } as PropFactoryType<T>
+    } as PropFactoryType<T, true>
   }
   prop.isRequired = () => {
     return {

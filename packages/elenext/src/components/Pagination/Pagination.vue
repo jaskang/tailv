@@ -64,7 +64,7 @@ import {
   IconChevronDoubleLeft,
   IconChevronDoubleRight,
   IconChevronRight,
-  IconThreeDots
+  IconThreeDots,
 } from '@elenext/icons'
 
 const PAGE_SHOW_ITEM_COUNT = 7
@@ -76,14 +76,14 @@ const EPagination = defineComponent({
     IconChevronDoubleLeft,
     IconChevronDoubleRight,
     IconChevronRight,
-    IconThreeDots
+    IconThreeDots,
   },
   props: {
     current: prop.number(),
     total: prop.number(),
     pageSize: prop.number(),
     pageSizeOptions: prop.array<number>().def([10, 20, 50, 100]),
-    disabled: prop.bool()
+    disabled: prop.bool(),
   },
   emits: ['change'],
   setup(props, { attrs, slots, emit }) {
@@ -93,7 +93,7 @@ const EPagination = defineComponent({
       pagers: [] as number[],
       pageTotal: 1,
       showPrevMore: false,
-      showNextMore: false
+      showNextMore: false,
     })
 
     watchEffect(() => {
@@ -161,9 +161,9 @@ const EPagination = defineComponent({
     }
     return {
       state,
-      jmpHandler
+      jmpHandler,
     }
-  }
+  },
 })
 EPagination.install = (app: App): void => {
   app.component(EPagination.name, EPagination)
