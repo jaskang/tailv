@@ -4,7 +4,7 @@
     :class="{
       'is-focus': isFocus,
       'is-checked': isChecked,
-      'is-disabled': isDisabled
+      'is-disabled': isDisabled,
     }"
   >
     <span class="el-radio__input">
@@ -43,7 +43,7 @@ const ERadio = defineComponent({
     value: prop.any(),
     disabled: prop.bool(),
     name: prop.string(),
-    size: prop.string()
+    size: prop.string(),
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
@@ -64,7 +64,7 @@ const ERadio = defineComponent({
           emit('update:modelValue', val)
         }
         inputElRef.value!.checked = (parent?.modelValue.value || props.modelValue) === props.value
-      }
+      },
     })
     const isChecked = computed(() => {
       if (parent) {
@@ -82,9 +82,9 @@ const ERadio = defineComponent({
       isFocus,
       isDisabled,
       model,
-      changeHandler
+      changeHandler,
     }
-  }
+  },
 })
 ERadio.install = (app: App): void => {
   app.component(ERadio.name, ERadio)

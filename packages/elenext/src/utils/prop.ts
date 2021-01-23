@@ -1,4 +1,6 @@
-import { Prop, PropType } from 'vue'
+import { PropType } from 'vue'
+
+export type AugmentedRequired<T extends any, K extends keyof T = keyof T> = Omit<T, K> & Required<Pick<T, K>>
 
 type HexColorType = `#${string}`
 
@@ -11,64 +13,81 @@ const nativeTypes = {
   number: (Number as unknown) as number,
   bool: (Boolean as unknown) as boolean,
   string: (String as unknown) as string,
-  symbol: (Symbol as unknown) as symbol
+  symbol: (Symbol as unknown) as symbol,
+  array: (Array as unknown) as Array<any>,
 } as const
 type NativeTypes = typeof nativeTypes
 
-type nativeKey = 'string' | 'number' | 'symbol' | 'object' | 'func' | 'bool'
+type nativeKey = 'string' | 'number' | 'symbol' | 'object' | 'func' | 'bool' | 'array'
 
-interface PropOptions {
+interface PropFactoryOptions {
   validator?(value: unknown): boolean
 }
 
-function createProp<T = any>(type: T, options: PropOptions = {}) {
-  return {
+export interface PropFactoryType<T = any, R = false> {
+  type: PropType<T>
+  required: R
+  validator?(value: unknown): boolean
+  def: (value: T) => PropFactoryType<T>
+  isRequired: () => PropFactoryType<T, true>
+}
+
+function createProp<T = any>(type: T, options: PropFactoryOptions = {}) {
+  const prop = {
     type: (type as unknown) as PropType<T>,
-    default: undefined as undefined | T,
     required: false,
-    def(value?: T) {
-      this.default = value
-      return this
-    },
-    isRequired() {
-      this.required = true
-      return this
-    },
-    ...options
+    ...options,
+  } as PropFactoryType<T>
+
+  prop.def = (value: T) => {
+    return {
+      ...prop,
+      default: value,
+    } as PropFactoryType<T>
   }
+  prop.isRequired = () => {
+    return {
+      ...prop,
+      required: true,
+    } as PropFactoryType<T, true>
+  }
+
+  return prop
 }
 
 const prop = {
-  any(options: PropOptions = {}) {
-    return createProp(undefined, options)
+  any(options: PropFactoryOptions = {}) {
+    return createProp<any>(undefined, options)
   },
-  array<T = any>(options: PropOptions = {}) {
+  array<T = any>(options: PropFactoryOptions = {}) {
     return createProp((Array as unknown) as T[], options)
   },
-  string<T extends string = string>(options: PropOptions = {}) {
+  string<T extends string = string>(options: PropFactoryOptions = {}) {
     return createProp((String as unknown) as T, options)
   },
-  symbol(options: PropOptions = {}) {
+  symbol(options: PropFactoryOptions = {}) {
     return createProp((Symbol as unknown) as symbol, options)
   },
-  bool(options: PropOptions = {}) {
+  bool(options: PropFactoryOptions = {}) {
     return createProp((Boolean as unknown) as boolean, options)
+      .def(false)
+      .isRequired()
   },
-  func<T extends (...args: any) => any>(options: PropOptions = {}) {
+  func<T extends (...args: any) => any>(options: PropFactoryOptions = {}) {
     return createProp((Function as unknown) as T, options)
   },
-  number(options: PropOptions = {}) {
+  number(options: PropFactoryOptions = {}) {
     return createProp((Number as unknown) as number, options)
   },
-  integer(options: Prop<number> = {}) {
+  integer(options: PropFactoryOptions = {}) {
     return createProp((Number as unknown) as number, {
       validator(value: unknown) {
         return typeof value === 'number' && isFinite(value) && Math.floor(value) === value
       },
-      ...options
+      ...options,
     })
   },
-  object<T = any>(options: PropOptions = {}) {
+  object<T = any>(options: PropFactoryOptions = {}) {
     return createProp((Object as unknown) as T, options)
   },
   hexColor() {
@@ -78,19 +97,19 @@ const prop = {
           return /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value)
         }
         return false
-      }
+      },
     })
   },
-  oneOf<T extends readonly string[]>(valArr: T, options: PropOptions = {}) {
+  oneOf<T extends readonly string[]>(valArr: T, options: PropFactoryOptions = {}) {
     return createProp((String as unknown) as typeof valArr[number], {
       validator: function (value: string) {
         return valArr.indexOf(value) !== -1
       },
-      ...options
+      ...options,
     })
   },
 
-  oneOfType<T extends readonly nativeKey[]>(types: T, options: PropOptions = {}) {
+  oneOfType<T extends readonly nativeKey[]>(types: T, options: PropFactoryOptions = {}) {
     return createProp((String as unknown) as NativeTypes[typeof types[number]], {
       validator: function (value: string) {
         const valueConstructor = value.constructor
@@ -99,9 +118,9 @@ const prop = {
         })
         return currentTypes.indexOf(valueConstructor) !== -1
       },
-      ...options
+      ...options,
     })
-  }
+  },
 }
 
 export default prop

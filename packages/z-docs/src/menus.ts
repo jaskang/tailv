@@ -12,6 +12,7 @@ import Alert from './__docs__/Alert.zh-CN.md'
 import Pagination from './__docs__/Pagination.zh-CN.md'
 import Icon from './__docs__/Icon.zh-CN.md'
 import Radio from './__docs__/Radio.zh-CN.md'
+import Checkbox from './__docs__/Checkbox.zh-CN.md'
 import Input from './__docs__/Input.zh-CN.md'
 import Select from './__docs__/Select.zh-CN.md'
 
@@ -46,6 +47,7 @@ export default [
     title: 'Form',
     items: [
       { name: 'Radio', component: Radio },
+      { name: 'Checkbox', component: Checkbox },
       { name: 'Input', component: Input },
       { name: 'Select', component: Select },
     ],

@@ -2,52 +2,44 @@
   <div class="demo-layout">
     <e-layout>
       <e-header class="demo-header">
-        <e-row>
-          <e-col :flex="screens.xl ? 1 : 0"></e-col>
-          <e-col :flex="screens.xl ? '1200px' : 1">
-            <e-row align="middle">
-              <e-col :flex="1">
-                <Logo />
-              </e-col>
-              <e-col>
-                <e-menu mode="horizontal">
-                  <e-menu-item>
-                    <a href="https://github.com/JasKang/elenext" target="__blank">GitHub</a>
-                  </e-menu-item>
-                </e-menu>
-              </e-col>
-            </e-row>
-          </e-col>
-          <e-col :flex="screens.xl ? 1 : 0"></e-col>
-        </e-row>
+        <div class="layout-center">
+          <e-row align="middle">
+            <e-col :flex="1">
+              <Logo />
+            </e-col>
+            <e-col>
+              <e-menu mode="horizontal">
+                <e-menu-item>
+                  <a href="https://github.com/JasKang/elenext" target="__blank">GitHub</a>
+                </e-menu-item>
+              </e-menu>
+            </e-col>
+          </e-row>
+        </div>
       </e-header>
       <e-main>
-        <e-row>
-          <e-col :flex="screens.xl ? 1 : 0"></e-col>
-          <e-col :flex="screens.xl ? '1200px' : 1">
-            <e-row align="top" :wrap="false">
-              <e-col :flex="'200px'">
-                <div style="padding-top: 40px">
-                  <e-menu mode="vertical" :current-path="route.path">
-                    <template v-for="menu in menus" :key="menu.title">
-                      <e-menu-itemGroup :title="menu.title">
-                        <e-menu-item v-for="item in menu.items" :key="item" :path="`/${item.name.toLowerCase()}`">
-                          {{ item.name }}
-                        </e-menu-item>
-                      </e-menu-itemGroup>
-                    </template>
-                  </e-menu>
-                </div>
-              </e-col>
-              <e-col :flex="1">
-                <div class="site-content">
-                  <router-view />
-                </div>
-              </e-col>
-            </e-row>
-          </e-col>
-          <e-col :flex="screens.xl ? 1 : 0"></e-col>
-        </e-row>
+        <div class="layout-center">
+          <e-row align="top" :wrap="false">
+            <e-col :flex="'200px'">
+              <div style="padding-top: 40px">
+                <e-menu mode="vertical" :current-path="route.path">
+                  <template v-for="menu in menus" :key="menu.title">
+                    <e-menu-itemGroup :title="menu.title">
+                      <e-menu-item v-for="item in menu.items" :key="item" :path="`/${item.name.toLowerCase()}`">
+                        {{ item.name }}
+                      </e-menu-item>
+                    </e-menu-itemGroup>
+                  </template>
+                </e-menu>
+              </div>
+            </e-col>
+            <e-col :flex="1">
+              <div class="site-content">
+                <router-view />
+              </div>
+            </e-col>
+          </e-row>
+        </div>
       </e-main>
     </e-layout>
   </div>
@@ -80,6 +72,11 @@ export default defineComponent({
 <style lang="scss">
 .demo-layout {
   height: 100vh;
+}
+.layout-center {
+  max-width: 1200px;
+  width: 100vw;
+  margin: 0 auto;
 }
 .site-content {
   width: 100%;

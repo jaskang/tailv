@@ -13,6 +13,7 @@ import { EMenu, ESubMenu, EMenuItem, EMenuItemGroup } from './components/Menu'
 import { EInput, EInputGroup } from './components/Input'
 import { ESelect, ESelectBox, ESelectOption } from './components/Select'
 import { ERadio, ERadioGroup } from './components/Radio'
+import { ECheckbox, ECheckboxGroup } from './components/Checkbox'
 import './styles/index.scss'
 
 export {
@@ -44,7 +45,9 @@ export {
   ESelectBox,
   ESelectOption,
   ERadio,
-  ERadioGroup
+  ERadioGroup,
+  ECheckbox,
+  ECheckboxGroup,
 }
 
 export const elenext: Plugin = {
@@ -91,5 +94,7 @@ export const elenext: Plugin = {
     useComponent(ESelectOption)
     useComponent(ERadio)
     useComponent(ERadioGroup)
-  }
+    useComponent(ECheckbox)
+    useComponent(ECheckboxGroup)
+  },
 }

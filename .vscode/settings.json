@@ -28,6 +28,7 @@
     "Input",
     "Select",
     "Radio",
-    "deps"
+    "deps",
+    "Checkbox"
   ]
 }

@@ -15,7 +15,7 @@ import { prop } from '../../utils'
 const EButton = defineComponent({
   name: 'EButton',
   components: {
-    IconArrowClockwise
+    IconArrowClockwise,
   },
   props: {
     color: prop.oneOf(['primary', 'success', 'info', 'warning', 'danger'] as const),
@@ -23,7 +23,7 @@ const EButton = defineComponent({
     size: prop.oneOf(['large', 'small'] as const),
     nativeType: prop.oneOf(['button', 'submit', 'reset'] as const).def('button'),
     loading: prop.bool(),
-    disabled: prop.bool()
+    disabled: prop.bool(),
   },
   emits: ['click'],
   setup(props, { emit, slots }) {
@@ -35,8 +35,8 @@ const EButton = defineComponent({
         props.size ? `el-button--${props.size}` : '',
         {
           'is-loading': props.loading,
-          'is-disabled': props.disabled
-        }
+          'is-disabled': props.disabled,
+        },
       ])
     )
     const clickHandler = (e: MouseEvent) => {
@@ -47,9 +47,9 @@ const EButton = defineComponent({
     return {
       classes,
       clickHandler,
-      hasDefaultSlot: slots.default
+      hasDefaultSlot: slots.default,
     }
-  }
+  },
 })
 
 EButton.install = (app: App): void => {

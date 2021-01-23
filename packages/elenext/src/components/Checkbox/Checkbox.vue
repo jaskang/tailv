@@ -3,27 +3,24 @@
     class="el-checkbox"
     :class="{
       'is-focus': isFocus,
+      'is-indeterminate': indeterminate,
       'is-checked': isChecked,
-      'is-disabled': isDisabled
+      'is-disabled': isDisabled,
     }"
   >
-    <span class="el-checkbox__input">
-      <span class="el-checkbox__icon"></span>
-      <input
-        ref="inputElRef"
-        v-model="model"
-        :value="value"
-        :name="name"
-        :disabled="disabled"
-        class="el-checkbox__original"
-        type="radio"
-        aria-hidden="true"
-        tabindex="-1"
-        @focus="isFocus = true"
-        @blur="isFocus = false"
-        @change="changeHandler"
-      />
-    </span>
+    <input
+      ref="inputElRef"
+      :checked="isChecked"
+      :name="name"
+      :disabled="disabled"
+      class="el-checkbox__input"
+      type="checkbox"
+      aria-hidden="true"
+      tabindex="-1"
+      @focus="isFocus = true"
+      @blur="isFocus = false"
+      @change="changeHandler"
+    />
     <span class="el-checkbox__label">
       <slot>{{ label }}</slot>
     </span>
@@ -37,13 +34,15 @@ import { CHECKBOXGROUP_IJK } from './core'
 
 const ECheckbox = defineComponent({
   name: 'ECheckbox',
+  components: {},
   props: {
-    modelValue: prop.any(),
+    modelValue: prop.oneOfType(['bool', 'array']),
     label: prop.string(),
     value: prop.any(),
+    indeterminate: prop.bool(),
     disabled: prop.bool(),
     name: prop.string(),
-    size: prop.string()
+    size: prop.string(),
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {
@@ -53,38 +52,48 @@ const ECheckbox = defineComponent({
     const isDisabled = computed(() => {
       return parent?.disabled.value || props.disabled
     })
-    const model = computed<any>({
-      get() {
-        return parent?.modelValue.value || props.modelValue
-      },
-      set(val) {
+
+    const isChecked = computed(() => {
+      if (parent) {
+        return parent.modelValue.value.indexOf(props.value) !== -1
+      }
+      if (Array.isArray(props.modelValue)) {
+        return props.modelValue.indexOf(props.value) !== -1
+      } else {
+        return props.modelValue
+      }
+    })
+
+    const changeHandler = e => {
+      if (parent || Array.isArray(props.modelValue)) {
+        const _oldVal = parent ? parent?.modelValue.value : (props.modelValue as any[])
+        const _set = new Set(_oldVal || [])
+        if (isChecked.value) {
+          _set.delete(props.value)
+        } else {
+          _set.add(props.value)
+        }
+        const val = Array.from(_set)
+        emit('change', !isChecked.value)
         if (parent) {
           parent.change(val)
         } else {
           emit('update:modelValue', val)
         }
-        inputElRef.value!.checked = (parent?.modelValue.value || props.modelValue) === props.value
+      } else {
+        emit('change', !isChecked.value)
+        emit('update:modelValue', !isChecked.value)
       }
-    })
-    const isChecked = computed(() => {
-      if (parent) {
-        return parent.modelValue.value === props.value
-      }
-      return props.modelValue === props.value
-    })
-
-    const changeHandler = (event: Event) => {
-      emit('change', props.value)
     }
+
     return {
       inputElRef,
       isChecked,
       isFocus,
       isDisabled,
-      model,
-      changeHandler
+      changeHandler,
     }
-  }
+  },
 })
 ECheckbox.install = (app: App): void => {
   app.component(ECheckbox.name, ECheckbox)
