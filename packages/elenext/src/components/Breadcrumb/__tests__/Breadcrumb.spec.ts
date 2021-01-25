@@ -12,15 +12,15 @@ test('create', async () => {
     props: {},
     global: {
       components: {
-        EBreadcrumbItem
-      }
+        EBreadcrumbItem,
+      },
     },
     slots: {
       default: `
       <e-breadcrumb-item>1</e-breadcrumb-item>
       <e-breadcrumb-item>2</e-breadcrumb-item>
-      `
-    }
+      `,
+    },
   })
   expect(wrapper.classes()).toContain('el-breadcrumb')
   expect(wrapper.find('.el-breadcrumb-item__separator').text()).toBe('/')
@@ -31,15 +31,15 @@ test('props separator', async () => {
     props: { separator: '#' },
     global: {
       components: {
-        EBreadcrumbItem
-      }
+        EBreadcrumbItem,
+      },
     },
     slots: {
       default: `
       <e-breadcrumb-item>1</e-breadcrumb-item>
       <e-breadcrumb-item>2</e-breadcrumb-item>
-      `
-    }
+      `,
+    },
   })
   expect(wrapper.find('.el-breadcrumb-item__separator').text()).toBe('#')
 })

@@ -9,17 +9,18 @@ import { App, computed, defineComponent } from 'vue'
 import { useChildren } from '../../hooks/useParent'
 import { prop } from '../../utils'
 import { Breadcrumb_IJK } from './core'
+
 const EBreadcrumb = defineComponent({
   name: 'EBreadcrumb',
   props: {
-    separator: prop.string().def('/')
+    separator: prop.string().def('/'),
   },
   setup(props) {
     useChildren(Breadcrumb_IJK, {
-      separator: computed(() => props.separator)
+      separator: computed(() => props.separator),
     })
     return {}
-  }
+  },
 })
 
 EBreadcrumb.install = (app: App): void => {
