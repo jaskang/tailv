@@ -25,13 +25,12 @@ type validatorType = (value: unknown) => boolean
 type HexColorType = `#${string}`
 
 export class VpTypes<P> {
-  _meta_: P
+  _meta_ = (undefined as unknown) as P
   type?: PropType<P>
   default?: P
   validator = undefined as validatorType | undefined
   required = false
   constructor(type?: unknown, validator?: validatorType) {
-    this._meta_ = (type as any).toString()
     if (type) {
       this.type = type as PropType<P>
     }
