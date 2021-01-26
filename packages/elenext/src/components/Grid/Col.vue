@@ -5,10 +5,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, inject, PropType, ref, CSSProperties, App } from 'vue'
+import { defineComponent, computed, inject, ref, CSSProperties, App } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { rowInjectKey, GutterTuple } from './core'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
+import { VpTypes } from '../../utils/vptypes'
 
 type ColPropType = number | string
 
@@ -34,15 +35,9 @@ function parseFlex(flex: FlexType): string {
   return flex
 }
 
-const defalutPropItem = {
-  type: [Number, String] as PropType<ColPropType>,
-  default: undefined
-}
+const defalutPropItem = VpTypes.oneOfType([VpTypes.string(), VpTypes.number()])
 
-const sizePropItem = {
-  type: [Number, Object] as PropType<number | SizeProp>,
-  required: false
-}
+const sizePropItem = VpTypes.oneOfType([VpTypes.number(), VpTypes.object<SizeProp>()])
 
 const ECol = defineComponent({
   name: 'ECol',
@@ -57,10 +52,7 @@ const ECol = defineComponent({
     md: sizePropItem,
     lg: sizePropItem,
     xl: sizePropItem,
-    flex: {
-      type: [Number, String] as PropType<FlexType>,
-      default: undefined
-    }
+    flex: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]),
   },
   setup(props, { slots }) {
     const { gutter } = inject(rowInjectKey, { gutter: ref([0, 0] as GutterTuple) })
@@ -81,7 +73,7 @@ const ECol = defineComponent({
             [`el-col-${size}-order-${sizeProps.order}`]: sizeProps.order || sizeProps.order === 0,
             [`el-col-${size}-offset-${sizeProps.offset}`]: sizeProps.offset || sizeProps.offset === 0,
             [`el-col-${size}-push-${sizeProps.push}`]: sizeProps.push || sizeProps.push === 0,
-            [`el-col-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0
+            [`el-col-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0,
           })
         }
       })
@@ -92,9 +84,9 @@ const ECol = defineComponent({
           [`el-col-order-${props.order}`]: props.order,
           [`el-col-offset-${props.offset}`]: props.offset,
           [`el-col-push-${props.push}`]: props.push,
-          [`el-col-pull-${props.pull}`]: props.pull
+          [`el-col-pull-${props.pull}`]: props.pull,
         },
-        ...sizeObjs
+        ...sizeObjs,
       ])
       return ret
     })
@@ -106,27 +98,27 @@ const ECol = defineComponent({
         ...(x > 0
           ? {
               paddingLeft: `${x / 2}px`,
-              paddingRight: `${x / 2}px`
+              paddingRight: `${x / 2}px`,
             }
           : {}),
         ...(y > 0
           ? {
               paddingTop: `${y / 2}px`,
-              paddingBottom: `${y / 2}px`
+              paddingBottom: `${y / 2}px`,
             }
-          : {})
+          : {}),
       }
-      if (typeof props.flex !== undefined) {
-        ret.flex = parseFlex(props.flex)
+      if (typeof props.flex) {
+        ret.flex = parseFlex(props.flex!)
       }
       return ret
     })
 
     return {
       classes,
-      styles
+      styles,
     }
-  }
+  },
 })
 
 ECol.install = (app: App): void => {
