@@ -28,9 +28,10 @@ export class VpTypes<P> {
   _meta_: P
   type?: PropType<P>
   default?: P
-  validator?: validatorType
-  required: boolean
+  validator = undefined as validatorType | undefined
+  required = false
   constructor(type?: unknown, validator?: validatorType) {
+    this._meta_ = (type as any).toString()
     if (type) {
       this.type = type as PropType<P>
     }
@@ -101,8 +102,8 @@ export class VpTypes<P> {
     return prop
   }
   static oneOfString<T extends readonly string[]>(list: T) {
-    const prop = this.create<T[number]>(String, (value: string) => {
-      return list.indexOf(value) !== -1
+    const prop = this.create<T[number]>(String, (value: unknown) => {
+      return list.indexOf(value as string) !== -1
     })
     return prop
   }
