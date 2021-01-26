@@ -57,7 +57,6 @@
   </div>
 </template>
 <script lang="ts">
-import { prop } from '../../utils'
 import { App, defineComponent, reactive, watchEffect } from 'vue'
 import {
   IconChevronLeft,
@@ -66,6 +65,7 @@ import {
   IconChevronRight,
   IconThreeDots,
 } from '@elenext/icons'
+import { VpTypes } from '../../utils/vptypes'
 
 const PAGE_SHOW_ITEM_COUNT = 7
 const PAGE_SHOW_ITEM_COUNT_HALF = 3
@@ -79,11 +79,11 @@ const EPagination = defineComponent({
     IconThreeDots,
   },
   props: {
-    current: prop.number(),
-    total: prop.number(),
-    pageSize: prop.number(),
-    pageSizeOptions: prop.array<number>().def([10, 20, 50, 100]),
-    disabled: prop.bool(),
+    current: VpTypes.number(),
+    total: VpTypes.number(),
+    pageSize: VpTypes.number(),
+    pageSizeOptions: VpTypes.array<number[]>().def([10, 20, 50, 100]),
+    disabled: VpTypes.bool(),
   },
   emits: ['change'],
   setup(props, { attrs, slots, emit }) {

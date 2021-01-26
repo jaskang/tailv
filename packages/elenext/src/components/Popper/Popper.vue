@@ -39,7 +39,8 @@ import {
   computed,
   isRef,
 } from 'vue'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
+
 import { PlacementType, TriggerType, usePopper } from './core'
 import EDomSlot from './DomSlot'
 
@@ -54,18 +55,18 @@ const EPopper = defineComponent({
   name: 'EPopper',
   components: { EDomSlot },
   props: {
-    modelValue: prop.bool(),
-    popperClass: prop.string(),
-    visibleArrow: prop.bool().def(true),
-    offset: prop.number().def(0),
+    modelValue: VpTypes.bool(),
+    popperClass: VpTypes.string(),
+    visibleArrow: VpTypes.bool().def(true),
+    offset: VpTypes.number().def(0),
     // TODO: oneOf
-    // placement: prop.oneOf(placements, { default: 'top' }),
-    // trigger: prop.oneOf(triggers, { default: 'hover' }),
-    placement: prop.string<PlacementType>().def('top'),
-    trigger: prop.string<TriggerType>().def('hover'),
-    transition: prop.string().def('el-popper-fade'),
-    backgroundColor: prop.string(),
-    reference: prop.object<HTMLElement>(),
+    // placement: VpTypes.oneOfString(placements, { default: 'top' }),
+    // trigger: VpTypes.oneOfString(triggers, { default: 'hover' }),
+    placement: VpTypes.string<PlacementType>().def('top'),
+    trigger: VpTypes.string<TriggerType>().def('hover'),
+    transition: VpTypes.string().def('el-popper-fade'),
+    backgroundColor: VpTypes.string(),
+    reference: VpTypes.object<HTMLElement>(),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {

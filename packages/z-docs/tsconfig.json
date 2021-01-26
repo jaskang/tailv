@@ -11,5 +11,6 @@
     "baseUrl": ".",
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
   },
-  "include": ["./shims.d.ts", "src/**/*"]
+  "include": ["./shims.d.ts", "src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

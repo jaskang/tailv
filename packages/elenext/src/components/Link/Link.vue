@@ -8,15 +8,15 @@
 <script lang="ts">
 import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
 
 const ELink = defineComponent({
   name: 'ELink',
   props: {
-    color: prop.oneOf(['default', 'primary', 'success', 'warning', 'danger', 'info'] as const).def('default'),
-    noUnderline: prop.bool().def(false),
-    disabled: prop.bool(),
-    href: prop.string(),
+    color: VpTypes.oneOfString(['default', 'primary', 'success', 'warning', 'danger', 'info'] as const).def('default'),
+    noUnderline: VpTypes.bool().def(false),
+    disabled: VpTypes.bool(),
+    href: VpTypes.string(),
   },
   emits: ['click'],
   setup(props, { emit, slots }) {

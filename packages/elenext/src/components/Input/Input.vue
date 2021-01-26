@@ -4,7 +4,7 @@
       'el-input': true,
       'has-prefix': hasPrefix,
       'has-suffix': hasSuffix || clearable,
-      'is-focus': isFocus
+      'is-focus': isFocus,
     }"
   >
     <input
@@ -41,19 +41,20 @@
 <script lang="ts">
 import { App, computed, defineComponent, ref, watch } from 'vue'
 import { IconXCircleFill } from '@elenext/icons'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
+
 const EInput = defineComponent({
   name: 'EInput',
   components: {
-    IconXCircleFill
+    IconXCircleFill,
   },
   props: {
-    modelValue: prop.string(),
-    prefix: prop.string(),
-    suffix: prop.string(),
-    clearable: prop.bool(),
-    disabled: prop.bool(),
-    allowInput: prop.bool().def(true)
+    modelValue: VpTypes.string(),
+    prefix: VpTypes.string(),
+    suffix: VpTypes.string(),
+    clearable: VpTypes.bool(),
+    disabled: VpTypes.bool(),
+    allowInput: VpTypes.bool().def(true),
   },
   emits: ['update:modelValue', 'input', 'focus', 'blur', 'change'],
   setup(props, { attrs, slots, emit }) {
@@ -103,9 +104,9 @@ const EInput = defineComponent({
       focusHandler,
       blurHandler,
       changeHandler,
-      clearHandler
+      clearHandler,
     }
-  }
+  },
 })
 EInput.install = (app: App): void => {
   app.component(EInput.name, EInput)

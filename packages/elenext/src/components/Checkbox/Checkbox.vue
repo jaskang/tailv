@@ -16,7 +16,7 @@
       class="el-checkbox__input"
       type="checkbox"
       aria-hidden="true"
-      tabindex="-1"
+      :tabindex="-1"
       @focus="isFocus = true"
       @blur="isFocus = false"
       @change="changeHandler"
@@ -29,20 +29,21 @@
 <script lang="ts">
 import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
-import { prop } from '../../utils'
+
 import { CHECKBOXGROUP_IJK } from './core'
+import { VpTypes } from '../../utils/vptypes'
 
 const ECheckbox = defineComponent({
   name: 'ECheckbox',
   components: {},
   props: {
-    modelValue: prop.oneOfType(['bool', 'array']),
-    label: prop.string(),
-    value: prop.any(),
-    indeterminate: prop.bool(),
-    disabled: prop.bool(),
-    name: prop.string(),
-    size: prop.string(),
+    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array()]),
+    label: VpTypes.string(),
+    value: VpTypes.any(),
+    indeterminate: VpTypes.bool(),
+    disabled: VpTypes.bool(),
+    name: VpTypes.string(),
+    size: VpTypes.string(),
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {

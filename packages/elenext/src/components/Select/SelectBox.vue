@@ -12,9 +12,9 @@
 // How could imagine living alone
 // Remember no one's coming to save you
 import { App, defineComponent, provide, reactive } from 'vue'
+import { VpTypes } from '../../utils/vptypes'
 import { OptionType, SelectDropdownState, SELECTDROPDOWN_IJK } from './core'
 import ESelectOption from './SelectOption.vue'
-import { prop } from '../../utils'
 
 const ESelectBox = defineComponent({
   name: 'ESelectBox',
@@ -22,10 +22,10 @@ const ESelectBox = defineComponent({
     ESelectOption,
   },
   props: {
-    modelValue: prop.array(),
-    options: prop.array<OptionType>().def([]),
-    multiple: prop.bool(),
-    isPlain: prop.bool().def(true),
+    modelValue: VpTypes.array(),
+    options: VpTypes.array<OptionType[]>().def([]),
+    multiple: VpTypes.bool(),
+    isPlain: VpTypes.bool().def(true),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {

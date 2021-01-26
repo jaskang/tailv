@@ -55,13 +55,13 @@ import {
   ref,
   App,
   CSSProperties,
-  watchEffect
+  watchEffect,
 } from 'vue'
 import { IconChevronUp, IconChevronRight } from '@elenext/icons'
 import { ECollapseTransition } from '../Transition'
 import { EPopper } from '../Popper'
 import { MenuState, MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
 
 const ESubMenu = defineComponent({
   name: 'ESubMenu',
@@ -69,10 +69,10 @@ const ESubMenu = defineComponent({
     ECollapseTransition,
     EPopper,
     IconChevronUp,
-    IconChevronRight
+    IconChevronRight,
   },
   props: {
-    title: prop.string()
+    title: VpTypes.string(),
   },
   setup(props, { attrs, slots, emit }) {
     const self = getCurrentInstance()
@@ -88,7 +88,7 @@ const ESubMenu = defineComponent({
       isOpen: menuProvider!.root.openedSet.has(self!.uid),
       isHover: false,
       isActive: menuProvider!.root.activePath.indexOf(self!.uid) !== -1,
-      isPopper: menuProvider!.root.mode !== 'vertical' && menuProvider!.deep + 1 > 1
+      isPopper: menuProvider!.root.mode !== 'vertical' && menuProvider!.deep + 1 > 1,
     })
     watchEffect(() => {
       state.isOpen = menuProvider!.root.openedSet.has(self!.uid)
@@ -109,7 +109,7 @@ const ESubMenu = defineComponent({
             ? state.root.activeBackgroundColor
             : state.root.backgroundColor,
         borderColor: mode === 'horizontal' && state.isActive ? state.root.activeTextColor : 'transparent',
-        paddingLeft: `${(state.isPopper ? 1 : state.deep) * MENU_ITEM_PADDING}px`
+        paddingLeft: `${(state.isPopper ? 1 : state.deep) * MENU_ITEM_PADDING}px`,
       }
     })
 
@@ -134,9 +134,9 @@ const ESubMenu = defineComponent({
       titleClickHandler,
       popperChangneHandler,
       mouseenterHandler,
-      mouseleaveHandler
+      mouseleaveHandler,
     }
-  }
+  },
 })
 ESubMenu.install = (app: App): void => {
   app.component(ESubMenu.name, ESubMenu)

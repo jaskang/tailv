@@ -5,14 +5,14 @@
       :allow-input="filterable"
       :model-value="inputValue"
       :class="{
-        'is-focus': dropdownVisible
+        'is-focus': dropdownVisible,
       }"
     >
       <template #suffix>
         <IconChevronDown
           :class="{
             'el-select-dropdown__icon': true,
-            'is-open': dropdownVisible
+            'is-open': dropdownVisible,
           }"
         />
       </template>
@@ -43,7 +43,9 @@
 <script lang="ts">
 // 收余恨、免娇嗔、且自新、改性情、休恋逝水、苦海回身、早悟兰因
 import { App, computed, defineComponent, ref } from 'vue'
-import { prop } from '../../utils'
+import { IconChevronDown } from '@elenext/icons'
+import { VpTypes } from '../../utils/vptypes'
+
 import { EInput } from '../Input'
 import { EPopper } from '../Popper'
 import { OptionType } from './core'
@@ -53,13 +55,14 @@ const ESelect = defineComponent({
   components: {
     EInput,
     EPopper,
-    ESelectBox
+    ESelectBox,
+    IconChevronDown,
   },
   props: {
-    modelValue: prop.any(),
-    options: prop.array<OptionType>(),
-    multiple: prop.bool(),
-    filterable: prop.bool()
+    modelValue: VpTypes.any(),
+    options: VpTypes.array<OptionType[]>(),
+    multiple: VpTypes.bool(),
+    filterable: VpTypes.bool(),
   },
   setup(props, { attrs, slots, emit }) {
     const elRef = ref<HTMLDivElement>()
@@ -83,9 +86,9 @@ const ESelect = defineComponent({
       innerValue,
       inputValue,
       dropdownVisible,
-      changeHandler
+      changeHandler,
     }
-  }
+  },
 })
 ESelect.install = (app: App): void => {
   app.component(ESelect.name, ESelect)

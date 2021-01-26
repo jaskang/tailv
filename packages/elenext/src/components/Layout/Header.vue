@@ -6,13 +6,13 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
 
 const EHeader = defineComponent({
   name: 'EHeader',
   props: {
-    height: prop.string()
-  }
+    height: VpTypes.string(),
+  },
 })
 
 EHeader.install = (app: App): void => {

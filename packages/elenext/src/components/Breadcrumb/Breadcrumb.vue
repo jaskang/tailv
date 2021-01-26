@@ -7,13 +7,14 @@
 <script lang="ts">
 import { App, computed, defineComponent } from 'vue'
 import { useChildren } from '../../hooks/useParent'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
+
 import { Breadcrumb_IJK } from './core'
 
 const EBreadcrumb = defineComponent({
   name: 'EBreadcrumb',
   props: {
-    separator: prop.string().def('/'),
+    separator: VpTypes.string().def('/'),
   },
   setup(props) {
     useChildren(Breadcrumb_IJK, {

@@ -7,7 +7,7 @@
     class="el-select-option"
     :class="{
       'is-multiple': parentState.multiple,
-      'is-selected': isSelected
+      'is-selected': isSelected,
     }"
     @click="selectHandler"
   >
@@ -22,16 +22,16 @@
 import { App, computed, defineComponent, inject } from 'vue'
 import { IconCheck } from '@elenext/icons'
 import { SELECTDROPDOWN_IJK } from './core'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
 
 const ESelectOption = defineComponent({
   name: 'ESelectOption',
   components: {
-    IconCheck
+    IconCheck,
   },
   props: {
-    label: prop.string(),
-    value: prop.any()
+    label: VpTypes.string(),
+    value: VpTypes.any(),
   },
   emits: ['select'],
   setup(props, { attrs, slots, emit }) {
@@ -46,9 +46,9 @@ const ESelectOption = defineComponent({
     return {
       parentState: parentState!,
       isSelected,
-      selectHandler
+      selectHandler,
     }
-  }
+  },
 })
 ESelectOption.install = (app: App): void => {
   app.component(ESelectOption.name, ESelectOption)

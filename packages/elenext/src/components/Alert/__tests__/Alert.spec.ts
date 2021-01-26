@@ -1,15 +1,15 @@
 import { mount } from '@vue/test-utils'
 import { EAlert } from '../'
 
-// type: prop.oneOf(['success', 'warning', 'info', 'error'] as const).def('info'),
-// effect: prop.oneOf(['light', 'dark'] as const).def('light'),
-// title: prop.string(),
-// description: prop.string(),
-// closable: prop.bool().def(true)
+// type: VpTypes.oneOfString(['success', 'warning', 'info', 'error'] as const).def('info'),
+// effect: VpTypes.oneOfString(['light', 'dark'] as const).def('light'),
+// title: VpTypes.string(),
+// description: VpTypes.string(),
+// closable: VpTypes.bool().def(true)
 
 test('create', async () => {
   const wrapper = mount(EAlert, {
-    props: { title: 'title' }
+    props: { title: 'title' },
   })
   expect(wrapper.find('.el-alert').classes()).toContain('el-alert')
 })
@@ -18,8 +18,8 @@ test('props type', async () => {
   const wrapper = mount(EAlert, {
     props: {
       title: 'title',
-      type: 'success'
-    }
+      type: 'success',
+    },
   })
   expect(wrapper.find('.el-alert').classes()).toContain('el-alert--success')
 })
@@ -27,8 +27,8 @@ test('props type', async () => {
 test('props effect', async () => {
   const wrapper = mount(EAlert, {
     props: {
-      effect: 'dark'
-    }
+      effect: 'dark',
+    },
   })
   expect(wrapper.find('.el-alert').classes()).toContain('is-dark')
 })
@@ -36,8 +36,8 @@ test('props effect', async () => {
 test('props title', async () => {
   const wrapper = mount(EAlert, {
     props: {
-      title: 'test title'
-    }
+      title: 'test title',
+    },
   })
   expect(wrapper.text()).toBe('test title')
 })
@@ -46,8 +46,8 @@ test('props description', async () => {
   const wrapper = mount(EAlert, {
     props: {
       title: 'test title',
-      description: 'description'
-    }
+      description: 'description',
+    },
   })
   expect(wrapper.find('.el-alert__description').text()).toBe('description')
 })
@@ -56,8 +56,8 @@ test('props closable', async () => {
   const wrapper = mount(EAlert, {
     props: {
       title: 'test title',
-      closable: true
-    }
+      closable: true,
+    },
   })
   expect(wrapper.find('.el-alert__closebtn').isVisible()).toBe(true)
 })
@@ -65,11 +65,11 @@ test('props closable', async () => {
 test('slots#default', async () => {
   const wrapper = mount(EAlert, {
     props: {
-      title: 'test title'
+      title: 'test title',
     },
     slots: {
-      default: 'description'
-    }
+      default: 'description',
+    },
   })
   expect(wrapper.find('.el-alert__description').text()).toBe('description')
 })
@@ -78,11 +78,11 @@ test('event@close', async () => {
   const wrapper = mount(EAlert, {
     props: {
       title: 'test title',
-      closable: true
+      closable: true,
     },
     slots: {
-      default: 'description'
-    }
+      default: 'description',
+    },
   })
   wrapper.find('.el-alert__closebtn').trigger('click')
   expect(wrapper.emitted()).toHaveProperty('close')

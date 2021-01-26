@@ -2,7 +2,7 @@
   <li
     :class="{
       'el-menu-item': true,
-      'is-active': state.isActive
+      'is-active': state.isActive,
     }"
     :style="styles"
     @mouseenter="mouseenterHandler"
@@ -23,15 +23,15 @@ import {
   onMounted,
   onUnmounted,
   reactive,
-  watchEffect
+  watchEffect,
 } from 'vue'
+import { VpTypes } from '../../utils/vptypes'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
-import { prop } from '../../utils'
 
 const EMenuItem = defineComponent({
   name: 'EMenuItem',
   props: {
-    path: prop.string()
+    path: VpTypes.string(),
   },
   emits: ['click'],
   setup(props, { emit }) {
@@ -49,7 +49,7 @@ const EMenuItem = defineComponent({
       isOpen: false,
       isHover: false,
       isActive: menuProvider!.root.activeId === self!.uid,
-      isPopper: menuProvider!.root.mode !== 'vertical' && menuProvider!.type === MENU_TYPE.SUB
+      isPopper: menuProvider!.root.mode !== 'vertical' && menuProvider!.type === MENU_TYPE.SUB,
     })
     watchEffect(() => {
       state.isActive = menuProvider!.root.activeId === self!.uid
@@ -62,7 +62,7 @@ const EMenuItem = defineComponent({
         backgroundColor:
           state.isActive || state.isHover ? state.root.activeBackgroundColor : state.root.backgroundColor,
         borderColor: !state.isPopper && state.isActive ? state.root.activeTextColor : 'transparent',
-        paddingLeft: state.isPopper ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px'
+        paddingLeft: state.isPopper ? MENU_ITEM_PADDING + 'px' : state.deep * MENU_ITEM_PADDING + 'px',
       }
     })
 
@@ -90,9 +90,9 @@ const EMenuItem = defineComponent({
       styles,
       clickHandler,
       mouseenterHandler,
-      mouseleaveHandler
+      mouseleaveHandler,
     }
-  }
+  },
 })
 
 export default EMenuItem

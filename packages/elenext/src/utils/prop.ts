@@ -6,6 +6,16 @@ type HexColorType = `#${string}`
 
 // type $Keys<T extends object> = keyof T
 
+export const TYPES = {
+  string: String,
+  number: Number,
+  object: Object,
+  boolean: Boolean,
+  function: Function,
+  symbol: Symbol,
+  array: Array,
+}
+
 const nativeTypes = {
   // eslint-disable-next-line
   object: Object as object,
@@ -39,14 +49,13 @@ function createProp<T = any>(type: T, options: PropFactoryOptions = {}) {
     ...options,
   } as PropFactoryType<T>
 
-  prop.def = (value: T) => {
-    // @ts-ignore
+  VpTypes.def = (value: T) => {
     return {
       ...prop,
       default: value,
     } as PropFactoryType<T, true>
   }
-  prop.isRequired = () => {
+  VpTypes.isRequired = () => {
     return {
       ...prop,
       required: true,

@@ -6,19 +6,19 @@
 
 <script lang="ts">
 import { App, defineComponent, getCurrentInstance, provide, reactive, watchEffect } from 'vue'
+import { VpTypes } from '../../utils/vptypes'
 import { MenuState, MENU_IJK, MENU_TYPE } from './core'
-import { prop } from '../../utils'
 
 const EMenu = defineComponent({
   name: 'EMenu',
   props: {
-    mode: prop.oneOf(['horizontal', 'vertical', 'popper'] as const).def('horizontal'),
-    textColor: prop.hexColor().def('#303133'),
-    backgroundColor: prop.hexColor().def('#fff'),
-    activeTextColor: prop.hexColor().def('#409EFF'),
-    activeBackgroundColor: prop.hexColor().def('#ecf5ff'),
-    uniqueOpened: prop.bool(),
-    currentPath: prop.string()
+    mode: VpTypes.oneOfString(['horizontal', 'vertical', 'popper'] as const).def('horizontal'),
+    textColor: VpTypes.hexColor().def('#303133'),
+    backgroundColor: VpTypes.hexColor().def('#fff'),
+    activeTextColor: VpTypes.hexColor().def('#409EFF'),
+    activeBackgroundColor: VpTypes.hexColor().def('#ecf5ff'),
+    uniqueOpened: VpTypes.bool(),
+    currentPath: VpTypes.string(),
   },
   setup(props) {
     const instance = getCurrentInstance()
@@ -50,8 +50,8 @@ const EMenu = defineComponent({
               state.root.activePath = [...node.uidPath]
               state.root.activeId = node.uid
             }
-          }
-        }
+          },
+        },
       },
       type: MENU_TYPE.ROOT,
       uid: instance!.uid,
@@ -60,7 +60,7 @@ const EMenu = defineComponent({
       isOpen: false,
       isHover: false,
       isActive: false,
-      isPopper: false
+      isPopper: false,
     })
     watchEffect(() => {
       const activeChild = state.root.children.filter(item => item.path === props.currentPath)
@@ -70,7 +70,7 @@ const EMenu = defineComponent({
     })
     provide(MENU_IJK, state)
     return { state }
-  }
+  },
 })
 
 EMenu.install = (app: App): void => {

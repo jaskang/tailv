@@ -7,23 +7,20 @@
       'is-disabled': isDisabled,
     }"
   >
-    <span class="el-radio__input">
-      <span class="el-radio__icon"></span>
-      <input
-        ref="inputElRef"
-        v-model="model"
-        :value="value"
-        :name="name"
-        :disabled="disabled"
-        class="el-radio__original"
-        type="radio"
-        aria-hidden="true"
-        tabindex="-1"
-        @focus="isFocus = true"
-        @blur="isFocus = false"
-        @change="changeHandler"
-      />
-    </span>
+    <input
+      ref="inputElRef"
+      v-model="model"
+      :value="value"
+      :name="name"
+      :disabled="disabled"
+      class="el-radio__input"
+      type="radio"
+      aria-hidden="true"
+      :tabindex="-1"
+      @focus="isFocus = true"
+      @blur="isFocus = false"
+      @change="changeHandler"
+    />
     <span class="el-radio__label">
       <slot>{{ label }}</slot>
     </span>
@@ -32,18 +29,19 @@
 <script lang="ts">
 import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
-import { prop } from '../../utils'
+
+import { VpTypes } from '../../utils/vptypes'
 import { RADIOGROUP_IJK } from './core'
 
 const ERadio = defineComponent({
   name: 'ERadio',
   props: {
-    modelValue: prop.any(),
-    label: prop.string(),
-    value: prop.any(),
-    disabled: prop.bool(),
-    name: prop.string(),
-    size: prop.string(),
+    modelValue: VpTypes.any(),
+    label: VpTypes.string(),
+    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]).isRequired,
+    disabled: VpTypes.bool(),
+    name: VpTypes.string(),
+    size: VpTypes.string(),
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {

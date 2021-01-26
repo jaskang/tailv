@@ -10,16 +10,17 @@
 <script lang="ts">
 import { defineComponent, getCurrentInstance, App } from 'vue'
 import { useParent } from '../../hooks/useParent'
-import { prop } from '../../utils'
+
+import { VpTypes } from '../../utils/vptypes'
 import { Breadcrumb_IJK } from './core'
 
 const EBreadcrumbItem = defineComponent({
   name: 'EBreadcrumbItem',
   props: {
-    // path: prop.string(),
+    // path: VpTypes.string(),
     // TODO: oneOfType
-    path: prop.oneOfType(['string', 'object']),
-    replace: prop.bool()
+    path: VpTypes.oneOfType([VpTypes.string(), VpTypes.object()]),
+    replace: VpTypes.bool(),
   },
   setup(props, {}) {
     const self = getCurrentInstance()
@@ -35,9 +36,9 @@ const EBreadcrumbItem = defineComponent({
     }
     return {
       separator: parent?.separator || '/',
-      clickHandler
+      clickHandler,
     }
-  }
+  },
 })
 
 EBreadcrumbItem.install = (app: App): void => {

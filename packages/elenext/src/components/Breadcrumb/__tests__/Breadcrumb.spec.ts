@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
 import { EBreadcrumb, EBreadcrumbItem } from '../'
 
-// type: prop.oneOf(['success', 'warning', 'info', 'error'] as const).def('info'),
-// effect: prop.oneOf(['light', 'dark'] as const).def('light'),
-// title: prop.string(),
-// description: prop.string(),
-// closable: prop.bool().def(true)
+// type: VpTypes.oneOfString(['success', 'warning', 'info', 'error'] as const).def('info'),
+// effect: VpTypes.oneOfString(['light', 'dark'] as const).def('light'),
+// title: VpTypes.string(),
+// description: VpTypes.string(),
+// closable: VpTypes.bool().def(true)
 
 test('create', async () => {
   const wrapper = mount(EBreadcrumb, {

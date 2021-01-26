@@ -13,13 +13,14 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, inject } from 'vue'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
+
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const EMenuItemGroup = defineComponent({
   name: 'EMenuItemGroup',
   props: {
-    title: prop.string()
+    title: VpTypes.string(),
   },
   setup(props, { slots }) {
     const state = inject(MENU_IJK)
@@ -29,14 +30,14 @@ const EMenuItemGroup = defineComponent({
     })
     const styles = computed(() => {
       return {
-        paddingLeft: `${(isPopperInner.value ? 1 : state!.deep + 1) * MENU_ITEM_PADDING}px`
+        paddingLeft: `${(isPopperInner.value ? 1 : state!.deep + 1) * MENU_ITEM_PADDING}px`,
       }
     })
 
     return {
-      styles
+      styles,
     }
-  }
+  },
 })
 
 EMenuItemGroup.install = (app: App): void => {

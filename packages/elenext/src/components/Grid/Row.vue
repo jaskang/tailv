@@ -9,18 +9,18 @@ import { defineComponent, computed, provide, CSSProperties, PropType, App } from
 import { mergeClass } from '@elenext/shared'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { Gutter, GutterTuple, rowInjectKey } from './core'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
 
 const ERow = defineComponent({
   name: 'ERow',
   props: {
     gutter: {
       type: [Number, Array, Object] as PropType<Gutter>,
-      default: 0
+      default: 0,
     },
-    align: prop.oneOf(['top', 'middle', 'bottom'] as const).def('top'),
-    justify: prop.oneOf(['start', 'end', 'center', 'space-around', 'space-between'] as const).def('start'),
-    wrap: prop.bool().def(true)
+    align: VpTypes.oneOfString(['top', 'middle', 'bottom'] as const).def('top'),
+    justify: VpTypes.oneOfString(['start', 'end', 'center', 'space-around', 'space-between'] as const).def('start'),
+    wrap: VpTypes.bool().def(true),
   },
   setup(props, { slots }) {
     const screens = useBreakpoint()
@@ -54,8 +54,8 @@ const ERow = defineComponent({
         {
           [`el-row--no-wrap`]: props.wrap === false,
           [`el-row--${props.justify}`]: props.justify,
-          [`el-row--${props.align}`]: props.align
-        }
+          [`el-row--${props.align}`]: props.align,
+        },
       ])
     )
 
@@ -65,15 +65,15 @@ const ERow = defineComponent({
         ...(x > 0
           ? {
               marginLeft: `${x / -2}px`,
-              marginRight: `${x / -2}px`
+              marginRight: `${x / -2}px`,
             }
           : {}),
         ...(y > 0
           ? {
               marginTop: `${y / -2}px`,
-              marginBottom: `${y / -2}px`
+              marginBottom: `${y / -2}px`,
             }
-          : {})
+          : {}),
       }
       return ret
     })
@@ -81,9 +81,9 @@ const ERow = defineComponent({
     provide(rowInjectKey, { gutter })
     return {
       classes,
-      styles
+      styles,
     }
-  }
+  },
 })
 
 ERow.install = (app: App): void => {

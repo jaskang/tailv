@@ -6,14 +6,15 @@
 <script lang="ts">
 import { App, computed, defineComponent } from 'vue'
 import { useChildren } from '../../hooks/useParent'
-import { prop } from '../../utils'
+import { VpTypes } from '../../utils/vptypes'
+
 import { RADIOGROUP_IJK } from './core'
 
 const ERadioGroup = defineComponent({
   name: 'ERadioGroup',
   props: {
-    modelValue: prop.any(),
-    disabled: prop.bool()
+    modelValue: VpTypes.any(),
+    disabled: VpTypes.bool(),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
@@ -23,10 +24,10 @@ const ERadioGroup = defineComponent({
       change: value => {
         emit('update:modelValue', value)
         emit('change', value)
-      }
+      },
     })
     return {}
-  }
+  },
 })
 ERadioGroup.install = (app: App): void => {
   app.component(ERadioGroup.name, ERadioGroup)

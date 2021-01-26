@@ -1,18 +1,18 @@
 import { App, defineComponent, provide, reactive } from 'vue'
-import { prop } from '../utils'
+import { VpTypes } from '../utils/vptypes'
 
 const EConfigProvider_IJK = 'EConfigProvider'
 
 export const EConfigProvider = defineComponent({
   name: '',
-  props: { theme: prop.object() },
+  props: { theme: VpTypes.object() },
   setup(props, { slots }) {
     const config = reactive({
-      theme: props.theme
+      theme: props.theme,
     })
     provide(EConfigProvider_IJK, config)
-    return slots.defalut()
-  }
+    return slots.defalut?.()
+  },
 })
 
 EConfigProvider.install = (app: App): void => {
