@@ -10,7 +10,7 @@ import Tooltip from './__docs__/Tooltip.zh-CN.md'
 import Popover from './__docs__/Popover.zh-CN.md'
 import Alert from './__docs__/Alert.zh-CN.md'
 import Pagination from './__docs__/Pagination.zh-CN.md'
-import Icon from './__docs__/Icon.zh-CN.md'
+
 import Radio from './__docs__/Radio.zh-CN.md'
 import Checkbox from './__docs__/Checkbox.zh-CN.md'
 import Input from './__docs__/Input.zh-CN.md'
@@ -32,7 +32,7 @@ export default [
       { name: 'Grid', component: Grid },
       { name: 'Button', component: Button },
       { name: 'Layout', component: Layout },
-      { name: 'Icon', component: Icon },
+      { name: 'Icon', component: import('./__docs__/Icon.zh-CN.md') },
       { name: 'Link', component: Link },
     ],
   },

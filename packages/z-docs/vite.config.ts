@@ -26,8 +26,8 @@ const containers = ['success', 'warning', 'info', 'error'].map(type => {
           // closing tag
           return '</e-alert></p>'
         }
-      }
-    }
+      },
+    },
   ]
 })
 
@@ -35,20 +35,21 @@ const config: UserConfig = {
   assetsInclude: ['src/assets'],
   alias: {},
   optimizeDeps: {
-    exclude: ['elenext']
+    include: ['vue', 'vue-router', '@elenext/icons'],
+    exclude: ['elenext'],
   },
   plugins: [
     vitePluginSyncmd(),
     createVueDocPlugin({
       markdownIt: {
-        plugins: [...containers]
+        plugins: [...containers],
       },
       highlight: {
-        theme: 'one-dark'
-      }
+        theme: 'one-dark',
+      },
     }),
-    vue()
-  ]
+    vue(),
+  ],
 }
 
 export default config

@@ -14,8 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
-    "types": ["jest", "node"],
-    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
+    "types": ["jest", "node"]
   },
   "include": ["./shims.d.ts", "src/**/*"],
   "exclude": ["node_modules", "dist"]

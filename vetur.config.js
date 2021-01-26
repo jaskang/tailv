@@ -6,7 +6,7 @@ module.exports = {
   // Notice: It only affects the settings used by Vetur.
   settings: {
     'vetur.useWorkspaceDependencies': true,
-    'vetur.experimental.templateInterpolationService': true
+    'vetur.experimental.templateInterpolationService': true,
   },
   // **optional** default: `[{ root: './' }]`
   // support monorepos
@@ -14,6 +14,6 @@ module.exports = {
     './packages/shared', // shorthand for only root.
     './packages/icons', // shorthand for only root.
     './packages/elenext', // shorthand for only root.
-    './packages/z-docs' // shorthand for only root.
-  ]
+    './packages/z-docs', // shorthand for only root.
+  ],
 }
