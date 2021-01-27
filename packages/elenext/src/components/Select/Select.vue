@@ -44,7 +44,7 @@
 // 收余恨、免娇嗔、且自新、改性情、休恋逝水、苦海回身、早悟兰因
 import { App, computed, defineComponent, ref } from 'vue'
 import { IconChevronDown } from '@elenext/icons'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 import { EInput } from '../Input'
 import { EPopper } from '../Popper'

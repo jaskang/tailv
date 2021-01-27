@@ -8,7 +8,7 @@
 import { App, computed, defineComponent, provide, reactive } from 'vue'
 import { layoutInjectKey } from './core'
 import { mergeClass } from '@elenext/shared'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const ELayout = defineComponent({
   name: 'ELayout',

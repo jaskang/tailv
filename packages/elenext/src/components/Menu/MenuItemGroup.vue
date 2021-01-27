@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, inject } from 'vue'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 

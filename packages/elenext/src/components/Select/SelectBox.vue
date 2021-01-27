@@ -12,7 +12,7 @@
 // How could imagine living alone
 // Remember no one's coming to save you
 import { App, defineComponent, provide, reactive } from 'vue'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 import { OptionType, SelectDropdownState, SELECTDROPDOWN_IJK } from './core'
 import ESelectOption from './SelectOption.vue'
 

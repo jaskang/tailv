@@ -30,7 +30,7 @@
 import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
 
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 import { RADIOGROUP_IJK } from './core'
 
 const ERadio = defineComponent({
@@ -38,7 +38,7 @@ const ERadio = defineComponent({
   props: {
     modelValue: VpTypes.any(),
     label: VpTypes.string(),
-    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]).isRequired,
+    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()] as const).isRequired,
     disabled: VpTypes.bool(),
     name: VpTypes.string(),
     size: VpTypes.string(),

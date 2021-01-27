@@ -1,5 +1,5 @@
 import { App, defineComponent, provide, reactive } from 'vue'
-import { VpTypes } from '../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const EConfigProvider_IJK = 'EConfigProvider'
 

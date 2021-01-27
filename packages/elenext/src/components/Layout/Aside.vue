@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { App, defineComponent, inject } from 'vue'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 import { layoutInjectKey } from './core'
 
 const EAside = defineComponent({

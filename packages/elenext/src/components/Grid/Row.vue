@@ -9,7 +9,7 @@ import { defineComponent, computed, provide, CSSProperties, PropType, App } from
 import { mergeClass } from '@elenext/shared'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { Gutter, GutterTuple, rowInjectKey } from './core'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const ERow = defineComponent({
   name: 'ERow',

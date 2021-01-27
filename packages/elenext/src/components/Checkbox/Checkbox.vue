@@ -31,13 +31,13 @@ import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
 
 import { CHECKBOXGROUP_IJK } from './core'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const ECheckbox = defineComponent({
   name: 'ECheckbox',
   components: {},
   props: {
-    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array()]),
+    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array()] as const),
     label: VpTypes.string(),
     value: VpTypes.any(),
     indeterminate: VpTypes.bool(),

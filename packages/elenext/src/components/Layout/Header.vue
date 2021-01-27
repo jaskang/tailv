@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const EHeader = defineComponent({
   name: 'EHeader',

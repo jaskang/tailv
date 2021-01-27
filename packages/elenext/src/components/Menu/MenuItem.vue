@@ -25,7 +25,7 @@ import {
   reactive,
   watchEffect,
 } from 'vue'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const EMenuItem = defineComponent({

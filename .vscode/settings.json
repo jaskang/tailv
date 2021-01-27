@@ -7,7 +7,7 @@
     "packages/elenext/src/styles/root.scss",
   ],
   "vetur.validation.template": false,
-  "liveServer.settings.root": "/build",
+  "liveServer.settings.root": "/packages/z-docs/dist",
   "eslint.format.enable": true,
   "eslint.packageManager": "yarn",
   "conventionalCommits.scopes": [

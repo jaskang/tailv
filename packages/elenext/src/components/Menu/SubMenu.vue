@@ -61,7 +61,7 @@ import { IconChevronUp, IconChevronRight } from '@elenext/icons'
 import { ECollapseTransition } from '../Transition'
 import { EPopper } from '../Popper'
 import { MenuState, MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const ESubMenu = defineComponent({
   name: 'ESubMenu',

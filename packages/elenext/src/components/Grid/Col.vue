@@ -9,7 +9,7 @@ import { defineComponent, computed, inject, ref, CSSProperties, App } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { rowInjectKey, GutterTuple } from './core'
 import { RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 type ColPropType = number | string
 
@@ -35,9 +35,9 @@ function parseFlex(flex: FlexType): string {
   return flex
 }
 
-const defalutPropItem = VpTypes.oneOfType([VpTypes.string(), VpTypes.number()])
+const defalutPropItem = VpTypes.oneOfType([VpTypes.string(), VpTypes.number()] as const)
 
-const sizePropItem = VpTypes.oneOfType([VpTypes.number(), VpTypes.object<SizeProp>()])
+const sizePropItem = VpTypes.oneOfType([VpTypes.number(), VpTypes.object<SizeProp>()] as const)
 
 const ECol = defineComponent({
   name: 'ECol',
@@ -52,7 +52,7 @@ const ECol = defineComponent({
     md: sizePropItem,
     lg: sizePropItem,
     xl: sizePropItem,
-    flex: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]),
+    flex: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()] as const),
   },
   setup(props, { slots }) {
     const { gutter } = inject(rowInjectKey, { gutter: ref([0, 0] as GutterTuple) })

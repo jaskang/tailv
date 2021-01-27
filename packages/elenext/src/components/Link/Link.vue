@@ -8,7 +8,7 @@
 <script lang="ts">
 import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const ELink = defineComponent({
   name: 'ELink',

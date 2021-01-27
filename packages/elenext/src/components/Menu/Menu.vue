@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { App, defineComponent, getCurrentInstance, provide, reactive, watchEffect } from 'vue'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 import { MenuState, MENU_IJK, MENU_TYPE } from './core'
 
 const EMenu = defineComponent({

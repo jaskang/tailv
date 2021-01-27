@@ -11,7 +11,7 @@
 import { defineComponent, getCurrentInstance, App } from 'vue'
 import { useParent } from '../../hooks/useParent'
 
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 import { Breadcrumb_IJK } from './core'
 
 const EBreadcrumbItem = defineComponent({
@@ -19,7 +19,7 @@ const EBreadcrumbItem = defineComponent({
   props: {
     // path: VpTypes.string(),
     // TODO: oneOfType
-    path: VpTypes.oneOfType([VpTypes.string(), VpTypes.object()]),
+    path: VpTypes.oneOfType([VpTypes.string(), VpTypes.object()] as const).isRequired,
     replace: VpTypes.bool(),
   },
   setup(props, {}) {

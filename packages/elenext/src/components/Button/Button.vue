@@ -10,7 +10,7 @@
 import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { IconArrowClockwise } from '@elenext/icons'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const EButton = defineComponent({
   name: 'EButton',

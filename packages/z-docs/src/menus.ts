@@ -1,4 +1,4 @@
-import { Component } from 'vue'
+import { Component, defineAsyncComponent } from 'vue'
 import Button from './__docs__/Button.zh-CN.md'
 import Grid from './__docs__/Grid.zh-CN.md'
 import Layout from './__docs__/Layout.zh-CN.md'
@@ -32,7 +32,7 @@ export default [
       { name: 'Grid', component: Grid },
       { name: 'Button', component: Button },
       { name: 'Layout', component: Layout },
-      { name: 'Icon', component: import('./__docs__/Icon.zh-CN.md') },
+      { name: 'Icon', component: defineAsyncComponent(() => import('./__docs__/Icon.zh-CN.md')) },
       { name: 'Link', component: Link },
     ],
   },

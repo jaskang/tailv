@@ -39,7 +39,7 @@ import {
   computed,
   isRef,
 } from 'vue'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 import { PlacementType, TriggerType, usePopper } from './core'
 import EDomSlot from './DomSlot'
@@ -66,7 +66,7 @@ const EPopper = defineComponent({
     trigger: VpTypes.string<TriggerType>().def('hover'),
     transition: VpTypes.string().def('el-popper-fade'),
     backgroundColor: VpTypes.string(),
-    reference: VpTypes.object<HTMLElement>(),
+    reference: VpTypes.any(),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
@@ -135,7 +135,7 @@ const EPopper = defineComponent({
         if (isRef(props.reference) && props.reference.value) {
           referenceRef.value = props.reference.value as Element
         } else {
-          referenceRef.value = props.reference
+          referenceRef.value = props.reference as Element
         }
       }
     })

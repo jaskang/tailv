@@ -65,7 +65,7 @@ import {
   IconChevronRight,
   IconThreeDots,
 } from '@elenext/icons'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const PAGE_SHOW_ITEM_COUNT = 7
 const PAGE_SHOW_ITEM_COUNT_HALF = 3

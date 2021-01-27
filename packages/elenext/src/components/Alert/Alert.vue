@@ -37,7 +37,7 @@ import {
   IconXCircleFill,
   IconX,
 } from '@elenext/icons'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const EAlert = defineComponent({
   name: 'EAlert',

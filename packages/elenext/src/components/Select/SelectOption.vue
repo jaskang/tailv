@@ -22,7 +22,7 @@
 import { App, computed, defineComponent, inject } from 'vue'
 import { IconCheck } from '@elenext/icons'
 import { SELECTDROPDOWN_IJK } from './core'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const ESelectOption = defineComponent({
   name: 'ESelectOption',

@@ -41,7 +41,7 @@
 <script lang="ts">
 import { App, computed, defineComponent, ref, watch } from 'vue'
 import { IconXCircleFill } from '@elenext/icons'
-import { VpTypes } from '../../utils/vptypes'
+import { VpTypes } from 'vptypes'
 
 const EInput = defineComponent({
   name: 'EInput',
