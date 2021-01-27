@@ -19,7 +19,7 @@ const EBreadcrumbItem = defineComponent({
   props: {
     // path: VpTypes.string(),
     // TODO: oneOfType
-    path: VpTypes.oneOfType([VpTypes.string(), VpTypes.object()] as const).isRequired,
+    path: VpTypes.oneOfType([VpTypes.string(), VpTypes.object()]).isRequired,
     replace: VpTypes.bool(),
   },
   setup(props, {}) {

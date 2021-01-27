@@ -11376,10 +11376,10 @@ vls@^0.7.0:
     tslint "6.1.3"
     typescript "^4.1.3"
 
-vptypes@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/vptypes/-/vptypes-0.1.0.tgz#45449c09202a18337f2cb368ddca7bb5d6ee0068"
-  integrity sha512-Nc6v7IO6V0+cbK3c0JQWfLvVoRHTlZXfrBhFrublpTqNB6yD377Rz/oqKbsHjDoiSjdLUGvDnhYd3vAuPag4Yw==
+vptypes@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/vptypes/-/vptypes-0.1.1.tgz#b172b57bbe010aab55d20ace17959ca7c937daed"
+  integrity sha512-HFKjw9YyKPf6nCRqfEgAmACbRh+h/5Se0HMSHGe4d08IV0Ozjpi2LchnZm6yOQ37j6J9QFbzhtCptp5JQzPoqg==
 
 vscode-languageserver-textdocument@^1.0.1:
   version "1.0.1"

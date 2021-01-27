@@ -37,7 +37,7 @@ const ECheckbox = defineComponent({
   name: 'ECheckbox',
   components: {},
   props: {
-    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array()] as const),
+    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array()]),
     label: VpTypes.string(),
     value: VpTypes.any(),
     indeterminate: VpTypes.bool(),

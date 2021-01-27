@@ -13,7 +13,7 @@ import { VpTypes } from 'vptypes'
 const ELayout = defineComponent({
   name: 'ELayout',
   props: {
-    direction: VpTypes.oneOfString(['horizontal', 'vertical'] as const),
+    direction: VpTypes.oneOfString(['horizontal', 'vertical']),
   },
   setup(props, { slots }) {
     const data = reactive({

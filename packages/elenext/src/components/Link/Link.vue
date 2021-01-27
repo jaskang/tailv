@@ -13,7 +13,7 @@ import { VpTypes } from 'vptypes'
 const ELink = defineComponent({
   name: 'ELink',
   props: {
-    color: VpTypes.oneOfString(['default', 'primary', 'success', 'warning', 'danger', 'info'] as const).def('default'),
+    color: VpTypes.oneOfString(['default', 'primary', 'success', 'warning', 'danger', 'info']).def('default'),
     noUnderline: VpTypes.bool().def(false),
     disabled: VpTypes.bool(),
     href: VpTypes.string(),

@@ -35,9 +35,9 @@ function parseFlex(flex: FlexType): string {
   return flex
 }
 
-const defalutPropItem = VpTypes.oneOfType([VpTypes.string(), VpTypes.number()] as const)
+const defalutPropItem = VpTypes.oneOfType([VpTypes.string(), VpTypes.number()])
 
-const sizePropItem = VpTypes.oneOfType([VpTypes.number(), VpTypes.object<SizeProp>()] as const)
+const sizePropItem = VpTypes.oneOfType([VpTypes.number(), VpTypes.object<SizeProp>()])
 
 const ECol = defineComponent({
   name: 'ECol',
@@ -52,7 +52,7 @@ const ECol = defineComponent({
     md: sizePropItem,
     lg: sizePropItem,
     xl: sizePropItem,
-    flex: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()] as const),
+    flex: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]),
   },
   setup(props, { slots }) {
     const { gutter } = inject(rowInjectKey, { gutter: ref([0, 0] as GutterTuple) })

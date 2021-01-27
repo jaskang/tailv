@@ -18,8 +18,8 @@ const ERow = defineComponent({
       type: [Number, Array, Object] as PropType<Gutter>,
       default: 0,
     },
-    align: VpTypes.oneOfString(['top', 'middle', 'bottom'] as const).def('top'),
-    justify: VpTypes.oneOfString(['start', 'end', 'center', 'space-around', 'space-between'] as const).def('start'),
+    align: VpTypes.oneOfString(['top', 'middle', 'bottom']).def('top'),
+    justify: VpTypes.oneOfString(['start', 'end', 'center', 'space-around', 'space-between']).def('start'),
     wrap: VpTypes.bool().def(true),
   },
   setup(props, { slots }) {

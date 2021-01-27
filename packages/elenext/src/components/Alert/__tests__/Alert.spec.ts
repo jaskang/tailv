@@ -1,12 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { EAlert } from '../'
 
-// type: VpTypes.oneOfString(['success', 'warning', 'info', 'error'] as const).def('info'),
-// effect: VpTypes.oneOfString(['light', 'dark'] as const).def('light'),
-// title: VpTypes.string(),
-// description: VpTypes.string(),
-// closable: VpTypes.bool().def(true)
-
 test('create', async () => {
   const wrapper = mount(EAlert, {
     props: { title: 'title' },

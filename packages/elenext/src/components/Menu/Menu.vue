@@ -12,7 +12,7 @@ import { MenuState, MENU_IJK, MENU_TYPE } from './core'
 const EMenu = defineComponent({
   name: 'EMenu',
   props: {
-    mode: VpTypes.oneOfString(['horizontal', 'vertical', 'popper'] as const).def('horizontal'),
+    mode: VpTypes.oneOfString(['horizontal', 'vertical', 'popper']).def('horizontal'),
     textColor: VpTypes.hexColor().def('#303133'),
     backgroundColor: VpTypes.hexColor().def('#fff'),
     activeTextColor: VpTypes.hexColor().def('#409EFF'),

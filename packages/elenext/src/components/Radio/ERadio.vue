@@ -38,7 +38,7 @@ const ERadio = defineComponent({
   props: {
     modelValue: VpTypes.any(),
     label: VpTypes.string(),
-    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()] as const).isRequired,
+    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]).isRequired,
     disabled: VpTypes.bool(),
     name: VpTypes.string(),
     size: VpTypes.string(),
