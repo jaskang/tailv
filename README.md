@@ -28,6 +28,9 @@ A Vue.js 3.0 UI Toolkit for Web
   - [x] docs stie
   - [x] support markdown
   - [x] demo preview
+- prop types definitions ==> [vptypes](https://github.com/JasKang/vptypes)
+  - [x] typescript support
+  - [x] basic check
 - style
   - [x] Reconfiguration style
   - [x] use css variables
@@ -101,8 +104,8 @@ Skip this part if you just want to use Elenext.
 - [x] EInput
   - [x] EInputGroup
 - [x] radio
+- [x] checkbox
 - [ ] card
-- [ ] checkbox
 - [ ] date-picker
 - [ ] dialog
 - [ ] divider
@@ -122,6 +125,8 @@ Skip this part if you just want to use Elenext.
 - [tsrv](https://github.com/JasKang/tsrv) Zero Configuration bundler for vue3 components
 
 - [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) Markdown document preview and code highlighting for vite
+
+- [vptypes](https://github.com/JasKang/vptypes) Vue3 Prop Types definitions
 
 ## Author
 
