@@ -89,6 +89,5 @@ const ERow = defineComponent({
 ERow.install = (app: App): void => {
   app.component(ERow.name, ERow)
 }
-
 export default ERow
 </script>

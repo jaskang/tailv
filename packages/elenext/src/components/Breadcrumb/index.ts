@@ -1,2 +1,4 @@
-export { default as EBreadcrumb } from './Breadcrumb.vue'
-export { default as EBreadcrumbItem } from './BreadcrumbItem.vue'
+import EBreadcrumb from './EBreadcrumb.vue'
+import EBreadcrumbItem from './EBreadcrumbItem.vue'
+
+export { EBreadcrumbItem, EBreadcrumb }

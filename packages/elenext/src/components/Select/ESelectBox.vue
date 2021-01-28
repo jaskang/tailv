@@ -14,7 +14,7 @@
 import { App, defineComponent, provide, reactive } from 'vue'
 import { VpTypes } from 'vptypes'
 import { OptionType, SelectDropdownState, SELECTDROPDOWN_IJK } from './core'
-import ESelectOption from './SelectOption.vue'
+import ESelectOption from './ESelectOption.vue'
 
 const ESelectBox = defineComponent({
   name: 'ESelectBox',

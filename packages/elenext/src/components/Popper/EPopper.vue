@@ -42,7 +42,7 @@ import {
 import { VpTypes } from 'vptypes'
 
 import { PlacementType, TriggerType, usePopper } from './core'
-import EDomSlot from './DomSlot'
+import { EDomSlot } from '../Util'
 
 const POPPER_IJK: InjectionKey<{
   action: {

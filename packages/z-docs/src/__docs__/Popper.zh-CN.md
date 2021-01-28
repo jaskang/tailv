@@ -14,34 +14,36 @@ Popover、Tooltip、Menu 等组件都是基于 Popper 的能力实现的
 ```vue demo
 <template>
   <e-popper>
-    <template #content> content </template>
+    <template #content>reference:component</template>
     <e-button>top button</e-button>
   </e-popper>
   <e-popper>
-    <template #content> content </template>
-    text123213
+    <template #content>reference:template</template>
+    <template #default>
+      <span>span1</span>
+    </template>
   </e-popper>
   <e-popper>
-    <template #content> 12312342 </template>
-    <span>span</span>
+    <template #content>reference:dom</template>
+    <span>span2</span>
   </e-popper>
   <e-popper v-model="show">
-    <e-link @click="tgShow"> click -> show</e-link>
-    <template #content> 12312342 </template>
+    <e-link @click="tgShow">reference:e-link</e-link>
+    <template #content>12312342</template>
   </e-popper>
 </template>
 <script>
 export default {
   data() {
     return {
-      show: false
+      show: false,
     }
   },
   methods: {
     tgShow() {
       this.show = !this.show
-    }
-  }
+    },
+  },
 }
 </script>
 ```
@@ -64,9 +66,9 @@ export default {
 
     return {
       reference,
-      show
+      show,
     }
-  }
+  },
 }
 </script>
 ```

@@ -58,4 +58,3 @@ EButton.install = (app: App): void => {
 
 export default EButton
 </script>
-<style lang="scss"></style>

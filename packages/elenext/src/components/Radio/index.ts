@@ -1,2 +1,4 @@
-export { default as ERadio } from './ERadio.vue'
-export { default as ERadioGroup } from './ERadioGroup.vue'
+import ERadio from './ERadio.vue'
+import ERadioGroup from './ERadioGroup.vue'
+
+export { ERadio, ERadioGroup }

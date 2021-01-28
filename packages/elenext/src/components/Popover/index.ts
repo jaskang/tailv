@@ -1,1 +1,3 @@
-export { default as EPopover } from './Popover.vue'
+import EPopover from './EPopover.vue'
+
+export { EPopover }

@@ -74,8 +74,10 @@ const EAlert = defineComponent({
     }
   },
 })
+
 EAlert.install = (app: App): void => {
   app.component(EAlert.name, EAlert)
 }
+
 export default EAlert
 </script>

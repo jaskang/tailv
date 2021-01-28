@@ -1,1 +1,3 @@
-export { default as ECollapseTransition } from './CollapseTransition.vue'
+import ECollapseTransition from './ECollapseTransition.vue'
+
+export { ECollapseTransition }

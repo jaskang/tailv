@@ -1,1 +1,3 @@
-export { default as EAlert } from './Alert.vue'
+import EAlert from './EAlert.vue'
+
+export { EAlert }

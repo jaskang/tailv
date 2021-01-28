@@ -1,2 +1,4 @@
-export { default as EButton } from './Button.vue'
-export { default as EButtonGroup } from './ButtonGroup.vue'
+import EButton from './EButton.vue'
+import EButtonGroup from './EButtonGroup.vue'
+
+export { EButton, EButtonGroup }

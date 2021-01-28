@@ -19,7 +19,7 @@ const EBreadcrumbItem = defineComponent({
   props: {
     // path: VpTypes.string(),
     // TODO: oneOfType
-    path: VpTypes.oneOfType([VpTypes.string(), VpTypes.object()]).isRequired,
+    path: VpTypes.oneOfType([VpTypes.string(), VpTypes.object()]),
     replace: VpTypes.bool(),
   },
   setup(props, {}) {
@@ -30,7 +30,7 @@ const EBreadcrumbItem = defineComponent({
       const { path } = props
       const router = self!.appContext.config.globalProperties.$router
 
-      if (router) {
+      if (router && path) {
         props.replace ? router.replace(path) : router.push(path)
       }
     }

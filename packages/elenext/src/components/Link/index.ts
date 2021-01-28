@@ -1,1 +1,3 @@
-export { default as ELink } from './Link.vue'
+import ELink from './ELink.vue'
+
+export { ELink }

@@ -1,3 +1,5 @@
-export { default as ERow } from './Row.vue'
-export { default as ECol } from './Col.vue'
-export { default as useBreakpoint } from './hooks/useBreakpoint'
+import ERow from './ERow.vue'
+import ECol from './ECol.vue'
+import useBreakpoint from './hooks/useBreakpoint'
+
+export { ERow, ECol, useBreakpoint }

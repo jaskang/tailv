@@ -10,7 +10,7 @@ export const RESPONSIVE_MAP: Partial<Record<Breakpoint, string>> = {
   sm: '(min-width: 768px)',
   md: '(min-width: 992px)',
   lg: '(min-width: 1200px)',
-  xl: '(min-width: 1400px)'
+  xl: '(min-width: 1400px)',
 }
 
 const screens = reactive<ScreenMap>({

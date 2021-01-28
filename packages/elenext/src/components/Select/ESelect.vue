@@ -49,7 +49,9 @@ import { VpTypes } from 'vptypes'
 import { EInput } from '../Input'
 import { EPopper } from '../Popper'
 import { OptionType } from './core'
-import ESelectBox from './SelectBox.vue'
+
+import ESelectBox from './ESelectBox.vue'
+
 const ESelect = defineComponent({
   name: 'ESelect',
   components: {

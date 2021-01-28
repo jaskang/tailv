@@ -1,3 +1,5 @@
-export { default as ESelect } from './Select.vue'
-export { default as ESelectOption } from './SelectOption.vue'
-export { default as ESelectBox } from './SelectBox.vue'
+import ESelect from './ESelect.vue'
+import ESelectOption from './ESelectOption.vue'
+import ESelectBox from './ESelectBox.vue'
+
+export { ESelect, ESelectOption, ESelectBox }

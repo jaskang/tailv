@@ -77,21 +77,20 @@ const collapseTransitionProps: TransitionProps = {
     el.style.overflow = el.dataset.oldOverflow || ''
     el.style.paddingTop = el.dataset.oldPaddingTop || ''
     el.style.paddingBottom = el.dataset.oldPaddingBottom || ''
-  }
+  },
 }
 
 const ECollapseTransition = defineComponent({
   name: 'ECollapseTransition',
   setup(_props, { slots }) {
     return {
-      collapseTransitionProps
+      collapseTransitionProps,
     }
-  }
+  },
 })
 
 ECollapseTransition.install = (app: App): void => {
   app.component(ECollapseTransition.name, ECollapseTransition)
 }
-
 export default ECollapseTransition
 </script>

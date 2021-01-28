@@ -1,2 +1,4 @@
-export { default as ECheckbox } from './Checkbox.vue'
-export { default as ECheckboxGroup } from './CheckboxGroup.vue'
+import ECheckbox from './ECheckbox.vue'
+import ECheckboxGroup from './ECheckboxGroup.vue'
+
+export { ECheckbox, ECheckboxGroup }

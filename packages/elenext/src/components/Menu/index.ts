@@ -1,4 +1,6 @@
-export { default as EMenu } from './Menu.vue'
-export { default as ESubMenu } from './SubMenu.vue'
-export { default as EMenuItemGroup } from './MenuItemGroup.vue'
-export { default as EMenuItem } from './MenuItem.vue'
+import EMenu from './EMenu.vue'
+import ESubMenu from './ESubMenu.vue'
+import EMenuItem from './EMenuItem.vue'
+import EMenuItemGroup from './EMenuItemGroup.vue'
+
+export { EMenu, ESubMenu, EMenuItem, EMenuItemGroup }

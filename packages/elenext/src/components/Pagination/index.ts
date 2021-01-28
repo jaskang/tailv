@@ -1,1 +1,3 @@
-export { default as EPagination } from './Pagination.vue'
+import EPagination from './EPagination.vue'
+
+export { EPagination }
