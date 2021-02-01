@@ -1,7 +1,7 @@
 import type { UserConfig } from 'vite'
+import { createPlugin, vueDocFiles } from 'vite-plugin-vuedoc'
 import vue from '@vitejs/plugin-vue'
 import markdownItContainer from 'markdown-it-container'
-import createVueDocPlugin from 'vite-plugin-vuedoc'
 import vitePluginSyncmd from './scripts/vitePluginSyncmd'
 
 const containers = ['success', 'warning', 'info', 'error'].map(type => {
@@ -40,7 +40,7 @@ const config: UserConfig = {
   },
   plugins: [
     vitePluginSyncmd(),
-    createVueDocPlugin({
+    createPlugin({
       markdownIt: {
         plugins: [...containers],
       },
@@ -48,7 +48,9 @@ const config: UserConfig = {
         theme: 'one-dark',
       },
     }),
-    vue(),
+    vue({
+      include: [...vueDocFiles],
+    }),
   ],
 }
 
