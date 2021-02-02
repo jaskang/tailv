@@ -9,7 +9,7 @@
   >
     <input
       ref="inputElRef"
-      v-model="model"
+      :checked="isChecked"
       :value="value"
       :name="name"
       :disabled="disabled"
@@ -36,7 +36,7 @@ import { RADIOGROUP_IJK } from './core'
 const ERadio = defineComponent({
   name: 'ERadio',
   props: {
-    modelValue: VpTypes.any(),
+    modelValue: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]),
     label: VpTypes.string(),
     value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]).isRequired,
     disabled: VpTypes.bool(),
@@ -51,19 +51,7 @@ const ERadio = defineComponent({
     const isDisabled = computed(() => {
       return parent?.disabled.value || props.disabled
     })
-    const model = computed<any>({
-      get() {
-        return parent?.modelValue.value || props.modelValue
-      },
-      set(val) {
-        if (parent) {
-          parent.change(val)
-        } else {
-          emit('update:modelValue', val)
-        }
-        inputElRef.value!.checked = (parent?.modelValue.value || props.modelValue) === props.value
-      },
-    })
+
     const isChecked = computed(() => {
       if (parent) {
         return parent.modelValue.value === props.value
@@ -73,13 +61,17 @@ const ERadio = defineComponent({
 
     const changeHandler = (event: Event) => {
       emit('change', props.value)
+      if (parent) {
+        parent.change(props.value)
+      } else {
+        emit('update:modelValue', props.value)
+      }
     }
     return {
       inputElRef,
       isChecked,
       isFocus,
       isDisabled,
-      model,
       changeHandler,
     }
   },

@@ -11,6 +11,7 @@
     <input
       ref="inputElRef"
       :checked="isChecked"
+      :value="value"
       :name="name"
       :disabled="disabled"
       class="el-checkbox__input"
@@ -37,9 +38,9 @@ const ECheckbox = defineComponent({
   name: 'ECheckbox',
   components: {},
   props: {
-    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array()]),
+    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array<Array<string | number>>()]),
     label: VpTypes.string(),
-    value: VpTypes.any(),
+    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]).def(''),
     indeterminate: VpTypes.bool(),
     disabled: VpTypes.bool(),
     name: VpTypes.string(),
