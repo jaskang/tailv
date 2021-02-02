@@ -15,6 +15,7 @@ import Radio from './__docs__/Radio.zh-CN.md'
 import Checkbox from './__docs__/Checkbox.zh-CN.md'
 import Input from './__docs__/Input.zh-CN.md'
 import Select from './__docs__/Select.zh-CN.md'
+import ColorPicker from './__docs__/ColorPicker.zh-CN.md'
 
 type MenuItemType = {
   name: string
@@ -50,6 +51,7 @@ export default [
       { name: 'Checkbox', component: Checkbox },
       { name: 'Input', component: Input },
       { name: 'Select', component: Select },
+      { name: 'ColorPicker', component: ColorPicker },
     ],
   },
   {

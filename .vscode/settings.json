@@ -29,6 +29,7 @@
     "Select",
     "Radio",
     "deps",
-    "Checkbox"
+    "Checkbox",
+    "ColorPicker"
   ]
 }
