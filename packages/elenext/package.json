@@ -38,8 +38,8 @@
   "dependencies": {
     "@elenext/icons": "^0.13.0",
     "@elenext/shared": "^0.13.0",
-    "@popperjs/core": "^2.8.6",
-    "vptypes": "^0.1.1"
+    "@popperjs/core": "^2.9.0",
+    "vptypes": "^0.1.3"
   },
   "peerDependencies": {
     "vue": "^3.0.5"

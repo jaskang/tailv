@@ -41,7 +41,7 @@
 <script lang="ts">
 import { App, computed, defineComponent, ref, watch } from 'vue'
 import { IconXCircleFill } from '@elenext/icons'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const EInput = defineComponent({
   name: 'EInput',
@@ -49,12 +49,12 @@ const EInput = defineComponent({
     IconXCircleFill,
   },
   props: {
-    modelValue: VpTypes.string(),
-    prefix: VpTypes.string(),
-    suffix: VpTypes.string(),
-    clearable: VpTypes.bool(),
-    disabled: VpTypes.bool(),
-    allowInput: VpTypes.bool().def(true),
+    modelValue: vptypes.string(),
+    prefix: vptypes.string(),
+    suffix: vptypes.string(),
+    clearable: vptypes.bool(),
+    disabled: vptypes.bool(),
+    allowInput: vptypes.bool().def(true),
   },
   emits: ['update:modelValue', 'input', 'focus', 'blur', 'change'],
   setup(props, { attrs, slots, emit }) {

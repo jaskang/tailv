@@ -9,7 +9,7 @@ import { defineComponent, computed, provide, CSSProperties, PropType, App } from
 import { mergeClass } from '@elenext/shared'
 import useBreakpoint, { Breakpoint, RESPONSIVE_ARRAY } from './hooks/useBreakpoint'
 import { Gutter, GutterTuple, rowInjectKey } from './core'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const ERow = defineComponent({
   name: 'ERow',
@@ -18,9 +18,9 @@ const ERow = defineComponent({
       type: [Number, Array, Object] as PropType<Gutter>,
       default: 0,
     },
-    align: VpTypes.oneOfString(['top', 'middle', 'bottom']).def('top'),
-    justify: VpTypes.oneOfString(['start', 'end', 'center', 'space-around', 'space-between']).def('start'),
-    wrap: VpTypes.bool().def(true),
+    align: vptypes.oneOfString(['top', 'middle', 'bottom']).def('top'),
+    justify: vptypes.oneOfString(['start', 'end', 'center', 'space-around', 'space-between']).def('start'),
+    wrap: vptypes.bool().def(true),
   },
   setup(props, { slots }) {
     const screens = useBreakpoint()

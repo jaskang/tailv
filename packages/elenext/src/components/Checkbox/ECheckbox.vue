@@ -32,19 +32,19 @@ import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
 
 import { CHECKBOXGROUP_IJK } from './core'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const ECheckbox = defineComponent({
   name: 'ECheckbox',
   components: {},
   props: {
-    modelValue: VpTypes.oneOfType([VpTypes.bool(), VpTypes.array<Array<string | number>>()]),
-    label: VpTypes.string(),
-    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]).def(''),
-    indeterminate: VpTypes.bool(),
-    disabled: VpTypes.bool(),
-    name: VpTypes.string(),
-    size: VpTypes.string(),
+    modelValue: vptypes.oneOfType([vptypes.bool(), vptypes.array<Array<string | number>>()]),
+    label: vptypes.string(),
+    value: vptypes.oneOfType([vptypes.string(), vptypes.number()]).def(''),
+    indeterminate: vptypes.bool(),
+    disabled: vptypes.bool(),
+    name: vptypes.string(),
+    size: vptypes.string(),
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {

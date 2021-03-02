@@ -9,11 +9,15 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import vptypes from 'vptypes'
 import useDraggable from '../../../hooks/useDraggable'
+import { Hsva } from '../../../utils/Color'
 
 const AlphaSlider = defineComponent({
   name: 'AlphaSlider',
-  props: {},
+  props: {
+    color: vptypes.object<Hsva>().isRequired,
+  },
   setup(props, { attrs, slots, emit }) {
     const [targetRef, handleRef, { delta }] = useDraggable({
       viewport: true,

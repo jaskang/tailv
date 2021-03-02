@@ -6,12 +6,12 @@
 
 <script lang="ts">
 import { App, defineComponent } from 'vue'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const EHeader = defineComponent({
   name: 'EHeader',
   props: {
-    height: VpTypes.string(),
+    height: vptypes.string(),
   },
 })
 

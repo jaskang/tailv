@@ -8,12 +8,12 @@
 import { App, computed, defineComponent, provide, reactive } from 'vue'
 import { layoutInjectKey } from './core'
 import { mergeClass } from '@elenext/shared'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const ELayout = defineComponent({
   name: 'ELayout',
   props: {
-    direction: VpTypes.oneOfString(['horizontal', 'vertical']),
+    direction: vptypes.oneOfString(['horizontal', 'vertical']),
   },
   setup(props, { slots }) {
     const data = reactive({

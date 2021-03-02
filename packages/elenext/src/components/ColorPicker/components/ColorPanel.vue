@@ -21,22 +21,23 @@
   </div>
 </template>
 <script lang="ts">
-import VpTypes from 'vptypes'
 import { computed, defineComponent } from 'vue'
+import vptypes from 'vptypes'
 import useDraggable from '../../../hooks/useDraggable'
+import { Hsva } from '../../../utils/Color'
 
 const ColorPanel = defineComponent({
   name: 'ColorPanel',
   components: {},
   props: {
-    color: VpTypes.hexColor().def('#FF0000').isRequired,
+    color: vptypes.object<Hsva>().isRequired,
   },
   setup(props) {
     const [targetRef, handleRef, { delta }] = useDraggable({
       viewport: true,
     })
     const background = computed(() => {
-      return 'hsl(' + props.color.get('hue') + ', 100%, 50%)'
+      return 'hsl(' + props.color.h + ', 100%, 50%)'
     })
     return {
       targetRef,

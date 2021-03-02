@@ -30,18 +30,18 @@
 import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
 
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 import { RADIOGROUP_IJK } from './core'
 
 const ERadio = defineComponent({
   name: 'ERadio',
   props: {
-    modelValue: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]),
-    label: VpTypes.string(),
-    value: VpTypes.oneOfType([VpTypes.string(), VpTypes.number()]).isRequired,
-    disabled: VpTypes.bool(),
-    name: VpTypes.string(),
-    size: VpTypes.string(),
+    modelValue: vptypes.oneOfType([vptypes.string(), vptypes.number()]),
+    label: vptypes.string(),
+    value: vptypes.oneOfType([vptypes.string(), vptypes.number()]).isRequired,
+    disabled: vptypes.bool(),
+    name: vptypes.string(),
+    size: vptypes.string(),
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { attrs, slots, emit }) {

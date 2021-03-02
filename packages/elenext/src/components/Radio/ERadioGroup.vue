@@ -6,15 +6,15 @@
 <script lang="ts">
 import { App, computed, defineComponent } from 'vue'
 import { useChildren } from '../../hooks/useParent'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 import { RADIOGROUP_IJK } from './core'
 
 const ERadioGroup = defineComponent({
   name: 'ERadioGroup',
   props: {
-    modelValue: VpTypes.any(),
-    disabled: VpTypes.bool(),
+    modelValue: vptypes.any(),
+    disabled: vptypes.bool(),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {

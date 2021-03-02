@@ -12,14 +12,15 @@
   </div>
 </template>
 <script lang="ts">
-import VpTypes from 'vptypes'
 import { computed, defineComponent, watchEffect } from 'vue'
+import vptypes from 'vptypes'
 import useDraggable from '../../../hooks/useDraggable'
+import { Hsva } from '../../../utils/Color'
 
 const HueSlider = defineComponent({
   name: 'HueSlider',
   props: {
-    color: VpTypes.string().isRequired,
+    color: vptypes.object<Hsva>().isRequired,
   },
   emits: ['change'],
   setup(props, { attrs, slots, emit }) {

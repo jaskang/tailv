@@ -13,7 +13,10 @@ module.exports = {
   projects: [
     './packages/shared', // shorthand for only root.
     './packages/icons', // shorthand for only root.
-    './packages/elenext', // shorthand for only root.
     './packages/z-docs', // shorthand for only root.
+    {
+      root: './packages/elenext',
+      tsconfig: './tsconfig.json',
+    }, // shorthand for only root.
   ],
 }

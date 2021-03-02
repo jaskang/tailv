@@ -22,7 +22,7 @@
 import { App, computed, defineComponent, inject } from 'vue'
 import { IconCheck } from '@elenext/icons'
 import { SELECTDROPDOWN_IJK } from './core'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const ESelectOption = defineComponent({
   name: 'ESelectOption',
@@ -30,8 +30,8 @@ const ESelectOption = defineComponent({
     IconCheck,
   },
   props: {
-    label: VpTypes.string(),
-    value: VpTypes.any(),
+    label: vptypes.string(),
+    value: vptypes.any(),
   },
   emits: ['select'],
   setup(props, { attrs, slots, emit }) {

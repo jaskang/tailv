@@ -1,4 +1,4 @@
-interface Hsva {
+export interface Hsva {
   h: number
   s: number
   v: number
@@ -113,7 +113,7 @@ export const RGB2HEX = (r: number, g: number, b: number): string => {
  * 输出h.s.v.a
  * @param color
  */
-export const parseColor = (color: string): Hsva | null => {
+export const parseColor = (color?: string): Hsva | null => {
   if (!color) {
     return null
   }

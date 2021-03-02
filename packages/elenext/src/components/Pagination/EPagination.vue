@@ -65,7 +65,7 @@ import {
   IconChevronRight,
   IconThreeDots,
 } from '@elenext/icons'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const PAGE_SHOW_ITEM_COUNT = 7
 const PAGE_SHOW_ITEM_COUNT_HALF = 3
@@ -79,11 +79,11 @@ const EPagination = defineComponent({
     IconThreeDots,
   },
   props: {
-    current: VpTypes.number(),
-    total: VpTypes.number(),
-    pageSize: VpTypes.number(),
-    pageSizeOptions: VpTypes.array<number[]>().def([10, 20, 50, 100]),
-    disabled: VpTypes.bool(),
+    current: vptypes.number(),
+    total: vptypes.number(),
+    pageSize: vptypes.number(),
+    pageSizeOptions: vptypes.array<number[]>().def([10, 20, 50, 100]),
+    disabled: vptypes.bool(),
   },
   emits: ['change'],
   setup(props, { attrs, slots, emit }) {

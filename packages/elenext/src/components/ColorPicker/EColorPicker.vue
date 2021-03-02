@@ -1,18 +1,19 @@
 <template>
   <div class="el-color-picker">
     <div class="el-color-picker__main">
-      <color-panel :color="modelValue" />
-      <hue-slider :color="modelValue" />
+      <color-panel :color="color" />
+      <hue-slider :color="color" />
     </div>
     <alpha-slider />
   </div>
 </template>
 <script lang="ts">
-import VpTypes from 'vptypes'
-import { App, defineComponent } from 'vue'
+import { App, defineComponent, computed } from 'vue'
+import vptypes from 'vptypes'
 import ColorPanel from './components/ColorPanel.vue'
 import HueSlider from './components/HueSlider.vue'
 import AlphaSlider from './components/AlphaSlider.vue'
+import { parseColor } from '../../utils/Color'
 
 const EColorPicker = defineComponent({
   name: 'EColorPicker',
@@ -22,14 +23,21 @@ const EColorPicker = defineComponent({
     AlphaSlider,
   },
   props: {
-    modelValue: VpTypes.hexColor(),
+    modelValue: vptypes.hexColor(),
   },
   setup(props, { attrs, slots, emit }) {
-    return {}
+    const color = computed(() => {
+      return parseColor(props.modelValue)
+    })
+    return {
+      color,
+    }
   },
 })
+
 EColorPicker.install = (app: App): void => {
   app.component(EColorPicker.name, EColorPicker)
 }
+
 export default EColorPicker
 </script>

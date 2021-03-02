@@ -37,7 +37,7 @@ import {
   IconXCircleFill,
   IconX,
 } from '@elenext/icons'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const EAlert = defineComponent({
   name: 'EAlert',
@@ -49,11 +49,11 @@ const EAlert = defineComponent({
     IconX,
   },
   props: {
-    type: VpTypes.oneOfString(['success', 'warning', 'info', 'error']).def('info'),
-    effect: VpTypes.oneOfString(['light', 'dark']).def('light'),
-    title: VpTypes.string(),
-    description: VpTypes.string(),
-    closable: VpTypes.bool().def(true),
+    type: vptypes.oneOfString(['success', 'warning', 'info', 'error']).def('info'),
+    effect: vptypes.oneOfString(['light', 'dark']).def('light'),
+    title: vptypes.string(),
+    description: vptypes.string(),
+    closable: vptypes.bool().def(true),
   },
   emits: ['close'],
   setup(props, { slots, emit }) {

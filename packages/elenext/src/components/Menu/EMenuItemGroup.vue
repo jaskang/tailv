@@ -13,14 +13,14 @@
 
 <script lang="ts">
 import { App, computed, defineComponent, inject } from 'vue'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const EMenuItemGroup = defineComponent({
   name: 'EMenuItemGroup',
   props: {
-    title: VpTypes.string(),
+    title: vptypes.string(),
   },
   setup(props, { slots }) {
     const state = inject(MENU_IJK)

@@ -25,13 +25,13 @@ import {
   reactive,
   watchEffect,
 } from 'vue'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 import { MENU_IJK, MENU_ITEM_PADDING, MENU_TYPE } from './core'
 
 const EMenuItem = defineComponent({
   name: 'EMenuItem',
   props: {
-    path: VpTypes.string(),
+    path: vptypes.string(),
   },
   emits: ['click'],
   setup(props, { emit }) {

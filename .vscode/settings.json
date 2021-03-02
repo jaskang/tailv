@@ -31,5 +31,6 @@
     "deps",
     "Checkbox",
     "ColorPicker"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

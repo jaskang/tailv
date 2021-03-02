@@ -6,13 +6,13 @@
 
 <script lang="ts">
 import { App, defineComponent, inject } from 'vue'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 import { layoutInjectKey } from './core'
 
 const EAside = defineComponent({
   name: 'EAside',
   props: {
-    width: VpTypes.string().def('250px'),
+    width: vptypes.string().def('250px'),
   },
   setup(props, { slots }) {
     const layout = inject(layoutInjectKey)

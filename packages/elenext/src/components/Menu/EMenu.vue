@@ -6,19 +6,19 @@
 
 <script lang="ts">
 import { App, defineComponent, getCurrentInstance, provide, reactive, watchEffect } from 'vue'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 import { MenuState, MENU_IJK, MENU_TYPE } from './core'
 
 const EMenu = defineComponent({
   name: 'EMenu',
   props: {
-    mode: VpTypes.oneOfString(['horizontal', 'vertical', 'popper']).def('horizontal'),
-    textColor: VpTypes.hexColor().def('#303133'),
-    backgroundColor: VpTypes.hexColor().def('#fff'),
-    activeTextColor: VpTypes.hexColor().def('#409EFF'),
-    activeBackgroundColor: VpTypes.hexColor().def('#ecf5ff'),
-    uniqueOpened: VpTypes.bool(),
-    currentPath: VpTypes.string(),
+    mode: vptypes.oneOfString(['horizontal', 'vertical', 'popper']).def('horizontal'),
+    textColor: vptypes.hexColor().def('#303133'),
+    backgroundColor: vptypes.hexColor().def('#fff'),
+    activeTextColor: vptypes.hexColor().def('#409EFF'),
+    activeBackgroundColor: vptypes.hexColor().def('#ecf5ff'),
+    uniqueOpened: vptypes.bool(),
+    currentPath: vptypes.string(),
   },
   setup(props) {
     const instance = getCurrentInstance()

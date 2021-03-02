@@ -44,7 +44,7 @@
 // 收余恨、免娇嗔、且自新、改性情、休恋逝水、苦海回身、早悟兰因
 import { App, computed, defineComponent, ref } from 'vue'
 import { IconChevronDown } from '@elenext/icons'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 import { EInput } from '../Input'
 import { EPopper } from '../Popper'
@@ -61,10 +61,10 @@ const ESelect = defineComponent({
     IconChevronDown,
   },
   props: {
-    modelValue: VpTypes.any(),
-    options: VpTypes.array<OptionType[]>(),
-    multiple: VpTypes.bool(),
-    filterable: VpTypes.bool(),
+    modelValue: vptypes.any(),
+    options: vptypes.array<OptionType[]>(),
+    multiple: vptypes.bool(),
+    filterable: vptypes.bool(),
   },
   setup(props, { attrs, slots, emit }) {
     const elRef = ref<HTMLDivElement>()

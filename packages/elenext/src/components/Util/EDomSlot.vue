@@ -3,12 +3,12 @@
 </template>
 <script lang="ts">
 import { App, defineComponent, getCurrentInstance, onMounted, watchEffect } from 'vue'
-import VpTypes from 'vptypes'
+import vptypes from 'vptypes'
 
 const EDomSlot = defineComponent({
   name: 'EDomSlot',
   props: {
-    init: VpTypes.func<(el: Element) => void>().isRequired,
+    init: vptypes.func<(el: Element) => void>().isRequired,
   },
   setup(props, { slots }) {
     const instance = getCurrentInstance()

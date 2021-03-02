@@ -24,7 +24,7 @@
 import { App, computed, defineComponent, ref } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { EPopper, PlacementType, TriggerType } from '../Popper'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const ETooltip = defineComponent({
   name: 'ETooltip',
@@ -32,17 +32,17 @@ const ETooltip = defineComponent({
     EPopper,
   },
   props: {
-    modelValue: VpTypes.bool(),
-    content: VpTypes.string(),
-    popperClass: VpTypes.string(),
-    offset: VpTypes.number().def(0),
-    backgroundColor: VpTypes.string(),
+    modelValue: vptypes.bool(),
+    content: vptypes.string(),
+    popperClass: vptypes.string(),
+    offset: vptypes.number().def(0),
+    backgroundColor: vptypes.string(),
     // TODO: oneOf
-    // placement: VpTypes.oneOfString(placements, { default: 'top' }),
-    // trigger: VpTypes.oneOfString(triggers, { default: 'hover' }),
-    placement: VpTypes.string<PlacementType>().def('top'),
-    trigger: VpTypes.string<TriggerType>().def('hover'),
-    transition: VpTypes.string().def('el-popper-fade'),
+    // placement: vptypes.oneOfString(placements, { default: 'top' }),
+    // trigger: vptypes.oneOfString(triggers, { default: 'hover' }),
+    placement: vptypes.string<PlacementType>().def('top'),
+    trigger: vptypes.string<TriggerType>().def('hover'),
+    transition: vptypes.string().def('el-popper-fade'),
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {

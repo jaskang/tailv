@@ -10,7 +10,7 @@
 import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { IconArrowClockwise } from '@elenext/icons'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const EButton = defineComponent({
   name: 'EButton',
@@ -18,12 +18,12 @@ const EButton = defineComponent({
     IconArrowClockwise,
   },
   props: {
-    color: VpTypes.oneOfString(['primary', 'success', 'info', 'warning', 'danger']),
-    type: VpTypes.oneOfString(['link', 'round', 'circle', 'plain']),
-    size: VpTypes.oneOfString(['large', 'small']),
-    nativeType: VpTypes.oneOfString(['button', 'submit', 'reset']).def('button'),
-    loading: VpTypes.bool(),
-    disabled: VpTypes.bool(),
+    color: vptypes.oneOfString(['primary', 'success', 'info', 'warning', 'danger']),
+    type: vptypes.oneOfString(['link', 'round', 'circle', 'plain']),
+    size: vptypes.oneOfString(['large', 'small']),
+    nativeType: vptypes.oneOfString(['button', 'submit', 'reset']).def('button'),
+    loading: vptypes.bool(),
+    disabled: vptypes.bool(),
   },
   emits: ['click'],
   setup(props, { emit, slots }) {

@@ -25,7 +25,7 @@
 import { App, computed, defineComponent } from 'vue'
 import { mergeClass } from '@elenext/shared'
 import { EPopper, PlacementType, TriggerType } from '../Popper'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 const EPopover = defineComponent({
   name: 'EPopover',
@@ -33,17 +33,17 @@ const EPopover = defineComponent({
     EPopper,
   },
   props: {
-    modelValue: VpTypes.bool(),
-    title: VpTypes.string(),
-    content: VpTypes.string(),
-    popperClass: VpTypes.string(),
+    modelValue: vptypes.bool(),
+    title: vptypes.string(),
+    content: vptypes.string(),
+    popperClass: vptypes.string(),
     // TODO: oneOf
-    // placement: VpTypes.oneOfString(placements, { default: 'top' }),
-    // trigger: VpTypes.oneOfString(triggers, { default: 'click' }),
-    placement: VpTypes.string<PlacementType>().def('top'),
-    trigger: VpTypes.string<TriggerType>().def('click'),
-    transition: VpTypes.string().def('el-popper-fade'),
-    width: VpTypes.string(),
+    // placement: vptypes.oneOfString(placements, { default: 'top' }),
+    // trigger: vptypes.oneOfString(triggers, { default: 'click' }),
+    placement: vptypes.string<PlacementType>().def('top'),
+    trigger: vptypes.string<TriggerType>().def('click'),
+    transition: vptypes.string().def('el-popper-fade'),
+    width: vptypes.string(),
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {

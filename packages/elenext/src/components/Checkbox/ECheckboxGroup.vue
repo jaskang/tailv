@@ -6,15 +6,15 @@
 <script lang="ts">
 import { App, computed, defineComponent } from 'vue'
 import { useChildren } from '../../hooks/useParent'
-import { VpTypes } from 'vptypes'
+import vptypes from 'vptypes'
 
 import { CHECKBOXGROUP_IJK } from './core'
 
 const ECheckboxGroup = defineComponent({
   name: 'ECheckboxGroup',
   props: {
-    modelValue: VpTypes.array().isRequired,
-    disabled: VpTypes.bool(),
+    modelValue: vptypes.array().isRequired,
+    disabled: vptypes.bool(),
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { attrs, slots, emit }) {
