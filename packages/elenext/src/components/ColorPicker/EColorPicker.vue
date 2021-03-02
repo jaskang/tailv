@@ -4,7 +4,7 @@
       <color-panel :color="color" />
       <hue-slider :color="color" />
     </div>
-    <alpha-slider />
+    <alpha-slider :color="color" />
   </div>
 </template>
 <script lang="ts">
@@ -27,7 +27,10 @@ const EColorPicker = defineComponent({
   },
   setup(props, { attrs, slots, emit }) {
     const color = computed(() => {
-      return parseColor(props.modelValue)
+      const l = parseColor(props.modelValue)
+      console.log(l)
+
+      return l
     })
     return {
       color,
