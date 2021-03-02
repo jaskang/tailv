@@ -9,12 +9,14 @@ wrapperClass: md-colorpicker
 
 ```vue demo
 <template>
-  <EColorPicker />
+  <EColorPicker v-model="color" />
 </template>
 <script>
 export default {
   data() {
-    return {}
+    return {
+      color: '#409eff',
+    }
   },
 }
 </script>

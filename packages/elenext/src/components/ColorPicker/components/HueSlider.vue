@@ -12,15 +12,27 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import VpTypes from 'vptypes'
+import { computed, defineComponent, watchEffect } from 'vue'
 import useDraggable from '../../../hooks/useDraggable'
 
 const HueSlider = defineComponent({
   name: 'HueSlider',
-  props: {},
+  props: {
+    color: VpTypes.string().isRequired,
+  },
+  emits: ['change'],
   setup(props, { attrs, slots, emit }) {
-    const [targetRef, handleRef, { delta }] = useDraggable({
+    const [targetRef, handleRef, { delta, limits }] = useDraggable({
       viewport: true,
+    })
+    const asa = computed(() => {
+      const height = limits.value?.maxY || delta.value.y
+      const top = delta.value.y / height
+      return top * 360
+    })
+    watchEffect(() => {
+      emit('change', asa.value)
     })
     return {
       targetRef,

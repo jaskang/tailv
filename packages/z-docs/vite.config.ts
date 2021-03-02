@@ -33,9 +33,7 @@ const containers = ['success', 'warning', 'info', 'error'].map(type => {
 
 const config: UserConfig = {
   assetsInclude: ['src/assets'],
-  alias: {},
   optimizeDeps: {
-    include: ['vue', 'vue-router', '@elenext/icons'],
     exclude: ['elenext'],
   },
   plugins: [

@@ -3,7 +3,7 @@
     ref="targetRef"
     class="el-color-panel"
     :style="{
-      backgroundColor: color,
+      backgroundColor: background,
     }"
   >
     <div class="el-color-panel__white"></div>
@@ -22,7 +22,7 @@
 </template>
 <script lang="ts">
 import VpTypes from 'vptypes'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import useDraggable from '../../../hooks/useDraggable'
 
 const ColorPanel = defineComponent({
@@ -31,13 +31,17 @@ const ColorPanel = defineComponent({
   props: {
     color: VpTypes.hexColor().def('#FF0000').isRequired,
   },
-  setup() {
+  setup(props) {
     const [targetRef, handleRef, { delta }] = useDraggable({
       viewport: true,
+    })
+    const background = computed(() => {
+      return 'hsl(' + props.color.get('hue') + ', 100%, 50%)'
     })
     return {
       targetRef,
       handleRef,
+      background,
       delta,
     }
   },

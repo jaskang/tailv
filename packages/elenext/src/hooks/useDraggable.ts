@@ -21,6 +21,15 @@ export default function useDraggable(config: {
   {
     dragging: Ref<boolean>
     delta: Ref<{ x: number; y: number }>
+    limits: Ref<
+      | {
+          minX: number
+          maxX: number
+          minY: number
+          maxY: number
+        }
+      | undefined
+    >
   }
 ] {
   const targetRef = ref<HTMLElement>()
@@ -108,5 +117,5 @@ export default function useDraggable(config: {
       }
     }
   })
-  return [targetRef, handleRef, { dragging, delta }]
+  return [targetRef, handleRef, { dragging, delta, limits }]
 }

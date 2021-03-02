@@ -1,8 +1,8 @@
 <template>
   <div class="el-color-picker">
     <div class="el-color-picker__main">
-      <color-panel />
-      <hue-slider />
+      <color-panel :color="modelValue" />
+      <hue-slider :color="modelValue" />
     </div>
     <alpha-slider />
   </div>
