@@ -41,7 +41,7 @@ import {
 } from 'vue'
 import vptypes from 'vptypes'
 
-import { PlacementType, TriggerType, usePopper } from './core'
+import { placements, TriggerType, usePopper } from './core'
 import { EDomSlot } from '../Util'
 
 const POPPER_IJK: InjectionKey<{
@@ -62,7 +62,7 @@ const EPopper = defineComponent({
     // TODO: oneOf
     // placement: vptypes.oneOfString(placements, { default: 'top' }),
     // trigger: vptypes.oneOfString(triggers, { default: 'hover' }),
-    placement: vptypes.string<PlacementType>().def('top'),
+    placement: vptypes.oneOfString(placements).def('top'),
     trigger: vptypes.string<TriggerType>().def('hover'),
     transition: vptypes.string().def('el-popper-fade'),
     backgroundColor: vptypes.string(),

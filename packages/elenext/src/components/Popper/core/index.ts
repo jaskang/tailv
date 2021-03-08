@@ -1,5 +1,10 @@
 import { computed, onUnmounted, reactive, Ref, watch, watchEffect } from 'vue'
-import { createPopper, Instance as PopperInstance, Options as PopperOptions } from '@popperjs/core'
+import {
+  createPopper,
+  Instance as PopperInstance,
+  Options as PopperOptions,
+  placements as placementsEnum,
+} from '@popperjs/core'
 import { uniqueId } from '@elenext/shared'
 
 export type PlacementType =
@@ -20,6 +25,9 @@ export type PlacementType =
   | 'left-end'
 export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
 export type StrategyType = 'absolute' | 'fixed'
+
+export const placements = placementsEnum
+export const triggers = ['click', 'hover', 'focus', 'manual']
 
 interface UsePopperOptions {
   referenceRef: Ref<Element | undefined>
@@ -62,14 +70,14 @@ export const usePopper = (props: UsePopperOptions) => {
         popper: {
           position: 'absolute',
           left: '0',
-          top: '0'
+          top: '0',
         },
         arrow: {
-          position: 'absolute'
-        }
+          position: 'absolute',
+        },
       },
-      attributes: {}
-    }
+      attributes: {},
+    },
   })
 
   const popperOptions = computed<PopperOptions>(() => {
@@ -85,14 +93,14 @@ export const usePopper = (props: UsePopperOptions) => {
             const elements = Object.keys(popperState.elements)
             state.attrs = {
               styles: fromEntries(elements.map(element => [element, popperState.styles[element] || {}])),
-              attributes: fromEntries(elements.map(element => [element, popperState.attributes[element] || {}]))
+              attributes: fromEntries(elements.map(element => [element, popperState.attributes[element] || {}])),
             }
           },
-          requires: ['computeStyles']
+          requires: ['computeStyles'],
         },
         { name: 'applyStyles', enabled: false },
-        { name: 'offset', options: { offset: [0, props.offset || 0] } }
-      ]
+        { name: 'offset', options: { offset: [0, props.offset || 0] } },
+      ],
     }
   })
 
