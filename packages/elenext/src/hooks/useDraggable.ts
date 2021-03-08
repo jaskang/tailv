@@ -1,5 +1,22 @@
 import { Ref, ref, watchEffect } from 'vue'
 
+export type Point = {
+  x: number
+  y: number
+}
+
+export type DraggableOptions = {
+  viewport?: boolean
+  onInit?: (limit: { width: number; height: number }) => Point | null
+}
+
+export type RectLimit = {
+  minX: number
+  maxX: number
+  minY: number
+  maxY: number
+}
+
 function calcDelta({ x, y, limits }) {
   if (!limits) {
     return { x, y }
@@ -13,48 +30,29 @@ function calcDelta({ x, y, limits }) {
   }
 }
 
-export default function useDraggable(config: {
-  viewport?: boolean
-}): [
+export default function useDraggable(
+  options: DraggableOptions
+): [
   Ref<HTMLElement | undefined>,
   Ref<HTMLElement | undefined>,
   {
     dragging: Ref<boolean>
     delta: Ref<{ x: number; y: number }>
-    limits: Ref<
-      | {
-          minX: number
-          maxX: number
-          minY: number
-          maxY: number
-        }
-      | undefined
-    >
+    limits: Ref<RectLimit | undefined>
   }
 ] {
   const targetRef = ref<HTMLElement>()
   const handleRef = ref<HTMLElement>()
 
   const dragging = ref(false)
-  const prev = ref({ x: 0, y: 0 })
-  const delta = ref({ x: 0, y: 0 })
-  const initial = ref({ x: 0, y: 0 })
-  const limits: Ref<
-    | {
-        minX: number
-        maxX: number
-        minY: number
-        maxY: number
-      }
-    | undefined
-  > = ref()
-  const startDragging = event => {
+  const prev = ref<Point>({ x: 0, y: 0 })
+  const delta = ref<Point>({ x: 0, y: 0 })
+  const limits: Ref<RectLimit | undefined> = ref()
+
+  const startDragging = (event: TouchEvent) => {
     event.preventDefault()
     dragging.value = true
-    const source = (event.touches && event.touches[0]) || event
-    const { clientX, clientY } = source
-    initial.value = { x: clientX, y: clientY }
-    if (config.viewport) {
+    if (options.viewport) {
       const { width, height } = targetRef.value!.getBoundingClientRect()
       limits.value = {
         minX: 0,
@@ -64,7 +62,7 @@ export default function useDraggable(config: {
       }
     }
   }
-  const reposition = event => {
+  const reposition = (event: TouchEvent) => {
     if (dragging.value) {
       const source = (event.changedTouches && event.changedTouches[0]) || (event.touches && event.touches[0]) || event
       const { left, top } = targetRef.value!.getBoundingClientRect()
@@ -85,13 +83,27 @@ export default function useDraggable(config: {
     return prev.value
   }
 
-  const stopDragging = event => {
+  const stopDragging = (event: TouchEvent) => {
     event.preventDefault()
     dragging.value = false
     const newDelta = reposition(event)
     prev.value = newDelta
   }
-
+  watchEffect(() => {
+    if (targetRef.value) {
+      const { width, height } = targetRef.value.getBoundingClientRect()
+      limits.value = {
+        minX: 0,
+        maxX: width,
+        minY: 0,
+        maxY: height,
+      }
+      const initPoint = options.onInit?.({ width, height })
+      if (initPoint) {
+        delta.value = initPoint
+      }
+    }
+  })
   watchEffect(() => {
     if (handleRef.value) {
       const handle = handleRef.value

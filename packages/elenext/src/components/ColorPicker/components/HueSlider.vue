@@ -12,28 +12,38 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, watchEffect } from 'vue'
+import { defineComponent, watchEffect } from 'vue'
 import vptypes from 'vptypes'
 import useDraggable from '../../../hooks/useDraggable'
-import { Hsva } from '../../../utils/Color'
+import { HSVAColor } from '../core'
 
 const HueSlider = defineComponent({
   name: 'HueSlider',
   props: {
-    color: vptypes.object<Hsva>().isRequired,
+    color: vptypes.object<HSVAColor>().isRequired,
   },
   emits: ['change'],
   setup(props, { attrs, slots, emit }) {
     const [targetRef, handleRef, { delta, limits }] = useDraggable({
       viewport: true,
-    })
-    const asa = computed(() => {
-      const height = limits.value?.maxY || delta.value.y
-      const top = delta.value.y / height
-      return top * 360
+      onInit({ height }) {
+        return {
+          x: 0,
+          y: (props.color.h / 360) * height,
+        }
+      },
     })
     watchEffect(() => {
-      emit('change', asa.value)
+      if (delta.value && limits.value) {
+        const color: HSVAColor = {
+          h: (delta.value.y / limits.value.maxY) * 360,
+          s: props.color.s,
+          v: props.color.v,
+          a: props.color.a,
+        }
+        console.log(color)
+        emit('change', color)
+      }
     })
     return {
       targetRef,

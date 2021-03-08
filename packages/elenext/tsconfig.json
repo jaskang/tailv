@@ -12,9 +12,13 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "rootDir": ".",
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["./shims.d.ts", "src/**/*"],
   "exclude": ["node_modules", "dist"]

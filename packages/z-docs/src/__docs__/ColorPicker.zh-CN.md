@@ -10,12 +10,13 @@ wrapperClass: md-colorpicker
 ```vue demo
 <template>
   <EColorPicker v-model="color" />
+  {{ color }}
 </template>
 <script>
 export default {
   data() {
     return {
-      color: '#ff0000',
+      color: '#5d0404',
     }
   },
 }
