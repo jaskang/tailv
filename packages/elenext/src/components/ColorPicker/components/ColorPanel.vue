@@ -24,13 +24,14 @@
 import { computed, defineComponent, watchEffect } from 'vue'
 import vptypes from 'vptypes'
 import useDraggable from '@/hooks/useDraggable'
-import { HSVAColor } from '../core'
 
 const ColorPanel = defineComponent({
   name: 'ColorPanel',
   components: {},
   props: {
-    color: vptypes.object<HSVAColor>().isRequired,
+    hue: vptypes.number().isRequired,
+    saturation: vptypes.number().isRequired,
+    value: vptypes.number().isRequired,
   },
   emits: ['change'],
   setup(props, { emit }) {
@@ -38,23 +39,20 @@ const ColorPanel = defineComponent({
       viewport: true,
       onInit({ width, height }) {
         return {
-          x: props.color.s * width,
-          y: (1 - props.color.v) * height,
+          x: props.saturation * width,
+          y: (1 - props.value) * height,
         }
       },
     })
     const background = computed(() => {
-      return 'hsl(' + props.color.h + ', 100%, 50%)'
+      return 'hsl(' + props.hue + ', 100%, 50%)'
     })
     watchEffect(() => {
       if (delta.value && limits.value) {
-        const color: HSVAColor = {
-          h: props.color.h,
+        emit('change', {
           s: delta.value.x / limits.value.maxX,
           v: 1 - delta.value.y / limits.value.maxY,
-          a: props.color.a,
-        }
-        emit('change', color)
+        })
       }
     })
     return {

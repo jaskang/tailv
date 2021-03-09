@@ -30,7 +30,6 @@
 <script lang="ts">
 import { App, computed, defineComponent, ref } from 'vue'
 import { useParent } from '../../hooks/useParent'
-
 import { CHECKBOXGROUP_IJK } from './core'
 import vptypes from 'vptypes'
 

@@ -16,7 +16,7 @@ wrapperClass: md-colorpicker
 export default {
   data() {
     return {
-      color: '#5d0404',
+      color: '#1f273b',
     }
   },
 }

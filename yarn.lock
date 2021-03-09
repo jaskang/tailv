@@ -11644,10 +11644,10 @@ vite@^2.0.5:
   optionalDependencies:
     fsevents "~2.3.1"
 
-vptypes@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.npmjs.org/vptypes/-/vptypes-0.1.6.tgz#3fd0ac53f193741983bcdb8f9750cb9d665d8d26"
-  integrity sha512-17GR5qLAf8X2FkIKqJYs1uQxx5z4pbUp9Hd42P10Xay/4UxuOZX5uxpaNvBV0GzrUOyvR+WHpxe7oSNGlcfK+Q==
+vptypes@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/vptypes/-/vptypes-0.1.7.tgz#53febe552285ca657a9bc722d5780c134209d26c"
+  integrity sha512-OShas9AzL5iRBIH2FZlQ9JcLSntKc9S7XL8Eh2eqH/oaKTxwe88ndbUZ2jh0MOcjM0LqsgPWHrCWmn3WxmbkeQ==
 
 vscode-languageserver-textdocument@^1.0.1:
   version "1.0.1"
