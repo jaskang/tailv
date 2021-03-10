@@ -1,12 +1,16 @@
-import { Ref, ref, watchEffect } from 'vue'
+import { computed, CSSProperties, Ref, ref, watchEffect } from 'vue'
 
 export type Point = {
   x: number
   y: number
 }
-
+export type Size = {
+  width: number
+  height: number
+}
 export type DraggableOptions = {
   viewport?: boolean
+  direction?: 'x' | 'y'
   onInit?: (limit: { width: number; height: number }) => Point | null
 }
 
@@ -38,6 +42,7 @@ export default function useDraggable(
   {
     dragging: Ref<boolean>
     delta: Ref<{ x: number; y: number }>
+    style: Ref<CSSProperties>
     limits: Ref<RectLimit | undefined>
   }
 ] {
@@ -47,7 +52,17 @@ export default function useDraggable(
   const dragging = ref(false)
   const prev = ref<Point>({ x: 0, y: 0 })
   const delta = ref<Point>({ x: 0, y: 0 })
-  const limits: Ref<RectLimit | undefined> = ref()
+  const limits = ref<RectLimit | undefined>()
+  const handleSize = ref<Size>({ width: 0, height: 0 })
+
+  const style = computed<CSSProperties>(() => {
+    const direction = options.direction
+    const x = direction !== 'y' ? delta.value.x - handleSize.value.width / 2 : 0
+    const y = direction !== 'x' ? delta.value.y - handleSize.value.height / 2 : 0
+    return {
+      transform: `translate3D(${x}px,${y}px,0)`,
+    }
+  })
 
   const startDragging = (event: TouchEvent) => {
     event.preventDefault()
@@ -90,8 +105,13 @@ export default function useDraggable(
     prev.value = newDelta
   }
   watchEffect(() => {
-    if (targetRef.value) {
+    if (targetRef.value && handleRef.value) {
       const { width, height } = targetRef.value.getBoundingClientRect()
+      const { width: handleWidth, height: handleHeight } = handleRef.value.getBoundingClientRect()
+      handleSize.value = {
+        width: handleWidth,
+        height: handleHeight,
+      }
       limits.value = {
         minX: 0,
         maxX: width,
@@ -129,5 +149,5 @@ export default function useDraggable(
       }
     }
   })
-  return [targetRef, handleRef, { dragging, delta, limits }]
+  return [targetRef, handleRef, { dragging, delta, style, limits }]
 }

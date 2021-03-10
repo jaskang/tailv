@@ -8,14 +8,7 @@
   >
     <div class="el-color-panel__white"></div>
     <div class="el-color-panel__black"></div>
-    <div
-      ref="handleRef"
-      class="el-color-panel__cursor"
-      :style="{
-        left: delta.x + 'px',
-        top: delta.y + 'px',
-      }"
-    >
+    <div ref="handleRef" class="el-color-panel__cursor" :style="style">
       <div></div>
     </div>
   </div>
@@ -23,7 +16,7 @@
 <script lang="ts">
 import { computed, defineComponent, watchEffect } from 'vue'
 import vptypes from 'vptypes'
-import useDraggable from '@/hooks/useDraggable'
+import useDraggable from '../../../hooks/useDraggable'
 
 const ColorPanel = defineComponent({
   name: 'ColorPanel',
@@ -35,7 +28,7 @@ const ColorPanel = defineComponent({
   },
   emits: ['change'],
   setup(props, { emit }) {
-    const [targetRef, handleRef, { delta, limits }] = useDraggable({
+    const [targetRef, handleRef, { delta, style, limits }] = useDraggable({
       viewport: true,
       onInit({ width, height }) {
         return {
@@ -60,6 +53,7 @@ const ColorPanel = defineComponent({
       handleRef,
       background,
       delta,
+      style,
     }
   },
 })

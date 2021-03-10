@@ -1,14 +1,7 @@
 <template>
   <div ref="targetRef" class="el-color-hue-slider">
     <div class="el-color-hue-slider__bar"></div>
-    <div
-      ref="handleRef"
-      class="el-color-hue-slider__thumb"
-      :style="{
-        left: '0px',
-        top: delta.y + 'px',
-      }"
-    ></div>
+    <div ref="handleRef" class="el-color-hue-slider__thumb" :style="style"></div>
   </div>
 </template>
 <script lang="ts">
@@ -23,8 +16,9 @@ const HueSlider = defineComponent({
   },
   emits: ['change'],
   setup(props, { attrs, slots, emit }) {
-    const [targetRef, handleRef, { delta, limits }] = useDraggable({
+    const [targetRef, handleRef, { delta, style, limits }] = useDraggable({
       viewport: true,
+      direction: 'y',
       onInit({ height }) {
         return {
           x: 0,
@@ -41,6 +35,7 @@ const HueSlider = defineComponent({
       targetRef,
       handleRef,
       delta,
+      style,
     }
   },
 })

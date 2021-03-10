@@ -4,6 +4,25 @@
 }
 
 .el-color-picker {
+  display: inline-block;
+  padding: 2px;
+  border: 1px solid var(--e-color-picker-border-color);
+  border-radius: var(--e-color-picker-border-radius);
+  width: var(--e-global-row-height);
+  height: var(--e-global-row-height);
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--e-color-picker-border-color);
+    border-radius: var(--e-global-border-radius-small);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+}
+
+.el-color-popper {
   padding: 10px;
   width: fit-content;
   border: 1px solid var(--e-color-picker-border-color);
