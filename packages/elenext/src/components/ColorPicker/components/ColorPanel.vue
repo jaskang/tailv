@@ -42,6 +42,8 @@ const ColorPanel = defineComponent({
     })
     watchEffect(() => {
       if (delta.value && limits.value) {
+        console.log(delta.value, limits.value)
+
         emit('change', {
           s: delta.value.x / limits.value.maxX,
           v: 1 - delta.value.y / limits.value.maxY,

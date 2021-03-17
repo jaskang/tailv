@@ -1,31 +1,48 @@
 <template>
-  <div ref="elRef" class="el-color-picker">
+  <div ref="triggerRef" class="el-color-picker">
     <div
       class="el-color-picker__inner"
-      :style="{ background: modelValue, color: valueColor.isDark ? '#fff' : undefined }"
+      :style="{ background: modelValue, color: innerColor.isDark ? '#fff' : undefined }"
     >
       <IconChevronDown />
     </div>
     <input hidden :value="modelValue" />
   </div>
-  <div class="el-color-popper">
-    <div class="el-color-popper__main">
-      <color-panel :saturation="innerHsva.s" :value="innerHsva.v" :hue="innerHsva.h" @change="onValueChange" />
-      <hue-slider :hue="innerHsva.h" @change="onHueChange" />
-    </div>
-    <alpha-slider v-if="alpha" :alpha="alpha" :hue="innerHsva.h" @change="onHueChange" />
-    <e-row align="middle">
-      <e-col flex="auto">
-        {{ currentColor }}
-      </e-col>
-      <e-col>
-        <e-button size="small" @click="submitHandler">确定</e-button>
-      </e-col>
-    </e-row>
-  </div>
+
+  <e-popper
+    v-model="dropdownVisible"
+    popper-class="el-color-dropdown-popper"
+    trigger="click"
+    placement="bottom"
+    :visible-arrow="true"
+    :reference="triggerRef"
+  >
+    <template #content>
+      <div class="el-color-popper">
+        <div class="el-color-popper__main">
+          <ColorPanel
+            :saturation="innerColor.hsv.s"
+            :value="innerColor.hsv.v"
+            :hue="innerColor.hsv.h"
+            @change="onValueChange"
+          />
+          <HueSlider :hue="innerColor.hsv.h" @change="onHueChange" />
+        </div>
+        <AlphaSlider v-if="alpha" :alpha="alpha" :hue="innerColor.hsv.a" @change="onAlphaChange" />
+        <e-row align="middle">
+          <e-col flex="auto">
+            {{ currentColor }}
+          </e-col>
+          <e-col>
+            <e-button size="small" @click="submitHandler">确定</e-button>
+          </e-col>
+        </e-row>
+      </div>
+    </template>
+  </e-popper>
 </template>
 <script lang="ts">
-import { App, computed, defineComponent, reactive } from 'vue'
+import { App, computed, defineComponent, reactive, ref, watch } from 'vue'
 import vptypes from 'vptypes'
 import { EButton } from './../Button'
 import { ERow, ECol } from './../Grid'
@@ -35,8 +52,24 @@ import AlphaSlider from './components/AlphaSlider.vue'
 // import { parseColor } from '../../utils/Color'
 import { TinyColor } from '@ctrl/tinycolor'
 import { IconChevronDown } from '@elenext/icons'
-import { Hsva } from '../../utils/Color'
 
+const convertModelValue = (value: string) => {
+  const tiny = new TinyColor(value)
+  const hsv = tiny.toHsv()
+  console.log(hsv)
+
+  return {
+    hsv: {
+      h: Number(hsv.h.toFixed(4)),
+      s: Number(hsv.s.toFixed(4)),
+      v: Number(hsv.v.toFixed(4)),
+      a: Number(hsv.a.toFixed(4)),
+    },
+    format: tiny.format,
+    originalInput: value,
+    isDark: tiny.isDark(),
+  }
+}
 const EColorPicker = defineComponent({
   name: 'EColorPicker',
   components: {
@@ -55,46 +88,61 @@ const EColorPicker = defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { attrs, slots, emit }) {
-    const valueColor = computed(() => {
-      const tiny = new TinyColor(props.modelValue)
-      return { hsv: tiny.toHsv(), format: tiny.format, show: props.modelValue, isDark: tiny.isDark() }
-    })
+    const triggerRef = ref<HTMLDivElement>()
+    const dropdownVisible = ref(false)
+    const initValue = convertModelValue(props.modelValue)
 
-    const innerHsva = reactive<Hsva>({
-      h: valueColor.value.hsv.h,
-      s: valueColor.value.hsv.s,
-      v: valueColor.value.hsv.v,
-      a: valueColor.value.hsv.a,
+    const innerColor = reactive({
+      hsv: initValue.hsv,
+      format: initValue.format,
+      originalInput: initValue.originalInput,
+      isDark: initValue.isDark,
     })
 
     const currentColor = computed(() => {
-      const colorObj = new TinyColor({
-        h: innerHsva.h,
-        s: innerHsva.s,
-        v: innerHsva.v,
-        a: innerHsva.a,
-      })
-      return colorObj.toString(valueColor.value.format)
+      const colorObj = new TinyColor(innerColor.hsv)
+      return colorObj.toString(innerColor.format)
+    })
+    console.log(innerColor)
+    console.log(currentColor)
+
+    watch(props, (val, oldVal) => {
+      if (val.modelValue !== oldVal.modelValue && val.modelValue !== currentColor.value) {
+        const newValue = convertModelValue(val.modelValue)
+        innerColor.hsv = newValue.hsv
+        innerColor.format = newValue.format
+        innerColor.originalInput = newValue.originalInput
+        innerColor.isDark = newValue.isDark
+      }
     })
 
     const onValueChange = ({ s, v }: { s: number; v: number }) => {
-      innerHsva.s = s
-      innerHsva.v = v
+      console.log('onValueChange', s, v)
+
+      innerColor.hsv.s = s
+      innerColor.hsv.v = v
     }
     const onHueChange = (h: number) => {
-      innerHsva.h = h
+      console.log('onHueChange', h)
+      innerColor.hsv.h = h
     }
-
+    const onAlphaChange = (a: number) => {
+      console.log('onAlphaChange', a)
+      innerColor.hsv.a = a
+    }
     const submitHandler = () => {
       emit('update:modelValue', currentColor.value)
+      dropdownVisible.value = false
     }
     return {
-      valueColor,
-      innerHsva,
+      innerColor,
       currentColor,
       onHueChange,
       onValueChange,
+      onAlphaChange,
       submitHandler,
+      triggerRef,
+      dropdownVisible,
     }
   },
 })

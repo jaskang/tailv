@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <transition :name="transition">
+    <transition :name="transition" @before-enter="contentVisible = true" @after-leave="contentVisible = false">
       <div
         v-show="realVisible"
         :id="state.popperId"
@@ -9,13 +9,13 @@
         :style="styles"
         v-bind="state.attrs.attributes.popper"
       >
-        <slot name="content" />
+        <slot v-if="contentVisible" name="content" />
         <div v-if="visibleArrow" class="el-popper__arrow-shadow" :style="state.attrs.styles.arrow" data-popper-arrow />
         <div
           v-if="visibleArrow"
           :ref="arrowRefInitHandler"
-          class="el-popper__arrow"
           :style="state.attrs.styles.arrow"
+          class="el-popper__arrow"
           data-popper-arrow
         />
       </div>
@@ -76,7 +76,7 @@ const EPopper = defineComponent({
     const referenceRef = ref<Element>()
     const popperRef = ref<HTMLElement>()
     const arrowRef = ref<HTMLElement>()
-
+    const contentVisible = ref(false)
     // 打开状态子 popper
     const holdChildren = ref<string[]>([])
     // 本体 visible 状态
@@ -173,6 +173,7 @@ const EPopper = defineComponent({
     })
     return {
       realVisible,
+      contentVisible,
       holdChildren,
       state,
       referenceRefInitHandler,

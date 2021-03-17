@@ -10,6 +10,9 @@
             <e-col>
               <e-menu mode="horizontal">
                 <e-menu-item>
+                  <e-color-picker v-model="data.primaryColor" />
+                </e-menu-item>
+                <e-menu-item>
                   <a href="https://github.com/JasKang/elenext" target="__blank">GitHub</a>
                 </e-menu-item>
               </e-menu>
@@ -46,10 +49,12 @@
 </template>
 <script lang="ts">
 import { useBreakpoint } from 'elenext'
-import { defineComponent, watchEffect } from 'vue'
+import { defineComponent, reactive, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import menus from '../menus'
 import Logo from './Logo.vue'
+import { TinyColor } from '@ctrl/tinycolor'
+
 export default defineComponent({
   name: 'AppLayout',
   components: {
@@ -58,13 +63,27 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const screens = useBreakpoint()
+
+    const data = reactive({
+      primaryColor: '#409eff',
+    })
     watchEffect(() => {
-      console.log(route.path)
+      //       --e-global-color-primary-light: #66b1ff; // #fff 20%
+      // --e-global-color-primary-lighter: #a0cfff; // #fff 50%
+      // --e-global-color-primary-lightest: #d9ecff; // #fff 80%
+      // --e-global-color-primary-dark: #337ecc; // #000 20%
+      const color = new TinyColor(data.primaryColor)
+      document.body.style.setProperty('--e-global-color-primary', color.toHexString())
+      document.body.style.setProperty('--e-global-color-primary-light', color.tint(20).toHexString())
+      document.body.style.setProperty('--e-global-color-primary-lighter', color.tint(50).toHexString())
+      document.body.style.setProperty('--e-global-color-primary-lightest', color.tint(80).toHexString())
+      document.body.style.setProperty('--e-global-color-primary-dark', color.shade(20).toHexString())
     })
     return {
       screens,
       route,
       menus,
+      data,
     }
   },
 })

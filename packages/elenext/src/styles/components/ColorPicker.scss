@@ -1,6 +1,8 @@
 :root {
   --e-color-picker-border-color: var(--e-global-border-color-base);
   --e-color-picker-border-radius: var(--e-global-border-radius-base);
+
+  --e-color-dropdown-popper-color: var(--e-global-border-color-lighter);
 }
 
 .el-color-picker {
@@ -21,12 +23,16 @@
     text-align: center;
   }
 }
-
+.el-color-dropdown-popper {
+  border-radius: 4px;
+  border: 1px solid var(--e-color-dropdown-popper-color);
+  box-shadow: var(--e-global-box-shadow-light);
+}
 .el-color-popper {
   padding: 10px;
   width: fit-content;
-  border: 1px solid var(--e-color-picker-border-color);
-  border-radius: var(--e-color-picker-border-radius);
+  // border: 1px solid var(--e-color-picker-border-color);
+  // border-radius: var(--e-color-picker-border-radius);
   &__main {
     display: flex;
     flex-wrap: nowrap;

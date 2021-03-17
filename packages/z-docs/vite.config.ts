@@ -32,6 +32,9 @@ const containers = ['success', 'warning', 'info', 'error'].map(type => {
 })
 
 const config: UserConfig = {
+  server: {
+    port: 8080,
+  },
   assetsInclude: ['src/assets'],
   optimizeDeps: {
     exclude: ['elenext'],
