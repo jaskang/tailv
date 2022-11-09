@@ -1,139 +1,52 @@
-<p>
-  <a href="https://www.npmjs.com/package/elenext" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/elenext.svg">
-  </a>
-  <a href="https://elenext.vercel.app" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-</p>
+# elenext
 
-# Elenext(WIP)
+This template should help get you started developing with Vue 3 in Vite.
 
-A Vue.js 3.0 UI Toolkit for Web
+## Recommended IDE Setup
 
-## Foreword
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-> The purpose of this project is not to copy Element2 and translate it using Vue3, and compatibility is not a priority
+## Type Support for `.vue` Imports in TS
 
-> If you are used to Element2 and want to use it under Vue3, we recommend moving to [Element Plus](https://github.com/element-plus/element-plus).
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-> This project implements a more modern browser-compliant UI framework that makes extensive use of various new features.
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-## Features
+1. Disable the built-in TypeScript Extension
+    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-- zero-configuration bundler for vue3 components ==> [tsrv](https://github.com/JasKang/tsrv)
-  - [x] tsrv dev/build
-  - [x] tsrv test
-- vite docs/demo stie ==> [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc)
-  - [x] docs stie
-  - [x] support markdown
-  - [x] demo preview
-- prop types definitions ==> [vptypes](https://github.com/JasKang/vptypes)
-  - [x] typescript support
-  - [x] basic check
-- style
-  - [x] Reconfiguration style
-  - [x] use css variables
-- components
-  - [] something
+## Customize configuration
 
-## Docs & Demo
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-[https://elenext.vercel.app](https://elenext.vercel.app)
-
-## Install
+## Project Setup
 
 ```sh
-yarn add elenext
+npm install
 ```
 
-## Quick Start
+### Compile and Hot-Reload for Development
 
-```javascript
-import 'elenext/dist/elenext.css'
-import { createApp } from 'vue'
-import elenext from 'elenext'
-import App from './App.vue'
-
-const app = createApp(App)
-
-app.use(elenext)
-app.mount('#app')
+```sh
+npm run dev
 ```
 
-For more information, please refer to Quick Start in our documentation.
+### Type-Check, Compile and Minify for Production
 
-## Browser Support
+```sh
+npm run build
+```
 
-Modern browsers and Internet Explorer 11+.
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-## Development
+```sh
+npm run test:unit
+```
 
-Skip this part if you just want to use Elenext.
+### Lint with [ESLint](https://eslint.org/)
 
-## Todo
-
-:sparkles: **组件库** :sparkles:
-
-- [x] Grid
-  - [x] ERow
-  - [x] ECol
-- [x] Layout
-  - [x] ELayout
-  - [x] EMain
-  - [x] EAside
-  - [x] EFooter
-  - [x] EHeader
-- [x] Button
-  - [x] EButton
-  - [x] EButtonGroup
-- [x] ELink
-- [x] EBreadcrumb
-  - [x] EBreadcrumbItem
-- [x] EPagination
-- [x] Icon
-- [x] EAlert
-- [x] EPopper
-- [x] ETooltip
-- [x] EPopover
-- [x] Menu
-  - [x] EMenu
-  - [x] ESubMenu
-  - [x] EMenuItem
-  - [x] EMenuItemGroup
-- [x] EInput
-  - [x] EInputGroup
-- [x] radio
-- [x] checkbox
-- [ ] card
-- [ ] date-picker
-- [ ] dialog
-- [ ] divider
-- [ ] drawer
-- [ ] dropdown
-- [ ] form
-- [ ] image
-- [ ] loading
-- [ ] message
-- [ ] notification
-- [ ] option
-- [ ] pagination
-- [ ] progress
-
-## Additional Tools
-
-- [tsrv](https://github.com/JasKang/tsrv) Zero Configuration bundler for vue3 components
-
-- [vite-plugin-vuedoc](https://github.com/JasKang/vite-plugin-vuedoc) Markdown document preview and code highlighting for vite
-
-- [vptypes](https://github.com/JasKang/vptypes) Vue3 Prop Types definitions
-
-## Author
-
-👤 **jaskang**
-
-- Website: https://github.com/jaskang
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
+```sh
+npm run lint
+```

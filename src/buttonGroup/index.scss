@@ -1,0 +1,22 @@
+:root {
+}
+.e-button-group {
+  flex-wrap: nowrap;
+  display: inline-flex;
+  position: relative;
+  > .e-button {
+    border-radius: 0;
+    &:not(:first-child) {
+      border-left-color: transparent;
+      margin: 0;
+    }
+    &:first-child {
+      border-top-left-radius: var(--e-btn-border-radius);
+      border-bottom-left-radius: var(--e-btn-border-radius);
+    }
+    &:last-child {
+      border-top-right-radius: var(--e-btn-border-radius);
+      border-bottom-right-radius: var(--e-btn-border-radius);
+    }
+  }
+}

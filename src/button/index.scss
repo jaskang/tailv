@@ -1,0 +1,122 @@
+:root {
+  --e-btn-font-size: var(--font-size);
+  --e-btn-padding: 0 15px;
+  --e-btn-height: 34px;
+
+  --e-btn-border-radius: 5px;
+
+  --e-btn-font-size-small: var(--font-size);
+  --e-btn-padding-small: 0px 10px;
+  --e-btn-height-small: 28px;
+
+  --e-btn-font-size-large: var(--font-size);
+  --e-btn-padding-large: 0 25px;
+  --e-btn-height-large: 40px;
+
+  --e-btn-bg-disabled: var(--color-neutral-97);
+  --e-btn-text-disabled: var(--color-neutral-75);
+  --e-btn-border-disabled: var(--color-neutral-90);
+
+  --e-btn-bg: var(--color-neutral-100);
+  --e-btn-text: var(--color-neutral-60);
+  --e-btn-border-color: var(--color-neutral-90);
+
+  --e-btn-bg-hovered: var(--color-neutral-100);
+  --e-btn-text-hovered: var(--e-btn-text);
+  --e-btn-border-hovered: var(--color-neutral-85);
+
+  --e-btn-bg-active: var(--color-neutral-97);
+  --e-btn-text-active: var(--e-btn-text);
+  --e-btn-border-active: var(--color-neutral-80);
+}
+
+@mixin button-color($colors...) {
+  @each $color in $colors {
+    &--#{$color} {
+      --e-btn-text: var(--color-neutral-100);
+      --e-btn-text-hovered: var(--e-btn-text);
+      --e-btn-text-active: var(--e-btn-text);
+      --e-btn-bg: var(--color-#{$color});
+      --e-btn-bg-hovered: var(--color-#{$color}-light);
+      --e-btn-bg-active: var(--color-#{$color}-dark);
+      --e-btn-border-color: var(--e-btn-bg);
+      --e-btn-border-hovered: var(--e-btn-bg);
+      --e-btn-border-active: var(--e-btn-bg-active);
+    }
+  }
+}
+
+.e-button {
+  cursor: pointer;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  position: relative;
+  outline: 0;
+  transition: 0.1s;
+  line-height: 1;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--e-btn-border-color);
+  border-radius: var(--e-btn-border-radius);
+  padding: var(--e-btn-padding);
+  height: var(--e-btn-height);
+  font-size: var(--e-btn-font-size);
+  color: var(--e-btn-text);
+  background-color: var(--e-btn-bg);
+  &:focus-visible {
+    outline: 2px solid var(--e-btn-border-color);
+    outline-offset: 1px;
+  }
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover {
+    color: var(--e-btn-text-hovered);
+    border-color: var(--e-btn-border-hovered);
+    background-color: var(--e-btn-bg-hovered);
+  }
+  &:active {
+    color: var(--e-btn-text-active);
+    border-color: var(--e-btn-border-active);
+    background-color: var(--e-btn-bg-active);
+  }
+  &:disabled,
+  &.is-disabled {
+    cursor: not-allowed;
+    color: var(--e-btn-text-disabled);
+    border-color: var(--e-btn-border-disabled);
+    background-color: var(--e-btn-bg-disabled);
+  }
+
+  &--small {
+    --e-btn-padding: var(--e-btn-padding-small);
+    --font-size: var(--e-btn-font-size-small);
+    --e-btn-height: var(--e-btn-height-small);
+  }
+  &--large {
+    --e-btn-padding: var(--e-btn-padding-large);
+    --e-btn-font-size: var(--e-btn-font-size-large);
+    --e-btn-height: var(--e-btn-height-large);
+  }
+
+  @include button-color("primary", "success", "warning", "error", "tealblue");
+
+  &--round {
+    --e-btn-border-radius: calc(var(--e-btn-height) / 2);
+  }
+  &--circle {
+    --e-btn-border-radius: 50%;
+    width: var(--e-btn-height);
+    padding: 0;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,208 @@
+@use "sass:color";
+
+// dark
+$grey-blue-0: #000;
+$grey-blue-10: #0d111a;
+$grey-blue-15: #131926;
+$grey-blue-20: #1a2233;
+$grey-blue-25: #202b40;
+$grey-blue-30: #26334d;
+$grey-blue-35: #2d3c59;
+$grey-blue-40: #334466;
+$grey-blue-45: #3f5073;
+$grey-blue-50: #4d5e80;
+$grey-blue-55: #62708c;
+$grey-blue-60: #6b7a99;
+$grey-blue-65: #7c8aa6;
+$grey-blue-70: #7d8fb3;
+$grey-blue-75: #99a6bf;
+$grey-blue-80: #adb8cc;
+$grey-blue-85: #c3cad9;
+// light
+$grey-blue-90: #dadee6;
+$grey-blue-91: #dce0e8;
+$grey-blue-92: #dfe3eb;
+$grey-blue-93: #e1e5ed;
+$grey-blue-94: #e4e7f0;
+// ----------------------------
+$grey-blue-95: #edeff2;
+$grey-blue-96: #f2f3f5;
+$grey-blue-97: #f5f6f7;
+$grey-blue-98: #f7f8fa;
+$grey-blue-99: #fafbfc;
+$grey-blue-100: #fff;
+
+$blue: #3361ff;
+$blue-dark: #194dff;
+$blue-darker: #0039ff;
+$blue-light: #4d74ff;
+$blue-lighter: #6688ff;
+
+$orange: #ff6633;
+$orange-dark: #e64b17;
+$orange-darker: #cc4314;
+$orange-light: #ff794d;
+$orange-lighter: #ff8d66;
+
+$purple: #8833ff;
+$purple-dark: #7919ff;
+$purple-darker: #6a00ff;
+$purple-light: #974dff;
+$purple-lighter: #a666ff;
+
+$red: #e62e2e;
+$red-dark: #cc1414;
+$red-darker: #b20000;
+$red-light: #f24949;
+$red-lighter: #ff6666;
+
+$yellow: #ffcb33;
+$yellow-dark: #e6b117;
+$yellow-darker: #d9a200;
+$yellow-light: #ffd559;
+$yellow-lighter: #ffdf80;
+
+$green: #29cc39;
+$green-dark: #13bf24;
+$green-darker: #00b211;
+$green-light: #45e655;
+$green-lighter: #66ff75;
+
+$tealblue: #33bfff;
+$tealblue-dark: #17a5e6;
+$tealblue-darker: #008ccc;
+$tealblue-light: #4dc7ff;
+$tealblue-lighter: #66cfff;
+
+$pink: #e62e7b;
+$pink-dark: #d91668;
+$pink-darker: #cc0056;
+$pink-light: #f24990;
+$pink-lighter: #ff66a6;
+
+$bronze: #cc7429;
+$bronze-dark: #b35c12;
+$bronze-darker: #994700;
+$bronze-light: #d98741;
+$bronze-lighter: #e69b5c;
+
+$tiffany: #2ee6ca;
+$tiffany-dark: #14ccb0;
+$tiffany-darker: #00b397;
+$tiffany-light: #49f2d8;
+$tiffany-lighter: #66ffe8;
+
+$font-size-1: 36px;
+$font-size-2: 30px;
+$font-size-3: 24px;
+$font-size-4: 22px;
+$font-size-5: 20px;
+$font-size-6: 18px;
+$font-size: 14px;
+
+:root {
+  --color-neutral-0: #{$grey-blue-0};
+  --color-neutral-10: #{$grey-blue-10};
+  --color-neutral-15: #{$grey-blue-15};
+  --color-neutral-20: #{$grey-blue-20};
+  --color-neutral-25: #{$grey-blue-25};
+  --color-neutral-30: #{$grey-blue-30};
+  --color-neutral-35: #{$grey-blue-35};
+  --color-neutral-40: #{$grey-blue-40};
+  --color-neutral-45: #{$grey-blue-45};
+  --color-neutral-50: #{$grey-blue-50};
+  --color-neutral-55: #{$grey-blue-55};
+  --color-neutral-60: #{$grey-blue-60};
+  --color-neutral-65: #{$grey-blue-65};
+  --color-neutral-70: #{$grey-blue-70};
+  --color-neutral-75: #{$grey-blue-75};
+  --color-neutral-80: #{$grey-blue-80};
+  --color-neutral-85: #{$grey-blue-85};
+  // light
+  --color-neutral-90: #{$grey-blue-90};
+  --color-neutral-91: #{$grey-blue-91};
+  --color-neutral-92: #{$grey-blue-92};
+  --color-neutral-93: #{$grey-blue-93};
+  --color-neutral-94: #{$grey-blue-94};
+  --color-neutral-95: #{$grey-blue-95};
+  --color-neutral-96: #{$grey-blue-96};
+  --color-neutral-97: #{$grey-blue-97};
+  --color-neutral-98: #{$grey-blue-98};
+  --color-neutral-99: #{$grey-blue-99};
+  --color-neutral-100: #{$grey-blue-100};
+
+  --color-primary: #{$blue};
+  --color-primary-dark: #{$blue-dark};
+  --color-primary-darker: #{$blue-darker};
+  --color-primary-light: #{$blue-light};
+  --color-primary-lighter: #{$blue-lighter};
+
+  --color-success: #{$green};
+  --color-success-dark: #{$green-dark};
+  --color-success-darker: #{$green-darker};
+  --color-success-light: #{$green-light};
+  --color-success-lighter: #{$green-lighter};
+
+  --color-warning: #{$yellow};
+  --color-warning-dark: #{$yellow-dark};
+  --color-warning-darker: #{$yellow-darker};
+  --color-warning-light: #{$yellow-light};
+  --color-warning-lighter: #{$yellow-lighter};
+
+  --color-error: #{$orange};
+  --color-error-dark: #{$orange-dark};
+  --color-error-darker: #{$orange-darker};
+  --color-error-light: #{$orange-light};
+  --color-error-lighter: #{$orange-lighter};
+
+  --color-purple: #{$purple};
+  --color-purple-dark: #{$purple-dark};
+  --color-purple-darker: #{$purple-darker};
+  --color-purple-light: #{$purple-light};
+  --color-purple-lighter: #{$purple-lighter};
+
+  --color-red: #{$red};
+  --color-red-dark: #{$red-dark};
+  --color-red-darker: #{$red-darker};
+  --color-red-light: #{$red-light};
+  --color-red-lighter: #{$red-lighter};
+
+  --color-tealblue: #{$tealblue};
+  --color-tealblue-dark: #{$tealblue-dark};
+  --color-tealblue-darker: #{$tealblue-darker};
+  --color-tealblue-light: #{$tealblue-light};
+  --color-tealblue-lighter: #{$tealblue-lighter};
+
+  --color-pink: #{$pink};
+  --color-pink-dark: #{$pink-dark};
+  --color-pink-darker: #{$pink-darker};
+  --color-pink-light: #{$pink-light};
+  --color-pink-lighter: #{$pink-lighter};
+
+  --color-bronze: #{$bronze};
+  --color-bronze-dark: #{$bronze-dark};
+  --color-bronze-darker: #{$bronze-darker};
+  --color-bronze-light: #{$bronze-light};
+  --color-bronze-lighter: #{$bronze-lighter};
+
+  --color-tiffany: #{$tiffany};
+  --color-tiffany-dark: #{$tiffany-dark};
+  --color-tiffany-darker: #{$tiffany-darker};
+  --color-tiffany-light: #{$tiffany-light};
+  --color-tiffany-lighter: #{$tiffany-lighter};
+
+  --font-size-1: #{$font-size-1};
+  --font-size-2: #{$font-size-2};
+  --font-size-3: #{$font-size-3};
+  --font-size-4: #{$font-size-4};
+  --font-size-5: #{$font-size-5};
+  --font-size-6: #{$font-size-6};
+  --font-size: #{$font-size};
+}
+
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}

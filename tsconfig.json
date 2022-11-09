@@ -1,19 +1,14 @@
 {
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": false,
-    "target": "esnext",
-    "module": "esnext",
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "lib": ["esnext", "dom"],
-    "types": ["jest", "node"]
-  }
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ]
 }
