@@ -198,6 +198,12 @@ $font-size: 14px;
   --font-size-5: #{$font-size-5};
   --font-size-6: #{$font-size-6};
   --font-size: #{$font-size};
+
+  --e-text-color: var(--color-neutral-50);
+
+  --e-bg-disabled: var(--color-neutral-97);
+  --e-text-disabled: var(--color-neutral-75);
+  --e-border-disabled: var(--color-neutral-90);
 }
 
 body {

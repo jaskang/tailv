@@ -1,5 +1,5 @@
 import { computed, defineComponent, type PropType } from "vue";
-import { clsNames } from "../_utils";
+import { classNames } from "../_utils";
 import "./index.scss";
 
 export const EButton = defineComponent({
@@ -13,7 +13,7 @@ export const EButton = defineComponent({
   },
   setup(props, { slots }) {
     const cls = computed(() =>
-      clsNames(
+      classNames(
         "e-button",
         `e-button--${props.color || "default"}`,
         props.type && `e-button--${props.type}`,

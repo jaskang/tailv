@@ -64,4 +64,15 @@ import { EButton, EButtonGroup, ECheckbox } from "../index";
     <EButton color="success" type="round">success</EButton>
     <EButton color="success" type="round">success</EButton>
   </EButtonGroup>
+  <br /><br />
+  <EButtonGroup>
+    <EButton color="primary" type="round">success</EButton>
+    <EButton color="success" type="round">success</EButton>
+    <EButton color="warning" type="round">success</EButton>
+    <EButton color="error" type="round">success</EButton>
+  </EButtonGroup>
+  <br /><br />
+  <ECheckbox>ECheckbox</ECheckbox>
+  <ECheckbox disabled>ECheckbox disabled</ECheckbox>
+  <ECheckbox :checked="true" disabled>ECheckbox disabled</ECheckbox>
 </template>

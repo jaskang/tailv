@@ -1,1 +1,1 @@
-export { clsNames } from "./clsNames";
+export { classNames } from "./classNames";

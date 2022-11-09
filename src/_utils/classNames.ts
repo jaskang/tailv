@@ -35,7 +35,7 @@ function toVal(mix: any) {
   return str;
 }
 
-export function clsNames(...args: ClassValue[]) {
+export function classNames(...args: ClassValue[]) {
   let x;
   let str = "";
   for (const tmp of args) {

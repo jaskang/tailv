@@ -1,23 +1,50 @@
-import { computed, defineComponent, type PropType } from "vue";
+import {
+  computed,
+  defineComponent,
+  ref,
+  watchEffect,
+  type PropType,
+} from "vue";
+import { classNames } from "../_utils";
 import "./index.scss";
 
 export const ECheckbox = defineComponent({
   name: "ECheckbox",
   props: {
     disabled: Boolean,
+    checked: Boolean,
   },
-  setup(props, { slots }) {
-    const cls = computed(() => {
-      const ret: string[] = [];
+  emits: ["onUpdate:checked"],
+  setup(props, { emit, slots, expose }) {
+    const innerChecked = ref(props.checked);
+
+    const onInput = (e: Event) => {
+      const el = e.currentTarget as HTMLInputElement;
+      innerChecked.value = el.checked;
+      console.log(el.checked);
+    };
+    const onClick = (e: Event) => {
+      console.log(e);
+
       if (props.disabled) {
-        ret.push("is-disabled");
+        e.preventDefault();
+        return false;
       }
-      return ret;
-    });
+    };
+    const cls = computed(() =>
+      classNames("e-checkbox", props.disabled && "is-disabled")
+    );
     return () => (
-      <button class={`e-checkbox ${cls.value.join(" ")}`}>
-        {slots.default?.()}
-      </button>
+      <label class={cls.value}>
+        <input
+          class="e-checkbox__input"
+          type="checkbox"
+          checked={innerChecked.value}
+          onInput={onInput}
+          onClick={onClick}
+        />
+        <span class="e-checkbox__label">{slots.default?.()}</span>
+      </label>
     );
   },
 });
