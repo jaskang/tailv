@@ -1,4 +1,5 @@
 import { computed, defineComponent, type PropType } from "vue";
+import { clsNames } from "../_utils";
 import "./index.scss";
 
 export const EButton = defineComponent({
@@ -11,22 +12,17 @@ export const EButton = defineComponent({
     disabled: Boolean,
   },
   setup(props, { slots }) {
-    const cls = computed(() => {
-      const ret: string[] = [];
-      ret.push(`e-button--${props.color || "default"}`);
-      if (props.type) {
-        ret.push(`e-button--${props.type}`);
-      }
-      if (props.size) {
-        ret.push(`e-button--${props.size}`);
-      }
-      if (props.disabled) {
-        ret.push("is-disabled");
-      }
-      return ret;
-    });
+    const cls = computed(() =>
+      clsNames(
+        "e-button",
+        `e-button--${props.color || "default"}`,
+        props.type && `e-button--${props.type}`,
+        props.size && `e-button--${props.size}`,
+        props.disabled && `is-disabled`
+      )
+    );
     return () => (
-      <button class={`e-button ${cls.value.join(" ")}`}>
+      <button class={cls.value}>
         <span>{slots.default?.()}</span>
       </button>
     );

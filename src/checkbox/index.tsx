@@ -15,7 +15,7 @@ export const ECheckbox = defineComponent({
       return ret;
     });
     return () => (
-      <button class={`e-button ${cls.value.join(" ")}`}>
+      <button class={`e-checkbox ${cls.value.join(" ")}`}>
         {slots.default?.()}
       </button>
     );
