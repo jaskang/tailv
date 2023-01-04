@@ -1,5 +1,6 @@
 import { computed, defineComponent, type PropType } from "vue";
 import { classNames } from "../_utils";
+
 import "./index.scss";
 
 export const EButton = defineComponent({
@@ -7,7 +8,7 @@ export const EButton = defineComponent({
   props: {
     type: String as PropType<"round" | "circle" | "link" | "plain">,
     color: String as PropType<"primary" | "success" | "warning" | "error">,
-    size: String as PropType<"small" | "large">,
+    size: String as PropType<"xs" | "sm" | "lg" | "xl">,
     round: Boolean,
     disabled: Boolean,
   },

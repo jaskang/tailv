@@ -1,5 +1,7 @@
-@use "sass:color";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #f7f8fa;
+}

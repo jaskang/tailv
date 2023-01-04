@@ -17,6 +17,9 @@ export default defineConfig({
       external: ["vue"],
     },
   },
+  css: {
+    postcss: "postcss.config.cjs",
+  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),

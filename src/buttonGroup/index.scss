@@ -6,7 +6,8 @@
   position: relative;
   > .e-button {
     border-radius: 0;
-    &:hover {
+    &:hover,
+    &:focus-within {
       z-index: 1;
     }
     &:not(:first-child) {
