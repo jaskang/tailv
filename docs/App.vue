@@ -10,7 +10,22 @@ import { EButton, EButtonGroup, ECheckbox, ERadio } from "../src/index";
     <EButton color="success">success</EButton>
     <EButton color="warning">warning</EButton>
     <EButton color="error">error</EButton>
+    <EButton disabled>默认</EButton>
+    <EButton color="primary" disabled>primary</EButton>
     <br />
+  </div>
+  <h2>大小</h2>
+  <div class="space-x-1">
+    <EButton size="xs">button xs</EButton>
+    <EButton size="sm">button sm</EButton>
+    <EButton>button</EButton>
+    <EButton size="lg">button lg</EButton>
+    <EButton size="xl">button xl</EButton>
+    <EButton color="primary" size="xs">button xs</EButton>
+    <EButton color="primary" size="sm">button sm</EButton>
+    <EButton color="primary">button</EButton>
+    <EButton color="primary" size="lg">button lg</EButton>
+    <EButton color="primary" size="xl">button xl</EButton>
   </div>
   <h2>圆角</h2>
   <div class="space-x-1">
@@ -47,6 +62,7 @@ import { EButton, EButtonGroup, ECheckbox, ERadio } from "../src/index";
     <EButton size="xl" color="success" type="circle">S</EButton>
     <EButton size="xl" color="warning" type="circle">W</EButton>
     <EButton size="xl" color="error" type="circle">E</EButton>
+    <EButton size="lg" color="primary" type="circle" disabled>P</EButton>
   </div>
   <h2>链接按钮</h2>
   <div class="space-x-1">
@@ -55,37 +71,7 @@ import { EButton, EButtonGroup, ECheckbox, ERadio } from "../src/index";
     <EButton color="success" type="link">success</EButton>
     <EButton color="warning" type="link">warning</EButton>
     <EButton color="error" type="link">error</EButton>
-  </div>
-  <div class="space-x-1">
-    <EButton color="warning" size="large">warning</EButton>
-    <EButton color="warning" size="small">warning</EButton>
-    <EButton color="warning">warning</EButton>
-    <EButton color="warning" type="round">warning</EButton>
-    <br /><br />
-  </div>
-  <div class="space-x-1">
-    <EButton color="error" size="large">error</EButton>
-    <EButton color="error" size="small">error</EButton>
-    <EButton color="error">error</EButton>
-    <EButton color="error" type="round">error</EButton>
-    <EButton disabled>button</EButton>
-    <br /><br />
-  </div>
-  <div class="space-x-1">
-    <EButton color="primary" type="round">primary</EButton>
-    <EButton color="success" type="round">success</EButton>
-    <EButton color="warning" type="round">warning</EButton>
-    <EButton color="error" type="round">error</EButton>
-    <EButton disabled type="round">disabled</EButton>
-    <br /><br />
-  </div>
-  <div class="space-x-1">
-    <EButton color="primary" type="circle">p</EButton>
-    <EButton color="success" type="circle">s</EButton>
-    <EButton color="warning" type="circle">w</EButton>
-    <EButton color="error" type="circle">errorerror</EButton>
-    <EButton disabled type="circle">d</EButton>
-    <br /><br />
+    <EButton color="primary" type="link" disabled>primary</EButton>
   </div>
   <div class="space-x-1">
     <EButtonGroup>
@@ -137,22 +123,5 @@ import { EButton, EButtonGroup, ECheckbox, ERadio } from "../src/index";
     <ERadio name="radio" :checked="true" disabled>ERadio disabled</ERadio>
     <br /><br />
   </div>
-  <div class="space-x-1">
-    <EButton size="xs">button</EButton>
-    <EButton size="sm">button</EButton>
-    <EButton>button</EButton>
-    <EButton size="lg">button</EButton>
-    <EButton size="xl">button</EButton>
-    <EButton disabled>button</EButton>
-  </div>
-  <br /><br />
-  <div class="space-x-1">
-    <EButton color="primary" size="xs">button</EButton>
-    <EButton color="primary" size="sm">button</EButton>
-    <EButton color="primary">button</EButton>
-    <EButton color="primary" size="lg">button</EButton>
-    <EButton color="primary" size="xl">button</EButton>
-    <EButton color="primary" disabled>button</EButton>
-    <br /><br />
-  </div>
+  
 </template>

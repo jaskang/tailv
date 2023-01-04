@@ -2,14 +2,14 @@
   @apply pointer-events-auto inline-flex justify-center
   rounded-md border border-slate-300 bg-white py-2 px-4 text-center text-sm shadow-sm outline-none   
   hover:bg-slate-50
-  focus:outline-none focus:ring focus:ring-slate-300/30;
+  focus:outline-none focus:ring focus:ring-slate-400/30;
 
   &.is-disabled {
-    @apply cursor-not-allowed border border-slate-300 bg-slate-50 text-slate-400 focus:outline-none focus:ring-0;
+    @apply cursor-not-allowed border border-slate-300 bg-slate-50 text-slate-400 focus:outline-none focus:ring-0 #{!important};
   }
 
   &--primary {
-    @apply border-transparent bg-indigo-600 text-white ring-transparent hover:bg-indigo-700 focus:ring focus:ring-indigo-600/30;
+    @apply border-transparent bg-indigo-600 text-white ring-transparent hover:bg-indigo-700 focus:ring focus:ring-indigo-700/30;
   }
 
   &--success {
@@ -59,7 +59,7 @@
   }
 
   &--link {
-    @apply border-transparent bg-transparent underline underline-offset-2 hover:bg-transparent;
+    @apply border-transparent bg-transparent underline underline-offset-2 hover:bg-transparent shadow-none;
     &.e-button--primary {
       @apply text-indigo-600 hover:text-indigo-700;
     }
@@ -74,3 +74,4 @@
     }
   }
 }
+

@@ -6,7 +6,7 @@ import "./index.scss";
 export const EButton = defineComponent({
   name: "EButton",
   props: {
-    type: String as PropType<"round" | "circle" | "link" | "plain">,
+    type: String as PropType<"round" | "circle" | "link">,
     color: String as PropType<"primary" | "success" | "warning" | "error">,
     size: String as PropType<"xs" | "sm" | "lg" | "xl">,
     round: Boolean,

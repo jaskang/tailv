@@ -1,25 +1,18 @@
-:root {
-}
+
 .e-button-group {
   flex-wrap: nowrap;
   display: inline-flex;
   position: relative;
-  > .e-button {
-    border-radius: 0;
-    &:hover,
-    &:focus-within {
+  > .e-button{
+    @apply rounded-none first:rounded-l-md last:rounded-r-md focus:ring-0;
+  
+    &:hover {
       z-index: 1;
     }
+
     &:not(:first-child) {
       margin: 0 0 0 -1px;
     }
-    &:first-child {
-      border-top-left-radius: var(--e-btn-border-radius);
-      border-bottom-left-radius: var(--e-btn-border-radius);
-    }
-    &:last-child {
-      border-top-right-radius: var(--e-btn-border-radius);
-      border-bottom-right-radius: var(--e-btn-border-radius);
-    }
+   
   }
 }
