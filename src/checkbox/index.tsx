@@ -13,6 +13,8 @@ export const ECheckbox = defineComponent({
   props: {
     disabled: Boolean,
     checked: Boolean,
+    name: String,
+    value: [String, Number],
   },
   emits: ["onUpdate:checked"],
   setup(props, { emit, slots, expose }) {
@@ -21,24 +23,22 @@ export const ECheckbox = defineComponent({
     const onInput = (e: Event) => {
       const el = e.currentTarget as HTMLInputElement;
       innerChecked.value = el.checked;
-      console.log(el.checked);
     };
     const onClick = (e: Event) => {
-      console.log(e);
-
       if (props.disabled) {
         e.preventDefault();
         return false;
       }
     };
-    const cls = computed(() =>
-      classNames("e-checkbox", props.disabled && "is-disabled")
-    );
+
     return () => (
-      <label class={cls.value}>
+      <label class={["e-checkbox", props.disabled && "is-disabled"]}>
         <input
           class="e-checkbox__input"
           type="checkbox"
+          value={props.value}
+          name={props.name}
+          disabled={props.disabled}
           checked={innerChecked.value}
           onInput={onInput}
           onClick={onClick}

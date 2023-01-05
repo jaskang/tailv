@@ -112,7 +112,7 @@ import { EButton, EButtonGroup, ECheckbox, ERadio } from "../src/index";
   <div class="space-x-1">
     <ECheckbox>ECheckbox</ECheckbox>
     <ECheckbox disabled>ECheckbox disabled</ECheckbox>
-    <ECheckbox :checked="true" disabled>ECheckbox disabled</ECheckbox>
+    <ECheckbox checked disabled>ECheckbox disabled</ECheckbox>
     <br /><br />
   </div>
   <div class="space-x-1">
@@ -120,8 +120,7 @@ import { EButton, EButtonGroup, ECheckbox, ERadio } from "../src/index";
     <ERadio name="radio">ERadio</ERadio>
     <ERadio name="radio">ERadio</ERadio>
     <ERadio name="radio" disabled>ERadio disabled</ERadio>
-    <ERadio name="radio" :checked="true" disabled>ERadio disabled</ERadio>
+    <ERadio name="radio" checked disabled>ERadio disabled</ERadio>
     <br /><br />
   </div>
-  
 </template>

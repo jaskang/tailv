@@ -36,19 +36,17 @@ export const ERadio = defineComponent({
     const onChange = (e: Event) => {
       console.log("change", e);
     };
-    const cls = computed(() =>
-      classNames("e-radio", props.disabled && "is-disabled")
-    );
+
     return () => (
-      <label class={cls.value}>
+      <label class={["e-radio", props.disabled && "is-disabled"]}>
         <input
           ref="inputRef"
           class="e-radio__input"
           type="radio"
           value={props.value}
           name={props.name}
-          checked={innerChecked.value}
           disabled={props.disabled}
+          checked={innerChecked.value}
           onInput={onInput}
           onClick={onClick}
           onChange={onChange}

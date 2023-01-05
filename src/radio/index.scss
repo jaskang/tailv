@@ -1,60 +1,25 @@
-:root {
-  --e-radio-bg: var(--color-neutral-100);
-  --e-radio-bg-checked: var(--color-primary);
-  --e-radio-border-color: var(--color-neutral-90);
-}
-
 .e-radio {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  color: var(--e-text-color);
-  &__label {
-    user-select: none;
-    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 8px;
-    line-height: 1;
-    font-size: var(--font-size);
-  }
+  @apply inline-flex items-center;
   &__input {
-    cursor: inherit;
-    margin: 0;
-    width: 1rem;
-    height: 1rem;
-    appearance: none;
-    display: inline-block;
-    flex-shrink: 0;
-    padding: 0;
-    user-select: none;
-    vertical-align: middle;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 50%;
-    border-color: var(--e-radio-border-color);
-    background-color: var(--e-radio-bg);
+    @apply inline-block h-4 w-4 select-none appearance-none rounded-full border border-gray-300 text-blue-600 
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
     &:checked {
-      border-color: transparent;
-      background-color: var(--e-radio-bg-checked);
-      background-position: 50%;
-      background-repeat: no-repeat;
-      background-size: 120% 120%;
+      @apply border-transparent bg-current bg-[length:100%_100%] bg-center bg-no-repeat;
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
     }
-    &:focus-visible {
-      outline: 2px solid var(--e-radio-bg-checked);
-      outline-offset: 1px;
-    }
   }
-
+  &__label {
+    @apply ml-2 text-sm text-gray-900;
+  }
   &.is-disabled {
-    cursor: not-allowed;
-    color: var(--e-text-disabled);
     .e-radio__input {
-      background-color: var(--e-bg-disabled);
+      @apply bg-gray-100 focus:shadow-none;
       &:checked {
-        background-color: var(--e-radio-border-color);
-        border-color: var(--e-radio-border-color);
+        @apply bg-current;
       }
+    }
+    .e-radio__label {
+      @apply text-gray-400;
     }
   }
 }

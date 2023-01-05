@@ -1,27 +1,32 @@
 .e-button {
   @apply pointer-events-auto inline-flex justify-center
-  rounded-md border border-slate-300 bg-white py-2 px-4 text-center text-sm shadow-sm outline-none   
+  rounded-md border border-slate-700/10 bg-white py-2 px-4 text-center text-sm shadow-sm outline-none   
   hover:bg-slate-50
   focus:outline-none focus:ring focus:ring-slate-400/30;
 
   &.is-disabled {
-    @apply cursor-not-allowed border border-slate-300 bg-slate-50 text-slate-400 focus:outline-none focus:ring-0 #{!important};
+    @apply cursor-not-allowed border border-slate-300 bg-slate-50 text-slate-400 
+    focus:outline-none focus:ring-0 #{!important};
   }
 
   &--primary {
-    @apply border-transparent bg-indigo-600 text-white ring-transparent hover:bg-indigo-700 focus:ring focus:ring-indigo-700/30;
+    @apply border-transparent bg-indigo-600 text-white ring-transparent 
+    hover:bg-indigo-700 focus:ring focus:ring-indigo-700/30;
   }
 
   &--success {
-    @apply border-transparent bg-green-500 text-white ring-transparent hover:bg-green-600 focus:ring focus:ring-green-600/30;
+    @apply border-transparent bg-green-500 text-white ring-transparent 
+    hover:bg-green-600 focus:ring focus:ring-green-600/30;
   }
 
   &--warning {
-    @apply border-transparent bg-amber-500 text-white ring-transparent hover:bg-amber-600 focus:ring focus:ring-amber-600/30;
+    @apply border-transparent bg-amber-500 text-white ring-transparent 
+    hover:bg-amber-600 focus:ring focus:ring-amber-600/30;
   }
 
   &--error {
-    @apply border-transparent bg-red-500 text-white ring-transparent hover:bg-red-600 focus:ring focus:ring-red-600/30;
+    @apply border-transparent bg-red-500 text-white ring-transparent 
+    hover:bg-red-600 focus:ring focus:ring-red-600/30;
   }
 
   &--xs {
@@ -59,7 +64,7 @@
   }
 
   &--link {
-    @apply border-transparent bg-transparent underline underline-offset-2 hover:bg-transparent shadow-none;
+    @apply border-transparent bg-transparent underline underline-offset-2 shadow-none hover:bg-transparent;
     &.e-button--primary {
       @apply text-indigo-600 hover:text-indigo-700;
     }
@@ -72,6 +77,9 @@
     &.e-button--error {
       @apply text-red-600 hover:text-red-700;
     }
+
+    &.is-disabled {
+      @apply border-transparent bg-transparent #{!important};
+    }
   }
 }
-
