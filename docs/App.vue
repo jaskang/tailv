@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EButton, EButtonGroup, ECheckbox, ERadio } from "../src/index";
+import { EButton, EButtonGroup, ECheckbox, ERadio } from '../src/index'
 </script>
 
 <template>

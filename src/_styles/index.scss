@@ -1,5 +1,10 @@
-@use "sass:color";
+@use 'sass:color';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import '../button/index.scss';
+@import '../buttonGroup/index.scss';
+@import '../checkbox/index.scss';
+@import '../radio/index.scss';

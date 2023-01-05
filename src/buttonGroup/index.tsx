@@ -1,9 +1,8 @@
-import { defineComponent } from "vue";
-import "./index.scss";
+import { defineComponent } from 'vue'
 
 export const EButtonGroup = defineComponent({
-  name: "EButtonGroup",
+  name: 'EButtonGroup',
   setup(_, { slots }) {
-    return () => <div class="e-button-group">{slots.default?.()}</div>;
+    return () => <div class="e-button-group">{slots.default?.()}</div>
   },
-});
+})
