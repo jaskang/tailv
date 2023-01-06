@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import Inspect from 'vite-plugin-inspect'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { MditVuePreview } from './md/plugin'
 
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
     theme: 'github-dark',
   },
   vite: {
-    plugins: [MditVuePreview(), Inspect()],
+    plugins: [MditVuePreview(), Inspect(), vueJsx()],
   },
   themeConfig: {
     nav: [
