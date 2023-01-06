@@ -13,7 +13,11 @@ export default defineConfig({
     theme: 'github-dark',
   },
   vite: {
-    plugins: [MditVuePreview(), Inspect(), vueJsx()],
+    plugins: [
+      MditVuePreview(),
+      // Inspect(),
+      vueJsx(),
+    ],
   },
   themeConfig: {
     nav: [
