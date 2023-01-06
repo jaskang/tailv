@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import Inspect from 'vite-plugin-inspect'
+import { MditVuePreview } from './md/plugin'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -6,10 +8,11 @@ export default defineConfig({
   description: 'Vite & Vue powered static site generator.',
   lastUpdated: true,
   markdown: {
-    config(md) {},
+    lineNumbers: true,
+    theme: 'github-dark',
   },
   vite: {
-    plugins: [],
+    plugins: [MditVuePreview(), Inspect()],
   },
   themeConfig: {
     nav: [

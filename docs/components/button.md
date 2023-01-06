@@ -1,12 +1,13 @@
 # Button
 
-<script setup>
-import { ref} from 'vue'
-const a = ref('aaa')
-</script>
+```vue demo
+<template>
+  <button>Get Started</button>
+</template>
+```
 
-a: {{ a }}
-
-```vue preview
-<template></template>
+```vue demo [config.ts]
+<template>
+  <button>Getsdsdasdsdfs Startedsdf</button>
+</template>
 ```
