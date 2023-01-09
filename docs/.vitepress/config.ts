@@ -10,14 +10,10 @@ export default defineConfig({
   lastUpdated: true,
   markdown: {
     lineNumbers: true,
-    theme: 'github-dark',
+    // theme: 'github-light',
   },
   vite: {
-    plugins: [
-      MditVuePreview(),
-      // Inspect(),
-      vueJsx(),
-    ],
+    plugins: [MditVuePreview(), vueJsx(), Inspect()],
   },
   themeConfig: {
     nav: [
