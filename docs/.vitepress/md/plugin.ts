@@ -1,5 +1,4 @@
 import fs from 'node:fs'
-import { createHash } from 'node:crypto'
 import { type Plugin, type ResolvedConfig, normalizePath } from 'vite'
 import { visit, type Node } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
@@ -8,12 +7,8 @@ import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-front
 import type { Code, Parent } from 'mdast'
 import { relative } from 'node:path'
 
-const CODE_VUE_REGEXP = /.md.DemoBlock[a-z0-9]{8}I\d{1,4}\.vue$/
+const CODE_VUE_REGEXP = /.md.DemoBlockI\d{1,4}\.vue$/
 const DemoBlockMap = new Map<string, string>()
-
-function md5(str: string): string {
-  return createHash('md5').update(str).digest('hex')
-}
 
 export function remarkDemoBlock(id: string, code: string) {
   const tree = fromMarkdown(code, {
@@ -29,13 +24,13 @@ export function remarkDemoBlock(id: string, code: string) {
   const blocks: Record<string, string> = {}
 
   visit(tree as Node, 'code', (node: Code, index: number, parent: Parent) => {
+    const i = Object.keys(blocks).length
     const lang = (node.lang || '').split(':')[0]
     const meta = (node.meta || '').split(' ')
 
     const isDemo = meta.indexOf('demo') !== -1 && lang === 'vue'
     if (isDemo) {
-      const hash = md5(id).substr(0, 8)
-      const name = `DemoBlock${hash}I${index}`
+      const name = `DemoBlockI${i}`
       blocks[name] = node.value
 
       parent.children.splice(
@@ -89,23 +84,20 @@ export function MditVuePreview(): Plugin {
     },
     resolveId(id) {
       if (CODE_VUE_REGEXP.test(id)) {
-        console.log('resolveId', id)
-        return `${id}`
+        return id
       }
     },
     async load(id) {
       if (CODE_VUE_REGEXP.test(id)) {
         const demoCode = DemoBlockMap.get(id)
-        console.log('load', id, demoCode)
         return demoCode
       }
       if (id.endsWith('.md')) {
         const { code, blocks } = remarkDemoBlock(id, fs.readFileSync(id, 'utf8'))
         for (const k of Object.keys(blocks)) {
-          const [filename] = id.split('.md', 1)
-          const blockKey = `${filename}.${k}.vue`
+          const blockKey = `${id}.${k}.vue`
           const blockId = '/' + relative(root, blockKey)
-          console.log('DemoBlockMap.set', blockId, blocks[k])
+          // console.log('DemoBlockMap.set', blockId, blocks[k])
 
           DemoBlockMap.set(blockId, blocks[k])
         }
@@ -118,29 +110,31 @@ export function MditVuePreview(): Plugin {
       server.moduleGraph
       if (file.endsWith('.md')) {
         const { blocks } = remarkDemoBlock(file, fs.readFileSync(file, 'utf8'))
-
         const updates: any[] = []
         for (const k of Object.keys(blocks)) {
-          const [filename] = file.split('.md', 1)
-          const blockKey = `${filename}.${k}.vue`
+          const blockKey = `${file}.${k}.vue`
           const blockId = '/' + relative(root, blockKey)
           DemoBlockMap.set(blockId, blocks[k])
 
           const mod = moduleGraph.getModuleById(blockId)
           if (mod) {
+            // console.log(mod)
             const ret = await vuePlugin.handleHotUpdate({
               file: blockId,
               timestamp: timestamp,
               modules: [mod],
-              read: () => DemoBlockMap.get[blockId],
+              read: () => blocks[k],
               server: server,
             })
+
             updates.push(...ret)
           }
         }
         if (updates.length > 0) {
           return updates.filter(Boolean)
         }
+        // overwrite src so vue plugin can handle the HMR
+        // ctx.read = () => code
       }
     },
   }
