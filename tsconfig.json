@@ -1,6 +1,6 @@
 {
   "extends": "@jaskang/config/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "docs/**/*", "docs/**/*.vue"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "outDir": "dist_types",

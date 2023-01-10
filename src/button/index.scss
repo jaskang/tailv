@@ -7,7 +7,7 @@
   &.is-disabled {
     @apply cursor-not-allowed border border-slate-300 bg-slate-50 text-slate-400 
     focus:outline-none focus:ring-0 #{!important};
-  } 
+  }
 
   &--primary {
     @apply border-transparent bg-indigo-600 text-white ring-transparent 
@@ -48,18 +48,18 @@
 
   &--circle {
     @apply overflow-hidden whitespace-nowrap rounded-full px-0 text-center;
-    width: calc(theme("width.9") + 2px);
+    width: calc(theme('width.9') + 2px);
     &.e-button--xs {
-      width: calc(theme("width.7") + 2px);
+      width: calc(theme('width.7') + 2px);
     }
     &.e-button--sm {
-      width: calc(theme("width.8") + 2px);
+      width: calc(theme('width.8') + 2px);
     }
     &.e-button--lg {
-      width: calc(theme("width.10") + 2px);
+      width: calc(theme('width.10') + 2px);
     }
     &.e-button--xl {
-      width: calc(theme("width.12") + 2px);
+      width: calc(theme('width.12') + 2px);
     }
   }
 

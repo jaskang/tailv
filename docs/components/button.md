@@ -16,8 +16,6 @@
 </template>
 ```
 
-aaa
-
 ## 大小
 
 ```vue demo

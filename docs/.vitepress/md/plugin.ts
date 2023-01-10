@@ -47,7 +47,7 @@ export function remarkDemoBlock(id: string, code: string) {
         node,
         {
           type: 'html',
-          value: '</template></MdvueDemo>',
+          value: '\n</template></MdvueDemo>',
         }
       )
       return index + 3
