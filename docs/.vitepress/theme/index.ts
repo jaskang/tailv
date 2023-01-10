@@ -6,7 +6,7 @@ export default {
   ...DefaultTheme,
   enhanceApp(ctx) {
     DefaultTheme.enhanceApp(ctx)
-    ctx.app.component('MdvueDemo', MdvueDemo)
+    ctx.app.component('VueDoc', MdvueDemo)
     ctx.app.use(plugin)
   },
 }

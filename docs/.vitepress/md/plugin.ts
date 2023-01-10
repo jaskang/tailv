@@ -38,16 +38,14 @@ export function remarkDemoBlock(id: string, code: string) {
         1,
         {
           type: 'html',
-          value: `<MdvueDemo lang="${decodeURIComponent(
-            node.lang || ''
-          )}" meta="${decodeURIComponent(node.meta || '')}" code="${encodeURIComponent(
-            node.value
-          )}">\n<${name}/>\n<template #code>`,
+          value: `<VueDoc lang="${decodeURIComponent(node.lang || '')}" meta="${decodeURIComponent(
+            node.meta || ''
+          )}" code="${encodeURIComponent(node.value)}">\n<${name}/>\n<template #code>`,
         },
         node,
         {
           type: 'html',
-          value: '\n</template></MdvueDemo>',
+          value: '\n</template></VueDoc>',
         }
       )
       return index + 3

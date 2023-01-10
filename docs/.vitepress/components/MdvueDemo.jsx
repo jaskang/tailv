@@ -1,24 +1,30 @@
 import { resolveComponent, defineComponent, ref } from 'vue'
 
-const MdvueDemoBlockStyles = `
-.mdvue-demo {
+const ViteVueDocBlockStyles = `
+:root{
+  --vuedoc-border-color: var(--vp-c-divider-light-2, rgba(60, 60, 60, .12));
+  --vuedoc-btn-bg-hover: var(--vp-c-gray-light-5, #f2f2f2);
+}
+.dark {
+  --vuedoc-border-color: var(--vp-c-divider-dark-2, rgba(84, 84, 84, .48));
+  --vuedoc-btn-bg-hover: var(--vp-c-gray-dark-3, #3a3a3a);
+}
+.vuedoc-demo {
   border-radius: 4px;
   overflow: hidden;
+  border: 1px solid var(--vuedoc-border-color);
 }
-.mdvue-demo__preview {
+.vuedoc-demo__preview {
   padding: 20px;
-  border: 1px solid var(--vp-c-divider-light);
 }
-.mdvue-demo__toolbar {
+.vuedoc-demo__toolbar {
   height: 38px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border: 1px solid var(--vp-c-divider-light);
-  /* background-color: rgb(248 250 252/ 1); */
-  border-top: none;
+  border-top: 1px solid var(--vuedoc-border-color);
 }
-.mdvue-demo__toolbar .mdvue-demo__btn {
+.vuedoc-demo__btn {
   width: 38px;
   height: 100%;
   align-items: center;
@@ -28,21 +34,22 @@ const MdvueDemoBlockStyles = `
   justify-content: center;
   cursor: pointer;
 }
-.mdvue-demo__toolbar .mdvue-demo__btn:hover {
-  background-color: rgb(248 250 252 / 1);
+.vuedoc-demo__btn:hover {
+  background-color: var(--vuedoc-btn-bg-hover);
 }
-.mdvue-demo__toolbar svg {
+
+.vuedoc-demo__toolbar svg {
   width: 1rem;
   height: 1rem;
 }
-.mdvue-demo__toolbar {
-}
-.mdvue-demo__code div[class*='language-'] {
-  margin: 0;
-  border-radius: 0;
+
+.vuedoc-demo.is-expanded .vuedoc-demo__code{
+  border-top: 1px solid var(--vuedoc-border-color);
 }
 
-.mdvue-demo__code {
+.vuedoc-demo__code div[class*='language-'] {
+  margin: 0;
+  border-radius: 0;
 }
 `
 
@@ -50,34 +57,30 @@ let shouldInjectStyle = true
 function styleInject(css) {
   if (shouldInjectStyle) {
     if (typeof window !== 'undefined') {
-      const head = document.head || document.getElementsByTagName('head')[0]
-      const style = document.createElement('style')
-      style.setAttribute('type', 'text/css')
-      if (style.styleSheet) {
-        style.styleSheet.cssText = css
-      } else {
-        style.appendChild(document.createTextNode(css))
+      const el = document.getElementById('vuedoc-style')
+      if (!el) {
+        const head = document.head || document.getElementsByTagName('head')[0]
+        const style = document.createElement('style')
+        style.setAttribute('type', 'text/css')
+        style.setAttribute('id', 'vuedoc-style')
+        if (style.styleSheet) {
+          style.styleSheet.cssText = css
+        } else {
+          style.appendChild(document.createTextNode(css))
+        }
+        head.appendChild(style)
+        shouldInjectStyle = false
       }
-      head.appendChild(style)
-      shouldInjectStyle = false
     }
   }
 }
 
-const MdvueDemoBlock = defineComponent({
+const VueDocBlock = defineComponent({
+  name: 'VueDocBlock',
   props: {
-    code: {
-      type: String,
-      required: true,
-    },
-    lang: {
-      type: String,
-      required: true,
-    },
-    meta: {
-      type: String,
-      required: true,
-    },
+    code: { type: String, required: true },
+    lang: { type: String, required: true },
+    meta: { type: String, required: true },
   },
   setup(props, { slots }) {
     const codeEl = ref()
@@ -91,7 +94,9 @@ const MdvueDemoBlock = defineComponent({
       if (!copied.value) {
         try {
           navigator.clipboard.writeText(props.code)
-        } catch (error) {}
+        } catch (err) {
+          console.log(err)
+        }
         copied.value = true
         setTimeout(() => {
           copied.value = false
@@ -99,10 +104,10 @@ const MdvueDemoBlock = defineComponent({
       }
     }
     return () => (
-      <div class="mdvue-demo">
-        <div class="mdvue-demo__preview">{slots.default && slots.default()}</div>
-        <div class="mdvue-demo__toolbar">
-          <div class="mdvue-demo__btn mdvue-demo__btn-copy" onClick={copyCode}>
+      <div class={['vuedoc-demo', height.value > 0 && 'is-expanded']}>
+        <div class="vuedoc-demo__preview">{slots.default && slots.default()}</div>
+        <div class="vuedoc-demo__toolbar">
+          <div class="vuedoc-demo__btn vuedoc-demo__btn-copy" onClick={copyCode}>
             {copied.value ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +142,7 @@ const MdvueDemoBlock = defineComponent({
               </svg>
             )}
           </div>
-          <div class="mdvue-demo__btn mdvue-demo__btn-code" onClick={toggleCode}>
+          <div class="vuedoc-demo__btn vuedoc-demo__btn-code" onClick={toggleCode}>
             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
               <path
                 fill="none"
@@ -150,7 +155,7 @@ const MdvueDemoBlock = defineComponent({
             </svg>
           </div>
         </div>
-        <div class="mdvue-demo__code" style={{ height: height.value + 'px' }}>
+        <div class="vuedoc-demo__code" style={{ height: height.value + 'px' }}>
           <div ref={codeEl}>{slots.code && slots.code()}</div>
         </div>
       </div>
@@ -158,27 +163,17 @@ const MdvueDemoBlock = defineComponent({
   },
 })
 
-const MdvueDemo = defineComponent({
+const VueDoc = defineComponent({
+  name: 'VueDoc',
   props: {
-    code: {
-      type: String,
-      required: true,
-    },
-    lang: {
-      type: String,
-      required: true,
-    },
-    meta: {
-      type: String,
-      default: '',
-    },
-    component: {
-      type: String,
-    },
+    code: { type: String, required: true },
+    lang: { type: String, required: true },
+    meta: { type: String, default: '' },
+    component: { type: String },
   },
   setup(props, { slots }) {
-    styleInject(MdvueDemoBlockStyles)
-    const DemoBlock = props.component ? resolveComponent(props.component) : MdvueDemoBlock
+    styleInject(ViteVueDocBlockStyles)
+    const DemoBlock = props.component ? resolveComponent(props.component) : VueDocBlock
     return () => (
       <DemoBlock
         code={decodeURIComponent(props.code)}
@@ -191,4 +186,4 @@ const MdvueDemo = defineComponent({
   },
 })
 
-export default MdvueDemo
+export default VueDoc
