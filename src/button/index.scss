@@ -2,31 +2,32 @@
   @apply pointer-events-auto inline-flex justify-center
   rounded-md border border-solid border-slate-700/10 bg-white py-2 px-4 text-center text-sm shadow-sm outline-none   
   hover:bg-slate-50
-  focus:outline-none focus:ring focus:ring-slate-400/30;
+  focus:outline-none 
+  focus-visible:ring focus-visible:ring-slate-400/30;
 
   &.is-disabled {
     @apply cursor-not-allowed border border-slate-300 bg-slate-50 text-slate-400 
-    focus:outline-none focus:ring-0 #{!important};
+    focus:outline-none focus-visible:ring-0 #{!important};
   }
 
   &--primary {
     @apply border-transparent bg-indigo-600 text-white ring-transparent 
-    hover:bg-indigo-700 focus:ring focus:ring-indigo-700/30;
+    hover:bg-indigo-700 focus-visible:ring focus-visible:ring-indigo-700/30;
   }
 
   &--success {
     @apply border-transparent bg-green-500 text-white ring-transparent 
-    hover:bg-green-600 focus:ring focus:ring-green-600/30;
+    hover:bg-green-600 focus-visible:ring focus-visible:ring-green-600/30;
   }
 
   &--warning {
     @apply border-transparent bg-amber-500 text-white ring-transparent 
-    hover:bg-amber-600 focus:ring focus:ring-amber-600/30;
+    hover:bg-amber-600 focus-visible:ring focus-visible:ring-amber-600/30;
   }
 
   &--error {
     @apply border-transparent bg-red-500 text-white ring-transparent 
-    hover:bg-red-600 focus:ring focus:ring-red-600/30;
+    hover:bg-red-600 focus-visible:ring focus-visible:ring-red-600/30;
   }
 
   &--xs {

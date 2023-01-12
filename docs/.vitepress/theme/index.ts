@@ -1,12 +1,9 @@
 import DefaultTheme from 'vitepress/theme'
-import { plugin } from '../../../src'
-import MdvueDemo from '../components/MdvueDemo.jsx'
-
+import Elenext from '../../../src'
 export default {
   ...DefaultTheme,
   enhanceApp(ctx) {
     DefaultTheme.enhanceApp(ctx)
-    ctx.app.component('VueDoc', MdvueDemo)
-    ctx.app.use(plugin)
+    ctx.app.use(Elenext)
   },
 }

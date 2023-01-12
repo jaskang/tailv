@@ -1,19 +1,15 @@
 import { defineConfig } from 'vitepress'
-import Inspect from 'vite-plugin-inspect'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { MditVuePreview } from './md/plugin'
+import MarkdownPreview from 'vite-plugin-markdown-preview'
+// import Inspect from 'vite-plugin-inspect'
 
 export default defineConfig({
   lang: 'zh-CN',
   title: 'Elenext',
   description: 'Vite & Vue powered static site generator.',
   lastUpdated: true,
-  markdown: {
-    lineNumbers: true,
-    // theme: 'github-light',
-  },
   vite: {
-    plugins: [MditVuePreview(), vueJsx(), Inspect()],
+    plugins: [vueJsx(), MarkdownPreview()],
   },
   themeConfig: {
     nav: [
@@ -25,11 +21,14 @@ export default defineConfig({
     ],
     sidebar: [
       {
-        text: '组件',
+        text: '基础组件',
+        items: [{ text: 'Button 按钮', link: '/components/button' }],
+      },
+      {
+        text: '表单输入',
         items: [
-          { text: 'button', link: '/components/button' },
-          { text: 'checkbox', link: '/components/checkbox' },
-          { text: 'radio', link: '/components/radio' },
+          { text: 'Checkbox 多选框', link: '/components/checkbox' },
+          { text: 'Radio 单选框', link: '/components/radio' },
         ],
       },
     ],

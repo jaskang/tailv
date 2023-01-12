@@ -2,7 +2,7 @@
 
 ## 颜色
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <EButton>你测sd试好</EButton>
@@ -18,7 +18,7 @@
 
 ## 大小
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <EButton size="xs">button xs</EButton>
@@ -40,7 +40,7 @@
 
 ## 圆角
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <EButton type="round">默认</EButton>
@@ -54,7 +54,7 @@
 
 ## 圆形
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <EButton type="circle">D</EButton>
@@ -68,7 +68,7 @@
 
 ## 链接
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <EButton type="link">default</EButton>
@@ -82,7 +82,7 @@
 
 ## 禁用
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <EButton disabled>禁用</EButton>
@@ -96,7 +96,7 @@
 
 ## 按钮组
 
-```vue demo
+```vue preview
 <template>
   <EButtonGroup>
     <EButton>primary</EButton>

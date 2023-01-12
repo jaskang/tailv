@@ -1,6 +1,6 @@
 # checkbox
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <ECheckbox>ECheckbox</ECheckbox>

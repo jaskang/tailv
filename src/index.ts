@@ -8,7 +8,7 @@ import { ERadio } from './radio'
 
 export { EButton, EButtonGroup, ECheckbox, ERadio }
 
-export const plugin: Plugin = {
+export const Elenext: Plugin = {
   install(app, options) {
     app.component('EButton', EButton)
     app.component('EButtonGroup', EButtonGroup)
@@ -16,3 +16,5 @@ export const plugin: Plugin = {
     app.component('ERadio', ERadio)
   },
 }
+
+export default Elenext

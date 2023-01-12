@@ -2,7 +2,7 @@
   @apply inline-flex cursor-pointer items-center;
   &__input {
     @apply inline-block h-4 w-4 select-none appearance-none rounded-full border border-solid border-gray-300 text-blue-600 
-    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
     &:checked {
       @apply border-transparent bg-current bg-[length:100%_100%] bg-center bg-no-repeat;
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
@@ -14,7 +14,7 @@
   &.is-disabled {
     @apply cursor-not-allowed;
     .e-radio__input {
-      @apply bg-gray-100 focus:shadow-none;
+      @apply bg-gray-100 focus-visible:shadow-none;
       &:checked {
         @apply bg-current;
       }

@@ -1,6 +1,6 @@
 # radio
 
-```vue demo
+```vue preview
 <template>
   <div class="space-x-1">
     <ERadio name="radio">ERadio</ERadio>
