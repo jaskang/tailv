@@ -1,11 +1,9 @@
 {
   "extends": "@jaskang/config/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "docs/**/*", "docs/**/*.vue"],
-  "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "outDir": "dist_types",
     "composite": true,
-    "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "types": ["node", "jsdom"],
     "baseUrl": ".",
     "paths": {

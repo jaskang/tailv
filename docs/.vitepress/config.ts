@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 // import Inspect from 'vite-plugin-inspect'
@@ -10,6 +11,7 @@ export default defineConfig({
   lastUpdated: true,
   vite: {
     plugins: [vueJsx(), MarkdownPreview()],
+    ssr: { noExternal: ['vite-plugin-markdown-preview'] },
   },
   themeConfig: {
     nav: [
