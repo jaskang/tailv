@@ -1,5 +1,5 @@
 import type { Plugin } from 'vue'
-import './_styles/index.scss'
+import './_styles/index.css'
 
 import { EButton } from './button'
 import { EButtonGroup } from './buttonGroup'

@@ -21,7 +21,7 @@ export const EButton = defineComponent({
       )
     )
     return () => (
-      <button type="button" class={cls.value}>
+      <button type="button" disabled={props.disabled} class={cls.value}>
         <span>{slots.default?.()}</span>
       </button>
     )

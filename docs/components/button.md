@@ -1,18 +1,26 @@
+<style lang="postcss">
+.mdp-demo__preview {
+  > .e-button:not(:first-child){
+    margin-left: 1rem;
+  }
+  > br + .e-button{
+    margin-left: 0 !important;
+  }
+}
+</style>
+
 # Button
 
 ## 颜色
 
 ```vue preview
 <template>
-  <div class="space-x-1">
-    <EButton>你测sd试好</EButton>
-    <EButton color="primary">primary</EButton>
-    <EButton color="success">success</EButton>
-    <EButton color="warning">warning</EButton>
-    <EButton color="error">error</EButton>
-    <EButton disabled>默认</EButton>
-    <EButton color="primary" disabled>primary</EButton>
-  </div>
+  <EButton>你测sd试好</EButton>
+  <EButton color="primary">primary</EButton>
+  <EButton color="success">success</EButton>
+  <EButton color="warning">warning</EButton>
+  <EButton color="error">error</EButton>
+  <EButton disabled>默认</EButton>
 </template>
 ```
 
@@ -20,21 +28,17 @@
 
 ```vue preview
 <template>
-  <div class="space-x-1">
-    <EButton size="xs">button xs</EButton>
-    <EButton size="sm">button sm</EButton>
-    <EButton>button</EButton>
-    <EButton size="lg">button lg</EButton>
-    <EButton size="xl">button xl</EButton>
-  </div>
-  <br />
-  <div class="space-x-1">
-    <EButton color="primary" size="xs">primary xs</EButton>
-    <EButton color="primary" size="sm">primary sm</EButton>
-    <EButton color="primary">primary</EButton>
-    <EButton color="primary" size="lg">primary lg</EButton>
-    <EButton color="primary" size="xl">primary xl</EButton>
-  </div>
+  <EButton size="xs">button xs</EButton>
+  <EButton size="sm">button sm</EButton>
+  <EButton>button</EButton>
+  <EButton size="lg">button lg</EButton>
+  <EButton size="xl">button xl</EButton>
+  <br /><br />
+  <EButton color="primary" size="xs">button xs</EButton>
+  <EButton color="primary" size="sm">button sm</EButton>
+  <EButton color="primary">button</EButton>
+  <EButton color="primary" size="lg">button lg</EButton>
+  <EButton color="primary" size="xl">button xl</EButton>
 </template>
 ```
 
@@ -42,13 +46,11 @@
 
 ```vue preview
 <template>
-  <div class="space-x-1">
-    <EButton type="round">默认</EButton>
-    <EButton color="primary" type="round">primary</EButton>
-    <EButton color="success" type="round">success</EButton>
-    <EButton color="warning" type="round">warning</EButton>
-    <EButton color="error" type="round">error</EButton>
-  </div>
+  <EButton type="round">默认</EButton>
+  <EButton color="primary" type="round">primary</EButton>
+  <EButton color="success" type="round">success</EButton>
+  <EButton color="warning" type="round">warning</EButton>
+  <EButton color="error" type="round">error</EButton>
 </template>
 ```
 
@@ -56,13 +58,11 @@
 
 ```vue preview
 <template>
-  <div class="space-x-1">
-    <EButton type="circle">D</EButton>
-    <EButton color="primary" type="circle">P</EButton>
-    <EButton color="success" type="circle">S</EButton>
-    <EButton color="warning" type="circle">W</EButton>
-    <EButton color="error" type="circle">E</EButton>
-  </div>
+  <EButton type="circle">D</EButton>
+  <EButton color="primary" type="circle">P</EButton>
+  <EButton color="success" type="circle">S</EButton>
+  <EButton color="warning" type="circle">W</EButton>
+  <EButton color="error" type="circle">E</EButton>
 </template>
 ```
 
@@ -84,13 +84,10 @@
 
 ```vue preview
 <template>
-  <div class="space-x-1">
-    <EButton disabled>禁用</EButton>
-    <EButton color="primary" disabled>primary 禁用</EButton>
-    <EButton type="round" disabled>默认</EButton>
-    <EButton type="circle" disabled>D</EButton>
-    <EButton type="link" disabled>primary</EButton>
-  </div>
+  <EButton disabled>禁用状态</EButton>
+  <EButton type="round" disabled>圆角按钮-禁用状态</EButton>
+  <EButton type="circle" disabled>D</EButton>
+  <EButton type="link" disabled>链接按钮-禁用状态</EButton>
 </template>
 ```
 
