@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /component/button
+      link: /components/button
     - theme: alt
       text: View on GitHub
       link: https://github.com/JasKang/elenext

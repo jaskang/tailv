@@ -1,0 +1,19 @@
+.e-input {
+  @apply block w-full text-sm;
+  &__input {
+    @apply flex w-full items-center rounded-md border border-solid border-gray-300 px-3;
+    &.is-focused {
+      @apply border-indigo-500 ring-1 ring-indigo-500;
+    }
+  }
+  &__prefix {
+    @apply flex-initial pr-2;
+  }
+  &__suffix {
+    @apply flex-initial pl-2;
+  }
+  &__input-inner {
+    @apply flex-1 px-0 text-sm;
+    box-shadow: none !important;
+  }
+}
