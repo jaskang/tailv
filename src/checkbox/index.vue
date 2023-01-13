@@ -1,6 +1,7 @@
+<script lang="ts">
 import { defineComponent, ref } from 'vue'
 
-export const ECheckbox = defineComponent({
+export default defineComponent({
   name: 'ECheckbox',
   props: {
     disabled: Boolean,
@@ -23,20 +24,26 @@ export const ECheckbox = defineComponent({
       }
     }
 
-    return () => (
-      <label class={['e-checkbox', props.disabled && 'is-disabled']}>
-        <input
-          class="e-checkbox__input"
-          type="checkbox"
-          value={props.value}
-          name={props.name}
-          disabled={props.disabled}
-          checked={innerChecked.value}
-          onInput={onInput}
-          onClick={onClick}
-        />
-        <span class="e-checkbox__label">{slots.default?.()}</span>
-      </label>
-    )
+    return {
+      innerChecked,
+      onInput,
+      onClick,
+    }
   },
 })
+</script>
+<template>
+  <label :class="['e-checkbox', disabled && 'is-disabled']">
+    <input
+      type="checkbox"
+      class="e-checkbox__input font-extrabold"
+      :value="value"
+      :name="name"
+      :disabled="disabled"
+      :checked="innerChecked"
+      @input="onInput"
+      @click="onClick"
+    />
+    <span class="e-checkbox__label"><slot /></span>
+  </label>
+</template>

@@ -4,6 +4,7 @@ specifiers:
   '@jaskang/config': ^0.0.7
   '@jaskang/eslint-config': ^0.0.7
   '@microsoft/api-extractor': ^7.33.7
+  '@tailwindcss/forms': ^0.5.3
   '@types/jsdom': ^20.0.1
   '@types/node': ^16.18.11
   '@vicons/ionicons5': ^0.12.0
@@ -42,6 +43,7 @@ devDependencies:
   '@jaskang/config': 0.0.7
   '@jaskang/eslint-config': 0.0.7_pizzqsi6myk3636ihwmmh4mlr4
   '@microsoft/api-extractor': 7.33.7
+  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
   '@types/jsdom': 20.0.1
   '@types/node': 16.18.11
   '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
@@ -931,6 +933,15 @@ packages:
       argparse: 1.0.10
       colors: 1.2.5
       string-argv: 0.3.1
+    dev: true
+
+  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.2.4_postcss@8.4.20
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -3181,6 +3192,11 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: true
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: true
 
   /minimatch/3.1.2:

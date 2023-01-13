@@ -3,7 +3,7 @@ import './_styles/index.css'
 
 import { EButton } from './button'
 import { EButtonGroup } from './buttonGroup'
-import { ECheckbox } from './checkbox'
+import ECheckbox from './checkbox/index.vue'
 import { ERadio } from './radio'
 
 export { EButton, EButtonGroup, ECheckbox, ERadio }

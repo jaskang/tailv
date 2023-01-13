@@ -1,7 +1,13 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}', './docs/**/*.{vue,js,ts,jsx,tsx}'],
-  theme: {
-    extend: {},
+  content: {
+    relative: true,
+    files: [
+      './index.html',
+      './src/**/*.{vue,js,ts,jsx,tsx}',
+      './docs/.vitepress/**/*.{vue,js,ts,tsx}',
+      './docs/**/*.{md,vue,js,ts,tsx}',
+    ],
   },
-  plugins: [],
+  plugin: [require('@tailwindcss/forms')],
 }

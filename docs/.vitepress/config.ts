@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
-// import Inspect from 'vite-plugin-inspect'
+import Inspect from 'vite-plugin-inspect'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -10,7 +10,7 @@ export default defineConfig({
   description: 'Vite & Vue powered static site generator.',
   lastUpdated: true,
   vite: {
-    plugins: [vueJsx(), MarkdownPreview()],
+    plugins: [vueJsx(), Inspect(), MarkdownPreview()],
     ssr: { noExternal: ['vite-plugin-markdown-preview'] },
   },
   themeConfig: {
