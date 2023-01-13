@@ -14,5 +14,9 @@
   <EInput prefix="prefix" />
   <EInput suffix="suffix" />
   <EInput prefix="prefix" suffix="suffix" />
+  <EInput>
+    <template #before>before</template>
+    <template #after>after</template>
+  </EInput>
 </template>
 ```
