@@ -25,12 +25,12 @@
 
   &__before,
   &__after {
-    @apply inline-flex flex-initial items-center border border-gray-300 bg-gray-50 px-3 pr-2;
+    @apply inline-flex flex-initial items-center border border-gray-300 bg-gray-50;
   }
   &__before {
-    @apply rounded-l-md border-r-0;
+    @apply rounded-l-md border-r-0  pl-3 pr-2;
   }
   &__after {
-    @apply rounded-r-md border-l-0;
+    @apply rounded-r-md border-l-0  pl-2 pr-3;
   }
 }
