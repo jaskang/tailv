@@ -18,5 +18,11 @@
     <template #before>before</template>
     <template #after>after</template>
   </EInput>
+  <EInput>
+    <template #after>after</template>
+  </EInput>
+  <EInput>
+    <template #before>after</template>
+  </EInput>
 </template>
 ```
