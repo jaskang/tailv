@@ -26,3 +26,24 @@
   </EInput>
 </template>
 ```
+
+## 禁用
+
+```vue preview
+<template>
+  <EInput disabled />
+  <EInput disabled prefix="prefix" />
+  <EInput disabled suffix="suffix" />
+  <EInput disabled prefix="prefix" suffix="suffix" />
+  <EInput disabled>
+    <template #before>before</template>
+    <template #after>after</template>
+  </EInput>
+  <EInput disabled>
+    <template #after>after</template>
+  </EInput>
+  <EInput disabled>
+    <template #before>after</template>
+  </EInput>
+</template>
+```

@@ -15,6 +15,25 @@
     @apply px-6 py-3 text-base;
   }
 
+  &.is-secondary {
+    @apply border-transparent bg-gray-100 text-gray-700 hover:bg-gray-200;
+    &.e-button--primary {
+      @apply bg-indigo-100 text-indigo-700 hover:bg-indigo-200;
+    }
+
+    &.e-button--success {
+      @apply bg-green-100 text-green-700 hover:bg-green-200;
+    }
+
+    &.e-button--warning {
+      @apply bg-amber-100 text-amber-700 hover:bg-amber-200;
+    }
+
+    &.e-button--error {
+      @apply bg-red-100 text-red-700 hover:bg-red-200;
+    }
+  }
+
   &--primary {
     @apply border-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500;
   }
@@ -72,9 +91,10 @@
     }
   }
 
+  &:disabled,
   &.is-disabled {
-    @apply cursor-not-allowed border border-slate-300 bg-slate-50 
-    text-slate-400 focus:ring-0;
+    /* border text-slate-400  border-slate-300 bg-slate-50  */
+    @apply cursor-not-allowed opacity-40 hover:bg-inherit focus:ring-0;
   }
 }
 

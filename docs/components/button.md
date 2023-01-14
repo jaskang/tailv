@@ -26,6 +26,13 @@
   <EButton color="warning">warning</EButton>
   <EButton color="error">error</EButton>
   <EButton disabled>默认</EButton>
+  <br /><br />
+  <EButton secondary>你测sd试好</EButton>
+  <EButton secondary color="primary">primary</EButton>
+  <EButton secondary color="success">success</EButton>
+  <EButton secondary color="warning">warning</EButton>
+  <EButton secondary color="error">error</EButton>
+  <EButton secondary disabled>默认</EButton>
 </template>
 ```
 
@@ -93,6 +100,7 @@
   <EButton type="round" disabled>圆角按钮-禁用状态</EButton>
   <EButton type="circle" disabled>D</EButton>
   <EButton type="link" disabled>链接按钮-禁用状态</EButton>
+  <EButton color="primary" disabled>primary</EButton>
 </template>
 ```
 

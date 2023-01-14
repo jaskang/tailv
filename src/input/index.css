@@ -1,7 +1,7 @@
 .e-input {
   @apply inline-flex w-full items-stretch rounded-md  text-sm shadow-sm;
   &__input {
-    @apply flex w-full flex-1 items-center border border-solid border-gray-300 px-3 transition-all;
+    @apply flex w-full flex-1 items-center border border-solid border-gray-300 bg-white px-3 transition-all;
     &.is-focused {
       @apply z-10 border-indigo-500 ring-1 ring-indigo-500;
     }
@@ -16,8 +16,9 @@
     @apply flex-initial pr-2;
   }
   &__input-inner {
-    @apply flex-1 px-0 text-sm;
+    @apply flex-1 bg-transparent px-0 text-sm;
     box-shadow: none !important;
+    cursor: inherit;
   }
   &__suffix {
     @apply flex-initial pl-2;
@@ -32,5 +33,11 @@
   }
   &__after {
     @apply rounded-r-md border-l-0  pl-2 pr-3;
+  }
+
+  &.is-disabled {
+    .e-input__input {
+      @apply cursor-not-allowed border-gray-200 bg-gray-50 text-gray-500;
+    }
   }
 }

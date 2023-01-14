@@ -7,17 +7,18 @@ export const EButton = defineComponent({
     type: String as PropType<'round' | 'circle' | 'link'>,
     color: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
     size: String as PropType<'xs' | 'sm' | 'lg' | 'xl'>,
-    round: Boolean,
     disabled: Boolean,
+    secondary: Boolean,
   },
   setup(props, { slots }) {
     const cls = computed(() =>
       classNames(
         'e-button',
-        `e-button--${props.color || 'default'}`,
+        props.color && `e-button--${props.color}`,
         props.type && `e-button--${props.type}`,
         props.size && `e-button--${props.size}`,
-        props.disabled && `is-disabled`
+        props.disabled && `is-disabled`,
+        props.secondary && `is-secondary`
       )
     )
     return () => (
