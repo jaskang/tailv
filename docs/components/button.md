@@ -11,11 +11,6 @@
 
 # Button
 
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-  <input type="checkbox" class="form-checkbox" />
-</h1>
-
 ## 颜色
 
 ```vue preview

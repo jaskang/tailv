@@ -9,5 +9,9 @@ module.exports = {
       './docs/**/*.{md,vue,js,ts,tsx}',
     ],
   },
-  plugin: [require('@tailwindcss/forms')],
+  plugin: [
+    require('@tailwindcss/forms')({
+      strategy: 'base',
+    }),
+  ],
 }

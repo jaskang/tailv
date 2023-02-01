@@ -1,7 +1,7 @@
 import type { Plugin } from 'vue'
 import './_styles/index.css'
 
-import { EButton } from './button'
+import EButton from './button/index.vue'
 import { EButtonGroup } from './buttonGroup'
 import { ERadio } from './radio'
 import ECheckbox from './checkbox/index.vue'
