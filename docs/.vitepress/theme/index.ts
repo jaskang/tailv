@@ -1,3 +1,4 @@
+import 'uno.css'
 import DefaultTheme from 'vitepress/theme'
 import Elenext from '../../../src'
 export default {

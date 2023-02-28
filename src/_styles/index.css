@@ -1,8 +1,4 @@
-@import 'tailwindcss/base';
-@import './forms.css';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import '../button/index.css';
-@import '../checkbox/index.css';
-@import '../radio/index.css';
-@import '../input/index.css';
+/* @import './forms.css'; */
+@import '../checkbox/index.scss';
+@import '../radio/index.scss';
+@import '../input/index.scss';

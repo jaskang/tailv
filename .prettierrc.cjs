@@ -1,5 +1,6 @@
-const config = require("@jaskang/config");
+const config = require('@jaskang/config')
+
 module.exports = {
   ...config.prettier,
-  plugins: [require("prettier-plugin-tailwindcss")],
-};
+  plugins: [require('prettier-plugin-tailwindcss')],
+}

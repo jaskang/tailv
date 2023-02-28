@@ -1,37 +1,50 @@
+<script setup lang="ts">
+import { computedCls } from '../_utils'
+import type { PropType } from 'vue'
+
+const props = defineProps({
+  type: {
+    type: String as PropType<'round' | 'circle' | 'link'>,
+  },
+  color: {
+    type: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
+  },
+  size: {
+    type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
+    default: 'md',
+  },
+  disabled: Boolean,
+})
+
+const cls = computedCls('e-button', props, ['type', 'color', 'size'])
+</script>
+<template>
+  <button :class="cls" type="button" :disabled="disabled">
+    <span>
+      <slot />
+    </span>
+  </button>
+</template>
+<style lang="scss">
 .e-button {
-  @apply inline-flex items-center rounded-md border border-solid border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm 
-  hover:bg-gray-50 
-  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+  @apply inline-flex items-center border border-solid border-gray-300  bg-white font-medium text-gray-700 
+  shadow-sm 
+  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
 
   &--xs {
     @apply rounded px-2.5 py-1.5 text-xs;
   }
   &--sm {
-    @apply px-3 py-2 text-sm leading-4;
+    @apply rounded-md px-3 py-2 text-sm leading-4;
+  }
+  &--md {
+    @apply rounded-md px-4 py-2 text-sm;
   }
   &--lg {
-    @apply px-4 py-2 text-base;
+    @apply rounded-md px-4 py-2 text-base;
   }
   &--xl {
-    @apply px-6 py-3 text-base;
-  }
-
-  &.is-secondary {
-    @apply border-transparent bg-gray-100 text-gray-700 hover:bg-gray-200;
-    &.e-button--primary {
-      @apply bg-indigo-100 text-indigo-700 hover:bg-indigo-200;
-    }
-
-    &.e-button--success {
-      @apply bg-green-100 text-green-700 hover:bg-green-200;
-    }
-
-    &.e-button--warning {
-      @apply bg-amber-100 text-amber-700 hover:bg-amber-200;
-    }
-    &.e-button--error {
-      @apply bg-red-100 text-red-700 hover:bg-red-200;
-    }
+    @apply rounded-md px-6 py-3 text-base;
   }
 
   &--primary {
@@ -87,7 +100,7 @@
     }
 
     &.is-disabled {
-      @apply border-transparent bg-transparent !important;
+      @apply border-transparent bg-transparent #{!important};
     }
   }
 
@@ -97,13 +110,4 @@
     @apply cursor-not-allowed opacity-40 focus:ring-0;
   }
 }
-
-.e-button-group {
-  @apply relative z-0 inline-flex rounded-sm shadow-sm;
-  > .e-button {
-    @apply relative rounded-none first:rounded-l-md last:rounded-r-md focus:z-10 focus:ring-offset-0;
-    + .e-button {
-      @apply -ml-px;
-    }
-  }
-}
+</style>
