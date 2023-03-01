@@ -5,6 +5,7 @@ const props = defineProps({
   after: String,
   prefix: String,
   suffix: String,
+  placeholder: String,
   disabled: Boolean,
 })
 
@@ -12,19 +13,24 @@ const focused = ref(false)
 </script>
 <template>
   <div :class="['e-input', disabled && 'is-disabled']">
-    <span class="e-input__before" v-if="$slots.before"><slot name="before" /></span>
+    <span class="e-input__before" v-if="$slots.before">
+      <slot name="before" />
+    </span>
     <span :class="['e-input__input', focused && 'is-focused']">
       <span class="e-input__prefix" v-if="prefix">{{ prefix }}</span>
       <input
+        class="e-input__input-inner"
         type="text"
         @focus="focused = true"
         @blur="focused = false"
         :disabled="disabled"
-        class="e-input__input-inner"
+        :placeholder="placeholder"
       />
       <span class="e-input__suffix" v-if="suffix">{{ suffix }}</span>
     </span>
-    <span class="e-input__after" v-if="$slots.after"><slot name="after" /></span>
+    <span class="e-input__after" v-if="$slots.after">
+      <slot name="after" />
+    </span>
   </div>
 </template>
 
@@ -32,7 +38,7 @@ const focused = ref(false)
 .e-input {
   @apply inline-flex w-full items-stretch rounded-md  text-sm shadow-sm;
   &__input {
-    @apply flex w-full flex-1 items-center border border-solid border-gray-300 bg-white px-3 transition-all;
+    @apply flex w-full flex-1 items-center border border-solid border-gray-300 bg-white px-3  transition-all;
     &.is-focused {
       @apply z-10 border-indigo-500 ring-1 ring-indigo-500;
     }
@@ -47,7 +53,7 @@ const focused = ref(false)
     @apply flex-initial pr-2;
   }
   &__input-inner {
-    @apply flex-1 bg-transparent px-0 text-sm;
+    @apply flex-1 bg-transparent px-0 py-2 text-sm;
     box-shadow: none !important;
     cursor: inherit;
   }

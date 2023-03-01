@@ -1,3 +1,4 @@
+import 'uno.css'
 import type { Plugin } from 'vue'
 import './_styles/index.css'
 
@@ -19,4 +20,4 @@ export const Elenext: Plugin = {
   },
 }
 
-export default Elenext
+// export default Elenext
