@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
-import Elenext from '../../../src'
+import { Elenext } from '../../../src'
 export default {
   ...DefaultTheme,
   enhanceApp(ctx) {

@@ -25,7 +25,7 @@ const cls = computedCls('e-button', props, ['type', 'color', 'size'])
     </span>
   </button>
 </template>
-<style lang="less">
+<style>
 .e-button {
   @apply inline-flex items-center border border-solid border-gray-300  bg-white font-medium text-gray-700 
   shadow-sm 
