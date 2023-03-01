@@ -1,0 +1,22 @@
+.e-radio {
+  @apply inline-flex cursor-pointer items-center;
+  & input {
+    @apply h-4 w-4 border border-solid border-gray-300 text-indigo-600 transition-all focus:ring-indigo-500;
+  }
+  &__label {
+    @apply ml-2 text-sm text-gray-900;
+  }
+  &.is-disabled {
+    @apply cursor-not-allowed;
+    .e-radio__input {
+      @apply bg-gray-100 focus-visible:shadow-none;
+      &:checked {
+        @apply border-solid border-gray-300;
+        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%239ca3af' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+      }
+    }
+    .e-radio__label {
+      @apply text-gray-400;
+    }
+  }
+}
