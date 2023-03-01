@@ -1,4 +1,4 @@
-<style lang="scss"> 
+<style lang="less"> 
 .mdp-demo__preview {
   > .e-button:not(:first-child){
     margin-left: 1rem;

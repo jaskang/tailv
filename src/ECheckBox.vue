@@ -47,3 +47,27 @@ export default defineComponent({
     <span class="e-checkbox__label"><slot /></span>
   </label>
 </template>
+
+<style lang="less">
+.e-checkbox {
+  @apply inline-flex cursor-pointer items-center;
+  &__input {
+    @apply h-4 w-4 rounded border border-solid border-gray-300 text-indigo-600 transition-all focus:ring-indigo-500;
+  }
+  &__label {
+    @apply ml-2 text-sm text-gray-900;
+  }
+  &.is-disabled {
+    @apply cursor-not-allowed;
+    .e-checkbox__input {
+      @apply bg-gray-100 focus-visible:shadow-none;
+      &:checked {
+        @apply bg-current;
+      }
+    }
+    .e-checkbox__label {
+      @apply text-gray-400;
+    }
+  }
+}
+</style>

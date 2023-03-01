@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="less">
 .mdp-demo__preview {
   > .e-input:not(:first-child){
     margin-top: 1rem;

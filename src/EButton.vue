@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computedCls } from '../_utils'
+import { computedCls } from './_utils'
 import type { PropType } from 'vue'
 
 const props = defineProps({
@@ -25,7 +25,7 @@ const cls = computedCls('e-button', props, ['type', 'color', 'size'])
     </span>
   </button>
 </template>
-<style lang="scss">
+<style lang="less">
 .e-button {
   @apply inline-flex items-center border border-solid border-gray-300  bg-white font-medium text-gray-700 
   shadow-sm 
@@ -100,14 +100,14 @@ const cls = computedCls('e-button', props, ['type', 'color', 'size'])
     }
 
     &.is-disabled {
-      @apply border-transparent bg-transparent #{!important};
+      @apply border-transparent bg-transparent;
     }
   }
 
   &:disabled,
   &.is-disabled {
     /* border text-slate-400  border-slate-300 bg-slate-50  */
-    @apply cursor-not-allowed opacity-40 focus:ring-0;
+    @apply cursor-not-allowed opacity-40 focus:ring-0 !important;
   }
 }
 </style>

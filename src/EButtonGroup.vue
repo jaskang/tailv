@@ -2,7 +2,7 @@
 <template>
   <div class="e-button-group"><slot /></div>
 </template>
-<style lang="scss">
+<style lang="less">
 .e-button-group {
   @apply relative z-0 inline-flex rounded-sm shadow-sm;
   > .e-button {
