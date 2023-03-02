@@ -1,48 +1,72 @@
-.e-button {
+:root {
+  --e-button-color: inherit;
   --e-button-bg-color: theme('colors.white');
   --e-button-border-color: theme('colors.gray.300');
   --e-button-outline-color: theme('colors.indigo.500');
-  --e-button-rounded: theme('borderRadius.md')
+  --e-button-rounded: theme('borderRadius.md');
   --e-button-px: theme('spacing.4');
   --e-button-py: theme('spacing.2');
-  --e-button-bg-color\:hover: theme('colors.gray.50');
   --e-button-font-size: theme('fontSize.sm.0');
   --e-button-line-height: theme('fontSize.sm.1.lineHeight');
-  
+
+  --e-button-color\:hover: var(--e-button-color);
+  --e-button-bg-color\:hover: theme('colors.gray.50');
+}
+
+.e-button {
   display: inline-flex;
   align-items: center;
   font-weight: 500;
-  font-size:  theme('fontSize.sm.0');
-  line-height:  theme('fontSize.sm.1.lineHeight');
+  color: var(--e-button-color);
+  font-size: var(--e-button-font-size);
+  line-height: var(--e-button-line-height);
   padding: var(--e-button-py) var(--e-button-px);
   border: 1px solid var(--e-button-border-color);
   background-color: var(--e-button-bg-color);
   border-radius: var(--e-button-rounded);
-  // color: theme('colors.gray.700');
   box-shadow: theme('boxShadow.sm');
-  border-radius: var(--e-button-rounded);
+
+  --e-button-ring-offset-width: 2px;
   &:hover {
+    color: var(--e-button-color);
     background-color: var(--e-button-bg-color\:hover);
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 calc(2px + 2px) var(--e-button-outline-color), 0 0 #000;
+    box-shadow: 0 0 0 var(--e-button-ring-offset-width) #fff,
+      0 0 0 calc(var(--e-button-ring-offset-width) + 2px) var(--e-button-outline-color),
+      0 0 0 0 #000;
   }
   &--xs {
-    --e-button-rounded: theme('borderRadius.DEFAULT')
-    @apply rounded px-2.5 py-1.5 text-xs;
+    --e-button-rounded: theme('borderRadius.DEFAULT');
+    --e-button-font-size: theme('fontSize.xs.0');
+    --e-button-line-height: theme('fontSize.xs.1.lineHeight');
+    --e-button-px: theme('spacing[2.5]');
+    --e-button-py: theme('spacing[1.5]');
   }
   &--sm {
-    @apply rounded-md px-3 py-2 text-sm leading-4;
+    --e-button-font-size: theme('fontSize.sm.0');
+    --e-button-line-height: theme('lineHeight.4');
+    --e-button-px: theme('spacing.3');
+    --e-button-py: theme('spacing.2');
   }
   &--md {
-    @apply rounded-md px-4 py-2 text-sm;
+    --e-button-font-size: theme('fontSize.sm.0');
+    --e-button-line-height: theme('fontSize.sm.1.lineHeight');
+    --e-button-px: theme('spacing.3');
+    --e-button-py: theme('spacing.2');
   }
   &--lg {
-    @apply rounded-md px-4 py-2 text-base;
+    --e-button-font-size: theme('fontSize.base.0');
+    --e-button-line-height: theme('fontSize.base.1.lineHeight');
+    --e-button-px: theme('spacing.4');
+    --e-button-py: theme('spacing.2');
   }
   &--xl {
-    @apply rounded-md px-6 py-3 text-base;
+    --e-button-font-size: theme('fontSize.base.0');
+    --e-button-line-height: theme('fontSize.base.1.lineHeight');
+    --e-button-px: theme('spacing.6');
+    --e-button-py: theme('spacing.3');
   }
 
   &--primary,
@@ -50,7 +74,7 @@
   &--warning,
   &--error {
     border-color: transparent;
-    color: theme('colors.white');
+    --e-button-color: theme('colors.white');
   }
 
   &--primary {
@@ -82,11 +106,17 @@
   }
 
   &--round {
-    @apply rounded-full;
+    --e-button-rounded: theme('borderRadius.full');
   }
 
   &--circle {
-    @apply justify-center overflow-hidden whitespace-nowrap rounded-full px-0;
+    --e-button-rounded: theme('borderRadius.full');
+
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 0;
+    padding-right: 0;
     width: calc(theme('width.9') + 2px);
     &.e-button--xs {
       width: calc(theme('width.7') + 2px);
@@ -103,28 +133,50 @@
   }
 
   &--link {
-    @apply border-transparent bg-transparent underline underline-offset-2 shadow-none hover:bg-transparent;
+    border-color: transparent;
+    background-color: transparent;
+    text-decoration-line: underline;
+    text-underline-offset: 2px;
+    box-shadow: none;
+    &:hover {
+      color: var(--e-button-color\:hover);
+      background-color: transparent;
+    }
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+    }
     &.e-button--primary {
-      @apply text-indigo-600 hover:text-indigo-700;
+      --e-button-color: theme('colors.indigo.600');
+      --e-button-color\:hover: theme('colors.indigo.700');
     }
     &.e-button--success {
-      @apply text-green-600 hover:text-green-700;
+      --e-button-color: theme('colors.green.600');
+      --e-button-color\:hover: theme('colors.green.700');
     }
     &.e-button--warning {
-      @apply text-amber-600 hover:text-amber-700;
+      --e-button-color: theme('colors.amber.600');
+      --e-button-color\:hover: theme('colors.amber.700');
     }
     &.e-button--error {
-      @apply text-red-600 hover:text-red-700;
+      --e-button-color: theme('colors.red.600');
+      --e-button-color\:hover: theme('colors.red.700');
     }
 
-    &.is-disabled {
-      @apply border-transparent bg-transparent;
-    }
+    // &.is-disabled {
+    //   border-color: transparent !important;
+    //   @apply border-transparent bg-transparent;
+    // }
   }
 
   &:disabled,
   &.is-disabled {
     /* border text-slate-400  border-slate-300 bg-slate-50  */
-    @apply cursor-not-allowed opacity-40 focus:ring-0 #{!important};
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+    &:hover {
+      color: var(--e-button-color);
+      background-color: var(--e-button-bg-color);
+    }
   }
 }
