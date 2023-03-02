@@ -1,9 +1,35 @@
 .e-button {
-  @apply inline-flex items-center border border-solid border-gray-300  bg-white font-medium text-gray-700 shadow-sm 
-  hover:bg-gray-50 
-  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
-
+  --e-button-bg-color: theme('colors.white');
+  --e-button-border-color: theme('colors.gray.300');
+  --e-button-outline-color: theme('colors.indigo.500');
+  --e-button-rounded: theme('borderRadius.md')
+  --e-button-px: theme('spacing.4');
+  --e-button-py: theme('spacing.2');
+  --e-button-bg-color\:hover: theme('colors.gray.50');
+  --e-button-font-size: theme('fontSize.sm.0');
+  --e-button-line-height: theme('fontSize.sm.1.lineHeight');
+  
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  font-size:  theme('fontSize.sm.0');
+  line-height:  theme('fontSize.sm.1.lineHeight');
+  padding: var(--e-button-py) var(--e-button-px);
+  border: 1px solid var(--e-button-border-color);
+  background-color: var(--e-button-bg-color);
+  border-radius: var(--e-button-rounded);
+  // color: theme('colors.gray.700');
+  box-shadow: theme('boxShadow.sm');
+  border-radius: var(--e-button-rounded);
+  &:hover {
+    background-color: var(--e-button-bg-color\:hover);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 calc(2px + 2px) var(--e-button-outline-color), 0 0 #000;
+  }
   &--xs {
+    --e-button-rounded: theme('borderRadius.DEFAULT')
     @apply rounded px-2.5 py-1.5 text-xs;
   }
   &--sm {
@@ -19,20 +45,40 @@
     @apply rounded-md px-6 py-3 text-base;
   }
 
+  &--primary,
+  &--success,
+  &--warning,
+  &--error {
+    border-color: transparent;
+    color: theme('colors.white');
+  }
+
   &--primary {
-    @apply border-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500;
+    --e-button-bg-color: theme('colors.indigo.600');
+    --e-button-outline-color: theme('colors.indigo.500');
+
+    --e-button-bg-color\:hover: theme('colors.indigo.700');
   }
 
   &--success {
-    @apply border-transparent bg-green-500 text-white hover:bg-green-600 focus:ring-green-500;
+    --e-button-bg-color: theme('colors.green.500');
+    --e-button-outline-color: theme('colors.green.600');
+
+    --e-button-bg-color\:hover: theme('colors.green.500');
   }
 
   &--warning {
-    @apply border-transparent bg-amber-500 text-white hover:bg-amber-600 focus:ring-amber-500;
+    --e-button-bg-color: theme('colors.amber.500');
+    --e-button-outline-color: theme('colors.amber.600');
+
+    --e-button-bg-color\:hover: theme('colors.amber.500');
   }
 
   &--error {
-    @apply border-transparent bg-red-500 text-white hover:bg-red-600 focus:ring-red-500;
+    --e-button-bg-color: theme('colors.red.500');
+    --e-button-outline-color: theme('colors.red.600');
+
+    --e-button-bg-color\:hover: theme('colors.red.500');
   }
 
   &--round {
