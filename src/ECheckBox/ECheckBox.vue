@@ -8,7 +8,9 @@ const props = defineProps({
   value: [String, Number],
 })
 
-const emits = defineEmits(['onUpdate:checked'])
+const emit = defineEmits(['onUpdate:checked', 'focus', 'blur'])
+
+const focus = ref(false)
 
 const innerChecked = ref(props.checked)
 
@@ -24,9 +26,34 @@ const onClick = (e: Event) => {
     return false
   }
 }
+const onFocus = (e: Event) => {
+  if (props.disabled) {
+    e.preventDefault()
+    return false
+  } else {
+    focus.value = true
+    emit('focus', e)
+  }
+}
+const onBlur = (e: Event) => {
+  if (props.disabled) {
+    e.preventDefault()
+    return false
+  } else {
+    focus.value = false
+    emit('blur', e)
+  }
+}
 </script>
 <template>
-  <label :class="['e-checkbox', innerChecked && 'is-checked', disabled && 'is-disabled']">
+  <label
+    :class="[
+      'e-checkbox',
+      innerChecked && 'is-checked',
+      disabled && 'is-disabled',
+      focus && 'focus',
+    ]"
+  >
     <span class="e-checkbox__input">
       <input
         type="checkbox"
@@ -35,8 +62,8 @@ const onClick = (e: Event) => {
         :name="name"
         :disabled="disabled"
         :checked="innerChecked"
-        @focus=""
-        @blur=""
+        @focus="onFocus"
+        @blur="onBlur"
         @input="onInput"
         @click="onClick"
       />

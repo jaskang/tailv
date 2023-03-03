@@ -51,11 +51,13 @@ export const computedCls = <T extends Record<string, any>>(
     const cls = [b]
     for (const key of keys) {
       const val = toRef(props, key)
-      if (val.value) {
+      if (typeof val.value === 'boolean' && val.value) {
+        cls.push(`is-${key as string}`)
+      } else if (val.value) {
         cls.push(b + '--' + val.value)
       }
     }
-    return cls
+    return cls.join(' ')
   })
   return cls
 }

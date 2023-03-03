@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computedCls } from './_utils'
+import { computedCls } from '../_utils'
 import type { PropType } from 'vue'
 
 const props = defineProps({
@@ -16,7 +16,7 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const cls = computedCls('e-button', props, ['type', 'color', 'size'])
+const cls = computedCls('e-button', props, ['type', 'color', 'size', 'disabled'])
 </script>
 <template>
   <button :class="cls" type="button" :disabled="disabled">
