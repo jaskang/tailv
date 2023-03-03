@@ -26,7 +26,7 @@ const onClick = (e: Event) => {
 }
 </script>
 <template>
-  <label :class="['e-checkbox', disabled && 'is-disabled']">
+  <label :class="['e-checkbox', innerChecked && 'is-checked', disabled && 'is-disabled']">
     <span class="e-checkbox__input">
       <input
         type="checkbox"
@@ -35,21 +35,18 @@ const onClick = (e: Event) => {
         :name="name"
         :disabled="disabled"
         :checked="innerChecked"
+        @focus=""
+        @blur=""
         @input="onInput"
         @click="onClick"
       />
-      <span class="e-checkbox__inner">
-        <svg
-          v-show="innerChecked"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+      <div class="e-checkbox__inner">
+        <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"
           />
         </svg>
-      </span>
+      </div>
     </span>
     <span class="e-checkbox__label"><slot /></span>
   </label>
