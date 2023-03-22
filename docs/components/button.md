@@ -77,13 +77,11 @@
 
 ```vue preview
 <template>
-  <div class="space-x-1">
-    <EButton type="link">default</EButton>
-    <EButton color="primary" type="link">primary</EButton>
-    <EButton color="success" type="link">success</EButton>
-    <EButton color="warning" type="link">warning</EButton>
-    <EButton color="error" type="link">error</EButton>
-  </div>
+  <EButton type="link">default</EButton>
+  <EButton color="primary" type="link">primary</EButton>
+  <EButton color="success" type="link">success</EButton>
+  <EButton color="warning" type="link">warning</EButton>
+  <EButton color="error" type="link">error</EButton>
 </template>
 ```
 

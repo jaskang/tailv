@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computedCls } from '../_utils'
-import type { PropType } from 'vue'
+import style from './style'
+import { computed, getCurrentInstance, type PropType } from 'vue'
 
 const props = defineProps({
   type: {
@@ -8,6 +8,7 @@ const props = defineProps({
   },
   color: {
     type: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
+    default: 'default',
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -16,10 +17,22 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const cls = computedCls('e-button', props, ['type', 'color', 'size', 'disabled'])
+const ctx = getCurrentInstance()
+
+const inGroup = ctx?.parent?.exposed?.$name === 'e-button-group'
+
+const cls = computed(() =>
+  style({
+    color: !props.disabled ? props.color : 'default',
+    size: props.size,
+    type: inGroup ? undefined : props.type,
+    disabled: props.disabled,
+    inGroup,
+  })
+)
 </script>
 <template>
-  <button :class="cls" type="button" :disabled="disabled">
+  <button class="e-button" :class="cls" type="button" :disabled="disabled">
     <span>
       <slot />
     </span>
