@@ -1,6 +1,6 @@
 import { tv } from 'tailwind-variants'
 
-const style = tv({
+const buttonStyles = tv({
   base: 'inline-flex items-center font-medium rounded-md border border-solid  border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2',
   variants: {
     color: {
@@ -43,4 +43,4 @@ const style = tv({
   ],
 })
 
-export default style
+export default buttonStyles

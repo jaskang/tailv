@@ -1,0 +1,84 @@
+.e-button {
+  @apply inline-flex items-center rounded-md border border-solid border-transparent font-medium shadow-sm transition-colors
+  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+
+  &--neutral {
+    @apply border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 focus-visible:outline-indigo-600;
+  }
+  &--primary {
+    @apply bg-primary-600 text-white hover:bg-primary-500 focus:ring-primary-600 focus-visible:outline-primary-600;
+  }
+  &--success {
+    @apply bg-success-600 text-white hover:bg-success-500 focus:ring-success-600 focus-visible:outline-success-600;
+  }
+  &--warning {
+    @apply bg-warning-600 text-white hover:bg-warning-500 focus:ring-warning-600 focus-visible:outline-warning-600;
+  }
+  &--error {
+    @apply bg-error-600 text-white hover:bg-error-500 focus:ring-error-600 focus-visible:outline-error-600;
+  }
+
+  &--xs {
+    @apply px-2.5 py-1.5 text-xs; // 30px / w-7 + 2px
+  }
+  &--sm {
+    @apply px-3 py-2 text-sm leading-4; // 34px / w-8 + 2px
+  }
+  &--md {
+    @apply px-4 py-2 text-sm; // 38px / w-9 + 2px
+  }
+  &--lg {
+    @apply px-4 py-2 text-base; // 42px / w-10 + 2px
+  }
+  &--xl {
+    @apply px-6 py-3 text-base; // 50px / w-12 + 2px
+  }
+
+  &.is-disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
+
+.e-button--round {
+  @apply rounded-full;
+}
+
+.e-button--circle {
+  @apply justify-center overflow-hidden rounded-full px-0;
+
+  &.e-button--xs {
+    width: calc(theme('width.7') + 2px); // 30px / w-7 + 2px
+  }
+  &.e-button--sm {
+    width: calc(theme('width.8') + 2px); // 34px / w-8 + 2px
+  }
+  &.e-button--md {
+    width: calc(theme('width.9') + 2px); // 38px / w-9 + 2px
+  }
+  &.e-button--lg {
+    width: calc(theme('width.10') + 2px); // 42px / w-10 + 2px
+  }
+  &.e-button--xl {
+    width: calc(theme('width.12') + 2px); // 50px / w-12 + 2px
+  }
+}
+
+.e-button--link {
+  @apply border-transparent bg-transparent underline-offset-2 shadow-none hover:bg-transparent hover:underline;
+
+  &.e-button--neutral {
+    @apply text-neutral-700 hover:text-neutral-700;
+  }
+  &.e-button--primary {
+    @apply text-primary-600 hover:text-primary-700;
+  }
+  &.e-button--success {
+    @apply text-success-600 hover:text-success-700;
+  }
+  &.e-button--warning {
+    @apply text-warning-600 hover:text-warning-700;
+  }
+  &.e-button--error {
+    @apply text-error-600 hover:text-error-700;
+  }
+}
