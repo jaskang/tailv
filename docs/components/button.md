@@ -22,12 +22,12 @@
   <EButton color="error">error</EButton>
   <EButton disabled>默认</EButton>
   <br /><br />
-  <EButton secondary>你测sd试好</EButton>
-  <EButton secondary color="primary">primary</EButton>
-  <EButton secondary color="success">success</EButton>
-  <EButton secondary color="warning">warning</EButton>
-  <EButton secondary color="error">error</EButton>
-  <EButton secondary disabled>默认</EButton>
+  <EButton plain>你测sd试好</EButton>
+  <EButton plain color="primary">primary</EButton>
+  <EButton plain color="success">success</EButton>
+  <EButton plain color="warning">warning</EButton>
+  <EButton plain color="error">error</EButton>
+  <EButton plain disabled>默认</EButton>
 </template>
 ```
 
@@ -49,15 +49,15 @@
 </template>
 ```
 
-## 圆角
+## 椭圆
 
 ```vue preview
 <template>
-  <EButton type="round">默认</EButton>
-  <EButton color="primary" type="round">primary</EButton>
-  <EButton color="success" type="round">success</EButton>
-  <EButton color="warning" type="round">warning</EButton>
-  <EButton color="error" type="round">error</EButton>
+  <EButton shape="round">默认</EButton>
+  <EButton color="primary" shape="round">primary</EButton>
+  <EButton color="success" shape="round">success</EButton>
+  <EButton color="warning" shape="round">warning</EButton>
+  <EButton color="error" shape="round">error</EButton>
 </template>
 ```
 
@@ -65,23 +65,23 @@
 
 ```vue preview
 <template>
-  <EButton type="circle">D</EButton>
-  <EButton color="primary" type="circle">P</EButton>
-  <EButton color="success" type="circle">S</EButton>
-  <EButton color="warning" type="circle">W</EButton>
-  <EButton color="error" type="circle">E</EButton>
+  <EButton shape="circle">D</EButton>
+  <EButton color="primary" shape="circle">P</EButton>
+  <EButton color="success" shape="circle">S</EButton>
+  <EButton color="warning" shape="circle">W</EButton>
+  <EButton color="error" shape="circle">E</EButton>
 </template>
 ```
 
-## 链接
+## 方形
 
 ```vue preview
 <template>
-  <EButton type="link">default</EButton>
-  <EButton color="primary" type="link">primary</EButton>
-  <EButton color="success" type="link">success</EButton>
-  <EButton color="warning" type="link">warning</EButton>
-  <EButton color="error" type="link">error</EButton>
+  <EButton shape="square">D</EButton>
+  <EButton color="primary" shape="square">P</EButton>
+  <EButton color="success" shape="square">S</EButton>
+  <EButton color="warning" shape="square">W</EButton>
+  <EButton color="error" shape="square">E</EButton>
 </template>
 ```
 
@@ -90,9 +90,9 @@
 ```vue preview
 <template>
   <EButton disabled>禁用状态</EButton>
-  <EButton type="round" disabled>圆角按钮-禁用状态</EButton>
-  <EButton type="circle" disabled>D</EButton>
-  <EButton type="link" disabled>链接按钮-禁用状态</EButton>
+  <EButton shape="round" disabled>圆角按钮-禁用状态</EButton>
+  <EButton shape="circle" disabled>D</EButton>
+  <EButton shape="square" disabled>链接按钮-禁用状态</EButton>
   <EButton color="primary" disabled>primary</EButton>
 </template>
 ```

@@ -1,23 +1,32 @@
+:root {
+  --e-button-bg-color: theme('colors.white');
+  --e-button-text-color: theme('colors.normal.700');
+  --e-button-border-color: theme('colors.normal.300');
+
+  --e-button-bg-color\:hover: theme('colors.normal.50');
+  --e-button-text-color\:hover: var(--e-button-text-color);
+  --e-button-border-color\:hover: var(--e-button-border-color);
+
+  --e-button-bg-color\:active: theme('colors.normal.100');
+
+  --e-button-outline-color: var(--e-button-border-color);
+}
 .e-button {
-  @apply inline-flex items-center rounded-md border border-solid border-transparent font-medium shadow-sm transition-colors
-  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+  @apply inline-flex items-center rounded-md border border-solid border-transparent font-medium shadow-sm  
+  transition-all focus:outline-none focus:ring-2 focus:ring-offset-2;
 
-  &--neutral {
-    @apply border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 focus-visible:outline-indigo-600;
+  background-color: var(--e-button-bg-color);
+  color: var(--e-button-text-color);
+  border-color: var(--e-button-border-color);
+  --tw-ring-color: var(--e-button-outline-color);
+  &:hover {
+    background-color: var(--e-button-bg-color\:hover);
+    color: var(--e-button-text-color\:hover);
+    border-color: var(--e-button-border-color\:hover);
   }
-  &--primary {
-    @apply bg-primary-600 text-white hover:bg-primary-500 focus:ring-primary-600 focus-visible:outline-primary-600;
+  &:active {
+    background-color: var(--e-button-bg-color\:active);
   }
-  &--success {
-    @apply bg-success-600 text-white hover:bg-success-500 focus:ring-success-600 focus-visible:outline-success-600;
-  }
-  &--warning {
-    @apply bg-warning-600 text-white hover:bg-warning-500 focus:ring-warning-600 focus-visible:outline-warning-600;
-  }
-  &--error {
-    @apply bg-error-600 text-white hover:bg-error-500 focus:ring-error-600 focus-visible:outline-error-600;
-  }
-
   &--xs {
     @apply px-2.5 py-1.5 text-xs; // 30px / w-7 + 2px
   }
@@ -34,51 +43,67 @@
     @apply px-6 py-3 text-base; // 50px / w-12 + 2px
   }
 
-  &.is-disabled {
+  &--primary,
+  &--success,
+  &--warning,
+  &--error {
+    --e-button-border-color: transparent;
+    --e-button-text-color: theme('colors.white');
+    --e-button-outline-color: var(--e-button-bg-color\:hover);
+    &:hover {
+      --e-button-border-color\:hover: transparent;
+      --e-button-text-color\:hover: theme('colors.white');
+    }
+  }
+  &--primary {
+    --e-button-bg-color: theme('colors.primary.600');
+    --e-button-bg-color\:hover: theme('colors.primary.500');
+    --e-button-bg-color\:active: theme('colors.primary.700');
+  }
+  &--success {
+    --e-button-bg-color: theme('colors.success.600');
+    --e-button-bg-color\:hover: theme('colors.success.500');
+    --e-button-bg-color\:active: theme('colors.success.700');
+  }
+  &--warning {
+    --e-button-bg-color: theme('colors.warning.600');
+    --e-button-bg-color\:hover: theme('colors.warning.500');
+    --e-button-bg-color\:active: theme('colors.warning.700');
+  }
+  &--error {
+    --e-button-bg-color: theme('colors.error.600');
+    --e-button-bg-color\:hover: theme('colors.error.500');
+    --e-button-bg-color\:active: theme('colors.error.700');
+  }
+
+  &--round {
+    @apply rounded-full;
+  }
+  &--circle {
+    @apply rounded-full;
+  }
+  &--circle,
+  &--square {
+    @apply justify-center overflow-hidden whitespace-nowrap px-0;
+
+    &.e-button--xs {
+      width: calc(theme('width.7') + 2px); // 30px / w-7 + 2px
+    }
+    &.e-button--sm {
+      width: calc(theme('width.8') + 2px); // 34px / w-8 + 2px
+    }
+    &.e-button--md {
+      width: calc(theme('width.9') + 2px); // 38px / w-9 + 2px
+    }
+    &.e-button--lg {
+      width: calc(theme('width.10') + 2px); // 42px / w-10 + 2px
+    }
+    &.e-button--xl {
+      width: calc(theme('width.12') + 2px); // 50px / w-12 + 2px
+    }
+  }
+
+  &.disabled {
     @apply cursor-not-allowed opacity-50;
-  }
-}
-
-.e-button--round {
-  @apply rounded-full;
-}
-
-.e-button--circle {
-  @apply justify-center overflow-hidden rounded-full px-0;
-
-  &.e-button--xs {
-    width: calc(theme('width.7') + 2px); // 30px / w-7 + 2px
-  }
-  &.e-button--sm {
-    width: calc(theme('width.8') + 2px); // 34px / w-8 + 2px
-  }
-  &.e-button--md {
-    width: calc(theme('width.9') + 2px); // 38px / w-9 + 2px
-  }
-  &.e-button--lg {
-    width: calc(theme('width.10') + 2px); // 42px / w-10 + 2px
-  }
-  &.e-button--xl {
-    width: calc(theme('width.12') + 2px); // 50px / w-12 + 2px
-  }
-}
-
-.e-button--link {
-  @apply border-transparent bg-transparent underline-offset-2 shadow-none hover:bg-transparent hover:underline;
-
-  &.e-button--neutral {
-    @apply text-neutral-700 hover:text-neutral-700;
-  }
-  &.e-button--primary {
-    @apply text-primary-600 hover:text-primary-700;
-  }
-  &.e-button--success {
-    @apply text-success-600 hover:text-success-700;
-  }
-  &.e-button--warning {
-    @apply text-warning-600 hover:text-warning-700;
-  }
-  &.e-button--error {
-    @apply text-error-600 hover:text-error-700;
   }
 }

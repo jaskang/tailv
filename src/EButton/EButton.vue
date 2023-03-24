@@ -3,12 +3,11 @@ import { computedCls } from '../utils'
 import type { PropType } from 'vue'
 
 const props = defineProps({
-  type: {
-    type: String as PropType<'round' | 'circle' | 'link'>,
+  shape: {
+    type: String as PropType<'square' | 'round' | 'circle'>,
   },
   color: {
-    type: String as PropType<'neutral' | 'primary' | 'success' | 'warning' | 'error'>,
-    default: 'neutral',
+    type: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -17,7 +16,7 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const cls = computedCls('e-button', props, ['type', 'size', 'color', 'disabled'])
+const cls = computedCls('e-button', props, ['--shape', '--size', '--color', 'disabled'])
 </script>
 <template>
   <button :class="cls" type="button" :disabled="disabled">

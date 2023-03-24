@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        neutral: colors.slate,
+        normal: colors.slate,
         primary: colors.indigo,
         success: colors.green,
         warning: colors.amber,
