@@ -53,8 +53,10 @@ export const computedCls = <T extends Record<string, any>>(
     const cls = [base]
     for (const tag of classNames) {
       const val = toRef(props, tag)
-      if (val.value) {
-        cls.push(`${base}-${val.value}`)
+      if (typeof val.value === 'boolean' && val.value) {
+        cls.push(`is-${tag}`)
+      } else if (val.value) {
+        cls.push(`${base}--${val.value}`)
       }
     }
     return cls.join(' ')

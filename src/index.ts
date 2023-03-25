@@ -1,4 +1,4 @@
-import './_styles/index.scss'
+import './styles/index.scss'
 import type { Plugin } from 'vue'
 
 import EIcon from './EIcon/EIcon.vue'

@@ -120,7 +120,7 @@
   </EButton>
   <EButton size="md">
     <template #icon>
-      <EIcon><CubeIcon /></EIcon>
+      <EIcon spin><CubeIcon /></EIcon>
     </template>
     图标按钮
   </EButton>
@@ -151,7 +151,7 @@
   </EButton>
   <EButton size="md" color="primary">
     <template #icon>
-      <EIcon><CogIcon /></EIcon>
+      <EIcon spin><CogIcon /></EIcon>
     </template>
     图标按钮
   </EButton>
@@ -176,12 +176,12 @@
 <template>
   <EButton variant="circle">
     <template #icon>
-      <EIcon><CogIcon /></EIcon>
+      <EIcon spin><CogIcon /></EIcon>
     </template>
   </EButton>
   <EButton variant="square">
     <template #icon>
-      <EIcon><CogIcon /></EIcon>
+      <EIcon spin><CogIcon /></EIcon>
     </template>
   </EButton>
   <EButton variant="circle" color="primary">
