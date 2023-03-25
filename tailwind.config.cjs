@@ -2,7 +2,8 @@ const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{vue,ts,tsx}', './docs/**/*.{vue,ts,tsx,md}'],
   theme: {
     extend: {
       colors: {
@@ -14,8 +15,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms')({ strategy: 'base' }),
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [require('@tailwindcss/forms')({ strategy: 'base' }), require('@tailwindcss/aspect-ratio')],
 }

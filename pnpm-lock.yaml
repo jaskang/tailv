@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@heroicons/vue': ^2.0.16
   '@jaskang/config': ^0.0.7
   '@jaskang/eslint-config': ^0.0.7
   '@microsoft/api-extractor': ^7.34.4
@@ -37,6 +38,7 @@ specifiers:
   vue-tsc: ^1.2.0
 
 dependencies:
+  '@heroicons/vue': 2.0.16_vue@3.2.47
   '@vicons/ionicons5': 0.12.0
   pinia: 2.0.33_p4srtwdgezcoeovfcc2yxzvaue
   tailwind-variants: 0.1.1_tailwindcss@3.2.7
@@ -765,6 +767,14 @@ packages:
     resolution: {integrity: sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@heroicons/vue/2.0.16_vue@3.2.47:
+    resolution: {integrity: sha512-saVAExLlGu6epqmS543qeWd/UOJUxpTJyK9aXeFGqS3VIW8X7yyJQmUGT40A38gBEAxMOdTdH9jFSh8sjPFM7A==}
+    peerDependencies:
+      vue: '>= 3'
+    dependencies:
+      vue: 3.2.47
+    dev: false
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}

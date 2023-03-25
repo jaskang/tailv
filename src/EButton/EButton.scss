@@ -1,109 +1,125 @@
 :root {
-  --e-button-bg-color: theme('colors.white');
-  --e-button-text-color: theme('colors.normal.700');
-  --e-button-border-color: theme('colors.normal.300');
+  --e-btn-bg-color: theme('colors.white');
+  --e-btn-text-color: theme('colors.normal.700');
+  --e-btn-border-color: theme('colors.normal.300');
 
-  --e-button-bg-color\:hover: theme('colors.normal.50');
-  --e-button-text-color\:hover: var(--e-button-text-color);
-  --e-button-border-color\:hover: var(--e-button-border-color);
+  --e-btn-bg-color\:hover: theme('colors.normal.50');
+  --e-btn-text-color\:hover: var(--e-btn-text-color);
+  --e-btn-border-color\:hover: var(--e-btn-border-color);
 
-  --e-button-bg-color\:active: theme('colors.normal.100');
+  --e-btn-bg-color\:active: theme('colors.normal.100');
 
-  --e-button-outline-color: var(--e-button-border-color);
+  --e-btn-outline-color: var(--e-btn-border-color);
 }
-.e-button {
-  @apply inline-flex items-center rounded-md border border-solid border-transparent font-medium shadow-sm  
-  transition-all focus:outline-none focus:ring-2 focus:ring-offset-2;
 
-  background-color: var(--e-button-bg-color);
-  color: var(--e-button-text-color);
-  border-color: var(--e-button-border-color);
-  --tw-ring-color: var(--e-button-outline-color);
+.e-btn {
+  @apply inline-flex flex-shrink-0 items-center whitespace-nowrap rounded-md border border-solid border-transparent align-middle font-medium shadow-sm
+  transition-all focus:outline-none focus:ring-2 focus:ring-offset-2;
+  background-color: var(--e-btn-bg-color);
+  color: var(--e-btn-text-color);
+  border-color: var(--e-btn-border-color);
+  --tw-ring-color: var(--e-btn-outline-color);
   &:hover {
-    background-color: var(--e-button-bg-color\:hover);
-    color: var(--e-button-text-color\:hover);
-    border-color: var(--e-button-border-color\:hover);
+    background-color: var(--e-btn-bg-color\:hover);
+    color: var(--e-btn-text-color\:hover);
+    border-color: var(--e-btn-border-color\:hover);
   }
   &:active {
-    background-color: var(--e-button-bg-color\:active);
+    background-color: var(--e-btn-bg-color\:active);
   }
-  &--xs {
-    @apply px-2.5 py-1.5 text-xs; // 30px / w-7 + 2px
-  }
-  &--sm {
-    @apply px-3 py-2 text-sm leading-4; // 34px / w-8 + 2px
-  }
-  &--md {
-    @apply px-4 py-2 text-sm; // 38px / w-9 + 2px
-  }
-  &--lg {
-    @apply px-4 py-2 text-base; // 42px / w-10 + 2px
-  }
-  &--xl {
-    @apply px-6 py-3 text-base; // 50px / w-12 + 2px
+  &:disabled {
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 
-  &--primary,
-  &--success,
-  &--warning,
-  &--error {
-    --e-button-border-color: transparent;
-    --e-button-text-color: theme('colors.white');
-    --e-button-outline-color: var(--e-button-bg-color\:hover);
+  &-xs {
+    @apply px-2.5 py-1.5 text-xs; // 30px / w-7 + 2px
+    height: calc(theme('width.7') + 2px); // 30px / w-7 + 2px
+  }
+  &-sm {
+    @apply px-3 py-2 text-sm leading-4; // 34px / w-8 + 2px
+    height: calc(theme('width.8') + 2px); // 34px / w-8 + 2px
+  }
+  &-md {
+    @apply px-4 py-2 text-sm; // 38px / w-9 + 2px
+    height: calc(theme('width.9') + 2px); // 38px / w-9 + 2px
+  }
+  &-lg {
+    @apply px-4 py-2 text-base; // 42px / w-10 + 2px
+    height: calc(theme('width.10') + 2px); // 42px / w-10 + 2px
+  }
+  &-xl {
+    @apply px-6 py-3 text-base; // 50px / w-12 + 2px
+    height: calc(theme('width.12') + 2px); // 50px / w-12 + 2px
+  }
+
+  &-primary,
+  &-success,
+  &-warning,
+  &-error {
+    --e-btn-border-color: transparent;
+    --e-btn-text-color: theme('colors.white');
+    --e-btn-outline-color: var(--e-btn-bg-color\:hover);
     &:hover {
-      --e-button-border-color\:hover: transparent;
-      --e-button-text-color\:hover: theme('colors.white');
+      --e-btn-border-color\:hover: transparent;
+      --e-btn-text-color\:hover: theme('colors.white');
     }
   }
-  &--primary {
-    --e-button-bg-color: theme('colors.primary.600');
-    --e-button-bg-color\:hover: theme('colors.primary.500');
-    --e-button-bg-color\:active: theme('colors.primary.700');
+  &-primary {
+    --e-btn-bg-color: theme('colors.primary.600');
+    --e-btn-bg-color\:hover: theme('colors.primary.500');
+    --e-btn-bg-color\:active: theme('colors.primary.700');
   }
-  &--success {
-    --e-button-bg-color: theme('colors.success.600');
-    --e-button-bg-color\:hover: theme('colors.success.500');
-    --e-button-bg-color\:active: theme('colors.success.700');
+  &-success {
+    --e-btn-bg-color: theme('colors.success.600');
+    --e-btn-bg-color\:hover: theme('colors.success.500');
+    --e-btn-bg-color\:active: theme('colors.success.700');
   }
-  &--warning {
-    --e-button-bg-color: theme('colors.warning.600');
-    --e-button-bg-color\:hover: theme('colors.warning.500');
-    --e-button-bg-color\:active: theme('colors.warning.700');
+  &-warning {
+    --e-btn-bg-color: theme('colors.warning.600');
+    --e-btn-bg-color\:hover: theme('colors.warning.500');
+    --e-btn-bg-color\:active: theme('colors.warning.700');
   }
-  &--error {
-    --e-button-bg-color: theme('colors.error.600');
-    --e-button-bg-color\:hover: theme('colors.error.500');
-    --e-button-bg-color\:active: theme('colors.error.700');
+  &-error {
+    --e-btn-bg-color: theme('colors.error.600');
+    --e-btn-bg-color\:hover: theme('colors.error.500');
+    --e-btn-bg-color\:active: theme('colors.error.700');
   }
 
-  &--round {
+  &-round {
     @apply rounded-full;
   }
-  &--circle {
+  &-circle {
     @apply rounded-full;
   }
-  &--circle,
-  &--square {
+  &-circle,
+  &-square {
     @apply justify-center overflow-hidden whitespace-nowrap px-0;
 
-    &.e-button--xs {
+    &.e-btn-xs {
       width: calc(theme('width.7') + 2px); // 30px / w-7 + 2px
     }
-    &.e-button--sm {
+    &.e-btn-sm {
       width: calc(theme('width.8') + 2px); // 34px / w-8 + 2px
     }
-    &.e-button--md {
+    &.e-btn-md {
       width: calc(theme('width.9') + 2px); // 38px / w-9 + 2px
     }
-    &.e-button--lg {
+    &.e-btn-lg {
       width: calc(theme('width.10') + 2px); // 42px / w-10 + 2px
     }
-    &.e-button--xl {
+    &.e-btn-xl {
       width: calc(theme('width.12') + 2px); // 50px / w-12 + 2px
     }
   }
 
-  &.disabled {
-    @apply cursor-not-allowed opacity-50;
+  &_icon {
+    @apply -ml-0.5 inline-flex;
+    font-size: 1.25em;
+    + .e-btn_body {
+      @apply ml-1;
+    }
+  }
+  &_body {
+    @apply inline-flex;
   }
 }

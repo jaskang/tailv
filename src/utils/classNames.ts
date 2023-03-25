@@ -42,21 +42,19 @@ export function classNames(...args: ClassValue[]) {
   return str
 }
 
-type BEMKey<T> = T extends string ? `-${T}` | `--${T}` | T : never
+type StringKeyOf<T, K = keyof T> = K extends string ? K : never
 
 export const computedCls = <T extends Record<string, any>>(
-  b: string,
   props: T,
-  tags: Array<BEMKey<keyof T>>
+  base: string,
+  classNames: Array<StringKeyOf<T>>
 ) => {
   const cls = computed(() => {
-    const cls = [b]
-    for (const tag of tags) {
-      const preTag = tag.startsWith('--') ? '--' : tag.startsWith('-') ? '-' : ''
-      const key = tag.substring(preTag.length)
-      const val = toRef(props, key)
+    const cls = [base]
+    for (const tag of classNames) {
+      const val = toRef(props, tag)
       if (val.value) {
-        cls.push(`${preTag ? b + preTag : ''}${val.value}`)
+        cls.push(`${base}-${val.value}`)
       }
     }
     return cls.join(' ')

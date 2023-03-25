@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computedCls } from '../utils'
-import type { PropType } from 'vue'
+import { computed, useSlots, type PropType } from 'vue'
 
 const props = defineProps({
-  shape: {
+  variant: {
     type: String as PropType<'square' | 'round' | 'circle'>,
   },
   color: {
@@ -16,11 +16,16 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const cls = computedCls('e-button', props, ['--shape', '--size', '--color', 'disabled'])
+const slots = useSlots()
+
+const cls = computedCls(props, 'e-btn', ['variant', 'size', 'color'])
 </script>
 <template>
-  <button :class="cls" type="button" :disabled="disabled">
-    <span>
+  <button :class="[cls]" type="button" :disabled="disabled">
+    <span class="e-btn_icon" v-if="slots.icon">
+      <slot name="icon" />
+    </span>
+    <span class="e-btn_body" v-if="slots.default">
       <slot />
     </span>
   </button>
