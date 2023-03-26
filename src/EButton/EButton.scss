@@ -34,22 +34,52 @@
   &--xs {
     @apply px-2.5 py-1.5 text-xs; // 30px / w-7 + 2px
     height: calc(theme('width.7') + 2px); // 30px / w-7 + 2px
+    > .e-btn_icon {
+      @apply -ml-1;
+      + .e-btn_body {
+        @apply ml-0.5;
+      }
+    }
   }
   &--sm {
     @apply px-3 py-2 text-sm leading-4; // 34px / w-8 + 2px
     height: calc(theme('width.8') + 2px); // 34px / w-8 + 2px
+    > .e-btn_icon {
+      @apply -ml-1;
+      + .e-btn_body {
+        @apply ml-0.5;
+      }
+    }
   }
   &--md {
     @apply px-4 py-2 text-sm; // 38px / w-9 + 2px
     height: calc(theme('width.9') + 2px); // 38px / w-9 + 2px
+    > .e-btn_icon {
+      @apply -ml-1.5;
+      + .e-btn_body {
+        @apply ml-1;
+      }
+    }
   }
   &--lg {
     @apply px-4 py-2 text-base; // 42px / w-10 + 2px
     height: calc(theme('width.10') + 2px); // 42px / w-10 + 2px
+    > .e-btn_icon {
+      @apply -ml-1.5;
+      + .e-btn_body {
+        @apply ml-1;
+      }
+    }
   }
   &--xl {
     @apply px-6 py-3 text-base; // 50px / w-12 + 2px
     height: calc(theme('width.12') + 2px); // 50px / w-12 + 2px
+    > .e-btn_icon {
+      @apply -ml-2;
+      + .e-btn_body {
+        @apply ml-1;
+      }
+    }
   }
 
   &--primary,
@@ -113,13 +143,10 @@
   }
 
   &_icon {
-    @apply -ml-0.5 inline-flex;
+    display: inline-flex;
     font-size: 1.25em;
-    + .e-btn_body {
-      @apply ml-2;
-    }
   }
   &_body {
-    @apply inline-flex;
+    display: inline-flex;
   }
 }
