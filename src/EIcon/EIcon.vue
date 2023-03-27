@@ -28,9 +28,8 @@ const style = computed(() => ({
 .e-icon {
   display: inline-flex;
   align-items: center;
-  color: inherit;
-  line-height: 0;
-  font-size: 1em;
+  line-height: 1;
+  font-size: theme('fontSize.base');
   text-align: center;
   text-transform: none;
   text-rendering: optimizeLegibility;
@@ -42,9 +41,9 @@ const style = computed(() => ({
 }
 
 .e-icon > svg {
+  display: inline-block;
   width: 1em;
   height: 1em;
   line-height: 1;
-  display: inline-block;
 }
 </style>

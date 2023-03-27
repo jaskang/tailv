@@ -10,6 +10,9 @@ export default defineConfig({
   description: 'Vite & Vue powered static site generator.',
   lastUpdated: true,
   vite: {
+    server: {
+      port: 8080,
+    },
     plugins: [
       vueJsx(),
       // Inspect(),

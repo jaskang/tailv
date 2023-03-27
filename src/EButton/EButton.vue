@@ -25,10 +25,10 @@ const cls = computedCls(props, 'e-btn', ['variant', 'color', 'size'])
 </script>
 <template>
   <button :class="[cls]" type="button" :disabled="disabled">
-    <span class="e-btn_icon" v-if="slots.icon">
+    <span class="e-btn__icon" v-if="slots.icon">
       <slot name="icon" />
     </span>
-    <span class="e-btn_body" v-if="slots.default">
+    <span class="e-btn__body" v-if="slots.default">
       <slot />
     </span>
   </button>
