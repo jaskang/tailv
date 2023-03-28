@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computedCls } from '../utils'
 import { computed, useSlots, type PropType } from 'vue'
+import EIcon from '../EIcon/EIcon.vue'
+import LoadingIcon from '../EIcon/Icons/LoadingIcon.vue'
 
 const props = defineProps({
   variant: {
@@ -21,12 +23,16 @@ const props = defineProps({
 
 const slots = useSlots()
 
+const hasIcon = computed(() => slots.icon || props.loading)
 const cls = computedCls(props, 'e-btn', ['variant', 'color', 'size'])
 </script>
 <template>
   <button :class="[cls]" type="button" :disabled="disabled">
-    <span class="e-btn_icon" v-if="slots.icon">
-      <slot name="icon" />
+    <span class="e-btn_icon" v-if="hasIcon">
+      <EIcon v-if="loading" spin><LoadingIcon /></EIcon>
+      <template v-else>
+        <slot name="icon" />
+      </template>
     </span>
     <span class="e-btn_body" v-if="slots.default">
       <slot />

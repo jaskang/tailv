@@ -102,6 +102,19 @@
 </template>
 ```
 
+## 方形
+
+```vue preview
+<template>
+  <EButton variant="square">乾</EButton>
+  <EButton variant="square">坤</EButton>
+  <EButton color="primary" variant="square">A+</EButton>
+  <EButton color="success" variant="square">B</EButton>
+  <EButton color="warning" variant="square">C</EButton>
+  <EButton color="error" variant="square">SSS</EButton>
+</template>
+```
+
 ## 图标
 
 使用 `icon` slot 为按钮设置图标
