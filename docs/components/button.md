@@ -24,6 +24,8 @@
   <EButton variant="circle" disabled>D</EButton>
   <EButton variant="square" disabled>链接按钮-禁用状态</EButton>
   <EButton color="primary" disabled>primary</EButton>
+
+  链接按钮-禁用状态
 </template>
 ```
 
@@ -124,7 +126,6 @@
     </template>
     图标按钮
   </EButton>
-  <EButton size="md"> 正常按钮 </EButton>
   <EButton size="lg">
     <template #icon>
       <EIcon><CubeIcon /></EIcon>
@@ -220,11 +221,11 @@
       <EIcon><CubeIcon /></EIcon>
     </template>
   </EButton>
-  <EButton variant="square" color="error">
+  <!-- <EButton variant="square" color="error">
     <template #icon>
-      <EIcon size="30px"><CubeIcon /></EIcon>
+      <EIcon size="20px"><CubeIcon /></EIcon>
     </template>
-  </EButton>
+  </EButton> -->
   <span>沙发斯蒂芬</span>
 </template>
 ```

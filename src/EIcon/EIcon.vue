@@ -4,17 +4,17 @@ import { computed, type PropType } from 'vue'
 const props = defineProps({
   size: {
     type: [String, Number] as PropType<string | number>,
-    default: '',
   },
   spin: Boolean,
 })
 
-const style = computed(() => ({
-  fontSize: typeof props.size === 'number' ? `${props.size}px` : props.size,
-}))
+const iconSize = computed(() => {
+  const sizePx = typeof props.size === 'number' ? `${props.size}px` : props.size
+  return sizePx ? { width: sizePx, height: sizePx } : {}
+})
 </script>
 <template>
-  <span role="img" class="e-icon" :class="{ 'e-icon-spin': props.spin }" :style="style">
+  <span role="img" class="e-icon" :class="{ 'e-icon-spin': props.spin }" :style="iconSize">
     <slot />
   </span>
 </template>
@@ -30,8 +30,8 @@ const style = computed(() => ({
   align-items: center;
   color: inherit;
   font-style: normal;
-  font-size: 1em;
-  line-height: 0;
+  height: 1em;
+  width: 1em;
   text-align: center;
   text-transform: none;
   vertical-align: -0.125em;
@@ -39,8 +39,9 @@ const style = computed(() => ({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   > svg {
-    width: 1em;
-    height: 1em;
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   &-spin svg {
     animation: e-icon-spin 1s infinite linear;
