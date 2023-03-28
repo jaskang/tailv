@@ -1,39 +1,25 @@
-# EIcon
+# EIcon 图标
 
 ```vue preview
 <template>
   <div class="space-x-1">
-    BeakerIcon图标: <EIcon><BeakerIcon /></EIcon>
+    <EIcon size="30px"><BeakerIcon /></EIcon>
 
-    StopIcon: <EIcon><StopIcon /></EIcon>
+    <EIcon size="30px"><StopIcon /></EIcon>
 
-    CogIcon: <EIcon><CogIcon /></EIcon>
+    <EIcon size="30px"><CogIcon /></EIcon>
 
-    HomeIcon: <EIcon><HomeIcon /></EIcon>
+    <EIcon size="30px"><HomeIcon /></EIcon>
 
-    CloudIcon: <EIcon><CloudIcon /></EIcon>
+    <EIcon size="30px"><CloudIcon /></EIcon>
 
-    BellIcon: <EIcon><BellIcon /></EIcon>
+    <EIcon size="30px"><BellIcon /></EIcon>
 
-    CubeIcon: <EIcon><CubeIcon /></EIcon>
+    <EIcon size="30px"><CubeIcon /></EIcon>
 
-    StarIcon: <EIcon><StarIcon /></EIcon>
+    <EIcon size="30px"><StarIcon /></EIcon>
     <br />
-    BeakerIcon图标: <EIcon spin><BeakerIcon /></EIcon>
-
-    StopIcon: <EIcon spin><StopIcon /></EIcon>
-
-    CogIcon: <EIcon spin><CogIcon /></EIcon>
-
-    HomeIcon: <EIcon spin><HomeIcon /></EIcon>
-
-    CloudIcon: <EIcon spin><CloudIcon /></EIcon>
-
-    BellIcon: <EIcon spin><BellIcon /></EIcon>
-
-    CubeIcon: <EIcon spin><CubeIcon /></EIcon>
-
-    StarIcon: <EIcon spin><StarIcon /></EIcon>
+    <EIcon size="30px" spin><StarIcon /></EIcon>
   </div>
 </template>
 ```
