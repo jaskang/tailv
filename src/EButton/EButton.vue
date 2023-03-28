@@ -4,7 +4,7 @@ import { computed, useSlots, type PropType } from 'vue'
 
 const props = defineProps({
   variant: {
-    type: String as PropType<'text' | 'subtle' | ''>,
+    type: String as PropType<'text' | 'subtle'>,
   },
   color: {
     type: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
@@ -25,10 +25,8 @@ const cls = computedCls(props, 'e-btn', ['variant', 'color', 'size'])
 </script>
 <template>
   <button :class="[cls]" type="button" :disabled="disabled">
-    <span class="e-btn__icon" v-if="slots.icon">
-      <slot name="icon" />
-    </span>
-    <span class="e-btn__body" v-if="slots.default">
+    <slot name="icon" />
+    <span class="e-btn_body" v-if="slots.default">
       <slot />
     </span>
   </button>

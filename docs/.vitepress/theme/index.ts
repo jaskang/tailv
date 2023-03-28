@@ -1,7 +1,16 @@
 import './index.css'
 import DefaultTheme from 'vitepress/theme'
 import { Elenext } from '../../../src'
-import { BeakerIcon, StopIcon, CogIcon, HomeIcon, CloudIcon, BellIcon, CubeIcon, StarIcon } from '@heroicons/vue/24/solid'
+import {
+  BeakerIcon,
+  StopIcon,
+  CogIcon,
+  HomeIcon,
+  CloudIcon,
+  BellIcon,
+  CubeIcon,
+  StarIcon,
+} from '@heroicons/vue/24/solid'
 
 export default {
   ...DefaultTheme,

@@ -56,7 +56,7 @@ export const computedCls = <T extends Record<string, any>>(
       if (typeof val.value === 'boolean' && val.value) {
         cls.push(`is-${tag}`)
       } else if (val.value) {
-        cls.push(`${base}--${val.value}`)
+        cls.push(`${base}-${val.value}`)
       }
     }
     return cls.join(' ')

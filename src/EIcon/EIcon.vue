@@ -4,7 +4,7 @@ import { computed, type PropType } from 'vue'
 const props = defineProps({
   size: {
     type: [String, Number] as PropType<string | number>,
-    default: '1em',
+    default: '',
   },
   spin: Boolean,
 })
@@ -26,9 +26,11 @@ const style = computed(() => ({
 }
 
 .e-icon {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   color: inherit;
   font-style: normal;
+  font-size: 1em;
   line-height: 0;
   text-align: center;
   text-transform: none;
@@ -36,7 +38,10 @@ const style = computed(() => ({
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  > svg {
+    width: 1em;
+    height: 1em;
+  }
   &-spin svg {
     animation: e-icon-spin 1s infinite linear;
   }

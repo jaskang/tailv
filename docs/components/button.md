@@ -124,6 +124,7 @@
     </template>
     图标按钮
   </EButton>
+  <EButton size="md"> 正常按钮 </EButton>
   <EButton size="lg">
     <template #icon>
       <EIcon><CubeIcon /></EIcon>
@@ -221,8 +222,9 @@
   </EButton>
   <EButton variant="square" color="error">
     <template #icon>
-      <EIcon><CubeIcon /></EIcon>
+      <EIcon size="30px"><CubeIcon /></EIcon>
     </template>
   </EButton>
+  <span>沙发斯蒂芬</span>
 </template>
 ```
