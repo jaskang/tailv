@@ -10,13 +10,17 @@
   --e-btn-bg-color\:active: theme('colors.normal.100');
 
   --e-btn-outline-offset-color: theme('colors.white');
+
   --e-btn-outline-color: var(--e-btn-border-color);
   --e-btn-icon-size: 1.4em;
   --e-btn-height: calc(theme('width.9') + 2px);
 }
+html.dark {
+  --e-btn-outline-offset-color: theme('colors.normal.700');
+}
 
 .e-btn {
-  @apply focus:ring-2 focus:ring-offset-2;
+  // @apply focus:ring-2 focus:ring-offset-2;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
