@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants'
 
-const buttonStyles = tv({
-  base: 'inline-flex items-center font-medium rounded-md border border-solid  border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2',
+const btnStyles = tv({
+  base: 'inline-flex items-center justify-center text-center font-medium border border-solid border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed',
   variants: {
     color: {
       default: 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-indigo-500',
@@ -16,6 +16,18 @@ const buttonStyles = tv({
       md: 'px-4 py-2 text-sm', // 38px / w-9 + 2px
       lg: 'px-4 py-2 text-base ', // 42px / w-10 + 2px
       xl: 'px-6 py-3 text-base', // 50px / w-12 + 2px
+    },
+    variant: {
+      subtle: 'text-sm',
+      text: 'bg-transparent border-none',
+    },
+    rounded: {
+      true: 'rounded-full',
+      false: 'rounded-md',
+    },
+    block: {
+      true: 'w-full',
+      false: '',
     },
     type: {
       round: 'rounded-full',
@@ -43,4 +55,4 @@ const buttonStyles = tv({
   ],
 })
 
-export default buttonStyles
+export default btnStyles

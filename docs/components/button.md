@@ -20,9 +20,9 @@
 ```vue preview
 <template>
   <EButton disabled>禁用状态</EButton>
-  <EButton variant="round" disabled>圆角按钮-禁用状态</EButton>
-  <EButton variant="circle" disabled>D</EButton>
-  <EButton variant="square" disabled>链接按钮-禁用状态</EButton>
+  <EButton disabled>圆角按钮-禁用状态</EButton>
+  <EButton circle disabled>D</EButton>
+  <EButton square disabled>链接按钮-禁用状态</EButton>
   <EButton color="primary" disabled>primary</EButton>
 
   链接按钮-禁用状态
@@ -69,11 +69,11 @@
 
 ```vue preview
 <template>
-  <EButton variant="round">默认</EButton>
-  <EButton color="primary" variant="round">primary</EButton>
-  <EButton color="success" variant="round">success</EButton>
-  <EButton color="warning" variant="round">warning</EButton>
-  <EButton color="error" variant="round">error</EButton>
+  <EButton rounded>默认</EButton>
+  <EButton color="primary" rounded>primary</EButton>
+  <EButton color="success" rounded>success</EButton>
+  <EButton color="warning" rounded>warning</EButton>
+  <EButton color="error" rounded>error</EButton>
 </template>
 ```
 
@@ -81,11 +81,11 @@
 
 ```vue preview
 <template>
-  <EButton variant="circle">D</EButton>
-  <EButton color="primary" variant="circle">P</EButton>
-  <EButton color="success" variant="circle">S</EButton>
-  <EButton color="warning" variant="circle">W</EButton>
-  <EButton color="error" variant="circle">E</EButton>
+  <EButton circle>D</EButton>
+  <EButton color="primary" circle>P</EButton>
+  <EButton color="success" circle>S</EButton>
+  <EButton color="warning" circle>W</EButton>
+  <EButton color="error" circle>E</EButton>
 </template>
 ```
 
@@ -93,25 +93,12 @@
 
 ```vue preview
 <template>
-  <EButton variant="square">乾</EButton>
-  <EButton variant="square">坤</EButton>
-  <EButton color="primary" variant="square">A+</EButton>
-  <EButton color="success" variant="square">B</EButton>
-  <EButton color="warning" variant="square">C</EButton>
-  <EButton color="error" variant="square">SSS</EButton>
-</template>
-```
-
-## 方形
-
-```vue preview
-<template>
-  <EButton variant="square">乾</EButton>
-  <EButton variant="square">坤</EButton>
-  <EButton color="primary" variant="square">A+</EButton>
-  <EButton color="success" variant="square">B</EButton>
-  <EButton color="warning" variant="square">C</EButton>
-  <EButton color="error" variant="square">SSS</EButton>
+  <EButton square>乾</EButton>
+  <EButton square>坤</EButton>
+  <EButton color="primary" square>A+</EButton>
+  <EButton color="success" square>B</EButton>
+  <EButton color="warning" square>C</EButton>
+  <EButton color="error" square>SSS</EButton>
 </template>
 ```
 
@@ -123,62 +110,62 @@
 <template>
   <EButton size="xs">
     <template #icon>
-      <EIcon><CubeIcon /></EIcon>
+      <CubeIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="sm">
     <template #icon>
-      <EIcon><CubeIcon /></EIcon>
+      <CubeIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="md">
     <template #icon>
-      <EIcon spin><CubeIcon /></EIcon>
+      <CubeIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="lg">
     <template #icon>
-      <EIcon><CubeIcon /></EIcon>
+      <CubeIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="xl">
     <template #icon>
-      <EIcon><CubeIcon /></EIcon>
+      <CubeIcon />
     </template>
     图标按钮
   </EButton>
   <br /><br />
   <EButton size="xs" color="primary">
     <template #icon>
-      <EIcon><CogIcon /></EIcon>
+      <CogIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="sm" color="primary">
     <template #icon>
-      <EIcon><CogIcon /></EIcon>
+      <CogIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="md" color="primary">
     <template #icon>
-      <EIcon spin><CogIcon /></EIcon>
+      <CogIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="lg" color="primary">
     <template #icon>
-      <EIcon><CogIcon /></EIcon>
+      <CogIcon />
     </template>
     图标按钮
   </EButton>
   <EButton size="xl" color="primary">
     <template #icon>
-      <EIcon><CogIcon /></EIcon>
+      <CogIcon />
     </template>
     图标按钮
   </EButton>
@@ -189,54 +176,57 @@
 
 ```vue preview
 <template>
-  <EButton variant="circle">
+  <EButton circle>
     <template #icon>
-      <EIcon spin><CogIcon /></EIcon>
+      <CogIcon />
     </template>
   </EButton>
-  <EButton variant="square">
+  <EButton square>
     <template #icon>
-      <EIcon spin><CogIcon /></EIcon>
+      <CogIcon />
     </template>
   </EButton>
-  <EButton variant="circle" color="primary">
+  <EButton circle color="primary">
     <template #icon>
-      <EIcon><HomeIcon /></EIcon>
+      <HomeIcon />
     </template>
   </EButton>
-  <EButton variant="square" color="primary">
+  <EButton square color="primary">
     <template #icon>
-      <EIcon><HomeIcon /></EIcon>
+      <HomeIcon />
     </template>
   </EButton>
-  <EButton variant="circle" color="success">
+  <EButton circle color="success">
     <template #icon>
-      <EIcon><CloudIcon /></EIcon>
+      <CloudIcon />
     </template>
   </EButton>
-  <EButton variant="square" color="success">
+  <EButton square color="success">
     <template #icon>
-      <EIcon><CloudIcon /></EIcon>
+      <CloudIcon />
     </template>
   </EButton>
-  <EButton variant="circle" color="warning">
+  <EButton circle color="warning">
     <template #icon>
-      <EIcon><BellIcon /></EIcon>
+      <BellIcon />
     </template>
   </EButton>
-  <EButton variant="square" color="warning">
+  <EButton square color="warning">
     <template #icon>
-      <EIcon><BellIcon /></EIcon>
+      <BellIcon />
     </template>
   </EButton>
-  <EButton variant="circle" color="error">
+  <EButton circle color="error">
     <template #icon>
-      <EIcon><CubeIcon /></EIcon>
+      <CubeIcon />
     </template>
   </EButton>
-  <!-- <EButton variant="square" color="error">
+  <EButton circle color="error">
+    <CubeIcon />
+  </EButton>
+  <!-- <EButton square color="error">
     <template #icon>
-      <EIcon size="20px"><CubeIcon /></EIcon>
+      <EIcon size="20px"><CubeIcon />
     </template>
   </EButton> -->
   <span>沙发斯蒂芬</span>

@@ -24,7 +24,9 @@ const iconSize = computed(() => {
     transform: rotate(360deg);
   }
 }
-
+.e-svg-spin {
+  animation: e-icon-spin 1s infinite linear;
+}
 .e-icon {
   display: inline-flex;
   align-items: center;

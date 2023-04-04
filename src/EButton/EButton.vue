@@ -15,28 +15,36 @@ const props = defineProps({
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
     default: 'md',
   },
-  loading: Boolean,
-  pill: Boolean,
+  rounded: Boolean,
   square: Boolean,
+  circle: Boolean,
+  loading: Boolean,
   disabled: Boolean,
 })
 
 const slots = useSlots()
 
 const hasIcon = computed(() => slots.icon || props.loading)
-const cls = computedCls(props, 'e-btn', ['variant', 'color', 'size'])
+const cls = computedCls(props, 'e-btn', [
+  'variant',
+  'color',
+  'size',
+  'rounded',
+  'square',
+  'circle',
+  'loading',
+  'disabled',
+])
 </script>
 <template>
   <button :class="[cls]" type="button" :disabled="disabled">
-    <span class="e-btn_icon" v-if="hasIcon">
-      <EIcon v-if="loading" spin><LoadingIcon /></EIcon>
-      <template v-else>
-        <slot name="icon" />
-      </template>
-    </span>
+    <template v-if="hasIcon">
+      <LoadingIcon v-if="loading" class="e-svg-spin" />
+      <slot v-else name="icon" />
+    </template>
     <span class="e-btn_body" v-if="slots.default">
       <slot />
     </span>
-    <span v-else>&zwnj;</span>
+    <!-- <span v-else>&zwnj;</span> -->
   </button>
 </template>

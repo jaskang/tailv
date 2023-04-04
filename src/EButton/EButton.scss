@@ -118,12 +118,12 @@ html.dark {
     --e-btn-bg-color\:active: theme('colors.error.700');
   }
 
-  &-round,
-  &-circle {
+  &.is-rounded,
+  &.is-circle {
     border-radius: 9999px;
   }
-  &-circle,
-  &-square {
+  &.is-circle,
+  &.is-square {
     justify-content: center;
     overflow: hidden;
     white-space: nowrap;
@@ -131,22 +131,14 @@ html.dark {
     width: var(--e-btn-height);
   }
 
-  &_icon {
-    width: calc(var(--e-btn-height) - 2px);
-    height: calc(var(--e-btn-height) - 2px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    > .e-icon {
-      width: calc(var(--e-btn-height) / 2);
-      height: calc(var(--e-btn-height) / 2);
-    }
+  svg {
+    width: calc(var(--e-btn-height) / 2);
+    height: calc(var(--e-btn-height) / 2);
     + .e-btn_body {
-      margin-inline-start: calc(var(--e-btn-height) / 4 + 0.5rem);
+      margin-inline-start: calc(var(--e-btn-height) / 8);
     }
+  }
+  > .e-btn_body {
+    display: inline-block;
   }
 }
