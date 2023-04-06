@@ -45,6 +45,7 @@ export default defineConfig({
       {
         text: '表单输入',
         items: [
+          { text: 'Switch 输入框', link: '/components/switch' },
           { text: 'Input 输入框', link: '/components/input' },
           { text: 'Checkbox 多选框', link: '/components/checkbox' },
           { text: 'Radio 单选框', link: '/components/radio' },

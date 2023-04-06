@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, useSlots, type PropType } from 'vue'
 import LoadingIcon from '../EIcon/Icons/LoadingIcon.vue'
-import styles from './styles'
+import style from './style'
 
 const props = defineProps({
   variant: {
@@ -28,15 +28,17 @@ const slots = useSlots()
 
 const hasIcon = computed(() => slots.icon || props.loading)
 
-const cls = styles({
-  variant: props.variant,
-  color: props.color,
-  size: props.size,
-  rounded: props.rounded || props.circle,
-  square: props.square || props.circle,
-  block: props.block,
-  disabled: props.disabled,
-})
+const cls = computed(() =>
+  style({
+    variant: props.variant,
+    color: props.color,
+    size: props.size,
+    rounded: props.rounded || props.circle,
+    square: props.square || props.circle,
+    block: props.block,
+    disabled: props.disabled,
+  })
+)
 </script>
 <template>
   <button :class="[cls]" type="button" :disabled="disabled">

@@ -1,10 +1,17 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
 @import './animation.css';
 
 // @import '../EButton/EButton.scss';
 @import '../ECheckBox/ECheckBox.scss';
 @import '../EInput/EInput.scss';
 @import '../ERadio/ERadio.scss';
+
+:where(.dark) {
+  *,
+  ::before,
+  ::after {
+    @apply ring-offset-slate-900;
+  }
+}
