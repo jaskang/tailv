@@ -3,13 +3,16 @@ import { computedCls } from '../utils'
 import { computed, useSlots, type PropType } from 'vue'
 import EIcon from '../EIcon/EIcon.vue'
 import LoadingIcon from '../EIcon/Icons/LoadingIcon.vue'
+import styles from './styles'
 
 const props = defineProps({
   variant: {
-    type: String as PropType<'text' | 'subtle'>,
+    type: String as PropType<'default' | 'link' | 'subtle'>,
+    default: 'default',
   },
   color: {
-    type: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
+    type: String as PropType<'default' | 'primary' | 'success' | 'warning' | 'error'>,
+    default: 'default',
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -18,6 +21,7 @@ const props = defineProps({
   rounded: Boolean,
   square: Boolean,
   circle: Boolean,
+  block: Boolean,
   loading: Boolean,
   disabled: Boolean,
 })
@@ -25,16 +29,16 @@ const props = defineProps({
 const slots = useSlots()
 
 const hasIcon = computed(() => slots.icon || props.loading)
-const cls = computedCls(props, 'e-btn', [
-  'variant',
-  'color',
-  'size',
-  'rounded',
-  'square',
-  'circle',
-  'loading',
-  'disabled',
-])
+
+const cls = styles({
+  variant: props.variant,
+  color: props.color,
+  size: props.size,
+  rounded: props.rounded || props.circle,
+  square: props.square || props.circle,
+  block: props.block,
+  disabled: props.disabled,
+})
 </script>
 <template>
   <button :class="[cls]" type="button" :disabled="disabled">
@@ -42,7 +46,7 @@ const cls = computedCls(props, 'e-btn', [
       <LoadingIcon v-if="loading" class="e-svg-spin" />
       <slot v-else name="icon" />
     </template>
-    <span class="e-btn_body" v-if="slots.default">
+    <span v-if="slots.default" class="whitespace-nowrap">
       <slot />
     </span>
     <!-- <span v-else>&zwnj;</span> -->

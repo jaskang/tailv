@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 import Inspect from 'vite-plugin-inspect'
+import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -18,6 +19,11 @@ export default defineConfig({
       // Inspect(),
       MarkdownPreview(),
     ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('../../src', import.meta.url)),
+      },
+    },
     ssr: { noExternal: ['vite-plugin-markdown-preview'] },
   },
   themeConfig: {

@@ -15,6 +15,30 @@
 
 # Button
 
+## 浅色按钮
+
+```vue preview
+<template>
+  <EButton variant="subtle">浅色按钮</EButton>
+  <EButton variant="subtle" color="primary">primary</EButton>
+  <EButton variant="subtle" color="success">success</EButton>
+  <EButton variant="subtle" color="warning">warning</EButton>
+  <EButton variant="subtle" color="error">error</EButton>
+</template>
+```
+
+## 链接
+
+```vue preview
+<template>
+  <EButton variant="link">链接按钮</EButton>
+  <EButton variant="link" color="primary">primary</EButton>
+  <EButton variant="link" color="success">success</EButton>
+  <EButton variant="link" color="warning">warning</EButton>
+  <EButton variant="link" color="error">error</EButton>
+</template>
+```
+
 ## 禁用
 
 ```vue preview
@@ -22,10 +46,8 @@
   <EButton disabled>禁用状态</EButton>
   <EButton disabled>圆角按钮-禁用状态</EButton>
   <EButton circle disabled>D</EButton>
-  <EButton square disabled>链接按钮-禁用状态</EButton>
+  <EButton variant="link" disabled>链接按钮-禁用状态</EButton>
   <EButton color="primary" disabled>primary</EButton>
-
-  链接按钮-禁用状态
 </template>
 ```
 
