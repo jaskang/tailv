@@ -46,9 +46,24 @@ const cls = styles({
       <LoadingIcon v-if="loading" class="e-svg-spin" />
       <slot v-else name="icon" />
     </template>
-    <span v-if="slots.default" class="whitespace-nowrap">
+    <span v-if="slots.default" class="e-btn_body whitespace-nowrap">
       <slot />
     </span>
     <!-- <span v-else>&zwnj;</span> -->
   </button>
 </template>
+<style lang="scss">
+.e-svg-spin {
+  animation: spin 1s infinite linear;
+}
+.e-btn {
+  svg {
+    width: 1em;
+    height: 1em;
+    transform: scaleX(1.25) scaleY(1.25);
+    + .e-btn_body {
+      margin-inline-start: 0.4em;
+    }
+  }
+}
+</style>

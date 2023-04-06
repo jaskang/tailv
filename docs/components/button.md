@@ -246,11 +246,6 @@
   <EButton circle color="error">
     <CubeIcon />
   </EButton>
-  <!-- <EButton square color="error">
-    <template #icon>
-      <EIcon size="20px"><CubeIcon />
-    </template>
-  </EButton> -->
   <span>沙发斯蒂芬</span>
 </template>
 ```
