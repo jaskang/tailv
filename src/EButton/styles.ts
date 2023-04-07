@@ -4,6 +4,7 @@ import { tv } from 'tailwind-variants'
 const styles = tv({
   base: tw`e-btn inline-flex items-center justify-center text-center font-medium border border-solid border-transparent 
     focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900
+    [&_svg]:w-[1em] [&_svg]:h-[1em] [&_svg]:scale-125 [&_svg+span]:ms-[0.4em]
   `,
   variants: {
     color: {

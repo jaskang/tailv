@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { computedCls } from '../utils'
 import { computed, useSlots, type PropType } from 'vue'
-import EIcon from '../EIcon/EIcon.vue'
 import LoadingIcon from '../EIcon/Icons/LoadingIcon.vue'
 import styles from './styles'
 
@@ -43,27 +41,11 @@ const cls = styles({
 <template>
   <button :class="[cls]" type="button" :disabled="disabled">
     <template v-if="hasIcon">
-      <LoadingIcon v-if="loading" class="e-svg-spin" />
+      <LoadingIcon v-if="loading" class="animate-spin" />
       <slot v-else name="icon" />
     </template>
     <span v-if="slots.default" class="e-btn_body whitespace-nowrap">
       <slot />
     </span>
-    <!-- <span v-else>&zwnj;</span> -->
   </button>
 </template>
-<style lang="scss">
-.e-svg-spin {
-  animation: spin 1s infinite linear;
-}
-.e-btn {
-  svg {
-    width: 1em;
-    height: 1em;
-    transform: scaleX(1.25) scaleY(1.25);
-    + .e-btn_body {
-      margin-inline-start: 0.4em;
-    }
-  }
-}
-</style>
