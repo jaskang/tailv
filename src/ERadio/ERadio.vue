@@ -2,48 +2,62 @@
 import { ref } from 'vue'
 
 const props = defineProps({
+  value: [String, Number],
+  modelValue: [String, Number],
+  name: String,
   disabled: Boolean,
   checked: Boolean,
-  name: String,
-  value: [String, Number],
 })
 
-const emits = defineEmits(['onUpdate:checked'])
+const emit = defineEmits(['onUpdate:checked', 'focus', 'blur'])
+
+const focus = ref(false)
 
 const innerChecked = ref(props.checked)
 
 const onInput = (e: Event) => {
   const el = e.currentTarget as HTMLInputElement
-  innerChecked.value = el.checked
   console.log(el.checked)
+
+  innerChecked.value = el.checked
 }
 const onClick = (e: Event) => {
-  console.log(e)
-
   if (props.disabled) {
     e.preventDefault()
     return false
   }
 }
-const onChange = (e: Event) => {
-  console.log('change', e)
+const onFocus = (e: Event) => {
+  if (props.disabled) {
+    e.preventDefault()
+    return false
+  } else {
+    focus.value = true
+    emit('focus', e)
+  }
+}
+const onBlur = (e: Event) => {
+  if (props.disabled) {
+    e.preventDefault()
+    return false
+  } else {
+    focus.value = false
+    emit('blur', e)
+  }
 }
 </script>
 <template>
-  <label :class="['e-radio', disabled && 'is-disabled']">
-    <input
-      ref="inputRef"
-      class="e-radio__input"
-      type="radio"
-      :value="value"
-      :name="name"
-      :disabled="disabled"
-      :checked="innerChecked"
-      @input="onInput"
-      @lick="onClick"
-      @change="onChange"
-    />
-    <span class="e-radio__label">
+  <label class="e-radio inline-flex items-center" :class="[disabled && 'cursor-not-allowed opacity-50']">
+    <div class="flex items-center">
+      <input
+        :name="name"
+        type="radio"
+        :disabled="disabled"
+        :checked="innerChecked"
+        class="h-4 w-4 border-gray-300 text-indigo-600 transition-all focus:ring-indigo-500 disabled:opacity-50"
+      />
+    </div>
+    <span class="ml-2 text-sm font-medium text-gray-700">
       <slot />
     </span>
   </label>

@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 
 const props = defineProps({
+  value: [String, Number],
+  name: String,
   disabled: Boolean,
   checked: Boolean,
-  name: String,
-  value: [String, Number],
 })
 
 const emit = defineEmits(['onUpdate:checked', 'focus', 'blur'])
@@ -46,35 +46,18 @@ const onBlur = (e: Event) => {
 }
 </script>
 <template>
-  <label
-    :class="[
-      'e-checkbox',
-      innerChecked && 'is-checked',
-      disabled && 'is-disabled',
-      focus && 'focus',
-    ]"
-  >
-    <span class="e-checkbox__input">
+  <label class="e-checkbox inline-flex items-center" :class="[disabled && 'cursor-not-allowed opacity-50']">
+    <div class="flex items-center">
       <input
-        type="checkbox"
-        class="e-checkbox__original"
-        :value="value"
         :name="name"
+        type="checkbox"
         :disabled="disabled"
         :checked="innerChecked"
-        @focus="onFocus"
-        @blur="onBlur"
-        @input="onInput"
-        @click="onClick"
+        class="h-4 w-4 rounded border-gray-300 text-indigo-600 transition-all focus:ring-indigo-500 disabled:opacity-50"
       />
-      <div class="e-checkbox__inner">
-        <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"
-          />
-        </svg>
-      </div>
+    </div>
+    <span class="ml-2 text-sm font-medium text-gray-700">
+      <slot />
     </span>
-    <span class="e-checkbox__label"><slot /></span>
   </label>
 </template>

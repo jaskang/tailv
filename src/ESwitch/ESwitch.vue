@@ -28,7 +28,7 @@ const cls = computed(() =>
 console.log(cls.value)
 </script>
 <template>
-  <button type="button" :class="cls.base()" role="switch" @click="() => setValue(!value)">
+  <button type="button" :disabled="disabled" :class="cls.base()" role="switch" @click="() => setValue(!value)">
     <span :class="cls.thumb()"></span>
   </button>
 </template>

@@ -1,5 +1,4 @@
 import './index.css'
-import DefaultTheme from 'vitepress/theme'
 import { Elenext } from '../../../src'
 import {
   BeakerIcon,
@@ -11,11 +10,12 @@ import {
   CubeIcon,
   StarIcon,
 } from '@heroicons/vue/24/solid'
+import { type Theme } from 'vitepress'
+import Layout from './Layout.vue'
 
 export default {
-  ...DefaultTheme,
+  Layout,
   enhanceApp(ctx) {
-    DefaultTheme.enhanceApp(ctx)
     ctx.app.use(Elenext)
     ctx.app.component('BeakerIcon', BeakerIcon)
     ctx.app.component('StopIcon', StopIcon)
@@ -26,4 +26,4 @@ export default {
     ctx.app.component('CubeIcon', CubeIcon)
     ctx.app.component('StarIcon', StarIcon)
   },
-}
+} satisfies Theme

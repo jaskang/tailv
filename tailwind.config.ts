@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 // import colors from 'tailwindcss/colors'
-// import aspectRatio from '@tailwindcss/aspect-ratio'
+import forms from '@tailwindcss/forms'
 
 export default {
   darkMode: 'class',
@@ -16,7 +16,5 @@ export default {
       // },
     },
   },
-  plugins: [
-    // forms({ strategy: 'base' })
-  ],
+  plugins: [forms({ strategy: 'base' })],
 } satisfies Config
