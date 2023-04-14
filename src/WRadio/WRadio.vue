@@ -47,17 +47,9 @@ const onBlur = (e: Event) => {
 }
 </script>
 <template>
-  <label class="e-radio inline-flex items-center" :class="[disabled && 'cursor-not-allowed opacity-50']">
-    <div class="flex items-center">
-      <input
-        :name="name"
-        type="radio"
-        :disabled="disabled"
-        :checked="innerChecked"
-        class="h-4 w-4 border-gray-300 text-indigo-600 transition-all disabled:opacity-50 focus:ring-indigo-500"
-      />
-    </div>
-    <span class="ml-2 text-sm font-medium text-gray-700">
+  <label class="w-radio" :class="[disabled && 'is-disabled']">
+    <input :name="name" type="radio" :disabled="disabled" :checked="innerChecked" class="w-radio_input" />
+    <span class="w-radio_label">
       <slot />
     </span>
   </label>

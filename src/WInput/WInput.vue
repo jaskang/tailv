@@ -16,10 +16,10 @@ const focused = ref(false)
     <span class="w-input_before" v-if="$slots.before">
       <slot name="before" />
     </span>
-    <span class="w-input_input">
+    <span class="w-input_wraper">
       <span class="w-input_prefix" v-if="prefix">{{ prefix }}</span>
       <input
-        class="w-input_control"
+        class="w-input_input"
         style="box-shadow: none"
         type="text"
         @focus="focused = true"

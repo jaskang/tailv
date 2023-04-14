@@ -27,7 +27,7 @@
     padding-left: 0.5rem;
     padding-right: 0.75rem;
   }
-  &_input {
+  &_wraper {
     // @apply w-full flex flex-1 items-center border border-gray-300 border-solid bg-white px-3 transition-all group-[.is-disabled]:cursor-not-allowed first:rounded-l-md last:rounded-r-md group-[.is-disabled]:bg-gray-50 group-[.is-disabled]:text-gray-500;
     width: 100%;
     display: flex;
@@ -46,7 +46,7 @@
       border-bottom-right-radius: 0.375rem;
     }
   }
-  &_control {
+  &_input {
     flex: 1;
     border: none;
     background-color: transparent;
@@ -68,14 +68,14 @@
   }
 
   &.is-focused {
-    .w-input_input {
+    .w-input_wraper {
       z-index: 10;
       border-color: theme('colors.indigo.500');
       box-shadow: 0 0 0 1px theme('colors.indigo.500');
     }
   }
   &.is-disabled {
-    .w-input_input {
+    .w-input_wraper {
       cursor: not-allowed;
       background-color: theme('colors.gray.50');
       opacity: 0.5;
