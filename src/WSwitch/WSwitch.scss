@@ -17,7 +17,6 @@
     box-shadow: 0 0 0 2px theme('colors.white'), 0 0 0 4px theme('colors.indigo.500');
   }
   &_thumb {
-    // @apply pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition-all;
     pointer-events: none;
     display: inline-block;
     height: 1.25rem;

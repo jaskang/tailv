@@ -1,0 +1,84 @@
+.w-input {
+  width: 100%;
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+  &_before,
+  &_after {
+    display: inline-flex;
+    flex: 0 1 auto;
+    align-items: center;
+    border: 1px solid theme('colors.gray.300');
+    background-color: theme('colors.gray.50');
+  }
+  &_before {
+    border-right-width: 0;
+    border-radius: 0.375rem 0 0 0.375rem;
+    padding-left: 0.75rem;
+    padding-right: 0.5rem;
+  }
+  &_after {
+    border-left-width: 0;
+    border-radius: 0 0.375rem 0.375rem 0;
+    padding-left: 0.5rem;
+    padding-right: 0.75rem;
+  }
+  &_input {
+    // @apply w-full flex flex-1 items-center border border-gray-300 border-solid bg-white px-3 transition-all group-[.is-disabled]:cursor-not-allowed first:rounded-l-md last:rounded-r-md group-[.is-disabled]:bg-gray-50 group-[.is-disabled]:text-gray-500;
+    width: 100%;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    border: 1px solid theme('colors.gray.300');
+    background-color: white;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    &:first-child {
+      border-top-left-radius: 0.375rem;
+      border-bottom-left-radius: 0.375rem;
+    }
+    &:last-child {
+      border-top-right-radius: 0.375rem;
+      border-bottom-right-radius: 0.375rem;
+    }
+  }
+  &_control {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    padding: 0.5rem 0;
+    &:focus {
+      outline: none;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  &_prefix {
+    flex: 0 1 auto;
+    padding-right: 0.5rem;
+  }
+  &_suffix {
+    flex: 0 1 auto;
+    padding-left: 0.5rem;
+  }
+
+  &.is-focused {
+    .w-input_input {
+      z-index: 10;
+      border-color: theme('colors.indigo.500');
+      box-shadow: 0 0 0 1px theme('colors.indigo.500');
+    }
+  }
+  &.is-disabled {
+    .w-input_input {
+      cursor: not-allowed;
+      background-color: theme('colors.gray.50');
+      opacity: 0.5;
+    }
+  }
+}
