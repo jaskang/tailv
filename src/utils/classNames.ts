@@ -44,22 +44,19 @@ export function classNames(...args: ClassValue[]) {
 
 type StringKeyOf<T, K = keyof T> = K extends string ? K : never
 
-export const computedCls = <T extends Record<string, any>>(
-  props: T,
-  base: string,
-  classNames: Array<StringKeyOf<T>>
-) => {
-  const cls = computed(() => {
+export const useCls = <T extends Record<string, string | boolean>>(base: string, variants: () => T) => {
+  const clsRef = computed(() => {
     const cls = [base]
-    for (const tag of classNames) {
-      const val = toRef(props, tag)
-      if (typeof val.value === 'boolean' && val.value) {
-        cls.push(`is-${tag}`)
-      } else if (val.value) {
-        cls.push(`${base}-${val.value}`)
+    const obj = variants()
+    const keys = Object.keys(obj)
+    for (const k of keys) {
+      const val = obj[k]
+      if (val) {
+        typeof val === 'boolean' ? cls.push(`is-${k}`) : cls.push(`${base}-${val}`)
       }
     }
     return cls.join(' ')
   })
-  return cls
+
+  return clsRef
 }

@@ -10,20 +10,20 @@
 
 ```vue preview
 <template>
-  <EInput />
-  <EInput prefix="prefix" />
-  <EInput suffix="suffix" />
-  <EInput prefix="prefix" suffix="suffix" />
-  <EInput>
+  <WInput />
+  <WInput prefix="prefix" />
+  <WInput suffix="suffix" />
+  <WInput prefix="prefix" suffix="suffix" />
+  <WInput>
     <template #before>before</template>
     <template #after>after</template>
-  </EInput>
-  <EInput>
+  </WInput>
+  <WInput>
     <template #after>after</template>
-  </EInput>
-  <EInput>
+  </WInput>
+  <WInput>
     <template #before>after</template>
-  </EInput>
+  </WInput>
 </template>
 ```
 
@@ -31,19 +31,19 @@
 
 ```vue preview
 <template>
-  <EInput disabled />
-  <EInput disabled prefix="prefix" />
-  <EInput disabled suffix="suffix" />
-  <EInput disabled prefix="prefix" suffix="suffix" />
-  <EInput disabled>
+  <WInput disabled />
+  <WInput disabled prefix="prefix" />
+  <WInput disabled suffix="suffix" />
+  <WInput disabled prefix="prefix" suffix="suffix" />
+  <WInput disabled>
     <template #before>before</template>
     <template #after>after</template>
-  </EInput>
-  <EInput disabled>
+  </WInput>
+  <WInput disabled>
     <template #after>after</template>
-  </EInput>
-  <EInput disabled>
+  </WInput>
+  <WInput disabled>
     <template #before>after</template>
-  </EInput>
+  </WInput>
 </template>
 ```

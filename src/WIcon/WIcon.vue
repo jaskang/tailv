@@ -48,9 +48,5 @@ const iconSize = computed(() => {
   &-spin svg {
     animation: e-icon-spin 1s infinite linear;
   }
-
-  &-rtl {
-    transform: scaleX(-1);
-  }
 }
 </style>

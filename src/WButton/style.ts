@@ -59,26 +59,10 @@ const styles = tv({
     { variant: 'link', color: 'success', class: tw`text-green-600 hover:text-green-700` },
     { variant: 'link', color: 'warning', class: tw`text-amber-600 hover:text-amber-700` },
     { variant: 'link', color: 'error', class: tw`text-red-600 hover:text-red-700` },
-    {
-      variant: 'subtle',
-      color: 'default',
-      class: tw`text-gray-600 border-transparent bg-gray-100 hover:bg-gray-200`,
-    },
-    {
-      variant: 'subtle',
-      color: 'primary',
-      class: tw`text-indigo-600  bg-indigo-100 hover:bg-indigo-200`,
-    },
-    {
-      variant: 'subtle',
-      color: 'success',
-      class: tw`text-green-600  bg-green-100 hover:bg-green-200`,
-    },
-    {
-      variant: 'subtle',
-      color: 'warning',
-      class: tw`text-amber-600  bg-amber-100 hover:bg-amber-200`,
-    },
+    { variant: 'subtle', color: 'default', class: tw`text-gray-600 border-transparent bg-gray-100 hover:bg-gray-200` },
+    { variant: 'subtle', color: 'primary', class: tw`text-indigo-600  bg-indigo-100 hover:bg-indigo-200` },
+    { variant: 'subtle', color: 'success', class: tw`text-green-600  bg-green-100 hover:bg-green-200` },
+    { variant: 'subtle', color: 'warning', class: tw`text-amber-600  bg-amber-100 hover:bg-amber-200` },
     { variant: 'subtle', color: 'error', class: tw`text-red-600  bg-red-100 hover:bg-red-200` },
   ],
 })

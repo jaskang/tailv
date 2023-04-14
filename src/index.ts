@@ -1,24 +1,25 @@
 import './styles/index.scss'
+import 'virtual:uno.css'
 import type { Plugin } from 'vue'
 
-import EIcon from './EIcon/EIcon.vue'
-import EButton from './EButton/EButton.vue'
-import ESwitch from './ESwitch/ESwitch.vue'
-import ERadio from './ERadio/ERadio.vue'
-import ECheckbox from './ECheckBox/ECheckBox.vue'
-import EInput from './EInput/EInput.vue'
+import WIcon from './WIcon/WIcon.vue'
+import WButton from './WButton/WButton.vue'
+import WSwitch from './WSwitch/WSwitch.vue'
+import WRadio from './WRadio/WRadio.vue'
+import WCheckbox from './WCheckBox/WCheckBox.vue'
+import WInput from './WInput/WInput.vue'
 
-export { EButton, ECheckbox, ERadio, ESwitch }
+export { WButton, WCheckbox, WRadio, WSwitch }
 
-export const Elenext: Plugin = {
+export const Wlenext: Plugin = {
   install(app, options) {
-    app.component('EIcon', EIcon)
-    app.component('EButton', EButton)
-    app.component('ESwitch', ESwitch)
-    app.component('ECheckbox', ECheckbox)
-    app.component('ERadio', ERadio)
-    app.component('EInput', EInput)
+    app.component('WIcon', WIcon)
+    app.component('WButton', WButton)
+    app.component('WSwitch', WSwitch)
+    app.component('WCheckbox', WCheckbox)
+    app.component('WRadio', WRadio)
+    app.component('WInput', WInput)
   },
 }
 
-// export default Elenext
+// export default Wlenext

@@ -54,7 +54,7 @@ const onBlur = (e: Event) => {
         type="radio"
         :disabled="disabled"
         :checked="innerChecked"
-        class="h-4 w-4 border-gray-300 text-indigo-600 transition-all focus:ring-indigo-500 disabled:opacity-50"
+        class="h-4 w-4 border-gray-300 text-indigo-600 transition-all disabled:opacity-50 focus:ring-indigo-500"
       />
     </div>
     <span class="ml-2 text-sm font-medium text-gray-700">

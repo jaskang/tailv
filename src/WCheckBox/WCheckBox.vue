@@ -46,17 +46,9 @@ const onBlur = (e: Event) => {
 }
 </script>
 <template>
-  <label class="e-checkbox inline-flex items-center" :class="[disabled && 'cursor-not-allowed opacity-50']">
-    <div class="flex items-center">
-      <input
-        :name="name"
-        type="checkbox"
-        :disabled="disabled"
-        :checked="innerChecked"
-        class="h-4 w-4 rounded border-gray-300 text-indigo-600 transition-all focus:ring-indigo-500 disabled:opacity-50"
-      />
-    </div>
-    <span class="ml-2 text-sm font-medium text-gray-700">
+  <label class="w-checkbox" :class="[disabled && 'is-disabled']">
+    <input :name="name" type="checkbox" :disabled="disabled" :checked="innerChecked" class="w-checkbox_input" />
+    <span class="w-checkbox_label">
       <slot />
     </span>
   </label>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useControllable } from '@/hooks/use-controllable'
 import { computed, toRef } from 'vue'
-import style from './style'
 
 const props = defineProps({
   modelValue: Boolean,
@@ -18,17 +17,16 @@ const [value, setValue] = useControllable(
   },
   computed(() => false)
 )
-
-const cls = computed(() =>
-  style({
-    enabled: value.value,
-    disabled: props.disabled,
-  })
-)
-console.log(cls.value)
 </script>
 <template>
-  <button type="button" :disabled="disabled" :class="cls.base()" role="switch" @click="() => setValue(!value)">
-    <span :class="cls.thumb()"></span>
+  <button
+    type="button"
+    class="w-switch"
+    :class="[value && 'is-checked']"
+    :disabled="disabled"
+    role="switch"
+    @click="() => setValue(!value)"
+  >
+    <span class="w-switch_thumb"></span>
   </button>
 </template>

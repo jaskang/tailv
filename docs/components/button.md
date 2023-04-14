@@ -19,11 +19,11 @@
 
 ```vue preview
 <template>
-  <EButton variant="subtle">浅色按钮</EButton>
-  <EButton variant="subtle" color="primary">primary</EButton>
-  <EButton variant="subtle" color="success">success</EButton>
-  <EButton variant="subtle" color="warning">warning</EButton>
-  <EButton variant="subtle" color="error">error</EButton>
+  <WButton variant="subtle">浅色按钮</WButton>
+  <WButton variant="subtle" color="primary">primary</WButton>
+  <WButton variant="subtle" color="success">success</WButton>
+  <WButton variant="subtle" color="warning">warning</WButton>
+  <WButton variant="subtle" color="error">error</WButton>
 </template>
 ```
 
@@ -31,11 +31,11 @@
 
 ```vue preview
 <template>
-  <EButton variant="link">链接按钮</EButton>
-  <EButton variant="link" color="primary">primary</EButton>
-  <EButton variant="link" color="success">success</EButton>
-  <EButton variant="link" color="warning">warning</EButton>
-  <EButton variant="link" color="error">error</EButton>
+  <WButton variant="link">链接按钮</WButton>
+  <WButton variant="link" color="primary">primary</WButton>
+  <WButton variant="link" color="success">success</WButton>
+  <WButton variant="link" color="warning">warning</WButton>
+  <WButton variant="link" color="error">error</WButton>
 </template>
 ```
 
@@ -43,11 +43,11 @@
 
 ```vue preview
 <template>
-  <EButton disabled>禁用状态</EButton>
-  <EButton disabled>圆角按钮-禁用状态</EButton>
-  <EButton circle disabled>D</EButton>
-  <EButton variant="link" disabled>链接按钮-禁用状态</EButton>
-  <EButton color="primary" disabled>primary</EButton>
+  <WButton disabled>禁用状态</WButton>
+  <WButton disabled>圆角按钮-禁用状态</WButton>
+  <WButton circle disabled>D</WButton>
+  <WButton variant="link" disabled>链接按钮-禁用状态</WButton>
+  <WButton color="primary" disabled>primary</WButton>
 </template>
 ```
 
@@ -55,17 +55,17 @@
 
 ```vue preview
 <template>
-  <EButton>你测sd试好</EButton>
-  <EButton color="primary">primary</EButton>
-  <EButton color="success">success</EButton>
-  <EButton color="warning">warning</EButton>
-  <EButton color="error">error</EButton>
+  <WButton>你测sd试好</WButton>
+  <WButton color="primary">primary</WButton>
+  <WButton color="success">success</WButton>
+  <WButton color="warning">warning</WButton>
+  <WButton color="error">error</WButton>
   <br /><br />
-  <EButton plain>你测sd试好</EButton>
-  <EButton plain color="primary">primary</EButton>
-  <EButton plain color="success">success</EButton>
-  <EButton plain color="warning">warning</EButton>
-  <EButton plain color="error">error</EButton>
+  <WButton plain>你测sd试好</WButton>
+  <WButton plain color="primary">primary</WButton>
+  <WButton plain color="success">success</WButton>
+  <WButton plain color="warning">warning</WButton>
+  <WButton plain color="error">error</WButton>
 </template>
 ```
 
@@ -73,17 +73,17 @@
 
 ```vue preview
 <template>
-  <EButton size="xs">button xs</EButton>
-  <EButton size="sm">button sm</EButton>
-  <EButton>button</EButton>
-  <EButton size="lg">button lg</EButton>
-  <EButton size="xl">button xl</EButton>
+  <WButton size="xs">button xs</WButton>
+  <WButton size="sm">button sm</WButton>
+  <WButton>button</WButton>
+  <WButton size="lg">button lg</WButton>
+  <WButton size="xl">button xl</WButton>
   <br /><br />
-  <EButton color="primary" size="xs">button xs</EButton>
-  <EButton color="primary" size="sm">button sm</EButton>
-  <EButton color="primary">button</EButton>
-  <EButton color="primary" size="lg">button lg</EButton>
-  <EButton color="primary" size="xl">button xl</EButton>
+  <WButton color="primary" size="xs">button xs</WButton>
+  <WButton color="primary" size="sm">button sm</WButton>
+  <WButton color="primary">button</WButton>
+  <WButton color="primary" size="lg">button lg</WButton>
+  <WButton color="primary" size="xl">button xl</WButton>
 </template>
 ```
 
@@ -91,11 +91,11 @@
 
 ```vue preview
 <template>
-  <EButton rounded>默认</EButton>
-  <EButton color="primary" rounded>primary</EButton>
-  <EButton color="success" rounded>success</EButton>
-  <EButton color="warning" rounded>warning</EButton>
-  <EButton color="error" rounded>error</EButton>
+  <WButton rounded>默认</WButton>
+  <WButton color="primary" rounded>primary</WButton>
+  <WButton color="success" rounded>success</WButton>
+  <WButton color="warning" rounded>warning</WButton>
+  <WButton color="error" rounded>error</WButton>
 </template>
 ```
 
@@ -103,11 +103,11 @@
 
 ```vue preview
 <template>
-  <EButton circle>D</EButton>
-  <EButton color="primary" circle>P</EButton>
-  <EButton color="success" circle>S</EButton>
-  <EButton color="warning" circle>W</EButton>
-  <EButton color="error" circle>E</EButton>
+  <WButton circle>D</WButton>
+  <WButton color="primary" circle>P</WButton>
+  <WButton color="success" circle>S</WButton>
+  <WButton color="warning" circle>W</WButton>
+  <WButton color="error" circle>E</WButton>
 </template>
 ```
 
@@ -115,12 +115,12 @@
 
 ```vue preview
 <template>
-  <EButton square>乾</EButton>
-  <EButton square>坤</EButton>
-  <EButton color="primary" square>A+</EButton>
-  <EButton color="success" square>B</EButton>
-  <EButton color="warning" square>C</EButton>
-  <EButton color="error" square>SSS</EButton>
+  <WButton square>乾</WButton>
+  <WButton square>坤</WButton>
+  <WButton color="primary" square>A+</WButton>
+  <WButton color="success" square>B</WButton>
+  <WButton color="warning" square>C</WButton>
+  <WButton color="error" square>SSS</WButton>
 </template>
 ```
 
@@ -130,67 +130,57 @@
 
 ```vue preview
 <template>
-  <EButton size="xs">
+  <WButton size="xs" color="primary">
     <template #icon>
-      <CubeIcon />
+      <CogIcon />
     </template>
     图标按钮
-  </EButton>
-  <EButton size="sm">
+  </WButton>
+  <WButton size="sm" color="primary">
     <template #icon>
-      <CubeIcon />
+      <CogIcon />
     </template>
     图标按钮
-  </EButton>
-  <EButton size="md">
+  </WButton>
+  <WButton size="md" color="primary">
     <template #icon>
-      <CubeIcon />
+      <CogIcon />
     </template>
     图标按钮
-  </EButton>
-  <EButton size="lg">
+  </WButton>
+  <WButton size="lg" color="primary">
     <template #icon>
-      <CubeIcon />
+      <CogIcon />
     </template>
     图标按钮
-  </EButton>
-  <EButton size="xl">
+  </WButton>
+  <WButton size="xl" color="primary">
     <template #icon>
-      <CubeIcon />
+      <CogIcon />
     </template>
     图标按钮
-  </EButton>
+  </WButton>
   <br /><br />
-  <EButton size="xs" color="primary">
-    <template #icon>
-      <CogIcon />
-    </template>
+  <WButton size="xs" color="primary">
+    <WIcon><CogIcon /></WIcon>
     图标按钮
-  </EButton>
-  <EButton size="sm" color="primary">
-    <template #icon>
-      <CogIcon />
-    </template>
+  </WButton>
+  <WButton size="sm" color="primary">
+    <WIcon><CogIcon /></WIcon>
     图标按钮
-  </EButton>
-  <EButton size="md" color="primary">
-    <template #icon>
-      <CogIcon />
-    </template>
+  </WButton>
+  <WButton size="md" color="primary">
+    <WIcon><CogIcon /></WIcon>
     图标按钮
-  </EButton>
-  <EButton size="lg" color="primary">
-    <template #icon>
-      <CogIcon />
-    </template>
+  </WButton>
+  <WButton size="lg" color="primary">
+    <WIcon><CogIcon /></WIcon>
     图标按钮
-  </EButton>
-  <EButton size="xl" color="primary">
-    <template #icon>
-      <CogIcon />
-    </template>
+  </WButton>
+  <WButton size="xl" color="primary">
+    <WIcon><CogIcon /></WIcon>
     图标按钮
-  </EButton>
+  </WButton>
 </template>
 ```
 
@@ -198,54 +188,54 @@
 
 ```vue preview
 <template>
-  <EButton circle>
+  <WButton circle>
     <template #icon>
       <CogIcon />
     </template>
-  </EButton>
-  <EButton square>
+  </WButton>
+  <WButton square>
     <template #icon>
       <CogIcon />
     </template>
-  </EButton>
-  <EButton circle color="primary">
+  </WButton>
+  <WButton circle color="primary">
     <template #icon>
       <HomeIcon />
     </template>
-  </EButton>
-  <EButton square color="primary">
+  </WButton>
+  <WButton square color="primary">
     <template #icon>
       <HomeIcon />
     </template>
-  </EButton>
-  <EButton circle color="success">
+  </WButton>
+  <WButton circle color="success">
     <template #icon>
       <CloudIcon />
     </template>
-  </EButton>
-  <EButton square color="success">
+  </WButton>
+  <WButton square color="success">
     <template #icon>
       <CloudIcon />
     </template>
-  </EButton>
-  <EButton circle color="warning">
+  </WButton>
+  <WButton circle color="warning">
     <template #icon>
       <BellIcon />
     </template>
-  </EButton>
-  <EButton square color="warning">
+  </WButton>
+  <WButton square color="warning">
     <template #icon>
       <BellIcon />
     </template>
-  </EButton>
-  <EButton circle color="error">
+  </WButton>
+  <WButton circle color="error">
     <template #icon>
       <CubeIcon />
     </template>
-  </EButton>
-  <EButton circle color="error">
-    <CubeIcon />
-  </EButton>
+  </WButton>
+  <WButton circle color="error">
+    <WIcon><CubeIcon /></WIcon>
+  </WButton>
   <span>沙发斯蒂芬</span>
 </template>
 ```

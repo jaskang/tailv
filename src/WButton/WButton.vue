@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, useSlots, type PropType } from 'vue'
-import LoadingIcon from '../EIcon/Icons/LoadingIcon.vue'
+import LoadingIcon from '../WIcon/icons/LoadingIcon.vue'
 import style from './style'
+import { useCls } from '@/utils/classNames'
 
 const props = defineProps({
   variant: {
@@ -9,8 +10,8 @@ const props = defineProps({
     default: 'default',
   },
   color: {
-    type: String as PropType<'default' | 'primary' | 'success' | 'warning' | 'error'>,
-    default: 'default',
+    type: String as PropType<'normal' | 'primary' | 'success' | 'warning' | 'error'>,
+    default: 'normal',
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -28,25 +29,23 @@ const slots = useSlots()
 
 const hasIcon = computed(() => slots.icon || props.loading)
 
-const cls = computed(() =>
-  style({
-    variant: props.variant,
-    color: props.color,
-    size: props.size,
-    rounded: props.rounded || props.circle,
-    square: props.square || props.circle,
-    block: props.block,
-    disabled: props.disabled,
-  })
-)
+const cls = useCls('w-btn', () => ({
+  variant: props.variant,
+  color: props.color,
+  size: props.size,
+  rounded: props.rounded || props.circle,
+  square: props.square || props.circle,
+  block: props.block,
+  disabled: props.disabled,
+}))
 </script>
 <template>
-  <button :class="[cls]" type="button" :disabled="disabled">
+  <button :class="cls" type="button" :disabled="disabled">
     <template v-if="hasIcon">
-      <LoadingIcon v-if="loading" class="animate-spin" />
+      <LoadingIcon v-if="loading" class="w-btn_loading" />
       <slot v-else name="icon" />
     </template>
-    <span v-if="slots.default" class="e-btn_body whitespace-nowrap">
+    <span v-if="slots.default" class="w-btn_body">
       <slot />
     </span>
   </button>

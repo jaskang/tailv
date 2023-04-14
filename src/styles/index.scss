@@ -1,12 +1,12 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import './animation.css';
+@import './reset.css';
 
-// @import '../EButton/EButton.scss';
-// @import '../ECheckBox/ECheckBox.scss';
-// @import '../EInput/EInput.scss';
-// @import '../ERadio/ERadio.scss';
+@import '../WButton/WButton.scss';
+@import '../WCheckBox/WCheckBox.scss';
+@import '../WSwitch/WSwitch.scss';
+// @import '../WRadio/WRadio.scss';
+
+:root {
+}
 
 :where(.dark) {
   *,
