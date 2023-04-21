@@ -1,3 +1,5 @@
+@import '../styles/var.scss';
+
 :root {
   --w-btn-text-color: theme('colors.gray.700');
   --w-btn-bg-color: theme('colors.gray.300');
@@ -35,10 +37,10 @@
   }
 
   &-normal {
-    --w-btn-bg-color: theme('colors.white');
-    --w-btn-border-color: theme('colors.gray.300');
+    --w-btn-bg-color: var(--w-color-white);
+    --w-btn-border-color: var(--w-color-gray-200);
 
-    --w-btn-bg-color--hover: theme('colors.gray.50');
+    --w-btn-bg-color--hover: var(--w-color-gray-50);
     --w-btn-outline-color: theme('colors.indigo.500');
   }
   &-primary {
