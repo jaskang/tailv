@@ -1,4 +1,4 @@
-@import '../styles/var.scss';
+@import '../styles/var.css';
 
 :root {
   --w-btn-text-color: theme('colors.gray.700');
@@ -36,12 +36,20 @@
     outline-offset: 2px;
   }
 
-  &-normal {
-    --w-btn-bg-color: var(--w-color-white);
-    --w-btn-border-color: var(--w-color-gray-200);
+  // &-normal {
+  //   --w-btn-bg-color: var(--w-color-white);
+  //   --w-btn-border-color: var(--w-color-gray-200);
 
-    --w-btn-bg-color--hover: var(--w-color-gray-50);
-    --w-btn-outline-color: theme('colors.indigo.500');
+  //   --w-btn-bg-color--hover: var(--w-color-gray-50);
+  //   --w-btn-outline-color: theme('colors.indigo.500');
+  // }
+  &-normal {
+    --w-btn-text-color: theme('colors.white');
+    --w-btn-bg-color: theme('colors.gray.500');
+    --w-btn-border-color: transparent;
+
+    --w-btn-bg-color--hover: theme('colors.gray.600');
+    --w-btn-outline-color: theme('colors.gray.500');
   }
   &-primary {
     --w-btn-text-color: theme('colors.white');
@@ -86,6 +94,11 @@
     --w-btn-border-color: transparent;
     --w-btn-bg-color--hover: theme('colors.gray.200');
 
+    &.w-btn-normal {
+      --w-btn-text-color: theme('colors.gray.600');
+      --w-btn-bg-color: theme('colors.gray.100');
+      --w-btn-bg-color--hover: theme('colors.gray.200');
+    }
     &.w-btn-primary {
       --w-btn-text-color: theme('colors.indigo.600');
       --w-btn-bg-color: theme('colors.indigo.100');

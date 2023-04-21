@@ -38,6 +38,20 @@ const cls = useCls('w-btn', () => ({
   block: props.block,
   disabled: props.disabled,
 }))
+
+const styles = computed(() => ({
+  '--w-btn-text-color': theme('colors.gray.700'),
+  '--w-btn-bg-color': theme('colors.gray.300'),
+  '--w-btn-border-color': theme('colors.gray.300'),
+
+  '--w-btn-text-color--hover': 'var(--w-btn-text-color)',
+  '--w-btn-bg-color--hover': 'var(--w-btn-bg-color)',
+  '--w-btn-border-color--hover': 'var(--w-btn-border-color)',
+
+  '--w-btn-outline-color': 'var(--w-btn-bg-color)',
+
+  '--w-btn-height': calc(2.25rem + 2px),
+}))
 </script>
 <template>
   <button :class="cls" type="button" :disabled="disabled">
