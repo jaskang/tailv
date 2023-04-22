@@ -44,7 +44,7 @@ export function classNames(...args: ClassValue[]) {
 
 type StringKeyOf<T, K = keyof T> = K extends string ? K : never
 
-export const useCls = <T extends Record<string, string | boolean>>(base: string, variants: () => T) => {
+export const useCls = <T extends Record<string, string | boolean | undefined>>(base: string, variants: () => T) => {
   const clsRef = computed(() => {
     const cls = [base]
     const obj = variants()

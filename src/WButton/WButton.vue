@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, useSlots, type PropType } from 'vue'
-import LoadingIcon from '../WIcon/icons/LoadingIcon.vue'
-import style from './style'
+import LoadingIcon from '../WIcon/Icons/LoadingIcon.vue'
+import { getBtnVars } from './styles'
 import { useCls } from '@/utils/classNames'
+import { useTheme } from '@/core/theme'
 
 const props = defineProps({
   variant: {
@@ -10,8 +11,7 @@ const props = defineProps({
     default: 'default',
   },
   color: {
-    type: String as PropType<'normal' | 'primary' | 'success' | 'warning' | 'error'>,
-    default: 'normal',
+    type: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -26,7 +26,7 @@ const props = defineProps({
 })
 
 const slots = useSlots()
-
+const { getColor } = useTheme()
 const hasIcon = computed(() => slots.icon || props.loading)
 
 const cls = useCls('w-btn', () => ({
@@ -39,26 +39,16 @@ const cls = useCls('w-btn', () => ({
   disabled: props.disabled,
 }))
 
-const styles = computed(() => ({
-  '--w-btn-text-color': theme('colors.gray.700'),
-  '--w-btn-bg-color': theme('colors.gray.300'),
-  '--w-btn-border-color': theme('colors.gray.300'),
-
-  '--w-btn-text-color--hover': 'var(--w-btn-text-color)',
-  '--w-btn-bg-color--hover': 'var(--w-btn-bg-color)',
-  '--w-btn-border-color--hover': 'var(--w-btn-border-color)',
-
-  '--w-btn-outline-color': 'var(--w-btn-bg-color)',
-
-  '--w-btn-height': calc(2.25rem + 2px),
-}))
+const styles = computed(() => {
+  return getBtnVars(props.variant, getColor(props.color))
+})
 </script>
 <template>
-  <button :class="cls" type="button" :disabled="disabled">
-    <template v-if="hasIcon">
+  <button :class="cls" :style="styles" type="button" :disabled="disabled">
+    <span v-if="hasIcon" class="w-btn_icon">
       <LoadingIcon v-if="loading" class="w-btn_loading" />
       <slot v-else name="icon" />
-    </template>
+    </span>
     <span v-if="slots.default" class="w-btn_body">
       <slot />
     </span>
