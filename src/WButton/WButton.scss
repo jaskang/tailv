@@ -48,50 +48,30 @@
     font-size: 0.75rem;
     line-height: 0.75rem;
     --w-btn-height: calc(1.75rem + 2px); // 30px / w-7 + 2px
-    > .w-btn_icon {
-      margin-left: 0px;
-      margin-right: 4px;
-    }
   }
   &-sm {
     padding: 0 0.75rem;
     font-size: 0.75rem; // 12px
     line-height: 1rem; // 16px
     --w-btn-height: calc(2rem + 2px); // 34px / w-8 + 2px
-    > .w-btn_icon {
-      margin-left: -2px;
-      margin-right: 5px;
-    }
   }
   &-md {
     padding: 0 1rem;
     font-size: 0.875rem; // 14px
     line-height: 1.25rem; // 20px
     --w-btn-height: calc(2.25rem + 2px); // 38px / w-9 + 2px
-    > .w-btn_icon {
-      margin-left: -4px;
-      margin-right: 6px;
-    }
   }
   &-lg {
     padding: 0 1.25rem;
     font-size: 1rem; // 16px
     line-height: 1.5rem; // 24px
     --w-btn-height: calc(2.5rem + 2px); // 42px / w-10 + 2px
-    > .w-btn_icon {
-      margin-left: -6px;
-      margin-right: 7px;
-    }
   }
   &-xl {
     padding: 0 1.5rem;
     font-size: 1.125rem; // 18px
     line-height: 1.75rem; // 28px
     --w-btn-height: calc(2.75rem + 2px); // 46px / w-11 + 2px
-    > .w-btn_icon {
-      margin-left: -8px;
-      margin-right: 8px;
-    }
   }
 
   &.is-rounded {
@@ -121,6 +101,9 @@
     width: 1em;
     height: 1em;
     transform: scale(1.25);
+    + .w-btn_body {
+      margin-left: 0.5em;
+    }
   }
   &_loading {
     animation: wd-spin 1s linear infinite;

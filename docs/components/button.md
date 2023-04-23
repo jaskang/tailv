@@ -1,13 +1,13 @@
 <style lang="scss"> 
 .mdp-demo__preview {
-  > .e-btn{
+  > .w-btn{
     margin-left: 1rem;
     /* margin-top: 1rem; */
     &:first-child{
       margin-left: 0;
     }
   } 
-  > br + .e-btn{
+  > br + .w-btn{
     margin-left: 0 !important;
   }
 }
@@ -24,10 +24,6 @@
   <WButton variant="subtle" color="success">success</WButton>
   <WButton variant="subtle" color="warning">warning</WButton>
   <WButton variant="subtle" color="error">error</WButton>
-  <WButton variant="subtle" color="lime">lime</WButton>
-  <WButton variant="subtle" color="yellow">yellow</WButton>
-  <WButton variant="subtle" color="purple">purple</WButton>
-  asdf
 </template>
 ```
 
@@ -47,11 +43,13 @@
 
 ```vue preview
 <template>
+  <WButton disabled color="primary">primary</WButton>
+  <WButton disabled color="success">success</WButton>
+  <WButton disabled color="warning">warning</WButton>
+  <WButton disabled color="error">error</WButton>
   <WButton disabled>禁用状态</WButton>
-  <WButton disabled>圆角按钮-禁用状态</WButton>
   <WButton circle disabled>D</WButton>
   <WButton variant="link" disabled>链接按钮-禁用状态</WButton>
-  <WButton color="primary" disabled>primary</WButton>
 </template>
 ```
 
@@ -64,10 +62,80 @@
   <WButton color="success">success</WButton>
   <WButton color="warning">warning</WButton>
   <WButton color="error">error</WButton>
+  <br /><br />
 
-  <WButton color="lime">lime</WButton>
+  <WButton color="slate">slate</WButton>
+  <WButton color="gray">gray</WButton>
+  <WButton color="zinc">zinc</WButton>
+  <WButton color="neutral">neutral</WButton>
+  <WButton color="stone">stone</WButton>
+  <WButton color="red">red</WButton>
+  <WButton color="orange">orange</WButton>
+  <WButton color="amber">amber</WButton>
   <WButton color="yellow">yellow</WButton>
+  <WButton color="lime">lime</WButton>
+  <WButton color="green">green</WButton>
+  <WButton color="emerald">emerald</WButton>
+  <WButton color="teal">teal</WButton>
+  <WButton color="cyan">cyan</WButton>
+  <WButton color="sky">sky</WButton>
+  <WButton color="blue">blue</WButton>
+  <WButton color="indigo">indigo</WButton>
+  <WButton color="violet">violet</WButton>
   <WButton color="purple">purple</WButton>
+  <WButton color="fuchsia">fuchsia</WButton>
+  <WButton color="pink">pink</WButton>
+  <WButton color="rose">rose</WButton>
+
+  <br /><br />
+
+  <WButton variant="subtle" color="slate">slate</WButton>
+  <WButton variant="subtle" color="gray">gray</WButton>
+  <WButton variant="subtle" color="zinc">zinc</WButton>
+  <WButton variant="subtle" color="neutral">neutral</WButton>
+  <WButton variant="subtle" color="stone">stone</WButton>
+  <WButton variant="subtle" color="red">red</WButton>
+  <WButton variant="subtle" color="orange">orange</WButton>
+  <WButton variant="subtle" color="amber">amber</WButton>
+  <WButton variant="subtle" color="yellow">yellow</WButton>
+  <WButton variant="subtle" color="lime">lime</WButton>
+  <WButton variant="subtle" color="green">green</WButton>
+  <WButton variant="subtle" color="emerald">emerald</WButton>
+  <WButton variant="subtle" color="teal">teal</WButton>
+  <WButton variant="subtle" color="cyan">cyan</WButton>
+  <WButton variant="subtle" color="sky">sky</WButton>
+  <WButton variant="subtle" color="blue">blue</WButton>
+  <WButton variant="subtle" color="indigo">indigo</WButton>
+  <WButton variant="subtle" color="violet">violet</WButton>
+  <WButton variant="subtle" color="purple">purple</WButton>
+  <WButton variant="subtle" color="fuchsia">fuchsia</WButton>
+  <WButton variant="subtle" color="pink">pink</WButton>
+  <WButton variant="subtle" color="rose">rose</WButton>
+
+  <br /><br />
+
+  <WButton variant="link" color="slate">slate</WButton>
+  <WButton variant="link" color="gray">gray</WButton>
+  <WButton variant="link" color="zinc">zinc</WButton>
+  <WButton variant="link" color="neutral">neutral</WButton>
+  <WButton variant="link" color="stone">stone</WButton>
+  <WButton variant="link" color="red">red</WButton>
+  <WButton variant="link" color="orange">orange</WButton>
+  <WButton variant="link" color="amber">amber</WButton>
+  <WButton variant="link" color="yellow">yellow</WButton>
+  <WButton variant="link" color="lime">lime</WButton>
+  <WButton variant="link" color="green">green</WButton>
+  <WButton variant="link" color="emerald">emerald</WButton>
+  <WButton variant="link" color="teal">teal</WButton>
+  <WButton variant="link" color="cyan">cyan</WButton>
+  <WButton variant="link" color="sky">sky</WButton>
+  <WButton variant="link" color="blue">blue</WButton>
+  <WButton variant="link" color="indigo">indigo</WButton>
+  <WButton variant="link" color="violet">violet</WButton>
+  <WButton variant="link" color="purple">purple</WButton>
+  <WButton variant="link" color="fuchsia">fuchsia</WButton>
+  <WButton variant="link" color="pink">pink</WButton>
+  <WButton variant="link" color="rose">rose</WButton>
 </template>
 ```
 
@@ -75,17 +143,29 @@
 
 ```vue preview
 <template>
-  <WButton size="xs">button xs</WButton>
-  <WButton size="sm">button sm</WButton>
-  <WButton>button</WButton>
-  <WButton size="lg">button lg</WButton>
-  <WButton size="xl">button xl</WButton>
+  <WButton size="xs">默认按钮: xs</WButton>
+  <WButton size="sm">默认按钮: sm</WButton>
+  <WButton>默认按钮: md</WButton>
+  <WButton size="lg">默认按钮: lg</WButton>
+  <WButton size="xl">默认按钮: xl</WButton>
   <br /><br />
-  <WButton color="primary" size="xs">button xs</WButton>
-  <WButton color="primary" size="sm">button sm</WButton>
-  <WButton color="primary">button</WButton>
-  <WButton color="primary" size="lg">button lg</WButton>
-  <WButton color="primary" size="xl">button xl</WButton>
+  <WButton color="primary" size="xs">主色按钮: xs</WButton>
+  <WButton color="primary" size="sm">主色按钮: sm</WButton>
+  <WButton color="primary">主色按钮: md</WButton>
+  <WButton color="primary" size="lg">主色按钮: lg</WButton>
+  <WButton color="primary" size="xl">主色按钮: xl</WButton>
+  <br /><br />
+  <WButton variant="subtle" color="primary" size="xs">浅色按钮: xs</WButton>
+  <WButton variant="subtle" color="primary" size="sm">浅色按钮: sm</WButton>
+  <WButton variant="subtle" color="primary">浅色按钮: md</WButton>
+  <WButton variant="subtle" color="primary" size="lg">浅色按钮: lg</WButton>
+  <WButton variant="subtle" color="primary" size="xl">浅色按钮: xl</WButton>
+  <br /><br />
+  <WButton variant="link" color="primary" size="xs">链接按钮: xs</WButton>
+  <WButton variant="link" color="primary" size="sm">链接按钮: sm</WButton>
+  <WButton variant="link" color="primary">链接按钮: md</WButton>
+  <WButton variant="link" color="primary" size="lg">链接按钮: lg</WButton>
+  <WButton variant="link" color="primary" size="xl">链接按钮: xl</WButton>
 </template>
 ```
 
@@ -132,55 +212,22 @@
 
 ```vue preview
 <template>
-  <WButton size="xs" color="primary">
+  <WButton color="primary">
     <template #icon>
       <CogIcon />
     </template>
     图标按钮
   </WButton>
-  <WButton size="sm" color="primary">
+  <WButton color="primary" variant="subtle">
     <template #icon>
       <CogIcon />
     </template>
     图标按钮
   </WButton>
-  <WButton size="md" color="primary">
+  <WButton color="primary" variant="link">
     <template #icon>
       <CogIcon />
     </template>
-    图标按钮
-  </WButton>
-  <WButton size="lg" color="primary">
-    <template #icon>
-      <CogIcon />
-    </template>
-    图标按钮
-  </WButton>
-  <WButton size="xl" color="primary">
-    <template #icon>
-      <CogIcon />
-    </template>
-    图标按钮
-  </WButton>
-  <br /><br />
-  <WButton size="xs" color="primary">
-    <WIcon><CogIcon /></WIcon>
-    图标按钮
-  </WButton>
-  <WButton size="sm" color="primary">
-    <WIcon><CogIcon /></WIcon>
-    图标按钮
-  </WButton>
-  <WButton size="md" color="primary">
-    <WIcon><CogIcon /></WIcon>
-    图标按钮
-  </WButton>
-  <WButton size="lg" color="primary">
-    <WIcon><CogIcon /></WIcon>
-    图标按钮
-  </WButton>
-  <WButton size="xl" color="primary">
-    <WIcon><CogIcon /></WIcon>
     图标按钮
   </WButton>
 </template>
@@ -238,6 +285,5 @@
   <WButton circle color="error">
     <WIcon><CubeIcon /></WIcon>
   </WButton>
-  <span>沙发斯蒂芬</span>
 </template>
 ```
