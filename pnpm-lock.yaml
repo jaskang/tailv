@@ -30,7 +30,7 @@ specifiers:
   unocss: ^0.51.5
   vite: ^4.3.0
   vite-plugin-inspect: ^0.7.23
-  vite-plugin-markdown-preview: ^1.0.3
+  vite-plugin-markdown-preview: ^1.0.4
   vitepress: 1.0.0-alpha.73
   vitest: ^0.30.1
   vue: ^3.2.47
@@ -71,7 +71,7 @@ devDependencies:
   unocss: 0.51.5_postcss@8.4.23+vite@4.3.0
   vite: 4.3.0_kdgmlsav4mmt6u4ajgmjg7skje
   vite-plugin-inspect: 0.7.23_vite@4.3.0
-  vite-plugin-markdown-preview: 1.0.3
+  vite-plugin-markdown-preview: 1.0.4
   vitepress: 1.0.0-alpha.73_kdgmlsav4mmt6u4ajgmjg7skje
   vitest: 0.30.1_jsdom@21.1.1+sass@1.62.0
   vue-tsc: 1.2.0_typescript@5.0.4
@@ -5092,8 +5092,8 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-markdown-preview/1.0.3:
-    resolution: {integrity: sha512-LGj4ltYixDc1Zth8OghSuElF2ynGOVzXTqy822A0QpazlrB07slPqdsGEBydiid6oNj8jwwLFaajLDzxqst6Lg==}
+  /vite-plugin-markdown-preview/1.0.4:
+    resolution: {integrity: sha512-i+XOAwouJ9/4DLanEEeYR/5QG5z8iOcazYZw7WhMT7cOZJ8VxmvB0IX8KSfkABw9ZYof03PuN8Snk2O0Gut2Kw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     dependencies:
       debug: 4.3.4
