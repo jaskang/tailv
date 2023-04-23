@@ -40,12 +40,12 @@ const cls = useCls('w-btn', () => ({
   disabled: props.disabled,
 }))
 
-const styles = computed(() => {
+const cssVars = computed(() => {
   return getBtnVars(props.variant, getColor(props.color))
 })
 </script>
 <template>
-  <button :class="cls" :style="styles" type="button" :disabled="disabled">
+  <button :class="cls" type="button" :disabled="disabled">
     <span v-if="hasIcon" class="w-btn_icon">
       <LoadingIcon v-if="loading" class="w-btn_loading" />
       <slot v-else name="icon" />
@@ -55,3 +55,127 @@ const styles = computed(() => {
     </span>
   </button>
 </template>
+<style lang="scss">
+.w-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  border: solid 1px transparent;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  color: v-bind('cssVars.textColor');
+  background-color: v-bind('cssVars.backgroundColor');
+  border-color: v-bind('cssVars.borderColor');
+
+  --w-btn-height: calc(2.25rem + 2px);
+  height: var(--w-btn-height);
+
+  &:hover {
+    color: v-bind('cssVars.textColorHover');
+    background-color: v-bind('cssVars.backgroundColorHover');
+    border-color: v-bind('cssVars.borderColorHover');
+  }
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    z-index: 10;
+  }
+
+  &-default,
+  &-subtle {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    &:focus {
+      box-shadow: 0 0 0 2px var(--w-ring-offset-color), 0 0 0 4px v-bind('cssVars.ringColor'),
+        0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+  }
+  &-link {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  &-xs {
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    --w-btn-height: calc(1.75rem + 2px); // 30px / w-7 + 2px
+  }
+  &-sm {
+    padding: 0 0.75rem;
+    font-size: 0.75rem; // 12px
+    line-height: 1rem; // 16px
+    --w-btn-height: calc(2rem + 2px); // 34px / w-8 + 2px
+  }
+  &-md {
+    padding: 0 1rem;
+    font-size: 0.875rem; // 14px
+    line-height: 1.25rem; // 20px
+    --w-btn-height: calc(2.25rem + 2px); // 38px / w-9 + 2px
+  }
+  &-lg {
+    padding: 0 1.25rem;
+    font-size: 1rem; // 16px
+    line-height: 1.5rem; // 24px
+    --w-btn-height: calc(2.5rem + 2px); // 42px / w-10 + 2px
+  }
+  &-xl {
+    padding: 0 1.5rem;
+    font-size: 1.125rem; // 18px
+    line-height: 1.75rem; // 28px
+    --w-btn-height: calc(2.75rem + 2px); // 46px / w-11 + 2px
+  }
+
+  &.is-rounded {
+    border-radius: 9999px;
+  }
+  &.is-square {
+    width: var(--w-btn-height);
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  &.is-block {
+    width: 100%;
+  }
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &_icon {
+    width: 1em;
+    height: 1em;
+    transform: scale(1.25);
+    + .w-btn_body {
+      margin-left: 0.5em;
+    }
+  }
+  &_loading {
+    animation: wd-spin 1s linear infinite;
+  }
+  &_body {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    svg {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+    }
+  }
+}
+</style>

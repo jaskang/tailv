@@ -18,3 +18,33 @@ const iconSize = computed(() => {
     <slot />
   </span>
 </template>
+<style lang="scss">
+.w-icon {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-style: normal;
+  height: 1em;
+  width: 1em;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  &-spin svg {
+    animation: w-icon-spin 1s infinite linear;
+  }
+}
+
+@keyframes w-icon-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

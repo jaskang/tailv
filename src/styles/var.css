@@ -1,4 +1,8 @@
 :root {
+  --w-transparent: transparent;
+  --w-black: #000;
+  --w-white: #fff;
+
   --w-slate-50: #f8fafc;
   --w-slate-100: #f1f5f9;
   --w-slate-200: #e2e8f0;
@@ -244,11 +248,12 @@
 }
 
 :root {
-  --w-offset-color: #fff;
+  --w-ring-offset-color: #fff;
+  --w-border-color: var(--w-gray-300);
 }
 
 :where(.dark) :where(*),
 :where(.dark) :where(::before),
 :where(.dark) :where(::after) {
-  --w-offset-color: #030712;
+  --w-ring-offset-color: #030712;
 }

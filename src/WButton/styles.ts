@@ -1,26 +1,29 @@
 import { colors, type ColorKey } from '@/core/colors'
 
-const createBtnVars = (
-  vars: {
-    textColor?: string
-    textColorHover?: string
-    borderColor?: string
-    borderColorHover?: string
-    backgroundColor?: string
-    backgroundColorHover?: string
-    outlineColor?: string
-  } = {}
-) => ({
-  '--w-btn-text-color': vars.textColor || colors.gray[700],
-  '--w-btn-bg-color': vars.backgroundColor || colors.white,
-  '--w-btn-border-color': vars.borderColor || colors.transparent,
+export type ButtonCssVars = {
+  textColor: string
+  textColorHover: string
+  borderColor: string
+  borderColorHover: string
+  backgroundColor: string
+  backgroundColorHover: string
+  ringColor: string
+}
 
-  '--w-btn-text-color--hover': vars.textColorHover || 'var(--w-btn-text-color)',
-  '--w-btn-bg-color--hover': vars.backgroundColorHover || 'var(--w-btn-bg-color)',
-  '--w-btn-border-color--hover': vars.borderColorHover || 'var(--w-btn-border-color)',
+const createBtnVars = (vars: Partial<ButtonCssVars> = {}) => {
+  const result: ButtonCssVars = {
+    textColor: vars.textColor || colors.gray[700],
+    backgroundColor: vars.backgroundColor || colors.white,
+    borderColor: vars.borderColor || colors.transparent,
 
-  '--w-btn-outline-color': vars.outlineColor || 'var(--w-btn-bg-color)',
-})
+    textColorHover: vars.textColorHover || vars.textColor || colors.gray[700],
+    backgroundColorHover: vars.backgroundColorHover || vars.backgroundColor || colors.white,
+    borderColorHover: vars.borderColorHover || vars.borderColor || colors.transparent,
+
+    ringColor: vars.ringColor || vars.backgroundColor || colors.white,
+  }
+  return result
+}
 
 export const getBtnVars = (variant: 'default' | 'link' | 'subtle', _color?: ColorKey) => {
   if (variant === 'link') {
@@ -36,7 +39,7 @@ export const getBtnVars = (variant: 'default' | 'link' | 'subtle', _color?: Colo
       textColor: colors[color][600],
       backgroundColor: colors[color][100],
       backgroundColorHover: colors[color][200],
-      outlineColor: colors[color][500],
+      ringColor: colors[color][500],
     })
   } else {
     const color = _color
@@ -46,12 +49,12 @@ export const getBtnVars = (variant: 'default' | 'link' | 'subtle', _color?: Colo
           backgroundColor: colors[color][500],
           borderColor: colors.transparent,
           backgroundColorHover: colors[color][600],
-          outlineColor: colors[color][500],
+          ringColor: colors[color][500],
         })
       : createBtnVars({
-          borderColor: colors.gray[300],
+          borderColor: 'var(--w-border-color)',
           backgroundColorHover: colors.gray[50],
-          outlineColor: colors.indigo[500],
+          ringColor: colors.indigo[500],
         })
   }
 }
