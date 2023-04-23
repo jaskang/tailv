@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import type { ColorKey } from './colors'
+import { colors, type ColorKey } from './colors'
 
 export type Theme = {
   colors: {
@@ -21,8 +21,14 @@ export function useTheme() {
       error: 'red',
     },
   })
-  const getColor = (key?: ColorAlias): ColorKey | undefined => {
-    return key ? theme.value.colors[key] : undefined
+  const getColor = (key?: ColorAlias | ColorKey): ColorKey | undefined => {
+    if (key) {
+      if (colors[key as ColorKey]) {
+        return key as ColorKey
+      }
+      return theme.value.colors[key as ColorAlias]
+    }
+    return undefined
   }
   return { theme, getColor }
 }

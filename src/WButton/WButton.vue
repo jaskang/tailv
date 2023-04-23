@@ -4,6 +4,7 @@ import LoadingIcon from '../WIcon/Icons/LoadingIcon.vue'
 import { getBtnVars } from './styles'
 import { useCls } from '@/utils/classNames'
 import { useTheme } from '@/core/theme'
+import type { ColorKey } from '@/core/colors'
 
 const props = defineProps({
   variant: {
@@ -11,7 +12,7 @@ const props = defineProps({
     default: 'default',
   },
   color: {
-    type: String as PropType<'primary' | 'success' | 'warning' | 'error'>,
+    type: String as PropType<'primary' | 'success' | 'warning' | 'error' | ColorKey>,
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,

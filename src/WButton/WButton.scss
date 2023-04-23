@@ -35,8 +35,7 @@
   &-subtle {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     &:focus {
-      box-shadow: 0 0 0 2px var(--w-ring-offset-color), 0 0 0 4px var(--w-btn-outline-color),
-        0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      box-shadow: 0 0 0 2px var(--w-offset-color), 0 0 0 4px var(--w-btn-outline-color), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     }
   }
   &-link {

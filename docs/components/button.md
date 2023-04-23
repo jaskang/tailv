@@ -24,6 +24,10 @@
   <WButton variant="subtle" color="success">success</WButton>
   <WButton variant="subtle" color="warning">warning</WButton>
   <WButton variant="subtle" color="error">error</WButton>
+  <WButton variant="subtle" color="lime">lime</WButton>
+  <WButton variant="subtle" color="yellow">yellow</WButton>
+  <WButton variant="subtle" color="purple">purple</WButton>
+  asdf
 </template>
 ```
 
@@ -60,12 +64,10 @@
   <WButton color="success">success</WButton>
   <WButton color="warning">warning</WButton>
   <WButton color="error">error</WButton>
-  <br /><br />
-  <WButton plain>你测sd试好</WButton>
-  <WButton plain color="primary">primary</WButton>
-  <WButton plain color="success">success</WButton>
-  <WButton plain color="warning">warning</WButton>
-  <WButton plain color="error">error</WButton>
+
+  <WButton color="lime">lime</WButton>
+  <WButton color="yellow">yellow</WButton>
+  <WButton color="purple">purple</WButton>
 </template>
 ```
 
