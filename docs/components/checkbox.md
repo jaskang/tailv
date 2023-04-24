@@ -3,10 +3,10 @@
 ```vue preview
 <template>
   <div class="space-x-1">
-    <WCheckbox>ECheckbox</WCheckbox>
-    <WCheckbox>ECheckbox</WCheckbox>
-    <WCheckbox disabled>ECheckbox disabled</WCheckbox>
-    <WCheckbox checked disabled>ECheckbox disabled</WCheckbox>
+    <TCheckbox>Checkbox</TCheckbox>
+    <TCheckbox>Checkbox</TCheckbox>
+    <TCheckbox disabled>Checkbox disabled</TCheckbox>
+    <TCheckbox checked disabled>Checkbox disabled</TCheckbox>
   </div>
 </template>
 ```

@@ -1,6 +1,6 @@
 <style lang="scss">
 .mdp-demo__preview {
-  > .e-input:not(:first-child){
+  > .t-input:not(:first-child){
     margin-top: 1rem;
   }
 }
@@ -10,20 +10,20 @@
 
 ```vue preview
 <template>
-  <WInput />
-  <WInput prefix="prefix" />
-  <WInput suffix="suffix" />
-  <WInput prefix="prefix" suffix="suffix" />
-  <WInput>
+  <TInput />
+  <TInput prefix="prefix" />
+  <TInput suffix="suffix" />
+  <TInput prefix="prefix" suffix="suffix" />
+  <TInput>
     <template #before>before</template>
     <template #after>after</template>
-  </WInput>
-  <WInput>
+  </TInput>
+  <TInput>
     <template #after>after</template>
-  </WInput>
-  <WInput>
+  </TInput>
+  <TInput>
     <template #before>after</template>
-  </WInput>
+  </TInput>
 </template>
 ```
 
@@ -31,19 +31,19 @@
 
 ```vue preview
 <template>
-  <WInput disabled />
-  <WInput disabled prefix="prefix" />
-  <WInput disabled suffix="suffix" />
-  <WInput disabled prefix="prefix" suffix="suffix" />
-  <WInput disabled>
+  <TInput disabled />
+  <TInput disabled prefix="prefix" />
+  <TInput disabled suffix="suffix" />
+  <TInput disabled prefix="prefix" suffix="suffix" />
+  <TInput disabled>
     <template #before>before</template>
     <template #after>after</template>
-  </WInput>
-  <WInput disabled>
+  </TInput>
+  <TInput disabled>
     <template #after>after</template>
-  </WInput>
-  <WInput disabled>
+  </TInput>
+  <TInput disabled>
     <template #before>after</template>
-  </WInput>
+  </TInput>
 </template>
 ```

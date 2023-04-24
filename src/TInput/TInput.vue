@@ -22,14 +22,14 @@ const cssVar = computed(() => {
 })
 </script>
 <template>
-  <div class="w-input" :class="[disabled && 'is-disabled', focused && 'is-focused']" :disabled="disabled">
-    <span class="w-input_before" v-if="$slots.before">
+  <div class="t-input" :class="[disabled && 'is-disabled', focused && 'is-focused']" :disabled="disabled">
+    <span class="t-input_before" v-if="$slots.before">
       <slot name="before" />
     </span>
-    <span class="w-input_wraper">
-      <span class="w-input_prefix" v-if="prefix">{{ prefix }}</span>
+    <span class="t-input_wraper">
+      <span class="t-input_prefix" v-if="prefix">{{ prefix }}</span>
       <input
-        class="w-input_input"
+        class="t-input_input"
         style="box-shadow: none"
         type="text"
         @focus="focused = true"
@@ -37,15 +37,15 @@ const cssVar = computed(() => {
         :disabled="disabled"
         :placeholder="placeholder"
       />
-      <span class="w-input_suffix flex-initial pl-2" v-if="suffix">{{ suffix }}</span>
+      <span class="t-input_suffix flex-initial pl-2" v-if="suffix">{{ suffix }}</span>
     </span>
-    <span class="w-input_after" v-if="$slots.after">
+    <span class="t-input_after" v-if="$slots.after">
       <slot name="after" />
     </span>
   </div>
 </template>
 <style lang="scss">
-.w-input {
+.t-input {
   width: 100%;
   display: inline-flex;
   align-items: stretch;
@@ -59,8 +59,8 @@ const cssVar = computed(() => {
     display: inline-flex;
     flex: 0 1 auto;
     align-items: center;
-    border: 1px solid var(--w-border-color);
-    background-color: var(--w-gray-50);
+    border: 1px solid var(--t-border-color);
+    background-color: var(--t-gray-50);
   }
   &_before {
     border-right-width: 0;
@@ -79,7 +79,7 @@ const cssVar = computed(() => {
     display: flex;
     flex: 1;
     align-items: center;
-    border: 1px solid var(--w-border-color);
+    border: 1px solid var(--t-border-color);
     background-color: white;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -114,16 +114,16 @@ const cssVar = computed(() => {
   }
 
   &.is-focused {
-    .w-input_wraper {
+    .t-input_wraper {
       z-index: 10;
       border-color: v-bind('cssVar.ringColor');
       box-shadow: 0 0 0 1px v-bind('cssVar.ringColor');
     }
   }
   &.is-disabled {
-    .w-input_wraper {
+    .t-input_wraper {
       cursor: not-allowed;
-      background-color: var(--w-gray-50);
+      background-color: var(--t-gray-50);
       opacity: 0.5;
     }
   }

@@ -5,14 +5,14 @@ import { computed, ref } from 'vue'
 
 const props = defineProps({
   value: [String, Number],
-  modelValue: [String, Number],
   name: String,
   disabled: Boolean,
   checked: Boolean,
 })
 
 const emit = defineEmits(['onUpdate:checked', 'focus', 'blur'])
-const { theme } = useTheme()
+
+const { getColor, theme } = useTheme()
 const focus = ref(false)
 
 const innerChecked = ref(props.checked)
@@ -56,15 +56,15 @@ const cssVars = computed(() => {
 })
 </script>
 <template>
-  <label class="w-radio" :class="[disabled && 'is-disabled']">
-    <input :name="name" type="radio" :disabled="disabled" :checked="innerChecked" class="w-radio_input" />
-    <span class="w-radio_label">
+  <label class="t-checkbox" :class="[disabled && 'is-disabled']">
+    <input :name="name" type="checkbox" :disabled="disabled" :checked="innerChecked" class="t-checkbox_input" />
+    <span class="t-checkbox_label">
       <slot />
     </span>
   </label>
 </template>
 <style lang="scss">
-.w-radio {
+.t-checkbox {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -72,16 +72,18 @@ const cssVars = computed(() => {
     cursor: not-allowed;
     opacity: 0.5;
   }
+
   &_input {
     height: 1rem;
     width: 1rem;
-    border: 1px solid var(--w-border-color);
+    border-radius: 0.25rem;
+    border: 1px solid var(--t-border-color);
     color: v-bind('cssVars.color');
-    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px var(--w-ring-offset-color), 0 0 0 4px v-bind('cssVars.ringColor');
+      box-shadow: 0 0 0 2px var(--t-ring-offset-color), 0 0 0 4px v-bind('cssVars.ringColor');
     }
     &:disabled {
       cursor: not-allowed;

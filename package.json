@@ -1,5 +1,5 @@
 {
-  "name": "windue",
+  "name": "tailv",
   "version": "1.0.0-beta.0",
   "type": "module",
   "main": "./dist/index.umd.cjs",
@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.17",
-    "@vicons/ionicons5": "^0.12.0",
     "pinia": "^2.0.35",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"

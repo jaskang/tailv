@@ -14,12 +14,12 @@ const iconSize = computed(() => {
 })
 </script>
 <template>
-  <span role="img" class="w-icon" :class="{ 'w-icon-spin': props.spin }" :style="iconSize">
+  <span role="img" class="t-icon" :class="{ 't-icon-spin': props.spin }" :style="iconSize">
     <slot />
   </span>
 </template>
 <style lang="scss">
-.w-icon {
+.t-icon {
   display: inline-flex;
   align-items: center;
   color: inherit;
@@ -38,13 +38,7 @@ const iconSize = computed(() => {
     height: 100%;
   }
   &-spin svg {
-    animation: w-icon-spin 1s infinite linear;
-  }
-}
-
-@keyframes w-icon-spin {
-  100% {
-    transform: rotate(360deg);
+    animation: t-spin 1s infinite linear;
   }
 }
 </style>

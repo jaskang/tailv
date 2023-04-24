@@ -31,17 +31,17 @@ const cssVars = computed(() => {
 <template>
   <button
     type="button"
-    class="w-switch"
+    class="t-switch"
     :class="[value && 'is-checked']"
     :disabled="disabled"
     role="switch"
     @click="() => setValue(!value)"
   >
-    <span class="w-switch_thumb"></span>
+    <span class="t-switch_thumb"></span>
   </button>
 </template>
 <style lang="scss">
-.w-switch {
+.t-switch {
   position: relative;
   display: inline-flex;
   height: 1.5rem;
@@ -50,14 +50,14 @@ const cssVars = computed(() => {
   cursor: pointer;
   align-items: center;
   border-radius: 9999px;
-  border: 2px solid var(--w-border-color);
-  background-color: var(--w-border-color);
+  border: 2px solid var(--t-border-color);
+  background-color: var(--t-border-color);
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    box-shadow: 0 0 0 2px var(--w-ring-offset-color), 0 0 0 4px v-bind('cssVars.ringColor');
+    box-shadow: 0 0 0 2px var(--t-ring-offset-color), 0 0 0 4px v-bind('cssVars.ringColor');
   }
   &_thumb {
     pointer-events: none;
@@ -72,7 +72,7 @@ const cssVars = computed(() => {
   &.is-checked {
     border: 2px solid v-bind('cssVars.color');
     background-color: v-bind('cssVars.color');
-    .w-switch_thumb {
+    .t-switch_thumb {
       transform: translateX(1.25rem);
     }
   }

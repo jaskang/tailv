@@ -3,8 +3,8 @@
 ```vue preview
 <template>
   <div class="space-x-1">
-    <WSwitch v-model="checked">ESwitch</WSwitch>
-    <WSwitch v-model="checked" disabled>ESwitch disabled</WSwitch>
+    <TSwitch v-model="checked">Switch</TSwitch>
+    <TSwitch v-model="checked" disabled>Switch disabled</TSwitch>
   </div>
 </template>
 <script setup>

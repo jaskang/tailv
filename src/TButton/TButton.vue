@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useSlots, type PropType } from 'vue'
-import LoadingIcon from '../WIcon/Icons/LoadingIcon.vue'
+import LoadingIcon from '../TIcon/Icons/LoadingIcon.vue'
 import { getBtnVars } from './styles'
 import { useCls } from '@/utils/classNames'
 import { useTheme } from '@/core/theme'
@@ -30,7 +30,7 @@ const slots = useSlots()
 const { getColor } = useTheme()
 const hasIcon = computed(() => slots.icon || props.loading)
 
-const cls = useCls('w-btn', () => ({
+const cls = useCls('t-btn', () => ({
   variant: props.variant,
   color: props.color,
   size: props.size,
@@ -41,22 +41,22 @@ const cls = useCls('w-btn', () => ({
 }))
 
 const cssVars = computed(() => {
-  return getBtnVars(props.variant, getColor(props.color))
+  return getBtnVars(props.variant, props.size, getColor(props.color))
 })
 </script>
 <template>
   <button :class="cls" type="button" :disabled="disabled">
-    <span v-if="hasIcon" class="w-btn_icon">
-      <LoadingIcon v-if="loading" class="w-btn_loading" />
+    <span v-if="hasIcon" class="t-btn_icon">
+      <LoadingIcon v-if="loading" class="t-btn_loading" />
       <slot v-else name="icon" />
     </span>
-    <span v-if="slots.default" class="w-btn_body">
+    <span v-if="slots.default" class="t-btn_body">
       <slot />
     </span>
   </button>
 </template>
 <style lang="scss">
-.w-btn {
+.t-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +75,8 @@ const cssVars = computed(() => {
   background-color: v-bind('cssVars.backgroundColor');
   border-color: v-bind('cssVars.borderColor');
 
-  --w-btn-height: calc(2.25rem + 2px);
-  height: var(--w-btn-height);
+  --t-btn-height: calc(2.25rem + 2px);
+  height: calc(2.25rem + 2px);
 
   &:hover {
     color: v-bind('cssVars.textColorHover');
@@ -93,7 +93,7 @@ const cssVars = computed(() => {
   &-subtle {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     &:focus {
-      box-shadow: 0 0 0 2px var(--w-ring-offset-color), 0 0 0 4px v-bind('cssVars.ringColor'),
+      box-shadow: 0 0 0 2px var(--t-ring-offset-color), 0 0 0 4px v-bind('cssVars.ringColor'),
         0 1px 2px 0 rgba(0, 0, 0, 0.05);
     }
   }
@@ -106,38 +106,38 @@ const cssVars = computed(() => {
     padding: 0 0.5rem;
     font-size: 0.75rem;
     line-height: 0.75rem;
-    --w-btn-height: calc(1.75rem + 2px); // 30px / w-7 + 2px
+    height: calc(1.75rem + 2px); // 30px / w-7 + 2px
   }
   &-sm {
     padding: 0 0.75rem;
     font-size: 0.75rem; // 12px
     line-height: 1rem; // 16px
-    --w-btn-height: calc(2rem + 2px); // 34px / w-8 + 2px
+    height: calc(2rem + 2px); // 34px / w-8 + 2px
   }
   &-md {
     padding: 0 1rem;
     font-size: 0.875rem; // 14px
     line-height: 1.25rem; // 20px
-    --w-btn-height: calc(2.25rem + 2px); // 38px / w-9 + 2px
+    height: calc(2.25rem + 2px); // 38px / w-9 + 2px
   }
   &-lg {
     padding: 0 1.25rem;
     font-size: 1rem; // 16px
     line-height: 1.5rem; // 24px
-    --w-btn-height: calc(2.5rem + 2px); // 42px / w-10 + 2px
+    height: calc(2.5rem + 2px); // 42px / w-10 + 2px
   }
   &-xl {
     padding: 0 1.5rem;
     font-size: 1.125rem; // 18px
     line-height: 1.75rem; // 28px
-    --w-btn-height: calc(2.75rem + 2px); // 46px / w-11 + 2px
+    height: calc(2.75rem + 2px); // 46px / w-11 + 2px
   }
 
   &.is-rounded {
     border-radius: 9999px;
   }
   &.is-square {
-    width: var(--w-btn-height);
+    width: v-bind('cssVars.size');
     padding-left: 0;
     padding-right: 0;
     justify-content: center;
@@ -160,12 +160,12 @@ const cssVars = computed(() => {
     width: 1em;
     height: 1em;
     transform: scale(1.25);
-    + .w-btn_body {
+    + .t-btn_body {
       margin-left: 0.5em;
     }
   }
   &_loading {
-    animation: wd-spin 1s linear infinite;
+    animation: t-spin 1s linear infinite;
   }
   &_body {
     white-space: nowrap;

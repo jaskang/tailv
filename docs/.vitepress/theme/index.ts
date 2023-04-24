@@ -1,5 +1,5 @@
 import './index.css'
-import { Wlenext } from '../../../src'
+import { Tailv } from '../../../src'
 import {
   BeakerIcon,
   StopIcon,
@@ -16,7 +16,7 @@ import Layout from './Layout.vue'
 export default {
   Layout,
   enhanceApp(ctx) {
-    ctx.app.use(Wlenext)
+    ctx.app.use(Tailv)
     ctx.app.component('BeakerIcon', BeakerIcon)
     ctx.app.component('StopIcon', StopIcon)
     ctx.app.component('CogIcon', CogIcon)

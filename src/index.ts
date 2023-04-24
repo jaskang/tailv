@@ -2,23 +2,25 @@ import './styles/index.scss'
 import 'virtual:uno.css'
 import type { Plugin } from 'vue'
 
-import WIcon from './WIcon/WIcon.vue'
-import WButton from './WButton/WButton.vue'
-import WSwitch from './WSwitch/WSwitch.vue'
-import WRadio from './WRadio/WRadio.vue'
-import WCheckbox from './WCheckBox/WCheckBox.vue'
-import WInput from './WInput/WInput.vue'
+import TIcon from './TIcon/TIcon.vue'
+import TButton from './TButton/TButton.vue'
+import TSwitch from './TSwitch/TSwitch.vue'
+import TRadio from './TRadio/TRadio.vue'
+import TRadioGroup from './TRadioGroup/TRadioGroup.vue'
+import TCheckbox from './TCheckBox/TCheckBox.vue'
+import TInput from './TInput/TInput.vue'
 
-export { WButton, WCheckbox, WRadio, WSwitch }
+export { TButton, TCheckbox, TRadio, TSwitch }
 
-export const Wlenext: Plugin = {
+export const Tailv: Plugin = {
   install(app, options) {
-    app.component('WIcon', WIcon)
-    app.component('WButton', WButton)
-    app.component('WSwitch', WSwitch)
-    app.component('WCheckbox', WCheckbox)
-    app.component('WRadio', WRadio)
-    app.component('WInput', WInput)
+    app.component('TIcon', TIcon)
+    app.component('TButton', TButton)
+    app.component('TSwitch', TSwitch)
+    app.component('TCheckbox', TCheckbox)
+    app.component('TRadio', TRadio)
+    app.component('TRadioGroup', TRadioGroup)
+    app.component('TInput', TInput)
   },
 }
 
