@@ -1,8 +1,8 @@
 <style lang="scss"> 
 :where(.mdp-demo__preview) {
   h4{
-    @apply text-xl font-semibold leading-12 text-gray-700;
-  } 
+    @apply text-xl font-semibold leading-12 text-slate-700;
+  }
   :where(.t-row){
     background-color: #818cf81a;
     background-image: linear-gradient(135deg,#6366f180 10%,#0000 0,#0000 50%,#6366f180 0,#6366f180 60%,#0000 0,#0000);
