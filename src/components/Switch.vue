@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { colors } from '@/core/colors'
 import { useTheme } from '@/core/theme'
-import { useControllable } from '@/hooks/use-controllable'
+import { useControllable } from '@/hooks/controllable'
 import { computed, toRef } from 'vue'
 
 const props = defineProps({

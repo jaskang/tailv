@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useControllable } from '@/hooks/use-controllable'
 import { provide, ref, toRef } from 'vue'
-import { RadioGroupContext } from './interface'
+import { RadioGroupContext } from './RadioGroup'
 
 const props = defineProps({
   modelValue: [String, Number],

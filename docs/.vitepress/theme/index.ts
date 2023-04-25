@@ -1,3 +1,4 @@
+import 'virtual:uno.css'
 import './index.css'
 import { Tailv } from '../../../src'
 import {

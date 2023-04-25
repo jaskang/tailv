@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, useSlots, type PropType } from 'vue'
-import LoadingIcon from '../TIcon/Icons/LoadingIcon.vue'
-import { getBtnVars } from './styles'
-import { useCls } from '@/utils/classNames'
+import LoadingIcon from './svgs/LoadingIcon.vue'
+import { getBtnVars } from './Button'
+import { useCls } from '@/hooks/cls'
 import { useTheme } from '@/core/theme'
 import type { ColorKey } from '@/core/colors'
 

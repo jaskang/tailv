@@ -40,6 +40,10 @@ export default defineConfig({
         ],
       },
       {
+        text: '布局',
+        items: [{ text: 'Grid 按钮', link: '/components/grid' }],
+      },
+      {
         text: '表单输入',
         items: [
           { text: 'Switch 输入框', link: '/components/switch' },

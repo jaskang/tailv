@@ -2,14 +2,14 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx(), UnoCSS()],
+  plugins: [vue(), vueJsx()],
   build: {
     lib: {
       entry: 'src/index.ts',
+      formats: ['es', 'cjs'],
       name: 'Elenext',
     },
     rollupOptions: {

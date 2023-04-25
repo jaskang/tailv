@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { useCls } from '@/utils/classNames'
-import { computed, type PropType } from 'vue'
+import { useCls } from '@/hooks/cls'
+import { computed, type PropType, type StyleValue } from 'vue'
 
 const props = defineProps({
   align: {
     type: String as PropType<'start' | 'end' | 'center' | 'baseline' | 'stretch'>,
-    default: 'top',
+    default: 'start',
   },
   justify: {
     type: String as PropType<'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | 'stretch'>,
     default: 'start',
   },
-  gutter: [Number, String] as PropType<number | string>,
+  gap: String as PropType<string>,
   wrap: Boolean,
 })
 
-const cssVars = computed(() => ({
+const style = computed<StyleValue>(() => ({
   alignItems: {
     start: 'flex-start',
     end: 'flex-end',
@@ -32,24 +32,18 @@ const cssVars = computed(() => ({
     evenly: 'space-evenly',
     stretch: 'stretch',
   }[props.justify],
+  gap: props.gap,
   flexWrap: props.wrap ? 'wrap' : 'nowrap',
 }))
 </script>
 
 <template>
-  <div class="t-row">
+  <div class="t-row" :style="style">
     <slot />
   </div>
 </template>
 <style lang="scss">
 .t-row {
   display: flex;
-  justify-content: v-bind('cssVars.justifyContent');
-  align-items: v-bind('cssVars.alignItems');
-  flex-wrap: v-bind('cssVars.flexWrap');
-  > * + * {
-    margin-left: 0px;
-    margin-top: 0px;
-  }
 }
 </style>
