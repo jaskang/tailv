@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useCls } from '@/utils/classNames'
-import type { PropType } from 'vue'
+import { computed, type PropType } from 'vue'
 
 const props = defineProps({
   align: {
@@ -15,42 +15,41 @@ const props = defineProps({
   wrap: Boolean,
 })
 
-const cls = useCls('t-row', () => ({
-  align: props.align,
-  justify: props.justify,
-  gutter: props.gutter,
-  wrap: props.wrap,
+const cssVars = computed(() => ({
+  alignItems: {
+    start: 'flex-start',
+    end: 'flex-end',
+    center: 'center',
+    baseline: 'baseline',
+    stretch: 'stretch',
+  }[props.align],
+  justifyContent: {
+    start: 'flex-start',
+    end: 'flex-end',
+    center: 'center',
+    between: 'space-between',
+    around: 'space-around',
+    evenly: 'space-evenly',
+    stretch: 'stretch',
+  }[props.justify],
+  flexWrap: props.wrap ? 'wrap' : 'nowrap',
 }))
 </script>
 
 <template>
-  <div
-    class="t-row"
-    :style="{
-      alignItems: {
-        start: 'flex-start',
-        end: 'flex-end',
-        center: 'center',
-        baseline: 'baseline',
-        stretch: 'stretch',
-      }[props.align],
-      justifyContent: {
-        start: 'flex-start',
-        end: 'flex-end',
-        center: 'center',
-        between: 'space-between',
-        around: 'space-around',
-        evenly: 'space-evenly',
-        stretch: 'stretch',
-      }[props.justify],
-      flexWrap: props.wrap ? 'wrap' : 'nowrap',
-    }"
-  >
+  <div class="t-row">
     <slot />
   </div>
 </template>
 <style lang="scss">
 .t-row {
   display: flex;
+  justify-content: v-bind('cssVars.justifyContent');
+  align-items: v-bind('cssVars.alignItems');
+  flex-wrap: v-bind('cssVars.flexWrap');
+  > * + * {
+    margin-left: 0px;
+    margin-top: 0px;
+  }
 }
 </style>
