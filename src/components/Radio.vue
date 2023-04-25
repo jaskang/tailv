@@ -1,63 +1,69 @@
-<script setup lang="ts">
+<script lang="ts">
 import { colors } from '@/core/colors'
 import { useTheme } from '@/core/theme'
-import { computed, ref } from 'vue'
+import { PropTypes } from '@/utils'
+import { computed, defineComponent, ref } from 'vue'
 
-const props = defineProps({
-  value: [String, Number],
-  modelValue: [String, Number],
-  name: String,
-  disabled: Boolean,
-  checked: Boolean,
-})
+export default defineComponent({
+  name: 'TRadio',
+  props: {
+    value: PropTypes.any(),
+    name: String,
+    disabled: Boolean,
+    checked: Boolean,
+  },
+  emits: ['onUpdate:checked', 'focus', 'blur'],
+  setup(props, { emit }) {
+    const { theme } = useTheme()
 
-const emit = defineEmits(['onUpdate:checked', 'focus', 'blur'])
-const { theme } = useTheme()
-const focus = ref(false)
+    const focus = ref(false)
 
-const innerChecked = ref(props.checked)
+    const innerChecked = ref(props.checked)
 
-const onInput = (e: Event) => {
-  const el = e.currentTarget as HTMLInputElement
-  console.log(el.checked)
+    const onInput = (e: Event) => {
+      const el = e.currentTarget as HTMLInputElement
+      innerChecked.value = el.checked
+    }
 
-  innerChecked.value = el.checked
-}
-const onClick = (e: Event) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  }
-}
-const onFocus = (e: Event) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  } else {
-    focus.value = true
-    emit('focus', e)
-  }
-}
-const onBlur = (e: Event) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  } else {
-    focus.value = false
-    emit('blur', e)
-  }
-}
+    const onFocus = (e: Event) => {
+      focus.value = true
+      emit('focus', e)
+    }
 
-const cssVars = computed(() => {
-  return {
-    color: colors[theme.value.colors.primary][600],
-    ringColor: colors[theme.value.colors.primary][500],
-  }
+    const onBlur = (e: Event) => {
+      focus.value = false
+      emit('blur', e)
+    }
+
+    const cssVars = computed(() => {
+      return {
+        color: colors[theme.value.colors.primary][600],
+        ringColor: colors[theme.value.colors.primary][500],
+      }
+    })
+    return {
+      innerChecked,
+      onInput,
+      onFocus,
+      onBlur,
+      cssVars,
+      focus,
+    }
+  },
 })
 </script>
 <template>
   <label class="t-radio" :class="[disabled && 'is-disabled']">
-    <input :name="name" type="radio" :disabled="disabled" :checked="innerChecked" class="t-radio_input" />
+    <input
+      class="t-radio_input"
+      :name="name"
+      type="radio"
+      :disabled="disabled"
+      :checked="innerChecked"
+      @input="onInput"
+      @focus="onFocus"
+      @blur="onBlur"
+    />
     <span class="t-radio_label">
       <slot />
     </span>

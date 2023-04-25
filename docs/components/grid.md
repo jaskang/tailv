@@ -82,6 +82,7 @@ gap
 
 ```vue preview
 <template>
+  <TRadio v-model="">1rem</TRadio>
   <TRow gap="1rem">
     <TCol flex="1">1</TCol>
     <TCol flex="1">1</TCol>
