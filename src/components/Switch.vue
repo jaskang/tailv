@@ -18,7 +18,7 @@ const [value, setValue] = useControllable(
     emits('update:modelValue', val)
     emits('change', val)
   },
-  computed(() => false)
+  false
 )
 
 const cssVars = computed(() => {

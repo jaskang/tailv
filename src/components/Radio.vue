@@ -4,6 +4,7 @@ import { useTheme } from '@/core/theme'
 import { PropTypes } from '@/utils'
 import { computed, defineComponent, inject, ref } from 'vue'
 import type { RadioGroupContext } from './Radio'
+import { useControllable } from '@/hooks/controllable'
 
 export default defineComponent({
   name: 'TRadio',
@@ -18,14 +19,34 @@ export default defineComponent({
     const { theme } = useTheme()
 
     const focus = ref(false)
-    const innerChecked = ref(props.checked)
 
-    const { props: groupProps } = inject<RadioGroupContext>('RadioGroupContext', null)
+    const groupContext = inject<RadioGroupContext | null>('RadioGroupContext', null)
+    const groupProps = computed(() => {
+      return {
+        disabled: groupContext?.props.value.disabled || props.disabled,
+        value: groupContext?.props.value.value || props.value,
+        name: groupContext?.props.value.name || props.name,
+      }
+    })
+    const [realChecked, setChecked] = useControllable(
+      computed(() => {
+        return groupContext ? groupContext.props.value.value === props.value : props.checked
+      }),
+      val => {
+        if (groupContext) {
+          if (groupContext.props.value.value !== props.value) {
+            groupContext.onRadioChange(props.value)
+          }
+        }
+        emit('update:checked', val)
+      },
+      false
+    )
     const onInput = (e: Event) => {
       const el = e.currentTarget as HTMLInputElement
-      innerChecked.value = el.checked
+      setChecked(el.checked)
     }
-
+    const onChange = (e: Event) => {}
     const onFocus = (e: Event) => {
       focus.value = true
       emit('focus', e)
@@ -42,10 +63,12 @@ export default defineComponent({
         ringColor: colors[theme.value.colors.primary][500],
       }
     })
+
     return {
-      group,
-      innerChecked,
+      groupProps,
+      realChecked,
       onInput,
+      onChange,
       onFocus,
       onBlur,
       cssVars,
@@ -55,16 +78,18 @@ export default defineComponent({
 })
 </script>
 <template>
-  <label class="t-radio" :class="[disabled && 'is-disabled']">
+  <label class="t-radio" :class="[groupProps.disabled && 'is-disabled']">
     <input
       class="t-radio_input"
-      :name="name"
       type="radio"
-      :disabled="group.props.value.disabled disabled"
-      :checked="innerChecked"
+      :name="groupProps.name"
+      :value="groupProps.value"
+      :disabled="groupProps.disabled"
+      :checked="realChecked"
       @input="onInput"
       @focus="onFocus"
       @blur="onBlur"
+      @change="onChange"
     />
     <span class="t-radio_label">
       <slot />

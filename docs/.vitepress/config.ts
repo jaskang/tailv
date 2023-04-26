@@ -13,7 +13,7 @@ export default defineConfig({
   lastUpdated: true,
   vite: {
     server: {
-      port: 8080,
+      port: 8000,
     },
     plugins: [Inspect(), vueJsx(), MarkdownPreview(), UnoCSS()],
     resolve: {

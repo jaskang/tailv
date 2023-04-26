@@ -5,6 +5,7 @@ import { PropTypes } from '@/utils'
 import { useControllable } from '@/hooks/controllable'
 
 export default defineComponent({
+  name: 'TRadioGroup',
   props: {
     value: PropTypes.any(),
     name: PropTypes.string().def(''),
@@ -18,7 +19,7 @@ export default defineComponent({
         emit('update:value', val)
         emit('change', val)
       },
-      computed(() => false)
+      false
     )
 
     provide<RadioGroupContext>('RadioGroupContext', {
@@ -29,9 +30,8 @@ export default defineComponent({
           disabled: props.disabled,
         }
       }),
-      onRadioChange: (e: any) => {
-        const val = e.target.value
-        setValue('onUpdate:value', val)
+      onRadioChange: (val: any) => {
+        setValue(val)
       },
     })
   },
