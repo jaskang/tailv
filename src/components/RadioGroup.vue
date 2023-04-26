@@ -29,7 +29,10 @@ export default defineComponent({
           disabled: props.disabled,
         }
       }),
-      onRadioChange: (val: any) => setValue('onUpdate:value', val),
+      onRadioChange: (e: any) => {
+        const val = e.target.value
+        setValue('onUpdate:value', val)
+      },
     })
   },
 })
@@ -37,23 +40,3 @@ export default defineComponent({
 <template>
   <slot />
 </template>
-<!-- 
-xxx
-dsu-static.wesure.cn/app13/claim-health/button.xxx.js
-
-static.wesure.cn/app13/h5-claim-health/button.xxx.js
-|   |   |
-a & b & c
-A & B & C
-/.*js/i
-tryfile(js)/ index.html
-网关服务器出现。
-xxx.com/a.js
-
-xxx.com/index.html
-
-404: Not Found
-
-sit-s.wesure.com a.com/x.pdf?t= sit-s.wesure.com
-s.wesure.com a.com/x.pdf?t= wesure.com  
--->

@@ -2,7 +2,8 @@
 import { colors } from '@/core/colors'
 import { useTheme } from '@/core/theme'
 import { PropTypes } from '@/utils'
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, inject, ref } from 'vue'
+import type { RadioGroupContext } from './Radio'
 
 export default defineComponent({
   name: 'TRadio',
@@ -12,14 +13,14 @@ export default defineComponent({
     disabled: Boolean,
     checked: Boolean,
   },
-  emits: ['onUpdate:checked', 'focus', 'blur'],
+  emits: ['update:checked', 'focus', 'blur'],
   setup(props, { emit }) {
     const { theme } = useTheme()
 
     const focus = ref(false)
-
     const innerChecked = ref(props.checked)
 
+    const { props: groupProps } = inject<RadioGroupContext>('RadioGroupContext', null)
     const onInput = (e: Event) => {
       const el = e.currentTarget as HTMLInputElement
       innerChecked.value = el.checked
@@ -42,6 +43,7 @@ export default defineComponent({
       }
     })
     return {
+      group,
       innerChecked,
       onInput,
       onFocus,
@@ -58,7 +60,7 @@ export default defineComponent({
       class="t-radio_input"
       :name="name"
       type="radio"
-      :disabled="disabled"
+      :disabled="group.props.value.disabled disabled"
       :checked="innerChecked"
       @input="onInput"
       @focus="onFocus"
