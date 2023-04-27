@@ -1,28 +1,77 @@
-<script setup lang="ts">
+<script lang="ts">
 import { colors } from '@/core/colors'
 import { useTheme } from '@/core/theme'
+import { useControllable } from '@/hooks/controllable'
 import { computed, defineComponent, ref } from 'vue'
-const props = defineProps({
-  before: String,
-  after: String,
-  prefix: String,
-  suffix: String,
-  placeholder: String,
-  disabled: Boolean,
-})
 
-const { theme } = useTheme()
+export default defineComponent({
+  name: 'TInput',
+  props: {
+    value: String,
+    before: String,
+    after: String,
+    prefix: String,
+    suffix: String,
+    placeholder: String,
+    disabled: Boolean,
+  },
+  emits: ['update:value', 'change', 'input', 'focus', 'blur'],
+  setup(props, { emit }) {
+    const { theme } = useTheme()
 
-const focused = ref(false)
+    const [value, setValue] = useControllable(
+      () => props.value,
+      val => {
+        emit('update:value', val)
+        emit('change', val)
+      },
+      ''
+    )
+    const isFocused = ref(false)
 
-const cssVar = computed(() => {
-  return {
-    ringColor: colors[theme.value.colors.primary][500],
-  }
+    const onInput = (e: Event) => {
+      const el = e.currentTarget as HTMLInputElement
+      setValue(el.value)
+      emit('input', el.value)
+    }
+    const onFocus = (e: Event) => {
+      if (props.disabled) {
+        e.preventDefault()
+        return false
+      } else {
+        isFocused.value = true
+        emit('focus', e)
+      }
+    }
+    const onBlur = (e: Event) => {
+      if (props.disabled) {
+        e.preventDefault()
+        return false
+      } else {
+        isFocused.value = false
+        emit('blur', e)
+      }
+    }
+
+    const cssVar = computed(() => {
+      return {
+        ringColor: colors[theme.value.colors.primary][500],
+      }
+    })
+
+    return {
+      cssVar,
+      isFocused,
+      value,
+      onInput,
+      onFocus,
+      onBlur,
+    }
+  },
 })
 </script>
 <template>
-  <div class="t-input" :class="[disabled && 'is-disabled', focused && 'is-focused']" :disabled="disabled">
+  <div class="t-input" :class="[disabled && 'is-disabled', isFocused && 'is-focused']" :disabled="disabled">
     <span class="t-input_before" v-if="$slots.before">
       <slot name="before" />
     </span>
@@ -32,10 +81,12 @@ const cssVar = computed(() => {
         class="t-input_input"
         style="box-shadow: none"
         type="text"
-        @focus="focused = true"
-        @blur="focused = false"
+        :value="value"
         :disabled="disabled"
         :placeholder="placeholder"
+        @input="onInput"
+        @focus="onFocus"
+        @blur="onBlur"
       />
       <span class="t-input_suffix flex-initial pl-2" v-if="suffix">{{ suffix }}</span>
     </span>

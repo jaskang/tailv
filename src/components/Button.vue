@@ -1,51 +1,69 @@
-<script setup lang="ts">
-import { computed, useSlots, type PropType } from 'vue'
+<script lang="ts">
+import { computed, useSlots, type PropType, defineComponent } from 'vue'
 import LoadingIcon from './svgs/LoadingIcon.vue'
 import { getBtnVars } from './Button'
 import { useCls } from '@/hooks/cls'
 import { useTheme } from '@/core/theme'
 import type { ColorKey } from '@/core/colors'
 
-const props = defineProps({
-  variant: {
-    type: String as PropType<'default' | 'link' | 'subtle'>,
-    default: 'default',
+export default defineComponent({
+  name: 'TButton',
+  props: {
+    variant: {
+      type: String as PropType<'default' | 'link' | 'subtle'>,
+      default: 'default',
+    },
+    color: {
+      type: String as PropType<'primary' | 'success' | 'warning' | 'error' | ColorKey>,
+    },
+    size: {
+      type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
+      default: 'md',
+    },
+    rounded: Boolean,
+    square: Boolean,
+    circle: Boolean,
+    block: Boolean,
+    loading: Boolean,
+    disabled: Boolean,
   },
-  color: {
-    type: String as PropType<'primary' | 'success' | 'warning' | 'error' | ColorKey>,
+  emits: ['click'],
+  setup(props, { emit }) {
+    const slots = useSlots()
+    const { getColor } = useTheme()
+    const hasIcon = computed(() => slots.icon || props.loading)
+
+    const cls = useCls('t-btn', () => ({
+      variant: props.variant,
+      color: props.color,
+      size: props.size,
+      rounded: props.rounded || props.circle,
+      square: props.square || props.circle,
+      block: props.block,
+      disabled: props.disabled,
+    }))
+
+    const cssVars = computed(() => {
+      return getBtnVars(props.variant, props.size, getColor(props.color))
+    })
+
+    const onClick = (e: MouseEvent) => {
+      if (!props.disabled) {
+        emit('click', e)
+      }
+    }
+    return {
+      cls,
+      cssVars,
+      hasIcon,
+      slots,
+      onClick,
+    }
   },
-  size: {
-    type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
-    default: 'md',
-  },
-  rounded: Boolean,
-  square: Boolean,
-  circle: Boolean,
-  block: Boolean,
-  loading: Boolean,
-  disabled: Boolean,
-})
-
-const slots = useSlots()
-const { getColor } = useTheme()
-const hasIcon = computed(() => slots.icon || props.loading)
-
-const cls = useCls('t-btn', () => ({
-  variant: props.variant,
-  color: props.color,
-  size: props.size,
-  rounded: props.rounded || props.circle,
-  square: props.square || props.circle,
-  block: props.block,
-  disabled: props.disabled,
-}))
-
-const cssVars = computed(() => {
-  return getBtnVars(props.variant, props.size, getColor(props.color))
 })
 </script>
 <template>
-  <button :class="cls" type="button" :disabled="disabled">
+  <button :class="cls" type="button" :disabled="disabled" @click="onClick">
     <span v-if="hasIcon" class="t-btn_icon">
       <LoadingIcon v-if="loading" class="t-btn_loading" />
       <slot v-else name="icon" />

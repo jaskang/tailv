@@ -1,11 +1,11 @@
 import { computed, type ComputedRef, type UnwrapRef, ref } from 'vue'
 
-export function useControllable<T>(getter: ComputedRef<T | undefined>, setter?: (value: T) => void, defaultValue?: T) {
+export function useControllable<T>(getter: () => T | undefined, setter?: (value: T) => void, defaultValue?: T) {
   const internalValue = ref(defaultValue)
-  const isControlled = computed(() => getter.value !== undefined)
+  const isControlled = computed(() => getter() !== undefined)
 
   return [
-    computed(() => (isControlled.value ? getter.value : internalValue.value)),
+    computed(() => (isControlled.value ? getter() : internalValue.value)),
     function (value: unknown) {
       if (isControlled.value) {
         return setter?.(value as T)

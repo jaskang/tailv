@@ -1,63 +1,83 @@
-<script setup lang="ts">
+<script lang="ts">
 import { colors } from '@/core/colors'
 import { useTheme } from '@/core/theme'
-import { computed, ref } from 'vue'
+import { useControllable } from '@/hooks/controllable'
+import { computed, defineComponent, ref } from 'vue'
 
-const props = defineProps({
-  value: [String, Number],
-  name: String,
-  disabled: Boolean,
-  checked: Boolean,
-})
+export default defineComponent({
+  name: 'TCheckBox',
+  props: {
+    value: [String, Number],
+    name: String,
+    disabled: Boolean,
+    checked: Boolean,
+  },
+  emits: ['update:checked', 'change', 'focus', 'blur'],
+  setup(props, { emit }) {
+    const { getColor, theme } = useTheme()
+    const focus = ref(false)
 
-const emit = defineEmits(['onUpdate:checked', 'focus', 'blur'])
+    const [checked, setChecked] = useControllable(
+      () => props.checked,
+      val => {
+        emit('update:checked', val)
+        emit('change', val)
+      },
+      false
+    )
 
-const { getColor, theme } = useTheme()
-const focus = ref(false)
+    const onInput = (e: Event) => {
+      const el = e.currentTarget as HTMLInputElement
+      console.log(el.checked)
+      setChecked(el.checked)
+    }
+    const onFocus = (e: Event) => {
+      if (props.disabled) {
+        e.preventDefault()
+        return false
+      } else {
+        focus.value = true
+        emit('focus', e)
+      }
+    }
+    const onBlur = (e: Event) => {
+      if (props.disabled) {
+        e.preventDefault()
+        return false
+      } else {
+        focus.value = false
+        emit('blur', e)
+      }
+    }
 
-const innerChecked = ref(props.checked)
-
-const onInput = (e: Event) => {
-  const el = e.currentTarget as HTMLInputElement
-  console.log(el.checked)
-
-  innerChecked.value = el.checked
-}
-const onClick = (e: Event) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  }
-}
-const onFocus = (e: Event) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  } else {
-    focus.value = true
-    emit('focus', e)
-  }
-}
-const onBlur = (e: Event) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  } else {
-    focus.value = false
-    emit('blur', e)
-  }
-}
-
-const cssVars = computed(() => {
-  return {
-    color: colors[theme.value.colors.primary][600],
-    ringColor: colors[theme.value.colors.primary][500],
-  }
+    const cssVars = computed(() => {
+      return {
+        color: colors[theme.value.colors.primary][600],
+        ringColor: colors[theme.value.colors.primary][500],
+      }
+    })
+    return {
+      cssVars,
+      checked,
+      onInput,
+      onFocus,
+      onBlur,
+    }
+  },
 })
 </script>
 <template>
   <label class="t-checkbox" :class="[disabled && 'is-disabled']">
-    <input :name="name" type="checkbox" :disabled="disabled" :checked="innerChecked" class="t-checkbox_input" />
+    <input
+      class="t-checkbox_input"
+      :name="name"
+      type="checkbox"
+      :disabled="disabled"
+      :checked="checked"
+      @input="onInput"
+      @focus="onFocus"
+      @blur="onBlur"
+    />
     <span class="t-checkbox_label">
       <slot />
     </span>

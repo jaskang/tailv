@@ -1,31 +1,40 @@
-<script setup lang="ts">
+<script lang="ts">
 import { colors } from '@/core/colors'
 import { useTheme } from '@/core/theme'
 import { useControllable } from '@/hooks/controllable'
-import { computed, toRef } from 'vue'
+import { computed, defineComponent, toRef } from 'vue'
 
-const props = defineProps({
-  modelValue: Boolean,
-  disabled: Boolean,
-})
-const emits = defineEmits(['update:modelValue', 'change'])
-
-const { theme } = useTheme()
-
-const [value, setValue] = useControllable(
-  computed(() => props.modelValue),
-  val => {
-    emits('update:modelValue', val)
-    emits('change', val)
+export default defineComponent({
+  name: 'TSwitch',
+  props: {
+    checked: Boolean,
+    disabled: Boolean,
   },
-  false
-)
+  emits: ['update:checked', 'change'],
+  setup(props, { emit }) {
+    const { theme } = useTheme()
 
-const cssVars = computed(() => {
-  return {
-    color: colors[theme.value.colors.primary][500],
-    ringColor: colors[theme.value.colors.primary][500],
-  }
+    const [value, setValue] = useControllable(
+      () => props.checked,
+      val => {
+        emit('update:checked', val)
+        emit('change', val)
+      },
+      false
+    )
+
+    const cssVars = computed(() => {
+      return {
+        color: colors[theme.value.colors.primary][500],
+        ringColor: colors[theme.value.colors.primary][500],
+      }
+    })
+    return {
+      cssVars,
+      value,
+      setValue,
+    }
+  },
 })
 </script>
 <template>

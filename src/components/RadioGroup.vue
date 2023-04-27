@@ -14,7 +14,7 @@ export default defineComponent({
   emits: ['update:value', 'change'],
   setup(props, { emit }) {
     const [value, setValue] = useControllable(
-      computed(() => props.value),
+      () => props.value,
       val => {
         emit('update:value', val)
         emit('change', val)

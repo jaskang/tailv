@@ -1,20 +1,27 @@
-<script setup lang="ts">
-import { computed, type PropType } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, type PropType } from 'vue'
 
-const props = defineProps({
-  size: {
-    type: [String, Number] as PropType<string | number>,
+export default defineComponent({
+  name: 'TIcon',
+  props: {
+    size: {
+      type: [String, Number] as PropType<string | number>,
+    },
+    spin: Boolean,
   },
-  spin: Boolean,
-})
-
-const iconSize = computed(() => {
-  const sizePx = typeof props.size === 'number' ? `${props.size}px` : props.size
-  return sizePx ? { width: sizePx, height: sizePx } : {}
+  setup(props) {
+    const iconSize = computed(() => {
+      const sizePx = typeof props.size === 'number' ? `${props.size}px` : props.size
+      return sizePx ? { width: sizePx, height: sizePx } : {}
+    })
+    return {
+      iconSize,
+    }
+  },
 })
 </script>
 <template>
-  <span role="img" class="t-icon" :class="{ 't-icon-spin': props.spin }" :style="iconSize">
+  <span role="img" class="t-icon" :class="{ 't-icon-spin': spin }" :style="iconSize">
     <slot />
   </span>
 </template>

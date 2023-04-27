@@ -29,9 +29,9 @@ export default defineComponent({
       }
     })
     const [realChecked, setChecked] = useControllable(
-      computed(() => {
+      () => {
         return groupContext ? groupContext.props.value.value === props.value : props.checked
-      }),
+      },
       val => {
         if (groupContext) {
           if (groupContext.props.value.value !== props.value) {

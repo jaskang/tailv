@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { computed, type PropType, type StyleHTMLAttributes, type StyleValue } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, type PropType, type StyleHTMLAttributes, type StyleValue } from 'vue'
 
 type FlexType = number | 'auto' | 'initial' | 'none'
 
@@ -13,17 +13,25 @@ function parseFlex(flex: FlexType): string {
   return flex
 }
 
-const props = defineProps({
-  flex: {
-    type: [Number, String] as PropType<number | 'auto' | 'none'>,
-    default: 'none',
+export default defineComponent({
+  name: 'TCol',
+  props: {
+    flex: {
+      type: [Number, String] as PropType<number | 'auto' | 'none'>,
+      default: 'none',
+    },
   },
-})
-const style = computed<StyleValue>(() => {
-  const flex = parseFlex(props.flex)
-  return {
-    flex,
-  }
+  setup(props) {
+    const style = computed<StyleValue>(() => {
+      const flex = parseFlex(props.flex)
+      return {
+        flex,
+      }
+    })
+    return {
+      style,
+    }
+  },
 })
 </script>
 <template>
