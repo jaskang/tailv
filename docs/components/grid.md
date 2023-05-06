@@ -81,12 +81,23 @@ align 值为 `start` | `end` | `center` | `baseline` | `stretch`
 gap
 
 ```vue preview
+<script setup>
+import { ref } from 'vue'
+
+const gap = ref('1rem')
+</script>
 <template>
-  <TRadio v-model="">1rem</TRadio>
-  <TRow gap="1rem">
-    <TCol flex="1">1</TCol>
-    <TCol flex="1">1</TCol>
-    <TCol flex="1">1</TCol>
+  <TRadioGroup v-model:value="gap">
+    <TRadio value="1rem">1rem</TRadio>
+    <TRadio value="4rem">4rem</TRadio>
+    <TRadio value="4vw">10vw</TRadio>
+    <TRadio value="100px">100px</TRadio>
+  </TRadioGroup>
+  <TRow :gap="gap">
+    <TCol flex="100px">100px</TCol>
+    <TCol flex="1">flex 1</TCol>
+    <TCol flex="1">flex 1</TCol>
+    <TCol flex="100px">100px</TCol>
   </TRow>
 </template>
 ```
