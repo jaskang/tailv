@@ -10,6 +10,7 @@ import Checkbox from './components/CheckBox.vue'
 import Input from './components/Input.vue'
 import Row from './components/Row.vue'
 import Col from './components/Col.vue'
+import Space from './components/Space.vue'
 
 export { Button, Checkbox, Radio, Switch }
 
@@ -24,6 +25,7 @@ export const Tailv: Plugin = {
     app.component('TInput', Input)
     app.component('TRow', Row)
     app.component('TCol', Col)
+    app.component('TSpace', Space)
   },
 }
 
