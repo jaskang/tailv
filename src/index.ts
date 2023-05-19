@@ -1,4 +1,3 @@
-import './_styles/index.scss'
 import type { Plugin } from 'vue'
 
 import Icon from './components/Icon.vue'

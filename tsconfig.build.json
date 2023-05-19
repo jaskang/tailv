@@ -4,7 +4,6 @@
   "compilerOptions": {
     "outDir": "dist_types",
     "composite": true,
-    "types": ["node", "jsdom"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
