@@ -3,6 +3,7 @@ import { ref, computed, type PropType } from 'vue'
 import { getBtnVars, useCls } from './styles'
 import { useTheme } from '@/core/theme'
 import LoadingIcon from '../svgs/LoadingIcon.vue'
+import type { ColorKey } from '@/core/colors'
 
 defineOptions({ name: 'TButton' })
 const props = defineProps({

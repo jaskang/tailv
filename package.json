@@ -20,7 +20,7 @@
     "docs:preview": "vitepress preview docs",
     "build": "vite build",
     "vue-tsc": "vue-tsc --declaration --emitDeclarationOnly ",
-    "build-types": "vue-tsc --declaration --emitDeclarationOnly tsconfig.build.json && api-extractor run -c api-extractor.json && rimraf dist/src",
+    "build-types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json --composite false && api-extractor run -c api-extractor.json && rimraf dist/src",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
     "build-only": "vite build",
