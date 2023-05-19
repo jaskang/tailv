@@ -1,10 +1,8 @@
 import { defineConfig } from 'vitepress'
-import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 import Inspect from 'vite-plugin-inspect'
 import { fileURLToPath } from 'node:url'
-import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -15,7 +13,7 @@ export default defineConfig({
     server: {
       port: 8000,
     },
-    plugins: [Inspect(), vueJsx(), MarkdownPreview(), UnoCSS()],
+    plugins: [Inspect(), vueJsx(), MarkdownPreview()],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('../../src', import.meta.url)),

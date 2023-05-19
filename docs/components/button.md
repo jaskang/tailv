@@ -287,3 +287,18 @@
   </TButton>
 </template>
 ```
+
+## 图标
+
+使用 `loading` 为按钮设置加载状态
+
+```vue preview
+<template>
+  <TButton color="primary" loading>
+    <template #icon>
+      <CogIcon />
+    </template>
+    图标按钮
+  </TButton>
+</template>
+```

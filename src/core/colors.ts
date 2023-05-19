@@ -24,10 +24,6 @@ export type ColorKey =
 export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
 export type ColorName = `${ColorKey}.${ColorLv}`
 
-export const transparent = 'transparent'
-export const black = '#000'
-export const white = '#fff'
-
 export const colors = {
   transparent: 'transparent',
   black: '#000',
@@ -319,3 +315,10 @@ export const colors = {
     950: '#4c0519',
   },
 } as const
+
+export const transparent = colors.transparent
+export const black = colors.black
+export const white = colors.white
+export const border = {
+  default: colors.gray[300],
+}

@@ -2,7 +2,7 @@ import './_styles/index.scss'
 import type { Plugin } from 'vue'
 
 import Icon from './components/Icon.vue'
-import Button from './components/Button.vue'
+import Button from './components/Button/index.vue'
 import Switch from './components/Switch.vue'
 import Radio from './components/Radio.vue'
 import RadioGroup from './components/RadioGroup.vue'

@@ -122,8 +122,8 @@ export default defineComponent({
 
   &-xs {
     padding: 0 0.5rem;
-    font-size: 0.75rem;
-    line-height: 0.75rem;
+    font-size: 0.75rem; // 12px
+    line-height: 0.75rem; // 12px
     height: calc(1.75rem + 2px); // 30px / w-7 + 2px
   }
   &-sm {
