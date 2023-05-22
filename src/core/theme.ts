@@ -21,14 +21,14 @@ export function useTheme() {
       error: 'red',
     },
   })
-  const getColor = (key?: ColorAlias | ColorKey): ColorKey | undefined => {
-    if (key) {
-      if (colors[key as ColorKey]) {
-        return key as ColorKey
-      }
-      return theme.value.colors[key as ColorAlias]
+  const getColorKey = (key: ColorAlias | ColorKey = 'primary'): ColorKey => {
+    if (colors[key as ColorKey]) {
+      return key as ColorKey
     }
-    return undefined
+    return theme.value.colors[key as ColorAlias] || theme.value.colors.primary
   }
-  return { theme, getColor }
+  const getColor = (key: ColorAlias | ColorKey = 'primary') => {
+    return colors[getColorKey(key)]
+  }
+  return { theme, getColorKey, getColor }
 }

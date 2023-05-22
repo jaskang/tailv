@@ -9,6 +9,10 @@ import {
   BellIcon,
   CubeIcon,
   StarIcon,
+  SpeakerWaveIcon,
+  SpeakerXMarkIcon,
+  XMarkIcon,
+  CheckIcon,
 } from '@heroicons/vue/24/solid'
 import { type Theme } from 'vitepress'
 import Layout from './Layout.vue'
@@ -25,5 +29,9 @@ export default {
     ctx.app.component('BellIcon', BellIcon)
     ctx.app.component('CubeIcon', CubeIcon)
     ctx.app.component('StarIcon', StarIcon)
+    ctx.app.component('SpeakerWaveIcon', SpeakerWaveIcon)
+    ctx.app.component('SpeakerXMarkIcon', SpeakerXMarkIcon)
+    ctx.app.component('CheckIcon', CheckIcon)
+    ctx.app.component('XMarkIcon', XMarkIcon)
   },
 } satisfies Theme

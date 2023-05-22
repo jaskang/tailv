@@ -65,12 +65,10 @@ export const createBtnCls = classed('t-button', {
   h-[--t-btn-h]
   bg-[--t-btn-bg] text-[--t-btn-text-color] border-[--t-btn-border-color] 
   focus:outline-none
-  [&>i]:w-[1em] [&>i]:h-[1em] [&>i]:scale-125 [&>i+*]:ml-[0.5em]
-  [&>i>svg]:!w-full [&>i>svg]:!h-full 
-  `,
+  `.replace(/\s+/g, ' '),
   variants: {
     variant: {
-      default: `shadow-sm text-white `,
+      default: `shadow-sm`,
       link: ``,
       subtle: `shadow-sm`,
     },
@@ -97,8 +95,7 @@ export const createBtnCls = classed('t-button', {
     },
     disabled: {
       true: 'cursor-not-allowed opacity-50',
-      false: `cursor-pointer 
-      hover:bg-[--t-btn-bg-hover] hover:text-[--t-btn-text-color-hover] hover:border-[--t-btn-border-color-hover]`,
+      false: `cursor-pointer hover:bg-[--t-btn-bg-hover] hover:text-[--t-btn-text-color-hover] hover:border-[--t-btn-border-color-hover]`,
     },
   },
 })

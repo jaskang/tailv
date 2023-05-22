@@ -19,21 +19,21 @@
 
 ```vue preview
 <template>
-  <TRow gap="1rem">
-    <TCol class="w-14 bg-indigo-300">w-14</TCol>
-    <TCol flex="1" class="">1</TCol>
-    <TCol flex="1" class="">1</TCol>
-  </TRow>
+  <TFlex gap="1rem">
+    <TFlexItem class="w-14 bg-indigo-300">w-14</TFlexItem>
+    <TFlexItem flex="1" class="">1</TFlexItem>
+    <TFlexItem flex="1" class="">1</TFlexItem>
+  </TFlex>
 </template>
 ```
 
 ```vue preview
 <template>
-  <TRow gap="1rem">
-    <TCol class="w-14 bg-indigo-300">w-14</TCol>
-    <TCol flex="1" class="">1</TCol>
-    <TCol flex="1" class="">1</TCol>
-  </TRow>
+  <TFlex gap="1rem">
+    <TFlexItem class="w-14 bg-indigo-300">w-14</TFlexItem>
+    <TFlexItem flex="1" class="">1</TFlexItem>
+    <TFlexItem flex="1" class="">1</TFlexItem>
+  </TFlex>
 </template>
 ```
 
@@ -44,35 +44,35 @@ align 值为 `start` | `end` | `center` | `baseline` | `stretch`
 ```vue preview
 <template>
   <h4>start</h4>
-  <TRow align="start" gap="1rem">
-    <TCol flex="1" class="py-4">01</TCol>
-    <TCol flex="1" class="py-12">02</TCol>
-    <TCol flex="1" class="py-8">03</TCol>
-  </TRow>
+  <TFlex align="start" gap="1rem">
+    <TFlexItem flex="1" class="py-4">01</TFlexItem>
+    <TFlexItem flex="1" class="py-12">02</TFlexItem>
+    <TFlexItem flex="1" class="py-8">03</TFlexItem>
+  </TFlex>
   <h4>end</h4>
-  <TRow align="end" gap="1rem">
-    <TCol flex="1" class="py-4">01</TCol>
-    <TCol flex="1" class="py-12">02</TCol>
-    <TCol flex="1" class="py-8">03</TCol>
-  </TRow>
+  <TFlex align="end" gap="1rem">
+    <TFlexItem flex="1" class="py-4">01</TFlexItem>
+    <TFlexItem flex="1" class="py-12">02</TFlexItem>
+    <TFlexItem flex="1" class="py-8">03</TFlexItem>
+  </TFlex>
   <h4>center</h4>
-  <TRow align="center" gap="1rem">
-    <TCol flex="1" class="py-4">01</TCol>
-    <TCol flex="1" class="py-12">02</TCol>
-    <TCol flex="1" class="py-8">03</TCol>
-  </TRow>
+  <TFlex align="center" gap="1rem">
+    <TFlexItem flex="1" class="py-4">01</TFlexItem>
+    <TFlexItem flex="1" class="py-12">02</TFlexItem>
+    <TFlexItem flex="1" class="py-8">03</TFlexItem>
+  </TFlex>
   <h4>baseline</h4>
-  <TRow align="baseline" gap="1rem">
-    <TCol flex="1" class="pt-2 pb-6">01</TCol>
-    <TCol flex="1" class="pt-8 pb-12">02</TCol>
-    <TCol flex="1" class="pt-12 pb-4">03</TCol>
-  </TRow>
+  <TFlex align="baseline" gap="1rem">
+    <TFlexItem flex="1" class="pt-2 pb-6">01</TFlexItem>
+    <TFlexItem flex="1" class="pt-8 pb-12">02</TFlexItem>
+    <TFlexItem flex="1" class="pt-12 pb-4">03</TFlexItem>
+  </TFlex>
   <h4>stretch</h4>
-  <TRow align="stretch" gap="1rem">
-    <TCol flex="1" class="py-4">01</TCol>
-    <TCol flex="1" class="py-12">02</TCol>
-    <TCol flex="1" class="py-8">03</TCol>
-  </TRow>
+  <TFlex align="stretch" gap="1rem">
+    <TFlexItem flex="1" class="py-4">01</TFlexItem>
+    <TFlexItem flex="1" class="py-12">02</TFlexItem>
+    <TFlexItem flex="1" class="py-8">03</TFlexItem>
+  </TFlex>
 </template>
 ```
 
@@ -95,11 +95,11 @@ const gap = ref('1rem')
       <TRadio value="100px">100px</TRadio>
     </TRadioGroup>
   </div>
-  <TRow :gap="gap">
-    <TCol flex="100px">100px</TCol>
-    <TCol flex="1">flex 1</TCol>
-    <TCol flex="1">flex 1</TCol>
-    <TCol flex="100px">100px</TCol>
-  </TRow>
+  <TFlex :gap="gap">
+    <TFlexItem flex="100px">100px</TFlexItem>
+    <TFlexItem flex="1">flex 1</TFlexItem>
+    <TFlexItem flex="1">flex 1</TFlexItem>
+    <TFlexItem flex="100px">100px</TFlexItem>
+  </TFlex>
 </template>
 ```

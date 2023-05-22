@@ -283,7 +283,7 @@
     </template>
   </TButton>
   <TButton circle color="error">
-    <WIcon><CubeIcon /></WIcon>
+    <TIcon><CubeIcon /></TIcon>
   </TButton>
 </template>
 ```

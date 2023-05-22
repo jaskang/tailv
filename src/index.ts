@@ -1,15 +1,15 @@
 import type { Plugin } from 'vue'
 
-import Icon from './components/Icon.vue'
-import Button from './components/Button/index.vue'
-import Switch from './components/Switch.vue'
-import Radio from './components/Radio.vue'
-import RadioGroup from './components/RadioGroup.vue'
-import Checkbox from './components/CheckBox.vue'
-import Input from './components/Input.vue'
-import Row from './components/Row.vue'
-import Col from './components/Col.vue'
-import Space from './components/Space.vue'
+import Button from './components/Button/Button.vue'
+import Checkbox from './components/CheckBox/CheckBox.vue'
+import Icon from './components/Icon/Icon.vue'
+import Switch from './components/Switch/Switch.vue'
+import Radio from './components/Radio/Radio.vue'
+import RadioGroup from './components/Radio/RadioGroup.vue'
+import Input from './components/Input/Input.vue'
+import Flex from './components/Flex/Flex.vue'
+import FlexItem from './components/Flex/FlexItem.vue'
+import Space from './components/Space/Space.vue'
 
 export { Button, Checkbox, Radio, Switch }
 
@@ -22,8 +22,8 @@ export const Tailv: Plugin = {
     app.component('TRadio', Radio)
     app.component('TRadioGroup', RadioGroup)
     app.component('TInput', Input)
-    app.component('TRow', Row)
-    app.component('TCol', Col)
+    app.component('TFlex', Flex)
+    app.component('TFlexItem', FlexItem)
     app.component('TSpace', Space)
   },
 }

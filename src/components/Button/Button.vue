@@ -6,6 +6,8 @@ import LoadingIcon from '../svgs/LoadingIcon.vue'
 import type { ColorKey } from '@/core/colors'
 
 defineOptions({ name: 'TButton' })
+const emit = defineEmits<{ click: [MouseEvent] }>()
+const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
   variant: {
     type: String as PropType<'default' | 'link' | 'subtle'>,
@@ -29,10 +31,8 @@ const props = defineProps({
   loading: Boolean,
   disabled: Boolean,
 })
-const emit = defineEmits<{ click: [MouseEvent] }>()
-const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 
-const { getColor } = useTheme()
+const { getColorKey } = useTheme()
 
 const cls = useCls(() => {
   return {
@@ -46,7 +46,7 @@ const cls = useCls(() => {
   }
 })
 const cssVars = computed(() => {
-  return getBtnVars(props.variant, getColor(props.color))
+  return getBtnVars(props.variant, getColorKey(props.color || 'gray'))
 })
 
 const hasIcon = computed(() => !!slots.icon || props.loading)
@@ -58,7 +58,7 @@ const onClick = (e: MouseEvent) => {
 </script>
 <template>
   <button :class="cls" :style="cssVars" type="button" :disabled="disabled" @click="onClick">
-    <i v-if="hasIcon" class="t-btn-icon">
+    <i v-if="hasIcon" class="t-btn-icon w-[1em] h-[1em] scale-125 [&+*]:ml-[0.5em] [&>svg]:!w-full [&>svg]:!h-full">
       <LoadingIcon v-if="loading" class="animate-spin" />
       <slot v-else name="icon" />
     </i>
