@@ -59,7 +59,7 @@ const onBlur = (e: Event) => {
 
 const cssVars = computed(() =>
   getCssVars({
-    '--t-checkbox-text-color': getColor('primary')[500],
+    '--t-checkbox-primary-color': getColor('primary')[500],
     '--t-checkbox-ring-color': getColor('primary')[500],
   })
 )
@@ -71,7 +71,7 @@ const cssVars = computed(() =>
     :class="[disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']"
   >
     <input
-      class="t-checkbox_input h-4 w-4 rounded border border-gray-300 text-[--t-checkbox-text-color] cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--t-checkbox-ring-color] disabled:cursor-not-allowed disabled:opacity-50"
+      class="t-checkbox_input h-4 w-4 cursor-pointer rounded border border-gray-300 text-[--t-checkbox-text-color] transition-all focus:outline-none focus:ring-2 focus:ring-[--t-checkbox-ring-color] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
       :name="name"
       type="checkbox"
       :disabled="disabled"
@@ -80,7 +80,7 @@ const cssVars = computed(() =>
       @focus="onFocus"
       @blur="onBlur"
     />
-    <span class="t-checkbox_label ml-2">
+    <span class="t-checkbox_label ml-3 block text-sm font-medium text-gray-700">
       <slot />
     </span>
   </label>

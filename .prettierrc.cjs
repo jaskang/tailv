@@ -1,5 +1,3 @@
-const config = require('@jaskang/config')
-
 module.exports = {
   printWidth: 120,
   tabWidth: 2,
@@ -26,4 +24,5 @@ module.exports = {
   proseWrap: 'preserve',
   htmlWhitespaceSensitivity: 'css',
   vueIndentScriptAndStyle: false,
+  plugins: [require('prettier-plugin-tailwindcss')],
 }

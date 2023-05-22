@@ -12,7 +12,7 @@ export default defineComponent({
 <template>
   <span
     role="img"
-    class="t-icon inline-flex items-center [&>svg]:block [&>svg]:1em [&>svg]:1em"
+    class="t-icon w-[1em] inline-flex items-center [&>svg]:block [&>svg]:w-full [&>svg]:h-full"
     :class="[spin ? 'animate-spin' : '']"
   >
     <slot />

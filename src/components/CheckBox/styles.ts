@@ -1,8 +1,5 @@
-import { colors } from '@/core/colors'
-import { classed } from '@tw-classed/core'
-
 export type CheckBoxCssVars = {
-  '--t-checkbox-text-color': string
+  '--t-checkbox-primary-color': string
   '--t-checkbox-ring-color': string
 }
 

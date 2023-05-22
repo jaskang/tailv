@@ -35,12 +35,7 @@ export default defineComponent({
 })
 </script>
 <template>
-  <div class="t-col" :style="style">
+  <div class="t-col relative" :style="style">
     <slot />
   </div>
 </template>
-<style lang="scss">
-.t-col {
-  position: relative;
-}
-</style>

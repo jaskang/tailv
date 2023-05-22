@@ -44,12 +44,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="t-row" :style="style">
+  <div class="t-row flex" :style="style">
     <slot />
   </div>
 </template>
-<style lang="scss">
-.t-row {
-  display: flex;
-}
-</style>

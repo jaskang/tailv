@@ -12,12 +12,7 @@ export default defineComponent({
 })
 </script>
 <template>
-  <div class="t-space">
+  <div class="t-space flex">
     <slot></slot>
   </div>
 </template>
-<style lang="scss">
-.t-space {
-  display: flex;
-}
-</style>
