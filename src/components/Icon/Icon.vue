@@ -1,18 +1,11 @@
-<script lang="ts">
-import { computed, defineComponent, type PropType } from 'vue'
-
-export default defineComponent({
-  name: 'TIcon',
-  props: {
-    spin: Boolean,
-  },
-  setup(props) {},
-})
+<script setup lang="ts">
+defineOptions({ name: 'TIcon' })
+defineProps({ spin: Boolean })
 </script>
 <template>
   <span
     role="img"
-    class="t-icon w-[1em] inline-flex items-center [&>svg]:block [&>svg]:w-full [&>svg]:h-full"
+    class="t-icon inline-flex w-[1em] items-center [&>svg]:block [&>svg]:h-full [&>svg]:w-full"
     :class="[spin ? 'animate-spin' : '']"
   >
     <slot />

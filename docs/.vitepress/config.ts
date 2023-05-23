@@ -39,7 +39,7 @@ export default defineConfig({
       },
       {
         text: '布局',
-        items: [{ text: 'Grid 按钮', link: '/components/grid' }],
+        items: [{ text: 'flex', link: '/components/flex' }],
       },
       {
         text: '表单输入',

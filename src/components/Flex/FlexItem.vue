@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import { computed, defineComponent, type PropType, type StyleHTMLAttributes, type StyleValue } from 'vue'
 
 type FlexType = number | 'auto' | 'initial' | 'none'
@@ -13,29 +13,25 @@ function parseFlex(flex: FlexType): string {
   return flex
 }
 
-export default defineComponent({
-  name: 'TCol',
-  props: {
-    flex: {
-      type: [Number, String] as PropType<number | 'auto' | 'none'>,
-      default: 'none',
-    },
-  },
-  setup(props) {
-    const style = computed<StyleValue>(() => {
-      const flex = parseFlex(props.flex)
-      return {
-        flex,
-      }
-    })
-    return {
-      style,
-    }
+defineOptions({ name: 'TFlexItem' })
+const emit = defineEmits<{ click: [any] }>()
+const slots = defineSlots<{ default?(_: {}): any }>()
+const props = defineProps({
+  flex: {
+    type: [Number, String] as PropType<number | 'auto' | 'none'>,
+    default: 'none',
   },
 })
+const style = computed<StyleValue>(() => {
+  const flex = parseFlex(props.flex)
+  return {
+    flex,
+  }
+})
 </script>
+
 <template>
-  <div class="t-col relative" :style="style">
+  <div class="t-flex-item relative" :style="style">
     <slot />
   </div>
 </template>

@@ -1,15 +1,15 @@
 <style lang="scss"> 
 :where(.mdp-demo__preview) {
   h4{
-    @apply text-xl font-semibold leading-12 text-slate-700;
+    @apply text-xl font-semibold text-slate-700;
   }
-  > :where(.t-row){
+  > :where(.t-flex){
     background-color: #818cf81a;
     background-image: linear-gradient(135deg,#6366f180 10%,#0000 0,#0000 50%,#6366f180 0,#6366f180 60%,#0000 0,#0000);
     background-size: 7.07px 7.07px;
     @apply text-white text-sm font-bold font-mono leading-6 rounded-lg;
   }   
-  :where(.t-col){
+  :where(.t-flex-item){
     @apply py-4 flex items-center justify-center bg-indigo-500 shadow-lg rounded-lg;
   }
 }
@@ -63,9 +63,9 @@ align 值为 `start` | `end` | `center` | `baseline` | `stretch`
   </TFlex>
   <h4>baseline</h4>
   <TFlex align="baseline" gap="1rem">
-    <TFlexItem flex="1" class="pt-2 pb-6">01</TFlexItem>
-    <TFlexItem flex="1" class="pt-8 pb-12">02</TFlexItem>
-    <TFlexItem flex="1" class="pt-12 pb-4">03</TFlexItem>
+    <TFlexItem flex="1" class="pb-6 pt-2">01</TFlexItem>
+    <TFlexItem flex="1" class="pb-12 pt-8">02</TFlexItem>
+    <TFlexItem flex="1" class="pb-4 pt-12">03</TFlexItem>
   </TFlex>
   <h4>stretch</h4>
   <TFlex align="stretch" gap="1rem">
@@ -87,9 +87,9 @@ import { ref } from 'vue'
 const gap = ref('1rem')
 </script>
 <template>
-  <div class="space-x-4 mb-4">
+  <div class="mb-4 space-x-4">
     <TRadioGroup v-model:value="gap">
-      <TRadio value="1rem">1rem</TRadio>
+      <TRadio value="4">1rem</TRadio>
       <TRadio value="4rem">4rem</TRadio>
       <TRadio value="4vw">10vw</TRadio>
       <TRadio value="100px">100px</TRadio>

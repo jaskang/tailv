@@ -1,16 +1,14 @@
-<script lang="ts">
-import { defineComponent, ref, type PropType } from 'vue'
+<script setup lang="ts">
+import { ref, computed, type PropType } from 'vue'
 
-export default defineComponent({
-  name: 'TSpace',
-  props: {
-    gap: String as PropType<string>,
-  },
-  setup(props, { emit }) {
-    return {}
-  },
+defineOptions({ name: 'TSpace' })
+const emit = defineEmits<{ click: [any] }>()
+const slots = defineSlots<{ default?(_: {}): any }>()
+const props = defineProps({
+  gap: String as PropType<string>,
 })
 </script>
+
 <template>
   <div class="t-space flex">
     <slot></slot>
