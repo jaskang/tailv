@@ -59,7 +59,7 @@ const onBlur = (e: Event) => {
 
 const cssVars = computed(() =>
   getCssVars({
-    '--t-radio-primary-color': getColor('primary')[500],
+    '--t-radio-accent-color': getColor('primary')[500],
     '--t-radio-ring-color': getColor('primary')[500],
   })
 )
@@ -71,7 +71,7 @@ const cssVars = computed(() =>
     :class="[groupProps.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']"
   >
     <input
-      class="t-radio_input h-4 w-4 border-gray-300 text-[--t-radio-primary-color] transition-all focus:ring-[--t-radio-ring-color] disabled:cursor-not-allowed"
+      class="t-radio_input h-4 w-4 border-gray-300 text-[--t-radio-accent-color] transition-all focus:ring-[--t-radio-ring-color] disabled:cursor-not-allowed"
       type="radio"
       :name="groupProps.name"
       :value="groupProps.value"

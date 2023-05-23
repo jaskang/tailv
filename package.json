@@ -28,6 +28,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@floating-ui/vue": "^1.0.0",
     "@heroicons/vue": "^2.0.18",
     "@tw-classed/core": "^1.4.4",
     "pinia": "^2.1.3",

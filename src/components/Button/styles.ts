@@ -68,7 +68,9 @@ export const createBtnCls = classed('t-button', {
   `.replace(/\s+/g, ' '),
   variants: {
     variant: {
-      default: `shadow-sm`,
+      solid: `shadow-sm`,
+      soft: `shadow-sm`,
+      outline: `shadow-sm`,
       link: ``,
       subtle: `shadow-sm`,
     },

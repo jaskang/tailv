@@ -1,5 +1,5 @@
 export type RadioCssVars = {
-  '--t-radio-primary-color': string
+  '--t-radio-accent-color': string
   '--t-radio-ring-color': string
 }
 

@@ -1,5 +1,5 @@
 export type SwitchCssVars = {
-  '--t-switch-primary-color': string
+  '--t-switch-accent-color': string
   '--t-switch-ring-color': string
 }
 
