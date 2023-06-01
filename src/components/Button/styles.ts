@@ -2,16 +2,6 @@ import { classed, type VariantProps } from '@tw-classed/core'
 import { colors, type ColorKey, border } from '@/core/colors'
 import { computed, toValue, type MaybeRefOrGetter, toRef } from 'vue'
 
-export type ButtonCssVars = {
-  '--t-btn-text-color': string
-  '--t-btn-text-color-hover': string
-  '--t-btn-border-color': string
-  '--t-btn-border-color-hover': string
-  '--t-btn-bg': string
-  '--t-btn-bg-hover': string
-  '--t-btn-ring-color': string
-}
-
 const createBtnVars = (vars: Partial<ButtonCssVars> = {}) => {
   const result: ButtonCssVars = {
     '--t-btn-text-color': vars['--t-btn-text-color'] || colors.gray[700],

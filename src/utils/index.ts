@@ -11,3 +11,7 @@ export const PropTypes = {
   string,
   symbol,
 }
+
+export function emitFn<T extends (...args: any[]) => any>(fn: T) {
+  return fn as (...args: Parameters<T>) => void
+}

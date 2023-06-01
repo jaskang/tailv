@@ -1,3 +1,5 @@
+export type ColorAlias = 'primary' | 'success' | 'warning' | 'error'
+
 export type ColorKey =
   | 'slate'
   | 'gray'
@@ -21,10 +23,13 @@ export type ColorKey =
   | 'fuchsia'
   | 'pink'
   | 'rose'
-export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
-export type ColorName = `${ColorKey}.${ColorLv}`
 
-export const colors = {
+export type Color = ColorKey | ColorAlias
+export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
+export type ColorPath = `${Color}.${ColorLv}`
+export type ColorMap = Record<ColorLv, string>
+
+export const COLORS = {
   transparent: 'transparent',
   black: '#000',
   white: '#fff',
@@ -316,9 +321,6 @@ export const colors = {
   },
 } as const
 
-export const transparent = colors.transparent
-export const black = colors.black
-export const white = colors.white
 export const border = {
-  default: colors.gray[300],
+  default: COLORS.gray[300],
 }

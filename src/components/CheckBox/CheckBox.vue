@@ -2,7 +2,7 @@
 import { colors } from '@/core/colors'
 import { useTheme } from '@/core/theme'
 import { useControllable } from '@/hooks/controllable'
-import { ref, computed } from 'vue'
+import { ref, computed, type Component } from 'vue'
 import { getCssVars } from './styles'
 
 defineOptions({ name: 'TCheckBox' })
