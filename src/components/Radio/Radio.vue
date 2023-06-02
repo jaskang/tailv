@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme } from '@/core/theme'
+import { useTheme } from '@/theme'
 import { useControllable } from '@/hooks/controllable'
 import { PropTypes } from '@/utils'
 import { ref, computed, inject } from 'vue'
@@ -16,7 +16,7 @@ const props = defineProps({
   checked: Boolean,
 })
 
-const { theme, getColor } = useTheme()
+const { colors } = useTheme()
 
 const focus = ref(false)
 
@@ -59,8 +59,8 @@ const onBlur = (e: Event) => {
 
 const cssVars = computed(() =>
   getCssVars({
-    '--t-radio-accent-color': getColor('primary')[500],
-    '--t-radio-ring-color': getColor('primary')[500],
+    '--t-radio-accent-color': colors.value.primary[500],
+    '--t-radio-ring-color': colors.value.primary[500],
   })
 )
 </script>

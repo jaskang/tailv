@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme } from '@/core/theme'
+import { useTheme } from '@/theme'
 import { useControllable } from '@/hooks/controllable'
 import { ref, computed } from 'vue'
 import { getCssVars } from './styles'
@@ -14,7 +14,7 @@ const props = defineProps({
   checked: Boolean,
   disabled: Boolean,
 })
-const { theme, getColor } = useTheme()
+const { colors } = useTheme()
 
 const [value, setValue] = useControllable(
   () => props.checked,
@@ -29,8 +29,8 @@ const [value, setValue] = useControllable(
 
 const cssVars = computed(() =>
   getCssVars({
-    '--t-switch-accent-color': getColor('primary')[500],
-    '--t-switch-ring-color': getColor('primary')[500],
+    '--t-switch-accent-color': colors.value.primary[500],
+    '--t-switch-ring-color': colors.value.primary[500],
   })
 )
 </script>

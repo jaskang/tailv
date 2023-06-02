@@ -55,5 +55,5 @@ export type SizeType =
 
 export function getSpace(size: SizeType): string {
   // @ts-ignore
-  return SPACING[size] || size
+  return SPACING[`${size}`] || size
 }

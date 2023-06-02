@@ -1,6 +1,6 @@
 import { classed, type VariantProps } from '@tw-classed/core'
 import { computed, toValue, type MaybeRefOrGetter, toRef, type Ref } from 'vue'
-import type { ButtonCssVars, ButtonProps } from './Button'
+import type { ButtonCssVars, ButtonProps } from '.'
 import { useTheme, type ColorKey } from '@/theme'
 import { COLORS } from '@/theme'
 

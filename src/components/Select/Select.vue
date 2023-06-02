@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme } from '@/core/theme'
+import { useTheme } from '@/theme'
 import { ref, computed } from 'vue'
 import { getCssVars } from './styles'
 import { useControllable } from '@/hooks/controllable'
@@ -23,7 +23,7 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const { theme, getColor } = useTheme()
+const { colors } = useTheme()
 
 const [value, setValue] = useControllable(
   () => props.value,
@@ -61,7 +61,7 @@ const onBlur = (e: Event) => {
 
 const cssVars = computed(() =>
   getCssVars({
-    '--t-input-ring-color': getColor('primary')[500],
+    '--t-input-ring-color': colors.value.primary[500],
   })
 )
 </script>

@@ -1,14 +1,14 @@
 import type { Plugin } from 'vue'
 
-import Button from './components/Button/Button.vue'
-import Checkbox from './components/CheckBox/CheckBox.vue'
+import { Button } from './components/Button'
+import { Checkbox } from './components/Checkbox'
 import Icon from './components/Icon/Icon.vue'
 import Switch from './components/Switch/Switch.vue'
 import Radio from './components/Radio/Radio.vue'
 import RadioGroup from './components/Radio/RadioGroup.vue'
-import Input from './components/Input/Input.vue'
-import Flex from './components/Flex/Flex.vue'
-import FlexItem from './components/Flex/FlexItem.vue'
+import { Input } from './components/Input'
+import { Flex, FlexItem } from './components/Flex'
+
 import Space from './components/Space/Space.vue'
 
 export { Button, Checkbox, Radio, Switch }

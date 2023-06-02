@@ -1,7 +1,11 @@
 import { computed, ref } from 'vue'
 import { type ColorKey, COLORS, type ColorAlias, type ColorMap, type Color } from './colors'
 
-export { COLORS, type ColorKey }
+export { type SpaceType, type SizeType, getSpace } from './space'
+
+export type { Color, ColorMap, ColorKey }
+
+export { COLORS }
 
 export type Theme = {
   colors: {

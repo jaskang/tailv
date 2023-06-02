@@ -7,20 +7,21 @@ import {
   type SlotsType,
   type VNode,
 } from 'vue'
+import LoadingIcon from '../svgs/LoadingIcon.vue'
 import { useStyle } from './style'
-import { useTheme } from '@/theme'
+import { useTheme, type Color } from '@/theme'
 
 const props = {
   variant: {
     type: String as PropType<'solid' | 'soft' | 'outline' | 'link' | 'subtle'>,
     default: 'solid',
   },
-  color: {
-    type: String as PropType<'primary' | 'success' | 'warning' | 'error' | ColorKey>,
-  },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
     default: 'md',
+  },
+  color: {
+    type: String as PropType<Color>,
   },
   ring: {
     type: Boolean,
@@ -40,11 +41,13 @@ export type ButtonPublicProps = ExtractPublicPropTypes<typeof props>
 
 export type ButtonCssVars = {
   '--t-btn-text-color': string
-  '--t-btn-text-color-hover': string
   '--t-btn-border-color': string
-  '--t-btn-border-color-hover': string
   '--t-btn-bg': string
+
+  '--t-btn-text-color-hover': string
+  '--t-btn-border-color-hover': string
   '--t-btn-bg-hover': string
+
   '--t-btn-ring-color': string
 }
 
@@ -52,11 +55,11 @@ export const Button = defineComponent({
   name: 'TButton',
   props,
   emits: {
-    click: (payload: MouseEvent) => {},
+    click: (payload: MouseEvent) => true,
   },
   slots: Object as SlotsType<{
     default: () => VNode
-    item: { data: number }
+    icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
     const { getColorKey } = useTheme()
@@ -75,5 +78,15 @@ export const Button = defineComponent({
         emit('click', e)
       }
     }
+    return () => (
+      <button style={cssVars.value} class={cls.value} type="button" disabled={props.disabled} onClick={onClick}>
+        {hasIcon.value && (
+          <i class="t-btn-icon h-[1em] w-[1em] scale-125 [&+*]:ml-[0.5em] [&>svg]:!h-full [&>svg]:!w-full">
+            {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}
+          </i>
+        )}
+        {slots.default && <span class="t-btn_body">{slots.default()}</span>}
+      </button>
+    )
   },
 })
