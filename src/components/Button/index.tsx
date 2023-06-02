@@ -7,7 +7,7 @@ import {
   type SlotsType,
   type VNode,
 } from 'vue'
-import LoadingIcon from '../svgs/LoadingIcon.vue'
+import { LoadingIcon } from '../Icon'
 import { useStyle } from './style'
 import { useTheme, type Color } from '@/theme'
 

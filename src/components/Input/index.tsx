@@ -41,8 +41,8 @@ export const Input = defineComponent({
   },
   slots: Object as SlotsType<{
     default?: () => VNode
-    before?: () => VNode
-    after?: () => VNode
+    prefix?: () => VNode
+    suffix?: () => VNode
   }>,
   setup(props, { slots, emit }) {
     const { colors } = useTheme()
@@ -86,48 +86,55 @@ export const Input = defineComponent({
     }))
 
     return () => (
+      // <div
+      //   style={cssVars.value}
+      //   class={[
+      //     't-input inline-flex w-full rounded-md text-sm shadow-sm',
+      //     props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : '',
+      //     focused.value && 'is-focused',
+      //   ]}
+      // >
+      // {slots.before && (
+      //   <span class="t-input_before inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3">
+      //     {slots.before()}
+      //   </span>
+      // )}
+
       <div
         style={cssVars.value}
         class={[
-          't-input inline-flex w-full rounded-md text-sm shadow-sm',
-          props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : '',
-          focused.value && 'is-focused',
+          't-input inline-flex w-full items-center rounded-md border text-sm shadow-sm',
+          props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : 'bg-white',
+          focused.value
+            ? 'is-focused z-10 border-[--t-input-ring-color] ring-1 ring-[--t-input-ring-color]'
+            : 'border-gray-300',
         ]}
       >
-        {slots.before && (
-          <span class="t-input_before inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3">
-            {slots.before()}
-          </span>
+        {(slots.prefix || props.prefix) && (
+          <span class="t-input_prefix flex flex-initial items-center pl-3">{slots.prefix?.() || props.prefix}</span>
         )}
 
-        <span
-          class={[
-            't-input_wraper flex w-full flex-1 items-center border first:rounded-l-md last:rounded-r-md',
-            props.disabled ? 'bg-gray-50' : 'bg-white',
-            focused.value ? 'z-10 border-[--t-input-ring-color] ring-1 ring-[--t-input-ring-color]' : 'border-gray-300',
-          ]}
-        >
-          {props.prefix && <span class="t-input_prefix flex-initial pl-3">{props.prefix}</span>}
-
-          <input
-            class="t-input_input flex-1 border-none bg-transparent px-3 focus:outline-none disabled:cursor-not-allowed"
-            style="box-shadow: none"
-            type="text"
-            value={value.value}
-            disabled={props.disabled}
-            placeholder={props.placeholder}
-            onInput={onInput}
-            onFocus={onFocus}
-            onBlur={onBlur}
-          />
-          {props.suffix && <span class="t-input_suffix flex-initial pr-3">{props.suffix}</span>}
-        </span>
-        {slots.after && (
-          <span class="t-input_after inline-flex items-center rounded-r-md border border-r-0 border-gray-300 bg-gray-50 px-3">
-            {slots.after()}
-          </span>
+        <input
+          class="t-input_input inline-block flex-1 border-none bg-transparent px-3 focus:outline-none disabled:cursor-not-allowed"
+          style="box-shadow: none"
+          type="text"
+          value={value.value}
+          disabled={props.disabled}
+          placeholder={props.placeholder}
+          onInput={onInput}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+        {(slots.suffix || props.suffix) && (
+          <span class="t-input_suffix flex flex-initial items-center pr-3">{slots.suffix?.() || props.suffix}</span>
         )}
       </div>
+      //  {slots.after && (
+      //   <span class="t-input_after inline-flex items-center rounded-r-md border border-r-0 border-gray-300 bg-gray-50 px-3">
+      //     {slots.after()}
+      //   </span>
+      // )}
+      // </div>
     )
   },
 })

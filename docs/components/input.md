@@ -15,14 +15,18 @@
   <TInput suffix="suffix" />
   <TInput prefix="prefix" suffix="suffix" />
   <TInput>
-    <template #before>before</template>
-    <template #after>after</template>
+    <template #prefix>before</template>
+    <template #suffix>after</template>
   </TInput>
   <TInput>
-    <template #after>after</template>
+    <template #prefix>
+      <TIcon><BellIcon /></TIcon>
+    </template>
   </TInput>
   <TInput>
-    <template #before>after</template>
+    <template #suffix>
+      <TIcon><BellIcon /></TIcon>
+    </template>
   </TInput>
 </template>
 ```
@@ -45,5 +49,17 @@
   <TInput disabled>
     <template #before>after</template>
   </TInput>
+</template>
+```
+
+# TInputGroup
+
+```vue preview
+<template>
+  <TInputGroup>
+    <TInput prefix="prefix" />
+    <TInput prefix="prefix" suffix="suffix" />
+    <TInput suffix="suffix" />
+  </TInputGroup>
 </template>
 ```
