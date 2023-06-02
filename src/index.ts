@@ -6,10 +6,11 @@ import { Checkbox } from './components/Checkbox'
 import { Switch } from './components/Switch'
 import { Radio, RadioGroup } from './components/Radio'
 import { Input } from './components/Input'
+import { Select } from './components/Select'
 import { InputGroup } from './components/InputGroup'
 import { Flex, FlexItem } from './components/Flex'
 
-export { Icon, Button, Checkbox, Switch, Radio, RadioGroup, Input, InputGroup, Flex, FlexItem }
+export { Icon, Button, Checkbox, Switch, Radio, RadioGroup, Input, Select, InputGroup, Flex, FlexItem }
 
 export const Tailv: Plugin = {
   install(app, options) {
@@ -20,6 +21,7 @@ export const Tailv: Plugin = {
     app.component('TRadio', Radio)
     app.component('TRadioGroup', RadioGroup)
     app.component('TInput', Input)
+    app.component('TSelect', Select)
     app.component('TInputGroup', InputGroup)
     app.component('TFlex', Flex)
     app.component('TFlexItem', FlexItem)

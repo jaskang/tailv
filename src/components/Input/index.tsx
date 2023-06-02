@@ -118,6 +118,7 @@ export const Input = defineComponent({
           class="t-input_input inline-block flex-1 border-none bg-transparent px-3 focus:outline-none disabled:cursor-not-allowed"
           style="box-shadow: none"
           type="text"
+          size="1"
           value={value.value}
           disabled={props.disabled}
           placeholder={props.placeholder}

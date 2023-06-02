@@ -9,6 +9,7 @@ import {
   type VNode,
 } from 'vue'
 import { useTheme } from '@/theme'
+import { Input } from '../Input'
 
 const props = {
   value: String,
@@ -41,12 +42,6 @@ export const Select = defineComponent({
   setup(props, { slots, emit }) {
     const { colors } = useTheme()
 
-    const { cssVars, cls } = useStyle(() => {
-      return {
-        ...props,
-      }
-    })
-
     const hasIcon = computed(() => !!slots.icon || props.loading)
     const onClick = (e: MouseEvent) => {
       if (!props.disabled) {
@@ -54,9 +49,9 @@ export const Select = defineComponent({
       }
     }
     return () => (
-      <div style={cssVars.value} class={cls.value}>
-        {slots.default?.()}
-      </div>
+      <>
+        <Input />
+      </>
     )
   },
 })
