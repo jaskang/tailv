@@ -7,14 +7,15 @@ import {
   type PropType,
   type SlotsType,
   type VNode,
+  Transition,
+  Teleport,
 } from 'vue'
+import { flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { useTheme } from '@/theme'
 import { useControllable } from '@/hooks/controllable'
 
 const props = {
   value: String,
-  before: String,
-  after: String,
   prefix: String,
   suffix: String,
   placeholder: String,
@@ -41,6 +42,7 @@ export const Input = defineComponent({
   },
   slots: Object as SlotsType<{
     default?: () => VNode
+    dropdown?: () => VNode
     prefix?: () => VNode
     suffix?: () => VNode
   }>,
@@ -55,6 +57,7 @@ export const Input = defineComponent({
       },
       ''
     )
+    const open = ref(false)
     const focused = ref(false)
 
     const onInput = (e: Event) => {
@@ -68,6 +71,7 @@ export const Input = defineComponent({
         return false
       } else {
         focused.value = true
+        open.value = true
         emit('focus', e)
       }
     }
@@ -77,6 +81,7 @@ export const Input = defineComponent({
         return false
       } else {
         focused.value = false
+        open.value = false
         emit('blur', e)
       }
     }
@@ -84,6 +89,14 @@ export const Input = defineComponent({
     const cssVars = computed<InputCssVars>(() => ({
       '--t-input-ring-color': colors.value.primary[500],
     }))
+
+    const reference = ref(null)
+    const floating = ref(null)
+
+    const { floatingStyles } = useFloating(reference, floating, {
+      placement: 'bottom-start',
+      middleware: [offset(0)],
+    })
 
     return () => (
       // <div
@@ -99,11 +112,11 @@ export const Input = defineComponent({
       //     {slots.before()}
       //   </span>
       // )}
-
       <div
+        ref={reference}
         style={cssVars.value}
         class={[
-          't-input inline-flex w-full items-center rounded-md border text-sm shadow-sm',
+          't-input relative inline-flex w-full items-center rounded-md border text-sm shadow-sm',
           props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : 'bg-white',
           focused.value
             ? 'is-focused z-10 border-[--t-input-ring-color] ring-1 ring-[--t-input-ring-color]'
@@ -128,6 +141,26 @@ export const Input = defineComponent({
         />
         {(slots.suffix || props.suffix) && (
           <span class="t-input_suffix flex flex-initial items-center pr-3">{slots.suffix?.() || props.suffix}</span>
+        )}
+        {slots.dropdown && open.value && (
+          <Teleport to="#t-teleports">
+            <div
+              ref={floating}
+              style={floatingStyles.value}
+              class={[
+                't-dropdown absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-sm shadow-lg',
+                open.value ? 'is-open' : 'is-closed',
+              ]}
+            >
+              <Transition
+                leave-active-class="transition ease-in duration-100"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0"
+              >
+                {slots.dropdown?.()}
+              </Transition>
+            </div>
+          </Teleport>
         )}
       </div>
       //  {slots.after && (

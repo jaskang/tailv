@@ -10,6 +10,11 @@
 
 ```vue preview
 <template>
+  <TInput prefix="prefix" suffix="suffix">
+    <template #dropdown>
+      <TButton>button</TButton>
+    </template>
+  </TInput>
   <TInput />
   <TInput prefix="prefix" />
   <TInput suffix="suffix" />
