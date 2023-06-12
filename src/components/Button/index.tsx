@@ -13,8 +13,7 @@ import { useTheme, type Color } from '@/theme'
 
 const props = {
   variant: {
-    type: String as PropType<'solid' | 'soft' | 'outline' | 'link' | 'subtle'>,
-    default: 'solid',
+    type: String as PropType<'filled' | 'light' | 'outline' | 'link'>,
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -62,8 +61,6 @@ export const Button = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const { getColorKey } = useTheme()
-
     const { cssVars, cls } = useStyle(() => {
       return {
         ...props,

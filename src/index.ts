@@ -1,5 +1,6 @@
 import type { Plugin } from 'vue'
 
+import { ConfigProvider, useConfig } from './components/ConfigProvider'
 import { Icon } from './components/Icon'
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
@@ -10,10 +11,25 @@ import { Select } from './components/Select'
 import { InputGroup } from './components/InputGroup'
 import { Flex, FlexItem } from './components/Flex'
 
-export { Icon, Button, Checkbox, Switch, Radio, RadioGroup, Input, Select, InputGroup, Flex, FlexItem }
+export {
+  useConfig,
+  ConfigProvider,
+  Icon,
+  Button,
+  Checkbox,
+  Switch,
+  Radio,
+  RadioGroup,
+  Input,
+  Select,
+  InputGroup,
+  Flex,
+  FlexItem,
+}
 
 export const Tailv: Plugin = {
   install(app, options) {
+    app.component('TConfigProvider', ConfigProvider)
     app.component('TIcon', Icon)
     app.component('TButton', Button)
     app.component('TSwitch', Switch)

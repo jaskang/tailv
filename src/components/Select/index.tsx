@@ -50,7 +50,7 @@ export const Select = defineComponent({
     }
     return () => (
       <>
-        <button class={}></button>
+        <button class={''}></button>
       </>
     )
   },

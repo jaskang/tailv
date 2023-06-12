@@ -1,19 +1,36 @@
 <style lang="scss"> 
 .mdp-demo__preview {
-  > .t-btn{
+  > .t-button{
     margin-left: 1rem;
     /* margin-top: 1rem; */
     &:first-child{
       margin-left: 0;
     }
   } 
-  > br + .t-btn{
+  > br + .t-button{
     margin-left: 0 !important;
   }
 }
 </style>
 
 # Button
+
+## Variants
+
+```vue preview
+'filled' | 'light' | 'outline' | 'link' | 'subtle'
+<template>
+  <TButton variant="filled">filled</TButton>
+  <TButton variant="light">light</TButton>
+  <TButton variant="outline">outline</TButton>
+  <TButton variant="link">link</TButton>
+  <br /><br />
+  <TButton variant="filled" color="primary">filled</TButton>
+  <TButton variant="light" color="primary">light</TButton>
+  <TButton variant="outline" color="primary">outline</TButton>
+  <TButton variant="link" color="primary">link</TButton>
+</template>
+```
 
 ## 浅色按钮
 
@@ -89,29 +106,52 @@
 
   <br /><br />
 
-  <TButton variant="subtle" color="slate">slate</TButton>
-  <TButton variant="subtle" color="gray">gray</TButton>
-  <TButton variant="subtle" color="zinc">zinc</TButton>
-  <TButton variant="subtle" color="neutral">neutral</TButton>
-  <TButton variant="subtle" color="stone">stone</TButton>
-  <TButton variant="subtle" color="red">red</TButton>
-  <TButton variant="subtle" color="orange">orange</TButton>
-  <TButton variant="subtle" color="amber">amber</TButton>
-  <TButton variant="subtle" color="yellow">yellow</TButton>
-  <TButton variant="subtle" color="lime">lime</TButton>
-  <TButton variant="subtle" color="green">green</TButton>
-  <TButton variant="subtle" color="emerald">emerald</TButton>
-  <TButton variant="subtle" color="teal">teal</TButton>
-  <TButton variant="subtle" color="cyan">cyan</TButton>
-  <TButton variant="subtle" color="sky">sky</TButton>
-  <TButton variant="subtle" color="blue">blue</TButton>
-  <TButton variant="subtle" color="indigo">indigo</TButton>
-  <TButton variant="subtle" color="violet">violet</TButton>
-  <TButton variant="subtle" color="purple">purple</TButton>
-  <TButton variant="subtle" color="fuchsia">fuchsia</TButton>
-  <TButton variant="subtle" color="pink">pink</TButton>
-  <TButton variant="subtle" color="rose">rose</TButton>
+  <TButton variant="light" color="slate">slate</TButton>
+  <TButton variant="light" color="gray">gray</TButton>
+  <TButton variant="light" color="zinc">zinc</TButton>
+  <TButton variant="light" color="neutral">neutral</TButton>
+  <TButton variant="light" color="stone">stone</TButton>
+  <TButton variant="light" color="red">red</TButton>
+  <TButton variant="light" color="orange">orange</TButton>
+  <TButton variant="light" color="amber">amber</TButton>
+  <TButton variant="light" color="yellow">yellow</TButton>
+  <TButton variant="light" color="lime">lime</TButton>
+  <TButton variant="light" color="green">green</TButton>
+  <TButton variant="light" color="emerald">emerald</TButton>
+  <TButton variant="light" color="teal">teal</TButton>
+  <TButton variant="light" color="cyan">cyan</TButton>
+  <TButton variant="light" color="sky">sky</TButton>
+  <TButton variant="light" color="blue">blue</TButton>
+  <TButton variant="light" color="indigo">indigo</TButton>
+  <TButton variant="light" color="violet">violet</TButton>
+  <TButton variant="light" color="purple">purple</TButton>
+  <TButton variant="light" color="fuchsia">fuchsia</TButton>
+  <TButton variant="light" color="pink">pink</TButton>
+  <TButton variant="light" color="rose">rose</TButton>
+  <br /><br />
 
+  <TButton variant="outline" color="slate">slate</TButton>
+  <TButton variant="outline" color="gray">gray</TButton>
+  <TButton variant="outline" color="zinc">zinc</TButton>
+  <TButton variant="outline" color="neutral">neutral</TButton>
+  <TButton variant="outline" color="stone">stone</TButton>
+  <TButton variant="outline" color="red">red</TButton>
+  <TButton variant="outline" color="orange">orange</TButton>
+  <TButton variant="outline" color="amber">amber</TButton>
+  <TButton variant="outline" color="yellow">yellow</TButton>
+  <TButton variant="outline" color="lime">lime</TButton>
+  <TButton variant="outline" color="green">green</TButton>
+  <TButton variant="outline" color="emerald">emerald</TButton>
+  <TButton variant="outline" color="teal">teal</TButton>
+  <TButton variant="outline" color="cyan">cyan</TButton>
+  <TButton variant="outline" color="sky">sky</TButton>
+  <TButton variant="outline" color="blue">blue</TButton>
+  <TButton variant="outline" color="indigo">indigo</TButton>
+  <TButton variant="outline" color="violet">violet</TButton>
+  <TButton variant="outline" color="purple">purple</TButton>
+  <TButton variant="outline" color="fuchsia">fuchsia</TButton>
+  <TButton variant="outline" color="pink">pink</TButton>
+  <TButton variant="outline" color="rose">rose</TButton>
   <br /><br />
 
   <TButton variant="link" color="slate">slate</TButton>

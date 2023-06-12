@@ -27,7 +27,8 @@ export type ColorKey =
 export type Color = ColorKey | ColorAlias
 export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
 export type ColorPath = `${Color}.${ColorLv}`
-export type ColorMap = Record<ColorLv, string>
+export type ColorMap = Record<Color, Record<ColorLv, string>>
+export type AliasColorMap = Record<ColorAlias, ColorKey>
 
 export const COLORS = {
   transparent: 'transparent',

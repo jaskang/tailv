@@ -1,13 +1,18 @@
 import { classed, type VariantProps } from '@tw-classed/core'
 import { computed, toValue, type MaybeRefOrGetter, toRef, type Ref } from 'vue'
 import type { ButtonCssVars, ButtonProps } from '.'
-import { useTheme, type ColorKey } from '@/theme'
+import { useTheme, type ColorKey, type Theme, type Color } from '@/theme'
 import { COLORS } from '@/theme'
+
+type ButtonStypeProps = Omit<ButtonProps, 'variant' | 'color'> & {
+  variant: 'default' | 'filled' | 'light' | 'outline' | 'link'
+  color: Color
+}
 
 const createCssVars = (vars: Partial<ButtonCssVars> = {}) => {
   const result: ButtonCssVars = {
-    '--t-btn-text-color': vars['--t-btn-text-color'] || COLORS.gray[700],
-    '--t-btn-text-color-hover': vars['--t-btn-text-color-hover'] || vars['--t-btn-text-color'] || COLORS.gray[700],
+    '--t-btn-text-color': vars['--t-btn-text-color'] || COLORS.slate[700],
+    '--t-btn-text-color-hover': vars['--t-btn-text-color-hover'] || vars['--t-btn-text-color'] || COLORS.slate[700],
     '--t-btn-border-color': vars['--t-btn-border-color'] || COLORS.transparent,
     '--t-btn-border-color-hover':
       vars['--t-btn-border-color-hover'] || vars['--t-btn-border-color'] || COLORS.transparent,
@@ -18,37 +23,45 @@ const createCssVars = (vars: Partial<ButtonCssVars> = {}) => {
   return result
 }
 
-const getBtnCssVars = (variant: ButtonProps['variant'], _color?: ColorKey) => {
-  if (variant === 'link') {
-    const color = _color || 'gray'
+const getBtnCssVars = (variant: ButtonStypeProps['variant'], color: ColorKey, primaryColor: ColorKey) => {
+  if (variant === 'filled') {
     return createCssVars({
-      '--t-btn-text-color': COLORS[color][600],
-      '--t-btn-text-color-hover': COLORS[color][700],
-      '--t-btn-bg': 'transparent',
+      '--t-btn-text-color': COLORS.white,
+      '--t-btn-bg': COLORS[color][500],
+      '--t-btn-border-color': COLORS.transparent,
+      '--t-btn-bg-hover': COLORS[color][600],
+      '--t-btn-ring-color': COLORS[color][500],
     })
-  } else if (variant === 'subtle') {
-    const color = _color || 'gray'
+  } else if (variant === 'light') {
     return createCssVars({
       '--t-btn-text-color': COLORS[color][600],
       '--t-btn-bg': COLORS[color][100],
       '--t-btn-bg-hover': COLORS[color][200],
       '--t-btn-ring-color': COLORS[color][500],
     })
+  } else if (variant === 'outline') {
+    return createCssVars({
+      '--t-btn-text-color': COLORS[color][600],
+      '--t-btn-bg': COLORS.white,
+      '--t-btn-bg-hover': COLORS[color][50],
+      '--t-btn-border-color': COLORS[color][300],
+      '--t-btn-ring-color': COLORS[color][500],
+    })
+  } else if (variant === 'link') {
+    return createCssVars({
+      '--t-btn-text-color': COLORS[color][600],
+      '--t-btn-text-color-hover': COLORS[color][700],
+      '--t-btn-bg': 'transparent',
+      '--t-btn-ring-color': 'transparent',
+    })
   } else {
-    const color = _color
-    return color
-      ? createCssVars({
-          '--t-btn-text-color': COLORS.white,
-          '--t-btn-bg': COLORS[color][500],
-          '--t-btn-border-color': COLORS.transparent,
-          '--t-btn-bg-hover': COLORS[color][600],
-          '--t-btn-ring-color': COLORS[color][500],
-        })
-      : createCssVars({
-          '--t-btn-border-color': COLORS.gray[300], // border.default
-          '--t-btn-bg-hover': COLORS.gray[50],
-          '--t-btn-ring-color': COLORS.indigo[500],
-        })
+    return createCssVars({
+      '--t-btn-text-color': COLORS.gray[600],
+      '--t-btn-bg': COLORS.white,
+      '--t-btn-bg-hover': COLORS.gray[50],
+      '--t-btn-border-color': COLORS.gray[300],
+      '--t-btn-ring-color': COLORS[primaryColor][500],
+    })
   }
 }
 
@@ -60,11 +73,10 @@ const createBtnCls = classed('t-button', {
   `.replace(/\s+/g, ' '),
   variants: {
     variant: {
-      solid: `shadow-sm`,
-      soft: `shadow-sm`,
+      filled: `shadow-sm`,
+      light: `shadow-sm`,
       outline: `shadow-sm`,
       link: ``,
-      subtle: `shadow-sm`,
     },
     size: {
       xs: '[--t-btn-h:calc(1.75rem+2px)] h-[--t-btn-h] text-xs/3 px-2',
@@ -95,10 +107,20 @@ const createBtnCls = classed('t-button', {
 })
 
 export function useStyle(variant: MaybeRefOrGetter<ButtonProps>) {
-  const { getColorKey } = useTheme()
-  const variantRef = computed(() => toValue(variant))
+  const { getColorKey, colors } = useTheme()
+  const variantRef = computed(() => {
+    const orginVariant = { ...toValue(variant) }
+    const _variant: ButtonStypeProps = {
+      ...orginVariant,
+      variant: orginVariant.variant || (orginVariant.color ? 'filled' : 'default'),
+      color: orginVariant.color || 'gray',
+    }
+    return _variant
+  })
   return {
-    cssVars: computed(() => getBtnCssVars(variantRef.value.variant, getColorKey(variantRef.value.color || 'gray'))),
+    cssVars: computed(() => {
+      return getBtnCssVars(variantRef.value.variant, getColorKey(variantRef.value.color)!, getColorKey('primary')!)
+    }),
     cls: computed(() => createBtnCls(variantRef.value)),
   }
 }
