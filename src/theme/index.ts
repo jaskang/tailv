@@ -15,7 +15,6 @@ export type Theme = {
 }
 
 export function useTheme() {
-  inject('theme')
   const config = useConfig()
   const theme = computed(() => config.value.theme)
 

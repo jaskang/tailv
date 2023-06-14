@@ -10,6 +10,7 @@ import { Input } from './components/Input'
 import { Select } from './components/Select'
 import { InputGroup } from './components/InputGroup'
 import { Flex, FlexItem } from './components/Flex'
+import { Popper } from './components/Popper'
 
 export {
   useConfig,
@@ -25,6 +26,7 @@ export {
   InputGroup,
   Flex,
   FlexItem,
+  Popper,
 }
 
 export const Tailv: Plugin = {
@@ -41,6 +43,7 @@ export const Tailv: Plugin = {
     app.component('TInputGroup', InputGroup)
     app.component('TFlex', Flex)
     app.component('TFlexItem', FlexItem)
+    app.component('TPopper', Popper)
   },
 }
 

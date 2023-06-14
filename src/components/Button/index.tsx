@@ -60,7 +60,7 @@ export const Button = defineComponent({
     default: () => VNode
     icon: () => VNode
   }>,
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, attrs }) {
     const { cssVars, cls } = useStyle(() => {
       return {
         ...props,
@@ -76,7 +76,14 @@ export const Button = defineComponent({
       }
     }
     return () => (
-      <button style={cssVars.value} class={cls.value} type="button" disabled={props.disabled} onClick={onClick}>
+      <button
+        {...attrs}
+        style={cssVars.value}
+        class={cls.value}
+        type="button"
+        disabled={props.disabled}
+        onClick={onClick}
+      >
         {hasIcon.value && (
           <i class="t-btn-icon h-[1em] w-[1em] scale-125 [&+*]:ml-[0.5em] [&>svg]:!h-full [&>svg]:!w-full">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}
