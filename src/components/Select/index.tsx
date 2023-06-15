@@ -7,6 +7,7 @@ import {
   type PropType,
   type SlotsType,
   type VNode,
+  cloneVNode,
 } from 'vue'
 import { useTheme } from '@/theme'
 import { Input } from '../Input'
@@ -48,10 +49,6 @@ export const Select = defineComponent({
         emit('click', e)
       }
     }
-    return () => (
-      <>
-        <button class={''}></button>
-      </>
-    )
+    return () => <></>
   },
 })

@@ -94,3 +94,11 @@ export const Button = defineComponent({
     )
   },
 })
+
+/* <comp>
+  <list></list>
+</comp>
+comp: view
+<view>
+  <list></list>
+</view> */

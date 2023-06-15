@@ -8,14 +8,15 @@ const open = ref(false)
 watchEffect(() => {
   console.log('el', el.value)
 })
-setInterval(() => {
+const openPopper = e => {
+  console.log('openPopper', e)
   open.value = !open.value
-}, 3000)
+}
 </script>
 <template>
   <div class="space-x-1">
-    <TButton ref="el" :data-open="open ? 'open' : 'close'">M</TButton>
-    <TPopper :reference="el" :open="open">Checkbox</TPopper>
+    <TButton ref="el" @click="openPopper">popper</TButton>
+    <TPopper :reference="el" v-model:open="open"> 123123123123123 </TPopper>
   </div>
 </template>
 ```
