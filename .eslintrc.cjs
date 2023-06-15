@@ -4,4 +4,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
+  rules: {
+    'sort-imports': 'error',
+  },
 }

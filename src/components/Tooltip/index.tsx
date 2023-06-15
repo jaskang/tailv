@@ -1,13 +1,13 @@
 import {
-  ref,
-  computed,
-  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
   type SlotsType,
-  type VNode,
   Teleport,
+  type VNode,
+  computed,
+  defineComponent,
+  ref,
 } from 'vue'
 import { Popper } from '../Popper'
 import { useFloating } from '@floating-ui/vue'

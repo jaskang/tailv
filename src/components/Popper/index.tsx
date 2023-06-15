@@ -1,37 +1,22 @@
 import {
-  ref,
-  computed,
-  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
-  type PropType,
-  type SlotsType,
-  type VNode,
-  Teleport,
-  onBeforeMount,
-  onBeforeUnmount,
-  shallowRef,
-  toRef,
-  watchEffect,
-  toRefs,
-  provide,
-  onUnmounted,
-  inject,
   type InjectionKey,
+  type PropType,
   type Ref,
-  type ShallowRef,
+  Teleport,
+  computed,
+  defineComponent,
+  inject,
+  onBeforeMount,
   onMounted,
+  onUnmounted,
+  provide,
+  shallowRef,
+  toRefs,
+  watchEffect,
 } from 'vue'
-import {
-  useFloating,
-  type UseFloatingOptions,
-  type Placement,
-  type Strategy,
-  type Middleware,
-  autoUpdate,
-  offset,
-  shift,
-} from '@floating-ui/vue'
+import { type Placement, type Strategy, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
 import { uid } from 'kotl'
 
 const props = {
@@ -111,7 +96,6 @@ export const Popper = defineComponent({
     })
     onMounted(() => {
       parent?.append({ id, floatingEl, open })
-      // click outside floatingEl to close
     })
     const clickOutsideHandler = (e: MouseEvent) => {
       console.log('clickOutsideHandler', e.target)
