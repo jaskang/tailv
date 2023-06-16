@@ -1,3 +1,4 @@
+import { useFloating } from '@floating-ui/vue'
 import {
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
@@ -9,8 +10,8 @@ import {
   defineComponent,
   ref,
 } from 'vue'
-import { Popper } from '../Popper'
-import { useFloating } from '@floating-ui/vue'
+
+import { Popper } from '../Popper/Popper'
 
 const props = {
   to: {

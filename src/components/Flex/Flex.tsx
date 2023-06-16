@@ -1,14 +1,14 @@
 import {
-  ref,
-  computed,
-  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
   type SlotsType,
   type VNode,
+  computed,
+  defineComponent,
+  ref,
 } from 'vue'
-import { useTheme, type SizeType, getSpace } from '@/theme'
+import { type SizeType, getSpace, useTheme } from '@/theme'
 
 const props = {
   align: {

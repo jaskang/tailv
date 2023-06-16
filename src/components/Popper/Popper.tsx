@@ -1,3 +1,7 @@
+import { type Placement, type Strategy, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
+
+import { onClickOutside, useEventListener } from '@vueuse/core'
+import { uid } from 'kotl'
 import {
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
@@ -12,15 +16,14 @@ import {
   onMounted,
   onUnmounted,
   provide,
+  ref,
   shallowRef,
   toRefs,
   watchEffect,
 } from 'vue'
-import { type Placement, type Strategy, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
-import { uid } from 'kotl'
+import PopperTrigger, { POPPER_TRIGGER_TOKEN } from './PopperTrigger'
 
 const props = {
-  reference: { type: Object as PropType<HTMLElement> },
   open: { type: Boolean },
   placement: { type: String as PropType<Placement>, default: 'bottom' },
   strategy: { type: String as PropType<Strategy>, default: 'absolute' },
@@ -57,11 +60,18 @@ export const Popper = defineComponent({
   name: 'TPopper',
   props,
   emits: ['update:open'],
+  directives: {
+    onClickOutside: vOnClickOutside,
+  },
   setup(props, { slots, emit, attrs }) {
     let container: HTMLElement
     const id = uid(6)
-    const { reference, open, placement, strategy } = toRefs(props)
+    const open = ref(props.open)
+
+    const { placement, strategy } = toRefs(props)
+    const referenceEl = ref<HTMLElement>()
     const floatingEl = shallowRef<HTMLElement | null>(null)
+    provide(POPPER_TRIGGER_TOKEN, referenceEl)
 
     const parent = inject(popperInjectKey, null)
 
@@ -77,12 +87,8 @@ export const Popper = defineComponent({
         childrens.value = childrens.value.filter(item => item.id !== id)
       },
     })
-    watchEffect(() => {
-      console.log('reference', reference.value)
-      console.log('props.open', props.open)
-    })
 
-    const { floatingStyles } = useFloating(reference, floatingEl, {
+    const { floatingStyles } = useFloating(referenceEl, floatingEl, {
       placement,
       strategy,
       transform: true,
@@ -97,41 +103,43 @@ export const Popper = defineComponent({
     onMounted(() => {
       parent?.append({ id, floatingEl, open })
     })
-    const clickOutsideHandler = (e: MouseEvent) => {
-      console.log('clickOutsideHandler', e.target)
 
-      if (blocked.value) return
-      if (floatingEl.value?.contains(e.target as HTMLElement)) return
-      if (open.value) {
-        emit('update:open', false)
-      }
-    }
-    watchEffect(
-      () => {
-        if (floatingEl.value) {
-          setTimeout(() => {
-            document.addEventListener('click', clickOutsideHandler)
-          }, 0)
-        } else {
-          document.removeEventListener('click', clickOutsideHandler)
-        }
-      },
-      { flush: 'post' }
-    )
     onUnmounted(() => {
       parent?.remove(id)
       if (container && container.parentNode) {
         container.parentNode.removeChild(container)
       }
     })
+
+    useEventListener(referenceEl, 'mouseenter', handleTriggerEnter)
+    useEventListener(referenceEl, 'mouseleave', handleTriggerLeave)
+    useEventListener(referenceEl, 'click', handleTriggerClick)
+    useEventListener(referenceEl, 'focus', handleTriggerFocus)
+    useEventListener(referenceEl, 'blur', handleTriggerBlur)
+    onClickOutside(
+      referenceEl,
+      (e: MouseEvent) => {
+        console.log('clickOutsideHandler', e.target)
+        if (blocked.value) return
+        if (floatingEl.value?.contains(e.target as HTMLElement)) return
+        if (open.value) {
+          open.value = false
+        }
+      },
+      { ignore: [] }
+    )
+
     return () => (
-      <Teleport to={container}>
-        {open.value && (
-          <div {...attrs} ref={floatingEl} id={`t-popper-${id}`} style={floatingStyles.value}>
-            {slots.default?.()}
-          </div>
-        )}
-      </Teleport>
+      <>
+        <PopperTrigger>{slots.default?.()}</PopperTrigger>
+        <Teleport to={container}>
+          {open.value && (
+            <div {...attrs} ref={floatingEl} id={`t-popper-${id}`} style={floatingStyles.value}>
+              {slots.content?.()}
+            </div>
+          )}
+        </Teleport>
+      </>
     )
   },
 })

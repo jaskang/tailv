@@ -1,3 +1,4 @@
+import { isObject } from 'kotl'
 import {
   Fragment,
   type InjectionKey,
@@ -9,11 +10,10 @@ import {
   inject,
   withDirectives,
 } from 'vue'
-import { isObject } from 'kotl'
 
 export const POPPER_TRIGGER_TOKEN: InjectionKey<Ref> = Symbol('popper-trigger')
 
-export function getFirstValidChild(nodes: VNode[]): VNode | null {
+export function getFirstChild(nodes: VNode[]): VNode | null {
   for (const child of nodes) {
     if (isObject(child)) {
       if (child.type === Comment) {
@@ -23,7 +23,7 @@ export function getFirstValidChild(nodes: VNode[]): VNode | null {
         return h('span', child)
       }
       if (child.type === Fragment) {
-        return getFirstValidChild(child.children as VNode[])
+        return getFirstChild(child.children as VNode[])
       }
       return child
     }
@@ -45,13 +45,13 @@ export default defineComponent({
         return null
       }
 
-      const firstValidChild = getFirstValidChild(defaultSlot)
+      const firstChild = getFirstChild(defaultSlot)
 
-      if (!firstValidChild) {
+      if (!firstChild) {
         return null
       }
 
-      return withDirectives(cloneVNode(firstValidChild, attrs), [
+      return withDirectives(cloneVNode(firstChild, attrs), [
         [
           {
             mounted(el) {

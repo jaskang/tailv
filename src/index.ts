@@ -1,16 +1,15 @@
 import type { Plugin } from 'vue'
-
-import { ConfigProvider, useConfig } from './components/ConfigProvider'
-import { Icon } from './components/Icon'
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
-import { Switch } from './components/Switch'
-import { Radio, RadioGroup } from './components/Radio'
+import { useConfig, ConfigProvider } from './components/ConfigProvider'
+import { FlexItem, Flex } from './components/Flex'
+import { Icon } from './components/Icon'
 import { Input } from './components/Input'
-import { Select } from './components/Select'
 import { InputGroup } from './components/InputGroup'
-import { Flex, FlexItem } from './components/Flex'
-import { Popper } from './components/Popper'
+import { Popper } from './components/Popper/Popper'
+import { Radio, RadioGroup } from './components/Radio'
+import { Select } from './components/Select'
+import { Switch } from './components/Switch'
 
 export {
   useConfig,

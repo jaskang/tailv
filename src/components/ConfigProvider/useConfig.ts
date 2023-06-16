@@ -1,5 +1,5 @@
+import { type InjectionKey, type Ref, inject, provide, toRef } from 'vue'
 import type { Theme } from '@/theme'
-import { inject, provide, type InjectionKey, type Ref, toRef } from 'vue'
 
 export type Config = {
   dark: boolean
@@ -12,10 +12,10 @@ const DEFAULT_CONFIG: Config = {
   dark: false,
   theme: {
     alias: {
+      error: 'red',
       primary: 'indigo',
       success: 'green',
       warning: 'amber',
-      error: 'red',
     },
   },
 }

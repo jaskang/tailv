@@ -1,10 +1,9 @@
 import { computed, inject, ref } from 'vue'
-import { type ColorKey, COLORS, type ColorAlias, type Color, type AliasColorMap, type ColorMap } from './colors'
+
 import { useConfig } from '@/components/ConfigProvider'
-
-export { type SpaceType, type SizeType, getSpace } from './space'
-
-export type { Color, ColorMap, ColorKey }
+import { type AliasColorMap, COLORS, type Color, type ColorAlias, type ColorKey, type ColorMap } from './colors'
+export { type SizeType, type SpaceType, getSpace } from './space'
+export type { Color, ColorKey, ColorMap }
 
 export { COLORS }
 

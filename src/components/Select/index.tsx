@@ -1,15 +1,17 @@
 import {
-  ref,
-  computed,
-  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
   type SlotsType,
   type VNode,
   cloneVNode,
+  computed,
+  defineComponent,
+  ref,
 } from 'vue'
+
 import { useTheme } from '@/theme'
+
 import { Input } from '../Input'
 
 const props = {

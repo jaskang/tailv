@@ -7,9 +7,11 @@ import {
   type SlotsType,
   type VNode,
 } from 'vue'
+
+import { useTheme, type Color } from '@/theme'
+
 import { LoadingIcon } from '../Icon'
 import { useStyle } from './style'
-import { useTheme, type Color } from '@/theme'
 
 const props = {
   variant: {
