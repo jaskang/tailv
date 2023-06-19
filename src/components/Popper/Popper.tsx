@@ -1,5 +1,5 @@
 import { type Placement, type Strategy, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
-import { uid } from 'kotl'
+import { remove, uid } from 'kotl'
 import {
   type ComputedRef,
   type ExtractPropTypes,
@@ -12,12 +12,9 @@ import {
   defineComponent,
   inject,
   onBeforeMount,
-  onMounted,
   onUnmounted,
   provide,
-  reactive,
   ref,
-  shallowRef,
   toRefs,
   watchEffect,
 } from 'vue'
@@ -40,7 +37,7 @@ type PopperContext = ComputedRef<{
   open: Ref<boolean>
 }>
 const popperInjectKey: InjectionKey<{
-  append: (child: PopperContext) => void
+  append: (id: string) => void
   remove: (id: string) => void
 }> = Symbol('PopperInjectKey')
 
@@ -64,20 +61,12 @@ export const Popper = defineComponent({
     let container: HTMLElement
     const id = uid(6)
     const innerOpen = ref(props.open)
-    const childrens = ref<PopperContext[]>([])
-    const blocked = computed(() =>
-      childrens.value.some(item => {
-        console.log('item', item.value.open)
-        return item.value.open
-      })
-    )
+    const childrens = ref<string[]>([])
+    const blocked = computed(() => childrens.value.length > 0)
     const open = computed(() => {
-      return innerOpen.value && !blocked.value
+      return innerOpen.value || blocked.value
     })
-    watchEffect(() => {
-      console.log('innerOpen', innerOpen.value)
-      console.log('blocked', blocked.value)
-    })
+
     const { placement, strategy, trigger } = toRefs(props)
     const referenceEl = ref<HTMLElement>()
     const floatingEl = ref<HTMLElement>()
@@ -86,15 +75,8 @@ export const Popper = defineComponent({
     const parent = inject(popperInjectKey, null)
 
     provide(popperInjectKey, {
-      append(item) {
-        childrens.value.push(item)
-      },
-      remove(id) {
-        childrens.value.splice(
-          childrens.value.findIndex(item => item.value.id === id),
-          1
-        )
-      },
+      append: id => childrens.value.push(id),
+      remove: id => remove(childrens.value, id),
     })
 
     const { floatingStyles } = useFloating(referenceEl, floatingEl, {
@@ -105,18 +87,14 @@ export const Popper = defineComponent({
       whileElementsMounted: autoUpdate,
     })
 
+    watchEffect(() => {
+      open.value ? parent?.append(id) : parent?.remove(id)
+    })
     onBeforeMount(() => {
       container = document.createElement('div')
       document.body.appendChild(container)
     })
-
-    const item = computed(() => ({ id, floatingEl, open }))
-    onMounted(() => {
-      parent?.append(item)
-    })
-
     onUnmounted(() => {
-      parent?.remove(id)
       if (container && container.parentNode) {
         container.parentNode.removeChild(container)
       }
