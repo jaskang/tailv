@@ -1,8 +1,7 @@
 import { type Placement, type Strategy, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
-
-import { onClickOutside, useEventListener } from '@vueuse/core'
 import { uid } from 'kotl'
 import {
+  type ComputedRef,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type InjectionKey,
@@ -16,15 +15,17 @@ import {
   onMounted,
   onUnmounted,
   provide,
+  reactive,
   ref,
   shallowRef,
   toRefs,
   watchEffect,
 } from 'vue'
-import PopperTrigger, { POPPER_TRIGGER_TOKEN } from './PopperTrigger'
+import PopperTrigger, { POPPER_TRIGGER_TOKEN, type TriggerType, usePopperTrigger } from './PopperTrigger'
 
 const props = {
   open: { type: Boolean },
+  trigger: { type: String as PropType<TriggerType>, default: 'click' },
   placement: { type: String as PropType<Placement>, default: 'bottom' },
   strategy: { type: String as PropType<Strategy>, default: 'absolute' },
 }
@@ -33,17 +34,15 @@ export type PopperProps = ExtractPropTypes<typeof props>
 
 export type PopperPublicProps = ExtractPublicPropTypes<typeof props>
 
-type PopperContext = {
+type PopperContext = ComputedRef<{
   id: string
-  floatingEl: Ref<HTMLElement | null>
+  floatingEl: Ref<HTMLElement | undefined>
   open: Ref<boolean>
-}
+}>
 const popperInjectKey: InjectionKey<{
   append: (child: PopperContext) => void
   remove: (id: string) => void
 }> = Symbol('PopperInjectKey')
-
-export type PopperTrigger = 'click' | 'hover' | 'focus'
 
 // const usePopperTrigger = (trigger: PopperTrigger) => {
 //   const trigger = ref<HTMLElement | null>(null)
@@ -60,31 +59,41 @@ export const Popper = defineComponent({
   name: 'TPopper',
   props,
   emits: ['update:open'],
-  directives: {
-    onClickOutside: vOnClickOutside,
-  },
+  directives: {},
   setup(props, { slots, emit, attrs }) {
     let container: HTMLElement
     const id = uid(6)
-    const open = ref(props.open)
-
-    const { placement, strategy } = toRefs(props)
+    const innerOpen = ref(props.open)
+    const childrens = ref<PopperContext[]>([])
+    const blocked = computed(() =>
+      childrens.value.some(item => {
+        console.log('item', item.value.open)
+        return item.value.open
+      })
+    )
+    const open = computed(() => {
+      return innerOpen.value && !blocked.value
+    })
+    watchEffect(() => {
+      console.log('innerOpen', innerOpen.value)
+      console.log('blocked', blocked.value)
+    })
+    const { placement, strategy, trigger } = toRefs(props)
     const referenceEl = ref<HTMLElement>()
-    const floatingEl = shallowRef<HTMLElement | null>(null)
+    const floatingEl = ref<HTMLElement>()
     provide(POPPER_TRIGGER_TOKEN, referenceEl)
 
     const parent = inject(popperInjectKey, null)
 
-    const childrens = shallowRef<PopperContext[]>([])
-    const blocked = computed(() => {
-      return childrens.value.some(item => item.open.value)
-    })
     provide(popperInjectKey, {
       append(item) {
         childrens.value.push(item)
       },
       remove(id) {
-        childrens.value = childrens.value.filter(item => item.id !== id)
+        childrens.value.splice(
+          childrens.value.findIndex(item => item.value.id === id),
+          1
+        )
       },
     })
 
@@ -100,8 +109,10 @@ export const Popper = defineComponent({
       container = document.createElement('div')
       document.body.appendChild(container)
     })
+
+    const item = computed(() => ({ id, floatingEl, open }))
     onMounted(() => {
-      parent?.append({ id, floatingEl, open })
+      parent?.append(item)
     })
 
     onUnmounted(() => {
@@ -111,22 +122,18 @@ export const Popper = defineComponent({
       }
     })
 
-    useEventListener(referenceEl, 'mouseenter', handleTriggerEnter)
-    useEventListener(referenceEl, 'mouseleave', handleTriggerLeave)
-    useEventListener(referenceEl, 'click', handleTriggerClick)
-    useEventListener(referenceEl, 'focus', handleTriggerFocus)
-    useEventListener(referenceEl, 'blur', handleTriggerBlur)
-    onClickOutside(
-      referenceEl,
-      (e: MouseEvent) => {
-        console.log('clickOutsideHandler', e.target)
-        if (blocked.value) return
-        if (floatingEl.value?.contains(e.target as HTMLElement)) return
-        if (open.value) {
-          open.value = false
-        }
+    usePopperTrigger(
+      {
+        referenceEl,
+        floatingEl,
+        trigger,
+        open,
       },
-      { ignore: [] }
+      (val, trigger) => {
+        if (val !== innerOpen.value) {
+          innerOpen.value = val
+        }
+      }
     )
 
     return () => (

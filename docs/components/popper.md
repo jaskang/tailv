@@ -13,9 +13,30 @@ const openPopper = e => {
 </script>
 <template>
   <div class="space-x-1">
-    <TPopper>
-      <TButton @click="openPopper">popper</TButton>
-      <template #content> 1234 </template>
+    <TPopper trigger="click">
+      <TButton>click</TButton>
+      <template #content>
+        1234 asdfasd asdfasdf asdfasdf asdf
+        <br />
+        <TPopper trigger="click">
+          <TButton>popper</TButton>
+          <template #content> 1234 </template>
+        </TPopper>
+        asdf sdfasdf
+      </template>
+    </TPopper>
+
+    <TPopper trigger="hover">
+      <TButton>hover</TButton>
+      <template #content>
+        1234 asdfasd asdfasdf asdfasdf asdf
+        <br />
+        <TPopper trigger="hover">
+          <TButton>popper</TButton>
+          <template #content> 1234 </template>
+        </TPopper>
+        asdf sdfasdf
+      </template>
     </TPopper>
   </div>
 </template>

@@ -1,3 +1,4 @@
+import { useEventListener } from '@vueuse/core'
 import { isObject } from 'kotl'
 import {
   Fragment,
@@ -10,6 +11,16 @@ import {
   inject,
   withDirectives,
 } from 'vue'
+import { useClickOutside } from '@/hooks/useClickOutside'
+
+export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
+
+export type UsePopperTriggerOptions = {
+  referenceEl: Ref<HTMLElement | undefined>
+  floatingEl: Ref<HTMLElement | undefined>
+  trigger: Ref<TriggerType>
+  open: Ref<boolean>
+}
 
 export const POPPER_TRIGGER_TOKEN: InjectionKey<Ref> = Symbol('popper-trigger')
 
@@ -69,3 +80,53 @@ export default defineComponent({
     }
   },
 })
+
+export function usePopperTrigger(
+  { referenceEl, floatingEl, trigger, open }: UsePopperTriggerOptions,
+  change: (value: boolean, event: string) => void
+) {
+  let timer: ReturnType<typeof setTimeout>
+  const handleTriggerEnter = () => {
+    // if (props.disabled) return
+    if (trigger.value === 'hover') {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        change(true, 'mouseenter')
+      }, 200)
+    }
+  }
+  function handleTriggerLeave() {
+    // if (props.disabled) return
+    if (trigger.value === 'hover') {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        change(false, 'mouseleave')
+      }, 200)
+    }
+  }
+  function handleTriggerClick() {
+    // if (props.disabled) return
+    if (trigger.value === 'click') change(!open.value, 'click')
+  }
+  function handleTriggerFocus() {
+    // if (props.disabled) return
+    if (trigger.value === 'focus') change(true, 'focus')
+  }
+  function handleTriggerBlur() {
+    // if (props.disabled) return
+    if (trigger.value === 'focus') change(false, 'blur')
+  }
+  function handleClickOutside() {
+    // if (props.disabled) return
+    if (trigger.value !== 'manual' && open.value) change(false, 'clickOutside')
+  }
+
+  useEventListener(referenceEl, 'mouseenter', handleTriggerEnter)
+  useEventListener(referenceEl, 'mouseleave', handleTriggerLeave)
+  useEventListener(referenceEl, 'click', handleTriggerClick)
+  useEventListener(referenceEl, 'focus', handleTriggerFocus)
+  useEventListener(referenceEl, 'blur', handleTriggerBlur)
+  useEventListener(floatingEl, 'mouseenter', handleTriggerEnter)
+  useEventListener(floatingEl, 'mouseleave', handleTriggerLeave)
+  useClickOutside([floatingEl, referenceEl], handleClickOutside)
+}
