@@ -1,31 +1,31 @@
 import type { Plugin } from 'vue'
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
-import { useConfig, ConfigProvider } from './components/ConfigProvider'
-import { FlexItem, Flex } from './components/Flex'
+import { ConfigProvider, useConfig } from './components/ConfigProvider'
+import { Flex, FlexItem } from './components/Flex'
 import { Icon } from './components/Icon'
 import { Input } from './components/Input'
 import { InputGroup } from './components/InputGroup'
-import { Popper } from './components/Popper/Popper'
+import { Popper } from './components/Popper'
 import { Radio, RadioGroup } from './components/Radio'
 import { Select } from './components/Select'
 import { Switch } from './components/Switch'
 
 export {
-  useConfig,
-  ConfigProvider,
-  Icon,
   Button,
   Checkbox,
-  Switch,
-  Radio,
-  RadioGroup,
-  Input,
-  Select,
-  InputGroup,
+  ConfigProvider,
   Flex,
   FlexItem,
+  Icon,
+  Input,
+  InputGroup,
   Popper,
+  Radio,
+  RadioGroup,
+  Select,
+  Switch,
+  useConfig,
 }
 
 export const Tailv: Plugin = {

@@ -1,13 +1,12 @@
 import { type Placement, type Strategy, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
 import { remove, uid } from 'kotl'
 import {
-  type ComputedRef,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type InjectionKey,
   type PropType,
-  type Ref,
   Teleport,
+  Transition,
   computed,
   defineComponent,
   inject,
@@ -18,10 +17,10 @@ import {
   toRefs,
   watchEffect,
 } from 'vue'
-import PopperTrigger, { POPPER_TRIGGER_TOKEN, type TriggerType, usePopperTrigger } from './PopperTrigger'
+import { POPPER_TRIGGER_TOKEN, PopperTrigger, type TriggerType, usePopperTrigger } from './trigger'
 
 const props = {
-  open: { type: Boolean },
+  open: { type: Boolean, default: undefined },
   trigger: { type: String as PropType<TriggerType>, default: 'click' },
   placement: { type: String as PropType<Placement>, default: 'bottom' },
   strategy: { type: String as PropType<Strategy>, default: 'absolute' },
@@ -31,26 +30,10 @@ export type PopperProps = ExtractPropTypes<typeof props>
 
 export type PopperPublicProps = ExtractPublicPropTypes<typeof props>
 
-type PopperContext = ComputedRef<{
-  id: string
-  floatingEl: Ref<HTMLElement | undefined>
-  open: Ref<boolean>
-}>
 const popperInjectKey: InjectionKey<{
   append: (id: string) => void
   remove: (id: string) => void
 }> = Symbol('PopperInjectKey')
-
-// const usePopperTrigger = (trigger: PopperTrigger) => {
-//   const trigger = ref<HTMLElement | null>(null)
-//   const setTrigger = (el: HTMLElement | null) => {
-//     trigger.value = el
-//   }
-//   return {
-//     trigger,
-//     setTrigger,
-//   }
-// }
 
 export const Popper = defineComponent({
   name: 'TPopper',
@@ -100,35 +83,36 @@ export const Popper = defineComponent({
       }
     })
 
-    usePopperTrigger(
-      {
-        referenceEl,
-        floatingEl,
-        trigger,
-        open,
-      },
-      (val, trigger) => {
-        if (val !== innerOpen.value) {
-          innerOpen.value = val
-        }
+    usePopperTrigger({ referenceEl, floatingEl, trigger, open }, (val, trigger) => {
+      if (val !== innerOpen.value) {
+        innerOpen.value = val
       }
-    )
+    })
 
     return () => (
       <>
         <PopperTrigger>{slots.default?.()}</PopperTrigger>
         <Teleport to={container}>
-          {open.value && (
-            <div
-              {...attrs}
-              ref={floatingEl}
-              id={`t-popper-${id}`}
-              style={floatingStyles.value}
-              class="absolute overflow-auto rounded-md  bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-            >
-              {slots.content?.()}
-            </div>
-          )}
+          <Transition
+            enter-active-class="transition-opacity delay-0 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="transition-opacity delay-0 duration-75 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+          >
+            {open.value && (
+              <div
+                {...attrs}
+                ref={floatingEl}
+                id={`t-popper-${id}`}
+                style={floatingStyles.value}
+                class="absolute overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              >
+                {slots.content?.()}
+              </div>
+            )}
+          </Transition>
         </Teleport>
       </>
     )

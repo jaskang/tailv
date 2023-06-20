@@ -45,7 +45,7 @@ export function getFirstChild(nodes: VNode[]): VNode | null {
 }
 
 // https://github.com/DevCloudFE/vue-devui/blob/dev/packages/devui-vue/devui/shared/components/popper-trigger/src/use-popper-trigger.ts
-export default defineComponent({
+export const PopperTrigger = defineComponent({
   name: 'TPopperTrigger',
   setup(_, { slots, attrs }) {
     return () => {
@@ -85,14 +85,13 @@ export function usePopperTrigger(
   { referenceEl, floatingEl, trigger, open }: UsePopperTriggerOptions,
   change: (value: boolean, event: string) => void
 ) {
+  const hoverDelay = 150
   let timer: ReturnType<typeof setTimeout>
   const handleTriggerEnter = () => {
     // if (props.disabled) return
     if (trigger.value === 'hover') {
       clearTimeout(timer)
-      timer = setTimeout(() => {
-        change(true, 'mouseenter')
-      }, 200)
+      change(true, 'mouseenter')
     }
   }
   function handleTriggerLeave() {
@@ -101,7 +100,7 @@ export function usePopperTrigger(
       clearTimeout(timer)
       timer = setTimeout(() => {
         change(false, 'mouseleave')
-      }, 200)
+      }, hoverDelay)
     }
   }
   function handleTriggerClick() {
