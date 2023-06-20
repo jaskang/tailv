@@ -119,7 +119,13 @@ export const Popper = defineComponent({
         <PopperTrigger>{slots.default?.()}</PopperTrigger>
         <Teleport to={container}>
           {open.value && (
-            <div {...attrs} ref={floatingEl} id={`t-popper-${id}`} style={floatingStyles.value}>
+            <div
+              {...attrs}
+              ref={floatingEl}
+              id={`t-popper-${id}`}
+              style={floatingStyles.value}
+              class="absolute overflow-auto rounded-md  bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            >
               {slots.content?.()}
             </div>
           )}
