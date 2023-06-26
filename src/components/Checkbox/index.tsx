@@ -1,15 +1,16 @@
 import {
-  ref,
   computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
+  ref,
   type SlotsType,
   type VNode,
 } from 'vue'
-import { useTheme, type Color } from '@/theme'
+
 import { useControllable } from '@/hooks/controllable'
+import { type Color, useTheme } from '@/theme'
 
 const props = {
   value: [String, Number],

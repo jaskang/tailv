@@ -1,16 +1,17 @@
 import { useEventListener } from '@vueuse/core'
 import { isObject } from 'kotl'
 import {
+  cloneVNode,
+  defineComponent,
   Fragment,
+  h,
+  inject,
   type InjectionKey,
   type Ref,
   type VNode,
-  cloneVNode,
-  defineComponent,
-  h,
-  inject,
   withDirectives,
 } from 'vue'
+
 import { useClickOutside } from '@/hooks/useClickOutside'
 
 export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'

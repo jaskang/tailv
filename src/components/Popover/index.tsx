@@ -1,13 +1,14 @@
 import {
+  computed,
+  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
+  ref,
   type SlotsType,
   type VNode,
-  computed,
-  defineComponent,
-  ref,
 } from 'vue'
+
 import { useTheme } from '@/color'
 
 const props = {

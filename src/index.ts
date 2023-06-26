@@ -1,4 +1,5 @@
 import type { Plugin } from 'vue'
+
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
 import { ConfigProvider, useConfig } from './components/ConfigProvider'

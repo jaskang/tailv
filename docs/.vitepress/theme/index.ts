@@ -1,20 +1,22 @@
 import './index.css'
-import { Tailv } from '../../../src'
+
 import {
   BeakerIcon,
-  StopIcon,
-  CogIcon,
-  HomeIcon,
-  CloudIcon,
   BellIcon,
+  CheckIcon,
+  CloudIcon,
+  CogIcon,
   CubeIcon,
-  StarIcon,
+  HomeIcon,
   SpeakerWaveIcon,
   SpeakerXMarkIcon,
+  StarIcon,
+  StopIcon,
   XMarkIcon,
-  CheckIcon,
 } from '@heroicons/vue/24/solid'
 import { type Theme } from 'vitepress'
+
+import { Tailv } from '../../../src'
 import Layout from './Layout.vue'
 
 export default {

@@ -1,13 +1,14 @@
 import {
-  ref,
   computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
+  ref,
   type SlotsType,
   type VNode,
 } from 'vue'
+
 import { useTheme } from '@/theme'
 
 const props = {}

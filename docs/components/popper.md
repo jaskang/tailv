@@ -33,7 +33,13 @@ const openPopper = e => {
         <br />
         <TPopper trigger="hover">
           <TButton>popper</TButton>
-          <template #content> 1234 </template>
+          <template #content>
+            1234
+            <TPopper trigger="hover">
+              <TButton>popper</TButton>
+              <template #content> 1234 </template>
+            </TPopper>
+          </template>
         </TPopper>
         asdf sdfasdf
       </template>

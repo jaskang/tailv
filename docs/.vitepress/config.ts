@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url'
+
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Inspect from 'vite-plugin-inspect'
 import MarkdownPreview from 'vite-plugin-markdown-preview'

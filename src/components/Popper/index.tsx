@@ -1,22 +1,24 @@
-import { type Placement, type Strategy, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
-import { remove, uid } from 'kotl'
+import { autoUpdate, offset, type Placement, shift, type Strategy, useFloating } from '@floating-ui/vue'
+import { clear } from 'console'
+import { remove, set, uid } from 'kotl'
 import {
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type InjectionKey,
-  type PropType,
-  Teleport,
-  Transition,
   computed,
   defineComponent,
+  type ExtractPropTypes,
+  type ExtractPublicPropTypes,
   inject,
+  type InjectionKey,
   onBeforeMount,
   onUnmounted,
+  type PropType,
   provide,
   ref,
+  Teleport,
   toRefs,
+  Transition,
   watchEffect,
 } from 'vue'
+
 import { POPPER_TRIGGER_TOKEN, PopperTrigger, type TriggerType, usePopperTrigger } from './trigger'
 
 const props = {
@@ -40,12 +42,12 @@ export const Popper = defineComponent({
   props,
   emits: ['update:open'],
   directives: {},
-  setup(props, { slots, emit, attrs }) {
+  setup(props, { slots, emit, attrs, expose }) {
     let container: HTMLElement
     const id = uid(6)
-    const innerOpen = ref(props.open)
-    const childrens = ref<string[]>([])
-    const blocked = computed(() => childrens.value.length > 0)
+    const innerOpen = ref(props.open || false)
+    const childrens = ref<Set<string>>(new Set())
+    const blocked = computed(() => childrens.value.size > 0)
     const open = computed(() => {
       return innerOpen.value || blocked.value
     })
@@ -58,8 +60,8 @@ export const Popper = defineComponent({
     const parent = inject(popperInjectKey, null)
 
     provide(popperInjectKey, {
-      append: id => childrens.value.push(id),
-      remove: id => remove(childrens.value, id),
+      append: id => childrens.value.add(id),
+      remove: id => childrens.value.delete(id),
     })
 
     const { floatingStyles } = useFloating(referenceEl, floatingEl, {
@@ -75,12 +77,15 @@ export const Popper = defineComponent({
     })
     onBeforeMount(() => {
       container = document.createElement('div')
+      container.setAttribute('id', `t-popper-wrapper-${id}`)
       document.body.appendChild(container)
     })
     onUnmounted(() => {
-      if (container && container.parentNode) {
-        container.parentNode.removeChild(container)
-      }
+      setTimeout(() => {
+        if (container && container.parentNode) {
+          container.parentNode.removeChild(container)
+        }
+      }, 1000)
     })
 
     usePopperTrigger({ referenceEl, floatingEl, trigger, open }, (val, trigger) => {
@@ -89,15 +94,34 @@ export const Popper = defineComponent({
       }
     })
 
+    expose({
+      open,
+      innerOpen,
+      blocked,
+      childrens,
+    })
+
     return () => (
       <>
+        <div>
+          {JSON.stringify(
+            {
+              open: open.value,
+              innerOpen: innerOpen.value,
+              blocked: blocked.value,
+              chiliens: childrens.value.values(),
+            },
+            null,
+            2
+          )}
+        </div>
         <PopperTrigger>{slots.default?.()}</PopperTrigger>
         <Teleport to={container}>
           <Transition
             enter-active-class="transition-opacity delay-0 ease-out"
             enter-from-class="opacity-0"
             enter-to-class="opacity-100"
-            leave-active-class="transition-opacity delay-0 duration-75 ease-in"
+            leave-active-class="transition-opacity delay-0 duration-1000 ease-in"
             leave-from-class="opacity-100"
             leave-to-class="opacity-0"
           >

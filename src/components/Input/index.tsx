@@ -1,18 +1,19 @@
+import { flip, offset, shift, useFloating } from '@floating-ui/vue'
 import {
-  ref,
   computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
+  ref,
   type SlotsType,
-  type VNode,
-  Transition,
   Teleport,
+  Transition,
+  type VNode,
 } from 'vue'
-import { flip, offset, shift, useFloating } from '@floating-ui/vue'
-import { useTheme } from '@/theme'
+
 import { useControllable } from '@/hooks/controllable'
+import { useTheme } from '@/theme'
 
 const props = {
   value: String,
