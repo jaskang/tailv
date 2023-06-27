@@ -1,5 +1,5 @@
 import { classed } from '@tw-classed/core'
-import { computed, type MaybeRefOrGetter, toValue } from 'vue'
+import { type MaybeRefOrGetter, computed, toValue } from 'vue'
 
 import { COLORS } from '@/theme'
 import { type ColorKey, useTheme } from '@/theme'
@@ -15,6 +15,7 @@ const createBtnCls = classed('t-button', {
   h-[--t-btn-h]
   bg-[--t-btn-bg] text-[--t-btn-text-color] border-[--t-btn-border-color] 
   focus:outline-none
+  [--t-btn-px-fix:0px]
   `.replace(/\s+/g, ' '),
   compoundVariants: [
     {
@@ -40,21 +41,22 @@ const createBtnCls = classed('t-button', {
       true: 'rounded-full',
     },
     size: {
-      lg: '[--t-btn-h:calc(2.5rem+2px)] h-[--t-btn-h] text-base/6 px-5',
-      md: '[--t-btn-h:calc(2.25rem+2px)] h-[--t-btn-h] text-sm/5 px-4',
-      sm: '[--t-btn-h:calc(2rem+2px)] h-[--t-btn-h] text-xs/4 px-3',
-      xl: '[--t-btn-h:calc(2.75rem+2px)] h-[--t-btn-h] text-base/7 px-6',
-      xs: '[--t-btn-h:calc(1.75rem+2px)] h-[--t-btn-h] text-xs/3 px-2',
+      lg: '[--t-btn-h:calc(2.5rem+2px)] h-[--t-btn-h] text-base/6 px-[calc(theme(spacing.5)_-_var(--t-btn-px-fix))]',
+      md: '[--t-btn-h:calc(2.25rem+2px)] h-[--t-btn-h] text-sm/5 px-[calc(theme(spacing.4)_-_var(--t-btn-px-fix))]',
+      sm: '[--t-btn-h:calc(2rem+2px)] h-[--t-btn-h] text-xs/4 px-[calc(theme(spacing.3)_-_var(--t-btn-px-fix))]',
+      xl: '[--t-btn-h:calc(2.75rem+2px)] h-[--t-btn-h] text-base/7 px-[calc(theme(spacing.6)_-_var(--t-btn-px-fix))]',
+      xs: '[--t-btn-h:calc(1.75rem+2px)] h-[--t-btn-h] text-xs/3 px-[calc(theme(spacing.2)_-_var(--t-btn-px-fix))]',
     },
     square: {
       true: '!px-0 w-[--t-btn-h]',
     },
     variant: {
-      default: `shadow-sm border`,
+      default: `shadow-sm border
+      dark:(bg-[--t-btn-bg-hover] text-[--t-btn-text-color-hover] border-[--t-btn-border-color-hover])`,
       filled: `shadow-sm border`,
       light: `shadow-sm border`,
       link: `border decoration-2 underline-offset-2`,
-      outline: `shadow-sm border`,
+      outline: `shadow-sm border-2 [--t-btn-px-fix:1px]`,
     },
   },
 })

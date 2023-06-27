@@ -29,19 +29,20 @@ export const Tooltip = defineComponent({
   props,
   slots: Object as SlotsType<{
     default?: () => VNode
-    popper?: () => VNode
+    content?: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const open = ref(false)
     return () => (
-      <>
-        <Popper open={open.value}>
-          {{
-            default: slots.default,
-            content: () => <></>,
-          }}
-        </Popper>
-      </>
+      <Popper>
+        {{
+          default: () => slots.default?.(),
+          content: () => (
+            <div class="tooltip  inline-block rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 opacity-100 shadow-sm">
+              {slots.content?.()}
+            </div>
+          ),
+        }}
+      </Popper>
     )
   },
 })

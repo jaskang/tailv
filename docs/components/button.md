@@ -34,18 +34,6 @@
 </template>
 ```
 
-## 浅色按钮
-
-```vue preview
-<template>
-  <TButton variant="subtle">浅色按钮</TButton>
-  <TButton variant="subtle" color="primary">primary</TButton>
-  <TButton variant="subtle" color="success">success</TButton>
-  <TButton variant="subtle" color="warning">warning</TButton>
-  <TButton variant="subtle" color="error">error</TButton>
-</template>
-```
-
 ## 链接
 
 ```vue preview

@@ -35,17 +35,21 @@ export const Popover = defineComponent({
   name: 'TPopover',
   props,
   slots: Object as SlotsType<{
-    default: () => VNode
+    default?: () => VNode
+    content?: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const { colors } = useTheme()
-
-    const hasIcon = computed(() => !!slots.icon || props.loading)
-    const onClick = (e: MouseEvent) => {
-      if (!props.disabled) {
-        emit('click', e)
-      }
-    }
-    return () => <Popper>{slots.default?.()}</Popper>
+    return () => (
+      <Popper>
+        {{
+          default: () => slots.default?.(),
+          content: () => (
+            <div class="overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-950">
+              {slots.content?.()}
+            </div>
+          ),
+        }}
+      </Popper>
+    )
   },
 })

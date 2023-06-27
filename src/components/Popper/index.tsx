@@ -1,4 +1,4 @@
-import { autoUpdate, offset, type Placement, shift, type Strategy, useFloating } from '@floating-ui/vue'
+import { arrow, autoUpdate, offset, type Placement, shift, type Strategy, useFloating } from '@floating-ui/vue'
 import { clear } from 'console'
 import { remove, set, uid } from 'kotl'
 import {
@@ -24,7 +24,7 @@ import { POPPER_TRIGGER_TOKEN, PopperTrigger, type TriggerType, usePopperTrigger
 export const props = {
   open: { type: Boolean, default: undefined },
   trigger: { type: String as PropType<TriggerType>, default: 'hover' },
-  placement: { type: String as PropType<Placement>, default: 'bottom' },
+  placement: { type: String as PropType<Placement>, default: 'top' },
   strategy: { type: String as PropType<Strategy>, default: 'absolute' },
 }
 
@@ -56,6 +56,7 @@ export const Popper = defineComponent({
     const { placement, strategy, trigger } = toRefs(props)
     const referenceEl = ref<HTMLElement>()
     const floatingEl = ref<HTMLElement>()
+    const arrowEl = ref<HTMLElement>()
     provide(POPPER_TRIGGER_TOKEN, referenceEl)
 
     const parent = inject(popperInjectKey, null)
@@ -66,12 +67,22 @@ export const Popper = defineComponent({
       remove: id => childrens.value.delete(id),
     })
 
-    const { floatingStyles } = useFloating(referenceEl, floatingEl, {
+    const { floatingStyles, middlewareData } = useFloating(referenceEl, floatingEl, {
       placement,
       strategy,
       transform: true,
-      middleware: [offset(10), shift()],
+      middleware: [offset(10), shift(), arrow({ element: arrowEl })],
       whileElementsMounted: autoUpdate,
+    })
+    const arrowStyles = computed(() => {
+      console.log(middlewareData.value)
+
+      // @ts-ignore
+      const { x, y } = middlewareData.value.arrow || {}
+      return {
+        left: x != null ? `${x}px` : '',
+        top: y != null ? `${y}px` : '',
+      }
     })
 
     watchEffect(
@@ -139,14 +150,9 @@ export const Popper = defineComponent({
             leave-to-class="opacity-0"
           >
             {open.value && (
-              <div
-                {...attrs}
-                ref={floatingEl}
-                id={`t-popper-${id}`}
-                style={floatingStyles.value}
-                class="absolute overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              >
+              <div {...attrs} ref={floatingEl} id={`t-popper-${id}`} style={floatingStyles.value} class="absolute">
                 {slots.content?.()}
+                <div ref={arrowEl} class="absolute h-4 w-4 bg-gray-800 [left:-0.5rem]" style={arrowStyles.value}></div>
               </div>
             )}
           </Transition>

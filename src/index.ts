@@ -7,10 +7,12 @@ import { Flex, FlexItem } from './components/Flex'
 import { Icon } from './components/Icon'
 import { Input } from './components/Input'
 import { InputGroup } from './components/InputGroup'
+import { Popover } from './components/Popover'
 import { Popper } from './components/Popper'
 import { Radio, RadioGroup } from './components/Radio'
 import { Select } from './components/Select'
 import { Switch } from './components/Switch'
+import { Tooltip } from './components/Tooltip'
 
 export {
   Button,
@@ -21,11 +23,13 @@ export {
   Icon,
   Input,
   InputGroup,
+  Popover,
   Popper,
   Radio,
   RadioGroup,
   Select,
   Switch,
+  Tooltip,
   useConfig,
 }
 
@@ -43,7 +47,9 @@ export const Tailv: Plugin = {
     app.component('TInputGroup', InputGroup)
     app.component('TFlex', Flex)
     app.component('TFlexItem', FlexItem)
+    app.component('TPopover', Popover)
     app.component('TPopper', Popper)
+    app.component('TTooltip', Tooltip)
   },
 }
 
