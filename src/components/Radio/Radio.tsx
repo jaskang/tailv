@@ -1,16 +1,18 @@
 import {
-  ref,
   computed,
   defineComponent,
-  inject,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
+  inject,
+  ref,
   type SlotsType,
   type VNode,
 } from 'vue'
-import { useTheme } from '@/theme'
+
 import { useControllable } from '@/hooks/controllable'
+import { useTheme } from '@/theme'
 import { PropTypes } from '@/utils'
+
 import type { RadioGroupContext } from './RadioGroup'
 
 const props = {

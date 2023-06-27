@@ -9,7 +9,9 @@ import {
   type VNode,
 } from 'vue'
 
-import { useTheme } from '@/color'
+import { useTheme } from '@/theme'
+
+import { Popper } from '../Popper'
 
 const props = {
   color: {
@@ -34,16 +36,9 @@ export const Popover = defineComponent({
   props,
   slots: Object as SlotsType<{
     default: () => VNode
-    icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
     const { colors } = useTheme()
-
-    const { cssVars, cls } = useStyle(() => {
-      return {
-        ...props,
-      }
-    })
 
     const hasIcon = computed(() => !!slots.icon || props.loading)
     const onClick = (e: MouseEvent) => {
@@ -51,10 +46,6 @@ export const Popover = defineComponent({
         emit('click', e)
       }
     }
-    return () => (
-      <div style={cssVars.value} class={cls.value}>
-        {slots.default?.()}
-      </div>
-    )
+    return () => <Popper>{slots.default?.()}</Popper>
   },
 })

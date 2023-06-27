@@ -1,7 +1,9 @@
 import { classed } from '@tw-classed/core'
-import { type MaybeRefOrGetter, computed, toValue } from 'vue'
+import { computed, type MaybeRefOrGetter, toValue } from 'vue'
+
 import { COLORS } from '@/theme'
 import { type ColorKey, useTheme } from '@/theme'
+
 import type { ButtonCssVars, ButtonProps } from '.'
 
 type ButtonVariants = Omit<ButtonProps, 'variant'> & {
@@ -49,10 +51,10 @@ const createBtnCls = classed('t-button', {
     },
     variant: {
       default: `shadow-sm border`,
-      filled: `shadow-sm border-2`,
-      light: `shadow-sm border-2`,
-      link: `border-2 decoration-2 underline-offset-2`,
-      outline: `shadow-sm border-2`,
+      filled: `shadow-sm border`,
+      light: `shadow-sm border`,
+      link: `border decoration-2 underline-offset-2`,
+      outline: `shadow-sm border`,
     },
   },
 })

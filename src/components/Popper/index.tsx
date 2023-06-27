@@ -21,9 +21,9 @@ import {
 
 import { POPPER_TRIGGER_TOKEN, PopperTrigger, type TriggerType, usePopperTrigger } from './trigger'
 
-const props = {
+export const props = {
   open: { type: Boolean, default: undefined },
-  trigger: { type: String as PropType<TriggerType>, default: 'click' },
+  trigger: { type: String as PropType<TriggerType>, default: 'hover' },
   placement: { type: String as PropType<Placement>, default: 'bottom' },
   strategy: { type: String as PropType<Strategy>, default: 'absolute' },
 }
@@ -41,7 +41,7 @@ const popperInjectKey: InjectionKey<{
 export const Popper = defineComponent({
   name: 'TPopper',
   props,
-  emits: ['update:open'],
+  emits: ['update:open', 'change'],
   directives: {},
   setup(props, { slots, emit, attrs, expose }) {
     let container: HTMLElement
@@ -108,10 +108,10 @@ export const Popper = defineComponent({
     })
 
     expose({
-      open,
-      innerOpen,
-      blocked,
-      childrens,
+      id,
+      open: () => (innerOpen.value = true),
+      close: () => (innerOpen.value = false),
+      status: () => open.value,
     })
 
     return () => (

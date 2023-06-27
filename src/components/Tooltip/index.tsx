@@ -1,17 +1,17 @@
 import { useFloating } from '@floating-ui/vue'
 import {
+  computed,
+  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
+  ref,
   type SlotsType,
   Teleport,
   type VNode,
-  computed,
-  defineComponent,
-  ref,
 } from 'vue'
 
-import { Popper } from '../Popper/Popper'
+import { Popper } from '../Popper'
 
 const props = {
   to: {
@@ -35,7 +35,12 @@ export const Tooltip = defineComponent({
     const open = ref(false)
     return () => (
       <>
-        <Popper open={open.value}>{slots.popper?.()}</Popper>
+        <Popper open={open.value}>
+          {{
+            default: slots.default,
+            content: () => <></>,
+          }}
+        </Popper>
       </>
     )
   },

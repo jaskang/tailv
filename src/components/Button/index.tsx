@@ -8,7 +8,7 @@ import {
   type VNode,
 } from 'vue'
 
-import { useTheme, type Color } from '@/theme'
+import { type Color, useTheme } from '@/theme'
 
 import { LoadingIcon } from '../Icon'
 import { useStyle } from './style'
@@ -91,7 +91,7 @@ export const Button = defineComponent({
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}
           </i>
         )}
-        {slots.default && <span class="t-btn_body">{slots.default()}</span>}
+        {slots.default && <span class="t-btn_body flex">{slots.default()}</span>}
       </button>
     )
   },
