@@ -33,6 +33,7 @@ export type PopperProps = ExtractPropTypes<typeof props>
 export type PopperPublicProps = ExtractPublicPropTypes<typeof props>
 
 const popperInjectKey: InjectionKey<{
+  id: string
   append: (id: string) => void
   remove: (id: string) => void
 }> = Symbol('PopperInjectKey')
@@ -60,6 +61,7 @@ export const Popper = defineComponent({
     const parent = inject(popperInjectKey, null)
 
     provide(popperInjectKey, {
+      id: parent?.id || id,
       append: id => childrens.value.add(id),
       remove: id => childrens.value.delete(id),
     })
@@ -72,25 +74,36 @@ export const Popper = defineComponent({
       whileElementsMounted: autoUpdate,
     })
 
-    watchEffect(() => {
-      open.value ? parent?.append(id) : parent?.remove(id)
-    })
+    watchEffect(
+      () => {
+        open.value ? parent?.append(id) : parent?.remove(id)
+      },
+      { flush: 'post' }
+    )
     onBeforeMount(() => {
-      container = document.createElement('div')
-      container.setAttribute('id', `t-popper-wrapper-${id}`)
-      document.body.appendChild(container)
+      const wrapper = document.getElementById(`t-popper-wrapper-${parent?.id || id}`)
+      if (wrapper) {
+        container = wrapper
+      } else {
+        container = document.createElement('div')
+        container.setAttribute('id', `t-popper-wrapper-${id}`)
+        document.body.appendChild(container)
+      }
     })
     onUnmounted(() => {
-      setTimeout(() => {
-        if (container && container.parentNode) {
-          container.parentNode.removeChild(container)
-        }
-      }, 1000)
+      if (container.id === `t-popper-wrapper-${id}`) {
+        setTimeout(() => {
+          if (container && container.parentNode) {
+            container.parentNode.removeChild(container)
+          }
+        }, 2000)
+      }
     })
 
     usePopperTrigger({ referenceEl, floatingEl, trigger, open }, (val, trigger) => {
       if (val !== innerOpen.value) {
         innerOpen.value = val
+        console.log(val, trigger, id)
       }
     })
 
@@ -118,10 +131,10 @@ export const Popper = defineComponent({
         <PopperTrigger>{slots.default?.()}</PopperTrigger>
         <Teleport to={container}>
           <Transition
-            enter-active-class="transition-opacity delay-0 ease-out"
+            enter-active-class="transition-opacity delay-0 duration-100 ease-out"
             enter-from-class="opacity-0"
             enter-to-class="opacity-100"
-            leave-active-class="transition-opacity delay-0 duration-1000 ease-in"
+            leave-active-class="transition-opacity delay-0 duration-150 ease-in"
             leave-from-class="opacity-100"
             leave-to-class="opacity-0"
           >

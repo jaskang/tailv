@@ -20,7 +20,13 @@ const openPopper = e => {
         <br />
         <TPopper trigger="click">
           <TButton>popper</TButton>
-          <template #content> 1234 </template>
+          <template #content>
+            1234
+            <TPopper trigger="click">
+              <TButton>popper</TButton>
+              <template #content> 1234 </template>
+            </TPopper>
+          </template>
         </TPopper>
         asdf sdfasdf
       </template>
