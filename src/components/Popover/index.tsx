@@ -40,7 +40,7 @@ export const Popover = defineComponent({
   }>,
   setup(props, { slots, emit }) {
     return () => (
-      <Popper>
+      <Popper trigger="click">
         {{
           default: () => slots.default?.(),
           content: () => (

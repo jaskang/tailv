@@ -1,5 +1,5 @@
 import { classed } from '@tw-classed/core'
-import { type MaybeRefOrGetter, computed, toValue } from 'vue'
+import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { COLORS } from '@/theme'
 import { type ColorKey, useTheme } from '@/theme'
@@ -33,8 +33,9 @@ const createBtnCls = classed('t-button', {
       true: 'cursor-not-allowed opacity-50',
     },
     ring: {
-      false: 'focus-visible:ring-[--t-btn-ring-color] focus-visible:ring-2 focus-visible:ring-offset-2',
-      true: 'focus:ring-[--t-btn-ring-color] focus:ring-2 focus:ring-offset-2',
+      false:
+        'focus-visible:ring-[--t-btn-ring-color] focus-visible:ring-2 focus-visible:ring-offset-2 dark:ring-offset-slate-900',
+      true: 'focus:ring-[--t-btn-ring-color] focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900',
     },
     rounded: {
       false: 'rounded-md',
@@ -51,8 +52,7 @@ const createBtnCls = classed('t-button', {
       true: '!px-0 w-[--t-btn-h]',
     },
     variant: {
-      default: `shadow-sm border
-      dark:(bg-[--t-btn-bg-hover] text-[--t-btn-text-color-hover] border-[--t-btn-border-color-hover])`,
+      default: `shadow-sm border`,
       filled: `shadow-sm border`,
       light: `shadow-sm border`,
       link: `border decoration-2 underline-offset-2`,

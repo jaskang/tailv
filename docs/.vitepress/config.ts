@@ -26,13 +26,20 @@ export default defineConfig({
         items: [
           { link: '/components/button', text: 'Button 按钮' },
           { link: '/components/icon', text: 'Icon 图标' },
-          { link: '/components/popper', text: 'Popper' },
         ],
         text: '基础组件',
       },
       {
         items: [{ link: '/components/flex', text: 'flex' }],
         text: '布局',
+      },
+      {
+        items: [
+          { link: '/components/popper', text: 'Popper' },
+          { link: '/components/tooltip', text: 'Tooltip' },
+          { link: '/components/popover', text: 'Popover' },
+        ],
+        text: '反馈',
       },
       {
         items: [

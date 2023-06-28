@@ -1,5 +1,6 @@
 <style lang="scss"> 
-.mdp-demo__preview {
+
+.mdp-demo__preview,.dark {
   > .t-button{
     margin-left: 1rem;
     /* margin-top: 1rem; */
@@ -18,7 +19,6 @@
 ## Variants
 
 ```vue preview
-'filled' | 'light' | 'outline' | 'link' | 'subtle'
 <template>
   <TButton>default</TButton>
   <TButton variant="filled">filled</TButton>
@@ -31,6 +31,26 @@
   <TButton color="primary" variant="light">light</TButton>
   <TButton color="primary" variant="outline">outline</TButton>
   <TButton color="primary" variant="link">link</TButton>
+</template>
+```
+
+## darkMode
+
+```vue preview
+<template>
+  <div class="dark bg-slate-900">
+    <TButton>default</TButton>
+    <TButton variant="filled">filled</TButton>
+    <TButton variant="light">light</TButton>
+    <TButton variant="outline">outline</TButton>
+    <TButton variant="link">link</TButton>
+    <br /><br />
+    <TButton color="primary">default</TButton>
+    <TButton color="primary" variant="filled">filled</TButton>
+    <TButton color="primary" variant="light">light</TButton>
+    <TButton color="primary" variant="outline">outline</TButton>
+    <TButton color="primary" variant="link">link</TButton>
+  </div>
 </template>
 ```
 

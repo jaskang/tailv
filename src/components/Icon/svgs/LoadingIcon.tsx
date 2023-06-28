@@ -2,14 +2,7 @@ import { defineComponent, type SlotsType, type VNode } from 'vue'
 
 export const LoadingIcon = defineComponent({
   name: 'TLoadingIcon',
-  emits: {
-    click: (payload: MouseEvent) => true,
-  },
-  slots: Object as SlotsType<{
-    default: () => VNode
-    icon: () => VNode
-  }>,
-  setup(props, { slots, emit }) {
+  setup() {
     return () => (
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24">
         <circle opacity="0.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

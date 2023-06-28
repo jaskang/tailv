@@ -1,11 +1,11 @@
 import {
+  computed,
+  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
   type SlotsType,
   type VNode,
-  computed,
-  defineComponent,
 } from 'vue'
 
 import { type Color, useTheme } from '@/theme'

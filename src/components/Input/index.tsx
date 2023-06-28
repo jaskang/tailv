@@ -20,6 +20,7 @@ const props = {
   prefix: String,
   suffix: String,
   placeholder: String,
+  readonly: Boolean,
   disabled: Boolean,
 }
 
@@ -119,6 +120,7 @@ export const Input = defineComponent({
         class={[
           't-input relative inline-flex w-full items-center rounded-md border text-sm shadow-sm',
           props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : 'bg-white',
+          props.readonly ? 'is-readonly ' : '',
           focused.value
             ? 'is-focused z-10 border-[--t-input-ring-color] ring-1 ring-[--t-input-ring-color]'
             : 'border-gray-300',
@@ -129,11 +131,12 @@ export const Input = defineComponent({
         )}
 
         <input
-          class="t-input_input inline-block flex-1 border-none bg-transparent px-3 focus:outline-none disabled:cursor-not-allowed"
+          class="t-input_input inline-block flex-1 border-none bg-transparent px-3 text-sm read-only:cursor-pointer focus:outline-none disabled:cursor-not-allowed"
           style="box-shadow: none"
           type="text"
           size="1"
           value={value.value}
+          readonly={props.readonly}
           disabled={props.disabled}
           placeholder={props.placeholder}
           onInput={onInput}

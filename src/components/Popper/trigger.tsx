@@ -7,7 +7,9 @@ import {
   h,
   inject,
   type InjectionKey,
+  type MaybeRef,
   type Ref,
+  toValue,
   type VNode,
   withDirectives,
 } from 'vue'
@@ -21,6 +23,7 @@ export type UsePopperTriggerOptions = {
   floatingEl: Ref<HTMLElement | undefined>
   trigger: Ref<TriggerType>
   open: Ref<boolean>
+  delay: MaybeRef<number>
 }
 
 export const POPPER_TRIGGER_TOKEN: InjectionKey<Ref> = Symbol('popper-trigger')
@@ -83,21 +86,21 @@ export const PopperTrigger = defineComponent({
 })
 
 export function usePopperTrigger(
-  { referenceEl, floatingEl, trigger, open }: UsePopperTriggerOptions,
+  { referenceEl, floatingEl, trigger, open, delay }: UsePopperTriggerOptions,
   change: (value: boolean, event: string) => void
 ) {
-  const hoverDelay = 150
+  const hoverDelay = toValue(delay)
   let timer: ReturnType<typeof setTimeout>
   const handleTriggerEnter = () => {
     // if (props.disabled) return
-    if (trigger.value === 'hover') {
+    if (trigger.value === 'hover' && !open.value) {
       clearTimeout(timer)
       change(true, 'mouseenter')
     }
   }
   function handleTriggerLeave() {
     // if (props.disabled) return
-    if (trigger.value === 'hover') {
+    if (trigger.value === 'hover' && open.value) {
       clearTimeout(timer)
       timer = setTimeout(() => {
         change(false, 'mouseleave')
@@ -110,11 +113,11 @@ export function usePopperTrigger(
   }
   function handleTriggerFocus() {
     // if (props.disabled) return
-    if (trigger.value === 'focus') change(true, 'focus')
+    if (trigger.value === 'focus' && !open.value) change(true, 'focus')
   }
   function handleTriggerBlur() {
     // if (props.disabled) return
-    if (trigger.value === 'focus') change(false, 'blur')
+    if (trigger.value === 'focus' && open.value) change(false, 'blur')
   }
   function handleClickOutside() {
     // if (props.disabled) return
