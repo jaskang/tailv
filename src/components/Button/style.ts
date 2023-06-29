@@ -28,7 +28,7 @@ const createBtnCls = classed('t-button', {
       true: 'w-full',
     },
     disabled: {
-      false: `cursor-pointer hover:bg-[--t-btn-bg-hover] hover:text-[--t-btn-text-color-hover] hover:border-[--t-btn-border-color-hover]`,
+      false: `cursor-pointer active:bg-[--t-btn-bg-active] hover:bg-[--t-btn-bg-hover] hover:text-[--t-btn-text-color-hover] hover:border-[--t-btn-border-color-hover]`,
       true: 'cursor-not-allowed opacity-50',
     },
     ring: {
@@ -64,12 +64,13 @@ const createCssVars = (vars: Partial<ButtonCssVars> = {}) => {
   const result: ButtonCssVars = {
     '--t-btn-bg': vars['--t-btn-bg'] || COLORS.white,
     '--t-btn-bg-hover': vars['--t-btn-bg-hover'] || vars['--t-btn-bg'] || COLORS.white,
+    '--t-btn-bg-active': vars['--t-btn-bg-active'] || vars['--t-btn-bg-hover'] || vars['--t-btn-bg'] || COLORS.white,
     '--t-btn-border-color': vars['--t-btn-border-color'] || COLORS.transparent,
     '--t-btn-border-color-hover':
       vars['--t-btn-border-color-hover'] || vars['--t-btn-border-color'] || COLORS.transparent,
-    '--t-btn-ring-color': vars['--t-btn-ring-color'] || vars['--t-btn-bg'] || COLORS.indigo[500],
     '--t-btn-text-color': vars['--t-btn-text-color'] || COLORS.slate[700],
     '--t-btn-text-color-hover': vars['--t-btn-text-color-hover'] || vars['--t-btn-text-color'] || COLORS.slate[700],
+    '--t-btn-ring-color': vars['--t-btn-ring-color'] || vars['--t-btn-bg'] || COLORS.indigo[500],
   }
   return result
 }

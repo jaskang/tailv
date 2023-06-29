@@ -49,6 +49,7 @@ export type ButtonCssVars = {
   '--t-btn-border-color-hover': string
   '--t-btn-bg-hover': string
 
+  '--t-btn-bg-active': string
   '--t-btn-ring-color': string
 }
 
