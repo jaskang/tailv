@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -41,8 +41,8 @@ devDependencies:
     specifier: ^1.1.0
     version: 1.1.0
   '@jaskang/eslint-config':
-    specifier: ^1.1.2
-    version: 1.1.2(eslint@8.43.0)(prettier@2.8.8)(typescript@5.1.3)
+    specifier: ^1.1.3
+    version: 1.1.3(eslint@8.43.0)(prettier@2.8.8)(typescript@5.1.3)
   '@microsoft/api-extractor':
     specifier: ^7.36.0
     version: 7.36.0(@types/node@20.3.1)
@@ -82,6 +82,9 @@ devDependencies:
   jsdom:
     specifier: ^22.1.0
     version: 22.1.0
+  mini-svg-data-uri:
+    specifier: ^1.4.4
+    version: 1.4.4
   postcss:
     specifier: ^8.4.24
     version: 8.4.24
@@ -942,8 +945,8 @@ packages:
     engines: {node: '>=16.0.0'}
     dev: true
 
-  /@jaskang/eslint-config@1.1.2(eslint@8.43.0)(prettier@2.8.8)(typescript@5.1.3):
-    resolution: {integrity: sha512-OS8aPPbdt5rGqDVf01J46HFXq4eaWUGNWiIdB1ZDw5y6rF0zQ5oa65YWa+0yDo4E/rB8D5HLYdcI5P8WHIkbgw==}
+  /@jaskang/eslint-config@1.1.3(eslint@8.43.0)(prettier@2.8.8)(typescript@5.1.3):
+    resolution: {integrity: sha512-9AF8foQYNpevfKBLhZ+H6pYc9plybYojuVj587NlqGyBkHlXyO4e2ms2NZmbVLzsHSPUnAw+TKZQ3VzM15+XIg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       eslint: '>= 8.0.0'

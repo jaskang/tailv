@@ -55,7 +55,13 @@ export default defineConfig({
   },
   title: 'Elenext',
   vite: {
-    plugins: [Inspect(), vueJsx(), MarkdownPreview()],
+    plugins: [
+      Inspect(),
+      vueJsx(),
+      MarkdownPreview({
+        component: 'CodePreview',
+      }),
+    ],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('../../src', import.meta.url)),

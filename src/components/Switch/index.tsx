@@ -1,18 +1,19 @@
 import {
-  ref,
   computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
+  ref,
   type SlotsType,
   type VNode,
 } from 'vue'
-import { useTheme } from '@/theme'
+
 import { useControllable } from '@/hooks/controllable'
+import { useTheme } from '@/theme'
 
 const props = {
-  checked: Boolean,
+  checked: { type: Boolean, default: undefined },
   disabled: Boolean,
 }
 
@@ -40,7 +41,7 @@ export const Switch = defineComponent({
   setup(props, { slots, emit }) {
     const { colors } = useTheme()
 
-    const [value, setValue] = useControllable(
+    const [checked, setChecked] = useControllable(
       () => props.checked,
       val => {
         console.log(val)
@@ -55,30 +56,31 @@ export const Switch = defineComponent({
       '--t-switch-accent-color': colors.value.primary[500],
       '--t-switch-ring-color': colors.value.primary[500],
     }))
+
     return () => (
       <button
         type="button"
         style={cssVars.value}
         class={[
           't-switch relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[--t-switch-ring-color] focus:ring-offset-2',
-          value.value ? 'bg-[--t-switch-accent-color]' : ' bg-gray-200',
+          checked.value ? 'bg-[--t-switch-accent-color]' : ' bg-gray-200',
           props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]}
         disabled={props.disabled}
         role="switch"
-        onClick={() => setValue(!value)}
+        onClick={() => setChecked(!checked.value)}
       >
         <span
           class={[
             't-switch_thumb pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
-            value ? 'translate-x-5' : 'translate-x-0',
+            checked.value ? 'translate-x-5' : 'translate-x-0',
           ]}
         >
           {slots.off && (
             <span
               class={[
                 'absolute inset-0 flex h-full w-full items-center justify-center text-gray-400 transition-opacity [&>*]:h-3 [&>*]:w-3',
-                value ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-200 ease-in',
+                checked.value ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-200 ease-in',
               ]}
             >
               {slots.off()}
@@ -89,7 +91,7 @@ export const Switch = defineComponent({
             <span
               class={[
                 'absolute inset-0 flex h-full w-full items-center justify-center text-[--t-switch-accent-color] transition-opacity [&>*]:h-3 [&>*]:w-3',
-                value ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out',
+                checked.value ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out',
               ]}
             >
               {slots.on()}
