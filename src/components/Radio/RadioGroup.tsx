@@ -1,19 +1,19 @@
 import {
-  ref,
   computed,
+  type ComputedRef,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
+  provide,
+  ref,
   type SlotsType,
   type VNode,
-  type ComputedRef,
-  provide,
 } from 'vue'
 
+import { useControllable } from '@/hooks/controllable'
 import { useTheme } from '@/theme'
 import { PropTypes } from '@/utils'
-import { useControllable } from '@/hooks/controllable'
 
 const props = {
   value: PropTypes.any(),
@@ -42,7 +42,7 @@ export const RadioGroup = defineComponent({
     change: (val: any) => true,
   },
   setup(props, { slots, emit }) {
-    const [value, setValue] = useControllable(
+    const [val, setVal] = useControllable(
       () => props.value,
       val => {
         emit('update:value', val)
@@ -54,13 +54,13 @@ export const RadioGroup = defineComponent({
     provide<RadioGroupContext>('RadioGroupContext', {
       props: computed(() => {
         return {
-          value: value.value,
+          value: val.value,
           name: props.name,
           disabled: props.disabled,
         }
       }),
       onRadioChange: (val: any) => {
-        setValue(val)
+        setVal(val)
       },
     })
     return () => slots.default?.()

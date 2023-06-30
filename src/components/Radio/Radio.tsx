@@ -57,7 +57,7 @@ export const Radio = defineComponent({
         name: groupContext?.props.value.name || props.name,
       }
     })
-    const [realChecked, setChecked] = useControllable(
+    const [checked, setChecked] = useControllable(
       () => {
         return groupContext ? groupContext.props.value.value === props.value : props.checked
       },
@@ -104,7 +104,7 @@ export const Radio = defineComponent({
           name={groupProps.value.name}
           value={groupProps.value.value}
           disabled={groupProps.value.disabled}
-          checked={realChecked.value}
+          checked={checked.value}
           onInput={onInput}
           onFocus={onFocus}
           onBlur={onBlur}

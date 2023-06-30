@@ -51,7 +51,7 @@ export const Input = defineComponent({
   setup(props, { slots, emit }) {
     const { colors } = useTheme()
 
-    const [value, setValue] = useControllable(
+    const [val, setVal] = useControllable(
       () => props.value,
       val => {
         emit('update:value', val)
@@ -59,12 +59,12 @@ export const Input = defineComponent({
       },
       ''
     )
-    const open = ref(false)
+
     const focused = ref(false)
 
     const onInput = (e: Event) => {
       const el = e.currentTarget as HTMLInputElement
-      setValue(el.value)
+      setVal(el.value)
       emit('input', e)
     }
     const onFocus = (e: FocusEvent) => {
@@ -73,7 +73,6 @@ export const Input = defineComponent({
         return false
       } else {
         focused.value = true
-        open.value = true
         emit('focus', e)
       }
     }
@@ -83,7 +82,6 @@ export const Input = defineComponent({
         return false
       } else {
         focused.value = false
-        open.value = false
         emit('blur', e)
       }
     }
@@ -91,14 +89,6 @@ export const Input = defineComponent({
     const cssVars = computed<InputCssVars>(() => ({
       '--t-input-ring-color': colors.value.primary[500],
     }))
-
-    const reference = ref(null)
-    const floating = ref(null)
-
-    const { floatingStyles } = useFloating(reference, floating, {
-      placement: 'bottom-start',
-      middleware: [offset(0)],
-    })
 
     return () => (
       // <div
@@ -115,7 +105,6 @@ export const Input = defineComponent({
       //   </span>
       // )}
       <div
-        ref={reference}
         style={cssVars.value}
         class={[
           't-input relative inline-flex w-full items-center rounded-md border text-sm shadow-sm',
@@ -135,7 +124,7 @@ export const Input = defineComponent({
           style="box-shadow: none"
           type="text"
           size="1"
-          value={value.value}
+          value={val.value}
           readonly={props.readonly}
           disabled={props.disabled}
           placeholder={props.placeholder}
@@ -145,26 +134,6 @@ export const Input = defineComponent({
         />
         {(slots.suffix || props.suffix) && (
           <span class="t-input_suffix flex flex-initial items-center pr-3">{slots.suffix?.() || props.suffix}</span>
-        )}
-        {slots.dropdown && open.value && (
-          <Teleport to="#t-teleports">
-            <div
-              ref={floating}
-              style={floatingStyles.value}
-              class={[
-                't-dropdown absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-sm shadow-lg',
-                open.value ? 'is-open' : 'is-closed',
-              ]}
-            >
-              <Transition
-                leave-active-class="transition ease-in duration-100"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
-              >
-                {slots.dropdown?.()}
-              </Transition>
-            </div>
-          </Teleport>
         )}
       </div>
       //  {slots.after && (

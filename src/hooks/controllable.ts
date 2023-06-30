@@ -1,18 +1,22 @@
-import { computed, type ComputedRef, ref, type UnwrapRef } from 'vue'
+import { computed, type MaybeRefOrGetter, ref, toValue, type UnwrapRef } from 'vue'
 
-export function useControllable<T>(getter: () => T | undefined, setter?: (value: T) => void, defaultValue?: T) {
-  const internalValue = ref(defaultValue)
-  const isControlled = computed(() => getter() !== undefined)
-  console.log('isControlled', isControlled.value)
+export function useControllable<T>(
+  getter: MaybeRefOrGetter<T | undefined>,
+  setter: (value: T) => void,
+  defaultValue?: T
+) {
+  const propValue = computed(() => toValue(getter))
+
+  const internalValue = ref(typeof propValue.value === 'undefined' ? defaultValue : propValue.value)
 
   return [
-    computed(() => (isControlled.value ? getter() : internalValue.value)),
-    function (value: unknown) {
-      if (isControlled.value) {
-        return setter?.(value as T)
+    computed(() => (typeof propValue.value === 'undefined' ? internalValue.value : internalValue.value)),
+    function (val: T) {
+      if (typeof propValue.value === 'undefined') {
+        internalValue.value = val as UnwrapRef<T>
+        return setter(val as T)
       } else {
-        internalValue.value = value as UnwrapRef<T>
-        return setter?.(value as T)
+        return setter(val as T)
       }
     },
   ] as const

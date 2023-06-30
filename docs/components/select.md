@@ -10,6 +10,27 @@
 
 ```vue preview
 <template>
-  <TSelect />
+  <TSelect
+    class="max-w-lg"
+    :options="[
+      {
+        value: 'jack',
+        label: 'Jack',
+      },
+      {
+        value: 'lucy',
+        label: 'Lucy',
+      },
+      {
+        value: 'disabled',
+        label: 'Disabled',
+        disabled: true,
+      },
+      {
+        value: 'yiminghe',
+        label: 'Yiminghe',
+      },
+    ]"
+  />
 </template>
 ```

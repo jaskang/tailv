@@ -43,6 +43,7 @@ const popperInjectKey: InjectionKey<{
 
 export const Popper = defineComponent({
   name: 'TPopper',
+  inheritAttrs: false,
   props,
   emits: ['update:open', 'change'],
   directives: {},
