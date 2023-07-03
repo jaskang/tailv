@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
 import { useData } from 'vitepress'
-import { ref, watchPostEffect } from 'vue'
+import { ref } from 'vue'
 
 import { isActive, useSidebar } from '../core/sidebar'
 
@@ -16,26 +15,9 @@ const props = defineProps<{
 // a11y: focus Nav element when menu has opened
 let navEl = ref<HTMLElement | null>(null)
 
-function lockBodyScroll() {
-  disableBodyScroll(navEl.value!, { reserveScrollBarGap: true })
-}
-
 function isActiveLink(link: string) {
   return isActive(page.value.relativePath, link)
 }
-
-function unlockBodyScroll() {
-  clearAllBodyScrollLocks()
-}
-
-watchPostEffect(async () => {
-  if (props.open) {
-    lockBodyScroll()
-    navEl.value?.focus()
-  } else {
-    unlockBodyScroll()
-  }
-})
 </script>
 
 <template>
