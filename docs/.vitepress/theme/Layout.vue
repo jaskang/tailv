@@ -20,45 +20,124 @@ const { frontmatter } = useData()
 </script>
 
 <template>
-  <div>
-    <!-- Static sidebar for desktop -->
-    <div class="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-      <!-- Sidebar component, swap this element with another sidebar if you like -->
-      <div class="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
-        <div class="flex flex-1 flex-col overflow-y-auto pb-4 pt-5">
-          <div class="flex flex-shrink-0 items-center px-4 text-4xl font-bold">Tailvui</div>
-          <VPSidebar :open="isSidebarOpen">
-            <template #sidebar-nav-before><slot name="sidebar-nav-before" /></template>
-            <template #sidebar-nav-after><slot name="sidebar-nav-after" /></template>
-          </VPSidebar>
+  <div
+    class="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
+  >
+    <div class="mx-auto max-w-8xl">
+      <div class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
+        <div class="relative flex items-center">
+          <a class="mr-3 w-[2.0625rem] flex-none overflow-hidden md:w-auto" href="/">
+            <span class="sr-only">Tailwind CSS home page</span>
+          </a>
+
+          <div class="relative ml-auto hidden items-center lg:flex">
+            <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200" translate="no">
+              <ul class="flex space-x-8">
+                <li><a class="hover:text-sky-500 dark:hover:text-sky-400" href="/docs/installation">Docs</a></li>
+                <li>
+                  <a href="https://tailwindui.com/?ref=top" class="hover:text-sky-500 dark:hover:text-sky-400">
+                    Components
+                  </a>
+                </li>
+                <li><a class="hover:text-sky-500 dark:hover:text-sky-400" href="/blog">Blog</a></li>
+                <li><a class="hover:text-sky-500 dark:hover:text-sky-400" href="/showcase">Showcase</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button
+            type="button"
+            class="-my-1 ml-auto flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 lg:hidden"
+          >
+            <span class="sr-only">Search</span
+            ><svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m19 19-3.5-3.5"></path>
+              <circle cx="11" cy="11" r="6"></circle>
+            </svg>
+          </button>
+          <div class="-my-1 ml-2 lg:hidden">
+            <button
+              type="button"
+              class="flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+            >
+              <span class="sr-only">Navigation</span
+              ><svg width="24" height="24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 6v.01M12 12v.01M12 18v.01M12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <div
+              style="
+                position: fixed;
+                top: 1px;
+                left: 1px;
+                width: 1px;
+                height: 0;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+                display: none;
+              "
+            ></div>
+          </div>
         </div>
+      </div>
+      <div class="flex items-center border-b border-slate-900/10 p-4 dark:border-slate-50/[0.06] lg:hidden">
+        <button type="button" class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+          <span class="sr-only">Navigation</span
+          ><svg width="24" height="24">
+            <path
+              d="M5 6h14M5 12h14M5 18h14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
+        <ol class="ml-4 flex min-w-0 whitespace-nowrap text-sm leading-6">
+          <li class="flex items-center">
+            Getting Started<svg width="3" height="6" aria-hidden="true" class="mx-3 overflow-visible text-slate-400">
+              <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+          </li>
+          <li class="truncate font-semibold text-slate-900 dark:text-slate-200">Installation</li>
+        </ol>
       </div>
     </div>
-    <div class="flex flex-1 flex-col md:pl-64">
-      <div class="sticky top-0 z-10 bg-white pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
-        <button
-          type="button"
-          class="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-          @click="sidebarOpen = true"
-        >
-          <span class="sr-only">Open sidebar</span>
-          <MenuIcon class="h-6 w-6" aria-hidden="true" />
-        </button>
+  </div>
+  <div class="overflow-hidden">
+    <div class="mx-auto max-w-8xl px-4 sm:px-6 md:px-8">
+      <div
+        class="fixed inset-0 left-[max(0px,calc(50%-45rem))] right-auto top-[3.8125rem] z-20 hidden w-[19.5rem] overflow-y-auto px-8 pb-10 lg:block"
+      >
+        <VPSidebar :open="isSidebarOpen">
+          <template #sidebar-nav-before><slot name="sidebar-nav-before" /></template>
+          <template #sidebar-nav-after><slot name="sidebar-nav-after" /></template>
+        </VPSidebar>
       </div>
-      <main class="flex-1">
-        <div class="py-6">
-          <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-            <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
-          </div>
-          <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-            <!-- Replace with your content -->
-
-            <div v-if="page.isNotFound">Custom 404 page!</div>
-            <Content v-else />
-            <!-- /End replace -->
-          </div>
-        </div>
-      </main>
+      <div class="lg:pl-[19.5rem]">
+        <main class="relative z-20 mx-auto max-w-3xl pt-10 xl:max-w-none">
+          <div v-if="page.isNotFound">Custom 404 page!</div>
+          <Content v-else />
+        </main>
+      </div>
     </div>
   </div>
 </template>

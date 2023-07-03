@@ -149,7 +149,13 @@ export const Popper = defineComponent({
             leave-to-class="opacity-0"
           >
             {open.value && (
-              <div {...attrs} ref={floatingEl} id={`t-popper-${id}`} style={floatingStyles.value} class="absolute">
+              <div
+                {...attrs}
+                ref={floatingEl}
+                id={`t-popper-${id}`}
+                style={floatingStyles.value}
+                class="absolute z-[999]"
+              >
                 {slots.content?.()}
                 {props.arrow && (
                   <div

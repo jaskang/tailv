@@ -13,7 +13,11 @@ module.exports = {
     './docs/.vitepress/**/*.{vue,ts,tsx,md}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        '8xl': '90rem',
+      },
+    },
   },
   plugins: [
     forms({ strategy: 'base' }),

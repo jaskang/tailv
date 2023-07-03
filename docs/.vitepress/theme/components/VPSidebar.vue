@@ -35,9 +35,21 @@ watchPostEffect(async () => {
 <template>
   <aside v-if="hasSidebar" :class="{ open }" class="mt-5 flex-1 space-y-1 bg-white px-2" @click.stop>
     <nav class="outline-0" id="VPSidebarNav" tabindex="-1">
-      <div v-for="item in sidebarGroups" :key="item.text" class="group">
-        <VPSidebarItem :item="item" :depth="0" />
-      </div>
+      <ul>
+        <li v-for="group in sidebarGroups" :key="group.text" class="mt-12 lg:mt-8">
+          <h5 class="mb-8 font-semibold text-slate-900 dark:text-slate-200 lg:mb-3">{{ group.text }}</h5>
+          <ul class="space-y-6 border-l border-slate-100 dark:border-slate-800 lg:space-y-2">
+            <li v-for="item in group.items" :key="item.link">
+              <a
+                class="-ml-px block border-l border-transparent pl-4 text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-500 dark:hover:text-slate-300"
+                :href="item.link"
+              >
+                {{ item.text }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </nav>
   </aside>
 </template>
