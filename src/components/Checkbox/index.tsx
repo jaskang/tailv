@@ -94,7 +94,7 @@ export const Checkbox = defineComponent({
         ]}
       >
         <input
-          class="t-checkbox_input h-4 w-4 cursor-pointer rounded border border-gray-300 text-[--t-checkbox-accent-color] transition-all focus:outline-none focus:ring-2 focus:ring-[--t-checkbox-ring-color] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="t-checkbox_input h-4 w-4 cursor-pointer rounded border border-gray-300 text-[--t-checkbox-accent-color] dark:ring-offset-slate-900 transition-all focus:outline-none focus:ring-2 focus:ring-[--t-checkbox-ring-color] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           type="checkbox"
           name={props.name}
           disabled={props.disabled}
@@ -103,7 +103,7 @@ export const Checkbox = defineComponent({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <span class="t-checkbox_label ml-3 block text-sm font-medium text-gray-700">{slots.default?.()}</span>
+        <span class="t-checkbox_label ml-3 block text-sm font-medium">{slots.default?.()}</span>
       </label>
     )
   },

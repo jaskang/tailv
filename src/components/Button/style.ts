@@ -104,8 +104,8 @@ const getBtnCssVars = (variant: ButtonVariants['variant'], color: ColorKey, prim
       return createCssVars({
         '--t-btn-bg': 'transparent',
         '--t-btn-ring-color': COLORS[color][500],
-        '--t-btn-text-color': COLORS[color][600],
-        '--t-btn-text-color-hover': COLORS[color][700],
+        '--t-btn-text-color': COLORS[color][500],
+        '--t-btn-text-color-hover': COLORS[color][600],
       })
     default:
       return createCssVars({

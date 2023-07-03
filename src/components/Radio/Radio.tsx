@@ -99,7 +99,7 @@ export const Radio = defineComponent({
         ]}
       >
         <input
-          class="t-radio_input h-4 w-4 border-gray-300 text-[--t-radio-accent-color] transition-all focus:ring-[--t-radio-ring-color] disabled:cursor-not-allowed"
+          class="t-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--t-radio-ring-color] disabled:cursor-not-allowed dark:ring-offset-slate-900"
           type="radio"
           name={groupProps.value.name}
           value={groupProps.value.value}
@@ -109,7 +109,7 @@ export const Radio = defineComponent({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <span class="t-radio_label ml-3 block text-sm font-medium text-gray-700">{slots.default?.()}</span>
+        <span class="t-radio_label ml-3 block text-sm font-medium ">{slots.default?.()}</span>
       </label>
     )
   },
