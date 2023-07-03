@@ -3,7 +3,8 @@ import { useData, useRoute } from 'vitepress'
 import { useCloseSidebarOnEscape, useSidebar } from 'vitepress/dist/client/theme-default/composables/sidebar'
 import { provide, ref, watch } from 'vue'
 
-import VPSidebar from './components/VPSidebar.vue'
+import TVContent from './components/TVContent.vue'
+import TVSidebar from './components/TVSidebar.vue'
 
 const { page, site } = useData()
 
@@ -127,16 +128,13 @@ const { frontmatter } = useData()
       <div
         class="fixed inset-0 left-[max(0px,calc(50%-45rem))] right-auto top-[3.8125rem] z-20 hidden w-[19.5rem] overflow-y-auto px-8 pb-10 lg:block"
       >
-        <VPSidebar :open="isSidebarOpen">
+        <TVSidebar :open="isSidebarOpen">
           <template #sidebar-nav-before><slot name="sidebar-nav-before" /></template>
           <template #sidebar-nav-after><slot name="sidebar-nav-after" /></template>
-        </VPSidebar>
+        </TVSidebar>
       </div>
       <div class="lg:pl-[19.5rem]">
-        <main class="relative z-20 mx-auto max-w-3xl pt-10 xl:max-w-none">
-          <div v-if="page.isNotFound">Custom 404 page!</div>
-          <Content v-else />
-        </main>
+        <TVContent />
       </div>
     </div>
   </div>

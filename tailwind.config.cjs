@@ -20,6 +20,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     forms({ strategy: 'base' }),
     function ({ matchUtilities, theme }) {
       matchUtilities(
