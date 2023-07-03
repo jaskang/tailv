@@ -16,7 +16,11 @@
 
 # Button
 
-## Variants
+[[toc]]
+
+asdfsa
+
+# Variants
 
 ```vue preview
 <template>

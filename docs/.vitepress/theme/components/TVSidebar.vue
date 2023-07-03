@@ -40,7 +40,7 @@ watchPostEffect(async () => {
 
 <template>
   <aside v-if="hasSidebar" :class="{ open }" class="mt-5 flex-1 space-y-1 bg-white px-2" @click.stop>
-    <nav class="outline-0" id="VPSidebarNav" tabindex="-1">
+    <nav class="relative lg:text-sm lg:leading-6" id="VPSidebarNav" tabindex="-1">
       <ul>
         <li v-for="group in sidebarGroups" :key="group.text" class="mt-12 lg:mt-8">
           <h5 class="mb-8 font-semibold text-slate-900 dark:text-slate-200 lg:mb-3">{{ group.text }}</h5>

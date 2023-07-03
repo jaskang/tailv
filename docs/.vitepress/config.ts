@@ -9,6 +9,9 @@ export default defineConfig({
   description: 'Vite & Vue powered static site generator.',
   lang: 'zh-CN',
   lastUpdated: true,
+  markdown: {
+    toc: {},
+  },
   themeConfig: {
     footer: {
       copyright: 'Copyright © 2022-present jaskang',
