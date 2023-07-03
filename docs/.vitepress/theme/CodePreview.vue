@@ -25,9 +25,9 @@ defineExpose({ dark, showCode })
       :class="{
         dark: dark,
       }"
-      class="relative overflow-hidden rounded-xl"
+      class="relative -mb-3 mt-4 overflow-hidden rounded-xl"
     >
-      <div class="bg-slate-50 transition-colors dark:bg-slate-800/25">
+      <div class="not-prose bg-slate-50 transition-colors dark:bg-slate-800/25">
         <div
           class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"
           style="background-position: 10px 10px"

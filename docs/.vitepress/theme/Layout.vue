@@ -34,14 +34,16 @@ const { frontmatter } = useData()
           <div class="relative ml-auto hidden items-center lg:flex">
             <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200" translate="no">
               <ul class="flex space-x-8">
-                <li><a class="hover:text-sky-500 dark:hover:text-sky-400" href="/docs/installation">Docs</a></li>
                 <li>
-                  <a href="https://tailwindui.com/?ref=top" class="hover:text-sky-500 dark:hover:text-sky-400">
+                  <a class="hover:text-primary-500 dark:hover:text-primary-400" href="/docs/installation">Docs</a>
+                </li>
+                <li>
+                  <a href="https://tailwindui.com/?ref=top" class="hover:text-primary-500 dark:hover:text-primary-400">
                     Components
                   </a>
                 </li>
-                <li><a class="hover:text-sky-500 dark:hover:text-sky-400" href="/blog">Blog</a></li>
-                <li><a class="hover:text-sky-500 dark:hover:text-sky-400" href="/showcase">Showcase</a></li>
+                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="/blog">Blog</a></li>
+                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="/showcase">Showcase</a></li>
               </ul>
             </nav>
           </div>

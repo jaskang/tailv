@@ -1,18 +1,7 @@
-<style lang="scss"> 
-:where(.mdp-demo__preview) {
-  h4{
-    @apply text-xl font-semibold text-slate-700;
+<style lang="scss">
+  .demo > .t-flex{
+    @apply rounded-lg font-mono text-sm font-bold leading-6 text-white bg-stripes-blue  [&>div]:flex [&>div]:h-14 [&>div]:items-center [&>div]:justify-center [&>div]:rounded-lg [&>div]:bg-blue-500;
   }
-  > :where(.t-flex){
-    background-color: #818cf81a;
-    background-image: linear-gradient(135deg,#6366f180 10%,#0000 0,#0000 50%,#6366f180 0,#6366f180 60%,#0000 0,#0000);
-    background-size: 7.07px 7.07px;
-    @apply text-white text-sm font-bold font-mono leading-6 rounded-lg;
-  }   
-  :where(.t-flex-item){
-    @apply py-4 flex items-center justify-center bg-indigo-500 shadow-lg rounded-lg;
-  }
-}
 </style>
 
 用于控制弹性项目如何增长和收缩的实用程序。
@@ -20,9 +9,9 @@
 ```vue preview
 <template>
   <TFlex gap="1rem">
-    <TFlexItem class="w-14 bg-indigo-300">w-14</TFlexItem>
-    <TFlexItem flex="1" class="">1</TFlexItem>
-    <TFlexItem flex="1" class="">1</TFlexItem>
+    <TFlexItem class="w-14">w-14</TFlexItem>
+    <TFlexItem flex="1">1</TFlexItem>
+    <TFlexItem flex="1">1</TFlexItem>
   </TFlex>
 </template>
 ```

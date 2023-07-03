@@ -7,7 +7,7 @@ defineOptions({ name: 'TVContent' })
   <div class="mx-auto max-w-3xl pt-10 xl:ml-0 xl:mr-[15.5rem] xl:max-w-none xl:pr-16">
     <header id="header" class="relative z-20">
       <div>
-        <p class="mb-2 text-sm font-semibold leading-6 text-sky-500 dark:text-sky-400">Official Plugins</p>
+        <p class="mb-2 text-sm font-semibold leading-6 text-primary-500 dark:text-primary-400">Official Plugins</p>
         <div class="flex items-center">
           <h1
             class="inline-block text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-3xl"
@@ -55,7 +55,7 @@ defineOptions({ name: 'TVContent' })
         <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">On this page</h5>
         <ul class="text-sm leading-6 text-slate-700">
           <li>
-            <a href="#installation" class="flex items-center py-1 font-medium text-sky-500 dark:text-sky-400"
+            <a href="#installation" class="flex items-center py-1 font-medium text-primary-500 dark:text-primary-400"
               >Installation</a
             >
           </li>

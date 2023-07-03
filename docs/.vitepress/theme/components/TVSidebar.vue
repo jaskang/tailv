@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
+import { useData } from 'vitepress'
+import { isActive } from 'vitepress/dist/client/shared'
 import { useSidebar } from 'vitepress/dist/client/theme-default/composables/sidebar'
 import { ref, watchPostEffect } from 'vue'
+
+const { page } = useData()
 
 const { sidebarGroups, hasSidebar } = useSidebar()
 
@@ -14,6 +18,10 @@ let navEl = ref<HTMLElement | null>(null)
 
 function lockBodyScroll() {
   disableBodyScroll(navEl.value!, { reserveScrollBarGap: true })
+}
+
+function isActiveLink(link: string) {
+  return isActive(page.value.relativePath, link)
 }
 
 function unlockBodyScroll() {
@@ -39,7 +47,12 @@ watchPostEffect(async () => {
           <ul class="space-y-6 border-l border-slate-100 dark:border-slate-800 lg:space-y-2">
             <li v-for="item in group.items" :key="item.link">
               <a
-                class="-ml-px block border-l border-transparent pl-4 text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-500 dark:hover:text-slate-300"
+                class="-ml-px block border-l-2 pl-4"
+                :class="[
+                  isActiveLink(item.link)
+                    ? 'border-current font-semibold text-primary-500 dark:text-primary-400'
+                    : 'border-transparent text-slate-700 hover:border-slate-400 hover:text-slate-900  dark:text-slate-400 dark:hover:border-slate-500 dark:hover:text-slate-300',
+                ]"
                 :href="item.link"
               >
                 {{ item.text }}
