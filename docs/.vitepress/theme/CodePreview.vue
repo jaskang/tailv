@@ -27,9 +27,7 @@ defineExpose({ dark, showCode })
       }"
       class="relative mt-4 overflow-hidden rounded-xl"
     >
-      <div
-        class="not-prose rounded-xl border border-black/5 transition-colors dark:border-white/5 dark:bg-slate-800/25"
-      >
+      <div class="not-prose bg-slate-50 transition-colors dark:bg-slate-800/25">
         <div class="flex justify-end gap-2 border-b bg-slate-100 p-2 dark:border-gray-950 dark:bg-slate-700">
           <TSwitch v-model:checked="dark">
             <template #on><MoonIcon class="text-gray-900" /></template>
@@ -48,8 +46,8 @@ defineExpose({ dark, showCode })
           <div class="demo relative overflow-auto p-4">
             <slot name="default"></slot>
           </div>
-          <div class="pointer-events-none absolute inset-0"></div>
         </div>
+        <div class="pointer-events-none absolute inset-0 rounded-xl border border-black/5 dark:border-white/5"></div>
       </div>
     </div>
     <div
