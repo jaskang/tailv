@@ -33,6 +33,7 @@
     "@tw-classed/core": "^1.5.1",
     "@vueuse/components": "^10.2.0",
     "@vueuse/core": "^10.2.0",
+    "body-scroll-lock": "4.0.0-beta.0",
     "kotl": "^1.2.1",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",

@@ -44,8 +44,8 @@ export const Select = defineComponent({
   name: 'TSelect',
   props,
   emits: {
-    'update:value': (val: string | number) => true,
-    change: (val: string | number) => true,
+    'update:value': (_val: string | number | OptionValue[]) => true,
+    change: (_val: string | number | OptionValue[]) => true,
   },
   slots: Object as SlotsType<{
     default: () => VNode
@@ -78,7 +78,7 @@ export const Select = defineComponent({
               {...attrs}
               type="button"
               style={cssVars.value}
-              class="relative h-[calc(theme(spacing.9)_+_2px)] w-full cursor-pointer rounded-md border border-gray-300 bg-white px-3 text-left text-sm text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-[--t-select-ring-color] disabled:cursor-not-allowed"
+              class="relative h-[calc(theme(spacing.9)_+_2px)] w-full cursor-pointer rounded-md border border-gray-300 bg-white px-3 text-left text-sm text-gray-900 shadow-sm focus:border-[--t-select-ring-color] focus:outline-none focus:ring-1 focus:ring-[--t-select-ring-color] disabled:cursor-not-allowed"
             >
               <div class="truncate">{val.value}</div>
               <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

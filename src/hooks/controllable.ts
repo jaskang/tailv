@@ -10,7 +10,7 @@ export function useControllable<T>(
   const internalValue = ref(typeof propValue.value === 'undefined' ? defaultValue : propValue.value)
 
   return [
-    computed(() => (typeof propValue.value === 'undefined' ? internalValue.value : internalValue.value)),
+    computed(() => (typeof propValue.value === 'undefined' ? internalValue.value : propValue.value)),
     function (val: T) {
       if (typeof propValue.value === 'undefined') {
         internalValue.value = val as UnwrapRef<T>

@@ -141,10 +141,10 @@ export const Popper = defineComponent({
         <PopperTrigger>{slots.default?.()}</PopperTrigger>
         <Teleport to={container}>
           <Transition
-            enter-active-class="transition-opacity delay-0 duration-100 ease-out"
+            enter-active-class="transition-opacity ease-out"
             enter-from-class="opacity-0"
             enter-to-class="opacity-100"
-            leave-active-class="transition-opacity delay-0 duration-150 ease-in"
+            leave-active-class="transition-opacity ease-in"
             leave-from-class="opacity-100"
             leave-to-class="opacity-0"
           >

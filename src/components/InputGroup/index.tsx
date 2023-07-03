@@ -1,15 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-  ref,
-  type SlotsType,
-  type VNode,
-} from 'vue'
-
-import { useTheme } from '@/theme'
+import { defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type SlotsType, type VNode } from 'vue'
 
 const props = {}
 
@@ -24,14 +13,11 @@ export type InputGroupCssVars = {
 export const InputGroup = defineComponent({
   name: 'TInputGroup',
   props,
-  emits: {
-    click: (payload: MouseEvent) => true,
-  },
   slots: Object as SlotsType<{
     default: () => VNode
     icon: () => VNode
   }>,
-  setup(props, { slots, emit }) {
+  setup(props, { slots }) {
     return () => (
       <div class="t-input-group  flex items-center [&_>_*:first-child]:rounded-l-md [&_>_*:last-child]:rounded-r-md [&_>_*:not(:first-child)]:-ml-px [&_>_*]:rounded-none [:where(&)_>_*]:flex-1">
         {slots.default?.()}

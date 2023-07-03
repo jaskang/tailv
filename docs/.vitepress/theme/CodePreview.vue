@@ -16,6 +16,8 @@ const props = defineProps({
 const dark = ref(false)
 
 const showCode = ref(false)
+
+defineExpose({ dark, showCode })
 </script>
 <template>
   <div>
@@ -39,7 +41,7 @@ const showCode = ref(false)
             <template #on><MoonIcon class="text-gray-900" /></template>
             <template #off><SunIcon /></template>
           </TSwitch>
-          <TSwitch v-model:checked="showCode">
+          <TSwitch :checked="showCode" @update:checked="v => (showCode = v)">
             <template #on><CodeBracketIcon /></template>
             <template #off><CodeBracketIcon /></template>
           </TSwitch>

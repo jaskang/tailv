@@ -3,9 +3,8 @@ import {
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
-  type PropType,
-  ref,
   type SlotsType,
+  toRef,
   type VNode,
 } from 'vue'
 
@@ -42,10 +41,8 @@ export const Switch = defineComponent({
     const { colors } = useTheme()
 
     const [checked, setChecked] = useControllable(
-      () => props.checked,
+      toRef(props, 'checked'),
       val => {
-        console.log(val)
-
         emit('update:checked', val)
         emit('change', val)
       },
@@ -56,7 +53,12 @@ export const Switch = defineComponent({
       '--t-switch-accent-color': colors.value.primary[500],
       '--t-switch-ring-color': colors.value.primary[500],
     }))
+    const changeHandler = () => {
+      if (props.disabled) return
+      console.log('changeHandler')
 
+      setChecked(!checked.value)
+    }
     return () => (
       <button
         type="button"
@@ -68,7 +70,7 @@ export const Switch = defineComponent({
         ]}
         disabled={props.disabled}
         role="switch"
-        onClick={() => setChecked(!checked.value)}
+        onClick={changeHandler}
       >
         <span
           class={[

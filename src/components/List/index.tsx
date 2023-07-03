@@ -1,23 +1,16 @@
-import { classed } from '@tw-classed/core'
 import {
-  cloneVNode,
   computed,
   defineComponent,
-  type EmitsOptions,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
-  ref,
   type SlotsType,
-  toRef,
   type VNode,
 } from 'vue'
 
 import { useControllable } from '@/hooks/controllable'
 import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
-
-import { SelectorIcon } from '../Icon'
 
 const props = {
   value: [String, Number, Array] as PropType<OptionValue | Array<OptionValue>>,
@@ -97,14 +90,14 @@ export const List = defineComponent({
               class={[
                 'relative flex cursor-default select-none px-3 py-2 transition-colors ease-in-out',
                 isActived(item)
-                  ? 'bg-[--t-list-accent-color] font-semibold text-white'
+                  ? 'cursor-pointer bg-[--t-list-accent-color] font-semibold text-white'
                   : item.disabled
                   ? 'font-normal text-gray-400'
-                  : 'font-normal text-gray-700 hover:bg-gray-100',
+                  : 'cursor-pointer font-normal text-gray-700 hover:bg-gray-100',
               ]}
               onClick={() => itemClickHandler(item)}
             >
-              <span class="block truncate font-normal"> {item.label} </span>
+              <span class="block truncate"> {item.label} </span>
             </li>
           ))
         ) : (
