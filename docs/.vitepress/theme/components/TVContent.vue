@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid'
 import { onContentUpdated, useData } from 'vitepress'
-import { useEditLink } from 'vitepress/dist/client/theme-default/composables/edit-link'
-import { getHeaders, resolveTitle, useActiveAnchor } from 'vitepress/dist/client/theme-default/composables/outline'
-import { usePrevNext } from 'vitepress/dist/client/theme-default/composables/prev-next'
-import { normalizeLink } from 'vitepress/dist/client/theme-default/support/utils'
 import { computed, ref, shallowRef } from 'vue'
 
+import { useEditLink } from '../core/edit-link'
+import { usePrevNext } from '../core/prev-next'
+import { normalizeLink } from '../core/shared'
+import { getHeaders, resolveTitle } from '../core/toc'
 import { type MenuItem } from '../types'
 import TVDocAside from './TVDocAside.vue'
 

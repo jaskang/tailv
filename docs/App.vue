@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { TButton, TCheckbox, TRadio } from '../src/index'
-</script>
-
 <template>
   <h2>颜色</h2>
   <div class="space-x-1">

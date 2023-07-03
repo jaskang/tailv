@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
 import { useData } from 'vitepress'
-import { isActive } from 'vitepress/dist/client/shared'
-import { useSidebar } from 'vitepress/dist/client/theme-default/composables/sidebar'
 import { ref, watchPostEffect } from 'vue'
+
+import { isActive, useSidebar } from '../core/sidebar'
 
 const { page } = useData()
 

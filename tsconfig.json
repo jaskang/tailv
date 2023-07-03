@@ -1,6 +1,6 @@
 {
   "extends": "@jaskang/config/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "docs/**/*", "docs/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "docs/.vitepress/**/*"],
   "compilerOptions": {
     "outDir": "dist_types",
     "composite": true,
