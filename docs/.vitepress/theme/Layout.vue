@@ -5,6 +5,7 @@ import { provide, ref, watch } from 'vue'
 
 import TVContent from './components/TVContent.vue'
 import TVSidebar from './components/TVSidebar.vue'
+import { useDark } from '@vueuse/core'
 
 const { page, site } = useData()
 
@@ -13,10 +14,10 @@ const route = useRoute()
 watch(() => route.path, closeSidebar)
 
 useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
-
 provide('close-sidebar', closeSidebar)
 provide('is-sidebar-open', isSidebarOpen)
 
+const isDark = useDark()
 const { frontmatter } = useData()
 </script>
 
@@ -38,12 +39,18 @@ const { frontmatter } = useData()
                   <a class="hover:text-primary-500 dark:hover:text-primary-400" href="/docs/installation">Docs</a>
                 </li>
                 <li>
-                  <a href="https://tailwindui.com/?ref=top" class="hover:text-primary-500 dark:hover:text-primary-400">
+                  <a href="/components/button" class="hover:text-primary-500 dark:hover:text-primary-400">
                     Components
                   </a>
                 </li>
                 <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="/blog">Blog</a></li>
                 <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="/showcase">Showcase</a></li>
+                <li>
+                  <TSwitch v-model:checked="isDark">
+                    <template #on><MoonIcon class="text-gray-900" /></template>
+                    <template #off><SunIcon /></template>
+                  </TSwitch>
+                </li>
               </ul>
             </nav>
           </div>
