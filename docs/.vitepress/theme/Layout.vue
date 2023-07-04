@@ -36,15 +36,11 @@ const { frontmatter } = useData()
             <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200" translate="no">
               <ul class="flex space-x-8">
                 <li>
-                  <a class="hover:text-primary-500 dark:hover:text-primary-400" href="/docs/installation">Docs</a>
-                </li>
-                <li>
                   <a href="/components/button" class="hover:text-primary-500 dark:hover:text-primary-400">
                     Components
                   </a>
                 </li>
-                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="/blog">Blog</a></li>
-                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" href="/showcase">Showcase</a></li>
+                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" target="_blank" href="https://github.com/JasKang/tailv">Github</a></li>
                 <li>
                   <TSwitch v-model:checked="isDark">
                     <template #on><MoonIcon class="text-gray-900" /></template>

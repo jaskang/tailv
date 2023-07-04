@@ -1,5 +1,6 @@
 import { isIOS, noop } from '@vueuse/core'
-import { type Ref, onMounted, onUnmounted, toValue } from 'vue'
+import { isBrowser } from 'kotl'
+import { onMounted, onUnmounted, type Ref, toValue } from 'vue'
 
 type MouseHandler = (e: MouseEvent) => void
 type ElementRef = Ref<HTMLElement | undefined>
@@ -13,7 +14,7 @@ let listened = false
 let _iOSWorkaround = false
 
 const useClickOutsideEvent = () => {
-  if (!window) return
+  if (!isBrowser()) return
 
   // Fixes: https://github.com/vueuse/vueuse/issues/1520
   // How it works: https://stackoverflow.com/a/39712411
@@ -54,7 +55,7 @@ const useClickOutsideEvent = () => {
 }
 
 export function useClickOutside(ignores: Array<ElementRef>, handler: MouseHandler) {
-  if (!window) return
+  if (!isBrowser) return
 
   useClickOutsideEvent()
 

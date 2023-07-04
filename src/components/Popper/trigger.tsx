@@ -4,6 +4,8 @@ import {
   cloneVNode,
   defineComponent,
   Fragment,
+  Comment,
+  Text,
   h,
   inject,
   type InjectionKey,
