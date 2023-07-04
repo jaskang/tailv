@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: Elenext
+  name: tailv
   text: 现代化组件库
   tagline: 基于 tailwind 的现代化组件库
   actions:
@@ -13,3 +13,5 @@ hero:
       text: View on GitHub
       link: https://github.com/JasKang/elenext
 ---
+
+# index

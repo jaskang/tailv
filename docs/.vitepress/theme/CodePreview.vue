@@ -25,10 +25,10 @@ defineExpose({ dark, showCode })
       :class="{
         dark: dark,
       }"
-      class="relative mt-4 overflow-hidden rounded-xl"
+      class="relative mt-4 overflow-hidden rounded-xl border dark:border-slate-500/50"
     >
-      <div class="not-prose bg-slate-50 transition-colors dark:bg-slate-800/25">
-        <div class="flex justify-end gap-2 border-b bg-slate-100 p-2 dark:border-gray-950 dark:bg-slate-700">
+      <div class="not-prose bg-slate-50 transition-colors dark:bg-slate-800">
+        <div class="flex justify-end gap-2 border-b bg-slate-100 p-2 dark:border-slate-500/50 dark:bg-slate-700/50">
           <TSwitch v-model:checked="dark">
             <template #on><MoonIcon class="text-gray-900" /></template>
             <template #off><SunIcon /></template>
@@ -47,13 +47,9 @@ defineExpose({ dark, showCode })
             <slot name="default"></slot>
           </div>
         </div>
-        <div class="pointer-events-none absolute inset-0 rounded-xl border border-black/5 dark:border-white/5"></div>
       </div>
     </div>
-    <div
-      v-if="showCode"
-      class="relative mt-4 overflow-hidden rounded-xl bg-slate-900 p-4 [&>div>button]:hidden [&>div>span]:hidden"
-    >
+    <div v-if="showCode" class="relative overflow-hidden [&>div>button]:hidden [&>div>span]:hidden">
       <slot name="code"></slot>
     </div>
   </div>

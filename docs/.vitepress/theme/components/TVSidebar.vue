@@ -21,7 +21,7 @@ function isActiveLink(link: string) {
 </script>
 
 <template>
-  <aside v-if="hasSidebar" :class="{ open }" class="mt-5 flex-1 space-y-1 bg-white px-2" @click.stop>
+  <aside v-if="hasSidebar" :class="{ open }" class="mt-5 flex-1 space-y-1 px-2" @click.stop>
     <nav class="relative lg:text-sm lg:leading-6" id="VPSidebarNav" tabindex="-1">
       <ul>
         <li v-for="group in sidebarGroups" :key="group.text" class="mt-12 lg:mt-8">
