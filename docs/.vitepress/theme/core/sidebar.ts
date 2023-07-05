@@ -76,7 +76,7 @@ export function ensureStartingSlash(path) {
   return /^\//.test(path) ? path : `/${path}`
 }
 
-export function getSidebar(sidebar, path) {
+export function getSidebar(sidebar, path: string) {
   if (Array.isArray(sidebar)) {
     return sidebar
   }

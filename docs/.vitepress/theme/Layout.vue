@@ -1,29 +1,25 @@
 <script setup lang="ts">
+import { ChevronRightIcon } from '@heroicons/vue/24/solid'
+import { useDark } from '@vueuse/core'
 import { useData, useRoute } from 'vitepress'
-import { useCloseSidebarOnEscape, useSidebar } from 'vitepress/dist/client/theme-default/composables/sidebar'
 import { provide, ref, watch } from 'vue'
 
 import TVContent from './components/TVContent.vue'
 import TVSidebar from './components/TVSidebar.vue'
-import { useDark } from '@vueuse/core'
+import { useSidebar } from './core/sidebar'
 
 const { page, site } = useData()
 
-const { isOpen: isSidebarOpen, open: openSidebar, close: closeSidebar } = useSidebar()
+const { isOpen: isSidebarOpen, close: closeSidebar } = useSidebar()
 const route = useRoute()
 watch(() => route.path, closeSidebar)
 
-useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
-provide('close-sidebar', closeSidebar)
-provide('is-sidebar-open', isSidebarOpen)
-
 const isDark = useDark()
-const { frontmatter } = useData()
 </script>
 
 <template>
   <div
-    class="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
+    class="sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 supports-backdrop-blur:bg-white/60 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
   >
     <div class="mx-auto max-w-8xl">
       <div class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
@@ -40,7 +36,14 @@ const { frontmatter } = useData()
                     Components
                   </a>
                 </li>
-                <li><a class="hover:text-primary-500 dark:hover:text-primary-400" target="_blank" href="https://github.com/JasKang/tailv">Github</a></li>
+                <li>
+                  <a
+                    class="hover:text-primary-500 dark:hover:text-primary-400"
+                    target="_blank"
+                    href="https://github.com/JasKang/tailv"
+                    >Github</a
+                  >
+                </li>
                 <li>
                   <TSwitch v-model:checked="isDark">
                     <template #on><MoonIcon class="text-gray-900" /></template>
@@ -117,11 +120,11 @@ const { frontmatter } = useData()
             ></path>
           </svg>
         </button>
+        <TBreadcrumb :items="[{ title: 'sdfs' }, { title: 'sdfs' }, { title: 'asdfasdf' }]"></TBreadcrumb>
         <ol class="ml-4 flex min-w-0 whitespace-nowrap text-sm leading-6">
           <li class="flex items-center">
-            Getting Started<svg width="3" height="6" aria-hidden="true" class="mx-3 overflow-visible text-slate-400">
-              <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            </svg>
+            Getting Started
+            <ChevronRightIcon class="h-3 w-3 text-slate-400" />
           </li>
           <li class="truncate font-semibold text-slate-900 dark:text-slate-200">Installation</li>
         </ol>

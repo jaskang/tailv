@@ -1,5 +1,6 @@
 import type { Plugin } from 'vue'
 
+import { Breadcrumb } from './components/Breadcrumb'
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
 import { ConfigProvider, useConfig } from './components/ConfigProvider'
@@ -15,6 +16,7 @@ import { Switch } from './components/Switch'
 import { Tooltip } from './components/Tooltip'
 
 export {
+  Breadcrumb,
   Button,
   Checkbox,
   ConfigProvider,
@@ -50,6 +52,7 @@ export const Tailv: Plugin = {
     app.component('TPopover', Popover)
     app.component('TPopper', Popper)
     app.component('TTooltip', Tooltip)
+    app.component('TBreadcrumb', Breadcrumb)
   },
 }
 
