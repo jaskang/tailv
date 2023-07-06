@@ -3,6 +3,7 @@ import {
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
+  type ObjectEmitsOptions,
   type PropType,
   type SlotsType,
   type VNode,
@@ -56,8 +57,8 @@ export type ButtonCssVars = {
 export const Button = defineComponent({
   name: 'TButton',
   props,
-  emits: {
-    click: (payload: MouseEvent) => true,
+  emits: {} as {
+    click(payload: MouseEvent): void
   },
   slots: Object as SlotsType<{
     default: () => VNode

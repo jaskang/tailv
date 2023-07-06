@@ -2,15 +2,15 @@ import { useEventListener } from '@vueuse/core'
 import { isObject } from 'kotl'
 import {
   cloneVNode,
+  Comment,
   defineComponent,
   Fragment,
-  Comment,
-  Text,
   h,
   inject,
   type InjectionKey,
   type MaybeRef,
   type Ref,
+  Text,
   toValue,
   type VNode,
   withDirectives,
