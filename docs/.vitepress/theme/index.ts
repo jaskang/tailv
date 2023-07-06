@@ -21,7 +21,7 @@ import { type Theme } from 'vitepress'
 
 import { Tailv } from '../../../src'
 import CodePreview from './CodePreview.vue'
-import Layout from './Layout.vue'
+import Layout from './Layout'
 
 export default {
   Layout,

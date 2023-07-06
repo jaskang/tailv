@@ -44,7 +44,7 @@ export const Breadcrumb = defineComponent({
         <ol class="flex min-w-0 whitespace-nowrap px-2 text-sm">
           {parentPaths.value.map(item => (
             <li class="flex items-center">
-              <a class="text-gray-400 hover:text-gray-500" href={item.path}>
+              <a class={['text-gray-400 hover:text-gray-500', item.path ? 'cursor-pointer' : '']} href={item.path}>
                 {typeof item.title === 'function' ? item.title() : item.title}
               </a>
               <ChevronRightIcon class="mx-1 h-3 w-3 flex-shrink-0 text-gray-400" aria-hidden="true" />

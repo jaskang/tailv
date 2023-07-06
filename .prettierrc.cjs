@@ -24,5 +24,4 @@ module.exports = {
   proseWrap: 'preserve',
   htmlWhitespaceSensitivity: 'css',
   vueIndentScriptAndStyle: false,
-  plugins: [require('prettier-plugin-tailwindcss')],
 }

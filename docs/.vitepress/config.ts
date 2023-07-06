@@ -33,6 +33,10 @@ export default defineConfig({
         text: '基础组件',
       },
       {
+        items: [{ link: '/components/breadcrumb', text: 'Breadcrumb 面包屑' }],
+        text: '导航',
+      },
+      {
         items: [{ link: '/components/flex', text: 'flex' }],
         text: '布局',
       },
