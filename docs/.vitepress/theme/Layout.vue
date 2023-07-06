@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRightIcon } from '@heroicons/vue/24/solid'
+import { ChevronRightIcon, EllipsisVerticalIcon, ListBulletIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { useDark } from '@vueuse/core'
 import { useData, useRoute } from 'vitepress'
 import { provide, ref, watch } from 'vue'
@@ -53,81 +53,44 @@ const isDark = useDark()
               </ul>
             </nav>
           </div>
-          <button
+          <!-- <button
             type="button"
             class="-my-1 ml-auto flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 lg:hidden"
           >
-            <span class="sr-only">Search</span
-            ><svg
-              width="24"
-              height="24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m19 19-3.5-3.5"></path>
-              <circle cx="11" cy="11" r="6"></circle>
-            </svg>
-          </button>
+            <MagnifyingGlassIcon class="h-6 w-6" />
+          </button> -->
+          <TButton class="-my-1 ml-auto lg:hidden" square variant="link">
+            <template #icon>
+              <MagnifyingGlassIcon class="scale-150" />
+            </template>
+          </TButton>
           <div class="-my-1 ml-2 lg:hidden">
-            <button
-              type="button"
-              class="flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
-            >
-              <span class="sr-only">Navigation</span
-              ><svg width="24" height="24" fill="none" aria-hidden="true">
-                <path
-                  d="M12 6v.01M12 12v.01M12 18v.01M12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </button>
-            <div
-              style="
-                position: fixed;
-                top: 1px;
-                left: 1px;
-                width: 1px;
-                height: 0;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border-width: 0;
-                display: none;
-              "
-            ></div>
+            <TButton square variant="link">
+              <template #icon>
+                <EllipsisVerticalIcon class="scale-150" />
+              </template>
+            </TButton>
           </div>
         </div>
       </div>
-      <div class="flex items-center border-b border-slate-900/10 p-4 dark:border-slate-50/[0.06] lg:hidden">
+      <div class="flex items-center border-b border-slate-900/10 px-4 dark:border-slate-50/[0.06] lg:hidden">
+        <TButton square variant="link">
+          <template #icon>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24">
+              <path
+                d="M5 6h14M5 12h14M5 18h14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </template>
+        </TButton>
         <button type="button" class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
-          <span class="sr-only">Navigation</span
-          ><svg width="24" height="24">
-            <path
-              d="M5 6h14M5 12h14M5 18h14"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            ></path>
-          </svg>
+          <span class="sr-only">Navigation</span>
         </button>
         <TBreadcrumb :items="[{ title: 'sdfs' }, { title: 'sdfs' }, { title: 'asdfasdf' }]"></TBreadcrumb>
-        <ol class="ml-4 flex min-w-0 whitespace-nowrap text-sm leading-6">
-          <li class="flex items-center">
-            Getting Started
-            <ChevronRightIcon class="h-3 w-3 text-slate-400" />
-          </li>
-          <li class="truncate font-semibold text-slate-900 dark:text-slate-200">Installation</li>
-        </ol>
       </div>
     </div>
   </div>
