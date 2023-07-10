@@ -18,6 +18,9 @@ module.exports = {
     extend: {
       colors: {
         primary: colors.indigo,
+        success: colors.green,
+        warning: colors.amber,
+        error: colors.red,
         code: {
           highlight: 'rgb(125 211 252 / 0.1)',
         },
