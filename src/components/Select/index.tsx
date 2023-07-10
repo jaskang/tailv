@@ -17,7 +17,7 @@ import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
 
 import { SelectorIcon } from '../Icon'
-import { List } from '../List'
+import { ItemList } from '../List/ItemList'
 import { Popper } from '../Popper'
 
 const props = {
@@ -87,7 +87,12 @@ export const Select = defineComponent({
             </button>
           ),
           content: () => (
-            <List value={val.value} onUpdate:value={setVal} onChange={changeHandler} options={props.options}></List>
+            <ItemList
+              value={val.value}
+              onUpdate:value={setVal}
+              onChange={changeHandler}
+              items={props.options}
+            ></ItemList>
           ),
         }}
       </Popper>

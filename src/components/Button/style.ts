@@ -51,7 +51,7 @@ const createBtnCls = classed('t-button', {
       true: '!px-0 w-[--t-btn-h]',
     },
     variant: {
-      default: `shadow-sm border`,
+      default: `shadow-sm border py-1`,
       filled: `shadow-sm border`,
       light: `shadow-sm border`,
       link: `border decoration-2 underline-offset-2`,
@@ -121,12 +121,12 @@ const getBtnCssVars = (variant: ButtonVariants['variant'], color: ColorKey, prim
 export function useStyle(variant: MaybeRefOrGetter<ButtonProps>) {
   const { colors, getColorKey } = useTheme()
   const variantRef = computed(() => {
-    const orginVariant = { ...toValue(variant) }
+    const originVariant = { ...toValue(variant) }
     const _variant: ButtonVariants = {
-      ...orginVariant,
-      color: orginVariant.color || 'gray',
-      ring: orginVariant.variant === 'link' ? false : orginVariant.ring,
-      variant: orginVariant.variant || (orginVariant.color ? 'filled' : 'default'),
+      ...originVariant,
+      color: originVariant.color || 'gray',
+      ring: originVariant.variant === 'link' ? false : originVariant.ring,
+      variant: originVariant.variant || (originVariant.color ? 'filled' : 'default'),
     }
     return _variant
   })

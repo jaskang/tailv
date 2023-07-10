@@ -1,17 +1,19 @@
 import {
+  computed,
+  defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
-  type SlotsType,
-  type VNode,
-  computed,
-  defineComponent,
   provide,
   reactive,
   ref,
   renderSlot,
+  type SlotsType,
+  type VNode,
 } from 'vue'
+
 import { type Theme } from '@/theme'
+
 import { type Config, configProviderKey, useConfig } from './useConfig'
 
 export { useConfig }

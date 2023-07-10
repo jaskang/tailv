@@ -14,7 +14,7 @@ import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option
 
 const props = {
   value: [String, Number, Array] as PropType<OptionValue | Array<OptionValue>>,
-  options: {
+  items: {
     type: Array as PropType<OptionItem[]>,
     default: () => [],
   },
@@ -22,21 +22,20 @@ const props = {
   multiple: Boolean,
 }
 
-export type ListProps = ExtractPropTypes<typeof props>
+export type ItemListProps = ExtractPropTypes<typeof props>
 
-export type ListPublicProps = ExtractPublicPropTypes<typeof props>
+export type ItemListPublicProps = ExtractPublicPropTypes<typeof props>
 
-export type ListCssVars = {
-  '--t-list-accent-color': string
-  '--t-list-ring-color': string
+export type ItemListCssVars = {
+  '--t-itemList-accent-color': string
 }
 
-export const List = defineComponent({
-  name: 'TList',
+export const ItemList = defineComponent({
+  name: 'TItemList',
   props,
   emits: {
-    'update:value': (val: Required<ListProps>['value']) => true,
-    change: (val: Required<ListProps>['value']) => true,
+    'update:value': (val: Required<ItemListProps>['value']) => true,
+    change: (val: Required<ItemListProps>['value']) => true,
   },
   slots: Object as SlotsType<{
     item: (props: { item: OptionItem; selected: boolean }) => VNode[]
@@ -53,9 +52,8 @@ export const List = defineComponent({
       props.multiple ? [] : undefined
     )
 
-    const cssVars = computed<ListCssVars>(() => ({
-      '--t-list-accent-color': colors.value.primary[500],
-      '--t-list-ring-color': colors.value.primary[500],
+    const cssVars = computed<ItemListCssVars>(() => ({
+      '--t-itemList-accent-color': colors.value.primary[500],
     }))
 
     const itemClickHandler = (item: OptionItem) => {
@@ -84,8 +82,8 @@ export const List = defineComponent({
         class="w-full overflow-auto rounded-md bg-white py-1 text-sm shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none "
         tabindex="-1"
       >
-        {props.options.length > 0 ? (
-          props.options.map(item =>
+        {props.items.length > 0 ? (
+          props.items.map(item =>
             slots.item ? (
               slots.item({ item, selected: isSelected(item) })
             ) : (
@@ -95,8 +93,8 @@ export const List = defineComponent({
                   item.disabled
                     ? 'font-normal text-gray-400'
                     : isSelected(item)
-                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--t-list-accent-color]'
-                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--t-list-accent-color]',
+                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--t-itemList-accent-color]'
+                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--t-itemList-accent-color]',
                 ]}
                 onClick={() => itemClickHandler(item)}
               >
