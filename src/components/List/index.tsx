@@ -39,7 +39,7 @@ export const List = defineComponent({
     change: (val: Required<ListProps>['value']) => true,
   },
   slots: Object as SlotsType<{
-    default: () => VNode
+    item: (props: { item: OptionItem; selected: boolean }) => VNode[]
   }>,
   setup(props, { slots, emit, attrs }) {
     const { colors } = useTheme()
@@ -72,7 +72,7 @@ export const List = defineComponent({
         setVal(item.value)
       }
     }
-    const isActived = (item: OptionItem) => {
+    const isSelected = (item: OptionItem) => {
       if (props.multiple) {
         return (val.value as any[]).includes(item.value)
       }
@@ -85,22 +85,36 @@ export const List = defineComponent({
         tabindex="-1"
       >
         {props.options.length > 0 ? (
-          props.options.map(item => (
-            <li
-              class={[
-                'relative flex cursor-default select-none px-3 py-2 transition-colors ease-in-out',
-                isActived(item)
-                  ? 'cursor-pointer bg-[--t-list-accent-color] font-semibold text-white'
-                  : item.disabled
-                  ? 'font-normal text-gray-400'
-                  : 'cursor-pointer font-normal text-gray-700 hover:bg-gray-100',
-              ]}
-              onClick={() => itemClickHandler(item)}
-            >
-              <span class="block truncate"> {item.label} </span>
-            </li>
-          ))
+          props.options.map(item =>
+            slots.item ? (
+              slots.item({ item, selected: isSelected(item) })
+            ) : (
+              <li
+                class={[
+                  'relative flex cursor-default select-none px-3 py-2 transition-colors ease-in-out',
+                  item.disabled
+                    ? 'font-normal text-gray-400'
+                    : isSelected(item)
+                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--t-list-accent-color]'
+                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--t-list-accent-color]',
+                ]}
+                onClick={() => itemClickHandler(item)}
+              >
+                <span class="flex-1 block truncate">{item.label} </span>
+                {isSelected(item) && (
+                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                )}
+              </li>
+            )
+          )
         ) : (
+          // TODO: no data
           <li>没有数据</li>
         )}
       </ul>
