@@ -10,26 +10,23 @@ import {
 } from 'vue'
 
 import { type Color, useTheme } from '@/theme'
+import type { ColorAlias } from '@/theme/colors'
 
 import { LoadingIcon } from '../Icon'
-import { useStyle } from './style'
+import { buttonVariants } from './style'
 
 const props = {
   variant: {
-    type: String as PropType<'filled' | 'light' | 'outline' | 'link'>,
-    default: 'filled',
+    type: String as PropType<'outlined' | 'solid' | 'soft' | 'plain' | 'link'>,
+    default: 'outlined',
+  },
+  color: {
+    type: String as PropType<ColorAlias | 'default'>,
+    default: 'default',
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
     default: 'md',
-  },
-  color: {
-    type: String as PropType<Color>,
-    default: 'gray',
-  },
-  ring: {
-    type: Boolean,
-    default: false,
   },
   rounded: Boolean,
   square: Boolean,
@@ -43,19 +40,6 @@ export type ButtonProps = ExtractPropTypes<typeof props>
 
 export type ButtonPublicProps = ExtractPublicPropTypes<typeof props>
 
-export type ButtonCssVars = {
-  '--t-btn-text-color': string
-  '--t-btn-border-color': string
-  '--t-btn-bg': string
-
-  '--t-btn-text-color-hover': string
-  '--t-btn-border-color-hover': string
-  '--t-btn-bg-hover': string
-
-  '--t-btn-bg-active': string
-  '--t-btn-ring-color': string
-}
-
 export const Button = defineComponent({
   name: 'TButton',
   props,
@@ -67,12 +51,8 @@ export const Button = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit, attrs }) {
-    const { cssVars, cls } = useStyle(() => {
-      return {
-        ...props,
-        rounded: props.rounded || props.circle,
-        square: props.square || props.circle,
-      }
+    const cls = computed(() => {
+      return buttonVariants(props)
     })
 
     const hasIcon = computed(() => !!slots.icon || props.loading)
@@ -82,14 +62,7 @@ export const Button = defineComponent({
       }
     }
     return () => (
-      <button
-        {...attrs}
-        style={cssVars.value}
-        class={cls.value}
-        type="button"
-        disabled={props.disabled}
-        onClick={onClick}
-      >
+      <button class={cls.value} type="button" disabled={props.disabled} onClick={onClick}>
         {hasIcon.value && (
           <i class="t-btn-icon h-[1em] w-[1em] scale-125 [&+*]:ml-[0.5em] [&>svg]:!h-full [&>svg]:!w-full">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}

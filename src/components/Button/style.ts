@@ -1,40 +1,24 @@
 import { tv } from 'tailwind-variants'
-import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
-import { COLORS } from '@/theme'
-import { type ColorKey, useTheme } from '@/theme'
-import { type CssVars } from '@/utils/style'
-
-import type { ButtonCssVars, ButtonProps } from '.'
-
-type ButtonVariants = Omit<ButtonProps, 'variant'> & {
-  variant: 'filled' | 'light' | 'link' | 'outline'
-}
-
-const cssVarKeys = [
-  'bg',
-  'bg-hover',
-  'border-color',
-  'border-color-hover',
-  'text-color',
-  'text-color-hover',
-  'ring-color',
-] as const
-
-type BtnCssVars = CssVars<'t-btn', typeof cssVarKeys>
-
-const createBtnCls = tv({
-  base: `t-button inline-flex border text-center justify-center items-center font-medium
-  focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--t-btn-ring-color]
-  bg-[--t-btn-bg] 
-  text-[--t-btn-text-color] 
-  border-[--t-btn-border-color] 
-  hover:bg-[--t-btn-bg-hover] 
-  hover:text-[--t-btn-text-color-hover] 
-  hover:border-[--t-btn-border-color-hover] 
-  ring-[--t-btn-ring-color]
+export const buttonVariants = tv({
+  base: `t-button inline-flex border shadow-sm text-center justify-center items-center font-medium
+  focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 
   `,
   variants: {
+    variant: {
+      outlined: 'bg-white dark:bg-slate-900',
+      solid: 'text-white border-transparent',
+      soft: `border-transparent`,
+      plain: `-shadow-sm border-transparent`,
+      link: '-shadow-sm bg-transparent border-transparent underline decoration-2 underline-offset-2',
+    },
+    color: {
+      default: 'focus-visible:outline-primary-500',
+      primary: 'focus-visible:outline-primary-500',
+      success: 'focus-visible:outline-success-500',
+      warning: 'focus-visible:outline-warning-500',
+      error: 'focus-visible:outline-error-500',
+    },
     size: {
       xs: '[--t-btn-h:calc(1.75rem+2px)] h-[--t-btn-h] text-xs/3 px-2',
       sm: '[--t-btn-h:calc(2rem+2px)] h-[--t-btn-h] text-xs/4 px-3',
@@ -45,104 +29,153 @@ const createBtnCls = tv({
     block: {
       true: 'w-full',
     },
-    ring: {
-      // false: 'focus-visible:ring-2 focus-visible:ring-offset-2 dark:ring-offset-slate-900',
-      // true: 'focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900',
-    },
     rounded: {
       false: 'rounded-md',
       true: 'rounded-full',
     },
-
     square: {
       true: 'px-0 w-[--t-btn-h]',
     },
-    variant: {
-      filled: `shadow-sm`,
-      light: `shadow-sm`,
-      link: 'decoration-2 underline-offset-2',
-      outline: 'shadow-sm',
-    },
     disabled: {
-      false: `cursor-pointer`,
-      true: 'cursor-not-allowed hover:bg-[--t-btn-bg] hover:text-[--t-btn-text-color] hover:border-[--t-btn-border-color] opacity-50',
+      false: 'cursor-pointer',
+      true: ' opacity-50 pointer-events-none',
     },
   },
   compoundVariants: [
+    // outlined
     {
-      class: 'hover:underline',
-      disabled: false,
+      variant: 'outlined',
+      color: 'default',
+      class: `text-gray-700 border-gray-300 hover:bg-gray-50  
+        dark:text-gray-300 dark:hover:bg-slate-700 dark:hover:text-white dark:border-gray-700 dark:border-gray-600 `,
+    },
+    {
+      variant: 'outlined',
+      color: 'primary',
+      class: `text-primary-500 border-primary-400 hover:bg-primary-100
+      dark:text-primary-300 dark:hover:bg-primary-700 dark:hover:text-primary-200 dark:border-primary-600 dark:hover:border-primary-500`,
+    },
+    {
+      variant: 'outlined',
+      color: 'success',
+      class: `text-success-500 border-success-400 hover:bg-success-100   
+        dark:text-success-300 dark:hover:bg-success-700 dark:hover:text-success-200 dark:border-success-600 dark:hover:border-success-500`,
+    },
+    {
+      variant: 'outlined',
+      color: 'warning',
+      class: `text-warning-500 border-warning-400 hover:bg-warning-100   
+        dark:text-warning-300 dark:hover:bg-warning-700 dark:hover:text-warning-200 dark:border-warning-600 dark:hover:border-warning-500`,
+    },
+    {
+      variant: 'outlined',
+      color: 'error',
+      class: `text-error-500 border-error-400 hover:bg-error-100   
+        dark:text-error-300 dark:hover:bg-error-700 dark:hover:text-error-200 dark:border-error-600 dark:hover:border-error-500`,
+    },
+    // solid
+    {
+      variant: 'solid',
+      color: 'default',
+      class: 'bg-gray-900 hover:bg-gray-700 dark:text-gray-700 dark:bg-gray-100 dark:hover:bg-white',
+    },
+    {
+      variant: 'solid',
+      color: 'primary',
+      class: 'bg-primary-500 hover:bg-primary-600 dark:hover:bg-primary-400',
+    },
+    {
+      variant: 'solid',
+      color: 'success',
+      class: 'bg-success-500 hover:bg-success-600 dark:hover:bg-success-400',
+    },
+    {
+      variant: 'solid',
+      color: 'warning',
+      class: 'bg-warning-500 hover:bg-warning-600 dark:hover:bg-warning-400',
+    },
+    {
+      variant: 'solid',
+      color: 'error',
+      class: 'bg-error-500 hover:bg-error-600 dark:hover:bg-error-400',
+    },
+    // soft
+    {
+      variant: 'soft',
+      color: 'default',
+      class: 'text-gray-700 bg-gray-100 hover:bg-gray-200',
+    },
+    {
+      variant: 'soft',
+      color: 'primary',
+      class: 'text-primary-600 bg-primary-100 hover:bg-primary-200',
+    },
+    {
+      variant: 'soft',
+      color: 'success',
+      class: 'text-success-600 bg-success-100 hover:bg-success-200',
+    },
+    {
+      variant: 'soft',
+      color: 'warning',
+      class: 'text-warning-600 bg-warning-100 hover:bg-warning-200',
+    },
+    {
+      variant: 'soft',
+      color: 'error',
+      class: 'text-error-600 bg-error-100 hover:bg-error-200',
+    },
+    // plain
+    {
+      variant: 'plain',
+      color: 'default',
+      class: 'text-gray-700 hover:bg-gray-200 dark:text-gray-400 dark:text-gray-400 dark:hover:bg-gray-700',
+    },
+    {
+      variant: 'plain',
+      color: 'primary',
+      class: 'text-primary-500 hover:bg-primary-100 dark:hover:text-primary-400 dark:hover:bg-primary-100',
+    },
+    {
+      variant: 'plain',
+      color: 'success',
+      class: 'text-success-500 hover:bg-success-100 dark:hover:text-success-400 dark:hover:bg-success-100',
+    },
+    {
+      variant: 'plain',
+      color: 'warning',
+      class: 'text-warning-500 hover:bg-warning-100 dark:hover:text-warning-400 dark:hover:bg-warning-100',
+    },
+    {
+      variant: 'plain',
+      color: 'error',
+      class: 'text-error-500 hover:bg-error-100 dark:hover:text-error-400 dark:hover:bg-error-100',
+    },
+    // link
+    {
       variant: 'link',
+      color: 'default',
+      class: 'text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300',
+    },
+    {
+      variant: 'link',
+      color: 'primary',
+      class: 'text-primary-500 hover:text-primary-600 dark:hover:text-primary-400',
+    },
+    {
+      variant: 'link',
+      color: 'success',
+      class: 'text-success-500 hover:text-success-600 dark:hover:text-success-400',
+    },
+    {
+      variant: 'link',
+      color: 'warning',
+      class: 'text-warning-500 hover:text-warning-600 dark:hover:text-warning-400',
+    },
+    {
+      variant: 'link',
+      color: 'error',
+      class: 'text-error-500 hover:text-error-600 dark:hover:text-error-400',
     },
   ],
 })
-
-const createCssVars = (vars: Partial<ButtonCssVars> = {}) => {
-  const result: BtnCssVars = {
-    '--t-btn-bg': vars['--t-btn-bg'] || COLORS.white,
-    '--t-btn-bg-hover': vars['--t-btn-bg-hover'] || `var(--t-btn-bg,${COLORS.white})`,
-    '--t-btn-border-color': vars['--t-btn-border-color'] || COLORS.transparent,
-    '--t-btn-border-color-hover':
-      vars['--t-btn-border-color-hover'] || vars['--t-btn-border-color'] || COLORS.transparent,
-    '--t-btn-text-color': vars['--t-btn-text-color'] || COLORS.slate[700],
-    '--t-btn-text-color-hover': vars['--t-btn-text-color-hover'] || vars['--t-btn-text-color'] || COLORS.slate[700],
-    '--t-btn-ring-color': vars['--t-btn-ring-color'] || vars['--t-btn-bg'] || COLORS.indigo[500],
-  }
-  return result
-}
-
-const getBtnCssVars = (variant: ButtonVariants['variant'], color: ColorKey, primaryColor: ColorKey) => {
-  switch (variant) {
-    case 'filled':
-      return createCssVars({
-        '--t-btn-bg': COLORS[color][500],
-        '--t-btn-bg-hover': COLORS[color][600],
-        '--t-btn-border-color': COLORS.transparent,
-        '--t-btn-text-color': COLORS.white,
-        '--t-btn-ring-color': COLORS[color][500],
-      })
-    case 'light':
-      return createCssVars({
-        '--t-btn-bg': COLORS[color][100],
-        '--t-btn-bg-hover': COLORS[color][200],
-        '--t-btn-text-color': COLORS[color][600],
-        '--t-btn-ring-color': COLORS[color][500],
-      })
-    case 'outline':
-      return createCssVars({
-        '--t-btn-text-color': COLORS[color][600],
-        '--t-btn-bg': COLORS.white,
-        '--t-btn-bg-hover': COLORS[color][50],
-        '--t-btn-border-color': COLORS[color][300],
-        '--t-btn-border-color-hover': COLORS[color][300],
-        '--t-btn-ring-color': COLORS[color][500],
-      })
-    case 'link':
-      return createCssVars({
-        '--t-btn-bg': 'transparent',
-        '--t-btn-text-color': COLORS[color][500],
-        '--t-btn-text-color-hover': COLORS[color][600],
-        '--t-btn-ring-color': COLORS[primaryColor][500],
-      })
-  }
-}
-
-export function useStyle(variant: MaybeRefOrGetter<ButtonProps>) {
-  const { colors, getColorKey } = useTheme()
-  const variantRef = computed(() => {
-    const originVariant = { ...toValue(variant) }
-    const _variant: ButtonVariants = {
-      ...originVariant,
-      color: originVariant.color,
-      ring: originVariant.variant === 'link' ? false : originVariant.ring,
-      variant: originVariant.variant,
-    }
-    return _variant
-  })
-  return {
-    cls: computed(() => createBtnCls(variantRef.value)),
-    cssVars: computed(() => {
-      return getBtnCssVars(variantRef.value.variant, getColorKey(variantRef.value.color)!, getColorKey('primary')!)
-    }),
-  }
-}

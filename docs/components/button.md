@@ -25,24 +25,72 @@ asdfsa
 ```vue preview
 <template>
   <TButton>default</TButton>
-  <TButton variant="filled">filled</TButton>
-  <TButton variant="light">light</TButton>
-  <TButton variant="outline">outline</TButton>
+  <TButton variant="solid">solid</TButton>
+  <TButton variant="soft">soft</TButton>
+  <TButton variant="plain">plain</TButton>
   <TButton variant="link">link</TButton>
   <br /><br />
   <TButton color="primary">default</TButton>
-  <TButton color="primary" variant="filled">filled</TButton>
-  <TButton color="primary" variant="light">light</TButton>
-  <TButton color="primary" variant="outline">outline</TButton>
+  <TButton color="primary" variant="solid">solid</TButton>
+  <TButton color="primary" variant="soft">soft</TButton>
+  <TButton color="primary" variant="plain">plain</TButton>
   <TButton color="primary" variant="link">link</TButton>
 </template>
 ```
 
-## 链接
+## Outlined
 
 ```vue preview
 <template>
-  <TButton variant="link">链接按钮</TButton>
+  <TButton variant="outlined" color="default">default</TButton>
+  <TButton variant="outlined" color="primary">primary</TButton>
+  <TButton variant="outlined" color="success">success</TButton>
+  <TButton variant="outlined" color="warning">warning</TButton>
+  <TButton variant="outlined" color="error">error</TButton>
+</template>
+```
+
+## Solid
+
+```vue preview
+<template>
+  <TButton variant="solid" color="default">default</TButton>
+  <TButton variant="solid" color="primary">primary</TButton>
+  <TButton variant="solid" color="success">success</TButton>
+  <TButton variant="solid" color="warning">warning</TButton>
+  <TButton variant="solid" color="error">error</TButton>
+</template>
+```
+
+## Soft
+
+```vue preview
+<template>
+  <TButton variant="soft" color="default">default</TButton>
+  <TButton variant="soft" color="primary">primary</TButton>
+  <TButton variant="soft" color="success">success</TButton>
+  <TButton variant="soft" color="warning">warning</TButton>
+  <TButton variant="soft" color="error">error</TButton>
+</template>
+```
+
+## Plain
+
+```vue preview
+<template>
+  <TButton variant="plain" color="default">default</TButton>
+  <TButton variant="plain" color="primary">primary</TButton>
+  <TButton variant="plain" color="success">success</TButton>
+  <TButton variant="plain" color="warning">warning</TButton>
+  <TButton variant="plain" color="error">error</TButton>
+</template>
+```
+
+## Link
+
+```vue preview
+<template>
+  <TButton variant="link" color="default">default</TButton>
   <TButton variant="link" color="primary">primary</TButton>
   <TButton variant="link" color="success">success</TButton>
   <TButton variant="link" color="warning">warning</TButton>
