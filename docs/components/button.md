@@ -75,6 +75,7 @@ asdfsa
   <TButton color="error">error</TButton>
   <br /><br />
 
+  <TButton variant="outline" color="gray">gray</TButton>
   <TButton variant="outline" color="slate">slate</TButton>
   <TButton variant="outline" color="red">red</TButton>
   <TButton variant="outline" color="orange">orange</TButton>
@@ -94,6 +95,7 @@ asdfsa
   <TButton variant="outline" color="pink">pink</TButton>
   <TButton variant="outline" color="rose">rose</TButton>
   <br /><br />
+  <TButton color="gray">gray</TButton>
   <TButton color="slate">slate</TButton>
   <TButton color="red">red</TButton>
   <TButton color="orange">orange</TButton>
@@ -115,6 +117,7 @@ asdfsa
 
   <br /><br />
 
+  <TButton variant="light" color="gray">gray</TButton>
   <TButton variant="light" color="slate">slate</TButton>
   <TButton variant="light" color="red">red</TButton>
   <TButton variant="light" color="orange">orange</TButton>
@@ -135,6 +138,7 @@ asdfsa
   <TButton variant="light" color="rose">rose</TButton>
   <br /><br />
 
+  <TButton variant="link" color="gray">gray</TButton>
   <TButton variant="link" color="slate">slate</TButton>
   <TButton variant="link" color="red">red</TButton>
   <TButton variant="link" color="orange">orange</TButton>

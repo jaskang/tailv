@@ -1,45 +1,40 @@
-import { classed } from '@tw-classed/core'
+import { tv } from 'tailwind-variants'
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { COLORS } from '@/theme'
 import { type ColorKey, useTheme } from '@/theme'
+import { type CssVars } from '@/utils/style'
 
 import type { ButtonCssVars, ButtonProps } from '.'
 
 type ButtonVariants = Omit<ButtonProps, 'variant'> & {
-  variant: 'default' | 'filled' | 'light' | 'link' | 'outline'
+  variant: 'filled' | 'light' | 'link' | 'outline'
 }
 
-const createBtnCls = classed('t-button', {
-  base: `inline-flex text-center justify-center items-center  font-medium
-  h-[--t-btn-h]
-  bg-[--t-btn-bg] text-[--t-btn-text-color] border-[--t-btn-border-color] 
-  focus:outline-none
-  `.replace(/\s+/g, ' '),
-  compoundVariants: [
-    {
-      class: 'hover:underline',
-      disabled: false,
-      variant: 'link',
-    },
-  ],
+const cssVarKeys = [
+  'bg',
+  'bg-hover',
+  'border-color',
+  'border-color-hover',
+  'text-color',
+  'text-color-hover',
+  'ring-color',
+] as const
+
+type BtnCssVars = CssVars<'t-btn', typeof cssVarKeys>
+
+const createBtnCls = tv({
+  base: `t-button inline-flex border text-center justify-center items-center font-medium
+  focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--t-btn-ring-color]
+  bg-[--t-btn-bg] 
+  text-[--t-btn-text-color] 
+  border-[--t-btn-border-color] 
+  hover:bg-[--t-btn-bg-hover] 
+  hover:text-[--t-btn-text-color-hover] 
+  hover:border-[--t-btn-border-color-hover] 
+  ring-[--t-btn-ring-color]
+  `,
   variants: {
-    block: {
-      true: 'w-full',
-    },
-    disabled: {
-      false: `cursor-pointer active:bg-[--t-btn-bg-active] hover:bg-[--t-btn-bg-hover] hover:text-[--t-btn-text-color-hover] hover:border-[--t-btn-border-color-hover]`,
-      true: 'cursor-not-allowed opacity-50',
-    },
-    ring: {
-      false:
-        'focus-visible:ring-[--t-btn-ring-color] focus-visible:ring-2 focus-visible:ring-offset-2 dark:ring-offset-slate-900',
-      true: 'focus:ring-[--t-btn-ring-color] focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900',
-    },
-    rounded: {
-      false: 'rounded-md',
-      true: 'rounded-full',
-    },
     size: {
       xs: '[--t-btn-h:calc(1.75rem+2px)] h-[--t-btn-h] text-xs/3 px-2',
       sm: '[--t-btn-h:calc(2rem+2px)] h-[--t-btn-h] text-xs/4 px-3',
@@ -47,24 +42,45 @@ const createBtnCls = classed('t-button', {
       lg: '[--t-btn-h:calc(2.5rem+2px)] h-[--t-btn-h] text-base/6 px-5',
       xl: '[--t-btn-h:calc(2.75rem+2px)] h-[--t-btn-h] text-base/7 px-6',
     },
+    block: {
+      true: 'w-full',
+    },
+    ring: {
+      // false: 'focus-visible:ring-2 focus-visible:ring-offset-2 dark:ring-offset-slate-900',
+      // true: 'focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900',
+    },
+    rounded: {
+      false: 'rounded-md',
+      true: 'rounded-full',
+    },
+
     square: {
-      true: '!px-0 w-[--t-btn-h]',
+      true: 'px-0 w-[--t-btn-h]',
     },
     variant: {
-      default: `shadow-sm border py-1`,
-      filled: `shadow-sm border`,
-      light: `shadow-sm border`,
-      link: `border decoration-2 underline-offset-2`,
-      outline: `shadow-sm border`,
+      filled: `shadow-sm`,
+      light: `shadow-sm`,
+      link: 'decoration-2 underline-offset-2',
+      outline: 'shadow-sm',
+    },
+    disabled: {
+      false: `cursor-pointer`,
+      true: 'cursor-not-allowed hover:bg-[--t-btn-bg] hover:text-[--t-btn-text-color] hover:border-[--t-btn-border-color] opacity-50',
     },
   },
+  compoundVariants: [
+    {
+      class: 'hover:underline',
+      disabled: false,
+      variant: 'link',
+    },
+  ],
 })
 
 const createCssVars = (vars: Partial<ButtonCssVars> = {}) => {
-  const result: ButtonCssVars = {
+  const result: BtnCssVars = {
     '--t-btn-bg': vars['--t-btn-bg'] || COLORS.white,
-    '--t-btn-bg-hover': vars['--t-btn-bg-hover'] || vars['--t-btn-bg'] || COLORS.white,
-    '--t-btn-bg-active': vars['--t-btn-bg-active'] || vars['--t-btn-bg-hover'] || vars['--t-btn-bg'] || COLORS.white,
+    '--t-btn-bg-hover': vars['--t-btn-bg-hover'] || `var(--t-btn-bg,${COLORS.white})`,
     '--t-btn-border-color': vars['--t-btn-border-color'] || COLORS.transparent,
     '--t-btn-border-color-hover':
       vars['--t-btn-border-color-hover'] || vars['--t-btn-border-color'] || COLORS.transparent,
@@ -82,38 +98,31 @@ const getBtnCssVars = (variant: ButtonVariants['variant'], color: ColorKey, prim
         '--t-btn-bg': COLORS[color][500],
         '--t-btn-bg-hover': COLORS[color][600],
         '--t-btn-border-color': COLORS.transparent,
-        '--t-btn-ring-color': COLORS[color][500],
         '--t-btn-text-color': COLORS.white,
+        '--t-btn-ring-color': COLORS[color][500],
       })
     case 'light':
       return createCssVars({
         '--t-btn-bg': COLORS[color][100],
         '--t-btn-bg-hover': COLORS[color][200],
-        '--t-btn-ring-color': COLORS[color][500],
         '--t-btn-text-color': COLORS[color][600],
+        '--t-btn-ring-color': COLORS[color][500],
       })
     case 'outline':
       return createCssVars({
+        '--t-btn-text-color': COLORS[color][600],
         '--t-btn-bg': COLORS.white,
         '--t-btn-bg-hover': COLORS[color][50],
         '--t-btn-border-color': COLORS[color][300],
+        '--t-btn-border-color-hover': COLORS[color][300],
         '--t-btn-ring-color': COLORS[color][500],
-        '--t-btn-text-color': COLORS[color][600],
       })
     case 'link':
       return createCssVars({
         '--t-btn-bg': 'transparent',
-        '--t-btn-ring-color': COLORS[color][500],
         '--t-btn-text-color': COLORS[color][500],
         '--t-btn-text-color-hover': COLORS[color][600],
-      })
-    default:
-      return createCssVars({
-        '--t-btn-bg': COLORS.white,
-        '--t-btn-bg-hover': COLORS[color][50],
-        '--t-btn-border-color': COLORS[color][300],
         '--t-btn-ring-color': COLORS[primaryColor][500],
-        '--t-btn-text-color': COLORS[color][600],
       })
   }
 }
@@ -124,9 +133,9 @@ export function useStyle(variant: MaybeRefOrGetter<ButtonProps>) {
     const originVariant = { ...toValue(variant) }
     const _variant: ButtonVariants = {
       ...originVariant,
-      color: originVariant.color || 'gray',
+      color: originVariant.color,
       ring: originVariant.variant === 'link' ? false : originVariant.ring,
-      variant: originVariant.variant || (originVariant.color ? 'filled' : 'default'),
+      variant: originVariant.variant,
     }
     return _variant
   })

@@ -1,10 +1,4 @@
 {
-  "tailwindCSS.experimental.classRegex": [
-    [
-      "classed(?:\\.\\w*)?\\(([^)]*)\\)",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ]
-  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "references.preferredLocation": "peek"
 }

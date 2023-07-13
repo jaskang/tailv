@@ -2,9 +2,7 @@ import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import type { Flat } from '@/types'
 
-type CssVars<N extends string, T extends Record<string, string> = {}> = {
-  [K in keyof T as `--${N}-${string & K}`]: T[K]
-}
+export type CssVars<N extends string, T extends readonly string[]> = Record<`--${N}-${T[number]}`, string>
 
 export function createCssVar<N extends string, T extends Record<string, string>>(name: N, cssVars: T) {
   const result = Object.entries(cssVars).reduce((acc, [key, value]) => {

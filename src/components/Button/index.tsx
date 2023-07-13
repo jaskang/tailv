@@ -17,6 +17,7 @@ import { useStyle } from './style'
 const props = {
   variant: {
     type: String as PropType<'filled' | 'light' | 'outline' | 'link'>,
+    default: 'filled',
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -24,10 +25,11 @@ const props = {
   },
   color: {
     type: String as PropType<Color>,
+    default: 'gray',
   },
   ring: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   rounded: Boolean,
   square: Boolean,
