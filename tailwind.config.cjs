@@ -254,6 +254,23 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     forms({ strategy: 'base' }),
+    ({ addBase, theme }) => {
+      function extractColorVars(colorObj, colorGroup = '') {
+        return Object.keys(colorObj).reduce((vars, colorKey) => {
+          const value = colorObj[colorKey]
+          const cssVariable = colorKey === 'DEFAULT' ? `--tw-color${colorGroup}` : `--tw-color${colorGroup}-${colorKey}`
+
+          const newVars = typeof value === 'string' ? { [cssVariable]: value } : extractColorVars(value, `-${colorKey}`)
+
+          return { ...vars, ...newVars }
+        }, {})
+      }
+      const all = extractColorVars(theme('colors'))
+      console.log(all)
+      addBase({
+        ':root': all,
+      })
+    },
     function ({ addVariant }) {
       addVariant('supports-backdrop-blur', '@supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))')
       addVariant('supports-scrollbars', '@supports selector(::-webkit-scrollbar)')

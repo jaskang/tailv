@@ -30,6 +30,8 @@ export type ColorPath = `${Color}.${ColorLv}`
 export type ColorMap = Record<Color, Record<ColorLv, string>>
 export type AliasColorMap = Record<ColorAlias, ColorKey>
 
+export type ColorSimpleName = 'transparent' | 'black' | 'white' | 'current' | 'inherit'
+
 export const COLORS = {
   transparent: 'transparent',
   black: '#000',

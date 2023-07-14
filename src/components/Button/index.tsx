@@ -13,16 +13,16 @@ import { type Color, useTheme } from '@/theme'
 import type { ColorAlias } from '@/theme/colors'
 
 import { LoadingIcon } from '../Icon'
-import { buttonVariants } from './style'
+import { useButtonStyle } from './style'
 
 const props = {
   variant: {
-    type: String as PropType<'outlined' | 'solid' | 'soft' | 'plain' | 'link'>,
-    default: 'outlined',
+    type: String as PropType<'default' | 'solid' | 'soft' | 'outlined' | 'plain' | 'link'>,
+    default: 'default',
   },
   color: {
     type: String as PropType<ColorAlias | 'default'>,
-    default: 'default',
+    default: 'primary',
   },
   size: {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
@@ -51,9 +51,7 @@ export const Button = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit, attrs }) {
-    const cls = computed(() => {
-      return buttonVariants(props)
-    })
+    const [style, cls] = useButtonStyle(() => props)
 
     const hasIcon = computed(() => !!slots.icon || props.loading)
     const onClick = (e: MouseEvent) => {
@@ -62,7 +60,7 @@ export const Button = defineComponent({
       }
     }
     return () => (
-      <button class={cls.value} type="button" disabled={props.disabled} onClick={onClick}>
+      <button style={style.value} class={cls.value} type="button" disabled={props.disabled} onClick={onClick}>
         {hasIcon.value && (
           <i class="t-btn-icon h-[1em] w-[1em] scale-125 [&+*]:ml-[0.5em] [&>svg]:!h-full [&>svg]:!w-full">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}

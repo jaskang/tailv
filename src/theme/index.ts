@@ -26,13 +26,12 @@ export function useTheme() {
     }, {} as ColorMap)
   )
 
-  const getColorKey = (color?: string) => {
-    if (!color) return null
-    if (Object.keys(COLORS).includes(color)) {
-      return color as ColorKey
+  const getColorKey = (alias?: string) => {
+    if (!alias) return null
+    if (Object.keys(COLORS).includes(alias)) {
+      return alias as ColorKey
     } else {
-      // @ts-expect-error
-      return (theme.value.alias[color] as ColorKey) || null
+      return (theme.value.alias[alias as ColorAlias] as ColorKey) || null
     }
   }
 

@@ -25,12 +25,8 @@ asdfsa
 ```vue preview
 <template>
   <TButton>default</TButton>
-  <TButton variant="solid">solid</TButton>
-  <TButton variant="soft">soft</TButton>
-  <TButton variant="plain">plain</TButton>
-  <TButton variant="link">link</TButton>
   <br /><br />
-  <TButton color="primary">default</TButton>
+  <TButton color="primary" variant="outlined">outlined</TButton>
   <TButton color="primary" variant="solid">solid</TButton>
   <TButton color="primary" variant="soft">soft</TButton>
   <TButton color="primary" variant="plain">plain</TButton>
@@ -42,7 +38,6 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="outlined" color="default">default</TButton>
   <TButton variant="outlined" color="primary">primary</TButton>
   <TButton variant="outlined" color="success">success</TButton>
   <TButton variant="outlined" color="warning">warning</TButton>
@@ -54,7 +49,6 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="solid" color="default">default</TButton>
   <TButton variant="solid" color="primary">primary</TButton>
   <TButton variant="solid" color="success">success</TButton>
   <TButton variant="solid" color="warning">warning</TButton>
@@ -66,7 +60,6 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="soft" color="default">default</TButton>
   <TButton variant="soft" color="primary">primary</TButton>
   <TButton variant="soft" color="success">success</TButton>
   <TButton variant="soft" color="warning">warning</TButton>
@@ -78,7 +71,6 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="plain" color="default">default</TButton>
   <TButton variant="plain" color="primary">primary</TButton>
   <TButton variant="plain" color="success">success</TButton>
   <TButton variant="plain" color="warning">warning</TButton>
@@ -90,7 +82,6 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="link" color="default">default</TButton>
   <TButton variant="link" color="primary">primary</TButton>
   <TButton variant="link" color="success">success</TButton>
   <TButton variant="link" color="warning">warning</TButton>
@@ -123,67 +114,88 @@ asdfsa
   <TButton color="error">error</TButton>
   <br /><br />
 
-  <TButton variant="outline" color="gray">gray</TButton>
-  <TButton variant="outline" color="slate">slate</TButton>
-  <TButton variant="outline" color="red">red</TButton>
-  <TButton variant="outline" color="orange">orange</TButton>
-  <TButton variant="outline" color="amber">amber</TButton>
-  <TButton variant="outline" color="yellow">yellow</TButton>
-  <TButton variant="outline" color="lime">lime</TButton>
-  <TButton variant="outline" color="green">green</TButton>
-  <TButton variant="outline" color="emerald">emerald</TButton>
-  <TButton variant="outline" color="teal">teal</TButton>
-  <TButton variant="outline" color="cyan">cyan</TButton>
-  <TButton variant="outline" color="sky">sky</TButton>
-  <TButton variant="outline" color="blue">blue</TButton>
-  <TButton variant="outline" color="indigo">indigo</TButton>
-  <TButton variant="outline" color="violet">violet</TButton>
-  <TButton variant="outline" color="purple">purple</TButton>
-  <TButton variant="outline" color="fuchsia">fuchsia</TButton>
-  <TButton variant="outline" color="pink">pink</TButton>
-  <TButton variant="outline" color="rose">rose</TButton>
+  <TButton variant="outlined" color="gray">gray</TButton>
+  <TButton variant="outlined" color="slate">slate</TButton>
+  <TButton variant="outlined" color="red">red</TButton>
+  <TButton variant="outlined" color="orange">orange</TButton>
+  <TButton variant="outlined" color="amber">amber</TButton>
+  <TButton variant="outlined" color="yellow">yellow</TButton>
+  <TButton variant="outlined" color="lime">lime</TButton>
+  <TButton variant="outlined" color="green">green</TButton>
+  <TButton variant="outlined" color="emerald">emerald</TButton>
+  <TButton variant="outlined" color="teal">teal</TButton>
+  <TButton variant="outlined" color="cyan">cyan</TButton>
+  <TButton variant="outlined" color="sky">sky</TButton>
+  <TButton variant="outlined" color="blue">blue</TButton>
+  <TButton variant="outlined" color="indigo">indigo</TButton>
+  <TButton variant="outlined" color="violet">violet</TButton>
+  <TButton variant="outlined" color="purple">purple</TButton>
+  <TButton variant="outlined" color="fuchsia">fuchsia</TButton>
+  <TButton variant="outlined" color="pink">pink</TButton>
+  <TButton variant="outlined" color="rose">rose</TButton>
   <br /><br />
-  <TButton color="gray">gray</TButton>
-  <TButton color="slate">slate</TButton>
-  <TButton color="red">red</TButton>
-  <TButton color="orange">orange</TButton>
-  <TButton color="amber">amber</TButton>
-  <TButton color="yellow">yellow</TButton>
-  <TButton color="lime">lime</TButton>
-  <TButton color="green">green</TButton>
-  <TButton color="emerald">emerald</TButton>
-  <TButton color="teal">teal</TButton>
-  <TButton color="cyan">cyan</TButton>
-  <TButton color="sky">sky</TButton>
-  <TButton color="blue">blue</TButton>
-  <TButton color="indigo">indigo</TButton>
-  <TButton color="violet">violet</TButton>
-  <TButton color="purple">purple</TButton>
-  <TButton color="fuchsia">fuchsia</TButton>
-  <TButton color="pink">pink</TButton>
-  <TButton color="rose">rose</TButton>
+  <TButton variant="solid" color="gray">gray</TButton>
+  <TButton variant="solid" color="slate">slate</TButton>
+  <TButton variant="solid" color="red">red</TButton>
+  <TButton variant="solid" color="orange">orange</TButton>
+  <TButton variant="solid" color="amber">amber</TButton>
+  <TButton variant="solid" color="yellow">yellow</TButton>
+  <TButton variant="solid" color="lime">lime</TButton>
+  <TButton variant="solid" color="green">green</TButton>
+  <TButton variant="solid" color="emerald">emerald</TButton>
+  <TButton variant="solid" color="teal">teal</TButton>
+  <TButton variant="solid" color="cyan">cyan</TButton>
+  <TButton variant="solid" color="sky">sky</TButton>
+  <TButton variant="solid" color="blue">blue</TButton>
+  <TButton variant="solid" color="indigo">indigo</TButton>
+  <TButton variant="solid" color="violet">violet</TButton>
+  <TButton variant="solid" color="purple">purple</TButton>
+  <TButton variant="solid" color="fuchsia">fuchsia</TButton>
+  <TButton variant="solid" color="pink">pink</TButton>
+  <TButton variant="solid" color="rose">rose</TButton>
 
   <br /><br />
 
-  <TButton variant="light" color="gray">gray</TButton>
-  <TButton variant="light" color="slate">slate</TButton>
-  <TButton variant="light" color="red">red</TButton>
-  <TButton variant="light" color="orange">orange</TButton>
-  <TButton variant="light" color="amber">amber</TButton>
-  <TButton variant="light" color="yellow">yellow</TButton>
-  <TButton variant="light" color="lime">lime</TButton>
-  <TButton variant="light" color="green">green</TButton>
-  <TButton variant="light" color="emerald">emerald</TButton>
-  <TButton variant="light" color="teal">teal</TButton>
-  <TButton variant="light" color="cyan">cyan</TButton>
-  <TButton variant="light" color="sky">sky</TButton>
-  <TButton variant="light" color="blue">blue</TButton>
-  <TButton variant="light" color="indigo">indigo</TButton>
-  <TButton variant="light" color="violet">violet</TButton>
-  <TButton variant="light" color="purple">purple</TButton>
-  <TButton variant="light" color="fuchsia">fuchsia</TButton>
-  <TButton variant="light" color="pink">pink</TButton>
-  <TButton variant="light" color="rose">rose</TButton>
+  <TButton variant="soft" color="gray">gray</TButton>
+  <TButton variant="soft" color="slate">slate</TButton>
+  <TButton variant="soft" color="red">red</TButton>
+  <TButton variant="soft" color="orange">orange</TButton>
+  <TButton variant="soft" color="amber">amber</TButton>
+  <TButton variant="soft" color="yellow">yellow</TButton>
+  <TButton variant="soft" color="lime">lime</TButton>
+  <TButton variant="soft" color="green">green</TButton>
+  <TButton variant="soft" color="emerald">emerald</TButton>
+  <TButton variant="soft" color="teal">teal</TButton>
+  <TButton variant="soft" color="cyan">cyan</TButton>
+  <TButton variant="soft" color="sky">sky</TButton>
+  <TButton variant="soft" color="blue">blue</TButton>
+  <TButton variant="soft" color="indigo">indigo</TButton>
+  <TButton variant="soft" color="violet">violet</TButton>
+  <TButton variant="soft" color="purple">purple</TButton>
+  <TButton variant="soft" color="fuchsia">fuchsia</TButton>
+  <TButton variant="soft" color="pink">pink</TButton>
+  <TButton variant="soft" color="rose">rose</TButton>
+  <br /><br />
+
+  <TButton variant="plain" color="gray">gray</TButton>
+  <TButton variant="plain" color="slate">slate</TButton>
+  <TButton variant="plain" color="red">red</TButton>
+  <TButton variant="plain" color="orange">orange</TButton>
+  <TButton variant="plain" color="amber">amber</TButton>
+  <TButton variant="plain" color="yellow">yellow</TButton>
+  <TButton variant="plain" color="lime">lime</TButton>
+  <TButton variant="plain" color="green">green</TButton>
+  <TButton variant="plain" color="emerald">emerald</TButton>
+  <TButton variant="plain" color="teal">teal</TButton>
+  <TButton variant="plain" color="cyan">cyan</TButton>
+  <TButton variant="plain" color="sky">sky</TButton>
+  <TButton variant="plain" color="blue">blue</TButton>
+  <TButton variant="plain" color="indigo">indigo</TButton>
+  <TButton variant="plain" color="violet">violet</TButton>
+  <TButton variant="plain" color="purple">purple</TButton>
+  <TButton variant="plain" color="fuchsia">fuchsia</TButton>
+  <TButton variant="plain" color="pink">pink</TButton>
+  <TButton variant="plain" color="rose">rose</TButton>
   <br /><br />
 
   <TButton variant="link" color="gray">gray</TButton>
@@ -218,23 +230,23 @@ asdfsa
   <TButton size="lg">默认按钮: lg</TButton>
   <TButton size="xl">默认按钮: xl</TButton>
   <br /><br />
-  <TButton color="primary" size="xs">主色按钮: xs</TButton>
-  <TButton color="primary" size="sm">主色按钮: sm</TButton>
-  <TButton color="primary">主色按钮: md</TButton>
-  <TButton color="primary" size="lg">主色按钮: lg</TButton>
-  <TButton color="primary" size="xl">主色按钮: xl</TButton>
+  <TButton variant="solid" color="primary" size="xs">主色按钮: xs</TButton>
+  <TButton variant="solid" color="primary" size="sm">主色按钮: sm</TButton>
+  <TButton variant="solid" color="primary">主色按钮: md</TButton>
+  <TButton variant="solid" color="primary" size="lg">主色按钮: lg</TButton>
+  <TButton variant="solid" color="primary" size="xl">主色按钮: xl</TButton>
   <br /><br />
-  <TButton variant="light" color="primary" size="xs">浅色按钮: xs</TButton>
-  <TButton variant="light" color="primary" size="sm">浅色按钮: sm</TButton>
-  <TButton variant="light" color="primary">浅色按钮: md</TButton>
-  <TButton variant="light" color="primary" size="lg">浅色按钮: lg</TButton>
-  <TButton variant="light" color="primary" size="xl">浅色按钮: xl</TButton>
+  <TButton variant="soft" color="primary" size="xs">浅色按钮: xs</TButton>
+  <TButton variant="soft" color="primary" size="sm">浅色按钮: sm</TButton>
+  <TButton variant="soft" color="primary">浅色按钮: md</TButton>
+  <TButton variant="soft" color="primary" size="lg">浅色按钮: lg</TButton>
+  <TButton variant="soft" color="primary" size="xl">浅色按钮: xl</TButton>
   <br /><br />
-  <TButton variant="link" color="primary" size="xs">链接按钮: xs</TButton>
-  <TButton variant="link" color="primary" size="sm">链接按钮: sm</TButton>
-  <TButton variant="link" color="primary">链接按钮: md</TButton>
-  <TButton variant="link" color="primary" size="lg">链接按钮: lg</TButton>
-  <TButton variant="link" color="primary" size="xl">链接按钮: xl</TButton>
+  <TButton variant="plain" color="primary" size="xs">链接按钮: xs</TButton>
+  <TButton variant="plain" color="primary" size="sm">链接按钮: sm</TButton>
+  <TButton variant="plain" color="primary">链接按钮: md</TButton>
+  <TButton variant="plain" color="primary" size="lg">链接按钮: lg</TButton>
+  <TButton variant="plain" color="primary" size="xl">链接按钮: xl</TButton>
 </template>
 ```
 
@@ -287,7 +299,7 @@ asdfsa
     </template>
     图标按钮
   </TButton>
-  <TButton color="primary" variant="subtle">
+  <TButton color="primary" variant="solid">
     <template #icon>
       <CogIcon />
     </template>
