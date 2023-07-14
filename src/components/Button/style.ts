@@ -56,7 +56,8 @@ const createClass = tv({
       false: '',
     },
     disabled: {
-      false: 'cursor-pointer focus:ring-2 focus:ring-[--t-button-ring] focus:ring-offset-2',
+      false:
+        'cursor-pointer focus:ring-2 focus:ring-[--t-button-ring] focus:ring-offset-2 dark:focus:ring-offset-gray-900',
       true: 'cursor-not-allowed opacity-50 hover:-underline hover:text-[--t-button-text] hover:bg-[--t-button-bg] hover:border-[--t-button-border]',
     },
   },
