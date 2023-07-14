@@ -66,7 +66,7 @@ export const Button = defineComponent({
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}
           </i>
         )}
-        {slots.default && <span class="t-btn_body flex">{slots.default()}</span>}
+        {slots.default && <span class="t-btn_body flex items-center">{slots.default()}</span>}
       </button>
     )
   },

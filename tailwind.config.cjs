@@ -21,6 +21,7 @@ module.exports = {
         success: colors.green,
         warning: colors.amber,
         error: colors.red,
+        gray: colors.slate,
         code: {
           highlight: 'rgb(125 211 252 / 0.1)',
         },

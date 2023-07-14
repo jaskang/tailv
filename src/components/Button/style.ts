@@ -127,13 +127,13 @@ function createStyle(variant: ButtonProps['variant'], colorKey: ColorKey) {
       })
     default:
       return cssVars({
-        text: `slate.700`,
+        text: `gray.700`,
         bg: 'white',
-        border: `slate.300`,
-        textHover: `slate.900`,
-        bgHover: `slate.50`,
-        borderHover: `slate.300`,
-        ring: `slate.700`,
+        border: `gray.300`,
+        textHover: `gray.900`,
+        bgHover: `gray.50`,
+        borderHover: `gray.300`,
+        ring: `gray.500`,
       })
   }
 }
