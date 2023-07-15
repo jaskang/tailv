@@ -11,6 +11,7 @@ import {
 
 import { useControllable } from '@/hooks/controllable'
 import { type Color, useTheme } from '@/theme'
+import { useColorVar } from '@/utils/style'
 
 const props = {
   value: [String, Number],
@@ -22,11 +23,6 @@ const props = {
 export type CheckboxProps = ExtractPropTypes<typeof props>
 
 export type CheckboxPublicProps = ExtractPublicPropTypes<typeof props>
-
-export type CheckboxCssVars = {
-  '--t-checkbox-accent-color': string
-  '--t-checkbox-ring-color': string
-}
 
 export const Checkbox = defineComponent({
   name: 'TCheckbox',
@@ -43,12 +39,10 @@ export const Checkbox = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const { colors } = useTheme()
-
-    const cssVars = computed<CheckboxCssVars>(() => ({
-      '--t-checkbox-accent-color': colors.value.primary[500],
-      '--t-checkbox-ring-color': colors.value['primary'][500],
-    }))
+    const cssVars = useColorVar('t-checkbox', {
+      accent: 'primary.500',
+      ring: 'primary.500',
+    })
 
     const focus = ref(false)
 
@@ -94,7 +88,7 @@ export const Checkbox = defineComponent({
         ]}
       >
         <input
-          class="t-checkbox_input h-4 w-4 cursor-pointer rounded border border-gray-300 text-[--t-checkbox-accent-color] dark:ring-offset-slate-900 transition-all focus:outline-none focus:ring-2 focus:ring-[--t-checkbox-ring-color] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="t-checkbox_input h-4 w-4 cursor-pointer rounded border border-gray-300 text-[--t-checkbox-accent] dark:ring-offset-slate-900 transition-all focus:outline-none focus:ring-2 focus:ring-[--t-checkbox-ring] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           type="checkbox"
           name={props.name}
           disabled={props.disabled}

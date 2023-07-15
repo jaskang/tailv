@@ -1,19 +1,15 @@
-import { flip, offset, shift, useFloating } from '@floating-ui/vue'
 import {
-  computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
-  type PropType,
   ref,
   type SlotsType,
-  Teleport,
-  Transition,
   type VNode,
 } from 'vue'
 
 import { useControllable } from '@/hooks/controllable'
 import { useTheme } from '@/theme'
+import { useColorVar } from '@/utils/style'
 
 const props = {
   value: String,
@@ -27,10 +23,6 @@ const props = {
 export type InputProps = ExtractPropTypes<typeof props>
 
 export type InputPublicProps = ExtractPublicPropTypes<typeof props>
-
-export type InputCssVars = {
-  '--t-input-ring-color': string
-}
 
 export const Input = defineComponent({
   name: 'TInput',
@@ -49,8 +41,6 @@ export const Input = defineComponent({
     suffix?: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const { colors } = useTheme()
-
     const [val, setVal] = useControllable(
       () => props.value,
       val => {
@@ -86,10 +76,9 @@ export const Input = defineComponent({
       }
     }
 
-    const cssVars = computed<InputCssVars>(() => ({
-      '--t-input-ring-color': colors.value.primary[500],
-    }))
-
+    const cssVars = useColorVar('t-input', {
+      ring: 'primary.500',
+    })
     return () => (
       // <div
       //   style={cssVars.value}
@@ -110,9 +99,7 @@ export const Input = defineComponent({
           't-input relative inline-flex w-full items-center rounded-md border text-sm shadow-sm',
           props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : 'bg-white',
           props.readonly ? 'is-readonly ' : '',
-          focused.value
-            ? 'is-focused z-10 border-[--t-input-ring-color] ring-1 ring-[--t-input-ring-color]'
-            : 'border-gray-300',
+          focused.value ? 'is-focused z-10 border-[--t-input-ring] ring-1 ring-[--t-input-ring]' : 'border-gray-300',
         ]}
       >
         {(slots.prefix || props.prefix) && (

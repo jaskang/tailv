@@ -15,6 +15,7 @@ import {
 import { useControllable } from '@/hooks/controllable'
 import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
+import { useColorVar } from '@/utils/style'
 
 import { SelectorIcon } from '../Icon'
 import { ItemList } from '../List/ItemList'
@@ -34,11 +35,6 @@ const props = {
 export type SelectProps = ExtractPropTypes<typeof props>
 
 export type SelectPublicProps = ExtractPublicPropTypes<typeof props>
-
-export type SelectCssVars = {
-  '--t-select-accent-color': string
-  '--t-select-ring-color': string
-}
 
 export const Select = defineComponent({
   name: 'TSelect',
@@ -62,10 +58,10 @@ export const Select = defineComponent({
       }
     )
 
-    const cssVars = computed<SelectCssVars>(() => ({
-      '--t-select-accent-color': colors.value.primary[500],
-      '--t-select-ring-color': colors.value.primary[500],
-    }))
+    const cssVars = useColorVar('t-select', {
+      accent: 'primary.500',
+      ring: 'primary.500',
+    })
 
     const changeHandler = () => {
       popper.value?.close()
@@ -78,7 +74,7 @@ export const Select = defineComponent({
               {...attrs}
               type="button"
               style={cssVars.value}
-              class="relative h-[calc(theme(spacing.9)_+_2px)] w-full cursor-pointer rounded-md border border-gray-300 bg-white px-3 text-left text-sm text-gray-900 shadow-sm focus:border-[--t-select-ring-color] focus:outline-none focus:ring-1 focus:ring-[--t-select-ring-color] disabled:cursor-not-allowed"
+              class="relative h-[calc(theme(spacing.9)_+_2px)] w-full cursor-pointer rounded-md border border-gray-300 bg-white px-3 text-left text-sm text-gray-900 shadow-sm focus:border-[--t-select-ring] focus:outline-none focus:ring-1 focus:ring-[--t-select-ring] disabled:cursor-not-allowed"
             >
               <div class="truncate">{val.value}</div>
               <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

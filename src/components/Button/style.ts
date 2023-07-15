@@ -13,20 +13,19 @@ type CssKey = 'text' | 'bg' | 'border' | 'textHover' | 'bgHover' | 'borderHover'
 type ButtonCssVars = CssVars<'t-button', CssKey>
 
 const createClass = tv({
-  base: `t-button inline-flex border-2 shadow-sm rounded-md text-center justify-center items-center font-medium transition-all 
+  base: `t-button inline-flex border-2 rounded-md text-center justify-center items-center font-medium transition-all 
   focus:outline-none h-[--t-button-h]
   text-[--t-button-text] bg-[--t-button-bg] border-[--t-button-border]
   hover:text-[--t-button-textHover] hover:bg-[--t-button-bgHover] hover:border-[--t-button-borderHover]
-  
   `,
   variants: {
     variant: {
-      default: 'border',
-      outlined: '',
-      solid: ' ',
-      soft: '',
-      plain: '-shadow-sm',
-      link: '-shadow-sm hover:underline hover:decoration-2 hover:underline-offset-2',
+      default: 'shadow-sm border',
+      outlined: 'shadow-sm',
+      solid: 'shadow-sm',
+      soft: 'shadow-sm',
+      plain: '',
+      link: 'hover:underline hover:decoration-2 hover:underline-offset-2',
     },
     color: {
       default: '',
@@ -140,10 +139,9 @@ function createStyle(variant: ButtonProps['variant'], colorKey: ColorKey) {
 }
 
 export const useButtonStyle = (getter: MaybeRefOrGetter<ButtonProps>) => {
-  const { getColorKey } = useTheme()
   const style = computed(() => {
     const props = toValue(getter)
-    return createStyle(props.variant, getColorKey(props.color) || 'gray')
+    return createStyle(props.variant, props.color)
   })
   const cls = computed(() => {
     const props = toValue(getter)

@@ -11,6 +11,7 @@ import {
 import { useControllable } from '@/hooks/controllable'
 import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
+import { useColorVar } from '@/utils/style'
 
 const props = {
   value: [String, Number, Array] as PropType<OptionValue | Array<OptionValue>>,
@@ -52,9 +53,9 @@ export const ItemList = defineComponent({
       props.multiple ? [] : undefined
     )
 
-    const cssVars = computed<ItemListCssVars>(() => ({
-      '--t-itemList-accent-color': colors.value.primary[500],
-    }))
+    const cssVars = useColorVar('t-itemList', {
+      accent: 'primary.500',
+    })
 
     const itemClickHandler = (item: OptionItem) => {
       if (item.disabled) return
@@ -93,8 +94,8 @@ export const ItemList = defineComponent({
                   item.disabled
                     ? 'font-normal text-gray-400'
                     : isSelected(item)
-                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--t-itemList-accent-color]'
-                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--t-itemList-accent-color]',
+                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--t-itemList-accent]'
+                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--t-itemList-accent]',
                 ]}
                 onClick={() => itemClickHandler(item)}
               >

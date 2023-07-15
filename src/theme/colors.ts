@@ -1,6 +1,6 @@
 export type ColorAlias = 'primary' | 'success' | 'warning' | 'error'
 
-export type ColorKey =
+type PaletteColor =
   | 'slate'
   | 'gray'
   | 'zinc'
@@ -24,13 +24,13 @@ export type ColorKey =
   | 'pink'
   | 'rose'
 
-export type Color = ColorKey | ColorAlias
-export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
-export type ColorPath = `${Color}.${ColorLv}`
-export type ColorMap = Record<Color, Record<ColorLv, string>>
-export type AliasColorMap = Record<ColorAlias, ColorKey>
+type SystemColor = 'transparent' | 'black' | 'white' | 'current' | 'inherit'
 
-export type ColorSimpleName = 'transparent' | 'black' | 'white' | 'current' | 'inherit'
+type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
+export type ColorKey = PaletteColor | ColorAlias
+export type ColorPath = `${ColorKey}.${ColorLv}`
+export type Color = ColorPath | SystemColor
+export type ColorMap = Record<ColorKey, Record<ColorLv, string>>
 
 export const COLORS = {
   transparent: 'transparent',

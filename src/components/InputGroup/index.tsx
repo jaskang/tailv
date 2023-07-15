@@ -6,10 +6,6 @@ export type InputGroupProps = ExtractPropTypes<typeof props>
 
 export type InputGroupPublicProps = ExtractPublicPropTypes<typeof props>
 
-export type InputGroupCssVars = {
-  '--t-inputgroup-ring-color': string
-}
-
 export const InputGroup = defineComponent({
   name: 'TInputGroup',
   props,

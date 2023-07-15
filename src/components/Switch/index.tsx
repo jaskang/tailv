@@ -10,6 +10,7 @@ import {
 
 import { useControllable } from '@/hooks/controllable'
 import { useTheme } from '@/theme'
+import { useColorVar } from '@/utils/style'
 
 const props = {
   checked: { type: Boolean, default: undefined },
@@ -19,11 +20,6 @@ const props = {
 export type SwitchProps = ExtractPropTypes<typeof props>
 
 export type SwitchPublicProps = ExtractPublicPropTypes<typeof props>
-
-export type SwitchCssVars = {
-  '--t-switch-accent-color': string
-  '--t-switch-ring-color': string
-}
 
 export const Switch = defineComponent({
   name: 'TSwitch',
@@ -49,10 +45,15 @@ export const Switch = defineComponent({
       false
     )
 
-    const cssVars = computed<SwitchCssVars>(() => ({
-      '--t-switch-accent-color': colors.value.primary[500],
-      '--t-switch-ring-color': colors.value.primary[500],
-    }))
+    // const cssVars = computed<SwitchCssVars>(() => ({
+    //   '--t-switch-accent-color': colors.value.primary[500],
+    //   '--t-switch-ring-color': colors.value.primary[500],
+    // }))
+    const cssVars = useColorVar('t-switch', {
+      accent: 'primary.500',
+      ring: 'primary.500',
+    })
+
     const changeHandler = () => {
       if (props.disabled) return
       console.log('changeHandler')
@@ -64,8 +65,8 @@ export const Switch = defineComponent({
         type="button"
         style={cssVars.value}
         class={[
-          't-switch relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[--t-switch-ring-color] focus:ring-offset-2 dark:ring-offset-slate-900',
-          checked.value ? 'bg-[--t-switch-accent-color]' : ' bg-gray-200',
+          't-switch relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[--t-switch-ring] focus:ring-offset-2 dark:ring-offset-slate-900',
+          checked.value ? 'bg-[--t-switch-accent]' : ' bg-gray-200',
           props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]}
         disabled={props.disabled}
@@ -92,7 +93,7 @@ export const Switch = defineComponent({
           {slots.on && (
             <span
               class={[
-                'absolute inset-0 flex h-full w-full items-center justify-center text-[--t-switch-accent-color] transition-opacity [&>*]:h-3 [&>*]:w-3',
+                'absolute inset-0 flex h-full w-full items-center justify-center text-[--t-switch-accent] transition-opacity [&>*]:h-3 [&>*]:w-3',
                 checked.value ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out',
               ]}
             >

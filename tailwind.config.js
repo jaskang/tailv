@@ -1,12 +1,13 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
-const forms = require('@tailwindcss/forms')
-const svgToDataUri = require('mini-svg-data-uri')
-const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette')
-/**
- * @type {import('tailwindcss').Config}
- */
-module.exports = {
+import forms from '@tailwindcss/forms'
+import svgToDataUri from 'mini-svg-data-uri'
+import colors from 'tailwindcss/colors'
+import defaultTheme from 'tailwindcss/defaultTheme'
+import { default as flattenColorPalette } from 'tailwindcss/lib/util/flattenColorPalette'
+
+import tailv from './plugin.js'
+
+/** @type {import('tailwindcss').Config} */
+export default {
   darkMode: 'class',
   content: [
     './index.html',
@@ -17,11 +18,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.indigo,
-        success: colors.green,
-        warning: colors.amber,
-        error: colors.red,
-        gray: colors.slate,
         code: {
           highlight: 'rgb(125 211 252 / 0.1)',
         },
@@ -255,23 +251,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     forms({ strategy: 'base' }),
-    ({ addBase, theme }) => {
-      function extractColorVars(colorObj, colorGroup = '') {
-        return Object.keys(colorObj).reduce((vars, colorKey) => {
-          const value = colorObj[colorKey]
-          const cssVariable = colorKey === 'DEFAULT' ? `--tw-color${colorGroup}` : `--tw-color${colorGroup}-${colorKey}`
-
-          const newVars = typeof value === 'string' ? { [cssVariable]: value } : extractColorVars(value, `-${colorKey}`)
-
-          return { ...vars, ...newVars }
-        }, {})
-      }
-      const all = extractColorVars(theme('colors'))
-      console.log(all)
-      addBase({
-        ':root': all,
-      })
-    },
+    tailv(),
     function ({ addVariant }) {
       addVariant('supports-backdrop-blur', '@supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))')
       addVariant('supports-scrollbars', '@supports selector(::-webkit-scrollbar)')

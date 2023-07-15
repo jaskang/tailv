@@ -21,7 +21,7 @@ const props = {
     default: 'default',
   },
   color: {
-    type: String as PropType<ColorAlias | 'default'>,
+    type: String as PropType<ColorAlias>,
     default: 'primary',
   },
   size: {

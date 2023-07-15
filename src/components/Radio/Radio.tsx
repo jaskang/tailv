@@ -12,6 +12,7 @@ import {
 import { useControllable } from '@/hooks/controllable'
 import { useTheme } from '@/theme'
 import { PropTypes } from '@/utils'
+import { useColorVar } from '@/utils/style'
 
 import type { RadioGroupContext } from './RadioGroup'
 
@@ -25,11 +26,6 @@ const props = {
 export type RadioProps = ExtractPropTypes<typeof props>
 
 export type RadioPublicProps = ExtractPublicPropTypes<typeof props>
-
-export type RadioCssVars = {
-  '--t-radio-accent-color': string
-  '--t-radio-ring-color': string
-}
 
 export const Radio = defineComponent({
   name: 'TRadio',
@@ -85,11 +81,10 @@ export const Radio = defineComponent({
       focus.value = false
       emit('blur', e)
     }
-
-    const cssVars = computed<RadioCssVars>(() => ({
-      '--t-radio-accent-color': colors.value.primary[500],
-      '--t-radio-ring-color': colors.value.primary[500],
-    }))
+    const cssVars = useColorVar('t-radio', {
+      accent: 'primary.500',
+      ring: 'primary.500',
+    })
     return () => (
       <label
         style={cssVars.value}
@@ -99,7 +94,7 @@ export const Radio = defineComponent({
         ]}
       >
         <input
-          class="t-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--t-radio-ring-color] disabled:cursor-not-allowed dark:ring-offset-slate-900"
+          class="t-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--t-radio-ring] disabled:cursor-not-allowed dark:ring-offset-slate-900"
           type="radio"
           name={groupProps.value.name}
           value={groupProps.value.value}
