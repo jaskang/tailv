@@ -36,7 +36,7 @@ export const Tooltip = defineComponent({
         {{
           default: () => slots.default?.(),
           content: () => (
-            <div class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium shadow-sm dark:border-slate-500/30 dark:bg-slate-900 dark:text-slate-200">
+            <div class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium shadow-sm dark:border-gray-500/30 dark:bg-gray-900 dark:text-gray-200">
               {slots.content?.()}
             </div>
           ),

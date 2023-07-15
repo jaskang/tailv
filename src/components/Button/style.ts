@@ -1,11 +1,10 @@
 import { tv } from 'tailwind-variants'
 import { computed, type MaybeRefOrGetter, type Ref, toValue } from 'vue'
 
-import { type ColorKey, COLORS, useTheme } from '@/theme'
-import type { ColorPath, ColorSimpleName } from '@/theme/colors'
+import { type ColorKey } from '@/theme'
+import type { Color } from '@/theme/colors'
 import { createCssVar, type CssVars, cvar } from '@/utils/style'
 
-import { useConfig } from '../ConfigProvider'
 import type { ButtonProps } from '.'
 
 type CssKey = 'text' | 'bg' | 'border' | 'textHover' | 'bgHover' | 'borderHover' | 'ring'
@@ -21,7 +20,7 @@ const createClass = tv({
   variants: {
     variant: {
       default: 'shadow-sm border',
-      outlined: 'shadow-sm',
+      outline: 'shadow-sm',
       solid: 'shadow-sm',
       soft: 'shadow-sm',
       plain: '',
@@ -44,7 +43,7 @@ const createClass = tv({
     block: {
       true: 'w-full',
     },
-    rounded: {
+    pill: {
       true: 'rounded-full',
     },
     square: {
@@ -52,7 +51,6 @@ const createClass = tv({
     },
     circle: {
       true: 'rounded-full px-0 w-[--t-button-h]',
-      false: '',
     },
     disabled: {
       false:
@@ -63,7 +61,7 @@ const createClass = tv({
   compoundVariants: [],
 })
 
-function cssVars(vars: Record<CssKey, ColorPath | ColorSimpleName>) {
+function cssVars(vars: Record<CssKey, Color>) {
   return createCssVar<'t-button', CssKey>(
     't-button',
     (Object.keys(vars) as CssKey[]).reduce((acc, key) => {
@@ -115,7 +113,7 @@ function createStyle(variant: ButtonProps['variant'], colorKey: ColorKey) {
         borderHover: `transparent`,
         ring: `${colorKey}.500`,
       })
-    case 'outlined':
+    case 'outline':
       return cssVars({
         text: `${colorKey}.500`,
         bg: 'white',

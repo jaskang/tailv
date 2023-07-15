@@ -18,6 +18,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        gray: colors.gray,
         code: {
           highlight: 'rgb(125 211 252 / 0.1)',
         },

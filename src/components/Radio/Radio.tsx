@@ -94,7 +94,7 @@ export const Radio = defineComponent({
         ]}
       >
         <input
-          class="t-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--t-radio-ring] disabled:cursor-not-allowed dark:ring-offset-slate-900"
+          class="t-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--t-radio-ring] disabled:cursor-not-allowed dark:ring-offset-gray-900"
           type="radio"
           name={groupProps.value.name}
           value={groupProps.value.value}

@@ -2,7 +2,6 @@ import colors from 'tailwindcss/colors'
 import plugin from 'tailwindcss/plugin'
 
 function extractColorVars(colorObj, colorGroup = '') {
-  console.log('colorObj', colorObj, 'colorGroup', colorGroup)
   return Object.keys(colorObj).reduce((vars, key) => {
     const value = colorObj[key]
     const cssVariable = key === 'DEFAULT' ? `--t-c${colorGroup}` : `--t-c${colorGroup}-${key}`
@@ -15,7 +14,6 @@ export default plugin.withOptions(
   options =>
     ({ addBase, theme }) => {
       const all = extractColorVars(theme('colors'))
-      // console.log(all)
       addBase({
         ':root': all,
       })

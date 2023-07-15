@@ -17,7 +17,7 @@ import { useButtonStyle } from './style'
 
 const props = {
   variant: {
-    type: String as PropType<'default' | 'solid' | 'soft' | 'outlined' | 'plain' | 'link'>,
+    type: String as PropType<'default' | 'solid' | 'soft' | 'outline' | 'plain' | 'link'>,
     default: 'default',
   },
   color: {
@@ -28,7 +28,7 @@ const props = {
     type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
     default: 'md',
   },
-  rounded: Boolean,
+  pill: Boolean,
   square: Boolean,
   circle: Boolean,
   block: Boolean,

@@ -26,7 +26,7 @@ asdfsa
 <template>
   <TButton>default</TButton>
   <br /><br />
-  <TButton color="primary" variant="outlined">outlined</TButton>
+  <TButton color="primary" variant="outline">outline</TButton>
   <TButton color="primary" variant="solid">solid</TButton>
   <TButton color="primary" variant="soft">soft</TButton>
   <TButton color="primary" variant="plain">plain</TButton>
@@ -34,14 +34,14 @@ asdfsa
 </template>
 ```
 
-## variant: outlined
+## variant: outline
 
 ```vue preview
 <template>
-  <TButton variant="outlined" color="primary">primary</TButton>
-  <TButton variant="outlined" color="success">success</TButton>
-  <TButton variant="outlined" color="warning">warning</TButton>
-  <TButton variant="outlined" color="error">error</TButton>
+  <TButton variant="outline" color="primary">primary</TButton>
+  <TButton variant="outline" color="success">success</TButton>
+  <TButton variant="outline" color="warning">warning</TButton>
+  <TButton variant="outline" color="error">error</TButton>
 </template>
 ```
 
@@ -295,7 +295,7 @@ const onClick = () => {
   <TButton variant="solid" disabled>solid</TButton>
   <TButton variant="soft" disabled>soft</TButton>
   <TButton variant="plain" disabled>plain</TButton>
-  <TButton variant="outlined" disabled>outlined</TButton>
+  <TButton variant="outline" disabled>outline</TButton>
   <TButton variant="link" disabled>link</TButton>
   <TButton variant="solid" circle disabled>
     <template #icon>

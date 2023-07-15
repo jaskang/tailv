@@ -65,7 +65,7 @@ export const Switch = defineComponent({
         type="button"
         style={cssVars.value}
         class={[
-          't-switch relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[--t-switch-ring] focus:ring-offset-2 dark:ring-offset-slate-900',
+          't-switch relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[--t-switch-ring] focus:ring-offset-2 dark:ring-offset-gray-900',
           checked.value ? 'bg-[--t-switch-accent]' : ' bg-gray-200',
           props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]}

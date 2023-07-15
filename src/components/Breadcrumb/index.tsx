@@ -9,7 +9,7 @@ import {
 } from 'vue'
 
 export type BreadcrumbItem = {
-  title: string | (() => VNode[])
+  title: string | (() => JSX.Element)
   path?: string
 }
 const props = {
@@ -52,7 +52,7 @@ export const Breadcrumb = defineComponent({
           ))}
           {currentPath.value && (
             <li class="flex items-center ">
-              <a class="truncate font-semibold text-slate-900 dark:text-slate-200">
+              <a class="truncate font-semibold text-gray-900 dark:text-gray-200">
                 {typeof currentPath.value.title === 'function' ? currentPath.value.title() : currentPath.value.title}
               </a>
             </li>

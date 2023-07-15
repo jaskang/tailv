@@ -1,5 +1,6 @@
 import type { Plugin } from 'vue'
 
+import { Badge } from './components/Badge'
 import { Breadcrumb } from './components/Breadcrumb'
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
@@ -16,22 +17,23 @@ import { Switch } from './components/Switch'
 import { Tooltip } from './components/Tooltip'
 
 export {
-  Breadcrumb as TBreadcrumb,
-  Button as TButton,
-  Checkbox as TCheckbox,
-  ConfigProvider as TConfigProvider,
-  Flex as TFlex,
-  FlexItem as TFlexItem,
-  Icon as TIcon,
-  Input as TInput,
-  InputGroup as TInputGroup,
-  Popover as TPopover,
-  Popper as TPopper,
-  Radio as TRadio,
-  RadioGroup as TRadioGroup,
-  Select as TSelect,
-  Switch as TSwitch,
-  Tooltip as TTooltip,
+  Badge,
+  Breadcrumb,
+  Button,
+  Checkbox,
+  ConfigProvider,
+  Flex,
+  FlexItem,
+  Icon,
+  Input,
+  InputGroup,
+  Popover,
+  Popper,
+  Radio,
+  RadioGroup,
+  Select,
+  Switch,
+  Tooltip,
   useConfig,
 }
 
@@ -53,6 +55,7 @@ export const Tailv: Plugin = {
     app.component('TPopper', Popper)
     app.component('TTooltip', Tooltip)
     app.component('TBreadcrumb', Breadcrumb)
+    app.component('TBadge', Badge)
   },
 }
 

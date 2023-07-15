@@ -11,7 +11,7 @@ import { useDark } from '@vueuse/core'
 import { useData, useRoute } from 'vitepress'
 import { defineComponent, provide, ref, watch } from 'vue'
 
-import { TBreadcrumb, TButton, TSwitch } from '../../../src'
+import { Breadcrumb, Button, Switch } from '../../../src'
 import TVContent from './components/TVContent.vue'
 import TVSidebar from './components/TVSidebar.vue'
 import { useSidebar } from './core/sidebar'
@@ -52,33 +52,33 @@ export default defineComponent({
                       </a>
                     </li>
                     <li>
-                      <TSwitch v-model:checked={isDark.value}>
+                      <Switch v-model:checked={isDark.value}>
                         {{
                           on: () => <MoonIcon class="text-gray-900" />,
                           off: () => <SunIcon />,
                         }}
-                      </TSwitch>
+                      </Switch>
                     </li>
                   </ul>
                 </nav>
               </div>
 
-              <TButton class="-my-1 ml-auto lg:hidden" square variant="link">
+              <Button class="-my-1 ml-auto lg:hidden" square variant="link">
                 {{
                   icon: () => <MagnifyingGlassIcon class="scale-150" />,
                 }}
-              </TButton>
+              </Button>
               <div class="-my-1 ml-2 lg:hidden">
-                <TButton square variant="link">
+                <Button square variant="link">
                   {{
                     icon: () => <EllipsisVerticalIcon class="scale-150" />,
                   }}
-                </TButton>
+                </Button>
               </div>
             </div>
           </div>
           <div class="flex items-center border-b border-slate-900/10 px-4 dark:border-slate-50/[0.06] lg:hidden">
-            <TButton square variant="link">
+            <Button square variant="link">
               {{
                 icon: () => (
                   <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24">
@@ -92,14 +92,14 @@ export default defineComponent({
                   </svg>
                 ),
               }}
-            </TButton>
+            </Button>
             <button
               type="button"
               class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
             >
               <span class="sr-only">Navigation</span>
             </button>
-            <TBreadcrumb items={[{ title: () => <HomeIcon /> }, { title: 'sdfs' }, { title: 'asdfasdf' }]} />
+            <Breadcrumb items={[{ title: () => <HomeIcon /> }, { title: 'sdfs' }, { title: 'asdfasdf' }]} />
           </div>
         </div>
         <div class="overflow-hidden">
