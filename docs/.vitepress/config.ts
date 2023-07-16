@@ -29,7 +29,7 @@ export default defineConfig({
         items: [
           { link: '/components/button', text: 'Button 按钮' },
           { link: '/components/icon', text: 'Icon 图标' },
-          { link: '/components/badge', text: 'Badge' },
+          { link: '/components/tag', text: 'Tag' },
         ],
         text: '基础组件',
       },
