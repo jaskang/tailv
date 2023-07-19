@@ -43,8 +43,8 @@ export type ButtonPublicProps = ExtractPublicPropTypes<typeof props>
 export const Button = defineComponent({
   name: 'TButton',
   props,
-  emits: {} as {
-    click(payload: MouseEvent): void
+  emits: {
+    click: (payload: MouseEvent) => true,
   },
   slots: Object as SlotsType<{
     default: () => VNode

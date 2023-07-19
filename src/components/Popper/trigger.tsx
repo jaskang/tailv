@@ -59,7 +59,12 @@ export const PopperTrigger = defineComponent({
   setup(_, { slots }) {
     return () => {
       const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
-      return () => <RefSlot onUpdateEl={el => (triggerRef.value = el)}>{slots.default?.()}</RefSlot>
+      const setTriggerRef = (el: HTMLElement | null) => {
+        console.log('setTriggerRef', el)
+
+        triggerRef.value = el
+      }
+      return <RefSlot onUpdateEl={setTriggerRef}>{slots.default?.()}</RefSlot>
     }
   },
 })

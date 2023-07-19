@@ -1,4 +1,4 @@
-import { cloneVNode, type ComponentPublicInstance, defineComponent, onMounted, ref, watch } from 'vue'
+import { cloneVNode, type ComponentPublicInstance, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import { extractSingleChild } from '@/utils/vnode'
 
@@ -20,13 +20,25 @@ export const RefSlot = defineComponent({
         emit('updateEl', null)
       }
     })
-    onMounted(() => {
+    onUnmounted(() => {
       childRef.value = null
     })
     return () => {
       const slotVNodes = slots.default?.() ?? []
       const child = extractSingleChild(slotVNodes)
-      const childWithRef = child && cloneVNode(child, { ref: childRef }, true)
+
+      const childWithRef =
+        child &&
+        cloneVNode(
+          child,
+          {
+            ref: el => {
+              // @ts-expect-error
+              childRef.value = el
+            },
+          },
+          true
+        )
       return childWithRef
     }
   },
