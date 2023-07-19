@@ -8,7 +8,7 @@ import {
   type VNode,
 } from 'vue'
 
-import { useControllable } from '@/hooks/controllable'
+import { useControllable } from '@/hooks/useControllable'
 import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
 import { useColorVar } from '@/utils/style'

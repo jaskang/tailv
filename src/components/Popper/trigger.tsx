@@ -1,4 +1,3 @@
-import { useEventListener } from '@vueuse/core'
 import { isObject } from 'kotl'
 import {
   cloneVNode,
@@ -10,6 +9,7 @@ import {
   type InjectionKey,
   type MaybeRef,
   type Ref,
+  ref,
   Text,
   toValue,
   type VNode,
@@ -17,12 +17,13 @@ import {
 } from 'vue'
 
 import { useClickOutside } from '@/hooks/useClickOutside'
+import { useEventListener } from '@/hooks/useEventListener'
 
 export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
 
 export type UsePopperTriggerOptions = {
-  referenceEl: Ref<HTMLElement | undefined>
-  floatingEl: Ref<HTMLElement | undefined>
+  referenceEl: Ref<HTMLElement | null>
+  floatingEl: Ref<HTMLElement | null>
   trigger: Ref<TriggerType>
   open: Ref<boolean>
   delay: MaybeRef<number>
@@ -56,7 +57,7 @@ export const PopperTrigger = defineComponent({
   setup(_, { slots, attrs }) {
     return () => {
       const defaultSlot = slots.default?.(attrs)
-      const triggerRef = inject(POPPER_TRIGGER_TOKEN) as Ref<HTMLElement | null>
+      const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
 
       if (!defaultSlot) {
         return null
@@ -96,6 +97,8 @@ export function usePopperTrigger(
   const handleTriggerEnter = () => {
     // if (props.disabled) return
     if (trigger.value === 'hover' && !open.value) {
+      console.log('handleTriggerEnter')
+
       clearTimeout(timer)
       change(true, 'mouseenter')
     }
@@ -125,7 +128,7 @@ export function usePopperTrigger(
     // if (props.disabled) return
     if (trigger.value !== 'manual' && open.value) change(false, 'clickOutside')
   }
-
+  console.log('usePopperTrigger')
   useEventListener(referenceEl, 'mouseenter', handleTriggerEnter)
   useEventListener(referenceEl, 'mouseleave', handleTriggerLeave)
   useEventListener(referenceEl, 'click', handleTriggerClick)

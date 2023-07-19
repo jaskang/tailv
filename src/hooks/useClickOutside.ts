@@ -1,71 +1,117 @@
-import { isIOS, noop } from '@vueuse/core'
 import { isBrowser } from 'kotl'
-import { onMounted, onUnmounted, type Ref, toValue } from 'vue'
+import { type MaybeRefOrGetter, ref, toValue } from 'vue'
 
-type MouseHandler = (e: MouseEvent) => void
-type ElementRef = Ref<HTMLElement | undefined>
+import { useDocumentEvent, useWindowEvent } from './useEventListener'
 
-const handlers: Array<{
-  handler: MouseHandler
-  ignores: ElementRef[]
-}> = []
+type ElementMaybeRef = MaybeRefOrGetter<HTMLElement | null>
 
-let listened = false
-let _iOSWorkaround = false
-
-const useClickOutsideEvent = () => {
+export function useClickOutside(
+  elements: ElementMaybeRef[],
+  cb: (event: MouseEvent | PointerEvent | FocusEvent | TouchEvent, target: HTMLElement) => void
+) {
   if (!isBrowser()) return
 
-  // Fixes: https://github.com/vueuse/vueuse/issues/1520
-  // How it works: https://stackoverflow.com/a/39712411
-  if (isIOS && !_iOSWorkaround) {
-    _iOSWorkaround = true
-    Array.from(window.document.body.children).forEach(el => el.addEventListener('click', noop))
-  }
+  function handleOutsideClick<E extends MouseEvent | PointerEvent | FocusEvent | TouchEvent>(
+    event: E,
+    resolveTarget: (event: E) => HTMLElement | null
+  ) {
+    // Check whether the event got prevented already. This can happen if you use the
+    // useOutsideClick hook in both a Dialog and a Menu and the inner Menu "cancels" the default
+    // behaviour so that only the Menu closes and not the Dialog (yet)
+    if (event.defaultPrevented) return
 
-  const listener = (event: MouseEvent) => {
-    handlers.forEach(({ ignores, handler }) => {
-      const inside = ignores.some(item => {
-        const el = toValue(item)
-        const ret = el && (event.target === el || el.contains(event.target as Node))
-        return !!ret
-      })
-      if (!inside) {
-        try {
-          handler(event)
-        } catch (error) {
-          console.error(error)
-        }
+    const target = resolveTarget(event)
+
+    if (target === null) {
+      return
+    }
+
+    // Ignore if the target doesn't exist in the DOM anymore
+    if (!target.getRootNode().contains(target)) return
+
+    // Ignore if the target exists in one of the containers
+    for (const item of elements) {
+      const el = toValue(item)
+      if (el === null) continue
+      if (el.contains(target)) {
+        return
       }
-    })
+
+      if (event.composed && event.composedPath().includes(el as EventTarget)) {
+        return
+      }
+    }
+    return cb(event, target)
   }
 
-  onMounted(() => {
-    if (!listened) {
-      window.addEventListener('click', listener, { passive: true, capture: true })
-      listened = true
-    }
-  })
-  onUnmounted(() => {
-    if (listened && handlers.length > 0) {
-      window.removeEventListener('click', listener, { capture: true })
-      listened = false
-    }
-  })
-}
+  const initialClickTarget = ref<EventTarget | null>(null)
 
-export function useClickOutside(ignores: Array<ElementRef>, handler: MouseHandler) {
-  if (!isBrowser) return
+  useDocumentEvent(
+    'pointerdown',
+    event => {
+      initialClickTarget.value = event.composedPath?.()?.[0] || event.target
+    },
+    true
+  )
 
-  useClickOutsideEvent()
+  useDocumentEvent(
+    'mousedown',
+    event => {
+      initialClickTarget.value = event.composedPath?.()?.[0] || event.target
+    },
+    true
+  )
 
-  onMounted(() => {
-    handlers.unshift({ handler, ignores })
-  })
-  onUnmounted(() => {
-    handlers.splice(
-      handlers.findIndex(item => item.handler === handler),
-      1
-    )
-  })
+  useDocumentEvent(
+    'click',
+    event => {
+      if (!initialClickTarget.value) {
+        return
+      }
+      handleOutsideClick(event, () => {
+        return initialClickTarget.value as HTMLElement
+      })
+      initialClickTarget.value = null
+    },
+    // We will use the `capture` phase so that layers in between with `event.stopPropagation()`
+    // don't "cancel" this outside click check. E.g.: A `Menu` inside a `DialogPanel` if the `Menu`
+    // is open, and you click outside of it in the `DialogPanel` the `Menu` should close. However,
+    // the `DialogPanel` has a `onClick(e) { e.stopPropagation() }` which would cancel this.
+    true
+  )
+
+  useDocumentEvent(
+    'touchend',
+    event => {
+      return handleOutsideClick(event, () => {
+        if (event.target instanceof HTMLElement) {
+          return event.target
+        }
+        return null
+      })
+    },
+
+    // We will use the `capture` phase so that layers in between with `event.stopPropagation()`
+    // don't "cancel" this outside click check. E.g.: A `Menu` inside a `DialogPanel` if the `Menu`
+    // is open, and you click outside of it in the `DialogPanel` the `Menu` should close. However,
+    // the `DialogPanel` has a `onClick(e) { e.stopPropagation() }` which would cancel this.
+    true
+  )
+
+  // When content inside an iframe is clicked `window` will receive a blur event
+  // This can happen when an iframe _inside_ a window is clicked
+  // Or, if headless UI is *in* the iframe, when a content in a window containing that iframe is clicked
+
+  // In this case we care only about the first case so we check to see if the active element is the iframe
+  // If so this was because of a click, focus, or other interaction with the child iframe
+  // and we can consider it an "outside click"
+  useWindowEvent(
+    'blur',
+    event => {
+      return handleOutsideClick(event, () => {
+        return window.document.activeElement instanceof HTMLIFrameElement ? window.document.activeElement : null
+      })
+    },
+    true
+  )
 }

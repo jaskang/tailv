@@ -51,17 +51,17 @@ export const Popper = defineComponent({
     let container: HTMLElement
     const id = uid(6)
     const innerOpen = ref(props.open || false)
-    const childrens = ref<Set<string>>(new Set())
+    const children = ref<Set<string>>(new Set())
     const blocked = computed(() => {
-      return props.hold ? childrens.value.size > 0 : false
+      return props.hold ? children.value.size > 0 : false
     })
     const open = computed(() => {
       return innerOpen.value || blocked.value
     })
 
     const { placement, strategy, trigger } = toRefs(props)
-    const referenceEl = ref<HTMLElement>()
-    const floatingEl = ref<HTMLElement>()
+    const referenceEl = ref<HTMLElement | null>(null)
+    const floatingEl = ref<HTMLElement | null>(null)
     const arrowEl = ref<HTMLElement>()
     provide(POPPER_TRIGGER_TOKEN, referenceEl)
 
@@ -69,8 +69,8 @@ export const Popper = defineComponent({
 
     provide(popperInjectKey, {
       id: parent?.id || id,
-      append: id => childrens.value.add(id),
-      remove: id => childrens.value.delete(id),
+      append: id => children.value.add(id),
+      remove: id => children.value.delete(id),
     })
 
     const { floatingStyles: _floatingStyles, middlewareData } = useFloating(referenceEl, floatingEl, {

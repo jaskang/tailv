@@ -9,7 +9,7 @@ import {
   type VNode,
 } from 'vue'
 
-import { useControllable } from '@/hooks/controllable'
+import { useControllable } from '@/hooks/useControllable'
 import { type Color, useTheme } from '@/theme'
 import { useColorVar } from '@/utils/style'
 
