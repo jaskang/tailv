@@ -35,7 +35,7 @@ onContentUpdated(() => {
 </script>
 <template>
   <div class="mx-auto max-w-3xl pt-10 xl:ml-0 xl:mr-[15.5rem] xl:max-w-none xl:pr-16">
-    <div class="prose prose-slate relative z-20 dark:prose-dark">
+    <div class="prose prose-slate relative z-20 dark:prose-invert">
       <Content />
     </div>
     <footer class="mt-12 text-sm leading-6">
