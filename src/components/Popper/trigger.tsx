@@ -19,6 +19,8 @@ import {
 import { useClickOutside } from '@/hooks/useClickOutside'
 import { useEventListener } from '@/hooks/useEventListener'
 
+import { RefSlot } from '../_pure/RefSlot'
+
 export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
 
 export type UsePopperTriggerOptions = {
@@ -54,36 +56,10 @@ export function getFirstChild(nodes: VNode[]): VNode | null {
 // https://github.com/DevCloudFE/vue-devui/blob/dev/packages/devui-vue/devui/shared/components/popper-trigger/src/use-popper-trigger.ts
 export const PopperTrigger = defineComponent({
   name: 'TPopperTrigger',
-  setup(_, { slots, attrs }) {
+  setup(_, { slots }) {
     return () => {
-      const defaultSlot = slots.default?.(attrs)
       const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
-
-      if (!defaultSlot) {
-        return null
-      }
-
-      const firstChild = getFirstChild(defaultSlot)
-
-      if (!firstChild) {
-        return null
-      }
-
-      return withDirectives(cloneVNode(firstChild, attrs), [
-        [
-          {
-            mounted(el) {
-              triggerRef.value = el
-            },
-            updated(el) {
-              triggerRef.value = el
-            },
-            unmounted() {
-              triggerRef.value = null
-            },
-          },
-        ],
-      ])
+      return () => <RefSlot onUpdateEl={el => (triggerRef.value = el)}>{slots.default?.()}</RefSlot>
     }
   },
 })
