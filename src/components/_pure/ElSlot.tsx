@@ -39,20 +39,20 @@ export function useFirstElement(): [Ref<HTMLElement | null>, (v: VNode[]) => VNo
   return [el, hookVNode]
 }
 
-export const RefSlot = defineComponent({
-  name: 'TRefSlot',
+export const ElSlot = defineComponent({
+  name: 'TElSlot',
   props: {
+    elRef: {
+      type: Function as PropType<(el: HTMLElement | null) => void>,
+      required: true,
+    },
     extraProps: Object as PropType<Record<string, unknown>>,
   },
-  emits: {
-    updateEl: (el: HTMLElement | null) => true,
-  },
-  setup(props, { slots, emit }) {
+  setup(props, { slots }) {
     // trigger相关变量
     const [el, hookVNode] = useFirstElement()
-
     watch(el, () => {
-      emit('updateEl', el.value)
+      props.elRef(el.value)
     })
     return () => {
       const children = hookVNode(slots.default?.() ?? [])

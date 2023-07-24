@@ -38,6 +38,7 @@ onContentUpdated(() => {
     <div class="prose prose-slate relative z-20 dark:prose-invert">
       <Content />
     </div>
+    <!-- sdfasd -->
     <footer class="mt-12 text-sm leading-6">
       <div
         v-if="control.prev?.link || control.next?.link"

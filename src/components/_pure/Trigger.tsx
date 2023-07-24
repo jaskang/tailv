@@ -1,7 +1,20 @@
-import { defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type PropType, type SlotsType } from 'vue'
+import {
+  defineComponent,
+  type ExtractPropTypes,
+  type ExtractPublicPropTypes,
+  inject,
+  type InjectionKey,
+  type PropType,
+  type Ref,
+  ref,
+  type SlotsType,
+} from 'vue'
 
+import { useEventListener } from '@/hooks/useEventListener'
 import { type ColorKey } from '@/theme'
 import { useColorVar } from '@/utils/style'
+
+import { ElSlot } from './ElSlot'
 
 const props = {
   color: {
@@ -11,29 +24,21 @@ const props = {
   disabled: Boolean,
 }
 
-export type TriggerProps = ExtractPropTypes<typeof props>
-
-export type TriggerPublicProps = ExtractPublicPropTypes<typeof props>
+export const POPPER_TRIGGER_TOKEN: InjectionKey<Ref> = Symbol('popper-trigger')
 
 export const Trigger = defineComponent({
   name: 'TTrigger',
   props,
-  emits: {
-    click: (payload: MouseEvent) => true,
-  },
-  slots: Object as SlotsType<{
-    default: { foo: string; bar: number }
-  }>,
-  setup(props, { slots, emit }) {
-    const cssVars = useColorVar('t-Trigger', {
-      accent: 'primary.500',
-      ring: 'primary.500',
-    })
-
-    return () => (
-      <div style={cssVars.value} class="">
+  setup(props, { slots, attrs }) {
+    const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
+    return (
+      <ElSlot
+        elRef={(el: HTMLElement | null) => {
+          triggerRef.value = el
+        }}
+      >
         {slots.default?.()}
-      </div>
+      </ElSlot>
     )
   },
 })
