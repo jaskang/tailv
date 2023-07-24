@@ -1,13 +1,5 @@
-import {
-  type Component,
-  createCommentVNode,
-  createTextVNode,
-  Fragment,
-  isVNode,
-  Static,
-  type VNode,
-  type VNodeArrayChildren,
-} from 'vue'
+import { type Data, isArray, isFunction } from 'kotl'
+import { cloneVNode, Fragment, type VNode } from 'vue'
 
 interface IterationOptions {
   element?: boolean
@@ -17,84 +9,101 @@ interface IterationOptions {
   static?: boolean
 }
 
-export const isComponent = (vnode: unknown): vnode is VNode & { type: Component } => {
-  return getType(vnode) === 'component'
+// https://github.com/vuejs/core/blob/master/packages/shared/src/shapeFlags.ts
+const enum ShapeFlags {
+  ELEMENT = 1,
+  FUNCTIONAL_COMPONENT = 1 << 1,
+  STATEFUL_COMPONENT = 1 << 2,
+  TEXT_CHILDREN = 1 << 3,
+  ARRAY_CHILDREN = 1 << 4,
+  SLOTS_CHILDREN = 1 << 5,
+  TELEPORT = 1 << 6,
+  SUSPENSE = 1 << 7,
+  COMPONENT_SHOULD_KEEP_ALIVE = 1 << 8,
+  COMPONENT_KEPT_ALIVE = 1 << 9,
+  COMPONENT = ShapeFlags.STATEFUL_COMPONENT | ShapeFlags.FUNCTIONAL_COMPONENT,
 }
 
-const isFragment = (vnode: unknown): vnode is (VNode & { type: typeof Fragment }) | VNodeArrayChildren => {
-  return getType(vnode) === 'fragment'
+export const isTextNode = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.TEXT_CHILDREN
+export const isComponent = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.COMPONENT
+export const isElement = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.ELEMENT
+export const isSlot = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.SLOTS_CHILDREN
+export const isArrayChildren = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN
+export const isFragment = (vnode: VNode) => vnode && vnode.type === Fragment
+
+function getChildrenArray(vnode: VNode): VNode[] | undefined {
+  if (isArrayChildren(vnode)) return vnode.children as VNode[]
+  if (isArray(vnode)) return vnode as VNode[]
+  return undefined
 }
 
-const getType = (vnode: unknown) => {
-  const typeofVNode = typeof vnode
-  if (vnode == null || typeofVNode === 'boolean') return 'comment'
-  else if (typeofVNode === 'string' || typeofVNode === 'number') return 'text'
-  else if (Array.isArray(vnode)) return 'fragment'
-  if (isVNode(vnode)) {
-    const { type } = vnode
-    const typeofType = typeof type
-
-    if (typeofType === 'symbol') {
-      if (type === Fragment) return 'fragment'
-      else if (type === Text) return 'text'
-      else if (type === Comment) return 'comment'
-      else if (type === Static) return 'static'
-    } else if (typeofType === 'string') {
-      return 'element'
-    } else if (typeofType === 'object' || typeofType === 'function') {
-      return 'component'
-    }
+export const getFirstElementFromVNode = (vn: VNode): HTMLElement | null => {
+  if (isElement(vn)) {
+    return vn.el as HTMLElement
   }
-
-  return undefined
+  if (isComponent(vn)) {
+    if ((vn.el as Node)?.nodeType === 1) {
+      return vn.el as HTMLElement
+    }
+    if (vn.component?.subTree) {
+      const ele = getFirstElementFromVNode(vn.component.subTree)
+      if (ele) return ele
+    }
+  } else {
+    const children = getChildrenArray(vn)
+    return getFirstElementFromChildren(children)
+  }
+  return null
 }
-
-const getText = (vnode: VNode | string | number): string | undefined => {
-  if (typeof vnode === 'string') return vnode
-  if (typeof vnode === 'number') return String(vnode)
-  if (isVNode(vnode) && vnode.type === Text) return String(vnode.children)
-  return undefined
-}
-
-const promoteToVNode = (
-  node: VNode | string | number | boolean | null | undefined | void,
-  options: IterationOptions
-): VNode | null => {
-  const type = getType(node)
-  // In practice, we don't call this function for fragments, but TS gets unhappy if we don't handle it
-  if (!type || type === 'fragment' || !options[type]) return null
-  if (isVNode(node)) return node
-  if (type === 'text') return createTextVNode(getText(node as string | number))
-  return createCommentVNode()
-}
-
-const getFragmentChildren = (fragmentVNode: VNode | VNodeArrayChildren): VNodeArrayChildren => {
-  if (Array.isArray(fragmentVNode)) return fragmentVNode
-  const { children } = fragmentVNode
-  if (Array.isArray(children)) return children
-  console.warn('getFragmentChildren', `Unknown children for fragment: ${children}`)
-  return []
-}
-
-export const findVNodeMatching = (
-  children: VNodeArrayChildren,
-  options: IterationOptions,
-  matcher: (vnode: VNode) => boolean
-): VNode | null => {
-  for (const child of children) {
-    if (isFragment(child)) {
-      const fragmentChildren = findVNodeMatching(getFragmentChildren(child), options, matcher)
-      if (fragmentChildren) return fragmentChildren
-    } else {
-      const vnode = promoteToVNode(child, options)
-      if (vnode && matcher(vnode)) return vnode
+export const getFirstElementFromChildren = (children?: VNode[]): HTMLElement | null => {
+  if (children && children.length > 0) {
+    for (const child of children) {
+      const element = getFirstElementFromVNode(child)
+      if (element) return element
     }
   }
   return null
 }
 
-export const extractSingleChild = (children: VNodeArrayChildren): VNode | null => {
-  return findVNodeMatching(children, { element: true, component: true }, () => {
-    return true
-  })
+export function getAllElements(children: VNode[] | undefined) {
+  const result: VNode[] = []
+  for (const item of children ?? []) {
+    // vue 会渲染comment
+    if (item.type === Comment) continue
+
+    if (isTextNode(item) || isComponent(item) || isElement(item)) {
+      result.push(item)
+    } else if (Array.isArray(item)) {
+      result.push(...getAllElements(item))
+    } else if (isFragment(item)) {
+      if (item.children && Array.isArray(item.children)) {
+        result.push(...getAllElements(item.children as VNode[]))
+      }
+    }
+  }
+
+  return result
+}
+
+export const mergeFirstChild = (
+  children: VNode[] | undefined,
+  extraProps: Data | ((vnode?: VNode) => Data)
+): boolean => {
+  if (!children?.length) return false
+
+  for (let i = 0; i < children.length; i++) {
+    const vnode = children[i]
+    if (isElement(vnode) || isComponent(vnode)) {
+      const props = isFunction(extraProps) ? extraProps(vnode) : extraProps
+      children[i] = cloneVNode(vnode, props, true)
+      return true
+    }
+    const _children = getChildrenArray(vnode)
+    if (_children && _children.length) {
+      const result = mergeFirstChild(_children, extraProps)
+      if (result) return result
+    }
+  }
+
+  return false
 }

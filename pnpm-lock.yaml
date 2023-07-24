@@ -18,8 +18,8 @@ dependencies:
     specifier: 4.0.0-beta.0
     version: 4.0.0-beta.0
   kotl:
-    specifier: ^1.4.1
-    version: 1.4.1
+    specifier: ^1.5.0
+    version: 1.5.0
   pinia:
     specifier: ^2.1.4
     version: 2.1.4(typescript@5.1.6)(vue@3.3.4)
@@ -3484,8 +3484,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /kotl@1.4.1:
-    resolution: {integrity: sha512-FJ50GuoDXD87TBVkOFP7yYSNq3iQPCi0Kl6dQ0rmi3m6WcpNmIQoXb8LL7TtzdmRRfX1Xzp/Dv8NUxuokvubNg==}
+  /kotl@1.5.0:
+    resolution: {integrity: sha512-XP9hAImrCaOxW+/Ui9X84RNlt0KwqZvb3/6O+xKdTBhua3thi/eI2N4zpmmQiT8SUa59SupvPOigdeFh1DdAhA==}
     dev: false
 
   /levn@0.4.1:

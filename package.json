@@ -32,7 +32,7 @@
     "@heroicons/vue": "^2.0.18",
     "@vueuse/core": "^10.2.1",
     "body-scroll-lock": "4.0.0-beta.0",
-    "kotl": "^1.4.1",
+    "kotl": "^1.5.0",
     "pinia": "^2.1.4",
     "tailwind-variants": "^0.1.13",
     "vue": "^3.3.4",
