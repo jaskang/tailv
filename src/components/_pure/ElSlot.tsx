@@ -3,6 +3,7 @@ import {
   cloneVNode,
   type ComponentPublicInstance,
   defineComponent,
+  type HTMLAttributes,
   onMounted,
   onUnmounted,
   onUpdated,
@@ -46,7 +47,7 @@ export const ElSlot = defineComponent({
       type: Function as PropType<(el: HTMLElement | null) => void>,
       required: true,
     },
-    extraProps: Object as PropType<Record<string, unknown>>,
+    extraProps: Object as PropType<HTMLAttributes>,
   },
   setup(props, { slots }) {
     // trigger相关变量

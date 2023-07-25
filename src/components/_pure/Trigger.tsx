@@ -33,9 +33,10 @@ export const Trigger = defineComponent({
     const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
     return (
       <ElSlot
-        elRef={(el: HTMLElement | null) => {
+        elRef={el => {
           triggerRef.value = el
         }}
+        extraProps={{}}
       >
         {slots.default?.()}
       </ElSlot>
