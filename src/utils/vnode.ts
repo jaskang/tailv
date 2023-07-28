@@ -24,11 +24,11 @@ const enum ShapeFlags {
   COMPONENT = ShapeFlags.STATEFUL_COMPONENT | ShapeFlags.FUNCTIONAL_COMPONENT,
 }
 
-export const isTextNode = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.TEXT_CHILDREN
-export const isComponent = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.COMPONENT
-export const isElement = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.ELEMENT
-export const isSlot = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.SLOTS_CHILDREN
-export const isArrayChildren = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN
+export const isTextNode = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.TEXT_CHILDREN)
+export const isComponent = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.COMPONENT)
+export const isElement = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.ELEMENT)
+export const isSlot = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.SLOTS_CHILDREN)
+export const isArrayChildren = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN)
 export const isFragment = (vnode: VNode) => vnode && vnode.type === Fragment
 export const isComment = (vnode: VNode) => vnode && vnode.type === Comment
 
@@ -109,7 +109,7 @@ export const mergeFirstChild = (
   return false
 }
 
-function getRootElements(children: VNode[] = []) {
+export function getRootElements(children: VNode[] = []) {
   const result: VNode[] = []
   for (const item of children) {
     // vue 会渲染comment

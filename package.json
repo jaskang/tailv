@@ -22,7 +22,7 @@
     "vue-tsc": "vue-tsc --declaration --emitDeclarationOnly ",
     "build-types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json --composite false && api-extractor run -c api-extractor.json && rimraf dist/src",
     "preview": "vite preview",
-    "test:unit": "vitest --environment jsdom --root src/",
+    "test": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -55,6 +55,7 @@
     "@vue/tsconfig": "^0.4.0",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.45.0",
+    "happy-dom": "^10.5.2",
     "jsdom": "^22.1.0",
     "mini-svg-data-uri": "^1.4.4",
     "postcss": "^8.4.27",
