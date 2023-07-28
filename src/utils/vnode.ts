@@ -30,6 +30,7 @@ export const isElement = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags
 export const isSlot = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.SLOTS_CHILDREN
 export const isArrayChildren = (vnode: VNode) => vnode && vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN
 export const isFragment = (vnode: VNode) => vnode && vnode.type === Fragment
+export const isComment = (vnode: VNode) => vnode && vnode.type === Comment
 
 function getChildrenArray(vnode: VNode): VNode[] | undefined {
   if (isArrayChildren(vnode)) return vnode.children as VNode[]
@@ -106,4 +107,23 @@ export const mergeFirstChild = (
   }
 
   return false
+}
+
+function getRootElements(children: VNode[] = []) {
+  const result: VNode[] = []
+  for (const item of children) {
+    // vue 会渲染comment
+    if (isComment(item)) continue
+
+    if (isTextNode(item) || isComponent(item) || isElement(item)) {
+      result.push(item)
+    } else if (Array.isArray(item)) {
+      result.push(...getRootElements(item))
+    } else if (isFragment(item)) {
+      if (item.children && Array.isArray(item.children)) {
+        result.push(...getAllElements(item.children as VNode[]))
+      }
+    }
+  }
+  return result
 }
