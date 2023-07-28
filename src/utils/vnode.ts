@@ -117,6 +117,8 @@ export function getRootElements(children: VNode[] = []) {
 
     if (isTextNode(item) || isComponent(item) || isElement(item)) {
       result.push(item)
+    } else if (isSlot(item)) {
+      result.push(...getAllElements(item.children.default?.()))
     } else if (Array.isArray(item)) {
       result.push(...getRootElements(item))
     } else if (isFragment(item)) {
