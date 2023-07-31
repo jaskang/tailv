@@ -1,41 +1,41 @@
 import { mount } from '@vue/test-utils'
-import { defineComponent, type VNode } from 'vue'
+import { defineComponent, getCurrentInstance, type VNode } from 'vue'
 
-import { getRootElements, isElement } from '@/utils/vnode'
+import { getRootElements, getRootNodes, isElement } from '@/utils/vnode'
 
 describe('getRootElements', () => {
   const ElementSlot = defineComponent({
     name: 'ElementSlot',
     setup(_, { slots, expose }) {
       const vnodes: VNode[] = []
-      expose({ vnodes })
+      const isntance = getCurrentInstance()
+      expose({ vnodes, isntance })
       return () => {
-        const children = getRootElements(slots.default?.())
+        const children = slots.default?.() || []
         vnodes.push(...children)
         return children
       }
     },
   })
-  // it('element', () => {
-  //   const wrapper = mount(
-  //     defineComponent(props => () => (
-  //       <ElementSlot>
-  //         <div>Todo</div>
-  //         <div>Todo</div>
-  //       </ElementSlot>
-  //     ))
-  //   )
+  it('element', () => {
+    const wrapper = mount(
+      defineComponent(props => () => (
+        <ElementSlot>
+          <div>Todo</div>
+          <div>Todo</div>
+        </ElementSlot>
+      ))
+    )
+    const slot = wrapper.getComponent(ElementSlot)!.getCurrentComponent()!
+    const nodes = getRootNodes(slot.vnode)
 
-  //   const exposed = wrapper.getComponent(ElementSlot)!.getCurrentComponent().exposed || {}
-
-  //   expect(exposed.vnodes).lengthOf(2)
-  //   expect(isElement(exposed.vnodes[0])).toBe(true)
-  //   expect(isElement(exposed.vnodes[1])).toBe(true)
-  // })
+    expect(nodes[0]).toBe(true)
+    expect(nodes[1]).toBe(true)
+  })
   it('comp', () => {
     const comp = defineComponent({
       name: 'Comp',
-      template: '<div>Todo</div><div>Todo</div><slot/>',
+      template: '<div class="comp">Todo</div><slot/>',
     })
     const wrapper = mount(
       defineComponent({
@@ -52,10 +52,41 @@ describe('getRootElements', () => {
         },
       })
     )
-    const exposed = wrapper.getComponent(ElementSlot)!.getCurrentComponent().exposed || {}
-    console.log(wrapper.html())
-    expect(exposed.vnodes).lengthOf(4)
-    expect(isElement(exposed.vnodes[0])).toBe(true)
-    expect(isElement(exposed.vnodes[1])).toBe(true)
+    const slot = wrapper.getComponent(ElementSlot)!.getCurrentComponent()!
+    const nodes = getRootNodes(slot.vnode)
+    expect(nodes[0]).toBe(true)
+    expect(nodes[1]).toBe(true)
+  })
+
+  it('comp', () => {
+    const comp = defineComponent({
+      name: 'Comp',
+      template: '<div class="comp">Todo</div><div class="comp">Todo</div><slot/>',
+    })
+    const comp1 = defineComponent({
+      name: 'Comp1',
+      template: '<div class="comp1">Todo</div>',
+    })
+    const wrapper = mount(
+      defineComponent({
+        components: { comp, comp1 },
+        setup() {
+          return () => (
+            <ElementSlot>
+              <comp1 />
+              <comp>
+                <div>Todo</div>
+              </comp>
+              <div>Todo</div>
+            </ElementSlot>
+          )
+        },
+      })
+    )
+    const slot = wrapper.getComponent(ElementSlot)!.getCurrentComponent()!
+    const nodes = getRootNodes(slot.vnode)
+    expect(nodes).lengthOf(4)
+    expect(nodes[0]).toBe(true)
+    expect(nodes[1]).toBe(true)
   })
 })
