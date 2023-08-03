@@ -1,14 +1,7 @@
-import { tv } from 'tailwind-variants'
-import {
-  computed,
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-  type SlotsType,
-} from 'vue'
+import { computed, defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type PropType } from 'vue'
 
 import { type ColorKey } from '@/theme'
+import { clsVariants } from '@/utils/clst'
 import { useColorVar } from '@/utils/style'
 
 const props = {
@@ -29,28 +22,30 @@ export type TagProps = ExtractPropTypes<typeof props>
 
 export type TagPublicProps = ExtractPublicPropTypes<typeof props>
 
-const createClass = tv({
-  base: `inline-flex items-center rounded-md text-xs font-medium px-2 py-1 bg-[--t-tag-bg] text-[--t-tag-text]`,
-  variants: {
-    variant: {
-      outline: 'ring-1 ring-inset ring-[--t-tag-border]',
-      solid: '',
+const createClass = clsVariants(
+  `inline-flex items-center rounded-md text-xs font-medium px-2 py-1 bg-[--t-tag-bg] text-[--t-tag-text]`,
+  {
+    variants: {
+      variant: {
+        outline: 'ring-1 ring-inset ring-[--t-tag-border]',
+        solid: '',
+      },
+      pill: {
+        true: 'rounded-full',
+      },
+      dot: {
+        true: '',
+      },
     },
-    pill: {
-      true: 'rounded-full',
-    },
-    dot: {
-      true: '',
-    },
-  },
-  compoundVariants: [
-    {
-      variant: 'outline',
-      dot: true,
-      class: 'bg-transparent text-gray-900 ring-gray-300',
-    },
-  ],
-})
+    compoundVariants: [
+      {
+        variant: 'outline',
+        dot: true,
+        class: ['bg-transparent text-gray-900 ring-gray-300', 'text-[--t-tag-text] ring-[--t-tag-border]'],
+      },
+    ],
+  }
+)
 
 export const Tag = defineComponent({
   name: 'TTag',

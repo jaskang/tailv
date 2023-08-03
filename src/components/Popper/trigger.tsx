@@ -19,7 +19,7 @@ import {
 import { useClickOutside } from '@/hooks/useClickOutside'
 import { useEventListener } from '@/hooks/useEventListener'
 
-import { RefSlot } from '../_pure/ElSlot'
+import { ElSlot } from '../_pure/ElSlot'
 
 export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
 
@@ -61,7 +61,7 @@ export const PopperTrigger = defineComponent({
       const setTriggerRef = (el: HTMLElement | null) => {
         triggerRef.value = el
       }
-      return <RefSlot onUpdateEl={setTriggerRef}>{slots.default?.()}</RefSlot>
+      return <ElSlot elRef={setTriggerRef}>{slots.default?.()}</ElSlot>
     }
   },
 })
