@@ -1,13 +1,10 @@
-import { type Placement, useFloating } from '@floating-ui/vue'
+import { type Placement } from '@floating-ui/vue'
 import {
-  computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
-  ref,
   type SlotsType,
-  Teleport,
   type VNode,
 } from 'vue'
 

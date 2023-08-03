@@ -13,11 +13,10 @@ import {
 
 import { useControllable } from '@/hooks/useControllable'
 import { useTheme } from '@/theme'
-import { PropTypes } from '@/utils'
 
 const props = {
-  value: PropTypes.any(),
-  name: PropTypes.string().def(''),
+  value: [String, Number],
+  name: { type: String, default: '' },
   disabled: Boolean,
 }
 
@@ -47,8 +46,7 @@ export const RadioGroup = defineComponent({
       val => {
         emit('update:value', val)
         emit('change', val)
-      },
-      false
+      }
     )
 
     provide<RadioGroupContext>('RadioGroupContext', {

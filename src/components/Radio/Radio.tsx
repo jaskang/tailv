@@ -11,7 +11,6 @@ import {
 
 import { useControllable } from '@/hooks/useControllable'
 import { useTheme } from '@/theme'
-import { PropTypes } from '@/utils'
 import { useColorVar } from '@/utils/style'
 
 import type { RadioGroupContext } from './RadioGroup'
@@ -20,7 +19,7 @@ const props = {
   checked: Boolean,
   name: String,
   disabled: Boolean,
-  value: PropTypes.any(),
+  value: [String, Number],
 }
 
 export type RadioProps = ExtractPropTypes<typeof props>

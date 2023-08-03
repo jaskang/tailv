@@ -1,6 +1,5 @@
 import { isObject } from 'kotl'
 import {
-  cloneVNode,
   Comment,
   defineComponent,
   Fragment,
@@ -13,7 +12,6 @@ import {
   Text,
   toValue,
   type VNode,
-  withDirectives,
 } from 'vue'
 
 import { useClickOutside } from '@/hooks/useClickOutside'

@@ -1,4 +1,4 @@
-import { defineComponent, type SlotsType, type VNode } from 'vue'
+import { defineComponent } from 'vue'
 
 export const LoadingIcon = defineComponent({
   name: 'TLoadingIcon',

@@ -1,4 +1,3 @@
-import { ChevronRightIcon } from '@heroicons/vue/24/solid'
 import {
   computed,
   defineComponent,
@@ -7,6 +6,8 @@ import {
   type PropType,
   type VNode,
 } from 'vue'
+
+import { ChevronRightIcon } from '../Icon'
 
 export type BreadcrumbItem = {
   title: string | (() => JSX.Element)

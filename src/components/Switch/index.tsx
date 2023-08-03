@@ -1,5 +1,4 @@
 import {
-  computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,

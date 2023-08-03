@@ -35,8 +35,7 @@
     "kotl": "^1.6.0",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.4",
-    "vue-types": "^5.1.1"
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@jaskang/config": "^1.3.0",
