@@ -1,7 +1,4 @@
-import { on } from 'events'
 import {
-  cloneVNode,
-  type ComponentPublicInstance,
   defineComponent,
   type HTMLAttributes,
   onMounted,
@@ -12,7 +9,6 @@ import {
   ref,
   type VNode,
   watch,
-  watchEffect,
 } from 'vue'
 
 import { getFirstElementFromChildren, mergeFirstChild } from '@/utils/vnode'
