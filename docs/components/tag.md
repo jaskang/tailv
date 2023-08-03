@@ -97,3 +97,25 @@
   </div>
 </template>
 ```
+
+### closeable 关闭按钮
+
+```vue preview
+<template>
+  <div class="flex flex-wrap gap-2">
+    <TTag variant="solid" pill closeable>Badge</TTag>
+    <TTag variant="solid" pill closeable color="primary">Badge</TTag>
+    <TTag variant="solid" pill closeable color="success">Badge</TTag>
+    <TTag variant="solid" pill closeable color="warning">Badge</TTag>
+    <TTag variant="solid" pill closeable color="error">Badge</TTag>
+  </div>
+  <br />
+  <div class="flex flex-wrap gap-2">
+    <TTag variant="outline" pill closeable>Badge</TTag>
+    <TTag variant="outline" pill closeable color="primary">Badge</TTag>
+    <TTag variant="outline" pill closeable color="success">Badge</TTag>
+    <TTag variant="outline" pill closeable color="warning">Badge</TTag>
+    <TTag variant="outline" pill closeable color="error">Badge</TTag>
+  </div>
+</template>
+```

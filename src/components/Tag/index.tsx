@@ -11,9 +11,8 @@ const props = {
   },
   color: {
     type: String as PropType<ColorKey>,
-    default: 'gray',
   },
-  close: Boolean,
+  closeable: Boolean,
   dot: Boolean,
   pill: Boolean,
 }
@@ -23,27 +22,18 @@ export type TagProps = ExtractPropTypes<typeof props>
 export type TagPublicProps = ExtractPublicPropTypes<typeof props>
 
 const createClass = clsVariants(
-  `inline-flex items-center rounded-md text-xs font-medium px-2 py-1 bg-[--t-tag-bg] text-[--t-tag-text]`,
+  `inline-flex items-center text-xs font-medium px-2 py-1 bg-[--t-tag-bg] text-[--t-tag-text]`,
   {
     variants: {
       variant: {
-        outline: 'ring-1 ring-inset ring-[--t-tag-border]',
-        solid: '',
+        outline: 'ring-1 ring-inset ring-[--t-tag-border] dark:ring-gray-50',
+        solid: 'shadow-sm',
       },
       pill: {
         true: 'rounded-full',
-      },
-      dot: {
-        true: '',
+        false: 'rounded-md',
       },
     },
-    compoundVariants: [
-      {
-        variant: 'outline',
-        dot: true,
-        class: ['bg-transparent text-gray-900 ring-gray-300', 'text-[--t-tag-text] ring-[--t-tag-border]'],
-      },
-    ],
   }
 )
 
@@ -55,27 +45,18 @@ export const Tag = defineComponent({
   },
   setup(props, { slots, emit }) {
     const cssVars = useColorVar('t-tag', () => {
-      return props.variant === 'solid'
-        ? {
-            text: `${props.color}.700`,
-            bg: `${props.color}.100`,
-            dot: `${props.color}.500`,
-            border: `transparent`,
-            close: `${props.color}.200`,
-          }
-        : {
-            text: `${props.color}.700`,
-            bg: `${props.color}.50`,
-            dot: `${props.color}.500`,
-            border: `${props.color}.300`,
-            close: `${props.color}.200`,
-          }
+      return {
+        text: props.color ? `${props.color}.700` : 'slate.700',
+        bg: props.color ? `${props.color}.100` : 'white',
+        dot: props.color ? `${props.color}.500` : 'slate.500',
+        border: props.variant === 'solid' ? `transparent` : props.color ? `${props.color}.300` : 'gray.300',
+        close: props.color ? `${props.color}.200` : 'slate.200',
+      }
     })
     const cls = computed(() =>
       createClass({
         variant: props.variant,
         pill: props.pill,
-        dot: props.dot,
       })
     )
 
@@ -88,18 +69,23 @@ export const Tag = defineComponent({
           </svg>
         )}
         {slots.default?.()}
-        <button
-          type="button"
-          class={[
-            'relative ml-0.5 -mr-1 h-4 w-4 ',
-            outlineDot.value ? 'hover:bg-gray-200' : 'hover:bg-[--t-tag-close]',
-            props.pill ? 'rounded-full' : 'rounded-sm',
-          ]}
-        >
-          <svg viewBox="0 0 14 14" class={['h-4 w-4', outlineDot.value ? 'stroke-gray-700' : 'stroke-[--t-tag-text]']}>
-            <path d="M4 4l6 6m0-6l-6 6" />
-          </svg>
-        </button>
+        {props.closeable && (
+          <button
+            type="button"
+            class={[
+              'relative ml-0.5 -mr-1 h-4 w-4 ',
+              outlineDot.value ? 'hover:bg-gray-200' : 'hover:bg-[--t-tag-close]',
+              props.pill ? 'rounded-full' : 'rounded-sm',
+            ]}
+          >
+            <svg
+              viewBox="0 0 14 14"
+              class={['h-4 w-4', outlineDot.value ? 'stroke-gray-700' : 'stroke-[--t-tag-text]']}
+            >
+              <path d="M4 4l6 6m0-6l-6 6" />
+            </svg>
+          </button>
+        )}
       </div>
     )
   },
