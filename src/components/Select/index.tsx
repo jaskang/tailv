@@ -1,21 +1,16 @@
 import {
-  cloneVNode,
-  computed,
   defineComponent,
-  type EmitsOptions,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
   ref,
   type SlotsType,
-  toRef,
   type VNode,
 } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
-import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
-import { useColorVar } from '@/utils/style'
+import { useColorVars } from '@/utils/style'
 
 import { SelectorIcon } from '../Icon'
 import { ItemList } from '../List/ItemList'
@@ -47,7 +42,6 @@ export const Select = defineComponent({
     default: () => VNode
   }>,
   setup(props, { slots, emit, attrs }) {
-    const { colors } = useTheme()
     const popper = ref()
 
     const [val, setVal] = useControllable(
@@ -58,7 +52,7 @@ export const Select = defineComponent({
       }
     )
 
-    const cssVars = useColorVar('t-select', {
+    const cssVars = useColorVars('t-select', {
       accent: 'primary.500',
       ring: 'primary.500',
     })

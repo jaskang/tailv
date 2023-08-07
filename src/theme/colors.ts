@@ -1,38 +1,28 @@
-export type ColorAlias = 'primary' | 'success' | 'warning' | 'error'
+// https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
+// https://github.com/tailwindlabs/tailwindcss/blob/master/src/util/color.js
 
-type PaletteColor =
-  | 'slate'
-  | 'gray'
-  | 'zinc'
-  | 'neutral'
-  | 'stone'
-  | 'red'
-  | 'orange'
-  | 'amber'
-  | 'yellow'
-  | 'lime'
-  | 'green'
-  | 'emerald'
-  | 'teal'
-  | 'cyan'
-  | 'sky'
-  | 'blue'
-  | 'indigo'
-  | 'violet'
-  | 'purple'
-  | 'fuchsia'
-  | 'pink'
-  | 'rose'
+export type AliasColor = 'primary' | 'success' | 'warning' | 'error'
 
-type SystemColor = 'transparent' | 'black' | 'white' | 'current' | 'inherit'
+export type SystemColor = 'inherit' | 'current' | 'transparent' | 'black' | 'white'
+export type PaletteColor = Exclude<keyof typeof COLORS, SystemColor>
+export type ColorName = SystemColor | PaletteColor
+export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
+export type ColorPath = `${PaletteColor}.${ColorLv}`
+export type Color = SystemColor | ColorPath
 
-type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
-export type ColorKey = PaletteColor | ColorAlias
-export type ColorPath = `${ColorKey}.${ColorLv}`
-export type Color = ColorPath | SystemColor
-export type ColorMap = Record<ColorKey, Record<ColorLv, string>>
+export type UserColor = AliasColor | PaletteColor
+export type ColorVar = SystemColor | `${UserColor}.${ColorLv}`
+// alias color regexp [AliasColor] + '.' + [ColorLv] , like `primary.500` `primary.50` `primary.950`,
+export const ALIAS_COLOR_REGEXP = /^(primary|success|warning|error)\.(50|100|200|300|400|500|600|700|800|900|950)$/
+
+export const getColor = (color: Color) => {
+  const [key, lv] = (color || '').split('.')
+  return COLORS[key as ColorName]?.[lv as ColorLv] || null
+}
 
 export const COLORS = {
+  inherit: 'inherit',
+  current: 'currentColor',
   transparent: 'transparent',
   black: '#000',
   white: '#fff',
@@ -323,7 +313,3 @@ export const COLORS = {
     950: '#4c0519',
   },
 } as const
-
-export const border = {
-  default: COLORS.gray[300],
-}

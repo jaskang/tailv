@@ -1,8 +1,9 @@
 import { computed, defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type PropType } from 'vue'
 
-import { type ColorKey } from '@/theme'
+import { useTheme } from '@/theme'
+import type { UserColor } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
-import { useColorVar } from '@/utils/style'
+import { useColorVars } from '@/utils/style'
 
 const props = {
   variant: {
@@ -10,7 +11,7 @@ const props = {
     default: 'solid',
   },
   color: {
-    type: String as PropType<ColorKey>,
+    type: String as PropType<UserColor>,
   },
   closeable: Boolean,
   dot: Boolean,
@@ -27,7 +28,7 @@ const createClass = clsVariants(
     variants: {
       variant: {
         outline: 'ring-1 ring-inset ring-[--t-tag-border] dark:ring-gray-50',
-        solid: 'shadow-sm',
+        solid: '',
       },
       pill: {
         true: 'rounded-full',
@@ -44,13 +45,15 @@ export const Tag = defineComponent({
     click: (payload: MouseEvent) => true,
   },
   setup(props, { slots, emit }) {
-    const cssVars = useColorVar('t-tag', () => {
+    const { getColorName } = useTheme()
+    const cssVars = useColorVars('t-tag', () => {
+      const color = props.color ? getColorName(props.color) : undefined
       return {
-        text: props.color ? `${props.color}.700` : 'slate.700',
-        bg: props.color ? `${props.color}.100` : 'white',
-        dot: props.color ? `${props.color}.500` : 'slate.500',
-        border: props.variant === 'solid' ? `transparent` : props.color ? `${props.color}.300` : 'gray.300',
-        close: props.color ? `${props.color}.200` : 'slate.200',
+        text: color ? `${color}.700` : 'slate.700',
+        bg: color ? `${color}.100` : 'white',
+        dot: color ? `${color}.500` : 'slate.500',
+        border: props.variant === 'solid' ? `transparent` : color ? `${color}.300` : 'gray.300',
+        close: color ? `${color}.200` : 'slate.200',
       }
     })
     const cls = computed(() =>

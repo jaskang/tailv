@@ -1,24 +1,21 @@
-import { computed, inject, ref } from 'vue'
+import { computed } from 'vue'
 
 import { useConfig } from '@/components/ConfigProvider'
 
-import { type AliasColorMap, type Color, type ColorAlias, type ColorKey, type ColorMap, COLORS } from './colors'
-
-export { getSpace, type SizeType, type SpaceType } from './space'
-export type { Color, ColorKey, ColorMap }
-
-export { COLORS }
+import { type AliasColor, type ColorName, type PaletteColor, type UserColor } from './colors'
 
 export type Theme = {
   alias: {
-    [key in ColorAlias]: ColorKey
+    [key in AliasColor]: PaletteColor
   }
 }
 
 export function useTheme() {
   const config = useConfig()
   const theme = computed(() => config.value.theme)
-
-  const colors = computed(() => COLORS)
-  return { colors }
+  const getColorName = (color: UserColor) => {
+    // @ts-ignore
+    return (theme.value.alias[color] || color) as PaletteColor
+  }
+  return { getColorName }
 }

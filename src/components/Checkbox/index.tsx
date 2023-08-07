@@ -10,8 +10,7 @@ import {
 } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
-import { type Color, useTheme } from '@/theme'
-import { useColorVar } from '@/utils/style'
+import { useColorVars } from '@/utils/style'
 
 const props = {
   value: [String, Number],
@@ -39,7 +38,7 @@ export const Checkbox = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const cssVars = useColorVar('t-checkbox', {
+    const cssVars = useColorVars('t-checkbox', {
       accent: 'primary.500',
       ring: 'primary.500',
     })

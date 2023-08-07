@@ -1,15 +1,14 @@
-import { type InjectionKey, type Ref, inject, provide, toRef } from 'vue'
+import { inject, type InjectionKey, type Ref, toRef } from 'vue'
+
 import type { Theme } from '@/theme'
 
 export type Config = {
-  dark: boolean
   theme: Theme
 }
 
 export const configProviderKey = Symbol('TConfigProviderKey') as InjectionKey<Ref<Config>>
 
-const DEFAULT_CONFIG: Config = {
-  dark: false,
+const PROVIDER_CONFIG: Config = {
   theme: {
     alias: {
       error: 'red',
@@ -21,6 +20,6 @@ const DEFAULT_CONFIG: Config = {
 }
 
 export function useConfig() {
-  const config = inject(configProviderKey, toRef(DEFAULT_CONFIG))
+  const config = inject(configProviderKey, toRef(PROVIDER_CONFIG))
   return config
 }

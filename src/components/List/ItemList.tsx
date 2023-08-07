@@ -1,5 +1,4 @@
 import {
-  computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
@@ -11,7 +10,7 @@ import {
 import { useControllable } from '@/hooks/useControllable'
 import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
-import { useColorVar } from '@/utils/style'
+import { useColorVars } from '@/utils/style'
 
 const props = {
   value: [String, Number, Array] as PropType<OptionValue | Array<OptionValue>>,
@@ -53,7 +52,7 @@ export const ItemList = defineComponent({
       props.multiple ? [] : undefined
     )
 
-    const cssVars = useColorVar('t-itemList', {
+    const cssVars = useColorVars('t-itemList', {
       accent: 'primary.500',
     })
 

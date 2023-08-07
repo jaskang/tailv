@@ -11,7 +11,7 @@ import {
 
 import { useControllable } from '@/hooks/useControllable'
 import { useTheme } from '@/theme'
-import { useColorVar } from '@/utils/style'
+import { useColorVars } from '@/utils/style'
 
 import type { RadioGroupContext } from './RadioGroup'
 
@@ -80,7 +80,7 @@ export const Radio = defineComponent({
       focus.value = false
       emit('blur', e)
     }
-    const cssVars = useColorVar('t-radio', {
+    const cssVars = useColorVars('t-radio', {
       accent: 'primary.500',
       ring: 'primary.500',
     })

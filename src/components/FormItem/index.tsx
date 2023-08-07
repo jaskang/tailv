@@ -7,12 +7,13 @@ import {
   type VNode,
 } from 'vue'
 
-import { type ColorKey } from '@/theme'
-import { useColorVar } from '@/utils/style'
+import { useTheme } from '@/theme'
+import type { UserColor } from '@/theme/colors'
+import { useColorVars } from '@/utils/style'
 
 const props = {
   color: {
-    type: String as PropType<ColorKey>,
+    type: String as PropType<UserColor>,
   },
   loading: Boolean,
   disabled: Boolean,
@@ -32,9 +33,12 @@ export const FormItem = defineComponent({
     default?: () => VNode[]
   }>,
   setup(props, { slots, emit }) {
-    const cssVars = useColorVar('t-form-item', {
-      accent: 'primary.500',
-      ring: 'primary.500',
+    const { getColorName } = useTheme()
+    const cssVars = useColorVars('t-form-item', () => {
+      return {
+        accent: 'primary.500',
+        ring: 'primary.500',
+      }
     })
 
     return () => (

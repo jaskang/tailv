@@ -1,14 +1,6 @@
-import {
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-  type SlotsType,
-  type VNode,
-  computed,
-  defineComponent,
-  ref,
-} from 'vue'
-import { type SizeType, getSpace, useTheme } from '@/theme'
+import { defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type PropType } from 'vue'
+
+import { getSpace, type SizeType } from '@/theme/space'
 
 const props = {
   align: {

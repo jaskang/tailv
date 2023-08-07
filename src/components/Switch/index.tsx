@@ -8,8 +8,7 @@ import {
 } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
-import { useTheme } from '@/theme'
-import { useColorVar } from '@/utils/style'
+import { useColorVars } from '@/utils/style'
 
 const props = {
   checked: { type: Boolean, default: undefined },
@@ -33,8 +32,6 @@ export const Switch = defineComponent({
     off: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const { colors } = useTheme()
-
     const [checked, setChecked] = useControllable(
       toRef(props, 'checked'),
       val => {
@@ -48,7 +45,7 @@ export const Switch = defineComponent({
     //   '--t-switch-accent-color': colors.value.primary[500],
     //   '--t-switch-ring-color': colors.value.primary[500],
     // }))
-    const cssVars = useColorVar('t-switch', {
+    const cssVars = useColorVars('t-switch', {
       accent: 'primary.500',
       ring: 'primary.500',
     })

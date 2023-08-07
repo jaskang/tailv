@@ -8,8 +8,7 @@ import {
 } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
-import { useTheme } from '@/theme'
-import { useColorVar } from '@/utils/style'
+import { useColorVars } from '@/utils/style'
 
 const props = {
   value: String,
@@ -76,7 +75,7 @@ export const Input = defineComponent({
       }
     }
 
-    const cssVars = useColorVar('t-input', {
+    const cssVars = useColorVars('t-input', {
       ring: 'primary.500',
     })
     return () => (
