@@ -1,5 +1,6 @@
 import type { Plugin } from 'vue'
 
+import { ElSlot } from './components/_pure/ElSlot'
 import { Breadcrumb } from './components/Breadcrumb'
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
@@ -21,6 +22,7 @@ export {
   Button,
   Checkbox,
   ConfigProvider,
+  ElSlot,
   Flex,
   FlexItem,
   Icon,

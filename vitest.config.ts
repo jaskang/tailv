@@ -8,7 +8,7 @@ export default defineConfig({
   ...viteConfig,
   test: {
     globals: true,
-    environment: 'happy-dom',
+    environment: 'jsdom',
     root: fileURLToPath(new URL('./', import.meta.url)),
   },
 })

@@ -53,12 +53,13 @@ export function getFirstChild(nodes: VNode[]): VNode | null {
 
 export const PopperTrigger = defineComponent({
   name: 'TPopperTrigger',
-  setup(_, { slots }) {
+  setup(_, { slots, expose }) {
     return () => {
       const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
       const setTriggerRef = (el: HTMLElement | null) => {
         triggerRef.value = el
       }
+
       return <ElSlot elRef={setTriggerRef}>{slots.default?.()}</ElSlot>
     }
   },

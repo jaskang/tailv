@@ -1,5 +1,5 @@
 import { type Data, isArray, isFunction, isNil } from 'kotl'
-import { cloneVNode, Fragment, type VNode, type VNodeArrayChildren } from 'vue'
+import { cloneVNode, Fragment, h, type VNode, type VNodeArrayChildren } from 'vue'
 
 interface IterationOptions {
   element?: boolean
@@ -32,102 +32,42 @@ export const isArrayChildren = (vnode: VNode) => !!(vnode && vnode.shapeFlag & S
 export const isFragment = (vnode: VNode) => vnode && vnode.type === Fragment
 export const isComment = (vnode: VNode) => vnode && vnode.type === Comment
 
-function getChildrenArray(vnode: VNode): VNode[] | undefined {
-  if (isArrayChildren(vnode)) return vnode.children as VNode[]
-  if (isArray(vnode)) return vnode as VNode[]
-  return undefined
-}
-
-export const getFirstElementFromVNode = (vn: VNode): HTMLElement | null => {
-  if (isElement(vn)) {
-    return vn.el as HTMLElement
-  }
-  if (isComponent(vn)) {
-    if ((vn.el as Node)?.nodeType === 1) {
-      return vn.el as HTMLElement
-    }
-    if (vn.component?.subTree) {
-      const ele = getFirstElementFromVNode(vn.component.subTree)
-      if (ele) return ele
-    }
-  } else {
-    const children = getChildrenArray(vn)
-    return getFirstElementFromChildren(children)
-  }
-  return null
-}
-export const getFirstElementFromChildren = (children?: VNode[]): HTMLElement | null => {
-  if (children && children.length > 0) {
-    for (const child of children) {
-      const element = getFirstElementFromVNode(child)
-      if (element) return element
-    }
-  }
-  return null
-}
-
-export function getAllElements(children: VNode[] | undefined) {
+export function getValidChildren(children?: VNode[]) {
   const result: VNode[] = []
   for (const item of children ?? []) {
     // vue 会渲染comment
     if (item.type === Comment) continue
-
-    if (isTextNode(item) || isComponent(item) || isElement(item)) {
+    if (isComponent(item) || isElement(item)) {
       result.push(item)
     } else if (Array.isArray(item)) {
-      result.push(...getAllElements(item))
+      result.push(...getValidChildren(item))
     } else if (isFragment(item)) {
       if (item.children && Array.isArray(item.children)) {
-        result.push(...getAllElements(item.children as VNode[]))
-      }
-    }
-  }
-
-  return result
-}
-
-export const mergeFirstChild = (
-  children: VNode[] | undefined,
-  extraProps: Data | ((vnode?: VNode) => Data)
-): boolean => {
-  if (!children?.length) return false
-
-  for (let i = 0; i < children.length; i++) {
-    const vnode = children[i]
-    if (isElement(vnode) || isComponent(vnode)) {
-      const props = isFunction(extraProps) ? extraProps(vnode) : extraProps
-      children[i] = cloneVNode(vnode, props, true)
-      return true
-    }
-    const _children = getChildrenArray(vnode)
-    if (_children && _children.length) {
-      const result = mergeFirstChild(_children, extraProps)
-      if (result) return result
-    }
-  }
-
-  return false
-}
-
-export function getRootElements(children: VNode[] = []) {
-  const result: VNode[] = []
-  for (const item of children) {
-    // vue 会渲染comment
-    if (isComment(item)) continue
-
-    if (isTextNode(item) || isComponent(item) || isElement(item)) {
-      result.push(item)
-    } else if (isSlot(item)) {
-      result.push(...getAllElements(item.children.default?.()))
-    } else if (Array.isArray(item)) {
-      result.push(...getRootElements(item))
-    } else if (isFragment(item)) {
-      if (item.children && Array.isArray(item.children)) {
-        result.push(...getAllElements(item.children as VNode[]))
+        result.push(...getValidChildren(item.children as VNode[]))
       }
     }
   }
   return result
+}
+
+/**
+ * Returns a copy of only the valid default slot
+ *
+ * @param slots - the slots object from the component setup
+ * @param componentName component display name for thrown errors
+ * @returns A VNode clone of the default slot
+ */
+export function withSingleton(children: VNode[], componentName: string, extraProps?: Record<string, unknown>) {
+  const validChildren = getValidChildren(children)
+  if (validChildren.length > 1) {
+    const errorMessage = `[${componentName}]: can only have one root element.`
+    console.error(errorMessage)
+    throw new SyntaxError(errorMessage)
+  }
+  if (Object.keys(extraProps ?? {}).length > 0) {
+    return cloneVNode(validChildren[0], extraProps, true)
+  }
+  return validChildren[0]
 }
 
 export function getRootNodes(vnode: VNode): Node[] {

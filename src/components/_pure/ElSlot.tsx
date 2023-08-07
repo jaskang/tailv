@@ -1,60 +1,60 @@
+import { isBrowser } from 'kotl'
 import {
   defineComponent,
-  type HTMLAttributes,
+  Fragment,
+  getCurrentInstance,
+  h,
   onMounted,
   onUnmounted,
   onUpdated,
   type PropType,
   type Ref,
   ref,
-  type VNode,
   watch,
 } from 'vue'
 
-import { getFirstElementFromChildren, mergeFirstChild } from '@/utils/vnode'
+import { getRootNodes, withSingleton } from '@/utils/vnode'
 
-export function useFirstElement(): [Ref<HTMLElement | null>, (v: VNode[]) => VNode[]] {
-  let vnode: VNode[] = []
+export function useFirstElement(): Ref<HTMLElement | null> {
+  const instance = getCurrentInstance()
   // only save VNodes reference, not use ref
-  const el = ref<HTMLElement | null>(null)
-  const hookVNode = (v: VNode[]) => {
-    vnode = v
-    return v
-  }
+  const element = ref<HTMLElement | null>(null)
+
   const getFirstElement = () => {
-    const element = getFirstElementFromChildren(vnode)
-    if (element !== el.value) {
-      el.value = element
+    if (isBrowser()) {
+      const nodes = getRootNodes(instance!.vnode)
+      if (nodes.length > 0) {
+        if (nodes[0]) {
+          element.value = nodes[0] as HTMLElement
+        }
+      }
     }
   }
 
   onMounted(() => getFirstElement())
   onUpdated(() => getFirstElement())
   onUnmounted(() => {
-    el.value = null
+    element.value = null
   })
-  return [el, hookVNode]
+  return element
 }
 
 export const ElSlot = defineComponent({
   name: 'TElSlot',
   props: {
-    elRef: {
-      type: Function as PropType<(el: HTMLElement | null) => void>,
-      required: true,
-    },
-    extraProps: Object as PropType<HTMLAttributes>,
+    elRef: Function as PropType<(el: HTMLElement | null) => void>,
+    extraProps: Object as PropType<Record<string, unknown>>,
   },
-  setup(props, { slots }) {
+  setup(props, { slots, expose }) {
     // trigger相关变量
-    const [el, hookVNode] = useFirstElement()
-    watch(el, () => {
-      props.elRef(el.value)
+    const el = useFirstElement()
+    watch(el, newEl => {
+      props.elRef?.(newEl)
     })
+    expose({ el })
     return () => {
-      const children = hookVNode(slots.default?.() ?? [])
-      mergeFirstChild(children, props.extraProps || {})
-      return <>{children}</>
+      const children = withSingleton(slots.default?.() ?? [], 'ElSlot', props.extraProps)
+      return children
     }
   },
 })
