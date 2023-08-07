@@ -1,9 +1,7 @@
 import { isBrowser } from 'kotl'
 import {
   defineComponent,
-  Fragment,
   getCurrentInstance,
-  h,
   onMounted,
   onUnmounted,
   onUpdated,
@@ -15,7 +13,7 @@ import {
 
 import { getRootNodes, withSingleton } from '@/utils/vnode'
 
-export function useFirstElement(): Ref<HTMLElement | null> {
+function useFirstElement(): Ref<HTMLElement | null> {
   const instance = getCurrentInstance()
   // only save VNodes reference, not use ref
   const element = ref<HTMLElement | null>(null)
@@ -24,7 +22,7 @@ export function useFirstElement(): Ref<HTMLElement | null> {
     if (isBrowser()) {
       const nodes = getRootNodes(instance!.vnode)
       if (nodes.length > 0) {
-        if (nodes[0]) {
+        if (nodes[0] && nodes[0] !== element.value) {
           element.value = nodes[0] as HTMLElement
         }
       }
@@ -44,6 +42,7 @@ export const ElSlot = defineComponent({
   props: {
     elRef: Function as PropType<(el: HTMLElement | null) => void>,
     extraProps: Object as PropType<Record<string, unknown>>,
+    componentName: String,
   },
   setup(props, { slots, expose }) {
     // trigger相关变量
@@ -53,7 +52,7 @@ export const ElSlot = defineComponent({
     })
     expose({ el })
     return () => {
-      const children = withSingleton(slots.default?.() ?? [], 'ElSlot', props.extraProps)
+      const children = withSingleton(slots.default?.() ?? [], props.componentName || 'ElSlot', props.extraProps)
       return children
     }
   },

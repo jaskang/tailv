@@ -31,28 +31,9 @@ export type UsePopperTriggerOptions = {
 
 export const POPPER_TRIGGER_TOKEN: InjectionKey<Ref> = Symbol('popper-trigger')
 
-export function getFirstChild(nodes: VNode[]): VNode | null {
-  for (const child of nodes) {
-    if (isObject(child)) {
-      if (child.type === Comment) {
-        continue
-      }
-      if (child.type === 'svg' || child.type === Text) {
-        return h('span', child)
-      }
-      if (child.type === Fragment) {
-        return getFirstChild(child.children as VNode[])
-      }
-      return child
-    }
-    return h('span', child)
-  }
-
-  return null
-}
-
 export const PopperTrigger = defineComponent({
   name: 'TPopperTrigger',
+  props: {},
   setup(_, { slots, expose }) {
     return () => {
       const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
