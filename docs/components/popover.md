@@ -15,23 +15,19 @@ const openPopper = e => {
   <div class="space-x-1">
     <TPopover trigger="click">
       <TButton>click</TButton>
-      <template #content>
-        1234 asdfasd asdfasdf asdfasdf asdf
-      </template>
+      <template #content> 1234 asdfasd asdfasdf asdfasdf asdf </template>
     </TPopover>
 
     <TPopover trigger="hover">
       <TButton>click</TButton>
-      <template #content> 
-        1234 asdfasd asdfasdf asdfasdf asdf
+      <template #content> 1234 asdfasd asdfasdf asdfasdf asdf </template>
+    </TPopover>
+    <TPopover trigger="click">
+      <TButton>click</TButton>
+      <template #content>
+        <div class="p-4">1234 asdfasd asdfasdf asdfasdf asdf</div>
       </template>
     </TPopover>
-    <TTooltip trigger="hover">
-      <TButton>click</TButton>
-      <template #content> 
-        1234 asdfasd asdfasdf asdfasdf asdf
-      </template>
-    </TTooltip>
   </div>
 </template>
 ```

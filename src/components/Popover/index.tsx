@@ -7,42 +7,33 @@ import {
   type VNode,
 } from 'vue'
 
-import type { UserColor } from '@/theme/colors'
-
-import { Popper } from '../Popper'
+import { type Placement, Popper, type TriggerType } from '../Popper'
 
 const props = {
-  color: {
-    type: String as PropType<UserColor>,
-  },
-  loading: Boolean,
-  disabled: Boolean,
+  trigger: { type: String as PropType<TriggerType>, default: 'hover' },
+  placement: { type: String as PropType<Placement>, default: 'top' },
 }
 
-export type PopoverProps = ExtractPropTypes<typeof props>
-
-export type PopoverPublicProps = ExtractPublicPropTypes<typeof props>
-
-export type PopoverCssVars = {
-  '--t-btn-text-color': string
-  '--t-btn-border-color': string
-  '--t-btn-bg': string
-}
+export type PopoverProps = ExtractPublicPropTypes<typeof props>
 
 export const Popover = defineComponent({
   name: 'TPopover',
   props,
+  inheritAttrs: false,
   slots: Object as SlotsType<{
     default?: () => VNode
     content?: () => VNode
   }>,
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, attrs }) {
     return () => (
-      <Popper trigger="click">
+      <Popper trigger="click" arrow>
         {{
           default: () => slots.default?.(),
           content: () => (
-            <div class="overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-950">
+            <div
+              class="overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-950"
+              {...attrs}
+            >
               {slots.content?.()}
             </div>
           ),

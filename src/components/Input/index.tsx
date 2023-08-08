@@ -19,9 +19,7 @@ const props = {
   disabled: Boolean,
 }
 
-export type InputProps = ExtractPropTypes<typeof props>
-
-export type InputPublicProps = ExtractPublicPropTypes<typeof props>
+export type InputProps = ExtractPublicPropTypes<typeof props>
 
 export const Input = defineComponent({
   name: 'TInput',

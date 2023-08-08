@@ -17,9 +17,7 @@ const props = {
   checked: Boolean,
 }
 
-export type CheckboxProps = ExtractPropTypes<typeof props>
-
-export type CheckboxPublicProps = ExtractPublicPropTypes<typeof props>
+export type CheckboxProps = ExtractPublicPropTypes<typeof props>
 
 export const Checkbox = defineComponent({
   name: 'TCheckbox',

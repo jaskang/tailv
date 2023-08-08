@@ -4,9 +4,7 @@ const props = {
   spin: Boolean,
 }
 
-export type IconProps = ExtractPropTypes<typeof props>
-
-export type IconPublicProps = ExtractPublicPropTypes<typeof props>
+export type IconProps = ExtractPublicPropTypes<typeof props>
 
 export const Icon = defineComponent({
   name: 'TIcon',

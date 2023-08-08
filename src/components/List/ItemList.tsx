@@ -8,7 +8,6 @@ import {
 } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
-import { useTheme } from '@/theme'
 import { type OptionItem, type OptionValue, toMultipleVal } from '@/utils/option'
 import { useColorVars } from '@/utils/style'
 
@@ -22,9 +21,7 @@ const props = {
   multiple: Boolean,
 }
 
-export type ItemListProps = ExtractPropTypes<typeof props>
-
-export type ItemListPublicProps = ExtractPublicPropTypes<typeof props>
+export type ItemListProps = ExtractPublicPropTypes<typeof props>
 
 export type ItemListCssVars = {
   '--t-itemList-accent-color': string

@@ -18,9 +18,7 @@ const props = {
   },
 }
 
-export type FlexItemProps = ExtractPropTypes<typeof props>
-
-export type FlexItemPublicProps = ExtractPublicPropTypes<typeof props>
+export type FlexItemProps = ExtractPublicPropTypes<typeof props>
 
 function parseFlex(flex: FlexType): string {
   if (typeof flex === 'number') {

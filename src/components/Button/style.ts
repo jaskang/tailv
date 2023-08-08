@@ -5,7 +5,7 @@ import type { PaletteColor, VarColor } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { createStyleVar } from '@/utils/style'
 
-import type { ButtonProps } from '.'
+import type { ButtonInnerProps } from '.'
 
 type ButtonCssVars = {
   text: VarColor
@@ -69,9 +69,7 @@ const createClass = clsVariants(
   }
 )
 
-function createStyle(variant: ButtonProps['variant'], color: PaletteColor) {
-  console.log('createStyle', variant, color)
-
+function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor) {
   switch (variant) {
     case 'solid':
       return cssVars({
@@ -136,7 +134,7 @@ function createStyle(variant: ButtonProps['variant'], color: PaletteColor) {
   }
 }
 
-export const useButtonStyle = (getter: MaybeRefOrGetter<ButtonProps>) => {
+export const useButtonStyle = (getter: MaybeRefOrGetter<ButtonInnerProps>) => {
   const { convertAliasColor } = useTheme()
   const result = computed(() => {
     const props = toValue(getter)

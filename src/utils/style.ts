@@ -1,8 +1,8 @@
+import type { Flat } from 'kotl'
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { useTheme } from '@/theme'
 import { ALIAS_COLOR_REGEXP, getColorValue, type SystemColor, type UserColorPath, type VarColor } from '@/theme/colors'
-import type { Flat } from '@/types'
 
 export type StyleVars<N extends string, T extends string> = {
   [k in `--${N}-${T}`]: string
@@ -15,7 +15,6 @@ export type CssVars = {
 export function createStyleVar<N extends string, T extends CssVars>(name: N) {
   return (cssVars: T) => {
     const result = Object.entries(cssVars).reduce((acc, [key, value]) => {
-      console.log('key', key, 'value', value)
       const colorVal = getColorValue(value)
       // @ts-ignore
       acc[`--${name}-${key}`] = colorVal || value

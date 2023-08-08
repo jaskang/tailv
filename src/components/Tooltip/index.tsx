@@ -1,4 +1,3 @@
-import { type Placement } from '@floating-ui/vue'
 import {
   defineComponent,
   type ExtractPropTypes,
@@ -8,8 +7,7 @@ import {
   type VNode,
 } from 'vue'
 
-import { Popper } from '../Popper'
-import type { TriggerType } from '../Popper/trigger'
+import { type Placement, Popper, type TriggerType } from '../Popper'
 
 const props = {
   trigger: { type: String as PropType<TriggerType>, default: 'hover' },
@@ -29,7 +27,7 @@ export const Tooltip = defineComponent({
   }>,
   setup(props, { slots }) {
     return () => (
-      <Popper trigger={props.trigger} placement={props.placement} hold={false}>
+      <Popper trigger={props.trigger} placement={props.placement}>
         {{
           default: () => slots.default?.(),
           content: () => (

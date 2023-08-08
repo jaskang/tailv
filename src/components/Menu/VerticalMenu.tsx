@@ -18,9 +18,7 @@ const props = {
   disabled: Boolean,
 }
 
-export type VerticalMenuProps = ExtractPropTypes<typeof props>
-
-export type VerticalMenuPublicProps = ExtractPublicPropTypes<typeof props>
+export type VerticalMenuProps = ExtractPublicPropTypes<typeof props>
 
 export type VerticalMenuCssVars = {
   '--t-btn-text-color': string

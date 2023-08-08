@@ -1,11 +1,9 @@
-import { defineComponent, inject, type InjectionKey, type MaybeRef, type Ref, ref, toValue } from 'vue'
+import { type MaybeRef, type Ref, toValue } from 'vue'
 
 import { useClickOutside } from '@/hooks/useClickOutside'
 import { useEventListener } from '@/hooks/useEventListener'
 
-import { ElSlot } from '../_pure/ElSlot'
-
-export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
+import type { TriggerType } from '.'
 
 export type UsePopperTriggerOptions = {
   referenceEl: Ref<HTMLElement | null>
@@ -15,23 +13,6 @@ export type UsePopperTriggerOptions = {
   delay: MaybeRef<number>
 }
 
-export const POPPER_TRIGGER_TOKEN: InjectionKey<Ref> = Symbol('popper-trigger')
-
-export const PopperTrigger = defineComponent({
-  name: 'TPopperTrigger',
-  props: {},
-  setup(_, { slots, expose }) {
-    return () => {
-      const triggerRef = inject(POPPER_TRIGGER_TOKEN, ref(null)) as Ref<HTMLElement | null>
-      const setTriggerRef = (el: HTMLElement | null) => {
-        triggerRef.value = el
-      }
-
-      return <ElSlot elRef={setTriggerRef}>{slots.default?.()}</ElSlot>
-    }
-  },
-})
-
 export function usePopperTrigger(
   { referenceEl, floatingEl, trigger, open, delay }: UsePopperTriggerOptions,
   change: (value: boolean, event: string) => void
@@ -40,11 +21,12 @@ export function usePopperTrigger(
   let timer: ReturnType<typeof setTimeout>
   const handleTriggerEnter = () => {
     // if (props.disabled) return
-    if (trigger.value === 'hover' && !open.value) {
+    if (trigger.value === 'hover') {
       console.log('handleTriggerEnter')
-
       clearTimeout(timer)
-      change(true, 'mouseenter')
+      if (!open.value) {
+        change(true, 'mouseenter')
+      }
     }
   }
   function handleTriggerLeave() {

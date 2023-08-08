@@ -1,5 +1,5 @@
-import { type Data, isArray, isFunction, isNil } from 'kotl'
-import { cloneVNode, Fragment, h, type VNode, type VNodeArrayChildren } from 'vue'
+import { isNil } from 'kotl'
+import { cloneVNode, Fragment, type VNode, type VNodeArrayChildren } from 'vue'
 
 interface IterationOptions {
   element?: boolean

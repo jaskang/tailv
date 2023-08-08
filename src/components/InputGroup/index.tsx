@@ -1,10 +1,8 @@
-import { defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type SlotsType, type VNode } from 'vue'
+import { defineComponent, type ExtractPublicPropTypes, type SlotsType, type VNode } from 'vue'
 
 const props = {}
 
-export type InputGroupProps = ExtractPropTypes<typeof props>
-
-export type InputGroupPublicProps = ExtractPublicPropTypes<typeof props>
+export type InputGroupProps = ExtractPublicPropTypes<typeof props>
 
 export const InputGroup = defineComponent({
   name: 'TInputGroup',

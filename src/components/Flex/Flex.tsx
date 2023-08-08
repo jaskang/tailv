@@ -18,9 +18,7 @@ const props = {
   },
 }
 
-export type FlexProps = ExtractPropTypes<typeof props>
-
-export type FlexPublicProps = ExtractPublicPropTypes<typeof props>
+export type FlexProps = ExtractPublicPropTypes<typeof props>
 
 export const Flex = defineComponent({
   name: 'TFlex',

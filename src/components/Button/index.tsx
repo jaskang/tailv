@@ -35,9 +35,9 @@ const props = {
   disabled: Boolean,
 }
 
-export type ButtonProps = ExtractPropTypes<typeof props>
+export type ButtonInnerProps = ExtractPropTypes<typeof props>
 
-export type ButtonPublicProps = ExtractPublicPropTypes<typeof props>
+export type ButtonProps = ExtractPublicPropTypes<typeof props>
 
 export const Button = defineComponent({
   name: 'TButton',

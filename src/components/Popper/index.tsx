@@ -1,5 +1,5 @@
-import { arrow, autoUpdate, flip, offset, type Placement, shift, type Strategy, useFloating } from '@floating-ui/vue'
-import { uid } from 'kotl'
+import { arrow, autoUpdate, flip, offset, type Placement as _Placement, shift, useFloating } from '@floating-ui/vue'
+import { type Flat, uid } from 'kotl'
 import {
   computed,
   defineComponent,
@@ -18,7 +18,12 @@ import {
   watchEffect,
 } from 'vue'
 
-import { POPPER_TRIGGER_TOKEN, PopperTrigger, type TriggerType, usePopperTrigger } from './trigger'
+import { ElSlot } from '../_pure/ElSlot'
+import { usePopperTrigger } from './Trigger'
+
+export type Placement = Flat<_Placement>
+export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
+export type Strategy = 'absolute' | 'fixed'
 
 export const props = {
   open: { type: Boolean, default: undefined },
@@ -28,12 +33,9 @@ export const props = {
   offset: { type: Number, default: 6 },
   arrow: { type: Boolean },
   width: { type: [Number, String] as PropType<number | string | 'full'> },
-  hold: { type: Boolean, default: true },
 }
 
-export type PopperProps = ExtractPropTypes<typeof props>
-
-export type PopperPublicProps = ExtractPublicPropTypes<typeof props>
+export type PopperProps = ExtractPublicPropTypes<typeof props>
 
 const popperInjectKey: InjectionKey<{
   id: string
@@ -53,7 +55,7 @@ export const Popper = defineComponent({
     const innerOpen = ref(props.open || false)
     const children = ref<Set<string>>(new Set())
     const blocked = computed(() => {
-      return props.hold ? children.value.size > 0 : false
+      return children.value.size > 0
     })
     const open = computed(() => {
       return innerOpen.value || blocked.value
@@ -63,7 +65,6 @@ export const Popper = defineComponent({
     const referenceEl = ref<HTMLElement | null>(null)
     const floatingEl = ref<HTMLElement | null>(null)
     const arrowEl = ref<HTMLElement>()
-    provide(POPPER_TRIGGER_TOKEN, referenceEl)
 
     const parent = inject(popperInjectKey, null)
 
@@ -73,19 +74,26 @@ export const Popper = defineComponent({
       remove: id => children.value.delete(id),
     })
 
-    const { floatingStyles: _floatingStyles, middlewareData } = useFloating(referenceEl, floatingEl, {
+    const {
+      floatingStyles: _floatingStyles,
+      middlewareData,
+      placement: realPlacement,
+    } = useFloating(referenceEl, floatingEl, {
       placement,
       strategy,
       transform: true,
-      middleware: [offset(props.offset), shift(), flip(), arrow({ element: arrowEl })],
+      middleware: [offset(props.offset), flip(), shift(), arrow({ element: arrowEl })],
       whileElementsMounted: autoUpdate,
     })
     const arrowStyles = computed(() => {
       // @ts-ignore
-      const { x } = middlewareData.value.arrow || {}
+      const { x, y } = middlewareData.value.arrow || {}
+      const side = realPlacement.value.split('-')[0] as 'top' | 'right' | 'bottom' | 'left'
+      const staticSide = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }[side]
       return {
         left: x != null ? `${x}px` : '',
-        top: arrowEl.value ? `${-arrowEl.value.offsetHeight / 2}px` : '',
+        top: y != null ? `${y}px` : '',
+        [staticSide]: `-10px`,
       }
     })
     const floatingStyles = computed(() => {
@@ -123,7 +131,7 @@ export const Popper = defineComponent({
       }
     })
 
-    usePopperTrigger({ referenceEl, floatingEl, trigger, open, delay: props.hold ? 150 : 0 }, (val, trigger) => {
+    usePopperTrigger({ referenceEl, floatingEl, trigger, open, delay: 150 }, val => {
       if (val !== innerOpen.value) {
         innerOpen.value = val
       }
@@ -138,7 +146,13 @@ export const Popper = defineComponent({
 
     return () => (
       <>
-        <PopperTrigger>{slots.default?.()}</PopperTrigger>
+        <ElSlot
+          elRef={el => {
+            referenceEl.value = el
+          }}
+        >
+          {slots.default?.()}
+        </ElSlot>
         <Teleport to={container}>
           <Transition
             enter-active-class="transition-opacity ease-out"

@@ -13,9 +13,7 @@ const props = {
   },
 }
 
-export type BreadcrumbProps = ExtractPropTypes<typeof props>
-
-export type BreadcrumbPublicProps = ExtractPublicPropTypes<typeof props>
+export type BreadcrumbProps = ExtractPublicPropTypes<typeof props>
 
 export const Breadcrumb = defineComponent({
   name: 'TBreadcrumb',
