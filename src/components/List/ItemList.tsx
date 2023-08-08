@@ -41,8 +41,6 @@ export const ItemList = defineComponent({
     item: (props: { item: OptionItem; selected: boolean }) => VNode[]
   }>,
   setup(props, { slots, emit, attrs }) {
-    const { colors } = useTheme()
-
     const [val, setVal] = useControllable(
       () => (props.multiple ? toMultipleVal(props.value) : props.value),
       val => {

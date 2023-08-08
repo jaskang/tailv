@@ -1,9 +1,7 @@
 import {
-  computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
-  type PropType,
   ref,
   type SlotsType,
   type VNode,

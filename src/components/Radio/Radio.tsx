@@ -10,7 +10,6 @@ import {
 } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
-import { useTheme } from '@/theme'
 import { useColorVars } from '@/utils/style'
 
 import type { RadioGroupContext } from './RadioGroup'
@@ -40,8 +39,6 @@ export const Radio = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const { colors } = useTheme()
-
     const focus = ref(false)
 
     const groupContext = inject<RadioGroupContext | null>('RadioGroupContext', null)

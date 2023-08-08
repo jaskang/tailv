@@ -1,6 +1,5 @@
 import { computed, defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type PropType } from 'vue'
 
-import { useTheme } from '@/theme'
 import type { UserColor } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { useColorVars } from '@/utils/style'

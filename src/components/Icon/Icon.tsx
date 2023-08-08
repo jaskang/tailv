@@ -1,15 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-  ref,
-  type SlotsType,
-  type VNode,
-} from 'vue'
-
-import { useTheme } from '@/theme'
+import { defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes } from 'vue'
 
 const props = {
   spin: Boolean,

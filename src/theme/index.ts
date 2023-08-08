@@ -13,9 +13,9 @@ export type Theme = {
 export function useTheme() {
   const config = useConfig()
   const theme = computed(() => config.value.theme)
-  const getColorName = (color: UserColor) => {
+  const convertAliasColor = (color: UserColor) => {
     // @ts-ignore
     return (theme.value.alias[color] || color) as PaletteColor
   }
-  return { getColorName }
+  return { convertAliasColor }
 }

@@ -4,16 +4,15 @@ import {
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
-  ref,
   type SlotsType,
-  type VNode,
 } from 'vue'
 
 import { useTheme } from '@/theme'
+import type { UserColor } from '@/theme/colors'
 
 const props = {
   color: {
-    type: String as PropType<Color>,
+    type: String as PropType<UserColor>,
   },
   loading: Boolean,
   disabled: Boolean,

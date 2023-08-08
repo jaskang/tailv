@@ -4,15 +4,10 @@ import {
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
-  type PropType,
   provide,
-  ref,
-  type SlotsType,
-  type VNode,
 } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
-import { useTheme } from '@/theme'
 
 const props = {
   value: [String, Number],

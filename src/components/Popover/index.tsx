@@ -7,11 +7,13 @@ import {
   type VNode,
 } from 'vue'
 
+import type { UserColor } from '@/theme/colors'
+
 import { Popper } from '../Popper'
 
 const props = {
   color: {
-    type: String as PropType<Color>,
+    type: String as PropType<UserColor>,
   },
   loading: Boolean,
   disabled: Boolean,

@@ -1,20 +1,20 @@
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { useTheme } from '@/theme'
-import type { Color, PaletteColor, SystemColor } from '@/theme/colors'
+import type { PaletteColor, VarColor } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { createStyleVar } from '@/utils/style'
 
 import type { ButtonProps } from '.'
 
 type ButtonCssVars = {
-  text: Color | SystemColor
-  bg: Color | SystemColor
-  border: Color | SystemColor
-  textHover: Color | SystemColor
-  bgHover: Color | SystemColor
-  borderHover: Color | SystemColor
-  ring: Color | SystemColor
+  text: VarColor
+  bg: VarColor
+  border: VarColor
+  textHover: VarColor
+  bgHover: VarColor
+  borderHover: VarColor
+  ring: VarColor
 }
 
 const cssVars = createStyleVar<'t-btn', ButtonCssVars>('t-btn')
@@ -28,8 +28,8 @@ const createClass = clsVariants(
   {
     variants: {
       variant: {
-        default: [' border', ''],
-        outline: [' border', ''],
+        default: ['border', ''],
+        outline: ['border-[1.5px]', ''],
         solid: 'border-2',
         soft: 'border-2',
         plain: ['border-2', 'shadow-sm'],
@@ -131,13 +131,13 @@ function createStyle(variant: ButtonProps['variant'], color: PaletteColor) {
         textHover: `gray.900`,
         bgHover: `gray.50`,
         borderHover: `gray.300`,
-        ring: `gray.500`,
+        ring: `${color}.500`,
       })
   }
 }
 
 export const useButtonStyle = (getter: MaybeRefOrGetter<ButtonProps>) => {
-  const { getColorName } = useTheme()
+  const { convertAliasColor } = useTheme()
   const result = computed(() => {
     const props = toValue(getter)
     return {
@@ -150,7 +150,7 @@ export const useButtonStyle = (getter: MaybeRefOrGetter<ButtonProps>) => {
         square: props.square || props.circle,
         disabled: props.disabled,
       }),
-      style: createStyle(props.variant, getColorName(props.color)),
+      style: createStyle(props.variant, convertAliasColor(props.color)),
     }
   })
   return result

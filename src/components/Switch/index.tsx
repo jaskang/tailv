@@ -41,10 +41,6 @@ export const Switch = defineComponent({
       false
     )
 
-    // const cssVars = computed<SwitchCssVars>(() => ({
-    //   '--t-switch-accent-color': colors.value.primary[500],
-    //   '--t-switch-ring-color': colors.value.primary[500],
-    // }))
     const cssVars = useColorVars('t-switch', {
       accent: 'primary.500',
       ring: 'primary.500',

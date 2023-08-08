@@ -1,21 +1,28 @@
 // https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
 // https://github.com/tailwindlabs/tailwindcss/blob/master/src/util/color.js
 
+export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
+
 export type AliasColor = 'primary' | 'success' | 'warning' | 'error'
 
 export type SystemColor = keyof typeof SYSTEM_COLORS
 export type PaletteColor = keyof typeof COLORS
-export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
-export type Color = `${PaletteColor}.${ColorLv}`
+export type PaletteColorPath = `${PaletteColor}.${ColorLv}`
 
 export type UserColor = AliasColor | PaletteColor
-export type CssVarColor = SystemColor | `${UserColor}.${ColorLv}`
+export type UserColorPath = `${UserColor}.${ColorLv}`
+
+export type VarColor = SystemColor | `${UserColor}.${ColorLv}`
+
 // alias color regexp [AliasColor] + '.' + [ColorLv] , like `primary.500` `primary.50` `primary.950`,
 export const ALIAS_COLOR_REGEXP = /^(primary|success|warning|error)\.(50|100|200|300|400|500|600|700|800|900|950)$/
 
-export const getColor = (color: Color) => {
+export const getColorValue = (color: string) => {
   const [key, lv] = (color || '').split('.')
-  return COLORS[key as PaletteColor]?.[lv as ColorLv] || null
+  if (lv) {
+    return COLORS[key as PaletteColor]?.[lv as ColorLv] || null
+  }
+  return SYSTEM_COLORS[key as SystemColor] || null
 }
 export const SYSTEM_COLORS = {
   inherit: 'inherit',

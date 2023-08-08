@@ -33,7 +33,6 @@ export const FormItem = defineComponent({
     default?: () => VNode[]
   }>,
   setup(props, { slots, emit }) {
-    const { getColorName } = useTheme()
     const cssVars = useColorVars('t-form-item', () => {
       return {
         accent: 'primary.500',
