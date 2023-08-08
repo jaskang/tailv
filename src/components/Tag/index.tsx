@@ -45,9 +45,8 @@ export const Tag = defineComponent({
     click: (payload: MouseEvent) => true,
   },
   setup(props, { slots, emit }) {
-    const { getColorName } = useTheme()
     const cssVars = useColorVars('t-tag', () => {
-      const color = props.color ? getColorName(props.color) : undefined
+      const color = props.color
       return {
         text: color ? `${color}.700` : 'slate.700',
         bg: color ? `${color}.100` : 'white',

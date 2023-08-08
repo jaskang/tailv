@@ -3,29 +3,28 @@
 
 export type AliasColor = 'primary' | 'success' | 'warning' | 'error'
 
-export type SystemColor = 'inherit' | 'current' | 'transparent' | 'black' | 'white'
-export type PaletteColor = Exclude<keyof typeof COLORS, SystemColor>
-export type ColorName = SystemColor | PaletteColor
+export type SystemColor = keyof typeof SYSTEM_COLORS
+export type PaletteColor = keyof typeof COLORS
 export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
-export type ColorPath = `${PaletteColor}.${ColorLv}`
-export type Color = SystemColor | ColorPath
+export type Color = `${PaletteColor}.${ColorLv}`
 
 export type UserColor = AliasColor | PaletteColor
-export type ColorVar = SystemColor | `${UserColor}.${ColorLv}`
+export type CssVarColor = SystemColor | `${UserColor}.${ColorLv}`
 // alias color regexp [AliasColor] + '.' + [ColorLv] , like `primary.500` `primary.50` `primary.950`,
 export const ALIAS_COLOR_REGEXP = /^(primary|success|warning|error)\.(50|100|200|300|400|500|600|700|800|900|950)$/
 
 export const getColor = (color: Color) => {
   const [key, lv] = (color || '').split('.')
-  return COLORS[key as ColorName]?.[lv as ColorLv] || null
+  return COLORS[key as PaletteColor]?.[lv as ColorLv] || null
 }
-
-export const COLORS = {
+export const SYSTEM_COLORS = {
   inherit: 'inherit',
   current: 'currentColor',
   transparent: 'transparent',
   black: '#000',
   white: '#fff',
+}
+export const COLORS = {
   slate: {
     50: '#f8fafc',
     100: '#f1f5f9',

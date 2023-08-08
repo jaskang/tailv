@@ -2,7 +2,7 @@ import { computed } from 'vue'
 
 import { useConfig } from '@/components/ConfigProvider'
 
-import { type AliasColor, type ColorName, type PaletteColor, type UserColor } from './colors'
+import { type AliasColor, type PaletteColor, type UserColor } from './colors'
 
 export type Theme = {
   alias: {

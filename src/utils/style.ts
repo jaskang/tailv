@@ -1,7 +1,14 @@
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { useTheme } from '@/theme'
-import { ALIAS_COLOR_REGEXP, type Color, type ColorVar, getColor, type UserColor, type VarColor } from '@/theme/colors'
+import {
+  ALIAS_COLOR_REGEXP,
+  type Color,
+  type CssVarColor,
+  getColor,
+  type SystemColor,
+  type UserColor,
+} from '@/theme/colors'
 import type { Flat } from '@/types'
 
 export type StyleVars<N extends string, T extends string> = {
@@ -9,7 +16,7 @@ export type StyleVars<N extends string, T extends string> = {
 }
 
 export type ComponentVar = {
-  [key: string]: Color | string
+  [key: string]: Color | SystemColor | string
 }
 
 export function createStyleVar<N extends string, T extends ComponentVar>(name: N) {
@@ -25,7 +32,7 @@ export function createStyleVar<N extends string, T extends ComponentVar>(name: N
   }
 }
 
-export function useColorVars<N extends string, T extends { [key: string]: ColorVar }>(
+export function useColorVars<N extends string, T extends { [key: string]: CssVarColor }>(
   name: N,
   getter: MaybeRefOrGetter<T>
 ) {

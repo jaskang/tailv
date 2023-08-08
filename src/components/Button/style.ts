@@ -1,20 +1,20 @@
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { useTheme } from '@/theme'
-import type { Color, PaletteColor } from '@/theme/colors'
+import type { Color, PaletteColor, SystemColor } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { createStyleVar } from '@/utils/style'
 
 import type { ButtonProps } from '.'
 
 type ButtonCssVars = {
-  text: Color
-  bg: Color
-  border: Color
-  textHover: Color
-  bgHover: Color
-  borderHover: Color
-  ring: Color
+  text: Color | SystemColor
+  bg: Color | SystemColor
+  border: Color | SystemColor
+  textHover: Color | SystemColor
+  bgHover: Color | SystemColor
+  borderHover: Color | SystemColor
+  ring: Color | SystemColor
 }
 
 const cssVars = createStyleVar<'t-btn', ButtonCssVars>('t-btn')
