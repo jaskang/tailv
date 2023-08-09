@@ -93,7 +93,7 @@ export const Popper = defineComponent({
       return {
         left: x != null ? `${x}px` : '',
         top: y != null ? `${y}px` : '',
-        [staticSide]: `-10px`,
+        [staticSide]: '-0.25rem',
       }
     })
     const floatingStyles = computed(() => {
@@ -164,17 +164,17 @@ export const Popper = defineComponent({
           >
             {open.value && (
               <div
-                {...attrs}
                 ref={floatingEl}
                 id={`t-popper-${id}`}
                 style={floatingStyles.value}
                 class="absolute z-[999]"
+                {...attrs}
               >
                 {slots.content?.()}
                 {props.arrow && (
                   <div
                     ref={arrowEl}
-                    class="absolute h-4 w-4 bg-gray-800 [left:-0.5rem]"
+                    class="absolute h-2 w-2 bg-black rotate-45 shadow-lg"
                     style={arrowStyles.value}
                   ></div>
                 )}
