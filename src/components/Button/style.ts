@@ -83,42 +83,32 @@ function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor) 
       })
     case 'soft':
       return cssVars({
-        text: `${color}.500`,
+        text: `${color}.700`,
         bg: `${color}.100`,
         border: `transparent`,
-        textHover: `${color}.500`,
+        textHover: `${color}.700`,
         bgHover: `${color}.200`,
         borderHover: `transparent`,
         ring: `${color}.500`,
       })
     case 'plain':
       return cssVars({
-        text: `${color}.500`,
+        text: `${color}.700`,
         bg: `transparent`,
         border: `transparent`,
-        textHover: `${color}.500`,
-        bgHover: `${color}.100`,
+        textHover: `${color}.700`,
+        bgHover: `${color}.200`,
         borderHover: `transparent`,
         ring: `${color}.500`,
       })
     case 'link':
       return cssVars({
-        text: `${color}.500`,
+        text: `${color}.700`,
         bg: `transparent`,
         border: `transparent`,
-        textHover: `${color}.500`,
+        textHover: `${color}.700`,
         bgHover: `transparent`,
         borderHover: `transparent`,
-        ring: `${color}.500`,
-      })
-    case 'outline':
-      return cssVars({
-        text: `${color}.500`,
-        bg: 'white',
-        border: `${color}.500`,
-        textHover: 'white',
-        bgHover: `${color}.500`,
-        borderHover: `${color}.500`,
         ring: `${color}.500`,
       })
     default:
@@ -126,7 +116,7 @@ function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor) 
         text: `gray.700`,
         bg: 'white',
         border: `gray.300`,
-        textHover: `gray.900`,
+        textHover: `gray.700`,
         bgHover: `gray.50`,
         borderHover: `gray.300`,
         ring: `${color}.500`,
