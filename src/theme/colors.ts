@@ -1,7 +1,18 @@
 // https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
 // https://github.com/tailwindlabs/tailwindcss/blob/master/src/util/color.js
 
-export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
+export type ColorLv =
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | '950'
 
 export type AliasColor = 'primary' | 'success' | 'warning' | 'error'
 
@@ -15,7 +26,8 @@ export type UserColorPath = `${UserColor}.${ColorLv}`
 export type VarColor = SystemColor | `${UserColor}.${ColorLv}`
 
 // alias color regexp [AliasColor] + '.' + [ColorLv] , like `primary.500` `primary.50` `primary.950`,
-export const ALIAS_COLOR_REGEXP = /^(primary|success|warning|error)\.(50|100|200|300|400|500|600|700|800|900|950)$/
+export const ALIAS_COLOR_REGEXP =
+  /^(primary|success|warning|error)\.(50|100|200|300|400|500|600|700|800|900|950)$/
 
 export const getColorValue = (color: string) => {
   const [key, lv] = (color || '').split('.')
@@ -31,6 +43,9 @@ export const SYSTEM_COLORS = {
   black: '#000',
   white: '#fff',
 }
+
+export const GRAYSCALE_COLORS = ['slate', 'gray', 'zinc', 'neutral', 'stone']
+
 export const COLORS = {
   slate: {
     50: '#f8fafc',

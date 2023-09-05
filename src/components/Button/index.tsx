@@ -3,7 +3,6 @@ import {
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
-  type ObjectEmitsOptions,
   type PropType,
   type SlotsType,
   type VNode,
@@ -16,7 +15,7 @@ import { useButtonStyle } from './style'
 
 const props = {
   variant: {
-    type: String as PropType<'default' | 'solid' | 'soft' | 'outline' | 'plain' | 'link'>,
+    type: String as PropType<'default' | 'solid' | 'soft' | 'plain' | 'link'>,
     default: 'default',
   },
   color: {
@@ -49,7 +48,7 @@ export const Button = defineComponent({
     default: () => VNode
     icon: () => VNode
   }>,
-  setup(props, { slots, emit, attrs }) {
+  setup(props, { slots, emit }) {
     const ownStyle = useButtonStyle(() => props)
 
     const hasIcon = computed(() => !!slots.icon || props.loading)

@@ -18,7 +18,7 @@ export function clsVariants<T extends VariantConfig>(
   }
 ) {
   return (v: Flat<InferVariants<T>>) => {
-    const cls = base.split(' ')
+    const cls = base.split(' ').map(s => s.trim())
     Object.keys(options.variants).forEach(key => {
       const value = options.variants[key]
       let clsValue: ClsvValue = ''
@@ -34,15 +34,17 @@ export function clsVariants<T extends VariantConfig>(
       }
       if (Array.isArray(clsValue)) {
         // remove all classes in clsValue[1]
+        // 删除 clsValue[1] 中的所有类
         clsValue[1].split(' ').forEach(c => {
-          const index = cls.indexOf(c)
+          const index = cls.indexOf(c.trim())
           if (index !== -1) {
+            console.log('remove', c)
             cls.splice(index, 1)
           }
         })
-        cls.push(...clsValue[0].split(' '))
+        cls.push(...clsValue[0].split(' ').map(s => s.trim()))
       } else {
-        cls.push(...clsValue.split(' '))
+        cls.push(...clsValue.split(' ').map(s => s.trim()))
       }
     })
 
@@ -64,9 +66,9 @@ export function clsVariants<T extends VariantConfig>(
                 cls.splice(index, 1)
               }
             })
-            cls.push(...comp.class[0].split(' '))
+            cls.push(...comp.class[0].split(' ').map(s => s.trim()))
           } else {
-            cls.push(...comp.class.split(' '))
+            cls.push(...comp.class.split(' ').map(s => s.trim()))
           }
         }
       })
