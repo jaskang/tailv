@@ -111,6 +111,8 @@ asdfsa
   <TButton variant="solid" color="sky">sky</TButton>
   <TButton variant="solid" color="violet">violet</TButton>
   <TButton variant="solid" color="pink">pink</TButton>
+  <TButton variant="solid" color="gray">gray</TButton>
+  <TButton variant="solid" color="neutral">neutral</TButton>
 
   <br /><br />
 
@@ -119,6 +121,8 @@ asdfsa
   <TButton variant="soft" color="sky">sky</TButton>
   <TButton variant="soft" color="violet">violet</TButton>
   <TButton variant="soft" color="pink">pink</TButton>
+  <TButton variant="soft" color="gray">gray</TButton>
+  <TButton variant="soft" color="neutral">neutral</TButton>
   <br /><br />
 
   <TButton variant="plain" color="orange">orange</TButton>
@@ -126,6 +130,17 @@ asdfsa
   <TButton variant="plain" color="sky">sky</TButton>
   <TButton variant="plain" color="violet">violet</TButton>
   <TButton variant="plain" color="pink">pink</TButton>
+  <TButton variant="plain" color="gray">gray</TButton>
+  <TButton variant="plain" color="neutral">neutral</TButton>
+  <br /><br />
+
+  <TButton variant="link" color="orange">orange</TButton>
+  <TButton variant="link" color="teal">teal</TButton>
+  <TButton variant="link" color="sky">sky</TButton>
+  <TButton variant="link" color="violet">violet</TButton>
+  <TButton variant="link" color="pink">pink</TButton>
+  <TButton variant="link" color="gray">gray</TButton>
+  <TButton variant="link" color="neutral">neutral</TButton>
 </template>
 ```
 

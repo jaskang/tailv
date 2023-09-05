@@ -28,11 +28,13 @@ defineExpose({ dark, showCode })
       class="not-prose relative mt-4 overflow-hidden rounded-xl border dark:border-slate-500/50"
     >
       <div class="bg-slate-50 transition-colors dark:bg-slate-800">
-        <div class="flex justify-end gap-2 border-b bg-slate-100 p-2 dark:border-slate-500/50 dark:bg-slate-700/50">
-          <TSwitch v-model:checked="dark">
+        <div
+          class="flex justify-end gap-2 border-b bg-slate-100 p-2 dark:border-slate-500/50 dark:bg-slate-700/50"
+        >
+          <!-- <TSwitch v-model:checked="dark">
             <template #on><MoonIcon class="text-gray-900" /></template>
             <template #off><SunIcon /></template>
-          </TSwitch>
+          </TSwitch> -->
           <TSwitch :checked="showCode" @update:checked="v => (showCode = v)">
             <template #on><CodeBracketIcon /></template>
             <template #off><CodeBracketIcon /></template>

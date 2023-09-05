@@ -1,7 +1,7 @@
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { useTheme } from '@/theme'
-import { GRAYSCALE_COLORS, type PaletteColor, type VarColor } from '@/theme/colors'
+import { getColorValue, GRAYSCALE_COLORS, type PaletteColor, type VarColor } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { createStyleVar } from '@/utils/style'
 
@@ -20,31 +20,20 @@ type ButtonCssVars = {
 const cssVars = createStyleVar<'t-btn', ButtonCssVars>('t-btn')
 
 const createClass = clsVariants(
-  `t-button inline-flex rounded-md shadow-sm text-center justify-center items-center font-medium transition-all 
-  focus:outline-none h-[--t-btn-h]
+  `t-button inline-flex rounded-md text-center justify-center items-center font-medium transition-colors 
+  h-[--t-btn-h]
   text-[--t-btn-text] bg-[--t-btn-bg] border-[--t-btn-border]
-  hover:text-[--t-btn-textHover] hover:bg-[--t-btn-bgHover] hover:border-[--t-btn-borderHover]
+  hover:enabled:text-[--t-btn-textHover] hover:enabled:bg-[--t-btn-bgHover] hover:enabled:border-[--t-btn-borderHover]
+  focus:outline-none focus:enabled:ring-2 focus:enabled:ring-offset-2 focus:enabled:ring-[--t-btn-ring] dark:ring-offset-gray-900
   `,
   {
     variants: {
       variant: {
-        // return cssVars({
-        //   text: `gray.700`,
-        //   bg: 'white',
-        //   border: `gray.300`,
-        //   textHover: `gray.700`,
-        //   bgHover: `gray.50`,
-        //   borderHover: `gray.300`,
-        //   ring: `${color}.500`,
-        // })
-        default: [
-          'border text-gray-700 bg-white border-gray-300 hover:bg-gray-50 dark:text-white dark:border-slate-600 dark:bg-slate-900 dark:hover:bg-slate-700',
-          'text-[--t-btn-text] bg-[--t-btn-bg] border-[--t-btn-border] hover:text-[--t-btn-textHover] hover:bg-[--t-btn-bgHover] hover:border-[--t-btn-borderHover]',
-        ],
-        solid: 'border-2',
-        soft: 'border-2',
-        plain: ['border-2', 'shadow-sm'],
-        link: ['border-2 hover:underline hover:decoration-2 hover:underline-offset-2', 'shadow-sm'],
+        default: `border shadow-sm`,
+        solid: 'border-2 shadow-sm',
+        soft: 'border-2 shadow-sm',
+        plain: 'border-2',
+        link: 'border-2 hover:enabled:underline hover:enabled:decoration-2 hover:enabled:underline-offset-4',
       },
       size: {
         xs: '[--t-btn-h:calc(1.75rem+2px)] text-xs/3 px-2',
@@ -62,64 +51,68 @@ const createClass = clsVariants(
         false: '',
       },
       square: {
-        true: ['px-0 w-[--t-btn-h]', 'px-2 px-3 px-4 px-5 px-6'],
+        true: ['w-[--t-btn-h] px-0', 'px-2 px-3 px-4 px-5 px-6'],
         false: '',
       },
       disabled: {
-        true: 'cursor-not-allowed opacity-50 hover:-underline hover:text-[--t-btn-text] hover:bg-[--t-btn-bg] hover:border-[--t-btn-border]',
-        false:
-          'cursor-pointer focus:ring-2 focus:ring-[--t-btn-ring] focus:ring-offset-2 dark:ring-offset-gray-900',
+        true: 'cursor-not-allowed opacity-50',
+        false: 'cursor-pointer',
       },
     },
   }
 )
 
-function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor) {
+function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor, isDrak = false) {
   const isGrayScale = GRAYSCALE_COLORS.includes(color)
-  const colorLv = isGrayScale ? '700' : '600'
   switch (variant) {
     case 'solid':
       return cssVars({
         text: `white`,
-        bg: `${color}.500`,
+        bg: `${color}.${isGrayScale ? 600 : 500}`,
         border: `transparent`,
         textHover: `white`,
-        bgHover: `${color}.600`,
+        bgHover: `${color}.${isGrayScale ? 700 : 600}`,
         borderHover: `transparent`,
         ring: `${color}.500`,
       })
     case 'soft':
       return cssVars({
-        text: `${color}.${colorLv}`,
-        bg: `${color}.100`,
+        text: `${color}.${isGrayScale ? 700 : 600}`,
+        bg: `${color}.${isGrayScale ? 200 : 100}`,
         border: `transparent`,
-        textHover: `${color}.${colorLv}`,
-        bgHover: `${color}.200`,
+        textHover: `${color}.${isGrayScale ? 700 : 600}`,
+        bgHover: `${color}.${isGrayScale ? 300 : 200}`,
         borderHover: `transparent`,
         ring: `${color}.500`,
       })
     case 'plain':
       return cssVars({
-        text: `${color}.${colorLv}`,
+        text: `${color}.${isGrayScale ? 700 : 600}`,
         bg: `transparent`,
         border: `transparent`,
-        textHover: `${color}.${colorLv}`,
-        bgHover: `${color}.200`,
+        textHover: `${color}.${isGrayScale ? 700 : 600}`,
+        bgHover: `${color}.${isGrayScale ? 300 : 200}`,
         borderHover: `transparent`,
         ring: `${color}.500`,
       })
     case 'link':
       return cssVars({
-        text: `${color}.${colorLv}`,
+        text: `${color}.${isGrayScale ? 700 : 600}`,
         bg: `transparent`,
         border: `transparent`,
-        textHover: `${color}.${colorLv}`,
+        textHover: `${color}.${isGrayScale ? 700 : 600}`,
         bgHover: `transparent`,
         borderHover: `transparent`,
         ring: `${color}.500`,
       })
     default:
       return cssVars({
+        text: `gray.700`,
+        bg: 'white',
+        border: `gray.300`,
+        textHover: `slate.700`,
+        bgHover: `slate.50`,
+        borderHover: `slate.300`,
         ring: `${color}.500`,
       })
   }
