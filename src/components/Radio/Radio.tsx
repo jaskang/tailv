@@ -26,7 +26,7 @@ export type RadioProps = ExtractPropTypes<typeof props>
 export type RadioPublicProps = ExtractPublicPropTypes<typeof props>
 
 export const Radio = defineComponent({
-  name: 'TRadio',
+  name: 'ZRadio',
   props,
   emits: {
     'update:checked': (value: boolean) => true,
@@ -77,7 +77,7 @@ export const Radio = defineComponent({
       focus.value = false
       emit('blur', e)
     }
-    const cssVars = useColorVars('t-radio', {
+    const cssVars = useColorVars('z-radio', {
       accent: 'primary.500',
       ring: 'primary.500',
     })
@@ -85,12 +85,12 @@ export const Radio = defineComponent({
       <label
         style={cssVars.value}
         class={[
-          't-radio inline-flex items-center',
+          'z-radio inline-flex items-center',
           groupProps.value.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]}
       >
         <input
-          class="t-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--t-radio-ring] disabled:cursor-not-allowed dark:ring-offset-gray-900"
+          class="z-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--z-radio-ring] disabled:cursor-not-allowed dark:ring-offset-gray-900"
           type="radio"
           name={groupProps.value.name}
           value={groupProps.value.value}
@@ -100,7 +100,7 @@ export const Radio = defineComponent({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <span class="t-radio_label ml-3 block text-sm font-medium ">{slots.default?.()}</span>
+        <span class="z-radio_label ml-3 block text-sm font-medium ">{slots.default?.()}</span>
       </label>
     )
   },

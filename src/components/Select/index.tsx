@@ -32,7 +32,7 @@ export type SelectProps = ExtractPropTypes<typeof props>
 export type SelectPublicProps = ExtractPublicPropTypes<typeof props>
 
 export const Select = defineComponent({
-  name: 'TSelect',
+  name: 'ZSelect',
   props,
   emits: {
     'update:value': (_val: string | number | OptionValue[]) => true,
@@ -52,7 +52,7 @@ export const Select = defineComponent({
       }
     )
 
-    const cssVars = useColorVars('t-select', {
+    const cssVars = useColorVars('z-select', {
       accent: 'primary.500',
       ring: 'primary.500',
     })
@@ -68,7 +68,7 @@ export const Select = defineComponent({
               {...attrs}
               type="button"
               style={cssVars.value}
-              class="relative h-[calc(theme(spacing.9)_+_2px)] w-full cursor-pointer rounded-md border border-gray-300 bg-white px-3 text-left text-sm text-gray-900 shadow-sm focus:border-[--t-select-ring] focus:outline-none focus:ring-1 focus:ring-[--t-select-ring] disabled:cursor-not-allowed"
+              class="relative h-[calc(theme(spacing.9)_+_2px)] w-full cursor-pointer rounded-md border border-gray-300 bg-white px-3 text-left text-sm text-gray-900 shadow-sm focus:border-[--z-select-ring] focus:outline-none focus:ring-1 focus:ring-[--z-select-ring] disabled:cursor-not-allowed"
             >
               <div class="truncate">{val.value}</div>
               <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

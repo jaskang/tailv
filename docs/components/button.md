@@ -1,14 +1,14 @@
 <style lang="scss"> 
 
 .demo {
-  > .t-button{
+  > .z-button{
     margin-left: 1rem;
     /* margin-top: 1rem; */
     &:first-child{
       margin-left: 0;
     }
   } 
-  > br + .t-button{
+  > br + .z-button{
     margin-left: 0 !important;
   }
 }
@@ -24,11 +24,11 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton>default</TButton>
-  <TButton variant="solid">solid</TButton>
-  <TButton variant="soft">soft</TButton>
-  <TButton variant="plain">plain</TButton>
-  <TButton variant="link">link</TButton>
+  <ZButton>default</ZButton>
+  <ZButton variant="solid">solid</ZButton>
+  <ZButton variant="soft">soft</ZButton>
+  <ZButton variant="plain">plain</ZButton>
+  <ZButton variant="link">link</ZButton>
 </template>
 ```
 
@@ -36,10 +36,10 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="solid" color="primary">primary</TButton>
-  <TButton variant="solid" color="success">success</TButton>
-  <TButton variant="solid" color="warning">warning</TButton>
-  <TButton variant="solid" color="error">error</TButton>
+  <ZButton variant="solid" color="primary">primary</ZButton>
+  <ZButton variant="solid" color="success">success</ZButton>
+  <ZButton variant="solid" color="warning">warning</ZButton>
+  <ZButton variant="solid" color="error">error</ZButton>
 </template>
 ```
 
@@ -47,10 +47,10 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="soft" color="primary">primary</TButton>
-  <TButton variant="soft" color="success">success</TButton>
-  <TButton variant="soft" color="warning">warning</TButton>
-  <TButton variant="soft" color="error">error</TButton>
+  <ZButton variant="soft" color="primary">primary</ZButton>
+  <ZButton variant="soft" color="success">success</ZButton>
+  <ZButton variant="soft" color="warning">warning</ZButton>
+  <ZButton variant="soft" color="error">error</ZButton>
 </template>
 ```
 
@@ -58,10 +58,10 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="plain" color="primary">primary</TButton>
-  <TButton variant="plain" color="success">success</TButton>
-  <TButton variant="plain" color="warning">warning</TButton>
-  <TButton variant="plain" color="error">error</TButton>
+  <ZButton variant="plain" color="primary">primary</ZButton>
+  <ZButton variant="plain" color="success">success</ZButton>
+  <ZButton variant="plain" color="warning">warning</ZButton>
+  <ZButton variant="plain" color="error">error</ZButton>
 </template>
 ```
 
@@ -69,10 +69,10 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="link" color="primary">primary</TButton>
-  <TButton variant="link" color="success">success</TButton>
-  <TButton variant="link" color="warning">warning</TButton>
-  <TButton variant="link" color="error">error</TButton>
+  <ZButton variant="link" color="primary">primary</ZButton>
+  <ZButton variant="link" color="success">success</ZButton>
+  <ZButton variant="link" color="warning">warning</ZButton>
+  <ZButton variant="link" color="error">error</ZButton>
 </template>
 ```
 
@@ -82,10 +82,10 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="solid" color="primary">primary</TButton>
-  <TButton variant="solid" color="success">success</TButton>
-  <TButton variant="solid" color="warning">warning</TButton>
-  <TButton variant="solid" color="error">error</TButton>
+  <ZButton variant="solid" color="primary">primary</ZButton>
+  <ZButton variant="solid" color="success">success</ZButton>
+  <ZButton variant="solid" color="warning">warning</ZButton>
+  <ZButton variant="solid" color="error">error</ZButton>
 </template>
 ```
 
@@ -93,32 +93,32 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="solid" color="orange">orange</TButton>
-  <TButton variant="solid" color="teal">teal</TButton>
-  <TButton variant="solid" color="sky">sky</TButton>
-  <TButton variant="solid" color="violet">violet</TButton>
-  <TButton variant="solid" color="pink">pink</TButton>
-  <TButton variant="solid" color="gray">gray</TButton>
-  <TButton variant="solid" color="neutral">neutral</TButton>
+  <ZButton variant="solid" color="orange">orange</ZButton>
+  <ZButton variant="solid" color="teal">teal</ZButton>
+  <ZButton variant="solid" color="sky">sky</ZButton>
+  <ZButton variant="solid" color="violet">violet</ZButton>
+  <ZButton variant="solid" color="pink">pink</ZButton>
+  <ZButton variant="solid" color="gray">gray</ZButton>
+  <ZButton variant="solid" color="neutral">neutral</ZButton>
 
   <br /><br />
 
-  <TButton variant="soft" color="orange">orange</TButton>
-  <TButton variant="soft" color="teal">teal</TButton>
-  <TButton variant="soft" color="sky">sky</TButton>
-  <TButton variant="soft" color="violet">violet</TButton>
-  <TButton variant="soft" color="pink">pink</TButton>
-  <TButton variant="soft" color="gray">gray</TButton>
-  <TButton variant="soft" color="neutral">neutral</TButton>
+  <ZButton variant="soft" color="orange">orange</ZButton>
+  <ZButton variant="soft" color="teal">teal</ZButton>
+  <ZButton variant="soft" color="sky">sky</ZButton>
+  <ZButton variant="soft" color="violet">violet</ZButton>
+  <ZButton variant="soft" color="pink">pink</ZButton>
+  <ZButton variant="soft" color="gray">gray</ZButton>
+  <ZButton variant="soft" color="neutral">neutral</ZButton>
   <br /><br />
 
-  <TButton variant="plain" color="orange">orange</TButton>
-  <TButton variant="plain" color="teal">teal</TButton>
-  <TButton variant="plain" color="sky">sky</TButton>
-  <TButton variant="plain" color="violet">violet</TButton>
-  <TButton variant="plain" color="pink">pink</TButton>
-  <TButton variant="plain" color="gray">gray</TButton>
-  <TButton variant="plain" color="neutral">neutral</TButton>
+  <ZButton variant="plain" color="orange">orange</ZButton>
+  <ZButton variant="plain" color="teal">teal</ZButton>
+  <ZButton variant="plain" color="sky">sky</ZButton>
+  <ZButton variant="plain" color="violet">violet</ZButton>
+  <ZButton variant="plain" color="pink">pink</ZButton>
+  <ZButton variant="plain" color="gray">gray</ZButton>
+  <ZButton variant="plain" color="neutral">neutral</ZButton>
 </template>
 ```
 
@@ -127,11 +127,11 @@ asdfsa
 ```vue preview
 <template>
   <div class="flex flex-col items-center space-y-4">
-    <TButton variant="solid" size="xs">size: sm</TButton>
-    <TButton variant="solid" size="sm">size: sm</TButton>
-    <TButton variant="solid" size="md">size: md</TButton>
-    <TButton variant="solid" size="lg">size: lg</TButton>
-    <TButton variant="solid" size="xl">size: xl</TButton>
+    <ZButton variant="solid" size="xs">size: sm</ZButton>
+    <ZButton variant="solid" size="sm">size: sm</ZButton>
+    <ZButton variant="solid" size="md">size: md</ZButton>
+    <ZButton variant="solid" size="lg">size: lg</ZButton>
+    <ZButton variant="solid" size="xl">size: xl</ZButton>
   </div>
 </template>
 ```
@@ -140,11 +140,11 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton rounded>默认</TButton>
-  <TButton variant="solid" color="primary" rounded>primary</TButton>
-  <TButton variant="solid" color="success" rounded>success</TButton>
-  <TButton variant="solid" color="warning" rounded>warning</TButton>
-  <TButton variant="solid" color="error" rounded>error</TButton>
+  <ZButton rounded>默认</ZButton>
+  <ZButton variant="solid" color="primary" rounded>primary</ZButton>
+  <ZButton variant="solid" color="success" rounded>success</ZButton>
+  <ZButton variant="solid" color="warning" rounded>warning</ZButton>
+  <ZButton variant="solid" color="error" rounded>error</ZButton>
 </template>
 ```
 
@@ -152,11 +152,11 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="solid" circle>D</TButton>
-  <TButton variant="solid" color="primary" circle>P</TButton>
-  <TButton variant="solid" color="success" circle>S</TButton>
-  <TButton variant="solid" color="warning" circle>W</TButton>
-  <TButton variant="solid" color="error" circle>E</TButton>
+  <ZButton variant="solid" circle>D</ZButton>
+  <ZButton variant="solid" color="primary" circle>P</ZButton>
+  <ZButton variant="solid" color="success" circle>S</ZButton>
+  <ZButton variant="solid" color="warning" circle>W</ZButton>
+  <ZButton variant="solid" color="error" circle>E</ZButton>
 </template>
 ```
 
@@ -164,12 +164,12 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="solid" square>乾</TButton>
-  <TButton variant="solid" square>坤</TButton>
-  <TButton variant="solid" color="primary" square>A+</TButton>
-  <TButton variant="solid" color="success" square>B</TButton>
-  <TButton variant="solid" color="warning" square>C</TButton>
-  <TButton variant="solid" color="error" square>SSS</TButton>
+  <ZButton variant="solid" square>乾</ZButton>
+  <ZButton variant="solid" square>坤</ZButton>
+  <ZButton variant="solid" color="primary" square>A+</ZButton>
+  <ZButton variant="solid" color="success" square>B</ZButton>
+  <ZButton variant="solid" color="warning" square>C</ZButton>
+  <ZButton variant="solid" color="error" square>SSS</ZButton>
 </template>
 ```
 
@@ -179,32 +179,32 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton color="primary">
+  <ZButton color="primary">
     <template #icon><CogIcon /></template>
     图标按钮
-  </TButton>
-  <TButton color="primary">
-    <TIcon><CogIcon /></TIcon>
+  </ZButton>
+  <ZButton color="primary">
+    <ZIcon><CogIcon /></ZIcon>
     未使用 slot
-  </TButton>
+  </ZButton>
   <br /><br />
-  <TButton color="primary" variant="solid">
+  <ZButton color="primary" variant="solid">
     <template #icon><CogIcon /></template>
     图标按钮
-  </TButton>
-  <TButton color="primary" variant="solid">
-    <TIcon><CogIcon /></TIcon>
+  </ZButton>
+  <ZButton color="primary" variant="solid">
+    <ZIcon><CogIcon /></ZIcon>
     未使用 slot
-  </TButton>
+  </ZButton>
   <br /><br />
-  <TButton color="primary" variant="link">
+  <ZButton color="primary" variant="link">
     <template #icon><CogIcon /></template>
     图标按钮
-  </TButton>
-  <TButton color="primary" variant="link">
-    <TIcon><CogIcon /></TIcon>
+  </ZButton>
+  <ZButton color="primary" variant="link">
+    <ZIcon><CogIcon /></ZIcon>
     未使用 slot
-  </TButton>
+  </ZButton>
 </template>
 ```
 
@@ -212,36 +212,36 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton circle>
+  <ZButton circle>
     <template #icon><CogIcon /></template>
-  </TButton>
-  <TButton square>
+  </ZButton>
+  <ZButton square>
     <template #icon><CogIcon /></template>
-  </TButton>
-  <TButton variant="solid" circle color="primary">
+  </ZButton>
+  <ZButton variant="solid" circle color="primary">
     <template #icon><HomeIcon /></template>
-  </TButton>
-  <TButton variant="solid" square color="primary">
+  </ZButton>
+  <ZButton variant="solid" square color="primary">
     <template #icon><HomeIcon /></template>
-  </TButton>
-  <TButton variant="soft" circle color="success">
+  </ZButton>
+  <ZButton variant="soft" circle color="success">
     <template #icon><CloudIcon /></template>
-  </TButton>
-  <TButton variant="soft" square color="success">
+  </ZButton>
+  <ZButton variant="soft" square color="success">
     <template #icon><CloudIcon /></template>
-  </TButton>
-  <TButton variant="plain" circle color="warning">
+  </ZButton>
+  <ZButton variant="plain" circle color="warning">
     <template #icon><BellIcon /></template>
-  </TButton>
-  <TButton variant="plain" square color="warning">
+  </ZButton>
+  <ZButton variant="plain" square color="warning">
     <template #icon><BellIcon /></template>
-  </TButton>
-  <TButton variant="link" circle color="error">
+  </ZButton>
+  <ZButton variant="link" circle color="error">
     <template #icon><CubeIcon /></template>
-  </TButton>
-  <TButton variant="link" circle color="error">
-    <TIcon><CubeIcon /></TIcon>
-  </TButton>
+  </ZButton>
+  <ZButton variant="link" circle color="error">
+    <ZIcon><CubeIcon /></ZIcon>
+  </ZButton>
 </template>
 ```
 
@@ -265,8 +265,8 @@ const onClick = () => {
 }
 </script>
 <template>
-  <TButton :loading="loading" @click="onClick"> 加载状态 </TButton>
-  <TButton variant="solid" color="primary" :loading="loading" @click="onClick"> 加载状态 </TButton>
+  <ZButton :loading="loading" @click="onClick"> 加载状态 </ZButton>
+  <ZButton variant="solid" color="primary" :loading="loading" @click="onClick"> 加载状态 </ZButton>
 </template>
 ```
 
@@ -274,16 +274,16 @@ const onClick = () => {
 
 ```vue preview
 <template>
-  <TButton disabled>default</TButton>
-  <TButton variant="solid" disabled>solid</TButton>
-  <TButton variant="soft" disabled>soft</TButton>
-  <TButton variant="plain" disabled>plain</TButton>
-  <TButton variant="outline" disabled>outline</TButton>
-  <TButton variant="link" disabled>link</TButton>
-  <TButton variant="solid" circle disabled>
+  <ZButton disabled>default</ZButton>
+  <ZButton variant="solid" disabled>solid</ZButton>
+  <ZButton variant="soft" disabled>soft</ZButton>
+  <ZButton variant="plain" disabled>plain</ZButton>
+  <ZButton variant="outline" disabled>outline</ZButton>
+  <ZButton variant="link" disabled>link</ZButton>
+  <ZButton variant="solid" circle disabled>
     <template #icon>
       <HomeIcon />
     </template>
-  </TButton>
+  </ZButton>
 </template>
 ```

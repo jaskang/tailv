@@ -19,7 +19,7 @@ export type TooltipProps = ExtractPropTypes<typeof props>
 export type TooltipPublicProps = ExtractPublicPropTypes<typeof props>
 
 export const Tooltip = defineComponent({
-  name: 'TTooltip',
+  name: 'ZTooltip',
   props,
   slots: Object as SlotsType<{
     default?: () => VNode
@@ -27,11 +27,11 @@ export const Tooltip = defineComponent({
   }>,
   setup(props, { slots }) {
     return () => (
-      <Popper trigger={props.trigger} placement={props.placement}>
+      <Popper trigger={props.trigger} placement={props.placement} arrow>
         {{
           default: () => slots.default?.(),
           content: () => (
-            <div class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium shadow-sm dark:border-gray-500/30 dark:bg-gray-900 dark:text-gray-200">
+            <div class="rounded-lg  bg-white px-3 py-2 text-sm font-medium drop-shadow-md dark:border-gray-500/30 dark:bg-gray-900 dark:text-gray-200">
               {slots.content?.()}
             </div>
           ),

@@ -1,4 +1,10 @@
-import { computed, defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type PropType } from 'vue'
+import {
+  computed,
+  defineComponent,
+  type ExtractPropTypes,
+  type ExtractPublicPropTypes,
+  type PropType,
+} from 'vue'
 
 import { ChevronRightIcon } from '../Icon'
 
@@ -16,7 +22,7 @@ const props = {
 export type BreadcrumbProps = ExtractPublicPropTypes<typeof props>
 
 export const Breadcrumb = defineComponent({
-  name: 'TBreadcrumb',
+  name: 'ZBreadcrumb',
   props,
   setup(props) {
     const parentPaths = computed(() => {
@@ -32,20 +38,28 @@ export const Breadcrumb = defineComponent({
       return null
     })
     return () => (
-      <nav class="t-breadcrumb flex">
+      <nav class="z-breadcrumb flex">
         <ol class="flex min-w-0 whitespace-nowrap px-2 text-sm">
           {parentPaths.value.map(item => (
             <li class="flex items-center">
-              <a class={['text-gray-400', item.path ? 'cursor-pointer hover:text-gray-500' : '']} href={item.path}>
+              <a
+                class={['text-gray-400', item.path ? 'cursor-pointer hover:text-gray-500' : '']}
+                href={item.path}
+              >
                 {typeof item.title === 'function' ? item.title() : item.title}
               </a>
-              <ChevronRightIcon class="mx-1 h-3 w-3 flex-shrink-0 text-gray-400" aria-hidden="true" />
+              <ChevronRightIcon
+                class="mx-1 h-3 w-3 flex-shrink-0 text-gray-400"
+                aria-hidden="true"
+              />
             </li>
           ))}
           {currentPath.value && (
             <li class="flex items-center ">
               <a class="truncate font-semibold text-gray-900 dark:text-gray-200">
-                {typeof currentPath.value.title === 'function' ? currentPath.value.title() : currentPath.value.title}
+                {typeof currentPath.value.title === 'function'
+                  ? currentPath.value.title()
+                  : currentPath.value.title}
               </a>
             </li>
           )}

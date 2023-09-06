@@ -1,6 +1,6 @@
 <style lang="scss">
 .mdp-demo__preview {
-  > .t-input:not(:first-child){
+  > .z-input:not(:first-child){
     margin-top: 1rem;
   }
 }
@@ -10,29 +10,29 @@
 
 ```vue preview
 <template>
-  <TInput prefix="prefix" suffix="suffix">
+  <ZInput prefix="prefix" suffix="suffix">
     <template #dropdown>
-      <TButton>button</TButton>
+      <ZButton>button</ZButton>
     </template>
-  </TInput>
-  <TInput />
-  <TInput prefix="prefix" />
-  <TInput suffix="suffix" />
-  <TInput prefix="prefix" suffix="suffix" />
-  <TInput>
+  </ZInput>
+  <ZInput />
+  <ZInput prefix="prefix" />
+  <ZInput suffix="suffix" />
+  <ZInput prefix="prefix" suffix="suffix" />
+  <ZInput>
     <template #prefix>before</template>
     <template #suffix>after</template>
-  </TInput>
-  <TInput>
+  </ZInput>
+  <ZInput>
     <template #prefix>
-      <TIcon><BellIcon /></TIcon>
+      <ZIcon><BellIcon /></ZIcon>
     </template>
-  </TInput>
-  <TInput>
+  </ZInput>
+  <ZInput>
     <template #suffix>
-      <TIcon><BellIcon /></TIcon>
+      <ZIcon><BellIcon /></ZIcon>
     </template>
-  </TInput>
+  </ZInput>
 </template>
 ```
 
@@ -40,20 +40,20 @@
 
 ```vue preview
 <template>
-  <TInput disabled />
-  <TInput disabled prefix="prefix" />
-  <TInput disabled suffix="suffix" />
-  <TInput disabled prefix="prefix" suffix="suffix" />
-  <TInput disabled>
+  <ZInput disabled />
+  <ZInput disabled prefix="prefix" />
+  <ZInput disabled suffix="suffix" />
+  <ZInput disabled prefix="prefix" suffix="suffix" />
+  <ZInput disabled>
     <template #before>before</template>
     <template #after>after</template>
-  </TInput>
-  <TInput disabled>
+  </ZInput>
+  <ZInput disabled>
     <template #after>after</template>
-  </TInput>
-  <TInput disabled>
+  </ZInput>
+  <ZInput disabled>
     <template #before>after</template>
-  </TInput>
+  </ZInput>
 </template>
 ```
 
@@ -61,10 +61,10 @@
 
 ```vue preview
 <template>
-  <TInputGroup>
-    <TInput prefix="prefix" />
-    <TInput prefix="prefix" suffix="suffix" />
-    <TInput suffix="suffix" />
-  </TInputGroup>
+  <ZInputGroup>
+    <ZInput prefix="prefix" />
+    <ZInput prefix="prefix" suffix="suffix" />
+    <ZInput suffix="suffix" />
+  </ZInputGroup>
 </template>
 ```

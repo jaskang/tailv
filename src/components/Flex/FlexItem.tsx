@@ -31,7 +31,7 @@ function parseFlex(flex: FlexType): string {
 }
 
 export const FlexItem = defineComponent({
-  name: 'TFlexItem',
+  name: 'ZFlexItem',
   props,
   setup(props, { slots, emit }) {
     const style = computed(() => {
@@ -41,7 +41,7 @@ export const FlexItem = defineComponent({
       }
     })
     return () => (
-      <div class="t-flex-item relative" style={style.value}>
+      <div class="z-flex-item relative" style={style.value}>
         {slots.default?.()}
       </div>
     )

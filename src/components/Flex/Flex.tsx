@@ -1,4 +1,9 @@
-import { defineComponent, type ExtractPropTypes, type ExtractPublicPropTypes, type PropType } from 'vue'
+import {
+  defineComponent,
+  type ExtractPropTypes,
+  type ExtractPublicPropTypes,
+  type PropType,
+} from 'vue'
 
 import { getSpace, type SizeType } from '@/theme/space'
 
@@ -8,7 +13,9 @@ const props = {
     default: 'start',
   },
   justify: {
-    type: String as PropType<'normal' | 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | 'stretch'>,
+    type: String as PropType<
+      'normal' | 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | 'stretch'
+    >,
     default: 'start',
   },
   wrap: Boolean,
@@ -21,16 +28,16 @@ const props = {
 export type FlexProps = ExtractPublicPropTypes<typeof props>
 
 export const Flex = defineComponent({
-  name: 'TFlex',
+  name: 'ZFlex',
   props,
   setup(props, { slots, emit }) {
     return () => (
       <div
         style={{
-          '--t-flex-gap': getSpace(props.gap),
+          '--z-flex-gap': getSpace(props.gap),
         }}
         class={{
-          't-flex flex': true,
+          'z-flex flex': true,
           'items-start': props.align === 'start',
           'items-end': props.align === 'end',
           'items-center': props.align === 'center',
@@ -48,7 +55,7 @@ export const Flex = defineComponent({
 
           'flex-wrap': props.wrap,
           'flex-nowrap': !props.wrap,
-          'gap-[--t-flex-gap]': true,
+          'gap-[--z-flex-gap]': true,
         }}
       >
         {slots.default?.()}

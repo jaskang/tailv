@@ -4,7 +4,7 @@ import { ElSlot } from './components/_pure/ElSlot'
 import { Breadcrumb } from './components/Breadcrumb'
 import { Button } from './components/Button'
 import { Checkbox } from './components/Checkbox'
-import { ConfigProvider, useConfig } from './components/ConfigProvider'
+import { ConfigProvider } from './components/ConfigProvider'
 import { Flex, FlexItem } from './components/Flex'
 import { Icon } from './components/Icon'
 import { Input } from './components/Input'
@@ -16,6 +16,7 @@ import { Select } from './components/Select'
 import { Switch } from './components/Switch'
 import { Tag } from './components/Tag'
 import { Tooltip } from './components/Tooltip'
+import { useConfig } from './config'
 
 export {
   Breadcrumb,
@@ -41,23 +42,23 @@ export {
 
 export const Tailv: Plugin = {
   install(app, options) {
-    app.component('TConfigProvider', ConfigProvider)
-    app.component('TIcon', Icon)
-    app.component('TButton', Button)
-    app.component('TSwitch', Switch)
-    app.component('TCheckbox', Checkbox)
-    app.component('TRadio', Radio)
-    app.component('TRadioGroup', RadioGroup)
-    app.component('TInput', Input)
-    app.component('TSelect', Select)
-    app.component('TInputGroup', InputGroup)
-    app.component('TFlex', Flex)
-    app.component('TFlexItem', FlexItem)
-    app.component('TPopover', Popover)
-    app.component('TPopper', Popper)
-    app.component('TTooltip', Tooltip)
-    app.component('TBreadcrumb', Breadcrumb)
-    app.component('TTag', Tag)
+    app.component('ZConfigProvider', ConfigProvider)
+    app.component('ZIcon', Icon)
+    app.component('ZButton', Button)
+    app.component('ZSwitch', Switch)
+    app.component('ZCheckbox', Checkbox)
+    app.component('ZRadio', Radio)
+    app.component('ZRadioGroup', RadioGroup)
+    app.component('ZInput', Input)
+    app.component('ZSelect', Select)
+    app.component('ZInputGroup', InputGroup)
+    app.component('ZFlex', Flex)
+    app.component('ZFlexItem', FlexItem)
+    app.component('ZPopover', Popover)
+    app.component('ZPopper', Popper)
+    app.component('ZTooltip', Tooltip)
+    app.component('ZBreadcrumb', Breadcrumb)
+    app.component('ZTag', Tag)
   },
 }
 

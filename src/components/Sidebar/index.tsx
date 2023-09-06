@@ -1,3 +1,4 @@
+import type { Color } from '@/theme/colors'
 import {
   computed,
   defineComponent,
@@ -9,7 +10,7 @@ import {
   type VNode,
 } from 'vue'
 
-import { useTheme } from '@/theme'
+
 
 const props = {
   items: {
@@ -24,19 +25,19 @@ export type SidebarProps = ExtractPropTypes<typeof props>
 export type SidebarPublicProps = ExtractPublicPropTypes<typeof props>
 
 export type SidebarCssVars = {
-  '--t-btn-text-color': string
-  '--t-btn-border-color': string
-  '--t-btn-bg': string
+  '--z-btn-text-color': string
+  '--z-btn-border-color': string
+  '--z-btn-bg': string
 
-  '--t-btn-text-color-hover': string
-  '--t-btn-border-color-hover': string
-  '--t-btn-bg-hover': string
+  '--z-btn-text-color-hover': string
+  '--z-btn-border-color-hover': string
+  '--z-btn-bg-hover': string
 
-  '--t-btn-ring-color': string
+  '--z-btn-ring-color': string
 }
 
 export const Sidebar = defineComponent({
-  name: 'TSidebar',
+  name: 'ZSidebar',
   props,
   emits: {} as {
     click(payload: MouseEvent): void

@@ -1,49 +1,39 @@
 import {
+  type ComponentObjectPropsOptions,
   computed,
   defineComponent,
   type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
   provide,
-  reactive,
-  ref,
   renderSlot,
-  type SlotsType,
-  type VNode,
 } from 'vue'
 
-import { type Theme } from '@/theme'
-
-import { type Config, configProviderKey, useConfig } from './useConfig'
-
-export { useConfig }
+import { type Config, ConfigProviderKey } from '@/config'
+import { COLORS } from '@/theme/colors'
 
 const props = {
-  dark: Boolean,
   theme: {
-    type: Object as PropType<Theme>,
+    type: Object as PropType<{
+      colors?: Partial<Config['theme']['colors']>
+    }>,
   },
-}
+} satisfies ComponentObjectPropsOptions
 
 export type ConfigProviderProps = ExtractPropTypes<typeof props>
 
 export type ConfigProviderPublicProps = ExtractPublicPropTypes<typeof props>
 
 export const ConfigProvider = defineComponent({
-  name: 'TConfigProvider',
+  name: 'ZConfigProvider',
   props,
-  setup(props, { slots, emit }) {
-    const config = useConfig()
-
-    const context = computed(() => {
+  setup(props, { slots }) {
+    const context = computed<Config>(() => {
       return {
-        dark: props.dark || config.value.dark,
-        theme: { ...config.value.theme, ...props.theme },
-      } as Config
+        theme: { colors: { ...COLORS, ...props.theme?.colors } },
+      }
     })
-
-    provide(configProviderKey, context)
-
-    return () => renderSlot(slots, 'default', { config: context.value })
+    provide(ConfigProviderKey, context)
+    return () => renderSlot(slots, 'default')
   },
 })

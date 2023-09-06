@@ -1,6 +1,6 @@
 <style lang="scss">
 .mdp-demo__preview {
-  > .t-input:not(:first-child){
+  > .z-input:not(:first-child){
     margin-top: 1rem;
   }
 }
@@ -10,7 +10,7 @@
 
 ```vue preview
 <template>
-  <TSelect
+  <ZSelect
     class="max-w-lg"
     :options="[
       {

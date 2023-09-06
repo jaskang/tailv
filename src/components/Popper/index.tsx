@@ -1,4 +1,12 @@
-import { arrow, autoUpdate, flip, offset, type Placement as _Placement, shift, useFloating } from '@floating-ui/vue'
+import {
+  arrow,
+  autoUpdate,
+  flip,
+  offset,
+  type Placement as _Placement,
+  shift,
+  useFloating,
+} from '@floating-ui/vue'
 import { type Flat, uid } from 'kotl'
 import {
   computed,
@@ -30,7 +38,7 @@ export const props = {
   trigger: { type: String as PropType<TriggerType>, default: 'hover' },
   placement: { type: String as PropType<Placement>, default: 'top' },
   strategy: { type: String as PropType<Strategy>, default: 'absolute' },
-  offset: { type: Number, default: 6 },
+  offset: { type: Number, default: 20 },
   arrow: { type: Boolean },
   width: { type: [Number, String] as PropType<number | string | 'full'> },
 }
@@ -44,7 +52,7 @@ const popperInjectKey: InjectionKey<{
 }> = Symbol('PopperInjectKey')
 
 export const Popper = defineComponent({
-  name: 'TPopper',
+  name: 'ZPopper',
   inheritAttrs: false,
   props,
   emits: ['update:open', 'change'],
@@ -97,7 +105,9 @@ export const Popper = defineComponent({
       }
     })
     const floatingStyles = computed(() => {
-      const fullWidth = referenceEl.value?.offsetWidth ? referenceEl.value.offsetWidth + 'px' : 'auto'
+      const fullWidth = referenceEl.value?.offsetWidth
+        ? referenceEl.value.offsetWidth + 'px'
+        : 'auto'
       const userWidth = typeof props.width === 'string' ? `${props.width}px` : props.width
       const width = props.width ? (props.width === 'full' ? fullWidth : userWidth) : 'auto'
       return {
@@ -112,17 +122,17 @@ export const Popper = defineComponent({
       { flush: 'post' }
     )
     onBeforeMount(() => {
-      const wrapper = document.getElementById(`t-popper-wrapper-${parent?.id || id}`)
+      const wrapper = document.getElementById(`z-popper-wrapper-${parent?.id || id}`)
       if (wrapper) {
         container = wrapper
       } else {
         container = document.createElement('div')
-        container.setAttribute('id', `t-popper-wrapper-${id}`)
+        container.setAttribute('id', `z-popper-wrapper-${id}`)
         document.body.appendChild(container)
       }
     })
     onUnmounted(() => {
-      if (container.id === `t-popper-wrapper-${id}`) {
+      if (container.id === `z-popper-wrapper-${id}`) {
         setTimeout(() => {
           if (container && container.parentNode) {
             container.parentNode.removeChild(container)
@@ -165,7 +175,7 @@ export const Popper = defineComponent({
             {open.value && (
               <div
                 ref={floatingEl}
-                id={`t-popper-${id}`}
+                id={`z-popper-${id}`}
                 style={floatingStyles.value}
                 class="absolute z-[999]"
                 {...attrs}
@@ -174,7 +184,7 @@ export const Popper = defineComponent({
                 {props.arrow && (
                   <div
                     ref={arrowEl}
-                    class="absolute h-2 w-2 bg-black rotate-45 shadow-lg"
+                    class="absolute h-2 w-2 bg-white rotate-45 shadow-lg"
                     style={arrowStyles.value}
                   ></div>
                 )}

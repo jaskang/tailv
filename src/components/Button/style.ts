@@ -1,38 +1,37 @@
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
-import { useTheme } from '@/theme'
-import { GRAYSCALE_COLORS, type PaletteColor, type VarColor } from '@/theme/colors'
+import { type Color, type ColorVar, GRAYSCALE_COLORS } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { createStyleVar } from '@/utils/style'
 
 import type { ButtonInnerProps } from '.'
 
 type ButtonCssVars = {
-  text: VarColor
-  bg: VarColor
-  border: VarColor
-  textHover: VarColor
-  bgHover: VarColor
-  borderHover: VarColor
-  ring: VarColor
+  text: ColorVar
+  bg: ColorVar
+  border: ColorVar
+  textHover: ColorVar
+  bgHover: ColorVar
+  borderHover: ColorVar
+  ring: ColorVar
 }
 
-const cssVars = createStyleVar<'t-btn', ButtonCssVars>('t-btn')
+const cssVars = createStyleVar<'z-btn', ButtonCssVars>('z-btn')
 
 const createClass = clsVariants(
-  `t-button inline-flex rounded-md text-center justify-center items-center font-medium transition-colors 
-  h-[--t-btn-h]
-  text-[--t-btn-text] bg-[--t-btn-bg] border-[--t-btn-border]
-  hover:enabled:text-[--t-btn-textHover] hover:enabled:bg-[--t-btn-bgHover] hover:enabled:border-[--t-btn-borderHover]
-  focus:outline-none focus:enabled:ring-2 focus:enabled:ring-offset-2 focus:enabled:ring-[--t-btn-ring] dark:ring-offset-slate-900
+  `z-button inline-flex rounded-md text-center justify-center items-center font-medium transition-colors 
+  h-[--z-btn-h]
+  text-[--z-btn-text] bg-[--z-btn-bg] border-[--z-btn-border]
+  hover:enabled:text-[--z-btn-textHover] hover:enabled:bg-[--z-btn-bgHover] hover:enabled:border-[--z-btn-borderHover]
+  focus:outline-none focus:enabled:ring-2 focus:enabled:ring-offset-2 focus:enabled:ring-[--z-btn-ring] dark:ring-offset-slate-900
   `,
   {
     variants: {
       variant: {
         default: [
           `border shadow-sm text-gray-700 bg-white border-gray-300 hover:enabled:bg-slate-50 dark:text-white dark:border-gray-700 dark:bg-slate-900 dark:hover:enabled:bg-slate-800`,
-          `text-[--t-btn-text] bg-[--t-btn-bg] border-[--t-btn-border]
-        hover:enabled:text-[--t-btn-textHover] hover:enabled:bg-[--t-btn-bgHover] hover:enabled:border-[--t-btn-borderHover]`,
+          `text-[--z-btn-text] bg-[--z-btn-bg] border-[--z-btn-border]
+        hover:enabled:text-[--z-btn-textHover] hover:enabled:bg-[--z-btn-bgHover] hover:enabled:border-[--z-btn-borderHover]`,
         ],
         solid: 'border-2 shadow-sm',
         soft: 'border-2 shadow-sm',
@@ -40,11 +39,11 @@ const createClass = clsVariants(
         link: 'border-2 hover:enabled:underline hover:enabled:decoration-2 hover:enabled:underline-offset-4',
       },
       size: {
-        xs: '[--t-btn-h:calc(1.75rem+2px)] text-xs/3 px-2',
-        sm: '[--t-btn-h:calc(2rem+2px)] text-xs/4 px-3',
-        md: '[--t-btn-h:calc(2.25rem+2px)] text-sm/5 px-4',
-        lg: '[--t-btn-h:calc(2.5rem+2px)] text-base/6 px-5',
-        xl: '[--t-btn-h:calc(2.75rem+2px)] text-base/7 px-6',
+        xs: '[--z-btn-h:calc(1.75rem+2px)] text-xs/3 px-2',
+        sm: '[--z-btn-h:calc(2rem+2px)] text-xs/4 px-3',
+        md: '[--z-btn-h:calc(2.25rem+2px)] text-sm/5 px-4',
+        lg: '[--z-btn-h:calc(2.5rem+2px)] text-base/6 px-5',
+        xl: '[--z-btn-h:calc(2.75rem+2px)] text-base/7 px-6',
       },
       block: {
         true: 'w-full',
@@ -55,7 +54,7 @@ const createClass = clsVariants(
         false: '',
       },
       square: {
-        true: ['w-[--t-btn-h] px-0', 'px-2 px-3 px-4 px-5 px-6'],
+        true: ['w-[--z-btn-h] px-0', 'px-2 px-3 px-4 px-5 px-6'],
         false: '',
       },
       disabled: {
@@ -66,7 +65,7 @@ const createClass = clsVariants(
   }
 )
 
-function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor) {
+function createStyle(variant: ButtonInnerProps['variant'], color: Color) {
   const isGrayScale = GRAYSCALE_COLORS.includes(color)
   switch (variant) {
     case 'solid':
@@ -117,7 +116,6 @@ function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor) 
 }
 
 export const useButtonStyle = (getter: MaybeRefOrGetter<ButtonInnerProps>) => {
-  const { convertAliasColor } = useTheme()
   const result = computed(() => {
     const props = toValue(getter)
     const variant = ['solid', 'soft', 'plain', 'link'].includes(props.variant)
@@ -133,7 +131,7 @@ export const useButtonStyle = (getter: MaybeRefOrGetter<ButtonInnerProps>) => {
         square: props.square || props.circle,
         disabled: props.disabled,
       }),
-      style: createStyle(props.variant, convertAliasColor(color)),
+      style: createStyle(props.variant, color),
     }
   })
   return result

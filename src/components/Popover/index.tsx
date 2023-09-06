@@ -17,7 +17,7 @@ const props = {
 export type PopoverProps = ExtractPublicPropTypes<typeof props>
 
 export const Popover = defineComponent({
-  name: 'TPopover',
+  name: 'ZPopover',
   props,
   inheritAttrs: false,
   slots: Object as SlotsType<{
@@ -31,7 +31,7 @@ export const Popover = defineComponent({
           default: () => slots.default?.(),
           content: () => (
             <div
-              class="overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-950"
+              class="overflow-hidden rounded-lg bg-white drop-shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-950"
               {...attrs}
             >
               {slots.content?.()}

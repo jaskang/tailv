@@ -1,41 +1,19 @@
 // https://github.com/tailwindlabs/tailwindcss/blob/master/src/public/colors.js
 // https://github.com/tailwindlabs/tailwindcss/blob/master/src/util/color.js
 
-export type ColorLv =
-  | '50'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | '950'
-
-export type AliasColor = 'primary' | 'success' | 'warning' | 'error'
-
-export type SystemColor = keyof typeof SYSTEM_COLORS
-export type PaletteColor = keyof typeof COLORS
-export type PaletteColorPath = `${PaletteColor}.${ColorLv}`
-
-export type UserColor = AliasColor | PaletteColor
-export type UserColorPath = `${UserColor}.${ColorLv}`
-
-export type VarColor = SystemColor | `${UserColor}.${ColorLv}`
-
-// alias color regexp [AliasColor] + '.' + [ColorLv] , like `primary.500` `primary.50` `primary.950`,
-export const ALIAS_COLOR_REGEXP =
-  /^(primary|success|warning|error)\.(50|100|200|300|400|500|600|700|800|900|950)$/
-
-export const getColorValue = (color: string) => {
-  const [key, lv] = (color || '').split('.')
-  if (lv) {
-    return COLORS[key as PaletteColor]?.[lv as ColorLv] || null
-  }
-  return SYSTEM_COLORS[key as SystemColor] || null
-}
+export const COLOR_LEVELS = [
+  '50',
+  '100',
+  '200',
+  '300',
+  '400',
+  '500',
+  '600',
+  '700',
+  '800',
+  '900',
+  '950',
+] as const
 export const SYSTEM_COLORS = {
   inherit: 'inherit',
   current: 'currentColor',
@@ -43,10 +21,65 @@ export const SYSTEM_COLORS = {
   black: '#000',
   white: '#fff',
 }
-
 export const GRAYSCALE_COLORS = ['slate', 'gray', 'zinc', 'neutral', 'stone']
 
+export const ALIAS_COLORS = ['primary', 'success', 'warning', 'error'] as const
+
 export const COLORS = {
+  // alias color
+  primary: {
+    50: '#eef2ff',
+    100: '#e0e7ff',
+    200: '#c7d2fe',
+    300: '#a5b4fc',
+    400: '#818cf8',
+    500: '#6366f1',
+    600: '#4f46e5',
+    700: '#4338ca',
+    800: '#3730a3',
+    900: '#312e81',
+    950: '#1e1b4b',
+  },
+  success: {
+    50: '#f0fdf4',
+    100: '#dcfce7',
+    200: '#bbf7d0',
+    300: '#86efac',
+    400: '#4ade80',
+    500: '#22c55e',
+    600: '#16a34a',
+    700: '#15803d',
+    800: '#166534',
+    900: '#14532d',
+    950: '#052e16',
+  },
+  warning: {
+    50: '#fffbeb',
+    100: '#fef3c7',
+    200: '#fde68a',
+    300: '#fcd34d',
+    400: '#fbbf24',
+    500: '#f59e0b',
+    600: '#d97706',
+    700: '#b45309',
+    800: '#92400e',
+    900: '#78350f',
+    950: '#451a03',
+  },
+  error: {
+    50: '#fef2f2',
+    100: '#fee2e2',
+    200: '#fecaca',
+    300: '#fca5a5',
+    400: '#f87171',
+    500: '#ef4444',
+    600: '#dc2626',
+    700: '#b91c1c',
+    800: '#991b1b',
+    900: '#7f1d1d',
+    950: '#450a0a',
+  },
+  // palette color
   slate: {
     50: '#f8fafc',
     100: '#f1f5f9',
@@ -334,3 +367,26 @@ export const COLORS = {
     950: '#4c0519',
   },
 } as const
+
+export type ColorLv = (typeof COLOR_LEVELS)[number]
+export type SystemColor = keyof typeof SYSTEM_COLORS
+
+export type AliasColor = (typeof ALIAS_COLORS)[number]
+
+export type Color = keyof typeof COLORS
+export type ColorPath = `${Color}.${ColorLv}`
+
+export type ColorVar = SystemColor | ColorPath
+
+// alias color regexp [AliasColor] + '.' + [ColorLv] , like `primary.500` `primary.50` `primary.950`,
+const COLOR_REGEXP = new RegExp(
+  `^(${Object.keys(COLORS).join('|')})\\.(${COLOR_LEVELS.join('|')})$`
+)
+
+export const getColorValue = (color: ColorVar) => {
+  const match = color.match(COLOR_REGEXP)
+  if (match) {
+    return COLORS[match[1] as Color][match[2] as ColorLv]
+  }
+  return SYSTEM_COLORS[color as SystemColor] || null
+}

@@ -3,23 +3,23 @@
 ```vue preview
 <template>
   <div class="space-x-1">
-    <TIcon><BeakerIcon /></TIcon>
+    <ZIcon><BeakerIcon /></ZIcon>
 
-    <TIcon><StopIcon /></TIcon>
+    <ZIcon><StopIcon /></ZIcon>
 
-    <TIcon><CogIcon /></TIcon>
+    <ZIcon><CogIcon /></ZIcon>
 
-    <TIcon><HomeIcon /></TIcon>
+    <ZIcon><HomeIcon /></ZIcon>
 
-    <TIcon><CloudIcon /></TIcon>
+    <ZIcon><CloudIcon /></ZIcon>
 
-    <TIcon><BellIcon /></TIcon>
+    <ZIcon><BellIcon /></ZIcon>
 
-    <TIcon><CubeIcon /></TIcon>
+    <ZIcon><CubeIcon /></ZIcon>
 
-    <TIcon><StarIcon /></TIcon>
+    <ZIcon><StarIcon /></ZIcon>
     <br />
-    <TIcon spin><StarIcon /></TIcon>
+    <ZIcon spin><StarIcon /></ZIcon>
   </div>
 </template>
 ```

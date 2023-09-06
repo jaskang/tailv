@@ -1,6 +1,6 @@
 {
-  "name": "tailv",
-  "version": "1.0.0-beta.0",
+  "name": "zonda",
+  "version": "0.0.0-beta.1",
   "packageManager": "pnpm@8.7.1",
   "type": "module",
   "main": "./dist/index.umd.cjs",

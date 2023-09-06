@@ -7,12 +7,11 @@ import {
   type SlotsType,
 } from 'vue'
 
-import { useTheme } from '@/theme'
-import type { UserColor } from '@/theme/colors'
+import type { Color } from '@/theme/colors'
 
 const props = {
   color: {
-    type: String as PropType<UserColor>,
+    type: String as PropType<Color>,
   },
   loading: Boolean,
   disabled: Boolean,
@@ -21,19 +20,19 @@ const props = {
 export type VerticalMenuProps = ExtractPublicPropTypes<typeof props>
 
 export type VerticalMenuCssVars = {
-  '--t-btn-text-color': string
-  '--t-btn-border-color': string
-  '--t-btn-bg': string
+  '--z-btn-text-color': string
+  '--z-btn-border-color': string
+  '--z-btn-bg': string
 
-  '--t-btn-text-color-hover': string
-  '--t-btn-border-color-hover': string
-  '--t-btn-bg-hover': string
+  '--z-btn-text-color-hover': string
+  '--z-btn-border-color-hover': string
+  '--z-btn-bg-hover': string
 
-  '--t-btn-ring-color': string
+  '--z-btn-ring-color': string
 }
 
 export const VerticalMenu = defineComponent({
-  name: 'TVerticalMenu',
+  name: 'ZVerticalMenu',
   props,
   emits: {} as {
     click(payload: MouseEvent): void
@@ -43,8 +42,6 @@ export const VerticalMenu = defineComponent({
     item: { data: number }
   }>,
   setup(props, { slots, emit }) {
-    const { colors } = useTheme()
-
     const { cssVars, cls } = useStyle(() => {
       return {
         ...props,

@@ -35,10 +35,16 @@ export default defineComponent({
               </a>
 
               <div class="relative ml-auto hidden items-center lg:flex">
-                <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200" translate="no">
+                <nav
+                  class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"
+                  translate="no"
+                >
                   <ul class="flex space-x-8">
                     <li>
-                      <a href="/components/button" class="hover:text-primary-500 dark:hover:text-primary-400">
+                      <a
+                        href="/components/button"
+                        class="hover:text-primary-500 dark:hover:text-primary-400"
+                      >
                         Components
                       </a>
                     </li>
@@ -81,7 +87,13 @@ export default defineComponent({
             <Button square variant="link">
               {{
                 icon: () => (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       d="M5 6h14M5 12h14M5 18h14"
                       fill="none"
@@ -99,7 +111,9 @@ export default defineComponent({
             >
               <span class="sr-only">Navigation</span>
             </button>
-            <Breadcrumb items={[{ title: () => <HomeIcon /> }, { title: 'sdfs' }, { title: 'asdfasdf' }]} />
+            <Breadcrumb
+              items={[{ title: () => <HomeIcon /> }, { title: 'sdfs' }, { title: 'asdfasdf' }]}
+            />
           </div>
         </div>
         <div class="overflow-hidden">

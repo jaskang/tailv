@@ -13,21 +13,21 @@ const openPopper = e => {
 </script>
 <template>
   <div class="space-x-1">
-    <TPopover trigger="click">
-      <TButton>click</TButton>
+    <ZPopover trigger="click">
+      <ZButton>click</ZButton>
       <template #content> 1234 asdfasd asdfasdf asdfasdf asdf </template>
-    </TPopover>
+    </ZPopover>
 
-    <TPopover trigger="hover">
-      <TButton>click</TButton>
+    <ZPopover trigger="hover">
+      <ZButton>click</ZButton>
       <template #content> 1234 asdfasd asdfasdf asdfasdf asdf </template>
-    </TPopover>
-    <TPopover trigger="click">
-      <TButton>click</TButton>
+    </ZPopover>
+    <ZPopover trigger="click">
+      <ZButton>click</ZButton>
       <template #content>
         <div class="p-4">1234 asdfasd asdfasdf asdfasdf asdf</div>
       </template>
-    </TPopover>
+    </ZPopover>
   </div>
 </template>
 ```

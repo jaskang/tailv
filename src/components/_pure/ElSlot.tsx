@@ -38,7 +38,7 @@ function useFirstElement(): Ref<HTMLElement | null> {
 }
 
 export const ElSlot = defineComponent({
-  name: 'TElSlot',
+  name: 'ZElSlot',
   props: {
     elRef: Function as PropType<(el: HTMLElement | null) => void>,
     extraProps: Object as PropType<Record<string, unknown>>,
@@ -52,7 +52,11 @@ export const ElSlot = defineComponent({
     })
     expose({ el })
     return () => {
-      const children = withSingleton(slots.default?.() ?? [], props.componentName || 'ElSlot', props.extraProps)
+      const children = withSingleton(
+        slots.default?.() ?? [],
+        props.componentName || 'ElSlot',
+        props.extraProps
+      )
       return children
     }
   },

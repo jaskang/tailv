@@ -29,7 +29,7 @@ export interface RadioGroupContext {
 }
 
 export const RadioGroup = defineComponent({
-  name: 'TRadioGroup',
+  name: 'ZRadioGroup',
   props,
   emits: {
     'update:value': (val: any) => true,

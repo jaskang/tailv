@@ -7,8 +7,6 @@ import {
   type VNode,
 } from 'vue'
 
-import { useTheme } from '@/theme'
-import type { UserColor } from '@/theme/colors'
 import { useColorVars } from '@/utils/style'
 
 const props = {
@@ -24,7 +22,7 @@ export type FormItemProps = ExtractPropTypes<typeof props>
 export type FormItemPublicProps = ExtractPublicPropTypes<typeof props>
 
 export const FormItem = defineComponent({
-  name: 'TFormItem',
+  name: 'ZFormItem',
   props,
   emits: {
     click: (payload: MouseEvent) => true,
@@ -33,7 +31,7 @@ export const FormItem = defineComponent({
     default?: () => VNode[]
   }>,
   setup(props, { slots, emit }) {
-    const cssVars = useColorVars('t-form-item', () => {
+    const cssVars = useColorVars('z-form-item', () => {
       return {
         accent: 'primary.500',
         ring: 'primary.500',

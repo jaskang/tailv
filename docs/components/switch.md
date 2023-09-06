@@ -3,8 +3,8 @@
 ```vue preview
 <template>
   <div class="space-x-1">
-    <TSwitch v-model:checked="checked">Switch</TSwitch>
-    <TSwitch v-model:checked="checked" disabled>Switch disabled</TSwitch>
+    <ZSwitch v-model:checked="checked">Switch</ZSwitch>
+    <ZSwitch v-model:checked="checked" disabled>Switch disabled</ZSwitch>
   </div>
 </template>
 <script setup>
@@ -18,16 +18,16 @@ const checked = ref(false)
 ```vue preview
 <template>
   <div class="space-x-1">
-    <TSwitch v-model:checked="checked">
+    <ZSwitch v-model:checked="checked">
       Switch
       <template #on><SpeakerWaveIcon /></template>
       <template #off><SpeakerXMarkIcon /></template>
-    </TSwitch>
-    <TSwitch v-model:checked="checked">
+    </ZSwitch>
+    <ZSwitch v-model:checked="checked">
       Switch
       <template #on><CheckIcon class="text-green-500" /></template>
       <template #off><XMarkIcon class="text-red-500" /></template>
-    </TSwitch>
+    </ZSwitch>
   </div>
 </template>
 <script setup>

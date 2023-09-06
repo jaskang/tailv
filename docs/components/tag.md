@@ -7,15 +7,15 @@
 ```vue preview
 <template>
   <div class="flex flex-wrap gap-2">
-    <TTag>Badge</TTag>
-    <TTag color="primary">Badge</TTag>
-    <TTag color="success">Badge</TTag>
-    <TTag color="warning">Badge</TTag>
-    <TTag color="error">Badge</TTag>
-    <TTag color="orange">Badge</TTag>
-    <TTag color="teal">Badge</TTag>
-    <TTag color="sky">Badge</TTag>
-    <TTag color="pink">Badge</TTag>
+    <ZTag>Badge</ZTag>
+    <ZTag color="primary">Badge</ZTag>
+    <ZTag color="success">Badge</ZTag>
+    <ZTag color="warning">Badge</ZTag>
+    <ZTag color="error">Badge</ZTag>
+    <ZTag color="orange">Badge</ZTag>
+    <ZTag color="teal">Badge</ZTag>
+    <ZTag color="sky">Badge</ZTag>
+    <ZTag color="pink">Badge</ZTag>
   </div>
 </template>
 ```
@@ -25,15 +25,15 @@
 ```vue preview
 <template>
   <div class="flex flex-wrap gap-2">
-    <TTag variant="outline">Badge</TTag>
-    <TTag variant="outline" color="primary">Badge</TTag>
-    <TTag variant="outline" color="success">Badge</TTag>
-    <TTag variant="outline" color="warning">Badge</TTag>
-    <TTag variant="outline" color="error">Badge</TTag>
-    <TTag variant="outline" color="orange">Badge</TTag>
-    <TTag variant="outline" color="teal">Badge</TTag>
-    <TTag variant="outline" color="sky">Badge</TTag>
-    <TTag variant="outline" color="pink">Badge</TTag>
+    <ZTag variant="outline">Badge</ZTag>
+    <ZTag variant="outline" color="primary">Badge</ZTag>
+    <ZTag variant="outline" color="success">Badge</ZTag>
+    <ZTag variant="outline" color="warning">Badge</ZTag>
+    <ZTag variant="outline" color="error">Badge</ZTag>
+    <ZTag variant="outline" color="orange">Badge</ZTag>
+    <ZTag variant="outline" color="teal">Badge</ZTag>
+    <ZTag variant="outline" color="sky">Badge</ZTag>
+    <ZTag variant="outline" color="pink">Badge</ZTag>
   </div>
 </template>
 ```
@@ -43,27 +43,27 @@
 ```vue preview
 <template>
   <div class="flex flex-wrap gap-2">
-    <TTag variant="solid" pill>Badge</TTag>
-    <TTag variant="solid" pill color="primary">Badge</TTag>
-    <TTag variant="solid" pill color="success">Badge</TTag>
-    <TTag variant="solid" pill color="warning">Badge</TTag>
-    <TTag variant="solid" pill color="error">Badge</TTag>
-    <TTag variant="solid" pill color="orange">Badge</TTag>
-    <TTag variant="solid" pill color="teal">Badge</TTag>
-    <TTag variant="solid" pill color="sky">Badge</TTag>
-    <TTag variant="solid" pill color="pink">Badge</TTag>
+    <ZTag variant="solid" pill>Badge</ZTag>
+    <ZTag variant="solid" pill color="primary">Badge</ZTag>
+    <ZTag variant="solid" pill color="success">Badge</ZTag>
+    <ZTag variant="solid" pill color="warning">Badge</ZTag>
+    <ZTag variant="solid" pill color="error">Badge</ZTag>
+    <ZTag variant="solid" pill color="orange">Badge</ZTag>
+    <ZTag variant="solid" pill color="teal">Badge</ZTag>
+    <ZTag variant="solid" pill color="sky">Badge</ZTag>
+    <ZTag variant="solid" pill color="pink">Badge</ZTag>
   </div>
   <br />
   <div class="flex flex-wrap gap-2">
-    <TTag variant="outline" pill>Badge</TTag>
-    <TTag variant="outline" pill color="primary">Badge</TTag>
-    <TTag variant="outline" pill color="success">Badge</TTag>
-    <TTag variant="outline" pill color="warning">Badge</TTag>
-    <TTag variant="outline" pill color="error">Badge</TTag>
-    <TTag variant="outline" pill color="orange">Badge</TTag>
-    <TTag variant="outline" pill color="teal">Badge</TTag>
-    <TTag variant="outline" pill color="sky">Badge</TTag>
-    <TTag variant="outline" pill color="pink">Badge</TTag>
+    <ZTag variant="outline" pill>Badge</ZTag>
+    <ZTag variant="outline" pill color="primary">Badge</ZTag>
+    <ZTag variant="outline" pill color="success">Badge</ZTag>
+    <ZTag variant="outline" pill color="warning">Badge</ZTag>
+    <ZTag variant="outline" pill color="error">Badge</ZTag>
+    <ZTag variant="outline" pill color="orange">Badge</ZTag>
+    <ZTag variant="outline" pill color="teal">Badge</ZTag>
+    <ZTag variant="outline" pill color="sky">Badge</ZTag>
+    <ZTag variant="outline" pill color="pink">Badge</ZTag>
   </div>
 </template>
 ```
@@ -73,27 +73,27 @@
 ```vue preview
 <template>
   <div class="flex flex-wrap gap-2">
-    <TTag variant="solid" dot>Badge</TTag>
-    <TTag variant="solid" dot color="primary">Badge</TTag>
-    <TTag variant="solid" dot color="success">Badge</TTag>
-    <TTag variant="solid" dot color="warning">Badge</TTag>
-    <TTag variant="solid" dot color="error">Badge</TTag>
-    <TTag variant="solid" dot color="orange">Badge</TTag>
-    <TTag variant="solid" dot color="teal">Badge</TTag>
-    <TTag variant="solid" dot color="sky">Badge</TTag>
-    <TTag variant="solid" dot color="pink">Badge</TTag>
+    <ZTag variant="solid" dot>Badge</ZTag>
+    <ZTag variant="solid" dot color="primary">Badge</ZTag>
+    <ZTag variant="solid" dot color="success">Badge</ZTag>
+    <ZTag variant="solid" dot color="warning">Badge</ZTag>
+    <ZTag variant="solid" dot color="error">Badge</ZTag>
+    <ZTag variant="solid" dot color="orange">Badge</ZTag>
+    <ZTag variant="solid" dot color="teal">Badge</ZTag>
+    <ZTag variant="solid" dot color="sky">Badge</ZTag>
+    <ZTag variant="solid" dot color="pink">Badge</ZTag>
   </div>
   <br />
   <div class="flex flex-wrap gap-2">
-    <TTag variant="outline" dot>Badge</TTag>
-    <TTag variant="outline" dot color="primary">Badge</TTag>
-    <TTag variant="outline" dot color="success">Badge</TTag>
-    <TTag variant="outline" dot color="warning">Badge</TTag>
-    <TTag variant="outline" dot color="error">Badge</TTag>
-    <TTag variant="outline" dot color="orange">Badge</TTag>
-    <TTag variant="outline" dot color="teal">Badge</TTag>
-    <TTag variant="outline" dot color="sky">Badge</TTag>
-    <TTag variant="outline" dot color="pink">Badge</TTag>
+    <ZTag variant="outline" dot>Badge</ZTag>
+    <ZTag variant="outline" dot color="primary">Badge</ZTag>
+    <ZTag variant="outline" dot color="success">Badge</ZTag>
+    <ZTag variant="outline" dot color="warning">Badge</ZTag>
+    <ZTag variant="outline" dot color="error">Badge</ZTag>
+    <ZTag variant="outline" dot color="orange">Badge</ZTag>
+    <ZTag variant="outline" dot color="teal">Badge</ZTag>
+    <ZTag variant="outline" dot color="sky">Badge</ZTag>
+    <ZTag variant="outline" dot color="pink">Badge</ZTag>
   </div>
 </template>
 ```
@@ -103,19 +103,19 @@
 ```vue preview
 <template>
   <div class="flex flex-wrap gap-2">
-    <TTag variant="solid" pill closeable>Badge</TTag>
-    <TTag variant="solid" pill closeable color="primary">Badge</TTag>
-    <TTag variant="solid" pill closeable color="success">Badge</TTag>
-    <TTag variant="solid" pill closeable color="warning">Badge</TTag>
-    <TTag variant="solid" pill closeable color="error">Badge</TTag>
+    <ZTag variant="solid" pill closeable>Badge</ZTag>
+    <ZTag variant="solid" pill closeable color="primary">Badge</ZTag>
+    <ZTag variant="solid" pill closeable color="success">Badge</ZTag>
+    <ZTag variant="solid" pill closeable color="warning">Badge</ZTag>
+    <ZTag variant="solid" pill closeable color="error">Badge</ZTag>
   </div>
   <br />
   <div class="flex flex-wrap gap-2">
-    <TTag variant="outline" pill closeable>Badge</TTag>
-    <TTag variant="outline" pill closeable color="primary">Badge</TTag>
-    <TTag variant="outline" pill closeable color="success">Badge</TTag>
-    <TTag variant="outline" pill closeable color="warning">Badge</TTag>
-    <TTag variant="outline" pill closeable color="error">Badge</TTag>
+    <ZTag variant="outline" pill closeable>Badge</ZTag>
+    <ZTag variant="outline" pill closeable color="primary">Badge</ZTag>
+    <ZTag variant="outline" pill closeable color="success">Badge</ZTag>
+    <ZTag variant="outline" pill closeable color="warning">Badge</ZTag>
+    <ZTag variant="outline" pill closeable color="error">Badge</ZTag>
   </div>
 </template>
 ```

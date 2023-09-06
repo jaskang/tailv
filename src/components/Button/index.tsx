@@ -9,7 +9,7 @@ import {
   type VNode,
 } from 'vue'
 
-import type { UserColor } from '@/theme/colors'
+import type { Color } from '@/theme/colors'
 
 import { LoadingIcon } from '../Icon'
 import { useButtonStyle } from './style'
@@ -21,7 +21,7 @@ const props = {
     validator: (val: string) => ['default', 'solid', 'soft', 'plain', 'link'].includes(val),
   },
   color: {
-    type: String as PropType<UserColor>,
+    type: String as PropType<Color>,
     default: 'primary',
   },
   size: {
@@ -41,7 +41,7 @@ export type ButtonInnerProps = ExtractPropTypes<typeof props>
 export type ButtonProps = ExtractPublicPropTypes<typeof props>
 
 export const Button = defineComponent({
-  name: 'TButton',
+  name: 'ZButton',
   props,
   emits: {
     click: (payload: MouseEvent) => true,
@@ -68,11 +68,11 @@ export const Button = defineComponent({
         onClick={onClick}
       >
         {hasIcon.value && (
-          <i class="t-btn-icon h-[1em] w-[1em] scale-125 [&+*]:ml-[0.5em] [&>svg]:!h-full [&>svg]:!w-full">
+          <i class="z-btn-icon h-[1em] w-[1em] scale-125 [&+*]:ml-[0.5em] [&>svg]:!h-full [&>svg]:!w-full">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}
           </i>
         )}
-        {slots.default && <span class="t-btn_body flex items-center">{slots.default()}</span>}
+        {slots.default && <span class="z-btn_body flex items-center">{slots.default()}</span>}
       </button>
     )
   },

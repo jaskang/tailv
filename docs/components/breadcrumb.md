@@ -5,6 +5,6 @@
 const home = () => <HomeIcon class="h-3 w-3" />
 </script>
 <template>
-  <TBreadcrumb :items="[{ title: home }, { title: 'sdfs' }, { title: 'asdfasdf' }]"></TBreadcrumb>
+  <ZBreadcrumb :items="[{ title: home }, { title: 'sdfs' }, { title: 'asdfasdf' }]"></ZBreadcrumb>
 </template>
 ```

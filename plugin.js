@@ -4,8 +4,9 @@ import plugin from 'tailwindcss/plugin'
 function extractColorVars(colorObj, colorGroup = '') {
   return Object.keys(colorObj).reduce((vars, key) => {
     const value = colorObj[key]
-    const cssVariable = key === 'DEFAULT' ? `--t-c${colorGroup}` : `--t-c${colorGroup}-${key}`
-    const newVars = typeof value === 'string' ? { [cssVariable]: value } : extractColorVars(value, `-${key}`)
+    const cssVariable = key === 'DEFAULT' ? `--z-c${colorGroup}` : `--z-c${colorGroup}-${key}`
+    const newVars =
+      typeof value === 'string' ? { [cssVariable]: value } : extractColorVars(value, `-${key}`)
     return { ...vars, ...newVars }
   }, {})
 }

@@ -24,11 +24,11 @@ const props = {
 export type ItemListProps = ExtractPublicPropTypes<typeof props>
 
 export type ItemListCssVars = {
-  '--t-itemList-accent-color': string
+  '--z-itemList-accent-color': string
 }
 
 export const ItemList = defineComponent({
-  name: 'TItemList',
+  name: 'ZItemList',
   props,
   emits: {
     'update:value': (val: Required<ItemListProps>['value']) => true,
@@ -47,7 +47,7 @@ export const ItemList = defineComponent({
       props.multiple ? [] : undefined
     )
 
-    const cssVars = useColorVars('t-itemList', {
+    const cssVars = useColorVars('z-itemList', {
       accent: 'primary.500',
     })
 
@@ -88,8 +88,8 @@ export const ItemList = defineComponent({
                   item.disabled
                     ? 'font-normal text-gray-400'
                     : isSelected(item)
-                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--t-itemList-accent]'
-                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--t-itemList-accent]',
+                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--z-itemList-accent]'
+                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--z-itemList-accent]',
                 ]}
                 onClick={() => itemClickHandler(item)}
               >
