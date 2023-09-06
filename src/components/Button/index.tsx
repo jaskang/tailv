@@ -1,4 +1,5 @@
 import {
+  type ComponentObjectPropsOptions,
   computed,
   defineComponent,
   type ExtractPropTypes,
@@ -17,6 +18,7 @@ const props = {
   variant: {
     type: String as PropType<'default' | 'solid' | 'soft' | 'plain' | 'link'>,
     default: 'default',
+    validator: (val: string) => ['default', 'solid', 'soft', 'plain', 'link'].includes(val),
   },
   color: {
     type: String as PropType<UserColor>,
@@ -32,7 +34,7 @@ const props = {
   block: Boolean,
   loading: Boolean,
   disabled: Boolean,
-}
+} satisfies ComponentObjectPropsOptions
 
 export type ButtonInnerProps = ExtractPropTypes<typeof props>
 

@@ -25,27 +25,14 @@ asdfsa
 ```vue preview
 <template>
   <TButton>default</TButton>
-  <br /><br />
-  <TButton color="primary" variant="outline">outline</TButton>
-  <TButton color="primary" variant="solid">solid</TButton>
-  <TButton color="primary" variant="soft">soft</TButton>
-  <TButton color="primary" variant="plain">plain</TButton>
-  <TButton color="primary" variant="link">link</TButton>
+  <TButton variant="solid">solid</TButton>
+  <TButton variant="soft">soft</TButton>
+  <TButton variant="plain">plain</TButton>
+  <TButton variant="link">link</TButton>
 </template>
 ```
 
-## variant: outline
-
-```vue preview
-<template>
-  <TButton variant="outline" color="primary">primary</TButton>
-  <TButton variant="outline" color="success">success</TButton>
-  <TButton variant="outline" color="warning">warning</TButton>
-  <TButton variant="outline" color="error">error</TButton>
-</template>
-```
-
-## variant: solid
+## solid
 
 ```vue preview
 <template>
@@ -56,7 +43,7 @@ asdfsa
 </template>
 ```
 
-## variant: soft
+## soft
 
 ```vue preview
 <template>
@@ -67,7 +54,7 @@ asdfsa
 </template>
 ```
 
-## Plain
+## plain
 
 ```vue preview
 <template>
@@ -78,7 +65,7 @@ asdfsa
 </template>
 ```
 
-## Link
+## link
 
 ```vue preview
 <template>
@@ -132,15 +119,6 @@ asdfsa
   <TButton variant="plain" color="pink">pink</TButton>
   <TButton variant="plain" color="gray">gray</TButton>
   <TButton variant="plain" color="neutral">neutral</TButton>
-  <br /><br />
-
-  <TButton variant="link" color="orange">orange</TButton>
-  <TButton variant="link" color="teal">teal</TButton>
-  <TButton variant="link" color="sky">sky</TButton>
-  <TButton variant="link" color="violet">violet</TButton>
-  <TButton variant="link" color="pink">pink</TButton>
-  <TButton variant="link" color="gray">gray</TButton>
-  <TButton variant="link" color="neutral">neutral</TButton>
 </template>
 ```
 
@@ -148,27 +126,17 @@ asdfsa
 
 ```vue preview
 <template>
-  <TButton variant="solid" size="xs">主色按钮: xs</TButton>
-  <TButton variant="solid" size="sm">主色按钮: sm</TButton>
-  <TButton variant="solid" size="md">主色按钮: md</TButton>
-  <TButton variant="solid" size="lg">主色按钮: lg</TButton>
-  <TButton variant="solid" size="xl">主色按钮: xl</TButton>
-  <br /><br />
-  <TButton variant="soft" size="xs">浅色按钮: xs</TButton>
-  <TButton variant="soft" size="sm">浅色按钮: sm</TButton>
-  <TButton variant="soft" size="md">浅色按钮: md</TButton>
-  <TButton variant="soft" size="lg">浅色按钮: lg</TButton>
-  <TButton variant="soft" size="xl">浅色按钮: xl</TButton>
-  <br /><br />
-  <TButton variant="plain" size="xs">文本按钮: xs</TButton>
-  <TButton variant="plain" size="sm">文本按钮: sm</TButton>
-  <TButton variant="plain" size="md">文本按钮: md</TButton>
-  <TButton variant="plain" size="lg">文本按钮: lg</TButton>
-  <TButton variant="plain" size="xl">文本按钮: xl</TButton>
+  <div class="flex flex-col items-center space-y-4">
+    <TButton variant="solid" size="xs">size: sm</TButton>
+    <TButton variant="solid" size="sm">size: sm</TButton>
+    <TButton variant="solid" size="md">size: md</TButton>
+    <TButton variant="solid" size="lg">size: lg</TButton>
+    <TButton variant="solid" size="xl">size: xl</TButton>
+  </div>
 </template>
 ```
 
-## 椭圆 rounded
+## rounded
 
 ```vue preview
 <template>
@@ -180,7 +148,7 @@ asdfsa
 </template>
 ```
 
-## 圆形 circle
+## circle
 
 ```vue preview
 <template>
@@ -192,7 +160,7 @@ asdfsa
 </template>
 ```
 
-## 方形 square
+## square
 
 ```vue preview
 <template>
@@ -205,7 +173,7 @@ asdfsa
 </template>
 ```
 
-## 图标 slot: icon
+## icon
 
 使用 `icon` slot 为按钮设置图标
 
@@ -302,7 +270,7 @@ const onClick = () => {
 </template>
 ```
 
-## 禁用 disabled
+## disabled
 
 ```vue preview
 <template>

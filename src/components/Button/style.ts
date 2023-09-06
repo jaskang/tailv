@@ -1,7 +1,7 @@
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { useTheme } from '@/theme'
-import { getColorValue, GRAYSCALE_COLORS, type PaletteColor, type VarColor } from '@/theme/colors'
+import { GRAYSCALE_COLORS, type PaletteColor, type VarColor } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { createStyleVar } from '@/utils/style'
 
@@ -24,12 +24,16 @@ const createClass = clsVariants(
   h-[--t-btn-h]
   text-[--t-btn-text] bg-[--t-btn-bg] border-[--t-btn-border]
   hover:enabled:text-[--t-btn-textHover] hover:enabled:bg-[--t-btn-bgHover] hover:enabled:border-[--t-btn-borderHover]
-  focus:outline-none focus:enabled:ring-2 focus:enabled:ring-offset-2 focus:enabled:ring-[--t-btn-ring] dark:ring-offset-gray-900
+  focus:outline-none focus:enabled:ring-2 focus:enabled:ring-offset-2 focus:enabled:ring-[--t-btn-ring] dark:ring-offset-slate-900
   `,
   {
     variants: {
       variant: {
-        default: `border shadow-sm`,
+        default: [
+          `border shadow-sm text-gray-700 bg-white border-gray-300 hover:enabled:bg-slate-50 dark:text-white dark:border-gray-700 dark:bg-slate-900 dark:hover:enabled:bg-slate-800`,
+          `text-[--t-btn-text] bg-[--t-btn-bg] border-[--t-btn-border]
+        hover:enabled:text-[--t-btn-textHover] hover:enabled:bg-[--t-btn-bgHover] hover:enabled:border-[--t-btn-borderHover]`,
+        ],
         solid: 'border-2 shadow-sm',
         soft: 'border-2 shadow-sm',
         plain: 'border-2',
@@ -62,16 +66,16 @@ const createClass = clsVariants(
   }
 )
 
-function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor, isDrak = false) {
+function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor) {
   const isGrayScale = GRAYSCALE_COLORS.includes(color)
   switch (variant) {
     case 'solid':
       return cssVars({
         text: `white`,
-        bg: `${color}.${isGrayScale ? 600 : 500}`,
+        bg: `${color}.${isGrayScale ? 900 : 500}`,
         border: `transparent`,
         textHover: `white`,
-        bgHover: `${color}.${isGrayScale ? 700 : 600}`,
+        bgHover: `${color}.${isGrayScale ? 800 : 600}`,
         borderHover: `transparent`,
         ring: `${color}.500`,
       })
@@ -107,12 +111,6 @@ function createStyle(variant: ButtonInnerProps['variant'], color: PaletteColor, 
       })
     default:
       return cssVars({
-        text: `gray.700`,
-        bg: 'white',
-        border: `gray.300`,
-        textHover: `slate.700`,
-        bgHover: `slate.50`,
-        borderHover: `slate.300`,
         ring: `${color}.500`,
       })
   }

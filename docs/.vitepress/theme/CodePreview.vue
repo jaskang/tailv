@@ -56,3 +56,8 @@ defineExpose({ dark, showCode })
     </div>
   </div>
 </template>
+<style>
+.vp-code-light {
+  display: none;
+}
+</style>
