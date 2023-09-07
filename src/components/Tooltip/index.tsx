@@ -27,11 +27,11 @@ export const Tooltip = defineComponent({
   }>,
   setup(props, { slots }) {
     return () => (
-      <Popper trigger={props.trigger} placement={props.placement} arrow>
+      <Popper trigger={props.trigger} placement={props.placement}>
         {{
           default: () => slots.default?.(),
           content: () => (
-            <div class="rounded-lg  bg-white px-3 py-2 text-sm font-medium drop-shadow-md dark:border-gray-500/30 dark:bg-gray-900 dark:text-gray-200">
+            <div class=" px-3 py-2 text-sm font-medium bg-white dark:bg-gray-950 shadow-lg rounded-lg dark:border-gray-500/30 dark:text-gray-200">
               {slots.content?.()}
             </div>
           ),

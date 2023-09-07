@@ -26,12 +26,12 @@ export const Popover = defineComponent({
   }>,
   setup(props, { slots, emit, attrs }) {
     return () => (
-      <Popper trigger="click" arrow>
+      <Popper trigger="click">
         {{
           default: () => slots.default?.(),
           content: () => (
             <div
-              class="overflow-hidden rounded-lg bg-white drop-shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-950"
+              class="overflow-hidden  bg-white dark:bg-gray-950 shadow-lg rounded-lg ring-1 ring-black ring-opacity-5"
               {...attrs}
             >
               {slots.content?.()}

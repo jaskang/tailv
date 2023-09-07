@@ -27,7 +27,7 @@ import {
 } from 'vue'
 
 import { ElSlot } from '../_pure/ElSlot'
-import { usePopperTrigger } from './Trigger'
+import { usePopperTrigger } from './trigger'
 
 export type Placement = Flat<_Placement>
 export type TriggerType = 'click' | 'hover' | 'focus' | 'manual'
@@ -38,8 +38,8 @@ export const props = {
   trigger: { type: String as PropType<TriggerType>, default: 'hover' },
   placement: { type: String as PropType<Placement>, default: 'top' },
   strategy: { type: String as PropType<Strategy>, default: 'absolute' },
-  offset: { type: Number, default: 20 },
-  arrow: { type: Boolean },
+  offset: { type: Number, default: 8 },
+  // arrow: { type: Boolean },
   width: { type: [Number, String] as PropType<number | string | 'full'> },
 }
 
@@ -72,7 +72,7 @@ export const Popper = defineComponent({
     const { placement, strategy, trigger } = toRefs(props)
     const referenceEl = ref<HTMLElement | null>(null)
     const floatingEl = ref<HTMLElement | null>(null)
-    const arrowEl = ref<HTMLElement>()
+    // const arrowEl = ref<HTMLElement>()
 
     const parent = inject(popperInjectKey, null)
 
@@ -84,26 +84,30 @@ export const Popper = defineComponent({
 
     const {
       floatingStyles: _floatingStyles,
-      middlewareData,
-      placement: realPlacement,
+      // middlewareData,
+      // placement: realPlacement,
     } = useFloating(referenceEl, floatingEl, {
       placement,
       strategy,
       transform: true,
-      middleware: [offset(props.offset), flip(), shift(), arrow({ element: arrowEl })],
+      middleware: [
+        offset(props.offset),
+        flip(),
+        shift(),
+        // arrow({ element: arrowEl })
+      ],
       whileElementsMounted: autoUpdate,
     })
-    const arrowStyles = computed(() => {
-      // @ts-ignore
-      const { x, y } = middlewareData.value.arrow || {}
-      const side = realPlacement.value.split('-')[0] as 'top' | 'right' | 'bottom' | 'left'
-      const staticSide = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }[side]
-      return {
-        left: x != null ? `${x}px` : '',
-        top: y != null ? `${y}px` : '',
-        [staticSide]: '-0.25rem',
-      }
-    })
+    // const arrowStyles = computed(() => {
+    //   const { x, y } = middlewareData.value.arrow || {}
+    //   const side = realPlacement.value.split('-')[0] as 'top' | 'right' | 'bottom' | 'left'
+    //   const staticSide = { top: 'bottom', right: 'left', bottom: 'top', left: 'right' }[side]
+    //   return {
+    //     left: x != null ? `${x}px` : '',
+    //     top: y != null ? `${y}px` : '',
+    //     [staticSide]: '-0.25rem',
+    //   }
+    // })
     const floatingStyles = computed(() => {
       const fullWidth = referenceEl.value?.offsetWidth
         ? referenceEl.value.offsetWidth + 'px'
@@ -181,13 +185,13 @@ export const Popper = defineComponent({
                 {...attrs}
               >
                 {slots.content?.()}
-                {props.arrow && (
+                {/* {props.arrow && (
                   <div
                     ref={arrowEl}
-                    class="absolute h-2 w-2 bg-white rotate-45 shadow-lg"
+                    class="absolute h-2 w-2 bg-inherit rotate-45"
                     style={arrowStyles.value}
                   ></div>
-                )}
+                )} */}
               </div>
             )}
           </Transition>

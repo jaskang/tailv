@@ -1,6 +1,5 @@
 import {
   defineComponent,
-  type ExtractPropTypes,
   type ExtractPublicPropTypes,
   type PropType,
   type SlotsType,
@@ -74,7 +73,7 @@ export const ItemList = defineComponent({
     return () => (
       <ul
         style={cssVars.value}
-        class="w-full overflow-auto rounded-md bg-white py-1 text-sm shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none "
+        class="w-full overflow-auto rounded-md bg-white py-1 text-sm ring-1 ring-black ring-opacity-5 focus:outline-none "
         tabindex="-1"
       >
         {props.items.length > 0 ? (

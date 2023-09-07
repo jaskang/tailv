@@ -32,7 +32,7 @@ export type SelectProps = ExtractPropTypes<typeof props>
 export type SelectPublicProps = ExtractPublicPropTypes<typeof props>
 
 export const Select = defineComponent({
-  name: 'ZSelect',
+  name: 'TSelect',
   props,
   emits: {
     'update:value': (_val: string | number | OptionValue[]) => true,
@@ -52,7 +52,7 @@ export const Select = defineComponent({
       }
     )
 
-    const cssVars = useColorVars('z-select', {
+    const cssVars = useColorVars('t-select', {
       accent: 'primary.500',
       ring: 'primary.500',
     })
