@@ -42,3 +42,20 @@ export function useColorVars<N extends string, T extends { [key: string]: ColorV
     )
   )
 }
+
+export function createColorVars<N extends string, T extends { [key: string]: ColorVar }>(
+  name: N,
+  getter: T
+) {
+  return computed(() =>
+    Object.entries(toValue(getter)).reduce(
+      (acc, [key, val]) => {
+        const colorVal = getColorValue(val)
+        // @ts-ignore
+        acc[`--${name}-${key}`] = colorVal || value
+        return acc
+      },
+      {} as Flat<StyleVars<N, Exclude<keyof T, number | symbol>>>
+    )
+  )
+}

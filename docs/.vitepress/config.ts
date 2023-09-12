@@ -63,6 +63,14 @@ export default defineConfig({
   },
   title: 'Elenext',
   vite: {
+    css: {
+      transformer: 'lightningcss',
+      lightningcss: {
+        drafts: {
+          nesting: true,
+        },
+      },
+    },
     plugins: [
       Inspect(),
       vueJsx(),

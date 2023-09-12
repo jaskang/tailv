@@ -278,7 +278,6 @@ const onClick = () => {
   <ZButton variant="solid" disabled>solid</ZButton>
   <ZButton variant="soft" disabled>soft</ZButton>
   <ZButton variant="plain" disabled>plain</ZButton>
-  <ZButton variant="outline" disabled>outline</ZButton>
   <ZButton variant="link" disabled>link</ZButton>
   <ZButton variant="solid" circle disabled>
     <template #icon>

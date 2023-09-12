@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^0.5.6
     version: 0.5.6(tailwindcss@3.3.3)
   '@tailwindcss/typography':
-    specifier: ^0.5.9
-    version: 0.5.9(tailwindcss@3.3.3)
+    specifier: ^0.5.10
+    version: 0.5.10(tailwindcss@3.3.3)
   '@types/jsdom':
     specifier: ^21.1.2
     version: 21.1.2
@@ -77,11 +77,14 @@ devDependencies:
     specifier: ^8.48.0
     version: 8.48.0
   happy-dom:
-    specifier: ^10.11.2
-    version: 10.11.2
+    specifier: ^11.0.2
+    version: 11.0.2
   jsdom:
     specifier: ^22.1.0
     version: 22.1.0
+  lightningcss:
+    specifier: ^1.21.7
+    version: 1.21.7
   mini-svg-data-uri:
     specifier: ^1.4.4
     version: 1.4.4
@@ -111,7 +114,7 @@ devDependencies:
     version: 5.2.2
   vite:
     specifier: ^4.4.9
-    version: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
+    version: 4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
   vite-plugin-inspect:
     specifier: ^0.7.38
     version: 0.7.38(vite@4.4.9)
@@ -120,13 +123,13 @@ devDependencies:
     version: 1.1.1
   vitepress:
     specifier: 1.0.0-rc.10
-    version: 1.0.0-rc.10(@types/node@20.5.9)(sass@1.66.1)(search-insights@2.7.0)
+    version: 1.0.0-rc.10(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)(search-insights@2.7.0)
   vitest:
     specifier: ^0.34.3
-    version: 0.34.3(happy-dom@10.11.2)(jsdom@22.1.0)(sass@1.66.1)
+    version: 0.34.3(happy-dom@11.0.2)(jsdom@22.1.0)(lightningcss@1.21.7)(sass@1.66.1)
   vue-tsc:
-    specifier: ^1.8.8
-    version: 1.8.8(typescript@5.2.2)
+    specifier: ^1.8.10
+    version: 1.8.10(typescript@5.2.2)
 
 packages:
 
@@ -1274,8 +1277,8 @@ packages:
       tailwindcss: 3.3.3
     dev: true
 
-  /@tailwindcss/typography@0.5.9(tailwindcss@3.3.3):
-    resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
+  /@tailwindcss/typography@0.5.10(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
@@ -1505,7 +1508,7 @@ packages:
       '@babel/core': 7.22.15
       '@babel/plugin-transform-typescript': 7.22.15(@babel/core@7.22.15)
       '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.22.15)
-      vite: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
+      vite: 4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
       vue: 3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -1518,7 +1521,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
+      vite: 4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
       vue: 3.3.4
     dev: true
 
@@ -1638,8 +1641,8 @@ packages:
   /@vue/devtools-api@6.5.0:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
 
-  /@vue/language-core@1.8.8(typescript@5.2.2):
-    resolution: {integrity: sha512-i4KMTuPazf48yMdYoebTkgSOJdFraE4pQf0B+FTOFkbB+6hAfjrSou/UmYWRsWyZV6r4Rc6DDZdI39CJwL0rWw==}
+  /@vue/language-core@1.8.10(typescript@5.2.2):
+    resolution: {integrity: sha512-db8PtM4ZZr7SYNH30XpKxUYnUBYaTvcuJ4c2whKK04fuAjbtjAIZ2al5GzGEfUlesmvkpgdbiSviRXUxgD9Omw==}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
@@ -1720,7 +1723,7 @@ packages:
       '@vueuse/core': 9.13.0(vue@3.3.4)
       body-scroll-lock: 3.1.5
       normalize.css: 8.0.1
-      vitepress: 1.0.0-rc.10(@types/node@20.5.9)(sass@1.66.1)(search-insights@2.7.0)
+      vitepress: 1.0.0-rc.10(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)(search-insights@2.7.0)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/react'
@@ -1735,11 +1738,11 @@ packages:
     resolution: {integrity: sha512-CPuIReonid9+zOG/CGTT05FXrPYATEqoDGNrEaqS4hwcw5BUNM2FguC0mOwJD4Jr16UpRVl9N0pY3P+srIbqmg==}
     dev: true
 
-  /@vue/typescript@1.8.8(typescript@5.2.2):
-    resolution: {integrity: sha512-jUnmMB6egu5wl342eaUH236v8tdcEPXXkPgj+eI/F6JwW/lb+yAU6U07ZbQ3MVabZRlupIlPESB7ajgAGixhow==}
+  /@vue/typescript@1.8.10(typescript@5.2.2):
+    resolution: {integrity: sha512-vPSpTXMk4chYwvyTGjM891cKgnx2r6vtbdANOp2mRU31f4HYGyLrZBlGgiua7SaO2cLjUg8y91OipJe0t8OFhA==}
     dependencies:
       '@volar/typescript': 1.10.0
-      '@vue/language-core': 1.8.8(typescript@5.2.2)
+      '@vue/language-core': 1.8.10(typescript@5.2.2)
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -2445,6 +2448,12 @@ packages:
   /dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
+    dev: true
+
+  /detect-libc@1.0.3:
+    resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
+    engines: {node: '>=0.10'}
+    hasBin: true
     dev: true
 
   /didyoumean@1.2.2:
@@ -3254,8 +3263,8 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
-  /happy-dom@10.11.2:
-    resolution: {integrity: sha512-rzgmLjLkhyaOdFEyU8CWXzbgyCyM7wJHLqhaoeEVSTyur1fjcUaiNTHx+D4CPaLvx16tGy+SBPd9TVnP/kzL3w==}
+  /happy-dom@11.0.2:
+    resolution: {integrity: sha512-0yyYIBCByZVgWNuM+/tXXaAR+YUjsoXmzDisQ/KPI7Dt9kXtsPUOU6JAc/isVxridmeSb9/icthsaAhUBKJa4g==}
     dependencies:
       css.escape: 1.5.1
       entities: 4.5.0
@@ -3795,6 +3804,104 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
+
+  /lightningcss-darwin-arm64@1.21.7:
+    resolution: {integrity: sha512-tt7hIsFio9jZofTVHtCACz6rB6c9RyABMXfA9A/VcKOjS3sq+koX/QkRJWY06utwOImbJIXBC5hbg9t3RkPUAQ==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-darwin-x64@1.21.7:
+    resolution: {integrity: sha512-F4gS4bf7eWekfPT+TxJNm/pF+QRgZiTrTkQH6cw4/UWfdeZISfuhD5El2dm16giFnY0K5ylIwO+ZusgYNkGSXA==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-freebsd-x64@1.21.7:
+    resolution: {integrity: sha512-RMfNzJWXCSfPnL55fcLWEAadcY6QUFT0S8NceNKYzp1KiCZtkJIy6RQ5SaVxPzRqd3iMsahUf5sfnG8N1UQSNQ==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-arm-gnueabihf@1.21.7:
+    resolution: {integrity: sha512-biSRUDZNx7vubWP1jArw/qqfZKPGpkV/qzunasZzxmqijbZ43sW9faDQYxWNcxPWljJJdF/qs6qcurYFovWtrQ==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-arm64-gnu@1.21.7:
+    resolution: {integrity: sha512-PENY8QekqL9TG3AY/A7rkUBb5ymefGxea7Oe7+x7Hbw4Bz4Hpj5cec5OoMypMqFbURPmpi0fTWx4vSWUPzpDcA==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-arm64-musl@1.21.7:
+    resolution: {integrity: sha512-pfOipKvA/0X1OjRaZt3870vnV9UGBSjayIqHh0fGx/+aRz3O0MVFHE/60P2UWXpM3YGJEw/hMWtNkrFwqOge8A==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-x64-gnu@1.21.7:
+    resolution: {integrity: sha512-dgcsis4TAA7s0ia4f31QHX+G4PWPwxk+wJaEQLaV0NdJs09O5hHoA8DpLEr8nrvc/tsRTyVNBP1rDtgzySjpXg==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-linux-x64-musl@1.21.7:
+    resolution: {integrity: sha512-A+9dXpxld3p4Cd6fxev2eqEvaauYtrgNpXV3t7ioCJy30Oj9nYiNGwiGusM+4MJVcEpUPGUGiuAqY4sWilRDwA==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss-win32-x64-msvc@1.21.7:
+    resolution: {integrity: sha512-07/8vogEq+C/mF99pdMhh/f19/xreq8N9Ca6AWeVHZIdODyF/pt6KdKSCWDZWIn+3CUxI8gCJWuUWyOc3xymvw==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /lightningcss@1.21.7:
+    resolution: {integrity: sha512-xITZyh5sLFwRPYUSw15T00Rm7gcQ1qOPuQwNOcvHsTm6nLWTQ723w7zl42wrC5t+xtdg6FPmnXHml1nZxxvp1w==}
+    engines: {node: '>= 12.0.0'}
+    dependencies:
+      detect-libc: 1.0.3
+    optionalDependencies:
+      lightningcss-darwin-arm64: 1.21.7
+      lightningcss-darwin-x64: 1.21.7
+      lightningcss-freebsd-x64: 1.21.7
+      lightningcss-linux-arm-gnueabihf: 1.21.7
+      lightningcss-linux-arm64-gnu: 1.21.7
+      lightningcss-linux-arm64-musl: 1.21.7
+      lightningcss-linux-x64-gnu: 1.21.7
+      lightningcss-linux-x64-musl: 1.21.7
+      lightningcss-win32-x64-msvc: 1.21.7
     dev: true
 
   /lilconfig@2.1.0:
@@ -5458,7 +5565,7 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /vite-node@0.34.3(@types/node@20.5.9)(sass@1.66.1):
+  /vite-node@0.34.3(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1):
     resolution: {integrity: sha512-+0TzJf1g0tYXj6tR2vEyiA42OPq68QkRZCu/ERSo2PtsDJfBpDyEfuKbRvLmZqi/CgC7SCBtyC+WjTGNMRIaig==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -5468,7 +5575,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
+      vite: 4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5498,7 +5605,7 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       sirv: 2.0.3
-      vite: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
+      vite: 4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -5517,7 +5624,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite@4.4.9(@types/node@20.5.9)(sass@1.66.1):
+  /vite@4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -5547,6 +5654,7 @@ packages:
     dependencies:
       '@types/node': 20.5.9
       esbuild: 0.18.17
+      lightningcss: 1.21.7
       postcss: 8.4.29
       rollup: 3.27.2
       sass: 1.66.1
@@ -5554,7 +5662,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-rc.10(@types/node@20.5.9)(sass@1.66.1)(search-insights@2.7.0):
+  /vitepress@1.0.0-rc.10(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)(search-insights@2.7.0):
     resolution: {integrity: sha512-+MsahIWqq5WUEmj6MR4obcKYbT7im07jZPCQPdNJExkeOSbOAJ4xypSLx88x7rvtzWHhHc5aXbOhCRvGEGjFrw==}
     hasBin: true
     dependencies:
@@ -5567,7 +5675,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.3
-      vite: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
+      vite: 4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
       vue: 3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -5596,7 +5704,7 @@ packages:
       - universal-cookie
     dev: true
 
-  /vitest@0.34.3(happy-dom@10.11.2)(jsdom@22.1.0)(sass@1.66.1):
+  /vitest@0.34.3(happy-dom@11.0.2)(jsdom@22.1.0)(lightningcss@1.21.7)(sass@1.66.1):
     resolution: {integrity: sha512-7+VA5Iw4S3USYk+qwPxHl8plCMhA5rtfwMjgoQXMT7rO5ldWcdsdo3U1QD289JgglGK4WeOzgoLTsGFu6VISyQ==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -5640,7 +5748,7 @@ packages:
       cac: 6.7.14
       chai: 4.3.7
       debug: 4.3.4
-      happy-dom: 10.11.2
+      happy-dom: 11.0.2
       jsdom: 22.1.0
       local-pkg: 0.4.3
       magic-string: 0.30.1
@@ -5650,8 +5758,8 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.5.9)(sass@1.66.1)
-      vite-node: 0.34.3(@types/node@20.5.9)(sass@1.66.1)
+      vite: 4.4.9(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
+      vite-node: 0.34.3(@types/node@20.5.9)(lightningcss@1.21.7)(sass@1.66.1)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
@@ -5723,14 +5831,14 @@ packages:
       he: 1.2.0
     dev: true
 
-  /vue-tsc@1.8.8(typescript@5.2.2):
-    resolution: {integrity: sha512-bSydNFQsF7AMvwWsRXD7cBIXaNs/KSjvzWLymq/UtKE36697sboX4EccSHFVxvgdBlI1frYPc/VMKJNB7DFeDQ==}
+  /vue-tsc@1.8.10(typescript@5.2.2):
+    resolution: {integrity: sha512-ptpTFFDoHQgkWJF7i5iERxooiQzOGtG1uKTfmAUuS3qPuSQGq+Ky/S8BFHhnFGwoOxq/PjmGN2QSZEfg1rtzQA==}
     hasBin: true
     peerDependencies:
       typescript: '*'
     dependencies:
-      '@vue/language-core': 1.8.8(typescript@5.2.2)
-      '@vue/typescript': 1.8.8(typescript@5.2.2)
+      '@vue/language-core': 1.8.10(typescript@5.2.2)
+      '@vue/typescript': 1.8.10(typescript@5.2.2)
       semver: 7.5.4
       typescript: 5.2.2
     dev: true
