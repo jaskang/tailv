@@ -1,4 +1,4 @@
-import './button.css'
+// import './button.css'
 
 import {
   type ComponentObjectPropsOptions,
@@ -15,7 +15,7 @@ import type { Color } from '@/theme/colors'
 import { useColorVars } from '@/utils/style'
 
 import { LoadingIcon } from '../Icon'
-import { useButtonStyle } from './style'
+import { cssName } from './css'
 
 const props = {
   variant: {
@@ -110,6 +110,7 @@ export const Button = defineComponent({
         emit('click', e)
       }
     }
+    const { css } = cssName()
     return () => (
       <button
         class={{
@@ -119,6 +120,7 @@ export const Button = defineComponent({
           'z-btn--pill': props.pill || props.circle,
           'z-btn--square': props.square || props.circle,
           'z-btn--block': props.block,
+          [css]: true,
         }}
         style={cssVars.value}
         type="button"
