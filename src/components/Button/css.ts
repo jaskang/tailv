@@ -1,77 +1,77 @@
-import { css, type CSSInterpolation } from '@emotion/css'
+import { css,cx, type CSSInterpolation } from '@emotion/css'
 
-export const cssName = () => {
-  const cls = css([
-    {
-      '--z-btn-text-color': 'inherit',
-      '--z-btn-bg-color': '#fff',
-      '--z-btn-border-color': '#fff',
-      '--z-btn-bg-color-hover': 'var(--z-btn-bg-color)',
-      '--z-btn-border-color-hover': 'var(--z-btn-border-color)',
+const cls = css([
+  {
+    '--z-btn-text-color': 'inherit',
+    '--z-btn-bg-color': '#fff',
+    '--z-btn-border-color': '#fff',
+    '--z-btn-bg-color-hover': 'var(--z-btn-bg-color)',
+    '--z-btn-border-color-hover': 'var(--z-btn-border-color)',
 
-      '--z-btn-outline-color': 'var(--z-primary-color)',
-      '--z-btn-h': 'calc(2.25rem + 2px)',
+    '--z-btn-outline-color': 'var(--z-primary-color)',
+    '--z-btn-h': 'calc(2.25rem + 2px)',
+    appearance: 'none',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '0.375rem',
+    height: 'var(--z-btn-h)',
+    color: 'var(--z-btn-text-color)',
+    backgroundColor: 'var(--z-btn-bg-color)',
+    textAlign: 'center',
+    fontWeight: 500,
+    border: 'none',
+    outline: 'none',
+    outlineOffset: '2px',
+    transitionProperty:
+      'color, background-color, border-color, text-decoration-color, fill, stroke',
+    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    transitionDuration: '150ms',
 
-      appearance: 'none',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: '0.375rem',
-      height: 'var(--z-btn-h)',
-      color: 'var(--z-btn-text-color)',
-      backgroundColor: 'var(--z-btn-bg-color)',
-      textAlign: 'center',
-      fontWeight: 500,
-      border: 'none',
-      outline: 'none',
-      outlineOffset: '2px',
-      transitionProperty:
-        'color, background-color, border-color, text-decoration-color, fill, stroke',
-      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      transitionDuration: '150ms',
-
-      '.z-btn_icon': {
+    '.z-btn_icon': {
+      display: 'block',
+      width: '1em',
+      height: '1em',
+      lineHeight: '1em',
+      transform: 'scale3d(1.25, 1.25, 1)',
+      '> svg': {
         display: 'block',
-        width: '1em',
-        height: '1em',
-        lineHeight: '1em',
-        transform: 'scale3d(1.25, 1.25, 1)',
-        '> svg': {
-          display: 'block',
-          width: '100%',
-          height: '100%',
-        },
-        '+ .z-btn_body': {
-          marginLeft: '0.4em',
-        },
+        width: '100%',
+        height: '100%',
       },
-      '.z-btn_body': {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-
-      '&:enabled': {
-        cursor: 'pointer',
-        '&:hover': {
-          backgroundColor: 'var(--z-btn-bg-color-hover)',
-          borderColor: 'var(--z-btn-border-color-hover)',
-        },
-        '&:focus-visible': {
-          outline: 'var(--z-btn-outline-color) solid 2px',
-        },
-      },
-
-      '&:disabled': {
-        cursor: 'not-allowed',
-        opacity: 0.5,
+      '+ .z-btn_body': {
+        marginLeft: '0.4em',
       },
     },
-    genVariantStyle(),
-    genSizeStyle(),
-    genOtherStyle(),
-  ])
-  return { css: cls }
+    '.z-btn_body': {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+
+    '&:enabled': {
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: 'var(--z-btn-bg-color-hover)',
+        borderColor: 'var(--z-btn-border-color-hover)',
+      },
+      '&:focus-visible': {
+        outline: 'var(--z-btn-outline-color) solid 2px',
+      },
+    },
+
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.5,
+    },
+  },
+  genVariantStyle(),
+  genSizeStyle(),
+  genOtherStyle(),
+]) 
+
+export const cssName = (color:string,vars:any) => {
+  return css(cls,css({[`&.z-btn-${color}`]: vars}))
 }
 
 function genVariantStyle(): CSSInterpolation {

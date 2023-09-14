@@ -59,38 +59,38 @@ export const Button = defineComponent({
         case 'solid':
           return {
             'text-color': 'white',
-            'bg-color': 'primary.500',
-            'bg-color-hover': 'primary.600',
+            'bg-color': `${props.color}.500`,
+            'bg-color-hover': `${props.color}.600`,
             'border-color': 'transparent',
             'border-color-hover': 'transparent',
-            'outline-color': 'primary.500',
+            'outline-color': `${props.color}.500`,
           }
         case 'soft':
           return {
-            'text-color': 'primary.600',
-            'bg-color': 'primary.100',
-            'bg-color-hover': 'primary.200',
+            'text-color': `${props.color}.600`,
+            'bg-color': `${props.color}.100`,
+            'bg-color-hover': `${props.color}.200`,
             'border-color': 'transparent',
             'border-color-hover': 'transparent',
-            'outline-color': 'primary.500',
+            'outline-color': `${props.color}.500`,
           }
         case 'plain':
           return {
-            'text-color': 'primary.600',
+            'text-color': `${props.color}.600`,
             'bg-color': 'transparent',
-            'bg-color-hover': 'primary.100',
+            'bg-color-hover': `${props.color}.100`,
             'border-color': 'transparent',
             'border-color-hover': 'transparent',
-            'outline-color': 'primary.500',
+            'outline-color': `${props.color}.500`,
           }
         case 'link':
           return {
-            'text-color': 'primary.600',
+            'text-color': `${props.color}.600`,
             'bg-color': 'transparent',
             'bg-color-hover': 'transparent',
             'border-color': 'transparent',
             'border-color-hover': 'transparent',
-            'outline-color': 'primary.500',
+            'outline-color': `${props.color}.500`,
           }
         default:
           return {
@@ -99,7 +99,7 @@ export const Button = defineComponent({
             'bg-color-hover': 'slate.50',
             'border-color': 'gray.300',
             'border-color-hover': 'gray.300',
-            'outline-color': 'primary.500',
+            'outline-color': `primary.500`,
           }
       }
     })
@@ -110,7 +110,7 @@ export const Button = defineComponent({
         emit('click', e)
       }
     }
-    const { css } = cssName()
+    const css = computed(()=>cssName(props.color,cssVars.value)) 
     return () => (
       <button
         class={{
@@ -120,7 +120,7 @@ export const Button = defineComponent({
           'z-btn--pill': props.pill || props.circle,
           'z-btn--square': props.square || props.circle,
           'z-btn--block': props.block,
-          [css]: true,
+          [css.value]: true,
         }}
         style={cssVars.value}
         type="button"
