@@ -1,4 +1,4 @@
-// import './button.css'
+import './button.css'
 
 import {
   type ComponentObjectPropsOptions,
@@ -94,11 +94,11 @@ export const Button = defineComponent({
           }
         default:
           return {
-            'text-color': 'gray.700',
+            'text-color': 'slate.700',
             'bg-color': 'white',
             'bg-color-hover': 'slate.50',
-            'border-color': 'gray.300',
-            'border-color-hover': 'gray.300',
+            'border-color': 'slate.300',
+            'border-color-hover': 'slate.300',
             'outline-color': `primary.500`,
           }
       }
@@ -110,7 +110,6 @@ export const Button = defineComponent({
         emit('click', e)
       }
     }
-    const css = computed(()=>cssName(props.color,cssVars.value)) 
     return () => (
       <button
         class={{
@@ -120,7 +119,6 @@ export const Button = defineComponent({
           'z-btn--pill': props.pill || props.circle,
           'z-btn--square': props.square || props.circle,
           'z-btn--block': props.block,
-          [css.value]: true,
         }}
         style={cssVars.value}
         type="button"
