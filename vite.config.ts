@@ -10,7 +10,9 @@ export default defineConfig({
   css: {
     transformer: 'lightningcss',
     lightningcss: {
-      drafts: {},
+      drafts: {
+        nesting: true,
+      },
     },
   },
   build: {

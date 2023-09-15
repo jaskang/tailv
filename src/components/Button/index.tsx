@@ -15,13 +15,11 @@ import type { Color } from '@/theme/colors'
 import { useColorVars } from '@/utils/style'
 
 import { LoadingIcon } from '../Icon'
-import { cssName } from './css'
 
 const props = {
   variant: {
-    type: String as PropType<'default' | 'solid' | 'soft' | 'plain' | 'link'>,
+    type: String as PropType<'default' | 'solid' | 'soft' | 'outline' | 'plain' | 'link'>,
     default: 'default',
-    validator: (val: string) => ['default', 'solid', 'soft', 'plain', 'link'].includes(val),
   },
   color: {
     type: String as PropType<Color>,
@@ -38,8 +36,6 @@ const props = {
   loading: Boolean,
   disabled: Boolean,
 } satisfies ComponentObjectPropsOptions
-
-export type ButtonInnerProps = ExtractPropTypes<typeof props>
 
 export type ButtonProps = ExtractPublicPropTypes<typeof props>
 
@@ -61,8 +57,6 @@ export const Button = defineComponent({
             'text-color': 'white',
             'bg-color': `${props.color}.500`,
             'bg-color-hover': `${props.color}.600`,
-            'border-color': 'transparent',
-            'border-color-hover': 'transparent',
             'outline-color': `${props.color}.500`,
           }
         case 'soft':
@@ -70,26 +64,17 @@ export const Button = defineComponent({
             'text-color': `${props.color}.600`,
             'bg-color': `${props.color}.100`,
             'bg-color-hover': `${props.color}.200`,
-            'border-color': 'transparent',
-            'border-color-hover': 'transparent',
             'outline-color': `${props.color}.500`,
           }
         case 'plain':
           return {
             'text-color': `${props.color}.600`,
-            'bg-color': 'transparent',
             'bg-color-hover': `${props.color}.100`,
-            'border-color': 'transparent',
-            'border-color-hover': 'transparent',
             'outline-color': `${props.color}.500`,
           }
         case 'link':
           return {
             'text-color': `${props.color}.600`,
-            'bg-color': 'transparent',
-            'bg-color-hover': 'transparent',
-            'border-color': 'transparent',
-            'border-color-hover': 'transparent',
             'outline-color': `${props.color}.500`,
           }
         default:
@@ -99,7 +84,7 @@ export const Button = defineComponent({
             'bg-color-hover': 'slate.50',
             'border-color': 'slate.300',
             'border-color-hover': 'slate.300',
-            'outline-color': `primary.500`,
+            'outline-color': 'primary.500',
           }
       }
     })
