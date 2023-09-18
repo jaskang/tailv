@@ -28,7 +28,8 @@ export const isTextNode = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeF
 export const isComponent = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.COMPONENT)
 export const isElement = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.ELEMENT)
 export const isSlot = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.SLOTS_CHILDREN)
-export const isArrayChildren = (vnode: VNode) => !!(vnode && vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN)
+export const isArrayChildren = (vnode: VNode) =>
+  !!(vnode && vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN)
 export const isFragment = (vnode: VNode) => vnode && vnode.type === Fragment
 export const isComment = (vnode: VNode) => vnode && vnode.type === Comment
 
@@ -57,7 +58,11 @@ export function getValidChildren(children?: VNode[]) {
  * @param componentName component display name for thrown errors
  * @returns A VNode clone of the default slot
  */
-export function withSingleton(children: VNode[], componentName: string, extraProps?: Record<string, unknown>) {
+export function withSingleton(
+  children: VNode[],
+  componentName: string,
+  extraProps?: Record<string, unknown>
+) {
   const validChildren = getValidChildren(children)
   if (validChildren.length > 1) {
     const errorMessage = `[${componentName}]: can only have one root element.`
