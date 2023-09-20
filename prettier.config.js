@@ -1,3 +1,3 @@
-import prettier from "@jaskang/config/prettier";
+import prettier from '@jaskang/config/prettier'
 
-export default prettier 
+export default prettier

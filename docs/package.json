@@ -1,0 +1,13 @@
+{
+  "name": "@zonda/docs",
+  "version": "0.0.0",
+  "description": "zonda",
+  "private": true,
+  "author": "jaskang",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  }
+}
