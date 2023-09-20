@@ -1,5 +1,5 @@
 {
-  "name": "@zonda/docs",
+  "name": "docs",
   "version": "0.0.0",
   "description": "zonda",
   "private": true,
@@ -9,5 +9,9 @@
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "@zonda/vue": "workspace:*",
+    "vue": "^3.3.4"
   }
 }

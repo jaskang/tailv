@@ -10,8 +10,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts',
-      formats: ['es', 'cjs'],
-      name: 'tailv',
+      formats: ['es'],
+      name: 'zonda',
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
