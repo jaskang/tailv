@@ -72,9 +72,6 @@ importers:
       postcss-nested:
         specifier: ^6.0.1
         version: 6.0.1(postcss@8.4.30)
-      postcss-nesting:
-        specifier: ^12.0.1
-        version: 12.0.1(postcss@8.4.30)
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -84,6 +81,9 @@ importers:
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
+      sass:
+        specifier: ^1.68.0
+        version: 1.68.0
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3
@@ -92,7 +92,7 @@ importers:
         version: 5.2.2
       vite:
         specifier: ^4.4.9
-        version: 4.4.9(@types/node@20.6.0)
+        version: 4.4.9(@types/node@20.6.0)(sass@1.68.0)
       vite-plugin-inspect:
         specifier: ^0.7.38
         version: 0.7.38(vite@4.4.9)
@@ -101,10 +101,10 @@ importers:
         version: 1.1.1
       vitepress:
         specifier: 1.0.0-rc.12
-        version: 1.0.0-rc.12(@types/node@20.6.0)(search-insights@2.7.0)
+        version: 1.0.0-rc.12(@types/node@20.6.0)(sass@1.68.0)(search-insights@2.7.0)
       vitest:
         specifier: ^0.34.4
-        version: 0.34.4(happy-dom@11.0.2)
+        version: 0.34.4(happy-dom@11.0.2)(sass@1.68.0)
       vue-tsc:
         specifier: ^1.8.10
         version: 1.8.10(typescript@5.2.2)
@@ -653,15 +653,6 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
-    dev: true
-
-  /@csstools/selector-specificity@3.0.0(postcss-selector-parser@6.0.13):
-    resolution: {integrity: sha512-hBI9tfBtuPIi885ZsZ32IMEU/5nlZH/KOVYJCOh7gyMxaVLGmLedYqFN6Ui1LXkI8JlC8IsuC0rF0btcRZKd5g==}
-    engines: {node: ^14 || ^16 || >=18}
-    peerDependencies:
-      postcss-selector-parser: ^6.0.13
-    dependencies:
-      postcss-selector-parser: 6.0.13
     dev: true
 
   /@docsearch/css@3.5.2:
@@ -1384,7 +1375,7 @@ packages:
       '@babel/core': 7.22.15
       '@babel/plugin-transform-typescript': 7.22.15(@babel/core@7.22.15)
       '@vue/babel-plugin-jsx': 1.1.5(@babel/core@7.22.15)
-      vite: 4.4.9(@types/node@20.6.0)
+      vite: 4.4.9(@types/node@20.6.0)(sass@1.68.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - supports-color
@@ -1397,7 +1388,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.9(@types/node@20.6.0)
+      vite: 4.4.9(@types/node@20.6.0)(sass@1.68.0)
       vue: 3.3.4
     dev: true
 
@@ -3071,6 +3062,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immutable@4.3.4:
+    resolution: {integrity: sha512-fsXeu4J4i6WNWSikpI88v/PcVflZz+6kMhUfIwc5SY+poQRPnaf5V7qds6SUyUN3cVxEzuCab7QIoLOQ+DQ1wA==}
+    dev: true
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -4194,17 +4189,6 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /postcss-nesting@12.0.1(postcss@8.4.30):
-    resolution: {integrity: sha512-6LCqCWP9pqwXw/njMvNK0hGY44Fxc4B2EsGbn6xDcxbNRzP8GYoxT7yabVVMLrX3quqOJ9hg2jYMsnkedOf8pA==}
-    engines: {node: ^14 || ^16 || >=18}
-    peerDependencies:
-      postcss: ^8.4
-    dependencies:
-      '@csstools/selector-specificity': 3.0.0(postcss-selector-parser@6.0.13)
-      postcss: 8.4.30
-      postcss-selector-parser: 6.0.13
-    dev: true
-
   /postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
     engines: {node: '>=4'}
@@ -4482,6 +4466,16 @@ packages:
 
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+    dev: true
+
+  /sass@1.68.0:
+    resolution: {integrity: sha512-Lmj9lM/fef0nQswm1J2HJcEsBUba4wgNx2fea6yJHODREoMFnwRpZydBnX/RjyXw2REIwdkbqE4hrTo4qfDBUA==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.4
+      source-map-js: 1.0.2
     dev: true
 
   /search-insights@2.7.0:
@@ -4978,7 +4972,7 @@ packages:
       sade: 1.8.1
     dev: true
 
-  /vite-node@0.34.4(@types/node@20.6.0):
+  /vite-node@0.34.4(@types/node@20.6.0)(sass@1.68.0):
     resolution: {integrity: sha512-ho8HtiLc+nsmbwZMw8SlghESEE3KxJNp04F/jPUCLVvaURwt0d+r9LxEqCX5hvrrOQ0GSyxbYr5ZfRYhQ0yVKQ==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -4988,7 +4982,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.9(@types/node@20.6.0)
+      vite: 4.4.9(@types/node@20.6.0)(sass@1.68.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5018,7 +5012,7 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       sirv: 2.0.3
-      vite: 4.4.9(@types/node@20.6.0)
+      vite: 4.4.9(@types/node@20.6.0)(sass@1.68.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -5037,7 +5031,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite@4.4.9(@types/node@20.6.0):
+  /vite@4.4.9(@types/node@20.6.0)(sass@1.68.0):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -5069,11 +5063,12 @@ packages:
       esbuild: 0.18.17
       postcss: 8.4.30
       rollup: 3.27.2
+      sass: 1.68.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-rc.12(@types/node@20.6.0)(search-insights@2.7.0):
+  /vitepress@1.0.0-rc.12(@types/node@20.6.0)(sass@1.68.0)(search-insights@2.7.0):
     resolution: {integrity: sha512-mZknN5l9lgbBjXwumwdOQQDM+gPivswFEykEQeenY0tv7eocS+bb801IpFZT3mFV6YRhSddmbutHlFgPPADjEg==}
     hasBin: true
     dependencies:
@@ -5086,7 +5081,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.4
-      vite: 4.4.9(@types/node@20.6.0)
+      vite: 4.4.9(@types/node@20.6.0)(sass@1.68.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -5115,7 +5110,7 @@ packages:
       - universal-cookie
     dev: true
 
-  /vitest@0.34.4(happy-dom@11.0.2):
+  /vitest@0.34.4(happy-dom@11.0.2)(sass@1.68.0):
     resolution: {integrity: sha512-SE/laOsB6995QlbSE6BtkpXDeVNLJc1u2LHRG/OpnN4RsRzM3GQm4nm3PQCK5OBtrsUqnhzLdnT7se3aeNGdlw==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -5168,8 +5163,8 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.6.0)
-      vite-node: 0.34.4(@types/node@20.6.0)
+      vite: 4.4.9(@types/node@20.6.0)(sass@1.68.0)
+      vite-node: 0.34.4(@types/node@20.6.0)(sass@1.68.0)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less

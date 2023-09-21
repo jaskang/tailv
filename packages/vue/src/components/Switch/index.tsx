@@ -1,5 +1,3 @@
-import './switch.css'
-
 import {
   defineComponent,
   type ExtractPropTypes,

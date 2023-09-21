@@ -1,4 +1,4 @@
-import './styles/base.css'
+import './styles/_index.scss'
 
 import type { Plugin } from 'vue'
 

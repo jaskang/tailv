@@ -1,5 +1,3 @@
-import './button.css'
-
 import {
   type ComponentObjectPropsOptions,
   computed,
