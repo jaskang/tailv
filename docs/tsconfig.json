@@ -1,4 +1,9 @@
 {
   "extends": "@jaskang/config/tsconfig.vue.json",
+  "compilerOptions": {
+    "paths": {
+      "@zonda/vue": ["../packages/vue/src"]
+    }
+  },
   "include": ["env.d.ts", ".vitepress/**/*"]
 }

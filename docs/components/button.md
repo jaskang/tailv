@@ -1,4 +1,4 @@
-<style lang="scss"> 
+<style> 
 
 .demo {
   > .z-button{

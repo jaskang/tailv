@@ -1,0 +1,4 @@
+{
+  "extends": "@jaskang/config/tsconfig.vue.json",
+  "include": ["src"]
+}

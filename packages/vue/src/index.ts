@@ -42,7 +42,7 @@ export {
   useConfig,
 }
 
-export const Tailv: Plugin = {
+export const Zonda: Plugin = {
   install(app, options) {
     app.component('ZConfigProvider', ConfigProvider)
     app.component('ZIcon', Icon)

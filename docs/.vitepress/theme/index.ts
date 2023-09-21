@@ -17,9 +17,9 @@ import {
   SunIcon,
   XMarkIcon,
 } from '@heroicons/vue/24/solid'
+import { Zonda } from '@zonda/vue'
 import { type Theme } from 'vitepress'
 
-import { Tailv } from '../../../src'
 import CodePreview from './CodePreview.vue'
 import Layout from './Layout'
 
@@ -27,7 +27,7 @@ export default {
   Layout,
   enhanceApp(ctx) {
     ctx.app.component('CodePreview', CodePreview)
-    ctx.app.use(Tailv)
+    ctx.app.use(Zonda)
     ctx.app.component('BeakerIcon', BeakerIcon)
     ctx.app.component('StopIcon', StopIcon)
     ctx.app.component('CogIcon', CogIcon)

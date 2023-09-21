@@ -1,4 +1,4 @@
-<style lang="scss">
+<style>
   .demo > .z-flex{
     @apply rounded-lg font-mono text-sm font-bold leading-6 text-white bg-stripes-blue  [&>div]:flex [&>div]:h-14 [&>div]:items-center [&>div]:justify-center [&>div]:rounded-lg [&>div]:bg-blue-500;
   }

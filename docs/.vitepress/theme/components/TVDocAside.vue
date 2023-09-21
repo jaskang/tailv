@@ -31,4 +31,3 @@ function onClick({ target: el }: Event) {
     </li>
   </ul>
 </template>
-<style lang="scss"></style>

@@ -5,8 +5,12 @@
   "keywords": [],
   "author": "jaskang",
   "license": "MIT",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.4"
   }
 }

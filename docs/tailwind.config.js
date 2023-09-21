@@ -4,16 +4,16 @@ import colors from 'tailwindcss/colors'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import { default as flattenColorPalette } from 'tailwindcss/lib/util/flattenColorPalette'
 
-import tailv from './plugin.js'
+import zonda from './plugin.js'
 
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
   content: [
     './index.html',
-    './src/**/*.{vue,ts,tsx}',
-    './docs/**/*.{vue,ts,tsx,md}',
-    './docs/.vitepress/**/*.{vue,ts,tsx,md}',
+    './**/*.md',
+    './.vitepress/**/*.{vue,ts,tsx,md}',
+    // './node_modules/@zonda/vue/**/*.{vue,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -33,7 +33,7 @@ export default {
   plugins: [
     require('@tailwindcss/typography'),
     forms({ strategy: 'base' }),
-    tailv(),
+    zonda(),
     function ({ addVariant }) {
       addVariant(
         'supports-backdrop-blur',

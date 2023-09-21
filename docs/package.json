@@ -5,10 +5,11 @@
   "private": true,
   "author": "jaskang",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "preview": "vitepress preview docs"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "dependencies": {
     "@zonda/vue": "workspace:*",

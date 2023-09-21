@@ -1,4 +1,4 @@
-<style lang="scss">
+<style>
 .mdp-demo__preview {
   > .z-input:not(:first-child){
     margin-top: 1rem;

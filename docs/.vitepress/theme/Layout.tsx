@@ -8,10 +8,10 @@ import {
   SunIcon,
 } from '@heroicons/vue/24/solid'
 import { useDark } from '@vueuse/core'
+import { Breadcrumb, Button, Switch } from '@zonda/vue'
 import { useData, useRoute } from 'vitepress'
 import { defineComponent, provide, ref, watch } from 'vue'
 
-import { Breadcrumb, Button, Switch } from '../../../src'
 import TVContent from './components/TVContent.vue'
 import TVSidebar from './components/TVSidebar.vue'
 import { useSidebar } from './core/sidebar'
@@ -52,7 +52,7 @@ export default defineComponent({
                       <a
                         class="hover:text-primary-500 dark:hover:text-primary-400"
                         target="_blank"
-                        href="https://github.com/JasKang/tailv"
+                        href="https://github.com/JasKang/zonda"
                       >
                         Github
                       </a>
