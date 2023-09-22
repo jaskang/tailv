@@ -1,10 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-} from 'vue'
+import { computed, defineComponent, type ExtractPublicPropTypes, type PropType } from 'vue'
 
 import { ChevronRightIcon } from '../Icon'
 

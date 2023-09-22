@@ -1,4 +1,5 @@
 @import './var.scss';
-@import './button.scss';
-@import './switch.scss';
-@import './breadcrumb.scss';
+@import '../components//Button/Button.scss';
+@import '../components//Switch/Switch.scss';
+@import '../components//Breadcrumb/Breadcrumb.scss';
+@import '../components/Checkbox/Checkbox.scss';

@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: @zonda/vue
+  name: '@zonda/vue'
   text: 现代化组件库
   tagline: 基于 tailwind 的现代化组件库
   actions:

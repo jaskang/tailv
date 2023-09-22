@@ -1,11 +1,4 @@
-import {
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  ref,
-  type SlotsType,
-  type VNode,
-} from 'vue'
+import { defineComponent, type ExtractPublicPropTypes, ref, type SlotsType, type VNode } from 'vue'
 
 import { useControllable } from '@/hooks/useControllable'
 import { useColorVars } from '@/utils/style'
@@ -76,14 +69,14 @@ export const Checkbox = defineComponent({
 
     return () => (
       <label
+        class={{
+          'z-checkbox': true,
+          'z-checkbox--disabled': props.disabled,
+        }}
         style={cssVars.value}
-        class={[
-          'z-checkbox inline-flex items-center text-sm font-medium',
-          props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-        ]}
       >
         <input
-          class="z-checkbox_input h-4 w-4 cursor-pointer rounded border border-gray-300 text-[--z-checkbox-accent] dark:ring-offset-gray-900 transition-all focus:outline-none focus:ring-2 focus:ring-[--z-checkbox-ring] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          class="z-checkbox_input "
           type="checkbox"
           name={props.name}
           disabled={props.disabled}
@@ -92,7 +85,7 @@ export const Checkbox = defineComponent({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <span class="z-checkbox_label ml-3 block text-sm font-medium">{slots.default?.()}</span>
+        <span class="z-checkbox_label">{slots.default?.()}</span>
       </label>
     )
   },

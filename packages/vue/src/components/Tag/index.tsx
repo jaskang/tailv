@@ -6,7 +6,7 @@ import {
   type PropType,
 } from 'vue'
 
-import type { UserColor } from '@/theme/colors'
+import type { Color } from '@/theme/colors'
 import { clsVariants } from '@/utils/clst'
 import { useColorVars } from '@/utils/style'
 
@@ -16,7 +16,7 @@ const props = {
     default: 'solid',
   },
   color: {
-    type: String as PropType<UserColor>,
+    type: String as PropType<Color>,
   },
   closeable: Boolean,
   dot: Boolean,

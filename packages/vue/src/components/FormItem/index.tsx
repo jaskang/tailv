@@ -7,11 +7,12 @@ import {
   type VNode,
 } from 'vue'
 
+import type { Color } from '@/theme/colors'
 import { useColorVars } from '@/utils/style'
 
 const props = {
   color: {
-    type: String as PropType<UserColor>,
+    type: String as PropType<Color>,
   },
   loading: Boolean,
   disabled: Boolean,
