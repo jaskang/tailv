@@ -6,9 +6,20 @@
   "author": "jaskang",
   "license": "MIT",
   "type": "module",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "dist/index.css"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "scripts": {
-    "prepare": "panda codegen",
     "dev": "vite dev",
     "build": "vite build"
   },

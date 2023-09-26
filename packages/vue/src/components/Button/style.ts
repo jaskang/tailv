@@ -96,7 +96,16 @@ export const style = (props: ButtonInnerProps) => {
       pill: props.circle || props.pill,
       square: props.circle || props.square,
     }),
-    colorStyle()
+    colorStyle(),
+    {
+      '--btn-size': {
+        xs: token.var('spacing.row-xs'),
+        sm: token.var('spacing.row-sm'),
+        md: token.var('spacing.row-md'),
+        lg: token.var('spacing.row-lg'),
+        xl: token.var('spacing.row-xl'),
+      }[props.size],
+    }
   )
   return ret
 }

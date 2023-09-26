@@ -5,5 +5,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["./src/**/*", "styled-system"]
+  "include": ["./src/**/*"]
 }

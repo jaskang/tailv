@@ -1,3 +1,4 @@
+import '@zonda/vue/dist/style.css'
 import './index.css'
 
 import {

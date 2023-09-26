@@ -52,45 +52,6 @@ export const Button = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const cssVars = useColorVars('z-btn', () => {
-      switch (props.variant) {
-        case 'solid':
-          return {
-            'text-color': 'white',
-            'bg-color': `${props.color}.500`,
-            'bg-color-hover': `${props.color}.600`,
-            'outline-color': `${props.color}.500`,
-          }
-        case 'soft':
-          return {
-            'text-color': `${props.color}.600`,
-            'bg-color': `${props.color}.100`,
-            'bg-color-hover': `${props.color}.200`,
-            'outline-color': `${props.color}.500`,
-          }
-        case 'plain':
-          return {
-            'text-color': `${props.color}.600`,
-            'bg-color-hover': `${props.color}.100`,
-            'outline-color': `${props.color}.500`,
-          }
-        case 'link':
-          return {
-            'text-color': `${props.color}.600`,
-            'outline-color': `${props.color}.500`,
-          }
-        default:
-          return {
-            'text-color': 'slate.700',
-            'bg-color': 'white',
-            'bg-color-hover': 'slate.50',
-            'border-color': 'slate.300',
-            'border-color-hover': 'slate.300',
-            'outline-color': 'primary.500',
-          }
-      }
-    })
-
     const hasIcon = computed(() => !!slots.icon || props.loading)
     const onClick = (e: MouseEvent) => {
       if (!props.disabled) {
@@ -99,26 +60,7 @@ export const Button = defineComponent({
     }
     const cls = computed(() => style(props))
     return () => (
-      <button
-        style={{
-          '--btn-size': {
-            xs: token.var('spacing.row-xs'),
-            sm: token.var('spacing.row-sm'),
-            md: token.var('spacing.row-md'),
-            lg: token.var('spacing.row-lg'),
-            xl: token.var('spacing.row-xl'),
-          }[props.size],
-        }}
-        class={cx(
-          cls.value,
-          css({
-            color: `${props.color}.500`,
-          })
-        )}
-        type="button"
-        disabled={props.disabled}
-        onClick={onClick}
-      >
+      <button class={cls.value} type="button" disabled={props.disabled} onClick={onClick}>
         {hasIcon.value && (
           <i class="z-btn_icon">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}

@@ -1,27 +1,27 @@
 import { clsx, type Flat } from 'kotl'
 
-type ClsvValue = string | [string, string]
+type TwValue = string | [string, string]
 
-type VariantConfig = {
-  [key: string]: { true: ClsvValue; false: ClsvValue } | { [key: string]: ClsvValue }
+type VariantsObject = {
+  [key: string]: { true: TwValue; false: TwValue } | { [key: string]: TwValue }
 }
 
 type InferVariants<T> = {
   [K in keyof T]: keyof T[K] extends 'true' | 'false' ? boolean : keyof T[K]
 }
 
-export function clsVariants<T extends VariantConfig>(
+export function tw<T extends VariantsObject>(
   base: string,
   options: {
     variants: T
-    compoundVariants?: Array<Partial<Flat<InferVariants<T>>> & { class: ClsvValue }>
+    compoundVariants?: Array<Partial<Flat<InferVariants<T>>> & { class: TwValue }>
   }
 ) {
   return (v: Flat<InferVariants<T>>) => {
     const cls = base.split(' ').map(s => s.trim())
     Object.keys(options.variants).forEach(key => {
       const value = options.variants[key]
-      let clsValue: ClsvValue = ''
+      let clsValue: TwValue = ''
       if (value) {
         const val = v[key]
         if (typeof val === 'boolean') {
