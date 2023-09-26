@@ -1,2 +1,2 @@
-export { Flex, type FlexPublicProps } from './Flex'
-export { FlexItem, type FlexItemPublicProps } from './FlexItem'
+export { Flex, type FlexProps } from './Flex'
+export { FlexItem, type FlexItemProps } from './FlexItem'

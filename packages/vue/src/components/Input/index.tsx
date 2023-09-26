@@ -90,40 +90,26 @@ export const Input = defineComponent({
       //     {slots.before()}
       //   </span>
       // )}
-      <div
-        style={cssVars.value}
-        class={[
-          'z-input relative inline-flex w-full items-center rounded-md border text-sm shadow-sm',
-          props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : 'bg-white',
-          props.readonly ? 'is-readonly ' : '',
-          focused.value
-            ? 'is-focused z-10 border-[--z-input-ring] ring-1 ring-[--z-input-ring]'
-            : 'border-gray-300',
-        ]}
-      >
+      <div style={cssVars.value} class={['z-input', props.disabled && 'z-input--disable']}>
         {(slots.prefix || props.prefix) && (
-          <span class="z-input_prefix flex flex-initial items-center pl-3">
-            {slots.prefix?.() || props.prefix}
-          </span>
+          <span class="z-input_prefix">{slots.prefix?.() || props.prefix}</span>
         )}
 
         <input
-          class="z-input_input inline-block flex-1 border-none bg-transparent px-3 text-sm read-only:cursor-pointer focus:outline-none disabled:cursor-not-allowed"
-          style="box-shadow: none"
+          class="z-input_input"
           type="text"
           size="1"
           value={val.value}
           readonly={props.readonly}
           disabled={props.disabled}
           placeholder={props.placeholder}
+          autocomplete="off"
           onInput={onInput}
           onFocus={onFocus}
           onBlur={onBlur}
         />
         {(slots.suffix || props.suffix) && (
-          <span class="z-input_suffix flex flex-initial items-center pr-3">
-            {slots.suffix?.() || props.suffix}
-          </span>
+          <span class="z-input_suffix">{slots.suffix?.() || props.suffix}</span>
         )}
       </div>
       //  {slots.after && (

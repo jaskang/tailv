@@ -1,13 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-  ref,
-  type SlotsType,
-  type VNode,
-} from 'vue'
+import { computed, defineComponent, type ExtractPublicPropTypes, type PropType } from 'vue'
 
 type FlexType = number | 'auto' | 'initial' | 'none'
 
@@ -33,7 +24,7 @@ function parseFlex(flex: FlexType): string {
 export const FlexItem = defineComponent({
   name: 'ZFlexItem',
   props,
-  setup(props, { slots, emit }) {
+  setup(props, { slots }) {
     const style = computed(() => {
       const flex = parseFlex(props.flex)
       return {
@@ -41,7 +32,7 @@ export const FlexItem = defineComponent({
       }
     })
     return () => (
-      <div class="z-flex-item relative" style={style.value}>
+      <div class="z-flex-item" style={style.value}>
         {slots.default?.()}
       </div>
     )

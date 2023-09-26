@@ -8,15 +8,15 @@ import {
 import { getSpace, type SizeType } from '@/theme/space'
 
 const props = {
-  align: {
-    type: String as PropType<'start' | 'end' | 'center' | 'baseline' | 'stretch'>,
-    default: 'start',
+  alignItems: {
+    type: String as PropType<'baseline' | 'start' | 'end' | 'center' | 'stretch'>,
+    default: 'baseline',
   },
-  justify: {
+  justifyContent: {
     type: String as PropType<
       'normal' | 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | 'stretch'
     >,
-    default: 'start',
+    default: 'normal',
   },
   wrap: Boolean,
   gap: {
@@ -30,32 +30,15 @@ export type FlexProps = ExtractPublicPropTypes<typeof props>
 export const Flex = defineComponent({
   name: 'ZFlex',
   props,
-  setup(props, { slots, emit }) {
+  setup(props, { slots }) {
     return () => (
       <div
+        class="z-flex"
         style={{
           '--z-flex-gap': getSpace(props.gap),
-        }}
-        class={{
-          'z-flex flex': true,
-          'items-start': props.align === 'start',
-          'items-end': props.align === 'end',
-          'items-center': props.align === 'center',
-          'items-baseline': props.align === 'baseline',
-          'items-stretch': props.align === 'stretch',
-
-          'justify-normal': props.justify === 'normal',
-          'justify-start': props.justify === 'start',
-          'justify-end': props.justify === 'end',
-          'justify-center': props.justify === 'center',
-          'justify-between': props.justify === 'between',
-          'justify-around': props.justify === 'around',
-          'justify-evenly': props.justify === 'evenly',
-          'justify-stretch': props.justify === 'stretch',
-
-          'flex-wrap': props.wrap,
-          'flex-nowrap': !props.wrap,
-          'gap-[--z-flex-gap]': true,
+          'align-items': props.alignItems,
+          'justify-content': props.justifyContent,
+          'flex-wrap': props.wrap ? 'wrap' : 'nowrap',
         }}
       >
         {slots.default?.()}

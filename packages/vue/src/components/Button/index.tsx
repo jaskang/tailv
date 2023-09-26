@@ -12,11 +12,14 @@ import {
 import type { Color } from '@/theme/colors'
 import { useColorVars } from '@/utils/style'
 
+import { css, cx } from '../../../styled-system/css'
+import { token } from '../../../styled-system/tokens'
 import { LoadingIcon } from '../Icon'
+import { style } from './style'
 
 const props = {
   variant: {
-    type: String as PropType<'default' | 'solid' | 'soft' | 'outline' | 'plain' | 'link'>,
+    type: String as PropType<'default' | 'solid' | 'soft' | 'outline' | 'ghost' | 'link'>,
     default: 'default',
   },
   color: {
@@ -35,6 +38,7 @@ const props = {
   disabled: Boolean,
 } satisfies ComponentObjectPropsOptions
 
+export type ButtonInnerProps = ExtractPropTypes<typeof props>
 export type ButtonProps = ExtractPublicPropTypes<typeof props>
 
 export const Button = defineComponent({
@@ -93,17 +97,24 @@ export const Button = defineComponent({
         emit('click', e)
       }
     }
+    const cls = computed(() => style(props))
     return () => (
       <button
-        class={{
-          'z-btn': true,
-          [`z-btn-${props.variant}`]: true,
-          [`z-btn--${props.size}`]: true,
-          'z-btn--pill': props.pill || props.circle,
-          'z-btn--square': props.square || props.circle,
-          'z-btn--block': props.block,
+        style={{
+          '--btn-size': {
+            xs: token.var('spacing.row-xs'),
+            sm: token.var('spacing.row-sm'),
+            md: token.var('spacing.row-md'),
+            lg: token.var('spacing.row-lg'),
+            xl: token.var('spacing.row-xl'),
+          }[props.size],
         }}
-        style={cssVars.value}
+        class={cx(
+          cls.value,
+          css({
+            color: `${props.color}.500`,
+          })
+        )}
         type="button"
         disabled={props.disabled}
         onClick={onClick}
