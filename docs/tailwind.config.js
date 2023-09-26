@@ -13,14 +13,16 @@ export default {
     './index.html',
     './**/*.md',
     './.vitepress/**/*.{vue,ts,tsx,md}',
-    // './node_modules/@zonda/vue/**/*.{vue,ts,tsx}',
+    '../packages/vue/src/**/*.{vue,ts,tsx}',
   ],
   theme: {
     extend: {
       maxWidth: {
         '8xl': '90rem',
       },
-
+      spacing: {
+        // 'row-xs': '0.5rem',
+      },
       backgroundImage: theme => ({
         squiggle: `url("${svgToDataUri(
           `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 3" enable-background="new 0 0 6 3" width="6" height="3" fill="${theme(

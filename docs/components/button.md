@@ -27,7 +27,8 @@ asdfsa
   <ZButton>default</ZButton>
   <ZButton variant="solid">solid</ZButton>
   <ZButton variant="soft">soft</ZButton>
-  <ZButton variant="plain">plain</ZButton>
+  <ZButton variant="outline">outline</ZButton>
+  <ZButton variant="ghost">ghost</ZButton>
   <ZButton variant="link">link</ZButton>
 </template>
 ```
@@ -54,14 +55,25 @@ asdfsa
 </template>
 ```
 
-## plain
+## outline
 
 ```vue preview
 <template>
-  <ZButton variant="plain" color="primary">primary</ZButton>
-  <ZButton variant="plain" color="success">success</ZButton>
-  <ZButton variant="plain" color="warning">warning</ZButton>
-  <ZButton variant="plain" color="error">error</ZButton>
+  <ZButton variant="outline" color="primary">primary</ZButton>
+  <ZButton variant="outline" color="success">success</ZButton>
+  <ZButton variant="outline" color="warning">warning</ZButton>
+  <ZButton variant="outline" color="error">error</ZButton>
+</template>
+```
+
+## ghost
+
+```vue preview
+<template>
+  <ZButton variant="ghost" color="primary">primary</ZButton>
+  <ZButton variant="ghost" color="success">success</ZButton>
+  <ZButton variant="ghost" color="warning">warning</ZButton>
+  <ZButton variant="ghost" color="error">error</ZButton>
 </template>
 ```
 
@@ -112,13 +124,13 @@ asdfsa
   <ZButton variant="soft" color="neutral">neutral</ZButton>
   <br /><br />
 
-  <ZButton variant="plain" color="orange">orange</ZButton>
-  <ZButton variant="plain" color="teal">teal</ZButton>
-  <ZButton variant="plain" color="sky">sky</ZButton>
-  <ZButton variant="plain" color="violet">violet</ZButton>
-  <ZButton variant="plain" color="pink">pink</ZButton>
-  <ZButton variant="plain" color="gray">gray</ZButton>
-  <ZButton variant="plain" color="neutral">neutral</ZButton>
+  <ZButton variant="ghost" color="orange">orange</ZButton>
+  <ZButton variant="ghost" color="teal">teal</ZButton>
+  <ZButton variant="ghost" color="sky">sky</ZButton>
+  <ZButton variant="ghost" color="violet">violet</ZButton>
+  <ZButton variant="ghost" color="pink">pink</ZButton>
+  <ZButton variant="ghost" color="gray">gray</ZButton>
+  <ZButton variant="ghost" color="neutral">neutral</ZButton>
 </template>
 ```
 
@@ -230,10 +242,10 @@ asdfsa
   <ZButton variant="soft" square color="success">
     <template #icon><CloudIcon /></template>
   </ZButton>
-  <ZButton variant="plain" circle color="warning">
+  <ZButton variant="ghost" circle color="warning">
     <template #icon><BellIcon /></template>
   </ZButton>
-  <ZButton variant="plain" square color="warning">
+  <ZButton variant="ghost" square color="warning">
     <template #icon><BellIcon /></template>
   </ZButton>
   <ZButton variant="link" circle color="error">
@@ -277,7 +289,7 @@ const onClick = () => {
   <ZButton disabled>default</ZButton>
   <ZButton variant="solid" disabled>solid</ZButton>
   <ZButton variant="soft" disabled>soft</ZButton>
-  <ZButton variant="plain" disabled>plain</ZButton>
+  <ZButton variant="ghost" disabled>ghost</ZButton>
   <ZButton variant="link" disabled>link</ZButton>
   <ZButton variant="solid" circle disabled>
     <template #icon>

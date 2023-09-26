@@ -7,8 +7,8 @@ import {
 } from 'vue'
 
 import type { Color } from '@/theme/colors'
-import { clsVariants } from '@/utils/clst'
 import { useColorVars } from '@/utils/style'
+import { tw } from '@/utils/tw'
 
 const props = {
   variant: {
@@ -27,7 +27,7 @@ export type TagProps = ExtractPropTypes<typeof props>
 
 export type TagPublicProps = ExtractPublicPropTypes<typeof props>
 
-const createClass = clsVariants(
+const createClass = tw(
   `inline-flex items-center text-xs font-medium px-2 py-1 bg-[--z-tag-bg] text-[--z-tag-text]`,
   {
     variants: {

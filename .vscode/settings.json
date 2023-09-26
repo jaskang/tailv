@@ -1,4 +1,5 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "references.preferredLocation": "peek"
+  "references.preferredLocation": "peek",
+  "tailwindCSS.experimental.configFile": "docs/tailwind.config.js"
 }

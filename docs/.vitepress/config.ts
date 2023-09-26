@@ -72,8 +72,8 @@ export default defineConfig({
     ],
     resolve: {
       alias: {
-        // '@': fileURLToPath(new URL('../../packages/vue/src', import.meta.url)),
-        // '@zonda/vue': fileURLToPath(new URL('../../packages/vue/src/index', import.meta.url)),
+        '@': fileURLToPath(new URL('../../packages/vue/src', import.meta.url)),
+        '@zonda/vue': fileURLToPath(new URL('../../packages/vue/src/index', import.meta.url)),
       },
     },
     server: {

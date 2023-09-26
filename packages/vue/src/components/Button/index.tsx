@@ -27,7 +27,7 @@ const props = {
     default: 'primary',
   },
   size: {
-    type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
+    type: String as PropType<'sm' | 'md' | 'lg'>,
     default: 'md',
   },
   block: Boolean,
