@@ -1,5 +1,3 @@
-// import './styles/index.css'
-
 import type { Plugin } from 'vue'
 
 import { ElSlot } from './components/_pure/ElSlot'

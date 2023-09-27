@@ -11,7 +11,13 @@ export const Icon = defineComponent({
   props,
   setup(props, { slots }) {
     return () => (
-      <span role="img" class={['z-icon', props.spin ? 'z-animate-spin' : '']}>
+      <span
+        role="img"
+        class={[
+          'inline-flex h-[1em] w-[1em] items-center [&>svg]:h-full [&>svg]:w-full',
+          props.spin ? 'animate-spin' : '',
+        ]}
+      >
         {slots.default?.()}
       </span>
     )

@@ -138,25 +138,23 @@ asdfsa
 
 ```vue preview
 <template>
-  <div class="flex flex-col items-center space-y-4">
-    <ZButton variant="solid" size="xs">size: sm</ZButton>
+  <div class="flex items-center space-x-4">
     <ZButton variant="solid" size="sm">size: sm</ZButton>
     <ZButton variant="solid" size="md">size: md</ZButton>
     <ZButton variant="solid" size="lg">size: lg</ZButton>
-    <ZButton variant="solid" size="xl">size: xl</ZButton>
   </div>
 </template>
 ```
 
-## rounded
+## pill
 
 ```vue preview
 <template>
-  <ZButton rounded>默认</ZButton>
-  <ZButton variant="solid" color="primary" rounded>primary</ZButton>
-  <ZButton variant="solid" color="success" rounded>success</ZButton>
-  <ZButton variant="solid" color="warning" rounded>warning</ZButton>
-  <ZButton variant="solid" color="error" rounded>error</ZButton>
+  <ZButton pill>默认</ZButton>
+  <ZButton variant="solid" color="primary" pill>primary</ZButton>
+  <ZButton variant="solid" color="success" pill>success</ZButton>
+  <ZButton variant="solid" color="warning" pill>warning</ZButton>
+  <ZButton variant="solid" color="error" pill>error</ZButton>
 </template>
 ```
 
@@ -236,10 +234,10 @@ asdfsa
   <ZButton variant="solid" square color="primary">
     <template #icon><HomeIcon /></template>
   </ZButton>
-  <ZButton variant="soft" circle color="success">
+  <ZButton variant="outline" circle color="success">
     <template #icon><CloudIcon /></template>
   </ZButton>
-  <ZButton variant="soft" square color="success">
+  <ZButton variant="outline" square color="success">
     <template #icon><CloudIcon /></template>
   </ZButton>
   <ZButton variant="ghost" circle color="warning">

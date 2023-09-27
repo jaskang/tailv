@@ -32,7 +32,7 @@ export const Breadcrumb = defineComponent({
       return null
     })
     return () => (
-      <nav class="z-breadcrumb flex">
+      <nav class="flex">
         <ol class="flex min-w-0 whitespace-nowrap px-2 text-sm">
           {parentPaths.value.map(item => (
             <li class="flex items-center">

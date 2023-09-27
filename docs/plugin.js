@@ -24,10 +24,10 @@ export default plugin.withOptions(
           backgroundColor: 'var(--z-btn-bg, #fff)',
           borderColor: 'var(--z-btn-border, transparent)',
           outlineColor: 'var(--z-btn-outline)',
-          '&:hover': {
+          '&:enabled:hover': {
             color: 'var(--z-btn-text_hover, var(--z-btn-text))',
             backgroundColor: 'var(--z-btn-bg_hover, var(--z-btn-bg))',
-            borderColor: 'var(--z-btn-border_hover, var(--z-btn-border), transparent)',
+            borderColor: 'var(--z-btn-border_hover, var(--z-btn-border))',
           },
         },
       })

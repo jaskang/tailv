@@ -65,11 +65,11 @@ export const Button = defineComponent({
         onClick={onClick}
       >
         {hasIcon.value && (
-          <i class="z-btn_icon">
+          <i class="h-[1em] w-[1em] [&_+_span]:ml-1 [&_svg]:h-full [&_svg]:w-full [&_svg]:scale-125">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}
           </i>
         )}
-        {slots.default && <span class="z-btn_body">{slots.default()}</span>}
+        {slots.default && <span class="inline-flex items-center">{slots.default()}</span>}
       </button>
     )
   },
