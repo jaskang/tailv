@@ -27,11 +27,6 @@ export const Checkbox = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const cssVars = useColorVars('z-checkbox', {
-      accent: 'primary.500',
-      ring: 'primary.500',
-    })
-
     const focus = ref(false)
 
     const [checked, setChecked] = useControllable(
@@ -68,15 +63,9 @@ export const Checkbox = defineComponent({
     }
 
     return () => (
-      <label
-        class={{
-          'z-checkbox': true,
-          'z-checkbox--disabled': props.disabled,
-        }}
-        style={cssVars.value}
-      >
+      <label class="flex items-center">
         <input
-          class="z-checkbox_input "
+          class="text-primary-500 focus:ring-primary-600 h-4 w-4 rounded border-gray-300 transition-shadow"
           type="checkbox"
           name={props.name}
           disabled={props.disabled}
@@ -85,7 +74,7 @@ export const Checkbox = defineComponent({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <span class="z-checkbox_label">{slots.default?.()}</span>
+        <span class="ml-2 text-sm font-medium">{slots.default?.()}</span>
       </label>
     )
   },

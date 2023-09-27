@@ -83,14 +83,13 @@ export const Radio = defineComponent({
     })
     return () => (
       <label
-        style={cssVars.value}
         class={[
-          'z-radio inline-flex items-center',
+          'inline-flex items-center',
           groupProps.value.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]}
       >
         <input
-          class="z-radio_input h-4 w-4 border-gray-300  transition-all focus:ring-[--z-radio-ring] disabled:cursor-not-allowed dark:ring-offset-gray-900"
+          class="text-primary-500 focus:ring-primary-600 h-4 w-4 border-gray-300 transition-shadow"
           type="radio"
           name={groupProps.value.name}
           value={groupProps.value.value}
@@ -100,7 +99,7 @@ export const Radio = defineComponent({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <span class="z-radio_label ml-3 block text-sm font-medium ">{slots.default?.()}</span>
+        <span class="ml-2 text-sm font-medium">{slots.default?.()}</span>
       </label>
     )
   },

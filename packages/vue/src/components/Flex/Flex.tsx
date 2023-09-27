@@ -33,7 +33,7 @@ export const Flex = defineComponent({
   setup(props, { slots }) {
     return () => (
       <div
-        class="z-flex"
+        class={['flex', props.wrap ? 'flex-wrap' : 'flex-nowrap']}
         style={{
           '--z-flex-gap': getSpace(props.gap),
           'align-items': props.alignItems,

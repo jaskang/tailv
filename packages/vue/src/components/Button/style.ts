@@ -4,8 +4,8 @@ import { tw } from '@/utils/tw'
 import type { ButtonInnerProps } from '.'
 
 const css = tw(
-  `z-btn appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors outline-none
-  focus:outline-none`,
+  `z-btn appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
+  focus-visible:outline-2 focus-visible:outline focus-visible:outline-offset-2`,
   {
     variants: {
       variant: {
