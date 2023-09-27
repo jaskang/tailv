@@ -10,10 +10,7 @@ import {
 } from 'vue'
 
 import type { Color } from '@/theme/colors'
-import { useColorVars } from '@/utils/style'
 
-import { css, cx } from '../../../styled-system/css'
-import { token } from '../../../styled-system/tokens'
 import { LoadingIcon } from '../Icon'
 import { style } from './style'
 
@@ -60,7 +57,13 @@ export const Button = defineComponent({
     }
     const cls = computed(() => style(props))
     return () => (
-      <button class={cls.value} type="button" disabled={props.disabled} onClick={onClick}>
+      <button
+        class={cls.value.css}
+        style={cls.value.vars}
+        type="button"
+        disabled={props.disabled}
+        onClick={onClick}
+      >
         {hasIcon.value && (
           <i class="z-btn_icon">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}

@@ -1,4 +1,4 @@
-import type { Flat } from 'kotl'
+import { type Flat, isFunction } from 'kotl'
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
 import { type ColorVar, getColorValue } from '@/theme/colors'
@@ -45,17 +45,15 @@ export function useColorVars<N extends string, T extends { [key: string]: ColorV
 
 export function createColorVars<N extends string, T extends { [key: string]: ColorVar }>(
   name: N,
-  getter: T
+  getter: (() => T) | T
 ) {
-  return computed(() =>
-    Object.entries(toValue(getter)).reduce(
-      (acc, [key, val]) => {
-        const colorVal = getColorValue(val)
-        // @ts-ignore
-        acc[`--${name}-${key}`] = colorVal || value
-        return acc
-      },
-      {} as Flat<StyleVars<N, Exclude<keyof T, number | symbol>>>
-    )
+  return Object.entries(isFunction(getter) ? getter() : getter).reduce(
+    (acc, [key, val]) => {
+      const colorVal = getColorValue(val)
+      // @ts-ignore
+      acc[`--${name}-${key}`] = colorVal || value
+      return acc
+    },
+    {} as Flat<StyleVars<N, Exclude<keyof T, number | symbol>>>
   )
 }

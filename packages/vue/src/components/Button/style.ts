@@ -1,23 +1,20 @@
+import { createColorVars } from '@/utils/style'
 import { tw } from '@/utils/tw'
 
 import type { ButtonInnerProps } from '.'
 
 const css = tw(
-  `z-btn appearance-none inline-flex items-center justify-center text-sm font-semibold rounded
-  transition-colors
+  `z-btn appearance-none inline-flex items-center justify-center text-sm font-medium rounded transition-colors outline-none
   focus:outline-none`,
   {
     variants: {
       variant: {
-        default: ['shadow-sm border bg-white dark:bg-slate-900', ''],
-        solid: ['shadow-sm text-white bg-primary-500 hover:bg-primary-600', ''],
-        soft: ['shadow-sm text-primary-700 bg-primary-100 hover:bg-primary-200', ''],
-        outline: [
-          'text-primary-700 border-primary-500 hover:bg-primary-500 hover:text-white ring-primary-500 ring-1 ring-inset border',
-          '',
-        ],
-        ghost: ['text-primary-700 hover:bg-primary-100', ''],
-        link: ['text-primary-700 decoration-2 underline-offset-2 hover:underline ', ''],
+        default: ['shadow-sm border', ''],
+        solid: ['shadow-sm ', ''],
+        soft: ['shadow-sm ', ''],
+        outline: ['ring-[--z-btn-outline] ring-1 ring-inset border', ''],
+        ghost: ['', ''],
+        link: ['decoration-2 underline-offset-2 hover:underline', ''],
       },
       size: {
         sm: ['h-8 px-2.5 py-1.5', ''],
@@ -43,52 +40,53 @@ const css = tw(
 )
 
 export const style = (props: ButtonInnerProps) => {
-  function colorStyle() {
+  const vars = createColorVars('z-btn', () => {
     switch (props.variant) {
       case 'solid':
         return {
-          color: 'white',
+          text: 'white',
           bg: `${props.color}.500`,
-          ringColor: `${props.color}.500`,
-          _hover: {
-            bg: `${props.color}.600`,
-          },
+
+          outline: `${props.color}.500`,
+          bg_hover: `${props.color}.600`,
         }
       case 'soft':
         return {
-          color: `${props.color}.600`,
+          text: `${props.color}.600`,
           bg: `${props.color}.100`,
-          ringColor: `${props.color}.500`,
-          _hover: {
-            bg: `${props.color}.200`,
-          },
+          outline: `${props.color}.500`,
+          bg_hover: `${props.color}.200`,
+        }
+      case 'outline':
+        return {
+          text: `${props.color}.600`,
+          bg: 'transparent',
+          outline: `${props.color}.500`,
+          text_hover: 'white',
+          bg_hover: `${props.color}.500`,
         }
       case 'ghost':
         return {
-          color: `${props.color}.600`,
-          ringColor: `${props.color}.500`,
-          _hover: {
-            bg: `${props.color}.100`,
-          },
+          text: `${props.color}.600`,
+          outline: `${props.color}.500`,
+          bg_hover: `${props.color}.100`,
         }
       case 'link':
         return {
-          color: `${props.color}.600`,
-          ringColor: `${props.color}.500`,
+          text: `${props.color}.600`,
+          outline: `${props.color}.500`,
         }
       default:
         return {
-          color: 'slate.700',
+          text: 'slate.700',
           bg: 'white',
-          borderColor: 'slate.300',
-          ringColor: 'primary.500',
-          _hover: {
-            bg: 'slate.50',
-            borderColor: 'slate.300',
-          },
+          border: 'slate.300',
+          outline: 'primary.500',
+          bg_hover: 'slate.50',
+          border_hover: 'slate.300',
         }
     }
-  }
+  })
 
   const ret = css({
     variant: props.variant,
@@ -97,5 +95,5 @@ export const style = (props: ButtonInnerProps) => {
     pill: props.circle || props.pill,
     square: props.circle || props.square,
   })
-  return ret
+  return { css: ret, vars: vars }
 }

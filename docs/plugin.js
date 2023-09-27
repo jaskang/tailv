@@ -13,10 +13,23 @@ function extractColorVars(colorObj, colorGroup = '') {
 
 export default plugin.withOptions(
   options =>
-    ({ addBase, theme }) => {
+    ({ addBase, addUtilities, addComponents, theme }) => {
       const all = extractColorVars(theme('colors'))
       addBase({
         ':root': all,
+      })
+      addComponents({
+        '.z-btn': {
+          color: 'var(--z-btn-text, theme(colors.gray.700))',
+          backgroundColor: 'var(--z-btn-bg, #fff)',
+          borderColor: 'var(--z-btn-border, transparent)',
+          outlineColor: 'var(--z-btn-outline)',
+          '&:hover': {
+            color: 'var(--z-btn-text_hover, var(--z-btn-text))',
+            backgroundColor: 'var(--z-btn-bg_hover, var(--z-btn-bg))',
+            borderColor: 'var(--z-btn-border_hover, var(--z-btn-border), transparent)',
+          },
+        },
       })
     },
   options => ({
