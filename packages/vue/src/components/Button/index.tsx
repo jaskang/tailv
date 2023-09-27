@@ -65,7 +65,7 @@ export const Button = defineComponent({
         onClick={onClick}
       >
         {hasIcon.value && (
-          <i class="h-[1em] w-[1em] [&_+_span]:ml-1 [&_svg]:h-full [&_svg]:w-full [&_svg]:scale-125">
+          <i class="h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon?.()}
           </i>
         )}

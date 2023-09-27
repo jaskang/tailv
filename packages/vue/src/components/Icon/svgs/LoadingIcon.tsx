@@ -4,13 +4,7 @@ export const LoadingIcon = defineComponent({
   name: 'ZLoadingIcon',
   setup() {
     return () => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle
           opacity="0.25"
           cx="12"
