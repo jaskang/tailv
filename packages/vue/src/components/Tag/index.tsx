@@ -72,7 +72,7 @@ export const Tag = defineComponent({
       <div style={cssVars.value} class={`${cls.value} group`}>
         {props.dot && (
           <svg
-            class="h-[0.5em] w-[0.5em] mr-1.5 fill-[--z-tag-dot]"
+            class="mr-1.5 h-[0.5em] w-[0.5em] fill-[--z-tag-dot]"
             viewBox="0 0 6 6"
             aria-hidden="true"
           >
@@ -84,7 +84,7 @@ export const Tag = defineComponent({
           <button
             type="button"
             class={[
-              'relative ml-0.5 -mr-1 h-4 w-4 ',
+              'relative -mr-1 ml-0.5 h-4 w-4 ',
               outlineDot.value ? 'hover:bg-gray-200' : 'hover:bg-[--z-tag-close]',
               props.pill ? 'rounded-full' : 'rounded-sm',
             ]}

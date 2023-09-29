@@ -1,28 +1,18 @@
-import {
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-} from 'vue'
+import { defineComponent, type ExtractPublicPropTypes, type PropType } from 'vue'
 
 import { getSpace, type SizeType } from '@/theme/space'
 
 const props = {
   alignItems: {
-    type: String as PropType<'baseline' | 'start' | 'end' | 'center' | 'stretch'>,
-    default: 'baseline',
+    type: String as PropType<'start' | 'end' | 'center' | 'baseline' | 'stretch'>,
   },
   justifyContent: {
     type: String as PropType<
       'normal' | 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly' | 'stretch'
     >,
-    default: 'normal',
   },
   wrap: Boolean,
-  gap: {
-    type: String as PropType<SizeType>,
-    default: '0',
-  },
+  gap: String as PropType<SizeType>,
 }
 
 export type FlexProps = ExtractPublicPropTypes<typeof props>
@@ -33,12 +23,32 @@ export const Flex = defineComponent({
   setup(props, { slots }) {
     return () => (
       <div
-        class={['flex', props.wrap ? 'flex-wrap' : 'flex-nowrap']}
+        class={[
+          'z-flex',
+          'flex',
+          props.wrap ? 'flex-wrap' : 'flex-nowrap',
+          props.alignItems &&
+            {
+              start: 'items-start',
+              end: 'items-end',
+              center: 'items-center',
+              baseline: 'items-baseline',
+              stretch: 'items-stretch',
+            }[props.alignItems],
+          props.justifyContent &&
+            {
+              normal: 'justify-normal',
+              start: 'justify-start',
+              end: 'justify-end',
+              center: 'justify-center',
+              between: 'justify-between',
+              around: 'justify-around',
+              evenly: 'justify-evenly',
+              stretch: 'justify-stretch',
+            }[props.justifyContent],
+        ]}
         style={{
-          '--z-flex-gap': getSpace(props.gap),
-          'align-items': props.alignItems,
-          'justify-content': props.justifyContent,
-          'flex-wrap': props.wrap ? 'wrap' : 'nowrap',
+          gap: props.gap ? getSpace(props.gap) : undefined,
         }}
       >
         {slots.default?.()}

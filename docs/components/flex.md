@@ -33,31 +33,31 @@ align 值为 `start` | `end` | `center` | `baseline` | `stretch`
 ```vue preview
 <template>
   <h4>start</h4>
-  <ZFlex align="start" gap="1rem">
+  <ZFlex alignItems="start" gap="1rem">
     <ZFlexItem flex="1" class="py-4">01</ZFlexItem>
     <ZFlexItem flex="1" class="py-12">02</ZFlexItem>
     <ZFlexItem flex="1" class="py-8">03</ZFlexItem>
   </ZFlex>
   <h4>end</h4>
-  <ZFlex align="end" gap="1rem">
+  <ZFlex alignItems="end" gap="1rem">
     <ZFlexItem flex="1" class="py-4">01</ZFlexItem>
     <ZFlexItem flex="1" class="py-12">02</ZFlexItem>
     <ZFlexItem flex="1" class="py-8">03</ZFlexItem>
   </ZFlex>
   <h4>center</h4>
-  <ZFlex align="center" gap="1rem">
+  <ZFlex alignItems="center" gap="1rem">
     <ZFlexItem flex="1" class="py-4">01</ZFlexItem>
     <ZFlexItem flex="1" class="py-12">02</ZFlexItem>
     <ZFlexItem flex="1" class="py-8">03</ZFlexItem>
   </ZFlex>
   <h4>baseline</h4>
-  <ZFlex align="baseline" gap="1rem">
+  <ZFlex alignItems="baseline" gap="1rem">
     <ZFlexItem flex="1" class="pb-6 pt-2">01</ZFlexItem>
     <ZFlexItem flex="1" class="pb-12 pt-8">02</ZFlexItem>
     <ZFlexItem flex="1" class="pb-4 pt-12">03</ZFlexItem>
   </ZFlex>
   <h4>stretch</h4>
-  <ZFlex align="stretch" gap="1rem">
+  <ZFlex alignItems="stretch" gap="1rem">
     <ZFlexItem flex="1" class="py-4">01</ZFlexItem>
     <ZFlexItem flex="1" class="py-12">02</ZFlexItem>
     <ZFlexItem flex="1" class="py-8">03</ZFlexItem>

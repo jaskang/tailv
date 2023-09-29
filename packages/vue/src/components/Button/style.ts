@@ -12,7 +12,7 @@ const css = tw(
         default: ['shadow-sm border', ''],
         solid: ['shadow-sm ', ''],
         soft: ['shadow-sm ', ''],
-        outline: ['shadow-sm ring-[--z-btn-outline] ring-1 ring-inset border', ''],
+        outline: ['shadow-sm border', ''],
         ghost: ['', ''],
         link: ['decoration-2 underline-offset-2 enabled:hover:underline', ''],
       },
@@ -71,8 +71,7 @@ export const style = (props: ButtonInnerProps) => {
           text: `${props.color}.600`,
           bg: 'transparent',
           border: `${props.color}.500`,
-          text_hover: 'white',
-          bg_hover: `${props.color}.500`,
+          bg_hover: `${props.color}.200`,
         }
       case 'ghost':
         return {
