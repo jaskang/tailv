@@ -31,7 +31,7 @@ export const Popover = defineComponent({
           default: () => slots.default?.(),
           content: () => (
             <div
-              class="overflow-hidden  bg-white dark:bg-gray-950 shadow-lg rounded-lg ring-1 ring-black ring-opacity-5"
+              class="overflow-hidden  rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-950"
               {...attrs}
             >
               {slots.content?.()}

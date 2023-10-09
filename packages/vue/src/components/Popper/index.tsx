@@ -1,5 +1,4 @@
 import {
-  arrow,
   autoUpdate,
   flip,
   offset,
@@ -11,7 +10,6 @@ import { type Flat, uid } from 'kotl'
 import {
   computed,
   defineComponent,
-  type ExtractPropTypes,
   type ExtractPublicPropTypes,
   inject,
   type InjectionKey,

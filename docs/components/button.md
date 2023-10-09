@@ -1,14 +1,14 @@
 <style> 
 
 .demo {
-  > .z-button{
+  > .z-btn{
     margin-left: 1rem;
     /* margin-top: 1rem; */
     &:first-child{
       margin-left: 0;
     }
   } 
-  > br + .z-button{
+  > br + .z-btn{
     margin-left: 0 !important;
   }
 }
