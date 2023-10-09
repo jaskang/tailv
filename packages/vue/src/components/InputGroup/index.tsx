@@ -9,11 +9,10 @@ export const InputGroup = defineComponent({
   props,
   slots: Object as SlotsType<{
     default: () => VNode
-    icon: () => VNode
   }>,
   setup(props, { slots }) {
     return () => (
-      <div class="z-input-group  flex items-center [&_>_*:first-child]:rounded-l-md [&_>_*:last-child]:rounded-r-md [&_>_*:not(:first-child)]:-ml-px [&_>_*]:rounded-none [:where(&)_>_*]:flex-1">
+      <div class="z-input-group flex items-center [&_>_*:first-child]:rounded-l-md [&_>_*:last-child]:rounded-r-md [&_>_*:not(:first-child)]:-ml-px [&_>_*]:rounded-none [:where(&)_>_*]:flex-1">
         {slots.default?.()}
       </div>
     )

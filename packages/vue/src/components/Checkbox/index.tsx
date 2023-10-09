@@ -65,7 +65,7 @@ export const Checkbox = defineComponent({
     return () => (
       <label class="flex items-center">
         <input
-          class="text-primary-500 focus:ring-primary-600 h-4 w-4 rounded border-gray-300 transition-shadow"
+          class="text-primary-500 focus:ring-primary-500 h-4 w-4 rounded border-gray-300 transition-shadow"
           type="checkbox"
           name={props.name}
           disabled={props.disabled}

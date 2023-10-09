@@ -22,10 +22,6 @@ const props = {
 
 export type ItemListProps = ExtractPublicPropTypes<typeof props>
 
-export type ItemListCssVars = {
-  '--z-itemList-accent-color': string
-}
-
 export const ItemList = defineComponent({
   name: 'ZItemList',
   props,
@@ -45,10 +41,6 @@ export const ItemList = defineComponent({
       },
       props.multiple ? [] : undefined
     )
-
-    const cssVars = useColorVars('z-itemList', {
-      accent: 'primary.500',
-    })
 
     const itemClickHandler = (item: OptionItem) => {
       if (item.disabled) return
@@ -72,7 +64,6 @@ export const ItemList = defineComponent({
     }
     return () => (
       <ul
-        style={cssVars.value}
         class="w-full overflow-auto rounded-md bg-white py-1 text-sm ring-1 ring-black ring-opacity-5 focus:outline-none "
         tabindex="-1"
       >
@@ -82,19 +73,20 @@ export const ItemList = defineComponent({
               slots.item({ item, selected: isSelected(item) })
             ) : (
               <li
+                aria-disabled={item.disabled}
                 class={[
-                  'relative flex cursor-default select-none px-3 py-2 transition-colors ease-in-out',
+                  'relative flex cursor-default select-none items-center px-3 py-2 transition-colors duration-200 ease-in-out',
                   item.disabled
                     ? 'font-normal text-gray-400'
                     : isSelected(item)
-                    ? 'cursor-pointer font-semibold hover:text-white hover:bg-[--z-itemList-accent]'
-                    : 'cursor-pointer font-normal text-gray-700 hover:text-white hover:bg-[--z-itemList-accent]',
+                    ? 'hover:bg-primary-500 cursor-pointer font-semibold hover:text-white'
+                    : 'hover:bg-primary-500 cursor-pointer font-normal text-gray-700 hover:text-white',
                 ]}
                 onClick={() => itemClickHandler(item)}
               >
-                <span class="flex-1 block truncate">{item.label} </span>
+                <span class="block flex-1 truncate">{item.label} </span>
                 {isSelected(item) && (
-                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path
                       fill-rule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"

@@ -73,30 +73,25 @@ export const Input = defineComponent({
       }
     }
 
-    const cssVars = useColorVars('z-input', {
-      ring: 'primary.500',
-    })
     return () => (
-      // <div
-      //   style={cssVars.value}
-      //   class={[
-      //     'z-input inline-flex w-full rounded-md text-sm shadow-sm',
-      //     props.disabled ? 'is-disabled cursor-not-allowed bg-gray-50 opacity-50' : '',
-      //     focused.value && 'is-focused',
-      //   ]}
-      // >
-      // {slots.before && (
-      //   <span class="z-input_before inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3">
-      //     {slots.before()}
-      //   </span>
-      // )}
-      <div style={cssVars.value} class={['z-input', props.disabled && 'z-input--disable']}>
+      <div
+        aria-disabled={props.disabled}
+        class={[
+          'z-input focus-within:ring-primary-500 flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-inset',
+          'aria-disabled:cursor-not-allowed aria-disabled:bg-gray-50 aria-disabled:text-gray-500 aria-disabled:ring-gray-200',
+        ]}
+      >
         {(slots.prefix || props.prefix) && (
-          <span class="z-input_prefix">{slots.prefix?.() || props.prefix}</span>
+          <span class="z-input_prefix -mr-1 flex items-center pl-3">
+            {slots.prefix?.() || props.prefix}
+          </span>
         )}
 
         <input
-          class="z-input_input"
+          class="z-input_input flex-1 border-none bg-transparent text-sm focus:outline-transparent disabled:cursor-not-allowed"
+          style={{
+            boxShadow: 'none',
+          }}
           type="text"
           size="1"
           value={val.value}
@@ -109,15 +104,11 @@ export const Input = defineComponent({
           onBlur={onBlur}
         />
         {(slots.suffix || props.suffix) && (
-          <span class="z-input_suffix">{slots.suffix?.() || props.suffix}</span>
+          <span class="z-input_suffix  -ml-1 flex items-center pr-3">
+            {slots.suffix?.() || props.suffix}
+          </span>
         )}
       </div>
-      //  {slots.after && (
-      //   <span class="z-input_after inline-flex items-center rounded-r-md border border-r-0 border-gray-300 bg-gray-50 px-3">
-      //     {slots.after()}
-      //   </span>
-      // )}
-      // </div>
     )
   },
 })
