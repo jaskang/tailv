@@ -1,4 +1,4 @@
-import { createColorVars } from '@/utils/style'
+import { createColorVars, cvar } from '@/utils/style'
 import { tw } from '@/utils/tw'
 
 import type { ButtonInnerProps } from '.'
@@ -47,58 +47,54 @@ const css = tw(
 )
 
 export const style = (props: ButtonInnerProps) => {
-  const vars = createColorVars('z-btn', () => {
-    switch (props.variant) {
-      case 'solid':
-        return {
-          outline: `${props.color}.500`,
+  const vars =
+    props.variant === 'solid'
+      ? createColorVars('z-btn', {
+          outline: `${props.color}500`,
           text: 'white',
-          bg: `${props.color}.500`,
+          bg: `${props.color}500`,
           border: `transparent`,
-          bg_hover: `${props.color}.600`,
-        }
-      case 'soft':
-        return {
-          outline: `${props.color}.500`,
-          text: `${props.color}.500`,
-          bg: `${props.color}.100`,
+          bg_hover: `${props.color}600`,
+        })
+      : props.variant === 'soft'
+      ? createColorVars('z-btn', {
+          outline: `${props.color}500`,
+          text: `${props.color}500`,
+          bg: `${props.color}100`,
           border: `transparent`,
-          bg_hover: `${props.color}.200`,
-        }
-      case 'outline':
-        return {
-          outline: `${props.color}.500`,
-          text: `${props.color}.600`,
+          bg_hover: `${props.color}200`,
+        })
+      : props.variant === 'outline'
+      ? createColorVars('z-btn', {
+          outline: `${props.color}500`,
+          text: `${props.color}600`,
           bg: 'transparent',
-          border: `${props.color}.500`,
-          bg_hover: `${props.color}.200`,
-        }
-      case 'ghost':
-        return {
-          outline: `${props.color}.500`,
-          text: `${props.color}.600`,
+          border: `${props.color}500`,
+          bg_hover: `${props.color}200`,
+        })
+      : props.variant === 'ghost'
+      ? createColorVars('z-btn', {
+          outline: `${props.color}500`,
+          text: `${props.color}600`,
           bg: `transparent`,
           border: `transparent`,
-          bg_hover: `${props.color}.100`,
-        }
-      case 'link':
-        return {
-          outline: `${props.color}.500`,
-          text: `${props.color}.600`,
+          bg_hover: `${props.color}100`,
+        })
+      : props.variant === 'link'
+      ? createColorVars('z-btn', {
+          outline: `${props.color}500`,
+          text: `${props.color}600`,
           bg: `transparent`,
           border: `transparent`,
-        }
-      default:
-        return {
-          outline: 'primary.500',
-          text: 'slate.700',
+        })
+      : createColorVars('z-btn', {
+          outline: 'primary500',
+          text: 'slate700',
           bg: 'white',
-          border: 'slate.300',
-          bg_hover: 'slate.50',
-          border_hover: 'slate.300',
-        }
-    }
-  })
+          border: 'slate300',
+          bg_hover: 'slate50',
+          border_hover: 'slate300',
+        })
 
   const ret = css({
     variant: props.variant,

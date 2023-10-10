@@ -1,7 +1,7 @@
 import { type Flat, isFunction } from 'kotl'
 import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 
-import { type ColorVar, getColorValue } from '@/theme/colors'
+import { type ColorVar } from '@/theme/colors'
 
 export type StyleVars<N extends string, T extends string> = {
   [k in `--${N}-${T}`]: string
@@ -15,7 +15,7 @@ export function createStyleVar<N extends string, T extends CssVars>(name: N) {
   return (cssVars: Partial<T>) => {
     const result = Object.entries(cssVars).reduce(
       (acc, [key, value]) => {
-        const colorVal = getColorValue(value)
+        const colorVal = cvar(value)
         // @ts-ignore
         acc[`--${name}-${key}`] = colorVal || value
         return acc
@@ -33,27 +33,31 @@ export function useColorVars<N extends string, T extends { [key: string]: ColorV
   return computed(() =>
     Object.entries(toValue(getter)).reduce(
       (acc, [key, val]) => {
-        const colorVal = getColorValue(val)
+        const colorVal = cvar(val)
         // @ts-ignore
         acc[`--${name}-${key}`] = colorVal || value
         return acc
       },
-      {} as Flat<StyleVars<N, Exclude<keyof T, number | symbol>>>
+      {} as Record<string, string>
     )
   )
 }
 
-export function createColorVars<N extends string, T extends { [key: string]: ColorVar }>(
-  name: N,
-  getter: (() => T) | T
-) {
-  return Object.entries(isFunction(getter) ? getter() : getter).reduce(
+export function createColorVars(name: string, getter: Record<string, ColorVar>) {
+  return Object.entries(getter).reduce(
     (acc, [key, val]) => {
-      const colorVal = getColorValue(val)
+      const colorVal = cvar(val)
       // @ts-ignore
       acc[`--${name}-${key}`] = colorVal || value
       return acc
     },
-    {} as Flat<StyleVars<N, Exclude<keyof T, number | symbol>>>
+    {} as Record<string, string>
   )
+}
+
+export function cname(color: ColorVar) {
+  return `--z-${color}`
+}
+export function cvar(color: ColorVar) {
+  return `var(--z-${color})`
 }

@@ -53,11 +53,11 @@ export const Tag = defineComponent({
     const cssVars = useColorVars('z-tag', () => {
       const color = props.color
       return {
-        text: color ? `${color}.700` : 'slate.700',
-        bg: color ? `${color}.100` : 'white',
-        dot: color ? `${color}.500` : 'slate.500',
-        border: props.variant === 'solid' ? `transparent` : color ? `${color}.300` : 'gray.300',
-        close: color ? `${color}.200` : 'slate.200',
+        text: color ? `${color}700` : 'slate700',
+        bg: color ? `${color}100` : 'white',
+        dot: color ? `${color}500` : 'slate500',
+        border: props.variant === 'solid' ? `transparent` : color ? `${color}300` : 'gray300',
+        close: color ? `${color}200` : 'slate200',
       }
     })
     const cls = computed(() =>

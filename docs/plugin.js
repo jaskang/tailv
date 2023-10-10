@@ -4,16 +4,17 @@ import plugin from 'tailwindcss/plugin'
 function extractColorVars(colorObj, colorGroup = '') {
   return Object.keys(colorObj).reduce((vars, key) => {
     const value = colorObj[key]
-    const cssVariable = key === 'DEFAULT' ? `--z-c${colorGroup}` : `--z-c${colorGroup}-${key}`
-    const newVars =
-      typeof value === 'string' ? { [cssVariable]: value } : extractColorVars(value, `-${key}`)
-    return { ...vars, ...newVars }
+    if (typeof value === 'string') {
+      return { ...vars, [`--z-${colorGroup}${key}`]: value }
+    } else {
+      return { ...vars, ...extractColorVars(value, `${key}`) }
+    }
   }, {})
 }
 
 export default plugin.withOptions(
-  options =>
-    ({ addBase, addUtilities, addComponents, theme }) => {
+  () =>
+    ({ addBase, addComponents, theme }) => {
       const all = extractColorVars(theme('colors'))
       addBase({
         ':root': all,
@@ -32,7 +33,7 @@ export default plugin.withOptions(
         },
       })
     },
-  options => ({
+  () => ({
     theme: {
       extend: {
         colors: {

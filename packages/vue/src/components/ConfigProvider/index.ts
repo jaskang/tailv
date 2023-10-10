@@ -10,14 +10,9 @@ import {
 } from 'vue'
 
 import { type Config, ConfigProviderKey } from '@/config'
-import { COLORS } from '@/theme/colors'
 
 const props = {
-  theme: {
-    type: Object as PropType<{
-      colors?: Partial<Config['theme']['colors']>
-    }>,
-  },
+  theme: {},
 } satisfies ComponentObjectPropsOptions
 
 export type ConfigProviderProps = ExtractPropTypes<typeof props>
@@ -30,7 +25,7 @@ export const ConfigProvider = defineComponent({
   setup(props, { slots }) {
     const context = computed<Config>(() => {
       return {
-        theme: { colors: { ...COLORS, ...props.theme?.colors } },
+        theme: {},
       }
     })
     provide(ConfigProviderKey, context)
