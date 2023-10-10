@@ -26,8 +26,8 @@ export default defineComponent({
 
     const isDark = useDark()
     return () => (
-      <div class="sticky min-h-screen top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 supports-backdrop-blur:bg-white/60 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10">
-        <div class="mx-auto max-w-8xl">
+      <div class="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 min-h-screen w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10">
+        <div class="max-w-8xl mx-auto">
           <div class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
             <div class="relative flex items-center">
               <a class="mr-3 w-[2.0625rem] flex-none overflow-hidden md:w-auto" href="/">
@@ -117,7 +117,7 @@ export default defineComponent({
           </div>
         </div>
         <div class="overflow-hidden">
-          <div class="mx-auto min-h-[calc(100vh_-_62px)] max-w-8xl px-4 sm:px-6 md:px-8">
+          <div class="max-w-8xl mx-auto min-h-[calc(100vh_-_62px)] px-4 sm:px-6 md:px-8">
             <div class="fixed inset-0 left-[max(0px,calc(50%-45rem))] right-auto top-[3.8125rem] z-20 hidden w-[19.5rem] overflow-y-auto px-8 pb-10 lg:block">
               <TVSidebar open={isSidebarOpen.value}></TVSidebar>
             </div>

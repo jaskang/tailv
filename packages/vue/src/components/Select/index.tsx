@@ -70,11 +70,12 @@ export const Select = defineComponent({
           ),
           content: () => (
             <ItemList
+              class="shadow"
               value={val.value}
               onUpdate:value={setVal}
               onChange={changeHandler}
               items={props.options}
-            ></ItemList>
+            />
           ),
         }}
       </Popper>

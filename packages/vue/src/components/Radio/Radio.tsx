@@ -86,7 +86,7 @@ export const Radio = defineComponent({
         ]}
       >
         <input
-          class="text-primary-500 focus:ring-primary-500 h-4 w-4 border-gray-300 transition-shadow"
+          class="text-primary-500 focus-visible:ring-primary-500 h-4 w-4 border-gray-300 transition-shadow"
           type="radio"
           name={groupProps.value.name}
           value={groupProps.value.value}
