@@ -126,7 +126,11 @@ importers:
 
   packages/shared: {}
 
-  packages/theme: {}
+  packages/theme:
+    dependencies:
+      kotl:
+        specifier: ^1.7.0
+        version: 1.7.0
 
   packages/vue:
     dependencies:
