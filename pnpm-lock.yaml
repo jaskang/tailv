@@ -129,8 +129,8 @@ importers:
   packages/theme:
     dependencies:
       kotl:
-        specifier: ^1.7.0
-        version: 1.7.0
+        specifier: ^1.7.1
+        version: 1.7.1
 
   packages/vue:
     dependencies:
@@ -3670,6 +3670,12 @@ packages:
 
   /kotl@1.7.0:
     resolution: {integrity: sha512-4GSgG5dMIPBMvxb2eyDPIHkXuKgNVU8GXmWrlFo2VkKc9oCEMth9HGfWvn4zYoOFvq72KWV2S7q4YyeqEM98SA==}
+    dependencies:
+      clsx: 2.0.0
+    dev: false
+
+  /kotl@1.7.1:
+    resolution: {integrity: sha512-k7EkfEQRWaM96/jMD8iK9ao7sQhxJieBx/h6G+NREe305iVex1Dw6vE2UbS090GShxinvI3KZbBVa+BD/n+gBg==}
     dependencies:
       clsx: 2.0.0
     dev: false
