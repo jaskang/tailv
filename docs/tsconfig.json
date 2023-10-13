@@ -1,7 +1,0 @@
-{
-  "extends": "@jaskang/config/tsconfig.vue.json",
-  "compilerOptions": {
-    "paths": {}
-  },
-  "include": ["env.d.ts", ".vitepress/**/*"]
-}

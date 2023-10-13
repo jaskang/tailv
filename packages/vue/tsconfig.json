@@ -1,9 +1,0 @@
-{
-  "extends": "@jaskang/config/tsconfig.vue.json",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["./src/**/*"]
-}

@@ -1,13 +1,10 @@
 {
-  "extends": "@jaskang/config/tsconfig.node.json",
-  "include": [
-    "vite.config.*",
-    "vitest.config.*",
-  ],
   "compilerOptions": {
     "composite": true,
+    "skipLibCheck": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "types": ["node"]
-  }
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
 }
