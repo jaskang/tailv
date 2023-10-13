@@ -1,1 +1,1 @@
-export { btn } from './Button'
+export { button } from './styles/button'

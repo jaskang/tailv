@@ -1,6 +1,6 @@
-import { createColorVars, cvar } from '../_utils/style'
+import { type Color } from '../_utils/colors'
+import { createColorVars } from '../_utils/style'
 import { tw } from '../_utils/tw'
-import type { ButtonInnerProps } from '.'
 
 const css = tw(
   `z-btn appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
@@ -29,7 +29,7 @@ const css = tw(
         false: 'rounded-md',
       },
       square: {
-        true: ['px-0 overflow-hidden', 'px-1.5 px-2 px-2.5 px-3 px-3.5'],
+        true: ['px-0 overflow-hidden', 'px-2.5 px-3 px-3.5'],
         false: '',
       },
       disabled: {
@@ -45,7 +45,15 @@ const css = tw(
   }
 )
 
-export const style = (props: ButtonInnerProps) => {
+export const button = (props: {
+  color: Color
+  variant: 'outline' | 'default' | 'solid' | 'soft' | 'ghost' | 'link'
+  size: 'sm' | 'md' | 'lg'
+  block: boolean
+  pill: boolean
+  square: boolean
+  disabled: boolean
+}) => {
   const vars =
     props.variant === 'solid'
       ? createColorVars('z-btn', {
@@ -99,9 +107,16 @@ export const style = (props: ButtonInnerProps) => {
     variant: props.variant,
     size: props.size,
     block: props.block,
-    pill: props.circle || props.pill,
-    square: props.circle || props.square,
+    pill: props.pill,
+    square: props.square,
     disabled: props.disabled,
   })
-  return { css: ret, vars: vars }
+  return {
+    css: ret,
+    vars: vars,
+    slots: {
+      icon: 'h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full',
+      default: 'inline-flex items-center',
+    },
+  }
 }
