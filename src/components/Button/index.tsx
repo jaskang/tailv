@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import type { Color } from '../../_utils/colors'
+import type { Color } from '@/utils/colors'
 import { LoadingIcon } from '../Icon/LoadingIcon'
 import { style } from './style'
 
@@ -42,7 +42,7 @@ export function Button(props: ButtonProps) {
     <button className={css} style={vars} type="button" disabled={disabled}>
       {(icon || loading) && (
         <i className="h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">
-          {loading ? <LoadingIcon class="animate-spin" /> : icon}
+          {loading ? <LoadingIcon className="animate-spin" /> : icon}
         </i>
       )}
       {children && <span className="inline-flex items-center">{children}</span>}

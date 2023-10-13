@@ -38,7 +38,6 @@ export function tw<T extends VariantsObject>(
         clsValue[1].split(' ').forEach(c => {
           const index = cls.indexOf(c.trim())
           if (index !== -1) {
-            console.log('remove', c)
             cls.splice(index, 1)
           }
         })
