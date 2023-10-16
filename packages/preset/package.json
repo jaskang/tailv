@@ -1,0 +1,30 @@
+{
+  "name": "@zonda/preset",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "jaskang",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./index.d.ts"
+    }
+  },
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "tailwind.js",
+    "unocss.js"
+  ],
+  "peerDependencies": {
+    "tailwindcss": ">=3.3.0"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.6"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}

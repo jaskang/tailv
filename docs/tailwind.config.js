@@ -2,7 +2,7 @@ import forms from '@tailwindcss/forms'
 import svgToDataUri from 'mini-svg-data-uri'
 import { default as flattenColorPalette } from 'tailwindcss/lib/util/flattenColorPalette'
 
-import zonda from './plugin.js'
+import zonda from '../plugin.js'
 
 /** @type {import('tailwindcss').Config} */
 export default {
