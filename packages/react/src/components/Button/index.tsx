@@ -1,10 +1,10 @@
-import { useMemo } from 'react'
+import { type ButtonHTMLAttributes, useMemo } from 'react'
 
 import type { Color } from '@/utils/colors'
 import { LoadingIcon } from '../Icon/LoadingIcon'
 import { style } from './style'
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: Color
   variant?: 'solid' | 'soft' | 'outline' | 'ghost' | 'link'
   size?: 'sm' | 'md' | 'lg'
@@ -38,7 +38,7 @@ export function Button(props: ButtonProps) {
     () => style({ variant, size, block, pill, square, circle, loading, disabled, color }),
     [variant, size, block, pill, square, circle, loading, disabled, color]
   )
-  return (
+  return ( 
     <button className={css} style={vars} type="button" disabled={disabled}>
       {(icon || loading) && (
         <i className="h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">

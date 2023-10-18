@@ -25,6 +25,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "docs", "docs/tailwind.config.js"],
+  "include": ["packages/**/*", "docs"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
