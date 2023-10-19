@@ -1,9 +1,9 @@
-import Button from "./Button.mdx"
+import Button from './Button.mdx'
 
 function App() {
   return (
     <>
-      <Button/>
+      <Button />
     </>
   )
 }
