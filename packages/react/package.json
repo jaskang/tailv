@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.0",
-    "kotl": "^1.7.0"
+    "@floating-ui/react": "^0.26.1",
+    "kotl": "^1.7.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",

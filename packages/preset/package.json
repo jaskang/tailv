@@ -3,19 +3,12 @@
   "version": "0.0.1",
   "license": "MIT",
   "author": "jaskang",
-  "type": "module",
   "main": "./index.js",
   "types": "./index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./index.js",
-      "types": "./index.d.ts"
-    }
-  },
   "files": [
     "index.d.ts",
     "index.js",
-    "tailwind.js",
+    "tailwindcss.js",
     "unocss.js"
   ],
   "peerDependencies": {

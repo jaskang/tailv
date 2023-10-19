@@ -19,7 +19,13 @@ export default [
   {
     files: tsFiles,
     plugins: { '@typescript-eslint': typescript },
-    languageOptions: { parser: tsParser },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true },
+      },
+    },
     rules: { ...typescript.configs.recommended.rules },
   },
   { files, ...reactRecommended },
@@ -29,21 +35,11 @@ export default [
     plugins: { 'react-hooks': reactHooks },
     rules: reactHooks.configs.recommended.rules,
   },
-  // {
-  //   files: jsxFiles,
-  //   plugins: { 'jsx-a11y': jsxA11y },
-  //   languageOptions: {
-  //     globals: {
-  //       ...globals.browser,
-  //     },
-  //   },
-  //   ...jsxA11y.configs.recommended.rules,
-  // },
   prettier,
   {
     files,
     languageOptions: {
-      globals: { ...globals.browser },
+      globals: { ...globals.browser, ...globals.node },
     },
     settings: { react: { version: 'detect' } },
   },

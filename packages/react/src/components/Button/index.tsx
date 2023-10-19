@@ -1,11 +1,13 @@
-import { type ButtonHTMLAttributes, useMemo } from 'react'
+import { useMemo, type HTMLAttributes } from 'react'
+import { JSX } from 'react'
 
-import type { Color } from '@/utils/colors'
+
 import { LoadingIcon } from '../Icon/LoadingIcon'
 import { style } from './style'
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: Color
+ 
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  color?: string
   variant?: 'solid' | 'soft' | 'outline' | 'ghost' | 'link'
   size?: 'sm' | 'md' | 'lg'
   block?: boolean
@@ -16,7 +18,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
 
   icon?: JSX.Element
-  children?: JSX.Element
 }
 
 export function Button(props: ButtonProps) {

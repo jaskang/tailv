@@ -9,12 +9,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
+    {enforce: 'pre',...mdx()  },
     react(),
-    mdx()
   ],
   resolve: {
     alias: {
-      'zonda': resolve(__dirname, '../src'),
+      '@zonda/react': resolve(__dirname, '../react/src'),
     },
   },
 })

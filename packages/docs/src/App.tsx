@@ -1,11 +1,9 @@
-import { Button } from "../src"
-
-
+import Button from "./Button.mdx"
 
 function App() {
   return (
     <>
-      <Button>Button</Button>
+      <Button/>
     </>
   )
 }

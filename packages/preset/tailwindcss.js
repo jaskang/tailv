@@ -1,7 +1,5 @@
-
-import colors from 'tailwindcss/colors'
-import forms from '@tailwindcss/forms'
-
+const colors = require('tailwindcss/colors')
+const forms = require('@tailwindcss/forms')
 
 function extractColorVars(colorObj, colorGroup = '') {
   return Object.keys(colorObj).reduce((vars, key) => {
@@ -12,10 +10,10 @@ function extractColorVars(colorObj, colorGroup = '') {
       return { ...vars, ...extractColorVars(value, `${key}`) }
     }
   }, {})
-} 
+}
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   theme: {
     extend: {
       colors: {
@@ -26,9 +24,9 @@ export default {
       },
     },
   },
-  plugin:[
+  plugins: [
     forms({ strategy: 'base' }),
-    function ({ addBase, addComponents, theme }){
+    function ({ addBase, addComponents, theme }) {
       const all = extractColorVars(theme('colors'))
       addBase({
         ':root': all,
@@ -44,8 +42,8 @@ export default {
             backgroundColor: 'var(--z-btn-bg_hover, var(--z-btn-bg))',
             borderColor: 'var(--z-btn-border_hover, var(--z-btn-border))',
           },
-        }, 
+        },
       })
     },
-  ]
+  ],
 }
