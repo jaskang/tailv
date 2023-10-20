@@ -1,5 +1,5 @@
 import { useMemo, type HTMLAttributes } from 'react'
-import { JSX } from 'react'
+import type { JSX } from 'react'
 
 
 import { LoadingIcon } from '../Icon/LoadingIcon'
@@ -8,7 +8,7 @@ import { style } from './style'
  
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   color?: string
-  variant?: 'solid' | 'soft' | 'outline' | 'ghost' | 'link'
+  variant?: 'default' | 'solid' | 'soft' | 'outline' | 'ghost' | 'link'
   size?: 'sm' | 'md' | 'lg'
   block?: boolean
   pill?: boolean

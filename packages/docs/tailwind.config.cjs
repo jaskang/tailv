@@ -1,4 +1,5 @@
 const preset = require('@zonda/preset')
+const typography = require('@tailwindcss/typography')
 
 module.exports = {
   darkMode: 'class',
@@ -8,5 +9,5 @@ module.exports = {
     './node_modules/@zonda/react/src/**/*.{ts,tsx}',
   ],
   presets: [preset.tailwindcss],
-  plugins: [],
+  plugins: [typography({ target: 'modern' })],
 }
