@@ -4,10 +4,11 @@ import type { JSX } from 'react'
 
 import { LoadingIcon } from '../Icon/LoadingIcon'
 import { style } from './style'
+import type { Color } from '@/utils/colors'
 
  
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  color?: string
+  color?: Color
   variant?: 'default' | 'solid' | 'soft' | 'outline' | 'ghost' | 'link'
   size?: 'sm' | 'md' | 'lg'
   block?: boolean

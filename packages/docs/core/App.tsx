@@ -1,4 +1,4 @@
-import Button from './Button.mdx'
+import Button from '../pages/Button.mdx'
 
 function App() {
   return (

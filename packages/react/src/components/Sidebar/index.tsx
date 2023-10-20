@@ -1,72 +1,28 @@
-import type { Color } from '@/theme/colors'
-import {
-  computed,
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-  ref,
-  type SlotsType,
-  type VNode,
-} from 'vue'
+import type { HTMLAttributes, ReactNode } from 'react'
 
-
-
-const props = {
-  items: {
-    type: String as PropType<Color>,
-  },
-  loading: Boolean,
-  disabled: Boolean,
+type SidebarItemType = {
+  key: string
+  label: ReactNode
+  icon?: ReactNode
+  disabled?: boolean
+  children?: SidebarItemType[]
 }
 
-export type SidebarProps = ExtractPropTypes<typeof props>
-
-export type SidebarPublicProps = ExtractPublicPropTypes<typeof props>
-
-export type SidebarCssVars = {
-  '--z-btn-text-color': string
-  '--z-btn-border-color': string
-  '--z-btn-bg': string
-
-  '--z-btn-text-color-hover': string
-  '--z-btn-border-color-hover': string
-  '--z-btn-bg-hover': string
-
-  '--z-btn-ring-color': string
+interface SidebarProps extends HTMLAttributes<HTMLUListElement> {
+  items: SidebarItemType[]
 }
 
-export const Sidebar = defineComponent({
-  name: 'ZSidebar',
-  props,
-  emits: {} as {
-    click(payload: MouseEvent): void
-  },
-  slots: Object as SlotsType<{
-    default: { foo: string; bar: number }
-    item: { data: number }
-  }>,
-  setup(props, { slots, emit }) {
-
-    return () => (
-      <div class="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-white overflow-y-auto">
-    <div class="flex items-center flex-shrink-0 px-4">
-      <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow" />
-    </div>
-    <div class="mt-5 flex-grow flex flex-col">
-      <nav class="flex-1 px-2 bg-white space-y-1" aria-label="Sidebar">
-        <a v-for="item in navigation" key="item.name" href="item.href" class="[item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
-          <component is="item.icon" :class="[item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
-          <span class="flex-1">
-            {{ item.name }}
-          </span>
-          <span v-if="item.count" :class="[item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200', 'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full']">
-            {{ item.count }}
-          </span>
-        </a>
-      </nav>
-    </div>
-  </div>
-    )
-  },
-})
+export const Sidebar = ({ items }: SidebarProps) => {
+  return (
+    <ul className="space-y-6 lg:space-y-2 border-l border-slate-100 dark:border-slate-800">
+      {items.map(item => (
+        <li key={item.key} className="block border-l pl-4 -ml-px border-transparent ">
+          <p className="mb-8 font-semibold text-slate-900 dark:text-slate-200">
+            {item.label}
+          </p>
+          {item.children && <Sidebar items={item.children} />}
+        </li>
+      ))}
+    </ul>
+  )
+}

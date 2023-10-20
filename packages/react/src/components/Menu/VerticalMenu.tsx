@@ -1,36 +1,10 @@
-import {
-  computed,
-  defineComponent,
-  type ExtractPropTypes,
-  type ExtractPublicPropTypes,
-  type PropType,
-  type SlotsType,
-} from 'vue'
 
-import type { Color } from '@/theme/colors'
 
-const props = {
-  color: {
-    type: String as PropType<Color>,
-  },
-  loading: Boolean,
-  disabled: Boolean,
+export const FlatMenu = ()=>{
+  return <div>
+    
+  </div>
 }
-
-export type VerticalMenuProps = ExtractPublicPropTypes<typeof props>
-
-export type VerticalMenuCssVars = {
-  '--z-btn-text-color': string
-  '--z-btn-border-color': string
-  '--z-btn-bg': string
-
-  '--z-btn-text-color-hover': string
-  '--z-btn-border-color-hover': string
-  '--z-btn-bg-hover': string
-
-  '--z-btn-ring-color': string
-}
-
 export const VerticalMenu = defineComponent({
   name: 'ZVerticalMenu',
   props,
@@ -55,7 +29,7 @@ export const VerticalMenu = defineComponent({
       }
     }
     return () => (
-      <div style={cssVars.value} class={cls.value}>
+      <div style={cssVars.value} className={cls.value}>
         {slots.default?.()}
       </div>
     )

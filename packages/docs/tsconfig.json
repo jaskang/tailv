@@ -22,9 +22,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "@": ["src/*"],
+      "@/*": ["packages/react/src/*"],
       "@zonda/react": ["../react/src"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["core/**/*", "pages/**/*"]
 }
