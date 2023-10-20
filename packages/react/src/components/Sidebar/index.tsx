@@ -12,7 +12,7 @@ interface SidebarProps extends HTMLAttributes<HTMLUListElement> {
   items: SidebarItemType[]
 }
 
-export const Sidebar = ({ items }: SidebarProps) => {
+export const DocSidebar = ({ items }: SidebarProps) => {
   return (
     <ul className="space-y-6 lg:space-y-2 border-l border-slate-100 dark:border-slate-800">
       {items.map(item => (

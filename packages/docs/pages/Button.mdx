@@ -1,69 +1,11 @@
 import { Button } from '@zonda/react'
-import { Sidebar } from '@zonda/react'
-
-# Sidebar
-
-<div class="not-prose flex items-center space-x-2">
-  <Sidebar
-    items={[
-      {
-        label: 'Navigation One',
-        key: 'mail',
-      },
-      {
-        label: 'Navigation Two',
-        key: 'app',
-        disabled: true,
-      },
-      {
-        label: 'Navigation Three - Submenu',
-        key: 'SubMenu',
-        children: [
-          {
-            label: 'Item 1',
-            children: [
-              {
-                label: 'Option 1',
-                key: 'setting:1',
-              },
-              {
-                label: 'Option 2',
-                key: 'setting:2',
-              },
-            ],
-          },
-          {
-            label: 'Item 2',
-            children: [
-              {
-                label: 'Option 3',
-                key: 'setting:3',
-              },
-              {
-                label: 'Option 4',
-                key: 'setting:4',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: (
-          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-            Navigation Four - Link
-          </a>
-        ),
-        key: 'alipay',
-      },
-    ]}
-  />
-</div>
+import { DocSidebar } from '../core/components/DocSidebar'
 
 # Button
 
-<div class="flex items-center space-x-2">
+<div className="flex items-center space-x-2">
   <Button variant="solid" color="primary">
-    Button
+    Button 
   </Button>
 
   <Button variant="solid" loading>
