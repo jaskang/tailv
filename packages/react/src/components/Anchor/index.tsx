@@ -89,8 +89,8 @@ export interface AnchorGroupProps extends Omit<HTMLAttributes<HTMLDivElement>,'o
   selectedKey?: string
   onChange?: (key: string) => void
   items: {
+    key: string
     title: string
-    key?: string
     children: AnchorItem[]
   }[]
 }
