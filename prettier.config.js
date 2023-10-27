@@ -1,5 +1,3 @@
-import prettier from '@jaskang/config/prettier'
-
 export default {
   printWidth: 100,
   tabWidth: 2,

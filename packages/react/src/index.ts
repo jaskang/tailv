@@ -2,5 +2,5 @@
 
 
 export { Button } from './components/Button'
-export { Sidebar } from './components/Sidebar'
+export { Anchor } from './components/Anchor'
 // export default Wlenext

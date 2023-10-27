@@ -9,6 +9,13 @@ module.exports = {
     './pages/**/*.{ts,tsx,md,mdx}',
     './node_modules/@zonda/react/src/**/*.{ts,tsx}',
   ],
+  theme: {
+    extend: {
+      maxWidth: {
+        '8xl': '90rem',
+      },
+    },
+  },
   presets: [preset.tailwindcss],
   plugins: [typography({ target: 'modern' })],
 }

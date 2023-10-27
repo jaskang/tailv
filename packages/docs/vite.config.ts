@@ -9,8 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
-    {enforce: 'pre',...mdx(
-    )  },
+    {enforce: 'pre',...mdx()  },
     react(),
   ],
   resolve: {

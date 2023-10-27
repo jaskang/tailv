@@ -1,8 +1,0 @@
-@keyframes z-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.z-animate-spin {
-  animation: z-spin 1s linear infinite;
-}
