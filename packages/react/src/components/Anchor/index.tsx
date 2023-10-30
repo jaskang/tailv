@@ -89,7 +89,7 @@ export interface AnchorGroupProps extends Omit<HTMLAttributes<HTMLDivElement>,'o
   selectedKey?: string
   onChange?: (key: string) => void
   items: {
-    key: string
+    key?: string
     title: string
     children: AnchorItem[]
   }[]
@@ -99,7 +99,7 @@ export const AnchorGroup = (props: AnchorGroupProps) => {
   const { items, className, style } = props
   const [value, setValue] = useControllableValue<string>(props, {
     valuePropName: 'selectedKey',
-  })
+  }) 
   const onChange = (key: string) => {
     setValue(key)
   }
