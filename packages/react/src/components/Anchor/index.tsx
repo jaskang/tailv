@@ -1,6 +1,8 @@
+import type { DomProps } from '@/utils'
+
 import { useControllableValue } from 'ahooks'
 import { clsx } from 'kotl'
-import { useMemo, type ReactNode, type HtmlHTMLAttributes, type HTMLAttributes, type BaseHTMLAttributes } from 'react'
+import { useMemo } from 'react'
 
 export type AnchorItem = {
   key: string
@@ -85,7 +87,7 @@ export const Anchor = (props: AnchorProps) => {
   )
 }
 
-export interface AnchorGroupProps extends Omit<HTMLAttributes<HTMLDivElement>,'onChange'> {
+export type AnchorGroupProps = DomProps<{
   selectedKey?: string
   onChange?: (key: string) => void
   items: {
@@ -93,13 +95,13 @@ export interface AnchorGroupProps extends Omit<HTMLAttributes<HTMLDivElement>,'o
     title: string
     children: AnchorItem[]
   }[]
-}
+}>
 
 export const AnchorGroup = (props: AnchorGroupProps) => {
   const { items, className, style } = props
   const [value, setValue] = useControllableValue<string>(props, {
     valuePropName: 'selectedKey',
-  }) 
+  })
   const onChange = (key: string) => {
     setValue(key)
   }

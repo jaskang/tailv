@@ -2,6 +2,7 @@ import { AnchorGroup } from '@zonda/react'
 import { useState } from 'react'
 
 import Button from '../pages/Button.mdx'
+import { config } from './config'
 
 function App() {
   const [currKey, setCurrKey] = useState('assadfas')
@@ -109,59 +110,7 @@ function App() {
       </div>
       <div className="max-w-8xl mx-auto flex px-4 sm:px-6 md:px-8">
         <div className="fixed inset-0 left-[max(0px,calc(50%-45rem))] right-auto top-[3.8125rem] z-20 hidden w-[19rem] overflow-y-auto pb-10 pl-8 pr-6 lg:block ">
-          <AnchorGroup
-            items={[
-              {
-                children: [
-                  {
-                    key: '/docs/getting-started/installation',
-                    title: 'Installation',
-                  },
-                  {
-                    children: [
-                      { key: 'assadfas', title: 'assadfas' },
-                      { key: 'assadfas2', title: 'assadfas2' },
-                      { key: 'assadfas3', title: 'assadfas3' },
-                    ],
-                    key: '/docs/getting-started/core-concepts',
-                    title: 'Core Concepts',
-                  },
-                  {
-                    key: '/docs/getting-started/getting-started',
-                    title: 'Getting Started',
-                  },
-                ],
-                title: 'Getting Started',
-              },
-              {
-                children: [
-                  {
-                    key: '/docs/array/alphabetical',
-                    title: 'alphabetical',
-                  },
-                  {
-                    key: '/docs/array/boil',
-                    title: 'boil',
-                  },
-                  {
-                    key: '/docs/array/cluster',
-                    title: 'cluster',
-                  },
-                  {
-                    key: '/docs/array/counting',
-                    title: 'counting',
-                  },
-                  {
-                    key: '/docs/array/diff',
-                    title: 'diff',
-                  },
-                ],
-                title: 'Array',
-              },
-            ]}
-            onChange={onChange}
-            selectedKey={currKey}
-          />
+          <AnchorGroup items={config.sidebar} onChange={onChange} selectedKey={currKey} />
         </div>
         <div className="lg:pl-[19.5rem] ">
           <div className="mx-auto max-w-3xl pt-10 xl:ml-0 xl:mr-[15.5rem] xl:max-w-none xl:pr-16">
