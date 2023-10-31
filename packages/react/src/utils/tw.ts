@@ -1,4 +1,4 @@
-import { clsx, type Flat } from 'kotl'
+import { type Flat, clsx } from 'kotl'
 
 type TwValue = string | [string, string]
 

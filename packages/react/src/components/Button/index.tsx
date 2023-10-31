@@ -1,47 +1,47 @@
-import { useMemo, type HTMLAttributes } from 'react'
-import type { JSX } from 'react'
-
-
-import { LoadingIcon } from '../Icon/LoadingIcon'
-import { style } from './style'
+import type { DomProps } from '@/utils'
 import type { Color } from '@/utils/colors'
 
- 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+import { type ReactNode, useMemo } from 'react'
+
+import { LoadingIcon } from '../Icon/LoadingIcon'
+import { createBtnStyle } from './style'
+
+export type ButtonProps = DomProps<{
+  variant?: 'default' | 'ghost' | 'link' | 'outline' | 'soft' | 'solid'
+  size?: 'lg' | 'md' | 'sm'
   color?: Color
-  variant?: 'default' | 'solid' | 'soft' | 'outline' | 'ghost' | 'link'
-  size?: 'sm' | 'md' | 'lg'
+  icon?: ReactNode
   block?: boolean
+  circle?: boolean
+  disabled?: boolean
+  loading?: boolean
   pill?: boolean
   square?: boolean
-  circle?: boolean
-  loading?: boolean
-  disabled?: boolean
-
-  icon?: JSX.Element
-}
+}>
 
 export function Button(props: ButtonProps) {
   const {
-    color = 'primary',
-    variant = 'default',
-    size = 'md',
     block = false,
-    pill = false,
-    square = false,
     circle = false,
-    loading = false,
+    color = 'primary',
     disabled = false,
-
     icon,
+    loading = false,
+    pill = false,
+    size = 'md',
+    square = false,
+    variant = 'default',
+
     children,
+    className,
+    style,
   } = props
   const { css, vars } = useMemo(
-    () => style({ variant, size, block, pill, square, circle, loading, disabled, color }),
+    () => createBtnStyle({ block, circle, color, disabled, loading, pill, size, square, variant }),
     [variant, size, block, pill, square, circle, loading, disabled, color]
   )
-  return ( 
-    <button className={css} style={vars} type="button" disabled={disabled}>
+  return (
+    <button className={`${css} ${className}`} disabled={disabled} style={vars} type="button">
       {(icon || loading) && (
         <i className="h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">
           {loading ? <LoadingIcon className="animate-spin" /> : icon}

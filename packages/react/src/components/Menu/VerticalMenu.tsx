@@ -1,9 +1,5 @@
-
-
-export const FlatMenu = ()=>{
-  return <div>
-    
-  </div>
+export const FlatMenu = () => {
+  return <div></div>
 }
 export const VerticalMenu = defineComponent({
   name: 'ZVerticalMenu',
