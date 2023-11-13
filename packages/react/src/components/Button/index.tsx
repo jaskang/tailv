@@ -1,7 +1,7 @@
 import type { DomProps } from '@/utils'
 import type { Color } from '@/utils/colors'
 
-import { ComponentProps, type ReactNode, useMemo } from 'react'
+import { type ComponentProps, type ReactNode, useMemo } from 'react'
 
 import { LoadingIcon } from '../Icon/LoadingIcon'
 import { createBtnStyle } from './style'

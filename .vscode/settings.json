@@ -2,5 +2,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "references.preferredLocation": "peek",
   "tailwindCSS.experimental.configFile": "packages/docs/tailwind.config.cjs",
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "eslint.experimental.useFlatConfig": true
 }

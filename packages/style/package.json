@@ -1,0 +1,15 @@
+{
+  "name": "@zonda/style",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@floating-ui/react": "^0.26.1",
+    "ahooks": "^3.7.8",
+    "kotl": "^1.7.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

@@ -38,6 +38,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "eslint-plugin-vue": "^9.18.1",
     "globals": "^13.23.0",
     "happy-dom": "^12.9.1",
     "mini-svg-data-uri": "^1.4.4",
@@ -49,7 +50,8 @@
     "vite": "^4.5.0",
     "vite-plugin-dts": "^3.6.0",
     "vite-plugin-inspect": "^0.7.40",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "vue-eslint-parser": "^9.3.2"
   },
   "engines": {
     "node": ">=16.18.0",
