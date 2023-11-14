@@ -15,6 +15,10 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vue": "^3.3.8"
+  },
+  "devDependencies": {
+    "vue": "^3.3.8"
   }
 }

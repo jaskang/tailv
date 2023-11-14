@@ -23,9 +23,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["packages/react/src/*"]
+      "@zonda/style": ["packages/style/src"]
     }
   },
-  "include": ["packages/**/*"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["packages/**/*"]
 }

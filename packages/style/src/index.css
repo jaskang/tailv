@@ -1,0 +1,11 @@
+.z-btn {
+  color: var(--z-btn-text, theme('colors.gray.700'));
+  background-color: var(--z-btn-bg, #fff);
+  border-color: var(--z-btn-border, transparent);
+  outline-color: var(--z-btn-outline);
+}
+.z-btn:enabled:hover {
+  color: var(--z-btn-text_hover, var(--z-btn-text));
+  background-color: var(--z-btn-bg_hover, var(--z-btn-bg));
+  border-color: var(--z-btn-border_hover, var(--z-btn-border));
+}

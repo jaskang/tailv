@@ -1,14 +1,14 @@
-import { createColorVars } from './utils/style'
+import { createVars, cvar, type ColorName } from './utils/style'
 import { tw } from './utils/tw'
 
 const css = tw(
   `z-btn appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
-  focus-visible:outline-2 focus-visible:outline focus-visible:outline-offset-2`,
+  focus-visible:outline focus-visible:outline-2  focus-visible:outline-offset-2`,
   {
     compoundVariants: [
-      { class: 'w-8', size: 'sm', square: true },
-      { class: 'w-9', size: 'md', square: true },
-      { class: 'w-10', size: 'lg', square: true },
+      { size: 'sm', square: true, class: 'w-8' },
+      { size: 'md', square: true, class: 'w-9' },
+      { size: 'lg', square: true, class: 'w-10' },
     ],
     variants: {
       block: {
@@ -44,63 +44,71 @@ const css = tw(
   }
 )
 
-export const createBtnStyle = (props: ButtonInnerProps) => {
+export const createButtonStyle = (props: {
+  variant: 'default' | 'ghost' | 'link' | 'outline' | 'soft' | 'solid'
+  size: 'sm' | 'md' | 'lg'
+  color: ColorName
+  block: boolean
+  disabled: boolean
+  pill: boolean
+  square: boolean
+}) => {
   const vars =
     props.variant === 'solid'
-      ? createColorVars('z-btn', {
-          bg: `${props.color}500`,
-          bg_hover: `${props.color}600`,
+      ? createVars('z-btn', {
+          bg: cvar(`${props.color}500`),
+          bg_hover: cvar(`${props.color}600`),
           border: `transparent`,
-          outline: `${props.color}500`,
+          outline: cvar(`${props.color}500`),
           text: 'white',
         })
       : props.variant === 'soft'
-      ? createColorVars('z-btn', {
-          bg: `${props.color}100`,
-          bg_hover: `${props.color}200`,
+      ? createVars('z-btn', {
+          bg: cvar(`${props.color}100`),
+          bg_hover: cvar(`${props.color}200`),
           border: `transparent`,
-          outline: `${props.color}500`,
-          text: `${props.color}500`,
+          outline: cvar(`${props.color}500`),
+          text: cvar(`${props.color}500`),
         })
       : props.variant === 'outline'
-      ? createColorVars('z-btn', {
+      ? createVars('z-btn', {
           bg: 'transparent',
-          bg_hover: `${props.color}200`,
-          border: `${props.color}500`,
-          outline: `${props.color}500`,
-          text: `${props.color}600`,
+          bg_hover: cvar(`${props.color}200`),
+          border: cvar(`${props.color}500`),
+          outline: cvar(`${props.color}500`),
+          text: cvar(`${props.color}600`),
         })
       : props.variant === 'ghost'
-      ? createColorVars('z-btn', {
+      ? createVars('z-btn', {
           bg: `transparent`,
-          bg_hover: `${props.color}100`,
+          bg_hover: cvar(`${props.color}100`),
           border: `transparent`,
-          outline: `${props.color}500`,
-          text: `${props.color}600`,
+          outline: cvar(`${props.color}500`),
+          text: cvar(`${props.color}600`),
         })
       : props.variant === 'link'
-      ? createColorVars('z-btn', {
+      ? createVars('z-btn', {
           bg: `transparent`,
           border: `transparent`,
-          outline: `${props.color}500`,
-          text: `${props.color}600`,
+          outline: cvar(`${props.color}500`),
+          text: cvar(`${props.color}600`),
         })
-      : createColorVars('z-btn', {
+      : createVars('z-btn', {
           bg: 'white',
-          bg_hover: 'slate50',
-          border: 'slate300',
-          border_hover: 'slate300',
-          outline: 'primary500',
-          text: 'slate700',
+          bg_hover: cvar('gray50'),
+          border: cvar('gray300'),
+          border_hover: cvar('gray300'),
+          outline: cvar(`${props.color}500`),
+          text: cvar('gray700'),
         })
 
   const ret = css({
     block: props.block,
     disabled: props.disabled,
-    pill: props.circle || props.pill,
+    pill: props.pill,
     size: props.size,
-    square: props.circle || props.square,
+    square: props.square,
     variant: props.variant,
   })
-  return { css: ret, vars: vars }
+  return { className: ret, style: vars }
 }
