@@ -10,12 +10,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   plugins: [
-    // {
-    //   enforce: 'pre',
-    //   ...mdx({
-    //     jsxImportSource: 'vue',
-    //   }),
-    // },
     mdx({
       jsxImportSource: 'vue',
     }),

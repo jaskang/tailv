@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@zonda/react": "workspace:*",
-    "@zonda/vue": "workspace:^",
+    "@zonda/vue": "workspace:*",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },

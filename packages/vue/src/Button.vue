@@ -5,7 +5,7 @@ import { createButtonStyle, type ColorName } from '@zonda/style'
 
 defineOptions({ name: 'ZButton' })
 const emit = defineEmits<{ click: [any] }>()
-const slots = defineSlots<{ default?(_: {}): any }>()
+const slots = defineSlots<{ default?(_: {}): any , icon?(_: {}): any}>()
 
 // variant: "default" | "ghost" | "link" | "outline" | "soft" | "solid";
 //     size: "sm" | "md" | "lg";
@@ -30,10 +30,11 @@ const props = defineProps({
   pill: Boolean,
   square: Boolean,
   block: Boolean,
+  loading: Boolean,
   disabled: Boolean,
 })
 
-const { className, style, icon } = useStyle(() =>
+const { css, style, icon } = useStyle(() =>
   createButtonStyle({
     variant: props.variant,
     size: props.size,
@@ -46,9 +47,13 @@ const { className, style, icon } = useStyle(() =>
 )
 </script>
 <template>
-  <button :class="className" :disabled="props.disabled" :style="style" type="button">
-    {(icon || loading) && (
-    <i :class="icon"> {loading ? <LoadingIcon className="animate-spin" /> : icon} </i>
-    )} {children}
+  <button :class="css" :disabled="props.disabled" :style="style" type="button">
+    <template v-if="loading">
+      <i :class="icon"> 
+        <LoadingIcon v-if="loading" className="animate-spin" />
+        <slot v-else name="icon"/>
+      </i> 
+    </template>
+    <slot />
   </button>
 </template>

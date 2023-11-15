@@ -111,7 +111,7 @@ export const createButtonStyle = (props: {
     variant: props.variant,
   })
   return {
-    className: ret,
+    css: ret,
     style: vars,
     icon: 'h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full',
   }

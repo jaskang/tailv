@@ -1,19 +1,19 @@
-export type AnchorOption = {
+export type AnchorItem = {
   key: string
   title: string
-  children?: AnchorOption[]
+  children?: AnchorItem[]
 }
 
 export interface AnchorProps {
   selectedKey?: string
-  options: AnchorOption[]
+  items: AnchorItem[]
 }
 
 export type AnchorGroupProps = {
   selectedKey?: string
-  groups: {
-    key?: string
+  children: {
+    key: string
     title: string
-    options: AnchorOption[]
+    children: AnchorItem[]
   }[]
 }
