@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
+import { type PropType } from 'vue'
 import { useStyle } from './utils/style'
 import { createButtonStyle, type ColorName } from '@zonda/style'
 
@@ -33,7 +33,7 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const { className, style } = useStyle(() =>
+const { className, style, icon } = useStyle(() =>
   createButtonStyle({
     variant: props.variant,
     size: props.size,
@@ -48,9 +48,7 @@ const { className, style } = useStyle(() =>
 <template>
   <button :class="className" :disabled="props.disabled" :style="style" type="button">
     {(icon || loading) && (
-    <i className="h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">
-      {loading ? <LoadingIcon className="animate-spin" /> : icon}
-    </i>
-    )} {children && <span className="inline-flex items-center">{children}</span>}
+    <i :class="icon"> {loading ? <LoadingIcon className="animate-spin" /> : icon} </i>
+    )} {children}
   </button>
 </template>
