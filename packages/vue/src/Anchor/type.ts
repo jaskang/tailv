@@ -1,19 +1,12 @@
-export type AnchorItem = {
+export type IAnchorItem = {
   key: string
   title: string
-  children?: AnchorItem[]
+  href?: string
+  isGroup?: boolean
+  children?: IAnchorItem[]
 }
 
-export interface AnchorProps {
+export type AnchorProps = {
   selectedKey?: string
-  items: AnchorItem[]
-}
-
-export type AnchorGroupProps = {
-  selectedKey?: string
-  children: {
-    key: string
-    title: string
-    children: AnchorItem[]
-  }[]
+  items: IAnchorItem[]
 }

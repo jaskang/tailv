@@ -1,3 +1,3 @@
 export { default as Button } from './Button.vue'
-export { default as Anchor } from './Anchor/Anchor.vue'
-export { default as AnchorGroup } from './Anchor/AnchorGroup.vue'
+export { Anchor, AnchorGroup } from './Anchor'
+export type { AnchorGroupProps, AnchorProps, IAnchorItem, IAnchorGroup } from './Anchor'

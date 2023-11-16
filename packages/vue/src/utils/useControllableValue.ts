@@ -20,15 +20,13 @@ export function useControllableValue<T>(props: Props = {}, options: Options<T> =
   const trigger = options.trigger || `update:${valuePropName}`
 
   const ctx = getCurrentInstance()
-  const isControlled = computed(() => props.value !== undefined)
+  const isControlled = computed(() => props[valuePropName] !== undefined)
 
   const initialValue = ref(
-    isControlled.value
-      ? props.value
-      : props[valuePropName] || props[defaultValuePropName] || defaultValue
+    isControlled.value ? props[valuePropName] : props[defaultValuePropName] || defaultValue
   )
 
-  const state = computed<T>(() => (isControlled.value ? props.value : initialValue.value))
+  const state = computed<T>(() => (isControlled.value ? props[valuePropName] : initialValue.value))
 
   return [
     state,

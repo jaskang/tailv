@@ -1,10 +1,10 @@
-import type { AnchorOption } from './type'
+import type { IAnchorItem } from './type'
 
 // 查找当前 key 在 items 中的位置
-export function findKeyOffset(items: AnchorOption[], key: string): number | null {
+export function findKeyOffset(items: IAnchorItem[], key: string): number | null {
   let index = 0
   let group = 0
-  function find(arr: AnchorOption[]) {
+  function find(arr: IAnchorItem[]) {
     for (let i = 0; i < arr.length; i++) {
       const { key: childKey, children } = arr[i]
       if (childKey === key) {
@@ -20,6 +20,7 @@ export function findKeyOffset(items: AnchorOption[], key: string): number | null
     }
     return false
   }
+  console.log('findKeyOffset')
   if (find(items)) {
     return index * 2 + group * 0.25
     // return index * 2

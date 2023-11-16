@@ -157,7 +157,7 @@ importers:
         specifier: workspace:*
         version: link:../react
       '@zonda/vue':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../vue
       vue:
         specifier: ^3.3.8
