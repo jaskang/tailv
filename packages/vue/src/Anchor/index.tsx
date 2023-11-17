@@ -1,11 +1,11 @@
 import { type PropType, defineComponent } from 'vue'
-import { createAnchorStyle } from '@zonda/style'
+import { createAnchorItemStyle, createAnchorStyle } from '@zonda/style'
 import { computed } from 'vue'
 import { useControllableValue } from '../utils/useControllableValue'
 
 export type IAnchorItem = {
   key: string
-  title: string
+  title?: string
   href?: string
   isGroup?: boolean
   children?: IAnchorItem[]
@@ -15,33 +15,72 @@ export type AnchorProps = {
   selectedKey?: string
   items: IAnchorItem[]
 }
-
-// 查找当前 key 在 items 中的位置
-function findKeyOffset(items: IAnchorItem[], key: string): number | null {
-  let index = 0
-  let group = 0
-  function find(arr: IAnchorItem[]) {
-    for (let i = 0; i < arr.length; i++) {
-      const { key: childKey, children } = arr[i]
-      if (childKey === key) {
-        return true
-      }
-      index++
-      if (children && children.length > 0) {
-        if (find(children)) {
-          return true
-        }
-        group++
+function findItemPathByKey(
+  items: IAnchorItem[],
+  key: string,
+  path: number[] = []
+): number[] | undefined {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i]
+    // 当前路径
+    const currentPath = path.concat(i)
+    // 如果找到了键，返回路径
+    if (item.key === key) {
+      return currentPath
+    }
+    // 如果存在子项，递归搜索子项
+    if (item.children) {
+      const childPath = findItemPathByKey(item.children, key, currentPath)
+      if (childPath) {
+        return childPath
       }
     }
-    return false
   }
-  console.log('findKeyOffset')
-  if (find(items)) {
-    return index * 2 + group * 0.25
-    // return index * 2
+  // 如果没有找到，返回undefined
+  return undefined
+}
+
+function calculateTranslateY(
+  items: IAnchorItem[],
+  key: string,
+  isGroup = false,
+  accumulatedHeight = 0
+): number | undefined {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i]
+
+    let itemHeight = 2
+    // 计算当前项的高度（基础高度 + 子项额外高度，根据是否是第一层来调整）
+    if (item.children) {
+      if (isGroup) {
+        itemHeight = i === 0 ? 2 : 4
+      } else {
+        itemHeight = 2.25
+      }
+    }
+
+    // 如果找到了键，返回累积的高度
+    if (item.key === key) {
+      return accumulatedHeight // 直接返回累积的rem值
+    }
+
+    // 累加当前项的高度
+    accumulatedHeight += itemHeight
+
+    // 如果存在子项，递归搜索子项
+    if (item.children) {
+      const translateY = calculateTranslateY(item.children, key, false, accumulatedHeight)
+      if (translateY !== undefined) {
+        return translateY
+      }
+      // 如果子项中没有找到，累加子项的高度
+      accumulatedHeight += item.children.reduce((total, child) => {
+        return total + 2 // 子项没有额外高度
+      }, 0)
+    }
   }
-  return null
+  // 如果没有找到，返回undefined
+  return undefined
 }
 
 const AnchorItems = defineComponent({
@@ -62,23 +101,21 @@ const AnchorItems = defineComponent({
     return () => (
       <>
         {props.items.map(item => (
-          <>
-            <div class={css} key="{item.key}">
-              <div
-                class={itemStyler(item.key === props.selectedKey)}
-                onClick={() => onChange(item.key)}
-              >
-                {item.title}
-              </div>
-              {item.children && item.children.length > 0 && (
-                <AnchorItems
-                  items={item.children}
-                  selectedKey={props.selectedKey}
-                  onChange={onChange}
-                />
-              )}
+          <div class={css} key={item.key}>
+            <div
+              class={itemStyler(item.key === props.selectedKey)}
+              onClick={() => onChange(item.key)}
+            >
+              {item.title || item.key}
             </div>
-          </>
+            {item.children && item.children.length > 0 && (
+              <AnchorItems
+                items={item.children}
+                selectedKey={props.selectedKey}
+                onChange={onChange}
+              />
+            )}
+          </div>
         ))}
       </>
     )
@@ -96,15 +133,15 @@ export const Anchor = defineComponent({
     isGroup: Boolean,
   },
   emits: {
-    'update:selectedKey': (val: string) => {},
-    change: (val: string) => {},
+    'update:selectedKey': (val: string) => true,
+    change: (val: string) => true,
   },
   setup(props, { emit }) {
     const [state, setState] = useControllableValue<string>(props, {
       valuePropName: 'selectedKey',
     })
 
-    const offset = computed(() => findKeyOffset(props.items, state.value))
+    const offset = computed(() => calculateTranslateY(props.items, state.value, props.isGroup))
 
     const onChange = (val: string) => {
       setState(val)
@@ -114,28 +151,53 @@ export const Anchor = defineComponent({
     const { css, warper, cursor } = createAnchorStyle()
     return () => (
       <div class={warper}>
-        <div class={css}>
-          {typeof offset === 'number' && (
-            <div class={cursor} style="{ transform: `translateY(${offset}rem)` }" />
-          )}
-          {props.isGroup ? (
-            props.items.map(group => (
-              <div class="z-anchor-group mt-12 lg:mt-8">
-                <div class="mb-8 text-sm font-semibold text-slate-900 dark:text-slate-200 lg:mb-3">
-                  {group.title}
-                </div>
+        {props.isGroup ? (
+          props.items.map(group => (
+            <div class="z-anchor-group mb-12 lg:mb-8">
+              <div class="mb-8 text-sm font-semibold text-slate-900 dark:text-slate-200 lg:mb-3">
+                {group.title || group.key}
+              </div>
+              <div class={css}>
                 <AnchorItems
                   items={group.children || []}
                   selectedKey={state.value}
                   onChange={onChange}
-                />
+                />{' '}
               </div>
-            ))
-          ) : (
+            </div>
+          ))
+        ) : (
+          <div class={css}>
             <AnchorItems items={props.items} selectedKey={state.value} onChange={onChange} />
-          )}
-        </div>
+          </div>
+        )}
+        {typeof offset.value === 'number' && (
+          <div class={cursor} style={{ transform: `translateY(${offset.value}rem)` }} />
+        )}
       </div>
     )
   },
 })
+
+// const list = [
+//   {
+//     key: 'a',
+//     children: [{ key: 'a-0' }, { key: 'a-1' }, { key: 'a-2' }, { key: 'a-3' }],
+//   },
+//   {
+//     key: 'b',
+//     children: [
+//       { key: 'b-0', children: [{ key: 'b-0-0' }, { key: 'b-0-1' }, { key: 'b-0-2' }] },
+//       { key: 'b-1', children: [{ key: 'b-1-0' }, { key: 'b-1-1' }, { key: 'b-1-2' }] },
+//       { key: 'b-2', children: [{ key: 'b-2-0' }, { key: 'b-2-1' }, { key: 'b-2-2' }] },
+//     ],
+//   },
+// ]
+
+// console.log(findKeyOffset(list, 'a')) // [0]
+// console.log(findKeyOffset(list, 'b')) // [1]
+// console.log(findKeyOffset(list, 'a-0')) // [0,0]
+// console.log(findKeyOffset(list, 'a-3')) // [0,3]
+// console.log(findKeyOffset(list, 'b-2')) // [1,2]
+// console.log(findKeyOffset(list, 'b-1-2')) // [1,1,2]
+// console.log(findKeyOffset(list, 'b-2-0')) // [1,2,0]

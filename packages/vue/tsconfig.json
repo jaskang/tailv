@@ -26,5 +26,5 @@
       "@zonda/style": ["../style/src"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/**/*.vue", "src/**/*.tsx"]
 }

@@ -1,16 +1,16 @@
-import { type IAnchorGroup } from '@zonda/vue'
+import { type IAnchorItem } from '@zonda/vue'
 
 export type Config = {
-  nav: IAnchorGroup[]
-  sidebar: IAnchorGroup[]
+  nav: IAnchorItem[]
+  sidebar: IAnchorItem[]
 }
 
 export default {
   nav: [],
   sidebar: [
     {
-      title: '基础组件',
-      items: [
+      key: '基础组件',
+      children: [
         {
           key: '/docs/getting-started/installation',
           title: '按钮 Button',
@@ -18,8 +18,8 @@ export default {
       ],
     },
     {
-      title: 'Array',
-      items: [
+      key: 'Array',
+      children: [
         {
           key: '/docs/array/alphabetical',
           title: 'alphabetical',
