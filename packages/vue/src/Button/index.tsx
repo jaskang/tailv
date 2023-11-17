@@ -7,6 +7,7 @@ import {
 } from 'vue'
 import { useStyle } from '../utils/style'
 import { type ColorName, createButtonStyle } from '@zonda/style'
+import { LoadingIcon } from '../Icon/LoadingIcon'
 
 const props = {
   variant: {
@@ -34,7 +35,7 @@ export const Button = defineComponent({
   name: 'ZButton',
   props: props,
   emits: [],
-  slots: {} as SlotsType<{
+  slots: Object as SlotsType<{
     default: any
     icon: any
   }>,
@@ -57,7 +58,7 @@ export const Button = defineComponent({
             {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon()}
           </i>
         )}
-        {slots.default()}
+        {slots.default?.()}
       </button>
     )
   },

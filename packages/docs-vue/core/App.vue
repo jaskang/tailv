@@ -109,7 +109,7 @@ const currKey = ref('assadfas')
     <div
       class="fixed inset-0 left-[max(0px,calc(50%-45rem))] right-auto top-[3.8125rem] z-20 hidden w-[19rem] overflow-y-auto pb-10 pl-8 pr-6 lg:block"
     >
-      <Anchor :items="config.sidebar" is-group v-model:selectedKey="currKey" />
+      <Anchor class="mt-8" :items="config.sidebar" is-group v-model:selectedKey="currKey" />
     </div>
     <div class="lg:pl-[19.5rem]">
       <div class="mx-auto max-w-3xl pt-10 xl:ml-0 xl:mr-[15.5rem] xl:max-w-none xl:pr-16">

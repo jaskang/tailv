@@ -63,44 +63,44 @@ export const createButtonStyle = (props: {
           text: 'white',
         })
       : props.variant === 'soft'
-      ? createVars('z-btn', {
-          bg: cvar(`${props.color}100`),
-          bg_hover: cvar(`${props.color}200`),
-          border: `transparent`,
-          outline: cvar(`${props.color}500`),
-          text: cvar(`${props.color}500`),
-        })
-      : props.variant === 'outline'
-      ? createVars('z-btn', {
-          bg: 'transparent',
-          bg_hover: cvar(`${props.color}200`),
-          border: cvar(`${props.color}500`),
-          outline: cvar(`${props.color}500`),
-          text: cvar(`${props.color}600`),
-        })
-      : props.variant === 'ghost'
-      ? createVars('z-btn', {
-          bg: `transparent`,
-          bg_hover: cvar(`${props.color}100`),
-          border: `transparent`,
-          outline: cvar(`${props.color}500`),
-          text: cvar(`${props.color}600`),
-        })
-      : props.variant === 'link'
-      ? createVars('z-btn', {
-          bg: `transparent`,
-          border: `transparent`,
-          outline: cvar(`${props.color}500`),
-          text: cvar(`${props.color}600`),
-        })
-      : createVars('z-btn', {
-          bg: 'white',
-          bg_hover: cvar('gray50'),
-          border: cvar('gray300'),
-          border_hover: cvar('gray300'),
-          outline: cvar(`${props.color}500`),
-          text: cvar('gray700'),
-        })
+        ? createVars('z-btn', {
+            bg: cvar(`${props.color}100`),
+            bg_hover: cvar(`${props.color}200`),
+            border: `transparent`,
+            outline: cvar(`${props.color}500`),
+            text: cvar(`${props.color}500`),
+          })
+        : props.variant === 'outline'
+          ? createVars('z-btn', {
+              bg: 'transparent',
+              bg_hover: cvar(`${props.color}200`),
+              border: cvar(`${props.color}500`),
+              outline: cvar(`${props.color}500`),
+              text: cvar(`${props.color}600`),
+            })
+          : props.variant === 'ghost'
+            ? createVars('z-btn', {
+                bg: `transparent`,
+                bg_hover: cvar(`${props.color}100`),
+                border: `transparent`,
+                outline: cvar(`${props.color}500`),
+                text: cvar(`${props.color}600`),
+              })
+            : props.variant === 'link'
+              ? createVars('z-btn', {
+                  bg: `transparent`,
+                  border: `transparent`,
+                  outline: cvar(`${props.color}500`),
+                  text: cvar(`${props.color}600`),
+                })
+              : createVars('z-btn', {
+                  bg: 'white',
+                  bg_hover: cvar('gray50'),
+                  border: cvar('gray300'),
+                  border_hover: cvar('gray300'),
+                  outline: cvar(`${props.color}500`),
+                  text: cvar('gray700'),
+                })
 
   const ret = css({
     block: props.block,
@@ -113,6 +113,6 @@ export const createButtonStyle = (props: {
   return {
     css: ret,
     style: vars,
-    icon: 'h-[1em] w-[1em] scale-125 [&_+_span]:ml-1.5 [&_svg]:h-full [&_svg]:w-full',
+    icon: 'h-[1em] w-[1em] scale-125 [&_+_*]:ml-1.5 [&_svg]:h-full [&_svg]:w-full',
   }
 }
