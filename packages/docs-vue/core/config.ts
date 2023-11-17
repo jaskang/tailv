@@ -12,7 +12,7 @@ export default {
       key: '基础组件',
       children: [
         {
-          key: '/docs/getting-started/installation',
+          key: 'Button',
           title: '按钮 Button',
         },
       ],

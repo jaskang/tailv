@@ -1,10 +1,4 @@
-import {
-  type PropType,
-  defineComponent,
-  type SlotsType,
-  ComponentObjectPropsOptions,
-  ExtractPublicPropTypes,
-} from 'vue'
+import { type PropType, defineComponent, type SlotsType, ComponentObjectPropsOptions, ExtractPublicPropTypes } from 'vue'
 import { useStyle } from '../utils/style'
 import { type ColorName, createButtonStyle } from '@zonda/style'
 import { LoadingIcon } from '../Icon/LoadingIcon'
@@ -34,12 +28,11 @@ export type ButtonProps = ExtractPublicPropTypes<typeof props>
 export const Button = defineComponent({
   name: 'ZButton',
   props: props,
-  emits: [],
   slots: Object as SlotsType<{
     default: any
     icon: any
   }>,
-  setup(props, { emit, slots }) {
+  setup(props, { slots }) {
     const { css, style, icon } = useStyle(() =>
       createButtonStyle({
         variant: props.variant,
@@ -53,11 +46,7 @@ export const Button = defineComponent({
     )
     return () => (
       <button class={css.value} disabled={props.disabled} style={style.value} type="button">
-        {(props.loading || slots.icon) && (
-          <i class={icon.value}>
-            {props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon()}
-          </i>
-        )}
+        {(props.loading || slots.icon) && <i class={icon.value}>{props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon()}</i>}
         {slots.default?.()}
       </button>
     )

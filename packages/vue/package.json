@@ -4,18 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.1",
-    "ahooks": "^3.7.8",
     "kotl": "^1.7.1"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "vue": "^3.3.8"
   },
   "devDependencies": {
