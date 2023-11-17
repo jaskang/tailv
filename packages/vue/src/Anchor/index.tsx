@@ -15,30 +15,6 @@ export type AnchorProps = {
   selectedKey?: string
   items: IAnchorItem[]
 }
-function findItemPathByKey(
-  items: IAnchorItem[],
-  key: string,
-  path: number[] = []
-): number[] | undefined {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i]
-    // 当前路径
-    const currentPath = path.concat(i)
-    // 如果找到了键，返回路径
-    if (item.key === key) {
-      return currentPath
-    }
-    // 如果存在子项，递归搜索子项
-    if (item.children) {
-      const childPath = findItemPathByKey(item.children, key, currentPath)
-      if (childPath) {
-        return childPath
-      }
-    }
-  }
-  // 如果没有找到，返回undefined
-  return undefined
-}
 
 function calculateTranslateY(
   items: IAnchorItem[],
@@ -51,19 +27,14 @@ function calculateTranslateY(
 
     let itemHeight = 2
     // 计算当前项的高度（基础高度 + 子项额外高度，根据是否是第一层来调整）
-    if (item.children) {
-      if (isGroup) {
-        itemHeight = i === 0 ? 2 : 4
-      } else {
-        itemHeight = 2.25
-      }
+    if (isGroup && item.children) {
+      itemHeight = i === 0 ? 2 : 4
     }
 
     // 如果找到了键，返回累积的高度
     if (item.key === key) {
       return accumulatedHeight // 直接返回累积的rem值
     }
-
     // 累加当前项的高度
     accumulatedHeight += itemHeight
 
@@ -148,21 +119,19 @@ export const Anchor = defineComponent({
       emit('change', val)
     }
 
-    const { css, warper, cursor } = createAnchorStyle()
+    const { css, warper, cursor, group: groupCss, groupTitle } = createAnchorStyle()
     return () => (
       <div class={warper}>
         {props.isGroup ? (
           props.items.map(group => (
-            <div class="z-anchor-group mb-12 lg:mb-8">
-              <div class="mb-8 text-sm font-semibold text-slate-900 dark:text-slate-200 lg:mb-3">
-                {group.title || group.key}
-              </div>
+            <div class={groupCss}>
+              <div class={groupTitle}>{group.title || group.key}</div>
               <div class={css}>
                 <AnchorItems
                   items={group.children || []}
                   selectedKey={state.value}
                   onChange={onChange}
-                />{' '}
+                />
               </div>
             </div>
           ))

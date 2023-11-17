@@ -1,7 +1,7 @@
 import { tw } from './utils/tw'
 
 const anchorItemCss = tw(
-  'relative mb-1 block overflow-hidden text-ellipsis whitespace-nowrap only:mb-0',
+  'relative py-1.5 block overflow-hidden text-ellipsis whitespace-nowrap only:mb-0',
   {
     variants: {
       disabled: {
@@ -14,7 +14,7 @@ const anchorItemCss = tw(
 
 export function createAnchorItemStyle() {
   return {
-    css: 'cursor-pointer px-4 py-1.5',
+    css: 'cursor-pointer pl-4',
     itemStyler: (disabled: boolean) => anchorItemCss({ disabled }),
   }
 }
@@ -25,6 +25,8 @@ export function createAnchorStyle() {
     css: "before:content-[' '] relative ps-[2px] text-sm before:absolute before:start-0 before:top-0 before:h-full before:border-s-2 before:border-s-gray-100",
     cursor:
       'bg-primary-500 absolute start-0 top-1 inline-block h-6 w-[2px] transition-transform z-10',
+    group: 'z-anchor-group mb-12 lg:mb-8',
+    groupTitle: 'mb-8 text-sm font-semibold text-slate-900 dark:text-slate-200 lg:mb-3',
     itemWarper: 'cursor-pointer px-4 py-1.5',
     itemCreator: (disabled: boolean) => anchorItemCss({ disabled }),
   }

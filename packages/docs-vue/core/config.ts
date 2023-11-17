@@ -27,6 +27,7 @@ export default {
         {
           key: '/docs/array/boil',
           title: 'boil',
+          children: [{ key: 'asdfasdf' }, { key: 'asdfasd23f' }, { key: 'asd2323fasd23f' }],
         },
         {
           key: '/docs/array/cluster',
@@ -35,6 +36,7 @@ export default {
         {
           key: '/docs/array/counting',
           title: 'counting',
+          children: [{ key: 'asd12fasdf' }, { key: 'as233dfasd23f' }, { key: 'asd232323fasd23f' }],
         },
         {
           key: '/docs/array/diff',
