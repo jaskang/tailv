@@ -36,7 +36,7 @@ const css = tw(
         default: ['shadow-sm border', ''],
         ghost: ['', ''],
         link: ['decoration-2 underline-offset-2 enabled:hover:underline', ''],
-        outline: ['shadow-sm border', ''],
+        outline: ['shadow-sm border border-2', ''],
         soft: ['shadow-sm ', ''],
         solid: ['shadow-sm ', ''],
       },

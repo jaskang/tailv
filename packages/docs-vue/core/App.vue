@@ -2,18 +2,21 @@
 import { Anchor } from '@zonda/vue'
 import { ref } from 'vue'
 import config from './config'
-import Button from '../pages/Button.mdx'
-
-const currKey = ref('assadfas')
+import { RouterView, useRouter } from 'vue-router'
+const currKey = ref('')
+const router = useRouter()
+const onSidebarChange = (key: string) => {
+  console.log(key)
+  currKey.value = key
+  router.push(key)
+}
 </script>
 <template>
   <div
     class="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
   >
     <div class="max-w-8xl mx-auto">
-      <div
-        class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8"
-      >
+      <div class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
         <div class="relative flex items-center">
           <a class="mr-3 w-[2.0625rem] flex-none overflow-hidden md:w-auto" href="/">
             <span class="sr-only">Tailwind CSS home page</span>
@@ -23,15 +26,10 @@ const currKey = ref('assadfas')
             <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
               <ul class="flex space-x-8">
                 <li>
-                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/docs/installation">
-                    Docs
-                  </a>
+                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/docs/installation"> Docs </a>
                 </li>
                 <li>
-                  <a
-                    class="hover:text-sky-500 dark:hover:text-sky-400"
-                    href="https://tailwindui.com/?ref=top"
-                  >
+                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="https://tailwindui.com/?ref=top">
                     Components
                   </a>
                 </li>
@@ -39,9 +37,7 @@ const currKey = ref('assadfas')
                   <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/blog"> Blog </a>
                 </li>
                 <li>
-                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/showcase">
-                    Showcase
-                  </a>
+                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/showcase"> Showcase </a>
                 </li>
               </ul>
             </nav>
@@ -84,13 +80,8 @@ const currKey = ref('assadfas')
           </div>
         </div>
       </div>
-      <div
-        class="flex items-center border-b border-slate-900/10 p-4 dark:border-slate-50/[0.06] lg:hidden"
-      >
-        <button
-          class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
-          type="button"
-        >
+      <div class="flex items-center border-b border-slate-900/10 p-4 dark:border-slate-50/[0.06] lg:hidden">
+        <button class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" type="button">
           <span class="sr-only">Navigation</span>
           <svg height="24" width="24">
             <path
@@ -109,12 +100,12 @@ const currKey = ref('assadfas')
     <div
       class="fixed inset-0 left-[max(0px,calc(50%-45rem))] right-auto top-[3.8125rem] z-20 hidden w-[19rem] overflow-y-auto pb-10 pl-8 pr-6 lg:block"
     >
-      <Anchor class="mt-8" :items="config.sidebar" is-group v-model:selectedKey="currKey" />
+      <Anchor class="mt-8" :items="config.sidebar" is-group :selectedKey="currKey" @change="onSidebarChange" />
     </div>
-    <div class="lg:pl-[19.5rem]">
+    <div class="w-full lg:pl-[19.5rem]">
       <div class="mx-auto max-w-3xl pt-10 xl:ml-0 xl:mr-[15.5rem] xl:max-w-none xl:pr-16">
-        <div class="prose prose-sm flex-1">
-          <Button />
+        <div class="prose prose-sm max-w-none">
+          <RouterView></RouterView>
         </div>
       </div>
     </div>
@@ -122,9 +113,7 @@ const currKey = ref('assadfas')
       class="fixed bottom-0 right-[max(0px,calc(50%-45rem))] top-[3.8125rem] z-20 hidden w-[19.5rem] overflow-y-auto py-10 xl:block"
     >
       <div class="px-8">
-        <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">
-          On this page
-        </h5>
+        <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">On this page</h5>
       </div>
     </div>
   </div>

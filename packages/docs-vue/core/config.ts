@@ -10,38 +10,13 @@ export default {
   sidebar: [
     {
       key: '基础组件',
-      children: [
-        {
-          key: 'Button',
-          title: '按钮 Button',
-        },
-      ],
+      children: [{ key: '/components/Button', title: '按钮 Button' }],
     },
     {
-      key: 'Array',
+      key: 'Form',
       children: [
-        {
-          key: '/docs/array/alphabetical',
-          title: 'alphabetical',
-        },
-        {
-          key: '/docs/array/boil',
-          title: 'boil',
-          children: [{ key: 'asdfasdf' }, { key: 'asdfasd23f' }, { key: 'asd2323fasd23f' }],
-        },
-        {
-          key: '/docs/array/cluster',
-          title: 'cluster',
-        },
-        {
-          key: '/docs/array/counting',
-          title: 'counting',
-          children: [{ key: 'asd12fasdf' }, { key: 'as233dfasd23f' }, { key: 'asd232323fasd23f' }],
-        },
-        {
-          key: '/docs/array/diff',
-          title: 'diff',
-        },
+        { key: '/components/Input', title: 'Input' },
+        { key: '/components/Anchor', title: 'Anchor' },
       ],
     },
   ],
