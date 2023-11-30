@@ -7,6 +7,7 @@ import {
   type VNode,
 } from 'vue'
 import { useControllableValue } from '../utils/useControllableValue'
+import RingInput from '../Base/RingInput'
 
 const props = {
   value: String,
@@ -69,17 +70,10 @@ export const Input = defineComponent({
     }
 
     return () => (
-      <div
-        aria-disabled={props.disabled}
-        class={[
-          'z-input focus-within:ring-primary-500 flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-inset',
-          'aria-disabled:cursor-not-allowed aria-disabled:bg-gray-50 aria-disabled:text-gray-500 aria-disabled:ring-gray-200',
-        ]}
-      >
+      <RingInput disabled={props.disabled}>
         {(slots.prefix || props.prefix) && (
           <span class="z-input_prefix -mr-1 flex items-center pl-3">{slots.prefix?.() || props.prefix}</span>
         )}
-
         <input
           class="z-input_input flex-1 border-none bg-transparent text-sm focus:outline-transparent disabled:cursor-not-allowed"
           style={{
@@ -99,7 +93,7 @@ export const Input = defineComponent({
         {(slots.suffix || props.suffix) && (
           <span class="z-input_suffix  -ml-1 flex items-center pr-3">{slots.suffix?.() || props.suffix}</span>
         )}
-      </div>
+      </RingInput>
     )
   },
 })
