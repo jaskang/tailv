@@ -1,4 +1,10 @@
-import { type PropType, defineComponent, type SlotsType, ComponentObjectPropsOptions, ExtractPublicPropTypes } from 'vue'
+import {
+  type PropType,
+  defineComponent,
+  type SlotsType,
+  ComponentObjectPropsOptions,
+  ExtractPublicPropTypes,
+} from 'vue'
 import { useStyle } from '../utils/style'
 import { type ColorName, createButtonStyle } from '@zonda/style'
 import { LoadingIcon } from '../Icon/LoadingIcon'
@@ -46,8 +52,10 @@ export const Button = defineComponent({
     )
     return () => (
       <button class={css.value} disabled={props.disabled} style={style.value} type="button">
-        {(props.loading || slots.icon) && <i class={icon.value}>{props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon()}</i>}
-        {slots.default?.()}
+        {(props.loading || slots.icon) && (
+          <i class={icon.value}>{props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon()}</i>
+        )}
+        {slots.default ? <span>{slots.default()}</span> : null}
       </button>
     )
   },

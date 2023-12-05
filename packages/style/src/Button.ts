@@ -113,6 +113,6 @@ export const createButtonStyle = (props: {
   return {
     css: ret,
     style: vars,
-    icon: 'h-[1em] w-[1em] scale-125 [&_+_*]:ml-1.5 [&_svg]:h-full [&_svg]:w-full',
+    icon: 'h-[1em] w-[1em] [&_+_*]:ml-1.5 [&_svg]:h-full [&_svg]:w-full',
   }
 }

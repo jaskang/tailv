@@ -24,8 +24,8 @@ export const Input = defineComponent({
   name: 'ZInput',
   props,
   emits: {
-    'update:value': (val: string) => true,
-    change: (val: string) => true,
+    'update:value': (_v: string) => true,
+    change: (v: string) => true,
     input: (e: Event) => true,
     focus: (e: FocusEvent) => true,
     blur: (e: FocusEvent) => true,
@@ -75,7 +75,7 @@ export const Input = defineComponent({
           <span class="z-input_prefix -mr-1 flex items-center pl-3">{slots.prefix?.() || props.prefix}</span>
         )}
         <input
-          class="z-input_input flex-1 border-none bg-transparent text-sm focus:outline-transparent disabled:cursor-not-allowed"
+          class="z-input_input disabled flex-1 border-none bg-transparent text-sm focus:outline-transparent"
           style={{
             boxShadow: 'none',
           }}
