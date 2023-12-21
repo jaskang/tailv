@@ -5,8 +5,8 @@ import {
   ComponentObjectPropsOptions,
   ExtractPublicPropTypes,
 } from 'vue'
-import { useStyle } from '../utils/style'
-import { type ColorName, createButtonStyle } from '@zonda/style'
+import { ColorName, useStyle } from '../utils/style'
+import { createButtonStyle } from './style'
 import { LoadingIcon } from '../Icon/LoadingIcon'
 
 const props = {

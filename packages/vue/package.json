@@ -9,12 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "kotl": "^1.7.1"
+    "kotl": "^1.8.0"
   },
   "peerDependencies": {
     "vue": "^3.3.8"
   },
   "devDependencies": {
-    "vue": "^3.3.8"
+    "vue": "^3.3.13"
   }
 }

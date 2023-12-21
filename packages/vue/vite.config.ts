@@ -25,9 +25,6 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: [
-      { find: '@', replacement: resolve(__dirname, 'src') },
-      { find: '@zonda/style', replacement: resolve(__dirname, '../style/src/index.ts') },
-    ],
+    alias: [{ find: '@', replacement: resolve(__dirname, 'src') }],
   },
 })

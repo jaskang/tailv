@@ -1,9 +1,0 @@
-{
-  "name": "@zonda/style",
-  "version": "0.0.1",
-  "type": "module",
-  "private": true,
-  "dependencies": {
-    "kotl": "^1.7.1"
-  }
-}

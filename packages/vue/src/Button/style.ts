@@ -1,52 +1,5 @@
-.btn {
-  --btn-size: theme('spacing.9');
-  @apply inline-flex w-8 appearance-none items-center justify-center text-sm font-medium transition-colors;
-  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-  @apply h-[--btn-size] border-[--btn-border] bg-[--btn-bg] text-[--btn-color] outline-[--btn-outline];
-  &:enabled:hover {
-    @apply border-[--btn-border_hover] bg-[--btn-bg_hover] text-[--btn-color_hover] outline-[--btn-outline_hover];
-  }
-
-  &.btn-default {
-    @apply border shadow-sm;
-  }
-  &.btn-ghost {
-  }
-  &.btn-link {
-    @apply decoration-2 underline-offset-2 enabled:hover:underline;
-  }
-  &.btn-outline {
-    @apply border shadow-sm;
-  }
-  &.btn-soft {
-    @apply shadow-sm;
-  }
-  &.btn-solid {
-    @apply shadow-sm;
-  }
-
-  &.btn-sm {
-    --btn-size: theme('spacing.9');
-  }
-  &.btn-lg {
-    --btn-size: theme('spacing.10');
-  }
-  &.btn-square {
-    @apply w-[--btn-size] px-0;
-  }
-
-  &.btn-block {
-    @apply flex w-full;
-  }
-
-  &.btn-pill {
-    @apply 'rounded-full';
-  }
-}
-
-/* 
-import { createVars, cvar, type ColorName } from './utils/style'
-import { tw } from './utils/tw'
+import { createVars, cvar, type ColorName } from '../utils/style'
+import { tw } from '../utils/tw'
 
 const css = tw(
   `z-btn appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
@@ -162,4 +115,4 @@ export const createButtonStyle = (props: {
     style: vars,
     icon: 'h-[1em] w-[1em] [&_+_*]:ml-1.5 [&_svg]:h-full [&_svg]:w-full',
   }
-} */
+}

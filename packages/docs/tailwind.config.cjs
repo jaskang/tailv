@@ -11,9 +11,6 @@ module.exports = {
     path.resolve(__dirname, '../style/src/**/*.ts'),
     path.resolve(__dirname, '../react/src/**/*.{ts,tsx}'),
     path.resolve(__dirname, '../vue/src/**/*.{ts,tsx,vue}'),
-    // './node_modules/@zonda/style/src/**/*.{ts}',
-    // './node_modules/@zonda/react/src/**/*.{ts,tsx}',
-    // './node_modules/@zonda/vue/src/**/*.{ts,tsx,vue}',
   ],
   theme: {
     extend: {

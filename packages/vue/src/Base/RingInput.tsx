@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { createRingInputStyle } from '../../../style/src/Input'
+import { createRingInputStyle } from '../Input/style'
 
 const RingInput = defineComponent({
   props: {

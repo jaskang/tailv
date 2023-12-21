@@ -1,5 +1,5 @@
 import { type PropType, defineComponent } from 'vue'
-import { createAnchorItemStyle, createAnchorStyle } from '@zonda/style'
+import { createAnchorItemStyle, createAnchorStyle } from './style'
 import { computed } from 'vue'
 import { useControllableValue } from '../utils/useControllableValue'
 
@@ -73,18 +73,11 @@ const AnchorItems = defineComponent({
       <>
         {props.items.map(item => (
           <div class={css} key={item.key}>
-            <div
-              class={itemStyler(item.key === props.selectedKey)}
-              onClick={() => onChange(item.key)}
-            >
+            <div class={itemStyler(item.key === props.selectedKey)} onClick={() => onChange(item.key)}>
               {item.title || item.key}
             </div>
             {item.children && item.children.length > 0 && (
-              <AnchorItems
-                items={item.children}
-                selectedKey={props.selectedKey}
-                onChange={onChange}
-              />
+              <AnchorItems items={item.children} selectedKey={props.selectedKey} onChange={onChange} />
             )}
           </div>
         ))}
@@ -127,11 +120,7 @@ export const Anchor = defineComponent({
             <div class={groupCss}>
               <div class={groupTitle}>{group.title || group.key}</div>
               <div class={css}>
-                <AnchorItems
-                  items={group.children || []}
-                  selectedKey={state.value}
-                  onChange={onChange}
-                />
+                <AnchorItems items={group.children || []} selectedKey={state.value} onChange={onChange} />
               </div>
             </div>
           ))
@@ -147,26 +136,3 @@ export const Anchor = defineComponent({
     )
   },
 })
-
-// const list = [
-//   {
-//     key: 'a',
-//     children: [{ key: 'a-0' }, { key: 'a-1' }, { key: 'a-2' }, { key: 'a-3' }],
-//   },
-//   {
-//     key: 'b',
-//     children: [
-//       { key: 'b-0', children: [{ key: 'b-0-0' }, { key: 'b-0-1' }, { key: 'b-0-2' }] },
-//       { key: 'b-1', children: [{ key: 'b-1-0' }, { key: 'b-1-1' }, { key: 'b-1-2' }] },
-//       { key: 'b-2', children: [{ key: 'b-2-0' }, { key: 'b-2-1' }, { key: 'b-2-2' }] },
-//     ],
-//   },
-// ]
-
-// console.log(findKeyOffset(list, 'a')) // [0]
-// console.log(findKeyOffset(list, 'b')) // [1]
-// console.log(findKeyOffset(list, 'a-0')) // [0,0]
-// console.log(findKeyOffset(list, 'a-3')) // [0,3]
-// console.log(findKeyOffset(list, 'b-2')) // [1,2]
-// console.log(findKeyOffset(list, 'b-1-2')) // [1,1,2]
-// console.log(findKeyOffset(list, 'b-2-0')) // [1,2,0]

@@ -21,9 +21,7 @@
     "verbatimModuleSyntax": true,
 
     "baseUrl": ".",
-    "paths": {
-      "@zonda/style": ["packages/style/src"]
-    }
+    "paths": {}
   },
   "include": ["packages/**/*"]
 }

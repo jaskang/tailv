@@ -23,7 +23,6 @@
 
     "baseUrl": ".",
     "paths": {
-      "@zonda/style": ["../style/src"],
       "@zonda/vue": ["../vue/src"]
     }
   },

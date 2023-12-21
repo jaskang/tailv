@@ -11,20 +11,13 @@ interface Options<T> {
 type Props = Record<string, any>
 
 export function useControllableValue<T>(props: Props = {}, options: Options<T> = {}) {
-  const {
-    defaultValue,
-    defaultValuePropName = 'defaultValue',
-    valuePropName = 'value',
-    onChange,
-  } = options
+  const { defaultValue, defaultValuePropName = 'defaultValue', valuePropName = 'value', onChange } = options
   const trigger = options.trigger || `update:${valuePropName}`
 
   const ctx = getCurrentInstance()
   const isControlled = computed(() => props[valuePropName] !== undefined)
 
-  const initialValue = ref(
-    isControlled.value ? props[valuePropName] : props[defaultValuePropName] || defaultValue
-  )
+  const initialValue = ref(isControlled.value ? props[valuePropName] : props[defaultValuePropName] || defaultValue)
 
   const state = computed<T>(() => (isControlled.value ? props[valuePropName] : initialValue.value))
 

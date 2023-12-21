@@ -1,4 +1,4 @@
-import { tw } from './utils/tw'
+import { tw } from '../utils/tw'
 
 const anchorItemCss = tw('relative py-1.5 block overflow-hidden text-ellipsis whitespace-nowrap', {
   variants: {
