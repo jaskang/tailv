@@ -1,9 +1,9 @@
-import { createVars, cvar, type ColorName } from '../utils/style'
+import { createVars, cvar, type ColorName, isGrayscaleColor } from '../utils/style'
 import { tw } from '../utils/tw'
 
 const css = tw(
-  `z-btn appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
-  focus-visible:outline focus-visible:outline-2  focus-visible:outline-offset-2`,
+  `appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
+  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 `,
   {
     compoundVariants: [
       { size: 'sm', square: true, class: 'w-8' },
@@ -17,7 +17,7 @@ const css = tw(
       },
       disabled: {
         false: '',
-        true: ['opacity-60 cursor-not-allowed', ''],
+        true: 'opacity-60 cursor-not-allowed',
       },
       pill: {
         false: 'rounded-md',
@@ -30,77 +30,38 @@ const css = tw(
       },
       square: {
         false: '',
-        true: ['px-0 overflow-hidden', 'px-1.5 px-2 px-2.5 px-3 px-3.5'],
+        true: ['px-0 overflow-hidden', 'px-2.5 px-3 px-3.5'],
       },
       variant: {
-        default: ['shadow-sm border', ''],
-        ghost: ['', ''],
-        link: ['decoration-2 underline-offset-2 enabled:hover:underline', ''],
-        outline: ['shadow-sm border border-2', ''],
-        soft: ['shadow-sm ', ''],
-        solid: ['shadow-sm ', ''],
+        default: `shadow-sm border text-[--z-btn-text] bg-[--z-btn-bg] border-[--z-btn-border] enabled:hover:bg-[--z-btn-bg_hover]`,
+        plain: `border border-transparent transition-colors duration-150 text-[--z-btn-text] bg-transparent enabled:hover:bg-[--z-btn-bg_hover]`,
       },
     },
   }
 )
 
 export const createButtonStyle = (props: {
-  variant: 'default' | 'ghost' | 'link' | 'outline' | 'soft' | 'solid'
+  variant: 'default' | 'plain' | 'soft' | 'solid'
   size: 'sm' | 'md' | 'lg'
-  color: ColorName
+  color?: ColorName
   block: boolean
   disabled: boolean
   pill: boolean
   square: boolean
 }) => {
+  const isGrayscale = isGrayscaleColor(props.color || 'white')
   const vars =
-    props.variant === 'solid'
+    props.variant === 'plain'
       ? createVars('z-btn', {
-          bg: cvar(`${props.color}500`),
-          bg_hover: cvar(`${props.color}600`),
-          border: `transparent`,
-          outline: cvar(`${props.color}500`),
-          text: 'white',
+          text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'currentColor',
+          bg_hover: props.color ? cvar(`${props.color}200`) : cvar('gray200'),
         })
-      : props.variant === 'soft'
-        ? createVars('z-btn', {
-            bg: cvar(`${props.color}100`),
-            bg_hover: cvar(`${props.color}200`),
-            border: `transparent`,
-            outline: cvar(`${props.color}500`),
-            text: cvar(`${props.color}500`),
-          })
-        : props.variant === 'outline'
-          ? createVars('z-btn', {
-              bg: 'transparent',
-              bg_hover: cvar(`${props.color}200`),
-              border: cvar(`${props.color}500`),
-              outline: cvar(`${props.color}500`),
-              text: cvar(`${props.color}600`),
-            })
-          : props.variant === 'ghost'
-            ? createVars('z-btn', {
-                bg: `transparent`,
-                bg_hover: cvar(`${props.color}100`),
-                border: `transparent`,
-                outline: cvar(`${props.color}500`),
-                text: cvar(`${props.color}600`),
-              })
-            : props.variant === 'link'
-              ? createVars('z-btn', {
-                  bg: `transparent`,
-                  border: `transparent`,
-                  outline: cvar(`${props.color}500`),
-                  text: cvar(`${props.color}600`),
-                })
-              : createVars('z-btn', {
-                  bg: 'white',
-                  bg_hover: cvar('gray50'),
-                  border: cvar('gray300'),
-                  border_hover: cvar('gray300'),
-                  outline: cvar(`${props.color}500`),
-                  text: cvar('gray700'),
-                })
+      : createVars('z-btn', {
+          bg: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'white',
+          bg_hover: props.color ? cvar(`${props.color}600`) : cvar('gray50'),
+          border: props.color ? 'transparent' : cvar('gray300'),
+          text: props.color ? 'white' : 'currentColor',
+        })
 
   const ret = css({
     block: props.block,

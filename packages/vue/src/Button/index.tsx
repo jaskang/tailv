@@ -11,7 +11,7 @@ import { LoadingIcon } from '../Icon/LoadingIcon'
 
 const props = {
   variant: {
-    type: String as PropType<'default' | 'ghost' | 'link' | 'outline' | 'soft' | 'solid'>,
+    type: String as PropType<'default' | 'plain'>,
     default: 'default',
   },
   size: {
@@ -20,7 +20,6 @@ const props = {
   },
   color: {
     type: String as PropType<ColorName>,
-    default: 'primary',
   },
   pill: Boolean,
   square: Boolean,

@@ -13,10 +13,10 @@ const onSidebarChange = (key: string) => {
 </script>
 <template>
   <div
-    class="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
+    class="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] dark:bg-transparent"
   >
     <div class="max-w-8xl mx-auto">
-      <div class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
+      <div class="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-8 dark:border-slate-300/10">
         <div class="relative flex items-center">
           <a class="mr-3 w-[2.0625rem] flex-none overflow-hidden md:w-auto" href="/">
             <span class="sr-only">Tailwind CSS home page</span>
@@ -26,24 +26,13 @@ const onSidebarChange = (key: string) => {
             <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
               <ul class="flex space-x-8">
                 <li>
-                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/docs/installation"> Docs </a>
-                </li>
-                <li>
-                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="https://tailwindui.com/?ref=top">
-                    Components
-                  </a>
-                </li>
-                <li>
-                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/blog"> Blog </a>
-                </li>
-                <li>
-                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/showcase"> Showcase </a>
+                  <a class="hover:text-sky-500 dark:hover:text-sky-400" href="/components/Button"> Components </a>
                 </li>
               </ul>
             </nav>
           </div>
           <button
-            class="-my-1 ml-auto flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 lg:hidden"
+            class="-my-1 ml-auto flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 lg:hidden dark:text-slate-400 dark:hover:text-slate-300"
             type="button"
           >
             <span class="sr-only">Search</span>
@@ -80,7 +69,7 @@ const onSidebarChange = (key: string) => {
           </div>
         </div>
       </div>
-      <div class="flex items-center border-b border-slate-900/10 p-4 dark:border-slate-50/[0.06] lg:hidden">
+      <div class="flex items-center border-b border-slate-900/10 p-4 lg:hidden dark:border-slate-50/[0.06]">
         <button class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" type="button">
           <span class="sr-only">Navigation</span>
           <svg height="24" width="24">

@@ -2,82 +2,126 @@ import { Button } from '@zonda/vue'
 
 # Button
 
-<div class="flex items-center space-x-2">
+## Default
+
+<div class="flex flex-wrap gap-2">
   <Button>Button</Button>
-  <Button loading>loading</Button>
+  <Button color="primary">
+    Primary
+  </Button>
+  <Button color="success">
+    Success
+  </Button>
+  <Button color="warning">
+    Warning
+  </Button>
+  <Button color="error">
+    Error
+  </Button>
+
 </div>
 
-<div class="flex items-center space-x-2">
-  <Button variant="solid" color="primary">
-    Button
-  </Button>
-  <Button variant="solid" color="success">
-    Button
-  </Button>
-  <Button variant="solid" color="warning">
-    Button
-  </Button>
-  <Button variant="solid" color="error">
-    Button
-  </Button>
-</div>
+## Pill
 
-<div class="flex items-center space-x-2">
-  <Button variant="soft" color="primary">
-    Button
-  </Button>
-  <Button variant="soft" color="success">
-    Button
-  </Button>
-  <Button variant="soft" color="warning">
-    Button
-  </Button>
-  <Button variant="soft" color="error">
-    Button
+<div class="flex flex-wrap gap-2">
+  <Button pill>Button</Button>
+  <Button color="primary" pill>
+    Primary
   </Button>
 </div>
 
-<div class="flex items-center space-x-2">
-  <Button variant="outline" color="primary">
-    Button
+## Square
+
+<div class="flex flex-wrap gap-2">
+  <Button square>D</Button>
+  <Button square pill>
+    D
   </Button>
-  <Button variant="outline" color="success">
-    Button
+  <Button color="primary" square>
+    P
   </Button>
-  <Button variant="outline" color="warning">
-    Button
-  </Button>
-  <Button variant="outline" color="error">
-    Button
+
+  <Button color="primary" square pill>
+    P
   </Button>
 </div>
 
-<div class="flex items-center space-x-2">
-  <Button variant="ghost" color="primary">
-    Button
+## Sizes
+
+<div class="flex flex-wrap items-center gap-2">
+  <Button color="primary" size="sm">
+    size: sm
   </Button>
-  <Button variant="ghost" color="success">
-    Button
+  <Button color="primary" size="md">
+    size: md
   </Button>
-  <Button variant="ghost" color="warning">
-    Button
-  </Button>
-  <Button variant="ghost" color="error">
-    Button
+  <Button color="primary" size="lg">
+    size: lg
   </Button>
 </div>
 
-<div class="flex items-center space-x-2">
-  <Button variant="link" color="primary">
-    Button
+## Disabled
+
+<div class="flex flex-wrap gap-2">
+  <Button disabled>Button</Button>
+  <Button color="primary" disabled>
+    Primary
   </Button>
-  <Button variant="link" color="success">
-    Button
+  <Button color="error" disabled>
+    Error
   </Button>
-  <Button variant="link" color="warning">
-    Button
+</div>
+
+## Loading
+
+<div class="flex flex-wrap gap-2">
+  <Button loading>Button</Button>
+  <Button color="primary" loading>
+    Primary
   </Button>
-  <Button variant="link" color="error">
-    Button
+</div>
+
+## Plain Variant
+
+<div class="flex flex-wrap gap-2">
+  <Button variant="plain">Button</Button>
+  <Button variant="plain" color="primary">
+    primary
   </Button>
+  <Button variant="plain" color="success">
+    success
+  </Button>
+  <Button variant="plain" color="warning">
+    warning
+  </Button>
+  <Button variant="plain" color="error">
+    error
+  </Button>
+</div>
+
+## Colors
+
+<div class="flex flex-wrap gap-2">
+  <Button color="slate">Button</Button>
+  <Button color="gray">Button</Button>
+  <Button color="zinc">Button</Button>
+  <Button color="neutral">Button</Button>
+  <Button color="stone">Button</Button>
+  <Button color="red">Button</Button>
+  <Button color="orange">Button</Button>
+  <Button color="amber">Button</Button>
+  <Button color="yellow">Button</Button>
+  <Button color="lime">Button</Button>
+  <Button color="green">Button</Button>
+  <Button color="emerald">Button</Button>
+  <Button color="teal">Button</Button>
+  <Button color="cyan">Button</Button>
+  <Button color="sky">Button</Button>
+  <Button color="blue">Button</Button>
+  <Button color="indigo">Button</Button>
+  <Button color="violet">Button</Button>
+  <Button color="purple">Button</Button>
+  <Button color="fuchsia">Button</Button>
+  <Button color="pink">Button</Button>
+  <Button color="rose">Button</Button>
 </div>

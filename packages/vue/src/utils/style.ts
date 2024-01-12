@@ -2,29 +2,32 @@ import { ComputedRef, computed } from 'vue'
 
 export type ColorAlias = 'primary' | 'success' | 'warning' | 'error'
 
-export type ColorName =
-  | 'slate'
-  | 'gray'
-  | 'zinc'
-  | 'neutral'
-  | 'stone'
-  | 'red'
-  | 'orange'
-  | 'amber'
-  | 'yellow'
-  | 'lime'
-  | 'green'
-  | 'emerald'
-  | 'teal'
-  | 'cyan'
-  | 'sky'
-  | 'blue'
-  | 'indigo'
-  | 'violet'
-  | 'purple'
-  | 'fuchsia'
-  | 'pink'
-  | 'rose'
+const COLORS = [
+  'slate',
+  'gray',
+  'zinc',
+  'neutral',
+  'stone',
+  'red',
+  'orange',
+  'amber',
+  'yellow',
+  'lime',
+  'green',
+  'emerald',
+  'teal',
+  'cyan',
+  'sky',
+  'blue',
+  'indigo',
+  'violet',
+  'purple',
+  'fuchsia',
+  'pink',
+  'rose',
+] as const
+
+export type ColorName = (typeof COLORS)[number]
 
 export type ColorLv = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950'
 
@@ -58,4 +61,13 @@ export function useStyle<T extends Record<string, unknown>>(getter: () => T) {
       [K in keyof T]: ComputedRef<T[K]>
     }
   )
+}
+
+/**
+ * 是否是灰度色
+ * @param color
+ * @returns
+ */
+export function isGrayscaleColor(color: string) {
+  return ['white', 'slate', 'gray', 'zinc', 'neutral', 'stone'].includes(color)
 }
