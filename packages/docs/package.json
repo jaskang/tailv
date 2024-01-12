@@ -8,12 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@zonda/react": "workspace:*",
-    "@zonda/vue": "workspace:*",
-    "vue": "^3.3.13",
+    "tailv": "workspace:*",
+    "vue": "^3.4.11",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@zonda/preset": "workspace:*"
+    "@tailv/preset": "workspace:*"
   }
 }

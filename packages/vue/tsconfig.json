@@ -22,9 +22,7 @@
     "noFallthroughCasesInSwitch": true,
 
     "baseUrl": ".",
-    "paths": {
-      "@zonda/style": ["../style/src"]
-    }
+    "paths": {}
   },
   "include": ["src/**/*", "src/**/*.vue", "src/**/*.tsx"]
 }

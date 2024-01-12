@@ -1,4 +1,4 @@
-import { type IAnchorItem } from '@zonda/vue'
+import { type IAnchorItem } from 'tailv'
 
 export type Config = {
   nav: IAnchorItem[]

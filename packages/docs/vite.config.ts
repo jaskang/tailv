@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@zonda/vue': resolve(__dirname, '../vue/src'),
+      tailv: resolve(__dirname, '../vue/src'),
     },
   },
 })

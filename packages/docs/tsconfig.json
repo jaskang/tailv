@@ -23,7 +23,7 @@
 
     "baseUrl": ".",
     "paths": {
-      "@zonda/vue": ["../vue/src"]
+      "tailv": ["../vue/src"]
     }
   },
   "include": ["core/**/*", "pages/**/*"]

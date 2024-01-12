@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Anchor } from '@zonda/vue'
+import { Anchor } from 'tailv'
 import { ref } from 'vue'
 import config from './config'
 import { RouterView, useRouter } from 'vue-router'

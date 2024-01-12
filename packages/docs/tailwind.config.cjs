@@ -1,4 +1,4 @@
-const preset = require('@zonda/preset')
+const preset = require('@tailv/preset')
 const typography = require('@tailwindcss/typography')
 const path = require('node:path')
 
