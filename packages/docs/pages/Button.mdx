@@ -17,16 +17,16 @@ import { Button } from 'tailv'
 <div class="flex flex-wrap gap-2">
   <Button variant="soft">Button</Button>
   <Button variant="soft" color="primary">
-    primary
+    Primary
   </Button>
   <Button variant="soft" color="success">
-    success
+    Success
   </Button>
   <Button variant="soft" color="warning">
-    warning
+    Warning
   </Button>
   <Button variant="soft" color="error">
-    error
+    Error
   </Button>
 </div>
 
@@ -35,16 +35,16 @@ import { Button } from 'tailv'
 <div class="flex flex-wrap gap-2">
   <Button variant="plain">Button</Button>
   <Button variant="plain" color="primary">
-    primary
+    Primary
   </Button>
   <Button variant="plain" color="success">
-    success
+    Success
   </Button>
   <Button variant="plain" color="warning">
-    warning
+    Warning
   </Button>
   <Button variant="plain" color="error">
-    error
+    Error
   </Button>
 </div>
 
@@ -111,26 +111,44 @@ import { Button } from 'tailv'
 ## Colors
 
 <div class="flex flex-wrap gap-2">
-  <Button color="slate">Button</Button>
-  <Button color="gray">Button</Button>
-  <Button color="zinc">Button</Button>
-  <Button color="neutral">Button</Button>
-  <Button color="stone">Button</Button>
-  <Button color="red">Button</Button>
-  <Button color="orange">Button</Button>
-  <Button color="amber">Button</Button>
-  <Button color="yellow">Button</Button>
-  <Button color="lime">Button</Button>
-  <Button color="green">Button</Button>
-  <Button color="emerald">Button</Button>
-  <Button color="teal">Button</Button>
-  <Button color="cyan">Button</Button>
-  <Button color="sky">Button</Button>
-  <Button color="blue">Button</Button>
-  <Button color="indigo">Button</Button>
-  <Button color="violet">Button</Button>
-  <Button color="purple">Button</Button>
-  <Button color="fuchsia">Button</Button>
-  <Button color="pink">Button</Button>
-  <Button color="rose">Button</Button>
+  <Button color="slate">slate</Button>
+  <Button color="gray">gray</Button>
+  <Button color="zinc">zinc</Button>
+  <Button color="neutral">neutral</Button>
+  <Button color="stone">stone</Button>
+  <Button color="red">red</Button>
+  <Button color="orange">orange</Button>
+  <Button color="amber">amber</Button>
+  <Button color="yellow">yellow</Button>
+  <Button color="lime">lime</Button>
+  <Button color="green">green</Button>
+  <Button color="emerald">emerald</Button>
+  <Button color="teal">teal</Button>
+  <Button color="cyan">cyan</Button>
+  <Button color="sky">sky</Button>
+  <Button color="blue">blue</Button>
+  <Button color="indigo">indigo</Button>
+  <Button color="violet">violet</Button>
+  <Button color="purple">purple</Button>
+  <Button color="fuchsia">fuchsia</Button>
+  <Button color="pink">pink</Button>
+  <Button color="rose">rose</Button>
 </div>
+
+## Props
+
+| Prop     | Type                | Default | Description                  |
+| -------- | ------------------- | ------- | ---------------------------- |
+| variant  | 'soft' \| 'plain'   | -       | Variant of the button        |
+| size     | 'sm' \|'md' \| 'lg' | 'md'    | Size of the button           |
+| pill     | boolean             | false   | Pill style of the button     |
+| square   | boolean             | false   | Square style of the button   |
+| loading  | boolean             | false   | Loading state of the button  |
+| disabled | boolean             | false   | Disabled state of the button |
+| color    | string              | -       | Color of the button          |
+
+## Slots
+
+| Name    | Description      |
+| ------- | ---------------- |
+| default | default children |

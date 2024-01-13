@@ -5,7 +5,7 @@ interface Options<T> {
   defaultValuePropName?: string
   valuePropName?: string
   trigger?: string
-  onChange?: (value: T) => void
+  onChange?: (val: T) => void
 }
 
 type Props = Record<string, any>
@@ -23,10 +23,10 @@ export function useControllableValue<T>(props: Props = {}, options: Options<T> =
 
   return [
     state,
-    function (value: unknown) {
-      initialValue.value = value as UnwrapRef<T>
-      ctx?.emit(trigger, value)
-      onChange?.(value as T)
+    function (val: unknown) {
+      initialValue.value = val as UnwrapRef<T>
+      ctx?.emit(trigger, val)
+      onChange?.(val as T)
       // if (isControlled.value) {
       // } else {
       //   ctx?.emit(trigger, value)

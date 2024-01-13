@@ -10,13 +10,14 @@ export default {
   sidebar: [
     {
       key: '基础组件',
-      children: [{ key: '/components/Button', title: '按钮 Button' }],
+      children: [{ key: '/components/button', title: '按钮 Button' }],
     },
     {
       key: 'Form',
       children: [
-        { key: '/components/Input', title: 'Input' },
-        { key: '/components/Anchor', title: 'Anchor' },
+        { key: '/components/checkbox', title: 'Checkbox' },
+        { key: '/components/input', title: 'Input' },
+        { key: '/components/anchor', title: 'Anchor' },
       ],
     },
   ],

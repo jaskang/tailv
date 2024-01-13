@@ -1,11 +1,4 @@
-import {
-  defineComponent,
-  type ComponentObjectPropsOptions,
-  type ExtractPublicPropTypes,
-  ref,
-  type SlotsType,
-  type VNode,
-} from 'vue'
+import { defineComponent, type ComponentObjectPropsOptions, type ExtractPublicPropTypes, ref, type SlotsType, type VNode } from 'vue'
 import { useControllableValue } from '../utils/useControllableValue'
 import RingInput from '../Base/RingInput'
 

@@ -3,7 +3,7 @@ import { tw } from '../utils/tw'
 
 const css = tw(
   `appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
-  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 `,
+  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500`,
   {
     compoundVariants: [
       { size: 'sm', square: true, class: 'w-8' },
@@ -54,14 +54,14 @@ export const createButtonStyle = (props: {
   const vars =
     props.variant === 'plain'
       ? createVars('z-btn', {
-          text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'currentColor',
           bg_hover: props.color ? cvar(`${props.color}200`) : cvar('gray200'),
+          text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 600}`) : 'currentColor',
         })
       : props.variant === 'soft'
         ? createVars('z-btn', {
             bg: props.color ? cvar(`${props.color}100`) : cvar('gray100'),
             bg_hover: props.color ? cvar(`${props.color}200`) : cvar('gray200'),
-            text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'currentColor',
+            text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 600}`) : 'currentColor',
           })
         : createVars('z-btn', {
             bg: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'white',
