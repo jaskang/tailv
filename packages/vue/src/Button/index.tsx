@@ -1,17 +1,11 @@
-import {
-  type PropType,
-  defineComponent,
-  type SlotsType,
-  ComponentObjectPropsOptions,
-  ExtractPublicPropTypes,
-} from 'vue'
+import { type PropType, defineComponent, type SlotsType, ComponentObjectPropsOptions, ExtractPublicPropTypes } from 'vue'
 import { ColorName, useStyle } from '../utils/style'
 import { createButtonStyle } from './style'
 import { LoadingIcon } from '../Icon/LoadingIcon'
 
 const props = {
   variant: {
-    type: String as PropType<'default' | 'plain'>,
+    type: String as PropType<'default' | 'soft' | 'plain'>,
     default: 'default',
   },
   size: {
@@ -51,9 +45,7 @@ export const Button = defineComponent({
     )
     return () => (
       <button class={css.value} disabled={props.disabled} style={style.value} type="button">
-        {(props.loading || slots.icon) && (
-          <i class={icon.value}>{props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon()}</i>
-        )}
+        {(props.loading || slots.icon) && <i class={icon.value}>{props.loading ? <LoadingIcon class="animate-spin" /> : slots.icon()}</i>}
         {slots.default ? <span>{slots.default()}</span> : null}
       </button>
     )

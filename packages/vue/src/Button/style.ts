@@ -33,7 +33,8 @@ const css = tw(
         true: ['px-0 overflow-hidden', 'px-2.5 px-3 px-3.5'],
       },
       variant: {
-        default: `shadow-sm border text-[--z-btn-text] bg-[--z-btn-bg] border-[--z-btn-border] enabled:hover:bg-[--z-btn-bg_hover]`,
+        default: `shadow-sm border border-[--z-btn-border] text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
+        soft: `shadow-sm border border-transparent text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
         plain: `border border-transparent transition-colors duration-150 text-[--z-btn-text] bg-transparent enabled:hover:bg-[--z-btn-bg_hover]`,
       },
     },
@@ -41,7 +42,7 @@ const css = tw(
 )
 
 export const createButtonStyle = (props: {
-  variant: 'default' | 'plain' | 'soft' | 'solid'
+  variant: 'default' | 'soft' | 'plain'
   size: 'sm' | 'md' | 'lg'
   color?: ColorName
   block: boolean
@@ -56,12 +57,18 @@ export const createButtonStyle = (props: {
           text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'currentColor',
           bg_hover: props.color ? cvar(`${props.color}200`) : cvar('gray200'),
         })
-      : createVars('z-btn', {
-          bg: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'white',
-          bg_hover: props.color ? cvar(`${props.color}600`) : cvar('gray50'),
-          border: props.color ? 'transparent' : cvar('gray300'),
-          text: props.color ? 'white' : 'currentColor',
-        })
+      : props.variant === 'soft'
+        ? createVars('z-btn', {
+            bg: props.color ? cvar(`${props.color}100`) : cvar('gray100'),
+            bg_hover: props.color ? cvar(`${props.color}200`) : cvar('gray200'),
+            text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'currentColor',
+          })
+        : createVars('z-btn', {
+            bg: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 500}`) : 'white',
+            bg_hover: props.color ? cvar(`${props.color}600`) : cvar('gray50'),
+            border: props.color ? 'transparent' : cvar('gray300'),
+            text: props.color ? 'white' : 'currentColor',
+          })
 
   const ret = css({
     block: props.block,
