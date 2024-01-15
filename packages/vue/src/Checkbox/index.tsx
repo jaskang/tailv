@@ -41,8 +41,8 @@ export const CheckboxGroup = defineComponent({
       defaultValue: [],
       onChange: (val: any[]) => {
         emit('change', val)
-      }, 
-    }) 
+      },
+    })
     provide(CheckboxGroupInjectKey, {
       value: state,
       props: props,
@@ -51,7 +51,7 @@ export const CheckboxGroup = defineComponent({
           setState([...state.value, val])
         }
       },
-      remove: (val: unknown) => { 
+      remove: (val: unknown) => {
         const index = state.value.indexOf(val)
         if (index !== -1) {
           const r = [...state.value]
@@ -60,16 +60,15 @@ export const CheckboxGroup = defineComponent({
         }
       },
     })
-    return () => <div class="flex flex-col space-y-2">{slots.default?.()}</div>
+    return () => <div>{slots.default?.()}</div>
   },
 })
 
 const props = {
-  value: {type:null,
-  required:true},
+  value: { type: null, required: true },
   name: String,
   disabled: Boolean,
-  checked: {type:Boolean,default: undefined}, 
+  checked: { type: Boolean, default: undefined },
 } satisfies ComponentPropsOptions
 
 export type CheckboxProps = ExtractPublicPropTypes<typeof props>
@@ -86,11 +85,11 @@ export const Checkbox = defineComponent({
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const parent = inject(CheckboxGroupInjectKey, null) 
+    const parent = inject(CheckboxGroupInjectKey, null)
     console.log(parent)
 
     const [checked, setChecked] = useControllableValue(props, {
-      defaultValue: parent ? parent.value.value.includes(props.value):false,
+      defaultValue: parent ? parent.value.value.includes(props.value) : false,
       valuePropName: 'checked',
       onChange: (val: boolean) => {
         emit('change', val)
@@ -110,16 +109,15 @@ export const Checkbox = defineComponent({
       setChecked(el.checked)
     }
 
-
     return () => (
-      <label class={['relative flex items-center', props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']}>
+      <label class={['relative inline-flex items-center', props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']}>
         <input
-          class="h-4 w-4 rounded border-gray-300 text-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          class="form-input h-4 w-4 rounded border-gray-300 text-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
           style={{ boxShadow: 'none', cursor: 'inherit' }}
           type="checkbox"
           name={props.name}
           disabled={props.disabled}
-          checked={checked.value} 
+          checked={checked.value}
           onInput={onInput}
         />
         {slots.default ? <span class="relative ml-2 text-sm font-medium">{slots.default()}</span> : null}

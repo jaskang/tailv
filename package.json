@@ -19,11 +19,8 @@
     "@types/jsdom": "^21.1.6",
     "@types/mdx": "^2.0.10",
     "@types/node": "^20.11.0",
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
-    "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitejs/plugin-vue": "^5.0.3",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "autoprefixer": "^10.4.16",
@@ -36,13 +33,11 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-perfectionist": "^2.5.0",
     "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-vue": "^9.20.0",
     "globals": "^13.24.0",
     "happy-dom": "^13.0.2",
     "mini-svg-data-uri": "^1.4.4",
+    "postcss": "^8.4.33",
     "prettier": "^3.2.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "remark-gfm": "^4.0.0",
@@ -52,10 +47,14 @@
     "vite": "^5.0.11",
     "vite-plugin-dts": "^3.7.0",
     "vite-plugin-inspect": "^0.8.1",
+    "vitepress": "1.0.0-rc.36",
     "vitest": "^1.2.0",
     "vue-eslint-parser": "^9.4.0"
   },
   "engines": {
     "pnpm": ">=8.0.0"
+  },
+  "peerDependencyRules": {
+    "ignoreMissing": []
   }
 }

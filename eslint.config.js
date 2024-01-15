@@ -1,8 +1,6 @@
 import jsPlugin from '@eslint/js'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
 import vuePlugin from 'eslint-plugin-vue'
 import globals from 'globals'
 import vueParser from 'vue-eslint-parser'
@@ -55,39 +53,39 @@ export default [
       ...tsPlugin.configs.recommended.rules,
     },
   },
-  {
-    files: ['**/packages/react/**/*.{js,jsx,ts,tsx}'],
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-      react: react,
-      'react-hooks': reactHooks,
-    },
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: { jsx: true },
-        // project: './tsconfig.eslint.json',
-        ...react.configs['jsx-runtime'].parserOptions,
-      },
-      globals: {
-        ...globals.es2021,
-        ...globals.browser,
-      },
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
-    rules: {
-      ...jsPlugin.configs.recommended.rules,
-      ...tsPlugin.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
-      ...reactHooks.configs.recommended.rules,
-    },
-  },
+  // {
+  //   files: ['**/packages/react/**/*.{js,jsx,ts,tsx}'],
+  //   plugins: {
+  //     '@typescript-eslint': tsPlugin,
+  //     react: react,
+  //     'react-hooks': reactHooks,
+  //   },
+  //   languageOptions: {
+  //     parser: tsParser,
+  //     parserOptions: {
+  //       ecmaVersion: 'latest',
+  //       sourceType: 'module',
+  //       ecmaFeatures: { jsx: true },
+  //       // project: './tsconfig.eslint.json',
+  //       ...react.configs['jsx-runtime'].parserOptions,
+  //     },
+  //     globals: {
+  //       ...globals.es2021,
+  //       ...globals.browser,
+  //     },
+  //   },
+  //   settings: {
+  //     react: {
+  //       version: 'detect',
+  //     },
+  //   },
+  //   rules: {
+  //     ...jsPlugin.configs.recommended.rules,
+  //     ...tsPlugin.configs.recommended.rules,
+  //     ...react.configs['jsx-runtime'].rules,
+  //     ...reactHooks.configs.recommended.rules,
+  //   },
+  // },
   {
     files: ['**/*.{vue}'],
     languageOptions: {

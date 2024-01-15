@@ -2,7 +2,7 @@ import { createVars, cvar, type ColorName, isGrayscaleColor } from '../utils/sty
 import { tw } from '../utils/tw'
 
 const css = tw(
-  `appearance-none inline-flex items-center justify-center text-sm font-medium  transition-colors
+  `appearance-none border border-solid inline-flex items-center justify-center text-sm font-medium  transition-colors
   focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500`,
   {
     compoundVariants: [
@@ -33,9 +33,9 @@ const css = tw(
         true: ['px-0 overflow-hidden', 'px-2.5 px-3 px-3.5'],
       },
       variant: {
-        default: `shadow-sm border border-[--z-btn-border] text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
-        soft: `shadow-sm border border-transparent text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
-        plain: `border border-transparent transition-colors duration-150 text-[--z-btn-text] bg-transparent enabled:hover:bg-[--z-btn-bg_hover]`,
+        default: `shadow-sm  border-[--z-btn-border] text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
+        soft: `shadow-sm  border-transparent text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
+        plain: ` border-transparent transition-colors duration-150 text-[--z-btn-text] bg-transparent enabled:hover:bg-[--z-btn-bg_hover]`,
       },
     },
   }
