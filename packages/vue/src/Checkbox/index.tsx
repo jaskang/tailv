@@ -1,5 +1,64 @@
 import { useControllableValue } from '../utils/useControllableValue'
-import { defineComponent, type ExtractPublicPropTypes, ref, type SlotsType, type VNode, ComponentPropsOptions } from 'vue'
+import {
+  defineComponent,
+  type ExtractPublicPropTypes,
+  ref,
+  type SlotsType,
+  type VNode,
+  ComponentPropsOptions,
+  provide,
+  PropType,
+  computed,
+  InjectionKey,
+  ComputedRef,
+} from 'vue'
+
+const checkboxGroupProps = {
+  value: Array as PropType<unknown[]>,
+  disabled: Boolean,
+} satisfies ComponentPropsOptions
+
+export type CheckboxGroupProps = ExtractPublicPropTypes<typeof checkboxGroupProps>
+
+const CheckboxGroupInjectKey: InjectionKey<{
+  value: ComputedRef<unknown[]>
+  disabled: ComputedRef<boolean>
+  insert: (val: unknown) => void
+  remove: (val: unknown) => void
+}> = Symbol('CheckboxGroupInjectKey')
+
+export const CheckboxGroup = defineComponent({
+  name: 'ZCheckboxGroup',
+  props: checkboxGroupProps,
+  emits: {
+    'update:value': (value: unknown[]) => true,
+    change: (value: any[]) => true,
+  },
+  setup(props, { emit, slots }) {
+    const [state, setState] = useControllableValue<unknown[]>(props, {
+      defaultValue: [],
+      onChange: (val: any[]) => {
+        emit('change', val)
+      },
+    })
+    provide(CheckboxGroupInjectKey, {
+      value: state,
+      disabled: computed(() => props.disabled),
+      insert: (val: unknown) => {
+        if (state.value.indexOf(val) === -1) {
+          state.value.push(val)
+        }
+      },
+      remove: (val: unknown) => {
+        const index = state.value.indexOf(val)
+        if (index !== -1) {
+          state.value.splice(index, 1)
+        }
+      },
+    })
+    return () => <div class="flex flex-col space-y-2">{slots.default?.()}</div>
+  },
+})
 
 const props = {
   value: null,
