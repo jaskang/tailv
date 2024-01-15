@@ -11,9 +11,11 @@ import {
   computed,
   InjectionKey,
   ComputedRef,
+  inject,
 } from 'vue'
 
 const checkboxGroupProps = {
+  name: String,
   value: Array as PropType<unknown[]>,
   disabled: Boolean,
 } satisfies ComponentPropsOptions
@@ -22,7 +24,7 @@ export type CheckboxGroupProps = ExtractPublicPropTypes<typeof checkboxGroupProp
 
 const CheckboxGroupInjectKey: InjectionKey<{
   value: ComputedRef<unknown[]>
-  disabled: ComputedRef<boolean>
+  props: CheckboxGroupProps
   insert: (val: unknown) => void
   remove: (val: unknown) => void
 }> = Symbol('CheckboxGroupInjectKey')
@@ -39,20 +41,22 @@ export const CheckboxGroup = defineComponent({
       defaultValue: [],
       onChange: (val: any[]) => {
         emit('change', val)
-      },
-    })
+      }, 
+    }) 
     provide(CheckboxGroupInjectKey, {
       value: state,
-      disabled: computed(() => props.disabled),
+      props: props,
       insert: (val: unknown) => {
         if (state.value.indexOf(val) === -1) {
-          state.value.push(val)
+          setState([...state.value, val])
         }
       },
-      remove: (val: unknown) => {
+      remove: (val: unknown) => { 
         const index = state.value.indexOf(val)
         if (index !== -1) {
-          state.value.splice(index, 1)
+          const r = [...state.value]
+          r.splice(index, 1)
+          setState(r)
         }
       },
     })
@@ -61,10 +65,11 @@ export const CheckboxGroup = defineComponent({
 })
 
 const props = {
-  value: null,
+  value: {type:null,
+  required:true},
   name: String,
   disabled: Boolean,
-  checked: Boolean,
+  checked: {type:Boolean,default: undefined}, 
 } satisfies ComponentPropsOptions
 
 export type CheckboxProps = ExtractPublicPropTypes<typeof props>
@@ -75,22 +80,27 @@ export const Checkbox = defineComponent({
   emits: {
     'update:checked': (value: boolean) => true,
     change: (value: boolean) => true,
-    click: (payload: MouseEvent) => true,
-    focus: (e: FocusEvent) => true,
-    blur: (e: FocusEvent) => true,
   },
   slots: Object as SlotsType<{
     default: () => VNode
     icon: () => VNode
   }>,
   setup(props, { slots, emit }) {
-    const focus = ref(false)
+    const parent = inject(CheckboxGroupInjectKey, null) 
+    console.log(parent)
 
     const [checked, setChecked] = useControllableValue(props, {
-      defaultValue: false,
+      defaultValue: parent ? parent.value.value.includes(props.value):false,
       valuePropName: 'checked',
       onChange: (val: boolean) => {
         emit('change', val)
+        if (parent) {
+          if (val) {
+            parent.insert(props.value)
+          } else {
+            parent.remove(props.value)
+          }
+        }
       },
     })
 
@@ -99,24 +109,7 @@ export const Checkbox = defineComponent({
       console.log(el.checked)
       setChecked(el.checked)
     }
-    const onFocus = (e: FocusEvent) => {
-      if (props.disabled) {
-        e.preventDefault()
-        return false
-      } else {
-        focus.value = true
-        emit('focus', e)
-      }
-    }
-    const onBlur = (e: FocusEvent) => {
-      if (props.disabled) {
-        e.preventDefault()
-        return false
-      } else {
-        focus.value = false
-        emit('blur', e)
-      }
-    }
+
 
     return () => (
       <label class={['relative flex items-center', props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']}>
@@ -126,10 +119,8 @@ export const Checkbox = defineComponent({
           type="checkbox"
           name={props.name}
           disabled={props.disabled}
-          checked={checked.value}
+          checked={checked.value} 
           onInput={onInput}
-          onFocus={onFocus}
-          onBlur={onBlur}
         />
         {slots.default ? <span class="relative ml-2 text-sm font-medium">{slots.default()}</span> : null}
       </label>
