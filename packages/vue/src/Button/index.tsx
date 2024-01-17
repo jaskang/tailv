@@ -25,7 +25,7 @@ const props = {
 export type ButtonProps = ExtractPublicPropTypes<typeof props>
 
 export const Button = defineComponent({
-  name: 'ZButton',
+  name: 'VButton',
   props: props,
   slots: Object as SlotsType<{
     default: any

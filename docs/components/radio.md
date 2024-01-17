@@ -1,44 +1,35 @@
+<script setup>
 import { ref } from 'vue'
-import { Checkbox, CheckboxGroup } from 'tailv'
+import { Radio ,RadioGroup } from 'tailv'
 
-# Checkbox
+const picked = ref('A')
+
+</script>
+
+# RadioGroup
+
+<div class="">
+  picked: {{ picked }}
+  <RadioGroup class="mt-2 flex gap-4" v-model:value="picked"> 
+    <Radio value="A">A</Radio> 
+    <Radio value="B">B</Radio>
+  </RadioGroup> 
+</div>
 
 ## Default
 
 <div class="flex flex-wrap gap-2">
-  <Checkbox value="A">checkbox</Checkbox>
-  <Checkbox value="B" checked>
-    checkbox
-  </Checkbox>
+  <Radio value="A">checkbox</Radio>
+  <Radio value="B" checked>checkbox</Radio>
 </div>
 
 ## Disabled
 
 <div class="flex flex-wrap gap-2">
-  <Checkbox value="A" disabled checked>
+  <Radio value="A" disabled checked>
     checked
-  </Checkbox>
-  <Checkbox value="B" disabled>
-    unchecked
-  </Checkbox>
-</div>
-
-# CheckboxGroup
-
-export const checkList = ref(['A'])
-
-<div class="">
-  {checkList.value}
-  <CheckboxGroup
-    value={checkList.value}
-    onUpdate:value={val => {
-      console.log(val)
-      checkList.value = val
-    }}
-  >
-    <Checkbox value="A">A</Checkbox>
-    <Checkbox value="B">B</Checkbox>
-  </CheckboxGroup>
+  </Radio>
+  <Radio value="B" disabled>unchecked</Radio>
 </div>
 
 ## Props

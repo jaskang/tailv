@@ -1,4 +1,5 @@
 export { Button, type ButtonProps } from './Button'
-export { Checkbox, type CheckboxProps,CheckboxGroup,type CheckboxGroupProps } from './Checkbox'
+export { Checkbox, type CheckboxProps, CheckboxGroup, type CheckboxGroupProps } from './Checkbox'
+export { Radio, type RadioProps, RadioGroup, type RadioGroupProps } from './Radio'
 export { Anchor, type AnchorProps, type IAnchorItem } from './Anchor'
 export { Input, type InputProps } from './Input'

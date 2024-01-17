@@ -151,6 +151,6 @@ import { Button } from 'tailv'
 
 ## Slots
 
-| Name    | Description      |
-| ------- | ---------------- |
-| default | default children |
+| Name    | Description |
+| ------- | ----------- |
+| default | children    |

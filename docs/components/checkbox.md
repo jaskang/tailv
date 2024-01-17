@@ -43,6 +43,6 @@ const checkList = ref(['A'])
 
 ## Slots
 
-| Name    | Description      |
-| ------- | ---------------- |
-| default | default children |
+| Name    | Description |
+| ------- | ----------- |
+| default | children    |
