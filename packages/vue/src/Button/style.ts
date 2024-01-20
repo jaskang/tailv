@@ -34,15 +34,15 @@ const css = tw(
       },
       variant: {
         default: `shadow-sm  border-[--z-btn-border] text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
-        soft: `shadow-sm  border-transparent text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
-        plain: ` border-transparent transition-colors duration-150 text-[--z-btn-text] bg-transparent enabled:hover:bg-[--z-btn-bg_hover]`,
+        secondary: `shadow-sm  border-transparent text-[--z-btn-text] bg-[--z-btn-bg]  enabled:hover:bg-[--z-btn-bg_hover]`,
+        ghost: ` border-transparent transition-colors duration-150 text-[--z-btn-text] bg-transparent enabled:hover:bg-[--z-btn-bg_hover]`,
       },
     },
   }
 )
 
 export const createButtonStyle = (props: {
-  variant: 'default' | 'soft' | 'plain'
+  variant: 'default' | 'secondary' | 'ghost'
   size: 'sm' | 'md' | 'lg'
   color?: ColorName
   block: boolean
@@ -52,12 +52,12 @@ export const createButtonStyle = (props: {
 }) => {
   const isGrayscale = isGrayscaleColor(props.color || 'white')
   const vars =
-    props.variant === 'plain'
+    props.variant === 'ghost'
       ? createVars('z-btn', {
           bg_hover: props.color ? cvar(`${props.color}200`) : cvar('gray200'),
           text: props.color ? cvar(`${props.color}${isGrayscale ? 700 : 600}`) : 'currentColor',
         })
-      : props.variant === 'soft'
+      : props.variant === 'secondary'
         ? createVars('z-btn', {
             bg: props.color ? cvar(`${props.color}100`) : cvar('gray100'),
             bg_hover: props.color ? cvar(`${props.color}200`) : cvar('gray200'),

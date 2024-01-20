@@ -14,38 +14,38 @@ import { Button } from 'tailv'
   <Button color="error">Error</Button>
 </div>
 
-## Soft Variant
+## secondary Variant
 
 <div class="flex flex-wrap gap-2">
-  <Button variant="soft">Button</Button>
-  <Button variant="soft" color="primary">
+  <Button variant="secondary">Button</Button>
+  <Button variant="secondary" color="primary">
     Primary
   </Button>
-  <Button variant="soft" color="success">
+  <Button variant="secondary" color="success">
     Success
   </Button>
-  <Button variant="soft" color="warning">
+  <Button variant="secondary" color="warning">
     Warning
   </Button>
-  <Button variant="soft" color="error">
+  <Button variant="secondary" color="error">
     Error
   </Button>
 </div>
 
-## Plain Variant
+## ghost Variant
 
 <div class="flex flex-wrap gap-2">
-  <Button variant="plain">Button</Button>
-  <Button variant="plain" color="primary">
+  <Button variant="ghost">Button</Button>
+  <Button variant="ghost" color="primary">
     Primary
   </Button>
-  <Button variant="plain" color="success">
+  <Button variant="ghost" color="success">
     Success
   </Button>
-  <Button variant="plain" color="warning">
+  <Button variant="ghost" color="warning">
     Warning
   </Button>
-  <Button variant="plain" color="error">
+  <Button variant="ghost" color="error">
     Error
   </Button>
 </div>
@@ -139,15 +139,15 @@ import { Button } from 'tailv'
 
 ## Props
 
-| Prop     | Type                | Default | Description                  |
-| -------- | ------------------- | ------- | ---------------------------- |
-| variant  | 'soft' \| 'plain'   | -       | Variant of the button        |
-| size     | 'sm' \|'md' \| 'lg' | 'md'    | Size of the button           |
-| pill     | boolean             | false   | Pill style of the button     |
-| square   | boolean             | false   | Square style of the button   |
-| loading  | boolean             | false   | Loading state of the button  |
-| disabled | boolean             | false   | Disabled state of the button |
-| color    | string              | -       | Color of the button          |
+| Prop     | Type                   | Default | Description                  |
+| -------- | ---------------------- | ------- | ---------------------------- |
+| variant  | 'secondary' \| 'ghost' | -       | Variant of the button        |
+| size     | 'sm' \|'md' \| 'lg'    | 'md'    | Size of the button           |
+| pill     | boolean                | false   | Pill style of the button     |
+| square   | boolean                | false   | Square style of the button   |
+| loading  | boolean                | false   | Loading state of the button  |
+| disabled | boolean                | false   | Disabled state of the button |
+| color    | string                 | -       | Color of the button          |
 
 ## Slots
 

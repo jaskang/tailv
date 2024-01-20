@@ -5,7 +5,7 @@ import { LoadingIcon } from '../Icon/LoadingIcon'
 
 const props = {
   variant: {
-    type: String as PropType<'default' | 'soft' | 'plain'>,
+    type: String as PropType<'default' | 'secondary' | 'ghost'>,
     default: 'default',
   },
   size: {
