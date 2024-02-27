@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vue": "^3.4.11",
-    "tailv": "workspace:*"
+    "tailv": "workspace:*",
+    "vue": "^3.4.20"
   },
   "devDependencies": {
     "@tailv/preset": "workspace:*"

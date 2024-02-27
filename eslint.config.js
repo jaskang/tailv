@@ -1,102 +1,45 @@
+import globals from 'globals'
+import tsParser from '@typescript-eslint/parser'
+import vueParser from 'vue-eslint-parser'
 import jsPlugin from '@eslint/js'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
-import tsParser from '@typescript-eslint/parser'
 import vuePlugin from 'eslint-plugin-vue'
-import globals from 'globals'
-import vueParser from 'vue-eslint-parser'
+import prettier from 'eslint-config-prettier'
+
+const files = ['**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}']
+const tsFiles = ['**/*.{ts,cts,mts,tsx}']
+// const jsxFiles = ['**/*.{jsx,tsx}']
+// const testFiles = ['**/*.test.{js,cjs,mjs,jsx,ts,cts,mts,tsx}']
 
 export default [
+  { ignores: ['**/node_modules/', '.git/', '**/dist/', '**/.vitepress/cache/'] },
   {
-    ignores: ['**/dist/**'],
-  },
-  {
-    ...jsPlugin.configs.recommended,
-    files: ['**/*.{js}'],
+    files,
+    rules: jsPlugin.configs.recommended.rules,
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      globals: {
-        ...globals.es2021,
-        ...globals.node,
-        ...globals.browser,
-      },
+      globals: { ...globals.browser, ...globals.node },
     },
-    rules: {
-      ...jsPlugin.configs.recommended.rules,
-    },
+    settings: { react: { version: 'detect' } },
   },
   {
-    files: ['**/*.{ts}'],
+    files: tsFiles,
+    plugins: { '@typescript-eslint': tsPlugin },
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        ecmaVersion: 'latest',
         sourceType: 'module',
-      },
-      globals: {
-        ...globals.es2021,
-        ...globals.node,
-        ...globals.browser,
+        ecmaFeatures: { jsx: true },
       },
     },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-    },
-    settings: {
-      'import/resolver': {
-        node: true,
-        typescript: true,
-      },
-    },
-    rules: {
-      ...jsPlugin.configs.recommended.rules,
-      ...tsPlugin.configs.recommended.rules,
-    },
+    rules: tsPlugin.configs.recommended.rules,
   },
-  // {
-  //   files: ['**/packages/react/**/*.{js,jsx,ts,tsx}'],
-  //   plugins: {
-  //     '@typescript-eslint': tsPlugin,
-  //     react: react,
-  //     'react-hooks': reactHooks,
-  //   },
-  //   languageOptions: {
-  //     parser: tsParser,
-  //     parserOptions: {
-  //       ecmaVersion: 'latest',
-  //       sourceType: 'module',
-  //       ecmaFeatures: { jsx: true },
-  //       // project: './tsconfig.eslint.json',
-  //       ...react.configs['jsx-runtime'].parserOptions,
-  //     },
-  //     globals: {
-  //       ...globals.es2021,
-  //       ...globals.browser,
-  //     },
-  //   },
-  //   settings: {
-  //     react: {
-  //       version: 'detect',
-  //     },
-  //   },
-  //   rules: {
-  //     ...jsPlugin.configs.recommended.rules,
-  //     ...tsPlugin.configs.recommended.rules,
-  //     ...react.configs['jsx-runtime'].rules,
-  //     ...reactHooks.configs.recommended.rules,
-  //   },
-  // },
   {
-    files: ['**/*.{vue}'],
+    files: ['**/*.vue'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {
         parser: tsParser,
         extraFileExtensions: ['.vue'],
-      },
-      globals: {
-        ...globals.es2021,
-        ...globals.browser,
       },
     },
     plugins: {
@@ -109,25 +52,42 @@ export default [
       ...vuePlugin.configs['vue3-essential'].rules,
     },
   },
+  prettier,
 ]
 
 // module.exports = {
-//   env: {
-//     browser: true,
-//     es2021: true,
-//     node: true,
+//   "env": {
+//       "browser": true,
+//       "es2021": true,
+//       "node": true
 //   },
-//   extends: [
-//     'eslint:recommended',
-//     'plugin:vue/vue3-essential',
-//     'plugin:@typescript-eslint/recommended',
+//   "extends": [
+//       "eslint:recommended",
+//       "plugin:@typescript-eslint/recommended",
+//       "plugin:vue/vue3-essential"
 //   ],
-//   overrides: [],
-//   parser: '@typescript-eslint/parser',
-//   parserOptions: {
-//     ecmaVersion: 'latest',
-//     sourceType: 'module',
+//   "overrides": [
+//       {
+//           "env": {
+//               "node": true
+//           },
+//           "files": [
+//               ".eslintrc.{js,cjs}"
+//           ],
+//           "parserOptions": {
+//               "sourceType": "script"
+//           }
+//       }
+//   ],
+//   "parserOptions": {
+//       "ecmaVersion": "latest",
+//       "parser": "@typescript-eslint/parser",
+//       "sourceType": "module"
 //   },
-//   plugins: ['vue', '@typescript-eslint'],
-//   rules: {},
+//   "plugins": [
+//       "@typescript-eslint",
+//       "vue"
+//   ],
+//   "rules": {
+//   }
 // }

@@ -16,12 +16,7 @@ export type AnchorProps = {
   items: IAnchorItem[]
 }
 
-function calculateTranslateY(
-  items: IAnchorItem[],
-  key: string,
-  isGroup = false,
-  accumulatedHeight = 0
-): number | undefined {
+function calculateTranslateY(items: IAnchorItem[], key: string, isGroup = false, accumulatedHeight = 0): number | undefined {
   for (let i = 0; i < items.length; i++) {
     const item = items[i]
 
@@ -112,6 +107,8 @@ export const Anchor = defineComponent({
       emit('change', val)
     }
 
+    const a = 'we'
+
     const { css, warper, cursor, group: groupCss, groupTitle } = createAnchorStyle()
     return () => (
       <div class={warper}>
@@ -129,9 +126,7 @@ export const Anchor = defineComponent({
             <AnchorItems items={props.items} selectedKey={state.value} onChange={onChange} />
           </div>
         )}
-        {typeof offset.value === 'number' && (
-          <div class={cursor} style={{ transform: `translateY(${offset.value}rem)` }} />
-        )}
+        {typeof offset.value === 'number' && <div class={cursor} style={{ transform: `translateY(${offset.value}rem)` }} />}
       </div>
     )
   },
