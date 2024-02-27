@@ -9,6 +9,6 @@ node_modules
 dist
 dist-ssr
 coverage
-docs/.vitepress/cache
+**/.vitepress/cache
 
 *.local

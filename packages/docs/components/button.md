@@ -16,11 +16,11 @@ import { Button } from 'tailv'
 
 ## secondary Variant
 
-<div class="flex flex-wrap gap-2">
+<div class="flex flex-wrap gap-2"> 
   <Button variant="secondary">Button</Button>
   <Button variant="secondary" color="primary">
     Primary
-  </Button>
+  </Button> 
   <Button variant="secondary" color="success">
     Success
   </Button>

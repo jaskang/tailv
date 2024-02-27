@@ -26,5 +26,6 @@
       "tailv": ["../vue/src"]
     }
   },
-  "include": ["core/**/*", "pages/**/*"]
+  "include": [".vitepress/theme/**/*", ".vitepress/config.ts"],
+  "exclude": ["node_modules", ".vitepress/cache"]
 }

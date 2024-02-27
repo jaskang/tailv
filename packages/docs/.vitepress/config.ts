@@ -33,7 +33,7 @@ export default defineConfig({
       alias: [
         {
           find: /^tailv$/,
-          replacement: resolve(__dirname, '../../packages/vue/src'),
+          replacement: resolve(__dirname, '../../vue/src'),
         },
         {
           find: /^.\/styles\/base\.css$/,
