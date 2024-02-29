@@ -31,7 +31,7 @@ export default [
         ecmaFeatures: { jsx: true },
       },
     },
-    rules: tsPlugin.configs.recommended.rules,
+    rules: { ...tsPlugin.configs.recommended.rules, '@typescript-eslint/ban-ts-comment': 0 },
   },
   {
     files: ['**/*.vue'],
@@ -49,6 +49,7 @@ export default [
     rules: {
       ...tsPlugin.configs.recommended.rules,
       ...vuePlugin.configs['vue3-essential'].rules,
+      '@typescript-eslint/ban-ts-comment': 0,
     },
   },
   prettier,

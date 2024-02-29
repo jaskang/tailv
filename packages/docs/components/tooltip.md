@@ -1,13 +1,13 @@
 <script setup>
-import { Popover,Button } from 'tailv'
+import { Tooltip,Button } from 'tailv'
 </script>
 
-# Popover
+# Tooltip
 
 ## default
 
 <div class="flex flex-wrap gap-2">
-  <Popover> 
+  <Tooltip> 
     <Button>Button</Button>
-  </Popover> 
+  </Tooltip> 
 </div>

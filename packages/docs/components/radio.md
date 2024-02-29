@@ -12,7 +12,7 @@ const picked = ref('A')
   picked: {{ picked }}
   <RadioGroup class="mt-2 flex gap-4" v-model:value="picked"> 
     <Radio value="A">A</Radio> 
-    <Radio value="B">B</Radio>
+    <Radio value="B">B</Radio> 
   </RadioGroup> 
 </div>
 

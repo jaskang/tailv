@@ -9,7 +9,7 @@ import { Button } from 'tailv'
 <div class="flex flex-wrap gap-2">
   <Button>Button</Button>
   <Button color="primary">Primary</Button>
-  <Button color="success">Success</Button>
+  <Button color="success">Success</Button> 
   <Button color="warning">Warning</Button>
   <Button color="error">Error</Button>
 </div>
