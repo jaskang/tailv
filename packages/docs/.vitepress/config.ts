@@ -57,6 +57,8 @@ export default defineConfig({
           { text: 'Button', link: '/components/button' },
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Radio', link: '/components/radio' },
+          { text: 'Input', link: '/components/Input' },
+          { text: 'Popover', link: '/components/Popover' },
         ],
       },
     ],

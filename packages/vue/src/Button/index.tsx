@@ -28,8 +28,8 @@ export const Button = defineComponent({
   name: 'VButton',
   props: props,
   slots: Object as SlotsType<{
-    default: any
-    icon: any
+    default: unknown
+    icon: unknown
   }>,
   setup(props, { slots }) {
     const { css, style, icon } = useStyle(() =>

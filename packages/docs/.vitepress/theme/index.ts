@@ -1,9 +1,9 @@
 // https://vitepress.dev/guide/custom-theme
+import 'virtual:base.css'
 import './style.css'
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { Button } from 'tailv'
 
 export default {
   extends: DefaultTheme,

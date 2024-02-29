@@ -47,7 +47,6 @@ export default [
       '@typescript-eslint': tsPlugin,
     },
     rules: {
-      ...jsPlugin.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
       ...vuePlugin.configs['vue3-essential'].rules,
     },
