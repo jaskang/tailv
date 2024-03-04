@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, type ComponentPublicInstance, PropType } from 'vue'
-import { useFloating, autoUpdate, offset, flip, shift } from '@floating-ui/vue'
-import { PrimitiveSlot } from '../Base/PrimitiveSlot'
+import { ref, type ComponentPublicInstance, PropType, watch } from 'vue'
+import { useFloating, autoUpdate, offset, flip, shift, ReferenceElement } from '@floating-ui/vue'
+import ElSlot from './ElSlot.vue'
 
 type TooltipTrigger = 'hover' | 'focus' | 'click'
 
@@ -14,20 +14,9 @@ defineProps({
   },
 })
 
-const reference = ref(null)
-const floating = ref(null)
-const innerOpen = ref(false)
-
-const forwardRef = (_ref: Element | ComponentPublicInstance | null) => {
-  // $el could be text/comment for non-single root normal or text root, thus we retrieve the nextElementSibling
-  // @ts-expect-error
-  const el = ['#text', '#comment'].includes(_ref?.$el.nodeName)
-    ? // @ts-expect-error
-      _ref?.$el.nextElementSibling
-    : // @ts-expect-error
-      _ref?.$el || _ref
-  reference.value = el
-}
+const reference = ref<ReferenceElement>()
+const floating = ref<HTMLElement>()
+const innerOpen = ref(true)
 
 const { floatingStyles } = useFloating(reference, floating, {
   whileElementsMounted: autoUpdate,
@@ -35,9 +24,9 @@ const { floatingStyles } = useFloating(reference, floating, {
 })
 </script>
 <template>
-  <PrimitiveSlot :ref="forwardRef">
+  <ElSlot @load="el => (reference = el)">
     <slot />
-  </PrimitiveSlot>
+  </ElSlot>
   <div ref="floating" v-if="innerOpen" :style="floatingStyles">
     <slot name="content" />
   </div>
