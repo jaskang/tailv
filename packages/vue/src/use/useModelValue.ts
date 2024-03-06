@@ -10,7 +10,7 @@ interface Options<T> {
 
 type Props = Record<string, any>
 
-export function useControllableValue<T>(props: Props = {}, options: Options<T> = {}) {
+export function useModelValue<T>(props: Props = {}, options: Options<T> = {}) {
   const { defaultValue, defaultValuePropName = 'defaultValue', valuePropName = 'value', onChange } = options
   const trigger = options.trigger || `update:${valuePropName}`
 

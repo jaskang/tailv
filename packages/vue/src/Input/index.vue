@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { VNode, ref } from 'vue'
-import { useControllableValue } from '../utils/useControllableValue'
+import { VNode, ref, watch } from 'vue'
+import { useModelValue } from '../use/useModelValue'
 import RingInput from '../Base/RingInput.vue'
 
 defineOptions({ name: 'TInput' })
 const emit = defineEmits<{
-  'update:value': [string]
-  change: [string]
+  'update:value': [string | number]
+  change: [string | number]
   input: [Event]
   focus: [FocusEvent]
   blur: [FocusEvent]
@@ -15,7 +15,7 @@ const emit = defineEmits<{
 const slots = defineSlots<{ prefix?(): VNode; suffix?(): VNode }>()
 
 const props = defineProps({
-  value: String,
+  value: [String, Number],
   prefix: String,
   suffix: String,
   placeholder: String,
@@ -23,16 +23,23 @@ const props = defineProps({
   disabled: Boolean,
 })
 
-const [val, setVal] = useControllableValue(props, {
+const focused = ref(false)
+const [val, setVal] = useModelValue(props, {
   onChange: (v: string) => {
     emit('change', v)
   },
 })
 
-const focused = ref(false)
+const size = ref(val.value ? val.value.toString().length : 1)
+
+watch(val, v => {
+  size.value = v.length
+  console.log('size.value', size.value)
+})
 
 const onInput = (e: Event) => {
   const el = e.currentTarget as HTMLInputElement
+
   setVal(el.value)
   emit('input', e)
 }
@@ -66,7 +73,7 @@ const onBlur = (e: FocusEvent) => {
       class="z-input_input disabled flex-1 border-none bg-transparent text-sm outline-none focus:outline-transparent"
       style="box-shadow: none"
       type="text"
-      size="1"
+      :size="size"
       :value="val"
       :readonly="readonly"
       :disabled="disabled"

@@ -1,7 +1,7 @@
 import { type PropType, defineComponent } from 'vue'
 import { createAnchorItemStyle, createAnchorStyle } from './style'
 import { computed } from 'vue'
-import { useControllableValue } from '../utils/useControllableValue'
+import { useModelValue } from '../use/useModelValue'
 
 export type IAnchorItem = {
   key: string
@@ -16,7 +16,12 @@ export type AnchorProps = {
   items: IAnchorItem[]
 }
 
-function calculateTranslateY(items: IAnchorItem[], key: string, isGroup = false, accumulatedHeight = 0): number | undefined {
+function calculateTranslateY(
+  items: IAnchorItem[],
+  key: string,
+  isGroup = false,
+  accumulatedHeight = 0
+): number | undefined {
   for (let i = 0; i < items.length; i++) {
     const item = items[i]
 
@@ -96,7 +101,7 @@ export const Anchor = defineComponent({
     change: (val: string) => true,
   },
   setup(props, { emit }) {
-    const [state, setState] = useControllableValue<string>(props, {
+    const [state, setState] = useModelValue<string>(props, {
       valuePropName: 'selectedKey',
     })
 
@@ -126,7 +131,9 @@ export const Anchor = defineComponent({
             <AnchorItems items={props.items} selectedKey={state.value} onChange={onChange} />
           </div>
         )}
-        {typeof offset.value === 'number' && <div class={cursor} style={{ transform: `translateY(${offset.value}rem)` }} />}
+        {typeof offset.value === 'number' && (
+          <div class={cursor} style={{ transform: `translateY(${offset.value}rem)` }} />
+        )}
       </div>
     )
   },

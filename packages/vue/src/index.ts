@@ -3,5 +3,6 @@ export { Checkbox, type CheckboxProps, CheckboxGroup, type CheckboxGroupProps } 
 export { Radio, type RadioProps, RadioGroup, type RadioGroupProps } from './Radio'
 export { Anchor, type AnchorProps, type IAnchorItem } from './Anchor'
 export { default as Input } from './Input/index.vue'
+export { default as Select } from './Select/index.vue'
 export { default as Popover } from './Popover/index.vue'
 export { default as Tooltip } from './Tooltip/index.vue'

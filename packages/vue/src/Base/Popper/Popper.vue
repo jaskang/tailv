@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { ref, type ComponentPublicInstance, PropType, watch, computed, provide } from 'vue'
-import { useFloating, autoUpdate, offset, flip, shift, ReferenceElement } from '@floating-ui/vue'
+import { ref, PropType, computed } from 'vue'
+import { type VirtualElement } from '@floating-ui/vue'
 import ElSlot from './ElSlot.vue'
-
-type TooltipTrigger = 'hover' | 'focus' | 'click'
+import { PopperTrigger, usePopper } from './core'
 
 defineOptions({ name: 'TPopover' })
 
 const props = defineProps({
-  reference: Object as PropType<ReferenceElement>,
+  reference: Object as PropType<HTMLElement | VirtualElement>,
   trigger: {
-    type: [String, Array] as PropType<TooltipTrigger | TooltipTrigger[]>,
+    type: [String, Array] as PropType<PopperTrigger | PopperTrigger[]>,
     default: 'hover',
   },
 })
@@ -20,16 +19,23 @@ const slotReference = ref<Element>()
 const reference = computed(() => (isCustomReference.value ? props.reference : slotReference.value))
 
 const floating = ref<HTMLElement>()
-const innerOpen = ref(true)
 
-const { floatingStyles } = useFloating(reference, floating, {
-  whileElementsMounted: autoUpdate,
-  middleware: [offset(10), flip(), shift()],
+const { floatingStyles, open, onOpenChange } = usePopper({
+  reference,
+  floating,
+  trigger: computed(() => (Array.isArray(props.trigger) ? props.trigger : [props.trigger])),
 })
 
 const onloadHandler = (el: Element) => {
   slotReference.value = el
 }
+
+defineExpose({
+  open,
+  toggle: () => {
+    onOpenChange(!open.value, 'manual')
+  },
+})
 </script>
 <template>
   <template v-if="!isCustomReference">
@@ -37,7 +43,7 @@ const onloadHandler = (el: Element) => {
       <slot />
     </ElSlot>
   </template>
-  <div ref="floating" v-if="innerOpen" :style="floatingStyles">
+  <div ref="floating" v-if="open" :style="floatingStyles">
     <slot name="content" />
   </div>
 </template>

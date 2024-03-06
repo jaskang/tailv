@@ -1,10 +1,32 @@
 <script setup lang="ts">
-import Popper from '../Base/Popper.vue'
+import { ComponentInstance, PropType, ref } from 'vue'
+import Popper from '../Base/Popper'
+import { PopperTrigger } from 'src/Base/Popper/core'
 defineOptions({ name: 'TPopover' })
+defineProps({
+  content: String,
+  trigger: {
+    type: String as PropType<PopperTrigger>,
+    default: 'click',
+  },
+})
+const popperRef = ref<InstanceType<typeof Popper>>()
+
+defineExpose({
+  toggle: () => popperRef.value?.toggle(),
+})
 </script>
 <template>
-  <Popper>
+  <Popper :trigger="trigger" ref="popperRef">
     <slot />
-    <template #content><div class="z-popover">TPopover</div></template>
+    <template #content>
+      <div class="z-popover rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+        <slot name="content">
+          <div class="px-2">
+            {{ content }}
+          </div>
+        </slot>
+      </div>
+    </template>
   </Popper>
 </template>

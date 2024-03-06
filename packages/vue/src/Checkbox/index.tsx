@@ -1,4 +1,4 @@
-import { useControllableValue } from '../utils/useControllableValue'
+import { useModelValue } from '../use/useModelValue'
 import {
   defineComponent,
   type ExtractPublicPropTypes,
@@ -37,7 +37,7 @@ export const CheckboxGroup = defineComponent({
     change: (value: any[]) => true,
   },
   setup(props, { emit, slots }) {
-    const [state, setState] = useControllableValue<unknown[]>(props, {
+    const [state, setState] = useModelValue<unknown[]>(props, {
       defaultValue: [],
       onChange: (val: any[]) => {
         emit('change', val)
@@ -88,7 +88,7 @@ export const Checkbox = defineComponent({
     const group = inject(CheckboxGroupInjectKey, null)
     console.log(parent)
 
-    const [innerChecked, setInnerChecked] = useControllableValue(props, {
+    const [innerChecked, setInnerChecked] = useModelValue(props, {
       defaultValue: group ? group.value.value.includes(props.value) : false,
       valuePropName: 'checked',
       onChange: (val: boolean) => {
@@ -111,7 +111,12 @@ export const Checkbox = defineComponent({
     }
 
     return () => (
-      <label class={['relative inline-flex items-center', props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']}>
+      <label
+        class={[
+          'relative inline-flex items-center',
+          props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+        ]}
+      >
         <input
           class="form-input h-4 w-4 rounded border-gray-300 text-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
           style={{ boxShadow: 'none', cursor: 'inherit' }}
