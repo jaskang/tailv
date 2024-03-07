@@ -9,8 +9,9 @@ import {
   ref,
   toValue,
   type Ref,
+  StyleValue,
 } from 'vue'
-import { useFloating, offset, flip, shift, type VirtualElement } from '@floating-ui/vue'
+import { useFloating, offset, flip, shift, type VirtualElement, arrow, autoUpdate, Placement } from '@floating-ui/vue'
 import { uid } from 'kotl'
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import { useHoverListener, useFocusListener, useClickListener } from '../../use/useTargetEvent'
@@ -73,69 +74,100 @@ function refElement(el: Ref<HTMLElement | VirtualElement | undefined>) {
 }
 
 export function usePopper({
+  open,
   reference,
   floating,
+  floatingArrow,
+  placement,
   trigger,
-  open: selfOpen,
   onChange,
 }: {
   open: Ref<boolean>
-  onChange: (val: boolean, trigger: PopperTrigger) => void
   reference: Ref<HTMLElement | VirtualElement | undefined>
   floating: Ref<HTMLElement | undefined>
+  floatingArrow: Ref<HTMLElement | undefined>
+  placement: Ref<Placement>
   trigger: Ref<PopperTrigger[]>
+  onChange: (val: boolean, trigger: PopperTrigger) => void
 }) {
   const nodeId = `popper-${uid(6)}`
   const parent = inject(POPPER_TREE_CONTEXT_KEY, null)
   const { hasChildrenOpen } = usePopperTree(nodeId)
 
-  const open = computed(() => selfOpen.value || hasChildrenOpen.value)
   const floatingReturn = useFloating(reference, floating, {
-    middleware: [offset(10), flip(), shift()],
-    // whileElementsMounted: autoUpdate,
+    placement,
+    middleware: [offset(8), flip(), shift(), arrow({ element: floatingArrow })],
+    whileElementsMounted: autoUpdate,
   })
+
+  const arrowStyle = computed(() => {
+    const { placement, middlewareData } = floatingReturn
+    const side = placement.value.split('-')[0] as 'bottom' | 'left' | 'top' | 'right'
+    const staticSide = {
+      top: 'bottom',
+      right: 'left',
+      bottom: 'top',
+      left: 'right',
+    }[side]
+
+    return {
+      position: 'absolute',
+      left: middlewareData.value.arrow?.x != null ? `${middlewareData.value.arrow.x}px` : '',
+      top: middlewareData.value.arrow?.y != null ? `${middlewareData.value.arrow.y}px` : '',
+      [staticSide]: '-8px',
+    } as StyleValue
+  })
+
+  const emitChange = (val: boolean, trigger: PopperTrigger) => {
+    if (val !== open.value) {
+      // true 直接设置，false 需判断子级 popper 已关闭
+      if (val || !hasChildrenOpen.value) {
+        onChange(val, trigger)
+      }
+    }
+  }
 
   //
   if (trigger.value.includes('hover')) {
     const referenceHover = ref(false)
     const floatingHover = ref(false)
-    const updateOpen = () => {
-      onChange(referenceHover.value || floatingHover.value, 'hover')
+    const emitHover = () => {
+      const hovered = referenceHover.value || floatingHover.value
+      // 鼠标不在 reference 和 floating 上
+      emitChange(hovered, 'hover')
     }
     useHoverListener(refElement(reference), { delayLeave: 100 }, val => {
       referenceHover.value = val
-      updateOpen()
+      emitHover()
     })
     useHoverListener(refElement(floating), { delayLeave: 100 }, val => {
       floatingHover.value = val
-      updateOpen()
+      emitHover()
     })
   }
 
   if (trigger.value.includes('focus')) {
     useFocusListener(refElement(reference), val => {
-      console.log(val, 'focus')
-      onChange(val, 'focus')
+      emitChange(val, 'focus')
     })
     onClickOutside(
       floating,
       e => {
         console.log(e, 'onClickOutside')
-        onChange(false, 'click')
+        emitChange(false, 'click')
       },
       { ignore: [refElement(reference)] }
     )
   }
   if (trigger.value.includes('click')) {
     useClickListener(refElement(reference), () => {
-      console.log(!open.value, 'click')
-      onChange(!open.value, 'click')
+      emitChange(!open.value, 'click')
     })
     onClickOutside(
       floating,
       e => {
         console.log(e, 'onClickOutside')
-        onChange(false, 'click')
+        emitChange(false, 'click')
       },
       { ignore: [refElement(reference)] }
     )
@@ -150,6 +182,7 @@ export function usePopper({
   return {
     open,
     nodeId,
+    arrowStyle,
     ...floatingReturn,
   }
 }

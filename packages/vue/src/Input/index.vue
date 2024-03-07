@@ -58,13 +58,8 @@ const onBlur = (e: FocusEvent) => {
 const inputRef = ref<HTMLInputElement>()
 
 defineExpose({
-  focus: () => {
-    console.log('inputRef.value', inputRef.value)
-    inputRef.value?.focus()
-  },
-  blur: () => {
-    inputRef.value?.blur()
-  },
+  focus: () => inputRef.value?.focus(),
+  blur: () => inputRef.value?.blur(),
 })
 </script>
 <template>

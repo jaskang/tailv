@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, PropType, computed, watch } from 'vue'
-import { type VirtualElement } from '@floating-ui/vue'
+import { ref, PropType, computed, StyleValue, toRef } from 'vue'
+import { Placement, type VirtualElement } from '@floating-ui/vue'
 import ElSlot from './ElSlot.vue'
 import { PopperTrigger, usePopper } from './core'
 import { useModelValue } from '../../use/useModelValue'
@@ -14,32 +14,32 @@ const props = defineProps({
     type: [String, Array] as PropType<PopperTrigger | PopperTrigger[]>,
     default: 'hover',
   },
+  arrow: Boolean,
+  placement: {
+    type: String as PropType<Placement>,
+    default: 'bottom',
+  },
 })
-const emit = defineEmits<{
-  'update:open': [open: boolean]
-  change: [open: boolean]
-}>()
+const emit = defineEmits<{ 'update:open': [open: boolean]; change: [open: boolean] }>()
 
 const isCustomReference = ref(!!props.reference)
 const slotReference = ref<Element>()
 const reference = computed(() => (isCustomReference.value ? props.reference : slotReference.value))
 const floating = ref<HTMLElement>()
+const floatingArrow = ref<HTMLElement>()
 
-const [selfOpen, setSelfOpen] = useModelValue<boolean>(props, {
+const [open, setOpen] = useModelValue<boolean>(props, {
   valuePropName: 'open',
+  onChange: v => emit('change', v),
 })
-const { floatingStyles, open } = usePopper({
+const { floatingStyles, arrowStyle } = usePopper({
+  open,
   reference,
   floating,
+  floatingArrow,
+  placement: toRef(props, 'placement'),
   trigger: computed(() => (Array.isArray(props.trigger) ? props.trigger : [props.trigger])),
-  open: selfOpen,
-  onChange(val) {
-    setSelfOpen(val)
-  },
-})
-
-watch(open, v => {
-  emit('change', v)
+  onChange: (val, e) => setOpen(val),
 })
 
 const onloadHandler = (el: Element) => {
@@ -48,10 +48,7 @@ const onloadHandler = (el: Element) => {
 
 defineExpose({
   open,
-  toggle: () => {
-    // manual
-    setSelfOpen(!open.value)
-  },
+  toggle: () => setOpen(!open.value),
 })
 </script>
 <template>
@@ -62,5 +59,7 @@ defineExpose({
   </template>
   <div ref="floating" v-if="open" :style="floatingStyles">
     <slot name="content" />
+    <!-- arrow -->
+    <div v-if="arrow" ref="floatingArrow" class="h-2 w-2 bg-red-500" :style="arrowStyle"></div>
   </div>
 </template>

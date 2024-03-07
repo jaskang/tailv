@@ -37,7 +37,7 @@ const props = defineProps({
     :disabled="disabled"
     :data-focused="focused"
     :class="[
-      `flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset focus-within:z-10 focus-within:ring-2 focus-within:ring-inset
+      `flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset transition-shadow focus-within:z-10 focus-within:ring-2 focus-within:ring-inset
       data-[focused=true]:ring-2 data-[focused=true]:ring-inset
       ${focusedBorderMap[status]}
       ${focusBorderMap[status]}`,
