@@ -76,7 +76,11 @@ export function usePopper({
   reference,
   floating,
   trigger,
+  open: selfOpen,
+  onChange,
 }: {
+  open: Ref<boolean>
+  onChange: (val: boolean, trigger: PopperTrigger) => void
   reference: Ref<HTMLElement | VirtualElement | undefined>
   floating: Ref<HTMLElement | undefined>
   trigger: Ref<PopperTrigger[]>
@@ -84,23 +88,19 @@ export function usePopper({
   const nodeId = `popper-${uid(6)}`
   const parent = inject(POPPER_TREE_CONTEXT_KEY, null)
   const { hasChildrenOpen } = usePopperTree(nodeId)
-  const selfOpen = ref(false)
+
   const open = computed(() => selfOpen.value || hasChildrenOpen.value)
   const floatingReturn = useFloating(reference, floating, {
     middleware: [offset(10), flip(), shift()],
     // whileElementsMounted: autoUpdate,
   })
-  const onOpenChange = (val: boolean, trigger?: PopperTrigger) => {
-    console.log(trigger)
-    selfOpen.value = val
-  }
 
   //
   if (trigger.value.includes('hover')) {
     const referenceHover = ref(false)
     const floatingHover = ref(false)
     const updateOpen = () => {
-      onOpenChange(referenceHover.value || floatingHover.value, 'hover')
+      onChange(referenceHover.value || floatingHover.value, 'hover')
     }
     useHoverListener(refElement(reference), { delayLeave: 100 }, val => {
       referenceHover.value = val
@@ -115,13 +115,13 @@ export function usePopper({
   if (trigger.value.includes('focus')) {
     useFocusListener(refElement(reference), val => {
       console.log(val, 'focus')
-      onOpenChange(val, 'focus')
+      onChange(val, 'focus')
     })
     onClickOutside(
       floating,
       e => {
         console.log(e, 'onClickOutside')
-        onOpenChange(false, 'click')
+        onChange(false, 'click')
       },
       { ignore: [refElement(reference)] }
     )
@@ -129,13 +129,13 @@ export function usePopper({
   if (trigger.value.includes('click')) {
     useClickListener(refElement(reference), () => {
       console.log(!open.value, 'click')
-      onOpenChange(!open.value, 'click')
+      onChange(!open.value, 'click')
     })
     onClickOutside(
       floating,
       e => {
         console.log(e, 'onClickOutside')
-        onOpenChange(false, 'click')
+        onChange(false, 'click')
       },
       { ignore: [refElement(reference)] }
     )
@@ -150,7 +150,6 @@ export function usePopper({
   return {
     open,
     nodeId,
-    onOpenChange,
     ...floatingReturn,
   }
 }

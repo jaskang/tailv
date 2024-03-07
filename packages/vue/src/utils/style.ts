@@ -1,6 +1,6 @@
 import { ComputedRef, computed } from 'vue'
 
-export type ColorAlias = 'primary' | 'success' | 'warning' | 'error'
+export type ColorAlias = 'primary' | 'success' | 'warning' | 'danger'
 
 const COLORS = [
   'slate',

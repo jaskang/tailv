@@ -30,13 +30,6 @@ const [val, setVal] = useModelValue(props, {
   },
 })
 
-const size = ref(val.value ? val.value.toString().length : 1)
-
-watch(val, v => {
-  size.value = v.length
-  console.log('size.value', size.value)
-})
-
 const onInput = (e: Event) => {
   const el = e.currentTarget as HTMLInputElement
 
@@ -61,6 +54,18 @@ const onBlur = (e: FocusEvent) => {
     emit('blur', e)
   }
 }
+
+const inputRef = ref<HTMLInputElement>()
+
+defineExpose({
+  focus: () => {
+    console.log('inputRef.value', inputRef.value)
+    inputRef.value?.focus()
+  },
+  blur: () => {
+    inputRef.value?.blur()
+  },
+})
 </script>
 <template>
   <RingInput :disabled="disabled">
@@ -70,10 +75,11 @@ const onBlur = (e: FocusEvent) => {
     </span>
 
     <input
+      ref="inputRef"
       class="z-input_input disabled flex-1 border-none bg-transparent text-sm outline-none focus:outline-transparent"
       style="box-shadow: none"
       type="text"
-      :size="size"
+      size="1"
       :value="val"
       :readonly="readonly"
       :disabled="disabled"
@@ -83,9 +89,17 @@ const onBlur = (e: FocusEvent) => {
       :onBlur="onBlur"
       autocomplete="off"
     />
-    <span v-if="suffix || slots.suffix" class="z-input_suffix -ml-1 flex items-center pr-3">
-      <template v-if="suffix">{{ suffix }}</template>
-      <template v-else><slot name="suffix" /></template>
-    </span>
+    <template v-if="suffix || slots.suffix">
+      <template v-if="suffix">
+        <span class="z-input_suffix -ml-1 flex h-full items-center pr-3">
+          {{ suffix }}
+        </span>
+      </template>
+      <template v-else>
+        <span class="z-input_suffix -ml-1 flex h-full items-center">
+          <slot name="suffix" />
+        </span>
+      </template>
+    </template>
   </RingInput>
 </template>

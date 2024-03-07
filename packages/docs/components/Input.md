@@ -16,7 +16,7 @@ import { Input } from 'tailv'
   <Input class="w-full"/>
   <Input status="success" class="w-full"/>
   <Input status="warning" class="w-full"/>
-  <Input status="error" class="w-full"/>
+  <Input status="danger" class="w-full"/>
 </div>
 
 ## prefix & suffix

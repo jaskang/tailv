@@ -10,6 +10,11 @@ defineProps({
     default: 'click',
   },
 })
+const emit = defineEmits<{
+  'update:open': [open: boolean]
+  change: [open: boolean]
+}>()
+
 const popperRef = ref<InstanceType<typeof Popper>>()
 
 defineExpose({
@@ -17,7 +22,7 @@ defineExpose({
 })
 </script>
 <template>
-  <Popper :trigger="trigger" ref="popperRef">
+  <Popper :trigger="trigger" ref="popperRef" @change="emit('change', $event)">
     <slot />
     <template #content>
       <div class="z-popover rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">

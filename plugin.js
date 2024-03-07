@@ -10,14 +10,14 @@ function extractColorVars(colorObj, colorGroup = '') {
       return { ...vars, ...extractColorVars(value, `${key}`) }
     }
   }, {})
-} 
+}
 
 export default plugin(
   ({ addBase, addComponents, theme }) => {
     const all = extractColorVars(theme('colors'))
     addBase({
       ':root': all,
-    })  
+    })
     addComponents({
       '.z-btn': {
         color: 'var(--z-btn-text, theme(colors.gray.700))',
@@ -29,7 +29,7 @@ export default plugin(
           backgroundColor: 'var(--z-btn-bg_hover, var(--z-btn-bg))',
           borderColor: 'var(--z-btn-border_hover, var(--z-btn-border))',
         },
-      }, 
+      },
     })
   },
   {
@@ -39,7 +39,7 @@ export default plugin(
           primary: colors.indigo,
           success: colors.green,
           warning: colors.amber,
-          error: colors.red,
+          danger: colors.red,
         },
       },
     },

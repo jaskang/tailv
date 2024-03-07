@@ -11,7 +11,7 @@ import { Button } from 'tailv'
   <Button color="primary">Primary</Button>
   <Button color="success">Success</Button> 
   <Button color="warning">Warning</Button>
-  <Button color="error">Error</Button>
+  <Button color="danger">Danger</Button>
 </div>
 
 ## secondary Variant
@@ -27,7 +27,7 @@ import { Button } from 'tailv'
   <Button variant="secondary" color="warning">
     Warning
   </Button>
-  <Button variant="secondary" color="error">
+  <Button variant="secondary" color="danger">
     Error
   </Button>
 </div>
@@ -45,8 +45,8 @@ import { Button } from 'tailv'
   <Button variant="ghost" color="warning">
     Warning
   </Button>
-  <Button variant="ghost" color="error">
-    Error
+  <Button variant="ghost" color="danger">
+    danger
   </Button>
 </div>
 
@@ -96,8 +96,8 @@ import { Button } from 'tailv'
   <Button color="primary" disabled>
     Primary
   </Button>
-  <Button color="error" disabled>
-    Error
+  <Button color="danger" disabled>
+    danger
   </Button>
 </div>
 

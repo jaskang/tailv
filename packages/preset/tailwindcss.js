@@ -20,7 +20,7 @@ module.exports = {
         primary: colors.indigo,
         success: colors.green,
         warning: colors.amber,
-        error: colors.red,
+        danger: colors.red,
       },
     },
   },
