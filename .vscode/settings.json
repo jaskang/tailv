@@ -2,5 +2,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "references.preferredLocation": "peek",
   "eslint.format.enable": true,
-  "eslint.experimental.useFlatConfig": true
+  "eslint.experimental.useFlatConfig": true,
+  "tailwindCSS.experimental.classRegex": [["/\\*tw\\*/ ([^;]*);", "'([^']*)'"], "\\/\\*\\s?tw:\\s?\\*\\/\\s?`(.*)`"]
 }
