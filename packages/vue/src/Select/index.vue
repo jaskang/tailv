@@ -54,8 +54,14 @@ const focused = ref(false)
       </template>
     </Input>
     <template #content>
-      <div class="flex max-h-80 flex-col overflow-auto py-1 text-sm ring-1 ring-black ring-opacity-5">
-        <div v-for="item in options" :key="item.value" @click="selectHandler(item)">
+      <div class="flex max-h-80 flex-col overflow-auto py-1 text-sm">
+        <div
+          v-for="item in options"
+          :key="item.value"
+          @click="selectHandler(item)"
+          class="hover:bg-primary-500 relative cursor-default select-none px-3 py-2 hover:text-white"
+          :class="[item.value === val ? 'bg-primary-100' : '']"
+        >
           {{ item.label }}
         </div>
       </div>

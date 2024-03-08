@@ -11,7 +11,17 @@ import {
   type Ref,
   StyleValue,
 } from 'vue'
-import { useFloating, offset, flip, shift, type VirtualElement, arrow, autoUpdate, Placement } from '@floating-ui/vue'
+import {
+  useFloating,
+  offset,
+  flip,
+  shift,
+  size,
+  type VirtualElement,
+  arrow,
+  autoUpdate,
+  Placement,
+} from '@floating-ui/vue'
 import { uid } from 'kotl'
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import { useHoverListener, useFocusListener, useClickListener } from '../../use/useTargetEvent'
@@ -96,7 +106,19 @@ export function usePopper({
 
   const floatingReturn = useFloating(reference, floating, {
     placement,
-    middleware: [offset(8), flip(), shift(), arrow({ element: floatingArrow })],
+    middleware: [
+      offset(8),
+      size({
+        apply({ rects, elements }) {
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
+          })
+        },
+      }),
+      flip(),
+      shift(),
+      arrow({ element: floatingArrow }),
+    ],
     whileElementsMounted: autoUpdate,
   })
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, PropType, computed, StyleValue, toRef } from 'vue'
+import { ref, PropType, computed, toRef } from 'vue'
 import { Placement, type VirtualElement } from '@floating-ui/vue'
 import ElSlot from './ElSlot.vue'
 import { PopperTrigger, usePopper } from './core'
@@ -57,9 +57,15 @@ defineExpose({
       <slot />
     </ElSlot>
   </template>
-  <div ref="floating" v-if="open" :style="floatingStyles">
-    <slot name="content" />
-    <!-- arrow -->
-    <div v-if="arrow" ref="floatingArrow" class="h-2 w-2 bg-red-500" :style="arrowStyle"></div>
-  </div>
+  <Transition
+    leave-active-class="transition duration-100 ease-in "
+    leave-from-class="opacity-100"
+    leave-to-class="opacity-0"
+  >
+    <div ref="floating" v-if="open" class="z-[99]" :style="floatingStyles">
+      <slot name="content" />
+      <!-- arrow -->
+      <div v-if="arrow" ref="floatingArrow" class="h-2 w-2 bg-red-500" :style="arrowStyle"></div>
+    </div>
+  </Transition>
 </template>
