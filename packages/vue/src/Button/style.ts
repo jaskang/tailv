@@ -1,10 +1,9 @@
-import { ColorAlias } from '../utils/style'
 import { tw } from '../utils/tw'
 
 // 'primary' | 'success' | 'warning' | 'danger'
 
 export const createButtonCss = tw(
-  `appearance-none border border-solid inline-flex items-center justify-center text-sm font-medium  transition-colors
+  `inline-flex appearance-none items-center justify-center border border-solid text-sm font-medium  transition-colors
   focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500`,
   {
     compoundVariants: [
@@ -15,79 +14,79 @@ export const createButtonCss = tw(
       {
         variant: 'default',
         color: 'normal',
-        class: ` border-gray-300 text-current bg-white enabled:hover:bg-gray-50`,
+        class: ` border-gray-300 bg-white text-current enabled:hover:bg-gray-50`,
       },
       {
         variant: 'default',
         color: 'primary',
-        class: `border-transparent text-white bg-primary-500 enabled:hover:bg-primary-600`,
+        class: `border-transparent bg-primary-500 text-white enabled:hover:bg-primary-600`,
       },
       {
         variant: 'default',
         color: 'success',
-        class: `border-transparent text-white bg-success-500  enabled:hover:bg-success-600`,
+        class: `border-transparent bg-success-500 text-white  enabled:hover:bg-success-600`,
       },
       {
         variant: 'default',
         color: 'warning',
-        class: `border-transparent text-white bg-warning-500  enabled:hover:bg-warning-600`,
+        class: `border-transparent bg-warning-500 text-white  enabled:hover:bg-warning-600`,
       },
       {
         variant: 'default',
         color: 'danger',
-        class: `border-transparent text-white bg-danger-500  enabled:hover:bg-danger-600`,
+        class: `border-transparent bg-danger-500 text-white  enabled:hover:bg-danger-600`,
       },
 
       {
         variant: 'secondary',
         color: 'normal',
-        class: `border-transparent text-current bg-gray-100 enabled:hover:bg-gray-200`,
+        class: `border-transparent bg-gray-100 text-current enabled:hover:bg-gray-200`,
       },
       {
         variant: 'secondary',
         color: 'primary',
-        class: `border-transparent text-primary-600 bg-primary-100 enabled:hover:bg-primary-200`,
+        class: `border-transparent bg-primary-100 text-primary-600 enabled:hover:bg-primary-200`,
       },
       {
         variant: 'secondary',
         color: 'success',
-        class: `border-transparent text-success-600 bg-success-100  enabled:hover:bg-success-200`,
+        class: `border-transparent bg-success-100 text-success-600  enabled:hover:bg-success-200`,
       },
       {
         variant: 'secondary',
         color: 'warning',
-        class: `border-transparent text-warning-600 bg-warning-100  enabled:hover:bg-warning-200`,
+        class: `border-transparent bg-warning-100 text-warning-600  enabled:hover:bg-warning-200`,
       },
       {
         variant: 'secondary',
         color: 'danger',
-        class: `border-transparent text-danger-600 bg-danger-100  enabled:hover:bg-danger-200`,
+        class: `border-transparent bg-danger-100 text-danger-600  enabled:hover:bg-danger-200`,
       },
 
       {
         variant: 'ghost',
         color: 'normal',
-        class: `border-transparent text-current bg-transparent enabled:hover:bg-gray-200`,
+        class: `border-transparent bg-transparent text-current enabled:hover:bg-gray-200`,
       },
       {
         variant: 'ghost',
         color: 'primary',
-        class: `border-transparent text-primary-600 bg-transparent enabled:hover:bg-primary-200`,
+        class: `border-transparent bg-transparent text-primary-600 enabled:hover:bg-primary-200`,
       },
       {
         variant: 'ghost',
         color: 'success',
-        class: `border-transparent text-success-600 bg-transparent  enabled:hover:bg-success-200`,
+        class: `border-transparent bg-transparent text-success-600  enabled:hover:bg-success-200`,
       },
       {
         variant: 'ghost',
         color: 'warning',
-        class: `border-transparent text-warning-600 bg-transparent  enabled:hover:bg-warning-200`,
+        class: `border-transparent bg-transparent text-warning-600  enabled:hover:bg-warning-200`,
       },
       {
         variant: 'ghost',
         color: 'danger',
-        class: `border-transparent text-danger-600 bg-transparent  enabled:hover:bg-danger-200`,
+        class: `border-transparent bg-transparent text-danger-600  enabled:hover:bg-danger-200`,
       },
     ],
     variants: {
@@ -97,7 +96,7 @@ export const createButtonCss = tw(
       },
       disabled: {
         false: '',
-        true: 'opacity-60 cursor-not-allowed',
+        true: 'cursor-not-allowed opacity-60',
       },
       pill: {
         false: 'rounded-md',
@@ -110,7 +109,7 @@ export const createButtonCss = tw(
       },
       square: {
         false: '',
-        true: ['px-0 overflow-hidden', 'px-2.5 px-3 px-3.5'],
+        true: ['overflow-hidden px-0', 'px-2.5 px-3 px-3.5'],
       },
       variant: {
         default: `shadow-sm  `,
@@ -127,24 +126,3 @@ export const createButtonCss = tw(
     },
   }
 )
-
-export const createButtonStyle = (props: {
-  variant: 'default' | 'secondary' | 'ghost'
-  size: 'sm' | 'md' | 'lg'
-  color?: ColorAlias
-  block: boolean
-  disabled: boolean
-  pill: boolean
-  square: boolean
-}) => {
-  const ret = css({
-    block: props.block,
-    disabled: props.disabled,
-    pill: props.pill,
-    size: props.size,
-    square: props.square,
-    variant: props.variant,
-    color: props.color || 'normal',
-  })
-  return ret
-}

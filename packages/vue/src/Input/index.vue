@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VNode, ref, watch } from 'vue'
+import { type VNode, ref } from 'vue'
 import { useModelValue } from '../use/useModelValue'
 import RingInput from '../Base/RingInput.vue'
 

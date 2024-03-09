@@ -1,4 +1,4 @@
-import { useFocusWithin, useElementHover, useEventListener, UseElementHoverOptions } from '@vueuse/core'
+import { useFocusWithin, useElementHover, useEventListener, type UseElementHoverOptions } from '@vueuse/core'
 import { type Ref, watch, onMounted } from 'vue'
 
 export function useFocusListener(el: Ref<HTMLElement | null | undefined>, callback: (val: boolean) => void) {

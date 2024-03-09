@@ -1,15 +1,14 @@
 import {
   computed,
   inject,
-  InjectionKey,
-  MaybeRefOrGetter,
+  type InjectionKey,
   onMounted,
   provide,
   reactive,
   ref,
   toValue,
   type Ref,
-  StyleValue,
+  type StyleValue,
 } from 'vue'
 import {
   useFloating,
@@ -20,7 +19,7 @@ import {
   type VirtualElement,
   arrow,
   autoUpdate,
-  Placement,
+  type Placement,
 } from '@floating-ui/vue'
 import { uid } from 'kotl'
 import { onClickOutside, useEventListener } from '@vueuse/core'

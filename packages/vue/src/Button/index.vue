@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, PropType } from 'vue'
+import { computed, type PropType } from 'vue'
 
 import Loading from '../Icon/Loading.vue'
-import { ColorAlias } from '@/utils/style'
+import type { ColorAlias } from '@/utils/theme'
 
 import { createButtonCss } from './style'
 
@@ -24,7 +24,7 @@ const props = defineProps({
   pill: Boolean,
   square: Boolean,
   block: Boolean,
-  loading: Boolean,
+  loading: Boolean,  
   disabled: Boolean,
 })
 

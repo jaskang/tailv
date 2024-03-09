@@ -34,7 +34,8 @@ export default defineConfig({
         {
           find: /^tailv$/,
           replacement: resolve(__dirname, '../../vue/src'),
-        },
+        }, 
+        { find: '@', replacement: resolve(__dirname, '../../vue/src') },
         {
           find: /^.\/styles\/base\.css$/,
           // replacement: fileURLToPath(new URL('./theme/base.css', import.meta.url)),

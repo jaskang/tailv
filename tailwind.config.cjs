@@ -15,7 +15,7 @@ module.exports = {
   },
   content: [
     './index.html',
-    './packages/vue/src/**/*.{ts,tsx}',
+    './packages/vue/src/**/*.{ts,tsx,vue}',
     './packages/docs/*.{md,mdx}',
     './packages/docs/components/**/*.{md,mdx}',
     './packages/docs/.vitepress/theme/**/*.{md,mdx}',

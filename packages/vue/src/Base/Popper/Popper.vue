@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, PropType, computed, toRef } from 'vue'
-import { Placement, type VirtualElement } from '@floating-ui/vue'
+import { ref, type PropType, computed, toRef } from 'vue'
+import type { Placement, VirtualElement } from '@floating-ui/vue'
 import ElSlot from './ElSlot.vue'
-import { PopperTrigger, usePopper } from './core'
+import { type PopperTrigger, usePopper } from './core'
 import { useModelValue } from '../../use/useModelValue'
 
 defineOptions({ name: 'TPopover' })

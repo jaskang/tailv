@@ -2,7 +2,7 @@
 import Popover from '../Popover/index.vue'
 import Input from '../Input/index.vue'
 import { ref, computed, type PropType } from 'vue'
-import { SelectOption } from './type'
+import type { SelectOption } from './type'
 import { useModelValue } from '../use/useModelValue'
 import ChevronUpDown from '../Icon/ChevronUpDown.vue'
 
@@ -59,7 +59,7 @@ const focused = ref(false)
           v-for="item in options"
           :key="item.value"
           @click="selectHandler(item)"
-          class="hover:bg-primary-500 relative cursor-default select-none px-3 py-2 hover:text-white"
+          class="relative cursor-default select-none px-3 py-2 hover:bg-primary-500 hover:text-white"
           :class="[item.value === val ? 'bg-primary-100' : '']"
         >
           {{ item.label }}

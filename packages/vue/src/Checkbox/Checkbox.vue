@@ -4,7 +4,7 @@ import { computed, inject } from 'vue'
 import { CheckboxGroupInjectKey } from './types'
 
 defineOptions({ name: 'TCheckbox' })
-const emit = defineEmits<{ change: [boolean] }>()
+const emit = defineEmits<{ 'update:checked': [boolean]; change: [boolean] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 const props = defineProps({
   value: { type: null, required: true },
@@ -50,7 +50,9 @@ const onInput = (e: Event) => {
       :onInput="onInput"
     />
     <template v-if="slots.default">
-      <span class="relative ml-2 text-sm font-medium">{slots.default()}</span>
+      <span class="relative ml-2 text-sm font-medium">
+        <slot />
+      </span>
     </template>
   </label>
 </template>

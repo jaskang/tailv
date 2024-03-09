@@ -21,5 +21,7 @@ provide(RadioGroupInjectKey, {
 })
 </script>
 <template>
-  <slot />
+  <div>
+    <slot />
+  </div>
 </template>
