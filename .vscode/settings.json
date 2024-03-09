@@ -3,5 +3,8 @@
   "references.preferredLocation": "peek",
   "eslint.format.enable": true,
   "eslint.experimental.useFlatConfig": true,
-  "tailwindCSS.experimental.classRegex": [["/\\*tw\\*/ ([^;]*);", "'([^']*)'"], "\\/\\*\\s?tw:\\s?\\*\\/\\s?`(.*)`"]
+  "tailwindCSS.experimental.classRegex": [
+    ["tw\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    "\\/\\*\\s?tw:\\s?\\*\\/\\s?`(.*)`"
+  ]
 }

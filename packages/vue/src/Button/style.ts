@@ -15,79 +15,79 @@ export const createButtonCss = tw(
       {
         variant: 'default',
         color: 'normal',
-        class: /*tw:*/ `border-gray-300 text-current bg-white enabled:hover:bg-gray-50`,
+        class: ` border-gray-300 text-current bg-white enabled:hover:bg-gray-50`,
       },
       {
         variant: 'default',
         color: 'primary',
-        class: /*tw:*/ `border-transparent text-white bg-primary-500 enabled:hover:bg-primary-600`,
+        class: `border-transparent text-white bg-primary-500 enabled:hover:bg-primary-600`,
       },
       {
         variant: 'default',
         color: 'success',
-        class: /*tw:*/ `border-transparent text-white bg-success-500  enabled:hover:bg-success-600`,
+        class: `border-transparent text-white bg-success-500  enabled:hover:bg-success-600`,
       },
       {
         variant: 'default',
         color: 'warning',
-        class: /*tw:*/ `border-transparent text-white bg-warning-500  enabled:hover:bg-warning-600`,
+        class: `border-transparent text-white bg-warning-500  enabled:hover:bg-warning-600`,
       },
       {
         variant: 'default',
         color: 'danger',
-        class: /*tw:*/ `border-transparent text-white bg-danger-500  enabled:hover:bg-danger-600`,
+        class: `border-transparent text-white bg-danger-500  enabled:hover:bg-danger-600`,
       },
 
       {
         variant: 'secondary',
         color: 'normal',
-        class: /*tw:*/ `border-transparent text-current bg-gray-100 enabled:hover:bg-gray-200`,
+        class: `border-transparent text-current bg-gray-100 enabled:hover:bg-gray-200`,
       },
       {
         variant: 'secondary',
         color: 'primary',
-        class: /*tw:*/ `border-transparent text-primary-600 bg-primary-100 enabled:hover:bg-primary-200`,
+        class: `border-transparent text-primary-600 bg-primary-100 enabled:hover:bg-primary-200`,
       },
       {
         variant: 'secondary',
         color: 'success',
-        class: /*tw:*/ `border-transparent text-success-600 bg-success-100  enabled:hover:bg-success-200`,
+        class: `border-transparent text-success-600 bg-success-100  enabled:hover:bg-success-200`,
       },
       {
         variant: 'secondary',
         color: 'warning',
-        class: /*tw:*/ `border-transparent text-warning-600 bg-warning-100  enabled:hover:bg-warning-200`,
+        class: `border-transparent text-warning-600 bg-warning-100  enabled:hover:bg-warning-200`,
       },
       {
         variant: 'secondary',
         color: 'danger',
-        class: /*tw:*/ `border-transparent text-danger-600 bg-danger-100  enabled:hover:bg-danger-200`,
+        class: `border-transparent text-danger-600 bg-danger-100  enabled:hover:bg-danger-200`,
       },
 
       {
         variant: 'ghost',
         color: 'normal',
-        class: /*tw:*/ `border-transparent text-current bg-transparent enabled:hover:bg-gray-200`,
+        class: `border-transparent text-current bg-transparent enabled:hover:bg-gray-200`,
       },
       {
         variant: 'ghost',
         color: 'primary',
-        class: /*tw:*/ `border-transparent text-primary-600 bg-transparent enabled:hover:bg-primary-200`,
+        class: `border-transparent text-primary-600 bg-transparent enabled:hover:bg-primary-200`,
       },
       {
         variant: 'ghost',
         color: 'success',
-        class: /*tw:*/ `border-transparent text-success-600 bg-transparent  enabled:hover:bg-success-200`,
+        class: `border-transparent text-success-600 bg-transparent  enabled:hover:bg-success-200`,
       },
       {
         variant: 'ghost',
         color: 'warning',
-        class: /*tw:*/ `border-transparent text-warning-600 bg-transparent  enabled:hover:bg-warning-200`,
+        class: `border-transparent text-warning-600 bg-transparent  enabled:hover:bg-warning-200`,
       },
       {
         variant: 'ghost',
         color: 'danger',
-        class: /*tw:*/ `border-transparent text-danger-600 bg-transparent  enabled:hover:bg-danger-200`,
+        class: `border-transparent text-danger-600 bg-transparent  enabled:hover:bg-danger-200`,
       },
     ],
     variants: {

@@ -13,5 +13,11 @@ module.exports = {
       },
     },
   },
-  content: ['./index.html', './packages/vue/src/*.{ts,tsx,md,mdx}', './packages/docs/*.{ts,tsx,md,mdx}'],
+  content: [
+    './index.html',
+    './packages/vue/src/**/*.{ts,tsx}',
+    './packages/docs/*.{md,mdx}',
+    './packages/docs/components/**/*.{md,mdx}',
+    './packages/docs/.vitepress/theme/**/*.{md,mdx}',
+  ],
 }

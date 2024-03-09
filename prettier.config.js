@@ -25,4 +25,5 @@ export default {
   htmlWhitespaceSensitivity: 'css',
   vueIndentScriptAndStyle: false,
   plugins: ['prettier-plugin-tailwindcss'],
+  tailwindFunctions: ['tw'],
 }

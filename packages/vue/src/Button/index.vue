@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, PropType } from 'vue'
 
-import { LoadingIcon } from '../Icon/LoadingIcon'
+import Loading from '../Icon/Loading.vue'
 import { ColorAlias } from '@/utils/style'
 
 import { createButtonCss } from './style'
@@ -44,7 +44,7 @@ const css = computed(() =>
   <button :class="css" :disabled="props.disabled" type="button">
     <template v-if="loading">
       <i class="h-[1em] w-[1em] [&_+_*]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">
-        <LoadingIcon class="animate-spin" />
+        <Loading class="animate-spin" />
       </i>
     </template>
     <template v-else-if="slots.icon">
