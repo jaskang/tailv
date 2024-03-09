@@ -1,5 +1,5 @@
 export { default as Button } from './Button/index.vue'
-export { Checkbox, type CheckboxProps, CheckboxGroup, type CheckboxGroupProps } from './Checkbox'
+export { Checkbox, CheckboxGroup } from './Checkbox'
 export { Radio, type RadioProps, RadioGroup, type RadioGroupProps } from './Radio'
 export { Anchor, type AnchorProps, type IAnchorItem } from './Anchor'
 export { default as Input } from './Input/index.vue'

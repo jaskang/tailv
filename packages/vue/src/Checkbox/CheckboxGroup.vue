@@ -1,36 +1,35 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { type PropType, provide } from 'vue'
+import { CheckboxGroupInjectKey } from './types'
+import { useModelValue } from '@/use/useModelValue'
 
 defineOptions({ name: 'TCheckboxGroup' })
-const emit = defineEmits<{ click: [any] }>()
-const slots = defineSlots<{ default?(_: {}): any }>()
 const props = defineProps({ name: String, value: Array as PropType<unknown[]>, disabled: Boolean })
+const emit = defineEmits<{ 'update:value': [unknown[]]; change: [unknown[]] }>()
 
-const [state, setState] = useModelValue<unknown[]>(props, {
+const [modelValue, setModelValue] = useModelValue<unknown[]>(props, {
   defaultValue: [],
-  onChange: (val: any[]) => {
+  onChange: (val: unknown[]) => {
     emit('change', val)
   },
 })
 provide(CheckboxGroupInjectKey, {
-  value: state,
-  props: props,
-  insert: (val: unknown) => {
-    if (state.value.indexOf(val) === -1) {
-      setState([...state.value, val])
+  value: modelValue,
+  add: (val: unknown) => {
+    if (modelValue.value.indexOf(val) === -1) {
+      setModelValue([...modelValue.value, val])
     }
   },
   remove: (val: unknown) => {
-    const index = state.value.indexOf(val)
+    const index = modelValue.value.indexOf(val)
     if (index !== -1) {
-      const r = [...state.value]
+      const r = [...modelValue.value]
       r.splice(index, 1)
-      setState(r)
+      setModelValue(r)
     }
   },
 })
 </script>
 <template>
-  <div></div>
+  <slot />
 </template>
-<style lang="scss"></style>
