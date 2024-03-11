@@ -52,7 +52,7 @@ const css = computed(() =>
         <slot name="icon"></slot>
       </i>
     </template>
-    <template v-if="slots.default">
+    <template v-if="$slots.default">
       <span>
         <slot></slot>
       </span>

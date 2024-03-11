@@ -42,7 +42,7 @@ const onInput = (e: Event) => {
       :checked="checked"
       :onInput="onInput"
     />
-    <template v-if="slots.default">
+    <template v-if="$slots.default">
       <span class="relative ml-2 text-sm font-medium">
         <slot />
       </span>
