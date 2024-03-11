@@ -33,8 +33,8 @@ export default [
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
-      '@typescript-eslint/ban-types': { '{}': false },
-      '@typescript-eslint/ban-ts-comment': 0,
+      '@typescript-eslint/ban-types': ['error', { '{}': false }],
+      '@typescript-eslint/ban-ts-comment': 'off',
     },
   },
   {
@@ -52,8 +52,8 @@ export default [
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
-      '@typescript-eslint/ban-types': { '{}': false },
-      '@typescript-eslint/ban-ts-comment': 0,
+      '@typescript-eslint/ban-types': ['error', { '{}': false }],
+      '@typescript-eslint/ban-ts-comment': 'off',
       ...vuePlugin.configs['vue3-essential'].rules,
     },
   },
