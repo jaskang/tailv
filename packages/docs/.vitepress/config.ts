@@ -1,10 +1,17 @@
-import { dirname, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
 import { readFileSync } from 'node:fs'
 import jsx from '@vitejs/plugin-vue-jsx'
-const __dirname = dirname(fileURLToPath(import.meta.url))
+import autoprefixer from 'autoprefixer'
+import tailwindcss from 'tailwindcss'
+import colors from 'tailwindcss/colors'
 
+import typography from '@tailwindcss/typography'
+import forms from '@tailwindcss/forms'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+console.log('vitepress config', __dirname)
 const baseCss = () => {
   const virtualModuleId = 'virtual:base.css'
   const resolvedVirtualModuleId = '\0' + virtualModuleId
@@ -34,7 +41,7 @@ export default defineConfig({
         {
           find: /^tailv$/,
           replacement: resolve(__dirname, '../../vue/src'),
-        }, 
+        },
         { find: '@', replacement: resolve(__dirname, '../../vue/src') },
         {
           find: /^.\/styles\/base\.css$/,
@@ -42,6 +49,42 @@ export default defineConfig({
           replacement: 'virtual:base.css',
         },
       ],
+    },
+    css: {
+      postcss: {
+        plugins: [
+          // 'postcss-import': {},
+          // 'tailwindcss/nesting': {},
+          autoprefixer({}) as any,
+          tailwindcss({
+            darkMode: 'class',
+            content: [
+              './index.html',
+              join(__dirname, '../../vue/src/**/*.{ts,tsx,vue}'),
+              join(__dirname, '../../docs/*.{md,mdx}'),
+              join(__dirname, '../../docs/components/**/*.{md,mdx}'),
+              join(__dirname, '../../docs/.vitepress/theme/**/*.{md,mdx}'),
+            ],
+            theme: {
+              extend: {
+                colors: {
+                  primary: colors.indigo,
+                  success: colors.green,
+                  warning: colors.amber,
+                  danger: colors.red,
+                },
+              },
+            },
+            plugins: [
+              typography(),
+              forms({
+                strategy: 'base',
+              }),
+            ],
+            blocklist: ['container'],
+          }),
+        ],
+      },
     },
   },
   themeConfig: {

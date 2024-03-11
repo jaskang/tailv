@@ -29,7 +29,7 @@ export type PopperContext = {
   nodeId: string
   parent: string
   open: boolean
-  onOpenChange(open: boolean, event?: Event, reason?: OpenChangeReason): void
+  onOpenChange(open: boolean, event?: Event): void
 }
 
 export type PopperTreeContext = {

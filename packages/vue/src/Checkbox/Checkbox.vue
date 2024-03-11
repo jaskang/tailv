@@ -5,7 +5,6 @@ import { CheckboxGroupInjectKey } from './types'
 
 defineOptions({ name: 'TCheckbox' })
 const emit = defineEmits<{ 'update:checked': [boolean]; change: [boolean] }>()
-const slots = defineSlots<{ default?(_: {}): any }>()
 const props = defineProps({
   value: { type: null, required: true },
   name: String,

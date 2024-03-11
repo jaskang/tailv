@@ -3,11 +3,12 @@ import jsx from '@vitejs/plugin-vue-jsx'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), jsx()],
+  plugins: [vue(), jsx(), dts({ rollupTypes: true })],
   build: {
     lib: {
       formats: ['es'],

@@ -12,7 +12,7 @@ const emit = defineEmits<{
   blur: [FocusEvent]
 }>()
 
-const slots = defineSlots<{ prefix?(): VNode; suffix?(): VNode }>()
+const slots = defineSlots<{ prefix?(_: {}): any; suffix?(_: {}): any }>()
 
 const props = defineProps({
   value: [String, Number],

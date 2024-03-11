@@ -24,7 +24,7 @@ const props = defineProps({
   pill: Boolean,
   square: Boolean,
   block: Boolean,
-  loading: Boolean,  
+  loading: Boolean,
   disabled: Boolean,
 })
 
