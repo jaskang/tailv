@@ -64,8 +64,10 @@ defineExpose({
 </script>
 <template>
   <RingInput :disabled="disabled">
-    <span v-if="prefix || slots.prefix" class="z-input_prefix -mr-1 flex items-center pl-3">
-      <template v-if="prefix">{{ prefix }}</template>
+    <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center border-r bg-gray-50">
+      <template v-if="prefix">
+        <span class="px-3">{{ prefix }}</span>
+      </template>
       <template v-else><slot name="prefix" /></template>
     </span>
 
@@ -84,17 +86,12 @@ defineExpose({
       :onBlur="onBlur"
       autocomplete="off"
     />
-    <template v-if="suffix || slots.suffix">
+
+    <span v-if="suffix || slots.suffix" class="z-input_suffix flex h-full items-center border-l bg-gray-50">
       <template v-if="suffix">
-        <span class="z-input_suffix -ml-1 flex h-full items-center pr-3">
-          {{ suffix }}
-        </span>
+        <span class="px-3">{{ suffix }}</span>
       </template>
-      <template v-else>
-        <span class="z-input_suffix -ml-1 flex h-full items-center">
-          <slot name="suffix" />
-        </span>
-      </template>
-    </template>
+      <template v-else><slot name="suffix" /></template>
+    </span>
   </RingInput>
 </template>

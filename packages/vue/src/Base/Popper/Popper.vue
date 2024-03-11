@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type PropType, computed, toRef } from 'vue'
+import { ref, type PropType, computed, toRef, Teleport } from 'vue'
 import type { Placement, VirtualElement } from '@floating-ui/vue'
 import ElSlot from './ElSlot.vue'
 import { type PopperTrigger, usePopper } from './core'
@@ -15,6 +15,7 @@ const props = defineProps({
     default: 'hover',
   },
   arrow: Boolean,
+
   placement: {
     type: String as PropType<Placement>,
     default: 'bottom',
@@ -57,15 +58,17 @@ defineExpose({
       <slot />
     </ElSlot>
   </template>
-  <Transition
-    leave-active-class="transition duration-100 ease-in "
-    leave-from-class="opacity-100"
-    leave-to-class="opacity-0"
-  >
-    <div ref="floating" v-if="open" class="z-[99]" :style="floatingStyles">
-      <slot name="content" />
-      <!-- arrow -->
-      <div v-if="arrow" ref="floatingArrow" class="h-2 w-2 bg-red-500" :style="arrowStyle"></div>
-    </div>
-  </Transition>
+  <Teleport to="body">
+    <Transition
+      leave-active-class="transition duration-100 ease-in "
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div ref="floating" v-if="open" class="z-[99]" :style="floatingStyles">
+        <slot name="content" />
+        <!-- arrow -->
+        <div v-if="arrow" ref="floatingArrow" class="h-2 w-2 bg-red-500" :style="arrowStyle"></div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>

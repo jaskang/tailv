@@ -1,5 +1,5 @@
 <script setup>
-import { Button } from 'tailv'
+import { Button,SpaceCompact,Tooltip } from 'tailv'
 </script>
 
 # Button
@@ -110,31 +110,29 @@ import { Button } from 'tailv'
   </Button>
 </div>
 
-## Colors
+## SpaceCompact
 
 <div class="flex flex-wrap gap-2">
-  <Button color="slate">slate</Button>
-  <Button color="gray">gray</Button>
-  <Button color="zinc">zinc</Button>
-  <Button color="neutral">neutral</Button>
-  <Button color="stone">stone</Button>
-  <Button color="red">red</Button>
-  <Button color="orange">orange</Button>
-  <Button color="amber">amber</Button>
-  <Button color="yellow">yellow</Button>
-  <Button color="lime">lime</Button>
-  <Button color="green">green</Button>
-  <Button color="emerald">emerald</Button>
-  <Button color="teal">teal</Button>
-  <Button color="cyan">cyan</Button>
-  <Button color="sky">sky</Button>
-  <Button color="blue">blue</Button>
-  <Button color="indigo">indigo</Button>
-  <Button color="violet">violet</Button>
-  <Button color="purple">purple</Button>
-  <Button color="fuchsia">fuchsia</Button>
-  <Button color="pink">pink</Button>
-  <Button color="rose">rose</Button>
+  <SpaceCompact >
+      <Tooltip content="Like">
+        <Button>button</Button>
+      </Tooltip>
+      <Tooltip content="Comment">
+        <Button>button</Button>
+      </Tooltip>
+      <Tooltip content="Star">
+        <Button>button</Button>
+      </Tooltip>
+      <Tooltip content="Heart">
+        <Button>button</Button>
+      </Tooltip>
+      <Tooltip content="Share">
+        <Button>button</Button>
+      </Tooltip>
+      <Tooltip content="Download">
+        <Button>button</Button>
+      </Tooltip>
+    </SpaceCompact>
 </div>
 
 ## Props

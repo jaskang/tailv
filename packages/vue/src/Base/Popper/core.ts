@@ -20,6 +20,7 @@ import {
   arrow,
   autoUpdate,
   type Placement,
+  type SizeOptions,
 } from '@floating-ui/vue'
 import { uid } from 'kotl'
 import { onClickOutside, useEventListener } from '@vueuse/core'
@@ -89,6 +90,7 @@ export function usePopper({
   floatingArrow,
   placement,
   trigger,
+  size: sizeOptions = {},
   onChange,
 }: {
   open: Ref<boolean>
@@ -97,6 +99,7 @@ export function usePopper({
   floatingArrow: Ref<HTMLElement | undefined>
   placement: Ref<Placement>
   trigger: Ref<PopperTrigger[]>
+  size?: SizeOptions
   onChange: (val: boolean, trigger: PopperTrigger) => void
 }) {
   const nodeId = `popper-${uid(6)}`
@@ -105,19 +108,7 @@ export function usePopper({
 
   const floatingReturn = useFloating(reference, floating, {
     placement,
-    middleware: [
-      offset(8),
-      size({
-        apply({ rects, elements }) {
-          Object.assign(elements.floating.style, {
-            width: `${rects.reference.width}px`,
-          })
-        },
-      }),
-      flip(),
-      shift(),
-      arrow({ element: floatingArrow }),
-    ],
+    middleware: [offset(8), size(sizeOptions), flip(), shift(), arrow({ element: floatingArrow })],
     whileElementsMounted: autoUpdate,
   })
 
