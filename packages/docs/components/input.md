@@ -1,5 +1,5 @@
 <script setup>
-import { Input,SpaceCompact ,Select} from 'tailv'
+import { Input,SpaceCompact ,Select,Button} from 'tailv'
 </script>
 
 # Input
@@ -37,6 +37,10 @@ import { Input,SpaceCompact ,Select} from 'tailv'
 ## SpaceCompact
 
 <div class="flex flex-wrap gap-2"> 
+    <SpaceCompact class="w-full">
+      <Input  />
+      <Button >button</Button>
+    </SpaceCompact>
   <SpaceCompact class="w-full">
       <Input  />
       <Input  />

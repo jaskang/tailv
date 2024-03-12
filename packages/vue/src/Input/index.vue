@@ -75,6 +75,7 @@ defineExpose({
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,
+        'cursor-pointer': readonly,
       }"
       style="box-shadow: none"
       type="text"
