@@ -99,6 +99,7 @@ export default defineConfig({
         text: 'components',
         items: [
           { text: 'Button', link: '/components/button' },
+          { text: 'Anchor', link: '/components/anchor' },
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Input', link: '/components/input' },
