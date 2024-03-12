@@ -11,9 +11,7 @@ const emit = defineEmits<{
   focus: [FocusEvent]
   blur: [FocusEvent]
 }>()
-
-const slots = defineSlots<{ prefix?(_: {}): any; suffix?(_: {}): any }>()
-
+const slots = defineSlots<{ prefix?: (_: {}) => any; suffix?: (_: {}) => any }>()
 const props = defineProps({
   value: [String, Number],
   prefix: String,
@@ -64,19 +62,22 @@ defineExpose({
 </script>
 <template>
   <RingInput :disabled="disabled">
-    <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center border-r bg-gray-50">
-      <template v-if="prefix">
-        <span class="px-3">{{ prefix }}</span>
-      </template>
-      <template v-else><slot name="prefix" /></template>
+    <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center text-gray-500">
+      <slot name="prefix">
+        <span class="pl-3">
+          {{ prefix }}
+        </span>
+      </slot>
     </span>
-
     <input
       ref="inputRef"
-      class="z-input_input disabled flex-1 border-none bg-transparent text-sm outline-none focus:outline-transparent"
+      class="z-input_input disabled block w-full flex-1 border-none bg-transparent text-sm outline-none focus:outline-transparent"
+      :class="{
+        'pl-1': prefix || slots.prefix,
+        'pr-1': suffix || slots.suffix,
+      }"
       style="box-shadow: none"
       type="text"
-      size="1"
       :value="val"
       :readonly="readonly"
       :disabled="disabled"
@@ -86,12 +87,12 @@ defineExpose({
       :onBlur="onBlur"
       autocomplete="off"
     />
-
-    <span v-if="suffix || slots.suffix" class="z-input_suffix flex h-full items-center border-l bg-gray-50">
-      <template v-if="suffix">
-        <span class="px-3">{{ suffix }}</span>
-      </template>
-      <template v-else><slot name="suffix" /></template>
+    <span v-if="suffix || slots.suffix" class="z-input_suffix flex h-full items-center text-gray-500">
+      <slot name="suffix">
+        <span class="pr-3">
+          {{ suffix }}
+        </span>
+      </slot>
     </span>
   </RingInput>
 </template>

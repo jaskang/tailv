@@ -4,23 +4,23 @@ import { type PropType } from 'vue'
 defineOptions({ name: 'RingInput' })
 
 const borderMap = {
-  default: 'outline-gray-300',
-  success: 'outline-success-500',
-  warning: 'outline-warning-500',
-  danger: 'outline-danger-500',
+  default: 'ring-gray-300',
+  success: 'ring-success-500',
+  warning: 'ring-warning-500',
+  danger: 'ring-danger-500',
 }
 const focusBorderMap = {
-  default: 'focus-within:outline-primary-500',
-  success: 'focus-within:outline-success-500',
-  warning: 'focus-within:outline-warning-500',
-  danger: 'focus-within:outline-danger-500',
+  default: 'focus-within:ring-primary-500',
+  success: 'focus-within:ring-success-500',
+  warning: 'focus-within:ring-warning-500',
+  danger: 'focus-within:ring-danger-500',
 }
 
 const focusedBorderMap = {
-  default: 'data-[focused=true]:outline-primary-500',
-  success: 'data-[focused=true]:outline-success-500',
-  warning: 'data-[focused=true]:outline-warning-500',
-  danger: 'data-[focused=true]:outline-danger-500',
+  default: 'data-[focused=true]:ring-primary-500',
+  success: 'data-[focused=true]:ring-success-500',
+  warning: 'data-[focused=true]:ring-warning-500',
+  danger: 'data-[focused=true]:ring-danger-500',
 }
 
 const props = defineProps({
@@ -37,14 +37,14 @@ const props = defineProps({
     :disabled="disabled"
     :data-focused="focused"
     :class="[
-      `flex items-center rounded-md text-sm shadow-sm outline outline-1 outline-offset-0 transition-all 
-      focus-within:z-10 focus-within:outline-2 
-      data-[focused=true]:z-10 data-[focused=true]:outline-2 
+      `z-ring-input flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset  transition-all
+      focus-within:z-10 focus-within:ring-2 
+      data-[focused=true]:z-10 data-[focused=true]:ring-2 
       ${focusedBorderMap[status]} 
       ${focusBorderMap[status]}`,
       props.disabled
-        ? 'cursor-not-allowed bg-gray-50 text-gray-500 outline-gray-200'
-        : `cursor-pointer bg-white ${borderMap[status]}`,
+        ? 'cursor-not-allowed bg-gray-50 text-gray-500 ring-gray-200'
+        : `cursor-pointer [:where(&)]:bg-white ${borderMap[status]}`,
     ]"
   >
     <slot />

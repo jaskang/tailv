@@ -1,5 +1,5 @@
 <script setup>
-import { Input } from 'tailv'
+import { Input,SpaceCompact ,Select} from 'tailv'
 </script>
 
 # Input
@@ -32,6 +32,32 @@ import { Input } from 'tailv'
 <div class="flex flex-wrap gap-2"> 
     <Input disabled class="w-full"/>
     <Input disabled prefix="prefix" class="w-full"/>
+</div>
+
+## SpaceCompact
+
+<div class="flex flex-wrap gap-2"> 
+  <SpaceCompact class="w-full">
+      <Input  />
+      <Input  />
+      <Input  />
+      <Input  />
+    </SpaceCompact>
+  <SpaceCompact class="w-full ">
+      <Input  />
+      <Select class="w-20 bg-gray-50" :options="[
+  { value: 1, label: 'Wade Cooper' }, 
+  { value: 2, label: 'Arlene Mccoy' },
+  { value: 3, label: 'Devon Webb' },
+  { value: 4, label: 'Tom Cook' },
+  { value: 5, label: 'Tanya Fox' },
+  { value: 6, label: 'Hellen Schmvaluet' },
+  { value: 7, label: 'Caroline Schultz' },
+  { value: 8, label: 'Mason Heaney' },
+  { value: 9, label: 'Claudie Smitham' },
+  { value: 10, label: 'Emil Schaefer' },
+]"/>
+    </SpaceCompact>
 </div>
 
 ## Props

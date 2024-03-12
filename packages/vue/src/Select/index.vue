@@ -5,6 +5,7 @@ import { ref, computed, type PropType } from 'vue'
 import type { SelectOption } from './type'
 import { useModelValue } from '../use/useModelValue'
 import ChevronUpDown from '../Icon/ChevronUpDown.vue'
+import type { PopperSizer } from '@/Base/Popper/core'
 
 defineOptions({ name: 'TSelect', inheritAttrs: false })
 
@@ -42,14 +43,19 @@ const selectHandler = (item: SelectOption) => {
   inputRef.value?.focus()
 }
 
+const sizer: PopperSizer = ({ rects, elements }) => {
+  Object.assign(elements.floating.style, {
+    minWidth: `${rects.reference.width}px`,
+  })
+}
 const focused = ref(false)
 </script>
 <template>
-  <Popover trigger="click" ref="popoverRef" @change="v => (focused = v)">
-    <Input readonly :value="label" ref="inputRef" :focused="focused" v-bind="$attrs">
+  <Popover trigger="click" ref="popoverRef" :sizer="sizer" @change="v => (focused = v)">
+    <Input readonly :value="label" ref="inputRef" :focused="focused" class="cursor-pointer" v-bind="$attrs">
       <template #suffix>
-        <div class="px-1 text-gray-400">
-          <ChevronUpDown class="h-6 w-6"></ChevronUpDown>
+        <div class="pr-1 text-gray-400">
+          <ChevronUpDown class="h-5 w-5"></ChevronUpDown>
         </div>
       </template>
     </Input>

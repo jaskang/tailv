@@ -1,23 +1,28 @@
 <script setup lang="ts">
 import { ref, type PropType, computed, toRef, Teleport } from 'vue'
-import type { Placement, VirtualElement } from '@floating-ui/vue'
 import ElSlot from './ElSlot.vue'
-import { type PopperTrigger, usePopper } from './core'
+import {
+  type PopperTrigger,
+  usePopper,
+  type PopperVirtualElement,
+  type PopperPlacement,
+  type PopperSizer,
+} from './core'
 import { useModelValue } from '../../use/useModelValue'
 
 defineOptions({ name: 'TPopover' })
 
 const props = defineProps({
   open: { type: Boolean, default: undefined },
-  reference: Object as PropType<HTMLElement | VirtualElement>,
+  reference: Object as PropType<HTMLElement | PopperVirtualElement>,
   trigger: {
     type: [String, Array] as PropType<PopperTrigger | PopperTrigger[]>,
     default: 'hover',
   },
   arrow: Boolean,
-
+  sizer: Function as PropType<PopperSizer>,
   placement: {
-    type: String as PropType<Placement>,
+    type: String as PropType<PopperPlacement>,
     default: 'bottom',
   },
 })
@@ -40,6 +45,7 @@ const { floatingStyles, arrowStyle } = usePopper({
   floatingArrow,
   placement: toRef(props, 'placement'),
   trigger: computed(() => (Array.isArray(props.trigger) ? props.trigger : [props.trigger])),
+  sizer: props.sizer,
   onChange: (val, e) => setOpen(val),
 })
 

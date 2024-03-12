@@ -15,8 +15,5 @@
   "dependencies": {
     "tailv": "workspace:*",
     "vue": "^3.4.20"
-  },
-  "devDependencies": {
-    "@tailv/preset": "workspace:*"
   }
 }

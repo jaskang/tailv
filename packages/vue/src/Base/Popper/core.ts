@@ -21,10 +21,15 @@ import {
   autoUpdate,
   type Placement,
   type SizeOptions,
+  type Middleware,
 } from '@floating-ui/vue'
 import { uid } from 'kotl'
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import { useHoverListener, useFocusListener, useClickListener } from '../../use/useTargetEvent'
+
+export type PopperPlacement = Placement
+export type PopperVirtualElement = VirtualElement
+export type PopperSizer = SizeOptions['apply']
 
 export type PopperContext = {
   nodeId: string
@@ -90,16 +95,16 @@ export function usePopper({
   floatingArrow,
   placement,
   trigger,
-  size: sizeOptions = {},
+  sizer,
   onChange,
 }: {
   open: Ref<boolean>
-  reference: Ref<HTMLElement | VirtualElement | undefined>
+  reference: Ref<HTMLElement | PopperVirtualElement | undefined>
   floating: Ref<HTMLElement | undefined>
   floatingArrow: Ref<HTMLElement | undefined>
-  placement: Ref<Placement>
+  placement: Ref<PopperPlacement>
   trigger: Ref<PopperTrigger[]>
-  size?: SizeOptions
+  sizer: PopperSizer
   onChange: (val: boolean, trigger: PopperTrigger) => void
 }) {
   const nodeId = `popper-${uid(6)}`
@@ -108,7 +113,13 @@ export function usePopper({
 
   const floatingReturn = useFloating(reference, floating, {
     placement,
-    middleware: [offset(8), size(sizeOptions), flip(), shift(), arrow({ element: floatingArrow })],
+    middleware: [
+      offset(8),
+      sizer ? size({ apply: sizer }) : undefined,
+      flip(),
+      shift(),
+      arrow({ element: floatingArrow }),
+    ].filter(Boolean) as Middleware[],
     whileElementsMounted: autoUpdate,
   })
 
