@@ -19,6 +19,7 @@ const props = defineProps({
   placeholder: String,
   readonly: Boolean,
   disabled: Boolean,
+  allowClear: Boolean,
 })
 
 const focused = ref(false)

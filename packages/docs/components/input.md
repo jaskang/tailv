@@ -49,7 +49,7 @@ import { Input,SpaceCompact ,Select,Button} from 'tailv'
     </SpaceCompact>
   <SpaceCompact class="w-full ">
       <Input  />
-      <Select class="w-20 bg-gray-50" :options="[
+      <Select placeholder="placeholder" class="w-20 bg-gray-50" :options="[
   { value: 1, label: 'Wade Cooper' }, 
   { value: 2, label: 'Arlene Mccoy' },
   { value: 3, label: 'Devon Webb' },

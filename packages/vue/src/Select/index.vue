@@ -16,9 +16,9 @@ const props = defineProps({
     type: Array as PropType<SelectOption[]>,
     default: () => [],
   },
+  size: String as PropType<'sm' | 'md' | 'lg'>,
   disabled: Boolean,
   clearable: Boolean,
-  size: String as PropType<'sm' | 'md' | 'lg'>,
   placeholder: String,
 })
 
@@ -52,7 +52,16 @@ const focused = ref(false)
 </script>
 <template>
   <Popover trigger="click" ref="popoverRef" :sizer="sizer" @change="v => (focused = v)">
-    <Input readonly :value="label" ref="inputRef" :focused="focused" class="cursor-pointer" v-bind="$attrs">
+    <Input
+      readonly
+      :value="label"
+      ref="inputRef"
+      class="cursor-pointer"
+      v-bind="$attrs"
+      :focused
+      :placeholder
+      :disabled
+    >
       <template #suffix>
         <div class="pr-1 text-gray-400">
           <ChevronUpDown class="h-5 w-5"></ChevronUpDown>

@@ -7,7 +7,7 @@ import { Select,Button } from 'tailv'
 ## default
 
 <div class="flex flex-wrap gap-2">
-  <Select class="w-60" :options="[
+  <Select class="w-60" placeholder="placeholder"  :options="[
   { value: 1, label: 'Wade Cooper' },
   { value: 2, label: 'Arlene Mccoy' },
   { value: 3, label: 'Devon Webb' },
