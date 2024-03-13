@@ -100,6 +100,7 @@ export default defineConfig({
         items: [
           { text: 'Button', link: '/components/button' },
           { text: 'Anchor', link: '/components/anchor' },
+          { text: 'ScrollArea', link: '/components/scroll-area' },
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Input', link: '/components/input' },
