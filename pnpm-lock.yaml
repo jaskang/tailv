@@ -110,19 +110,11 @@ importers:
       vue:
         specifier: ^3.4.20
         version: 3.4.20(typescript@5.4.2)
-    devDependencies:
-      '@tailv/preset':
-        specifier: workspace:*
-        version: link:../preset
 
   packages/preset:
     dependencies:
-      '@tailwindcss/forms':
-        specifier: ^0.5.7
-        version: 0.5.7(tailwindcss@3.4.1)
-    devDependencies:
       tailwindcss:
-        specifier: ^3.4.1
+        specifier: '>=3.4.0'
         version: 3.4.1
 
   packages/vue:
@@ -1278,6 +1270,7 @@ packages:
     dependencies:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.4.1
+    dev: true
 
   /@tailwindcss/typography@0.5.10(tailwindcss@3.4.1):
     resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
@@ -3723,6 +3716,7 @@ packages:
   /mini-svg-data-uri@1.4.4:
     resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
     hasBin: true
+    dev: true
 
   /minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}

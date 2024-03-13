@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useResizeObserver } from '@vueuse/core'
+import { useResizeObserver, useScroll } from '@vueuse/core'
 import { ref, computed, onMounted } from 'vue'
+import { getThumbInfo } from './utils'
 
 defineOptions({ name: 'ScrollArea' })
 const emit = defineEmits<{ click: [any] }>()
@@ -10,18 +11,13 @@ const props = defineProps({
   yEnabled: Boolean,
 })
 
-const wrapperEl = ref()
 const viewportEl = ref()
+const contentEl = ref()
 const scrollXEl = ref()
 const scrollYEl = ref()
 
-function getThumbRatio(viewportSize: number, contentSize: number) {
-  const ratio = viewportSize / contentSize
-  return Number.isNaN(ratio) ? 0 : ratio
-}
-
-const sizes = ref({
-  wrapper: {
+const domSize = ref({
+  content: {
     width: 0,
     height: 0,
   },
@@ -30,17 +26,37 @@ const sizes = ref({
     height: 0,
   },
 })
-const onscroll = (payload: UIEvent) => {}
-onMounted(() => {})
-useResizeObserver(wrapperEl, entries => {
-  const entry = entries[0]
-  const { width, height } = entry.contentRect
-  text.value = `width: ${width}, height: ${height}`
+
+const { x:scrollX, y:scrollY } = useScroll(viewportEl)
+
+const thumb = computed(() => {
+  return {
+    x: getThumbInfo(domSize.value.content.width, domSize.value.viewport.width),
+    y: getThumbInfo(domSize.value.content.height, domSize.value.viewport.height)
+  }
 })
-useResizeObserver(viewportEl, entries => {})
+const offset = computed(()=>({
+  x: scrollX.value * thumb.value.x.ratio,
+    y: scrollY.value * thumb.value.y.ratio,
+}))
+useResizeObserver(viewportEl, entries => {
+const entry = entries[0]
+const { width, height } = entry.contentRect
+domSize.value.viewport = { width:width, height:height }
+})
+useResizeObserver(contentEl, entries => {
+const entry = entries[0]
+const { width, height } = entry.contentRect
+domSize.value.content = { width:width, height:height }
+})
+
+onMounted(() => {})
 </script>
 <template>
-  <div ref="wrapperEl" class="relative overflow-hidden">
+  <div class="relative overflow-hidden" :style="{
+    '--thumb-width':  thumb.x.size + 'px',
+    '--thumb-height': thumb.y.size + 'px',
+  }">
     <div
       ref="viewportEl"
       class="h-full w-full [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -49,19 +65,33 @@ useResizeObserver(viewportEl, entries => {})
         overflowY: yEnabled ? 'scroll' : 'hidden',
       }"
     >
-      <slot />
+      <div class="min-w-full table" ref="contentEl">
+        <slot />
+      </div>
     </div>
     <div
       v-if="yEnabled"
-      class="absolute bottom-0 right-0 top-0 flex w-1 touch-none select-none flex-col overflow-hidden bg-black/20"
+      class="absolute bottom-0 right-0 top-0 flex w-1 touch-none select-none overflow-hidden bg-black/20"
+    >
+      <div
+        ref="scrollYEl"
+        class="relative h-[--thumb-height] flex-1 w-1 rounded-[10px] bg-black/40 before:absolute before:left-1/2 before:top-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']"
+        :style="{
+          transform: `translate3d(0px, ${offset.y}px, 0px)` 
+        }"
+      />
+    </div>
+    <div
+      v-if="xEnabled"
+      class="absolute bottom-0 left-0 right-0 flex flex-col h-1 touch-none select-none overflow-hidden bg-black/20"
     >
       <div
         ref="scrollXEl"
-        class="relative flex-1 rounded-[10px] bg-black/25 before:absolute before:left-1/2 before:top-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']"
-      ></div>
-    </div>
-    <div v-if="xEnabled" class="absolute bottom-0 left-0 right-0 h-1 overflow-hidden bg-black/50">
-      <div ref="scrollYEl"></div>
+        class="relative w-[--thumb-width] h-1 flex-1  rounded-[10px] bg-black/40 before:absolute before:left-1/2 before:top-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']"
+        :style="{
+          transform: `translate3d(${offset.x}px, 0px, 0px)` 
+        }"
+      />
     </div>
   </div>
 </template>
