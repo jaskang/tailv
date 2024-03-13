@@ -14,7 +14,7 @@ module.exports = {
         danger: colors.red,
       },
     },
-  },
+  }, 
   content: [
     './index.html',
     './packages/vue/src/**/*.{ts,tsx,vue}',

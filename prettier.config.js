@@ -24,6 +24,6 @@ export default {
   proseWrap: 'preserve',
   htmlWhitespaceSensitivity: 'css',
   vueIndentScriptAndStyle: false,
-  plugins: ['prettier-plugin-tailwindcss'],
-  tailwindFunctions: ['tw'],
+  plugins: ['prettier-plugin-tailwindcss'], 
+  tailwindFunctions: ['tw'], 
 }

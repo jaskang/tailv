@@ -6,6 +6,7 @@ import type { SelectOption } from './type'
 import { useModelValue } from '../use/useModelValue'
 import ChevronUpDown from '../Icon/ChevronUpDown.vue'
 import type { PopperSizer } from '@/Base/Popper/core'
+import { ScrollArea } from '../ScrollArea'
 
 defineOptions({ name: 'TSelect', inheritAttrs: false })
 
@@ -69,17 +70,19 @@ const focused = ref(false)
       </template>
     </Input>
     <template #content>
-      <div class="flex max-h-80 flex-col overflow-auto py-1 text-sm">
-        <div
-          v-for="item in options"
-          :key="item.value"
-          @click="selectHandler(item)"
-          class="relative cursor-default select-none px-3 py-2 hover:bg-primary-500 hover:text-white"
-          :class="[item.value === val ? 'bg-primary-100' : '']"
-        >
-          {{ item.label }}
+      <ScrollArea class="flex max-h-80 flex-col text-sm" mode="y">
+        <div class="py-1">
+          <div
+            v-for="item in options"
+            :key="item.value"
+            @click="selectHandler(item)"
+            class="relative cursor-default select-none px-3 py-2"
+            :class="[item.value === val ? 'bg-primary-500 text-white' : 'hover:bg-primary-100']"
+          >
+            {{ item.label }}
+          </div>
         </div>
-      </div>
+      </ScrollArea>
     </template>
   </Popover>
 </template>

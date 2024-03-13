@@ -10,7 +10,7 @@ const emit = defineEmits<{ 'update:value': [unknown[]]; change: [unknown[]] }>()
 const [modelValue, setModelValue] = useModelValue<unknown[]>(props, {
   defaultValue: [],
   onChange: (val: unknown[]) => {
-    emit('change', val)
+    emit('change', val) 
   },
 })
 provide(CheckboxGroupInjectKey, {
