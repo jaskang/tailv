@@ -2,6 +2,7 @@
 import { useResizeObserver, useScroll } from '@vueuse/core'
 import { ref, computed, onMounted, type PropType } from 'vue'
 import { getThumbInfo } from './utils'
+import type { Sizes } from './types'
 
 defineOptions({ name: 'ScrollArea' })
 const emit = defineEmits<{ click: [any] }>()
@@ -14,6 +15,12 @@ const viewportEl = ref()
 const contentEl = ref()
 const scrollXEl = ref()
 const scrollYEl = ref()
+
+const sizes = ref<Sizes>({
+  content: 0,
+  viewport: 0,
+  scrollbar: { size: 0, paddingStart: 0, paddingEnd: 0 },
+})
 
 const domSize = ref({
   content: {
@@ -38,6 +45,31 @@ const offset = computed(() => ({
   x: scrollX.value * thumb.value.x.ratio,
   y: scrollY.value * thumb.value.y.ratio,
 }))
+
+const handleSizeChange = (payload: Sizes) => {
+  if (!scrollbar.value) return
+  if (props.isHorizontal) {
+    scrollbarVisibleContext.handleSizeChange({
+      content: rootContext.viewport.value?.scrollWidth ?? 0,
+      viewport: rootContext.viewport.value?.offsetWidth ?? 0,
+      scrollbar: {
+        size: scrollbar.value.clientWidth ?? 0,
+        paddingStart: toInt(getComputedStyle(scrollbar.value).paddingLeft),
+        paddingEnd: toInt(getComputedStyle(scrollbar.value).paddingRight),
+      },
+    })
+  } else {
+    scrollbarVisibleContext.handleSizeChange({
+      content: rootContext.viewport.value?.scrollHeight ?? 0,
+      viewport: rootContext.viewport.value?.offsetHeight ?? 0,
+      scrollbar: {
+        size: scrollbar.value?.clientHeight ?? 0,
+        paddingStart: toInt(getComputedStyle(scrollbar.value!).paddingLeft),
+        paddingEnd: toInt(getComputedStyle(scrollbar.value!).paddingRight),
+      },
+    })
+  }
+}
 useResizeObserver(viewportEl, entries => {
   const entry = entries[0]
   const { width, height } = entry.contentRect
