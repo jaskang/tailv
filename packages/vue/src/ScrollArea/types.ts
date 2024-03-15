@@ -1,9 +1,17 @@
-export type Direction = 'ltr' | 'rtl'
+export type Direction = 'vertical' | 'horizontal'
+
 export interface Sizes {
-  content: number
-  viewport: number
+  content: {
+    width: number
+    height: number
+  }
+  viewport: {
+    width: number
+    height: number
+  }
   scrollbar: {
-    size: number
+    width: number
+    height: number
     paddingStart: number
     paddingEnd: number
   }
