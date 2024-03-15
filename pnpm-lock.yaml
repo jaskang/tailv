@@ -104,6 +104,9 @@ importers:
 
   packages/docs:
     dependencies:
+      '@vueuse/core':
+        specifier: ^10.9.0
+        version: 10.9.0(vue@3.4.20)
       tailv:
         specifier: workspace:*
         version: link:../vue
