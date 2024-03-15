@@ -76,6 +76,13 @@ export default defineConfig({
                 maxWidth: {
                   '8xl': '90rem',
                 },
+                typography: theme => ({
+                  DEFAULT: {
+                    css: {
+                      maxWidth: 'none',
+                    },
+                  },
+                }),
               },
             },
             plugins: [
@@ -89,6 +96,9 @@ export default defineConfig({
         ],
       },
     },
+  },
+  markdown: {
+    headers: true,
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

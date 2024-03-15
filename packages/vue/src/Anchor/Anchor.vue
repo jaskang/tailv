@@ -27,7 +27,7 @@ const props = defineProps({
       >
         {{ item.label || item.key }}
       </span>
-      <Anchor v-if="item.children" :items="item.children" :deep="deep + 1" />
+      <Anchor v-if="item.children" class="mt-2" :items="item.children" :deep="deep + 1" />
     </div>
   </div>
 </template>
