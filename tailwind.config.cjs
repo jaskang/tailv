@@ -13,8 +13,11 @@ module.exports = {
         warning: colors.amber,
         danger: colors.red,
       },
+      maxWidth: {
+        '8xl': '90rem',
+      },
     },
-  }, 
+  },
   content: [
     './index.html',
     './packages/vue/src/**/*.{ts,tsx,vue}',

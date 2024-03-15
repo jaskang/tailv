@@ -1,1 +1,1 @@
-export { default as Anchor } from './Anchor.vue'
+export { default as Anchor, type IAnchorItem } from './Anchor.vue'

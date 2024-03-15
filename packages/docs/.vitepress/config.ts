@@ -61,9 +61,9 @@ export default defineConfig({
             content: [
               './index.html',
               join(__dirname, '../../vue/src/**/*.{ts,tsx,vue}'),
-              join(__dirname, '../../docs/*.{md,mdx}'),
-              join(__dirname, '../../docs/components/**/*.{md,mdx}'),
-              join(__dirname, '../../docs/.vitepress/theme/**/*.{md,mdx}'),
+              join(__dirname, '../../docs/*.{md,vue,ts}'),
+              join(__dirname, '../../docs/components/**/*.{md,vue,ts}'),
+              join(__dirname, '../../docs/.vitepress/theme/**/*.{md,vue,ts}'),
             ],
             theme: {
               extend: {
@@ -72,6 +72,9 @@ export default defineConfig({
                   success: colors.green,
                   warning: colors.amber,
                   danger: colors.red,
+                },
+                maxWidth: {
+                  '8xl': '90rem',
                 },
               },
             },
@@ -96,15 +99,29 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'components',
+        text: '基础',
         items: [
           { text: 'Button', link: '/components/button' },
           { text: 'Anchor', link: '/components/anchor' },
           { text: 'ScrollArea', link: '/components/scroll-area' },
+          { text: 'Popover', link: '/components/popover' },
+          { text: 'Tooltip', link: '/components/tooltip' },
+        ],
+      },
+      {
+        text: '表单',
+        items: [
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Input', link: '/components/input' },
           { text: 'Select', link: '/components/select' },
+          { text: 'Popover', link: '/components/popover' },
+          { text: 'Tooltip', link: '/components/tooltip' },
+        ],
+      },
+      {
+        text: '反馈',
+        items: [
           { text: 'Popover', link: '/components/popover' },
           { text: 'Tooltip', link: '/components/tooltip' },
         ],
