@@ -2,32 +2,49 @@
 import { ref, computed, type PropType } from 'vue'
 
 export type IAnchorItem = {
-  key: string
-  label?: string
+  title: string
+  key?: string
   href?: string
+  target?: string
   children?: IAnchorItem[]
 }
 
 defineOptions({ name: 'Anchor' })
 const emit = defineEmits<{ click: [any] }>()
-const slots = defineSlots<{ default?(_: {}): any }>()
 const props = defineProps({
   items: Array as PropType<IAnchorItem[]>,
+  itemClass: String,
+  isGroup: Boolean,
   deep: { type: Number, default: 0 },
+  type: { type: String as PropType<'border' | 'arrow'>, default: 'border' },
 })
+
+const isBorder = computed(() => props.type === 'border' && !props.isGroup)
 </script>
 <template>
-  <div class="space-y-2 border-l border-gray-100 text-gray-700 dark:border-gray-800">
-    <div class="-ml-px" v-for="item in items">
-      <span
-        class="block cursor-pointer border-l-2 border-transparent hover:border-primary-500"
-        :style="{
-          paddingLeft: deep + 1 + 'rem',
-        }"
+  <ul class="m-0 list-none p-0 text-sm leading-6 text-slate-700" :class="[isBorder ? 'border-l border-gray-300' : '']">
+    <li v-for="item in items" class="m-0 p-0">
+      <a
+        v-if="isGroup && deep === 0"
+        class="block py-1 font-medium no-underline hover:text-primary-500 dark:text-primary-400"
+        :href="item.href"
       >
-        {{ item.label || item.key }}
-      </span>
-      <Anchor v-if="item.children" class="mt-2" :items="item.children" :deep="deep + 1" />
-    </div>
-  </div>
+        {{ item.title }}
+      </a>
+      <a
+        v-else
+        class="group flex items-start py-1 no-underline hover:text-primary-500 dark:text-primary-400"
+        :href="item.href"
+        :style="{ paddingLeft: deep + 1 + 'rem' }"
+      >
+        {{ item.title || item.key }}
+      </a>
+      <Anchor
+        class="-ml-px"
+        v-if="item.children && item.children.length > 0"
+        :items="item.children"
+        :deep="isGroup ? deep : deep + 1"
+      />
+    </li>
+  </ul>
 </template>

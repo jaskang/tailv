@@ -19,7 +19,7 @@ const title = computed(() => {
 function headers2AnchorItems(headers: Header[]): IAnchorItem[] {
   return headers.map(header => ({
     key: header.slug,
-    label: header.title,
+    title: header.title,
     href: header.link,
     children: header.children ? headers2AnchorItems(header.children) : undefined,
   }))

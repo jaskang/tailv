@@ -2,8 +2,9 @@
 import { useRoute, useData, type DefaultTheme } from 'vitepress'
 import VPNavBar from './components/VPNavBar.vue'
 import VPSidebar from './components/VPSidebar.vue'
-import VPDocAside from './components/VPDocAside.vue'
+import VPDocToc from './components/VPDocToc.vue'
 import { ScrollArea, Anchor } from 'tailv'
+import VPDoc from './components/VPDoc.vue'
 const { frontmatter, page, theme } = useData<DefaultTheme.Config>()
 </script>
 
@@ -27,7 +28,7 @@ const { frontmatter, page, theme } = useData<DefaultTheme.Config>()
           <footer></footer>
           <div class="fixed bottom-0 right-[max(0px,calc(50%-45rem))] top-[3.8125rem] z-20 hidden w-[19.5rem] xl:block">
             <ScrollArea class="h-full">
-              <VPDocAside class="py-10" />
+              <VPDocToc class="py-10" />
             </ScrollArea>
           </div>
         </main>
