@@ -32,7 +32,7 @@ const groups = computed(() => headers2AnchorItems(page.value.headers))
 <template>
   <div class="px-8">
     <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">{{ title }}</h5>
-    <Anchor :items="groups" :offset="120">
+    <Anchor :items="groups" :offset="135">
       <template #item="{ title, link, deep, isActive }">
         <a
           :href="link"
