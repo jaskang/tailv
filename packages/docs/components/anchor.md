@@ -9,5 +9,5 @@ const picked = ref('A')
 # Anchor
 
 <div class="">
-  <Anchor :items="[{label: 'A', key: 'A'}, {label: 'B', key: 'B', children:[{label: 'B-1', key: 'B-1'}, {label: 'B-2', key: 'B-2' }, {label: 'B-3', key: 'B-3'}] }, {label: 'C', key: 'C'}]"  />  
+  <Anchor :items="[{title: 'A', key: 'A'}, {title: 'B', key: 'B', children:[{title: 'B-1', key: 'B-1'}, {title: 'B-2', key: 'B-2' }, {title: 'B-3', key: 'B-3'}] }, {title: 'C', key: 'C'}]"  />  
 </div>
