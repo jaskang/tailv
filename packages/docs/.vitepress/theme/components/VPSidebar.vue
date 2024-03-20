@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { Theme, useData, useRoute } from 'vitepress'
-import { type DefaultTheme } from 'vitepress/theme'
 import { computed } from 'vue'
 import { Anchor, type IAnchorItem } from 'tailv'
 
-const { theme } = useData<DefaultTheme.Config>()
+const { theme, site } = useData<DefaultTheme.Config>()
 const { path } = useRoute()
 const items = computed(() => {
   if (!theme.value.sidebar) return []
@@ -22,7 +21,7 @@ function sidebarItems2AnchorItems(items: DefaultTheme.SidebarItem[]): IAnchorIte
   return items.map(item => ({
     key: item.text || '',
     title: item.text || '',
-    link: item.link,
+    link: item.link || '',
     children: item.items ? sidebarItems2AnchorItems(item.items) : undefined,
   }))
 }

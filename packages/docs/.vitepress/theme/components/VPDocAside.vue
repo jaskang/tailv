@@ -2,11 +2,11 @@
 import { ref, computed } from 'vue'
 import { ScrollArea, Anchor, IAnchorItem } from 'tailv'
 import { useData, type Header } from 'vitepress'
-import { type DefaultTheme } from 'vitepress/theme'
+import { ThemeConfig } from '../theme'
 
 defineOptions({ name: 'VPDocAside' })
 
-const { theme, page } = useData<DefaultTheme.Config>()
+const { theme, page } = useData<ThemeConfig>()
 
 const title = computed(() => {
   return (

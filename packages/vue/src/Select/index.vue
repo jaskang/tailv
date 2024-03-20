@@ -64,7 +64,7 @@ const focused = ref(false)
       :disabled
     >
       <template #suffix>
-        <div class="pr-1 text-gray-400">
+        <div class="pr-1 text-slate-400">
           <ChevronUpDown class="h-5 w-5"></ChevronUpDown>
         </div>
       </template>

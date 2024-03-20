@@ -2,13 +2,13 @@
 import { ref, computed, onMounted } from 'vue'
 import { ScrollArea, Anchor, IAnchorItem, useAnchor, AnchorHeader } from 'tailv'
 import { useData } from 'vitepress'
-import { type DefaultTheme } from 'vitepress/theme'
+import { ThemeConfig } from '../theme'
 
 defineOptions({ name: 'VPDocToc' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 
-const { theme, page } = useData<DefaultTheme.Config>()
+const { theme, page } = useData<ThemeConfig>()
 const title = computed(() => {
   return (
     (typeof theme.value.outline === 'object' && !Array.isArray(theme.value.outline) && theme.value.outline.label) ||

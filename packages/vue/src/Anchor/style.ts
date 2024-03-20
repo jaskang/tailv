@@ -1,10 +1,10 @@
 import { tw } from '../utils/tw'
 
-const anchorItemCss = tw('relative py-1.5 block overflow-hidden text-ellipsis whitespace-nowrap', {
+const anchorItemCss = tw('relative block overflow-hidden text-ellipsis whitespace-nowrap py-1.5', {
   variants: {
     disabled: {
-      true: 'text-primary-500 font-medium',
-      false: 'text-gray-700',
+      true: 'font-medium text-primary-500',
+      false: 'text-slate-700',
     },
   },
 })
