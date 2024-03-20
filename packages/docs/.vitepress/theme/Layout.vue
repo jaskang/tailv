@@ -24,7 +24,7 @@ const { frontmatter, page, theme } = useData<DefaultTheme.Config>()
       <div class="lg:pl-[19.5rem]">
         <main class="mx-auto max-w-3xl pt-10 xl:ml-0 xl:mr-[15.5rem] xl:max-w-none xl:pr-16">
           <header></header>
-          <Content class="prose dark:prose-invert" />
+          <Content class="vp-doc prose dark:prose-invert" />
           <footer></footer>
           <div class="fixed bottom-0 right-[max(0px,calc(50%-45rem))] top-[3.8125rem] z-20 hidden w-[19.5rem] xl:block">
             <ScrollArea class="h-full">

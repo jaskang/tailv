@@ -1,7 +1,7 @@
 import { useMutationObserver, useScroll } from '@vueuse/core'
 import { onMounted, onUnmounted, onUpdated, ref, watchEffect, type Ref, type InjectionKey } from 'vue'
 
-type AnchorHeader = {
+export type AnchorHeader = {
   id: string
   level: number
   title: string
@@ -11,7 +11,7 @@ type AnchorHeader = {
   children?: AnchorHeader[]
 }
 
-type AnchorRange = number | [number, number]
+export type AnchorRange = number | [number, number]
 
 function getHeaderText(h: Element): string {
   let ret = ''
@@ -19,34 +19,12 @@ function getHeaderText(h: Element): string {
     if (node.nodeType === 3) {
       ret += node.textContent
     }
-    // if (node.nodeType === 1) {
-    //   if (
-    //     (node as Element).classList.contains('VPBadge') ||
-    //     (node as Element).classList.contains('header-anchor') ||
-    //     (node as Element).classList.contains('ignore-header')
-    //   ) {
-    //     continue
-    //   }
-    //   ret += node.textContent
-    // } else if (node.nodeType === 3) {
-    //   ret += node.textContent
-    // }
   }
   return ret.trim()
 }
 
-function resolveHeaders(headers: MenuItem[], range: Range): MenuItem[] {
-  const [high, low]: [number, number] = typeof range === 'number' ? [range, range] : range
-
-  headers = headers.filter(h => h.level >= high && h.level <= low)
-  // clear previous caches
-  resolvedHeaders.length = 0
-  // update global header list for active link rendering
-  for (const { element, link } of headers) {
-    resolvedHeaders.push({ element, link })
-  }
-
-  const ret: MenuItem[] = []
+function resolveHeaders(headers: AnchorHeader[]): AnchorHeader[] {
+  const ret: AnchorHeader[] = []
   outer: for (let i = 0; i < headers.length; i++) {
     const cur = headers[i]
     if (i === 0) {
@@ -91,10 +69,10 @@ function getHeaders(range: AnchorRange, container?: Element): AnchorHeader[] {
     })
     .sort((a, b) => a.top - b.top)
 
-  return headers
+  return resolveHeaders(headers)
 }
 
-export function useActiveAnchor(
+export function useAnchor(
   container: Ref<HTMLElement | undefined>,
   options: { range?: AnchorRange; offset?: number } = {}
 ) {
@@ -131,13 +109,16 @@ export function useActiveAnchor(
       current.value = activeHeader
     }
   }
+  watchEffect(() => {
+    headers.value = getHeaders(range, container.value)
+  })
   onMounted(() => {
     headers.value = getHeaders(range, container.value)
-    current.value = location.hash
+    current.value = headers.value.find(h => h.link === window.location.hash) || null
   })
   watchEffect(() => {
     console.log('headers', headers.value)
-    console.log('id', id.value)
+    console.log('current', current.value)
   })
   useScroll(window, {
     onScroll: setActiveLink,

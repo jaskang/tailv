@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { ScrollArea, Anchor, IAnchorItem } from 'tailv'
-import { useData, type Header } from 'vitepress'
+import { ref, computed, onMounted } from 'vue'
+import { ScrollArea, Anchor, IAnchorItem, useAnchor, AnchorHeader } from 'tailv'
+import { useData } from 'vitepress'
 import { type DefaultTheme } from 'vitepress/theme'
 
 defineOptions({ name: 'VPDocToc' })
@@ -9,7 +9,6 @@ const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 
 const { theme, page } = useData<DefaultTheme.Config>()
-
 const title = computed(() => {
   return (
     (typeof theme.value.outline === 'object' && !Array.isArray(theme.value.outline) && theme.value.outline.label) ||
@@ -17,22 +16,28 @@ const title = computed(() => {
     'On this page'
   )
 })
-
-function headers2AnchorItems(headers: Header[]): IAnchorItem[] {
+const container = ref<HTMLElement>()
+const { headers, current } = useAnchor(container, {
+  offset: 135,
+})
+function headers2AnchorItems(headers: AnchorHeader[]): IAnchorItem[] {
   return headers.map(header => ({
-    key: header.slug,
+    key: header.id,
     title: header.title,
     link: header.link,
     children: header.children ? headers2AnchorItems(header.children) : undefined,
   }))
 }
-console.log(page.value.headers)
-const groups = computed(() => headers2AnchorItems(page.value.headers))
+onMounted(() => {
+  container.value = document.querySelector<HTMLElement>('.vp-doc') || undefined
+})
+
+const groups = computed(() => headers2AnchorItems(headers.value))
 </script>
 <template>
   <div class="px-8">
     <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">{{ title }}</h5>
-    <Anchor :items="groups" :offset="135">
+    <Anchor :current="current?.id" :items="groups" :offset="135">
       <template #item="{ title, link, deep, isActive }">
         <a
           :href="link"
