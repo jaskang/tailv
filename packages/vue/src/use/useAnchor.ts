@@ -1,7 +1,7 @@
 import { useMutationObserver, useScroll } from '@vueuse/core'
 import { onMounted, onUnmounted, onUpdated, ref, watchEffect, type Ref, type InjectionKey } from 'vue'
 
-export type AnchorHeader = {
+export interface AnchorHeader {
   id: string
   level: number
   title: string
@@ -44,6 +44,22 @@ function resolveHeaders(headers: AnchorHeader[]): AnchorHeader[] {
   return ret
 }
 
+function getAbsoluteTop(element: HTMLElement): number {
+  let offsetTop = 0
+  while (element !== document.body) {
+    if (element === null) {
+      // child element is:
+      // - not attached to the DOM (display: none)
+      // - set to fixed position (not scrollable)
+      // - body or html element (null offsetParent)
+      return NaN
+    }
+    offsetTop += element.offsetTop
+    element = element.offsetParent as HTMLElement
+  }
+  return offsetTop
+}
+
 function getHeaders(range: AnchorRange, container?: Element): AnchorHeader[] {
   if (!container) {
     return []
@@ -77,8 +93,8 @@ export function useAnchor(
   options: { range?: AnchorRange; offset?: number } = {}
 ) {
   const { range = [2, 3], offset = 0 } = options
-  const current = ref<AnchorHeader | null>(null)
-  const headers = ref<AnchorHeader[]>([])
+  const current: Ref<AnchorHeader | null> = ref(null)
+  const headers: Ref<AnchorHeader[]> = ref([])
 
   useMutationObserver(container, () => (headers.value = getHeaders(range, container.value)), { childList: true })
 
@@ -124,20 +140,4 @@ export function useAnchor(
     onScroll: setActiveLink,
   })
   return { current, headers }
-}
-
-function getAbsoluteTop(element: HTMLElement): number {
-  let offsetTop = 0
-  while (element !== document.body) {
-    if (element === null) {
-      // child element is:
-      // - not attached to the DOM (display: none)
-      // - set to fixed position (not scrollable)
-      // - body or html element (null offsetParent)
-      return NaN
-    }
-    offsetTop += element.offsetTop
-    element = element.offsetParent as HTMLElement
-  }
-  return offsetTop
 }

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useDraggable, useResizeObserver, useScroll } from '@vueuse/core'
 import { ref, computed, onMounted, type PropType, watch, watchEffect } from 'vue'
-import { getScrollPositionFromPointer, getThumbOffsetFromScroll, getThumbSize } from './utils'
-import type { Sizes } from './types'
+import { getScrollPositionFromPointer, getThumbOffsetFromScroll, getThumbSize, type Sizes } from './core'
 
 defineOptions({ name: 'ScrollArea' })
 const emit = defineEmits<{ click: [any] }>()

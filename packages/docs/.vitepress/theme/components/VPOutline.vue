@@ -1,43 +1,16 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { ScrollArea, Anchor, IAnchorItem, useAnchor, AnchorHeader } from 'tailv'
-import { useData } from 'vitepress'
-import { ThemeConfig } from '../theme'
+import { Anchor } from 'tailv'
+import { useOutline } from '../composables/outline'
 
-defineOptions({ name: 'VPDocToc' })
+defineOptions({ name: 'VPOutline' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
-
-const { theme, page } = useData<ThemeConfig>()
-const title = computed(() => {
-  return (
-    (typeof theme.value.outline === 'object' && !Array.isArray(theme.value.outline) && theme.value.outline.label) ||
-    theme.value.outlineTitle ||
-    'On this page'
-  )
-})
-const container = ref<HTMLElement>()
-const { headers, current } = useAnchor(container, {
-  offset: 135,
-})
-function headers2AnchorItems(headers: AnchorHeader[]): IAnchorItem[] {
-  return headers.map(header => ({
-    key: header.id,
-    title: header.title,
-    link: header.link,
-    children: header.children ? headers2AnchorItems(header.children) : undefined,
-  }))
-}
-onMounted(() => {
-  container.value = document.querySelector<HTMLElement>('.vp-doc') || undefined
-})
-
-const groups = computed(() => headers2AnchorItems(headers.value))
+const { title, items, current } = useOutline()
 </script>
 <template>
   <div class="px-8">
     <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">{{ title }}</h5>
-    <Anchor :current="current?.id" :items="groups" :offset="135">
+    <Anchor :current="current?.id" :items="items" :offset="135">
       <template #item="{ label, key, link, deep, isActive }">
         <a
           :href="link"

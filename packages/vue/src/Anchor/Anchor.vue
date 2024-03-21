@@ -1,24 +1,17 @@
 <script setup lang="ts">
 import { ref, computed, type PropType, toRef, provide, inject, watchEffect } from 'vue'
-
-export type IAnchorItem = {
-  key: string
-  label?: string
-  link?: string
-  target?: string
-  children?: IAnchorItem[]
-}
+import type { AnchorItem } from './types'
 
 defineOptions({ name: 'Anchor' })
-const emit = defineEmits<{ change: [key: string, item: IAnchorItem] }>()
-const slots = defineSlots<{ item?: (_: IAnchorItem & { deep: number; isActive: boolean }) => any }>()
+const emit = defineEmits<{ change: [key: string, item: AnchorItem] }>()
+const slots = defineSlots<{ item?: (_: AnchorItem & { deep: number; isActive: boolean }) => any }>()
 const props = defineProps({
   current: String,
-  items: Array as PropType<IAnchorItem[]>,
+  items: Array as PropType<AnchorItem[]>,
   deep: { type: Number, default: 0 },
 })
 const isCustom = computed(() => !!slots.item)
-const onSelect = (item: IAnchorItem) => {
+const onSelect = (item: AnchorItem) => {
   emit('change', item.key, item)
 }
 </script>

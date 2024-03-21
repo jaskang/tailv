@@ -2,8 +2,8 @@
 import { ref, type PropType, computed, toRef, Teleport } from 'vue'
 import ElSlot from './ElSlot.vue'
 import {
-  type PopperTrigger,
   usePopper,
+  type PopperTrigger,
   type PopperVirtualElement,
   type PopperPlacement,
   type PopperSizer,

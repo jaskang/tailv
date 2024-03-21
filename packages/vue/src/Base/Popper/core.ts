@@ -30,25 +30,17 @@ import { useHoverListener, useFocusListener, useClickListener } from '../../use/
 export type PopperPlacement = Placement
 export type PopperVirtualElement = VirtualElement
 export type PopperSizer = SizeOptions['apply']
+export type PopperTrigger = 'click' | 'hover' | 'focus' | 'manual'
 
-export type PopperContext = {
-  nodeId: string
-  parent: string
-  open: boolean
-  onOpenChange(open: boolean, event?: Event): void
-}
-
-export type PopperTreeContext = {
+interface PopperTreeContext {
   nodeId: string
   addNode: (node: PopperNode) => void
   removeNode: (nodeId: string) => void
 }
-export type PopperNode = {
+interface PopperNode {
   nodeId: string
   open: boolean
 }
-
-export type PopperTrigger = 'click' | 'hover' | 'focus' | 'manual'
 
 const POPPER_TREE_CONTEXT_KEY = Symbol('popper-tree') as InjectionKey<PopperTreeContext>
 

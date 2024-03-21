@@ -2,7 +2,7 @@
 import Popover from '../Popover/index.vue'
 import Input from '../Input/index.vue'
 import { ref, computed, type PropType } from 'vue'
-import type { SelectOption } from './type'
+import type { SelectOption } from './types'
 import { useModelValue } from '../use/useModelValue'
 import ChevronUpDown from '../Icon/ChevronUpDown.vue'
 import type { PopperSizer } from '@/Base/Popper/core'

@@ -1,4 +1,21 @@
-import type { Direction, Sizes } from './types'
+export type Direction = 'vertical' | 'horizontal'
+
+export interface Sizes {
+  content: {
+    width: number
+    height: number
+  }
+  viewport: {
+    width: number
+    height: number
+  }
+  scrollbar: {
+    width: number
+    height: number
+    paddingStart: number
+    paddingEnd: number
+  }
+}
 
 function clamp(value: number, [min, max]: [number, number]): number {
   return Math.min(max, Math.max(min, value))

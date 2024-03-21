@@ -2,7 +2,7 @@ import { computed, onMounted, onUnmounted, ref, watch, watchEffect, watchPostEff
 
 import { useDataByTheme } from '../utils'
 import { useRoute } from 'vitepress'
-import { IAnchorItem } from 'tailv'
+import { AnchorItem } from 'tailv'
 
 const HASH_RE = /#.*$/
 const HASH_OR_QUERY_RE = /[?#].*$/
@@ -29,7 +29,7 @@ export function useSidebar() {
   const items = computed(() =>
     groups.value.reduce((items, group) => {
       return items.concat(group.children || [])
-    }, [] as IAnchorItem[])
+    }, [] as AnchorItem[])
   )
 
   const current = computed(() => {

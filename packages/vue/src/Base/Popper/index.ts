@@ -1,5 +1,2 @@
-import Popper from './Popper.vue'
-
-export { Popper }
-
-export default Popper
+export { default as Popper } from './Popper.vue'
+export type { PopperPlacement, PopperSizer, PopperTrigger, PopperVirtualElement } from './core'

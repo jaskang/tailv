@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { type PropType } from 'vue'
-import Popper from '../Base/Popper'
-import type { PopperPlacement } from '@/Base/Popper/core'
+import { Popper, type PopperPlacement } from '../Base/Popper'
 
 defineOptions({ name: 'TTooltip' })
 defineProps({
