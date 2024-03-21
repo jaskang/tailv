@@ -26,7 +26,6 @@ const PrimitiveSlot = defineComponent({
       if (Object.keys(attrs).length > 0) {
         // remove props ref from being inferred
         delete firstChildren.props?.ref
-        console.log('attrs', attrs)
         const mergedProps = mergeProps(attrs, firstChildren.props ?? {})
         // remove class to prevent duplicated
         if (attrs.class && firstChildren.props?.class) delete firstChildren.props.class

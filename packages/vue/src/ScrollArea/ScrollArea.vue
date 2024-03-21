@@ -62,7 +62,6 @@ const handleSizeChange = () => {
         paddingEnd: 0,
       },
     }
-    console.log(sizes.value)
   }
 }
 
@@ -87,10 +86,6 @@ useDraggable(thumbYEl, {
 useResizeObserver(contentEl, handleSizeChange)
 useResizeObserver(scrollbarXEl, handleSizeChange)
 useResizeObserver(scrollbarYEl, handleSizeChange)
-
-// watchEffect(() => {
-//   console.log('useDraggable', x.value, y.value, style.value, position.value, isDragging.value)
-// })
 </script>
 <template>
   <div

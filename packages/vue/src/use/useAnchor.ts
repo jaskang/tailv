@@ -132,10 +132,6 @@ export function useAnchor(
     headers.value = getHeaders(range, container.value)
     current.value = headers.value.find(h => h.link === window.location.hash) || null
   })
-  watchEffect(() => {
-    console.log('headers', headers.value)
-    console.log('current', current.value)
-  })
   useScroll(window, {
     onScroll: setActiveLink,
   })

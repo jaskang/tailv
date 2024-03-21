@@ -13,7 +13,6 @@ const props = defineProps({
 })
 
 const group = inject(RadioGroupInjectKey, null)
-console.log(parent)
 
 const [innerChecked, setInnerChecked] = useModelValue(props, {
   defaultValue: group ? group.value.value === props.value : false,
@@ -27,7 +26,6 @@ const checked = computed(() => (group ? group.value.value === props.value : inne
 
 const onInput = (e: Event) => {
   const el = e.currentTarget as HTMLInputElement
-  console.log(el.checked)
   setInnerChecked(el.checked)
 }
 </script>

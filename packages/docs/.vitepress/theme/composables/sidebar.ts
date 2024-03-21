@@ -25,7 +25,6 @@ export function useSidebar() {
   )
 
   const current = computed(() => {
-    console.log(normalize(route.path))
     const item = items.value.find(item => item.link === normalize(route.path))
     return item?.key || ''
   })

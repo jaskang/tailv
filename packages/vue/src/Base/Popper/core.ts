@@ -168,7 +168,6 @@ export function usePopper({
     onClickOutside(
       floating,
       e => {
-        console.log(e, 'onClickOutside')
         emitChange(false, 'click')
       },
       { ignore: [refElement(reference)] }
@@ -181,7 +180,6 @@ export function usePopper({
     onClickOutside(
       floating,
       e => {
-        console.log(e, 'onClickOutside')
         emitChange(false, 'click')
       },
       { ignore: [refElement(reference)] }

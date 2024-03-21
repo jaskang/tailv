@@ -13,7 +13,6 @@ const props = defineProps({
 })
 
 const group = inject(CheckboxGroupInjectKey, null)
-console.log(parent)
 
 const [innerChecked, setInnerChecked] = useModelValue(props, {
   defaultValue: group ? group.value.value.includes(props.value) : false,
@@ -33,7 +32,6 @@ const checked = computed(() => (group ? group.value.value.includes(props.value) 
 
 const onInput = (e: Event) => {
   const el = e.currentTarget as HTMLInputElement
-  console.log(el.checked)
   setInnerChecked(el.checked)
 }
 </script>
