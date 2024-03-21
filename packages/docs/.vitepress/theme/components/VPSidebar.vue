@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useRoute } from 'vitepress'
-import { computed } from 'vue'
 import { Anchor } from 'tailv'
 
 import { useSidebar } from '../composables/sidebar'

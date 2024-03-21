@@ -1,16 +1,8 @@
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect, watchPostEffect } from 'vue'
 
-import { useDataByTheme } from '../utils'
+import { normalize, useDataByTheme } from '../utils'
 import { useRoute } from 'vitepress'
 import { AnchorItem } from 'tailv'
-
-const HASH_RE = /#.*$/
-const HASH_OR_QUERY_RE = /[?#].*$/
-const INDEX_OR_EXT_RE = /(?:(^|\/)index)?\.(?:md|html)$/
-
-function normalize(path: string): string {
-  return decodeURI(path).replace(HASH_OR_QUERY_RE, '').replace(INDEX_OR_EXT_RE, '$1')
-}
 
 export function useSidebar() {
   const { theme } = useDataByTheme()

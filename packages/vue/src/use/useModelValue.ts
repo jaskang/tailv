@@ -1,6 +1,6 @@
 import { computed, ref, type UnwrapRef, getCurrentInstance } from 'vue'
 
-export interface IUseModelValueOptions<T> {
+export interface UseModelValueOptions<T> {
   defaultValue?: T
   defaultValuePropName?: string
   valuePropName?: string
@@ -8,7 +8,7 @@ export interface IUseModelValueOptions<T> {
   onChange?: (val: T) => void
 }
 
-export function useModelValue<T>(props: Record<string, any>, options: IUseModelValueOptions<T> = {}) {
+export function useModelValue<T>(props: Record<string, any>, options: UseModelValueOptions<T> = {}) {
   const { defaultValue, defaultValuePropName = 'defaultValue', valuePropName = 'value', onChange } = options
   const trigger = options.trigger || `update:${valuePropName}`
 

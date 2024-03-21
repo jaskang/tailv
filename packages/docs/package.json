@@ -13,8 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vueuse/core": "^10.9.0",
     "tailv": "workspace:*",
     "vue": "^3.4.20",
-    "@vueuse/core": "^10.9.0"
+    "vue-router": "^4.3.0"
   }
 }

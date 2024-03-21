@@ -1,25 +1,14 @@
 <script lang="ts" setup>
-import { useWindowScroll } from '@vueuse/core'
-import { useData } from 'vitepress'
 import { computed, ref, watchPostEffect } from 'vue'
+import { useDataByTheme } from '../utils'
+import { useNavbar } from '../composables/navbar'
 
-defineEmits<{
-  (e: 'toggle-screen'): void
-}>()
-
-const { frontmatter } = useData()
-
-const hasNavbar = computed(() => {
-  return frontmatter.value.navbar !== false
-})
-
-const { theme } = useData()
+const { current, items } = useNavbar()
 </script>
 
 <template>
   <div
-    v-if="hasNavbar"
-    class="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full flex-none bg-white/95 backdrop-blur transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
+    class="sticky top-0 z-40 w-full flex-none bg-white/95 transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
   >
     <div class="mx-auto max-w-8xl">
       <div class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
@@ -28,13 +17,17 @@ const { theme } = useData()
             <span> Tailv </span>
           </a>
           <div class="relative ml-auto hidden items-center lg:flex">
-            <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
-              <ul class="flex space-x-8">
-                <li v-for="item in theme.nav" :key="item">
-                  <a class="hover:text-primary-500 dark:hover:text-primary-400" :href="item.link">{{ item.text }}</a>
-                </li>
-              </ul>
-            </nav>
+            <div class="hidden lg:flex lg:gap-x-12">
+              <a
+                v-for="item in items"
+                :href="item.link"
+                class="text-sm font-semibold leading-6"
+                :class="[current === item.link ? 'text-primary-500' : 'text-slate-900']"
+              >
+                {{ item.title }}
+              </a>
+            </div>
+
             <div class="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
               <label class="sr-only" id="headlessui-listbox-label-:r2:" data-headlessui-state="">Theme </label>
               <button

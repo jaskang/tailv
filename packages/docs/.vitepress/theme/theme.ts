@@ -3,10 +3,10 @@ import { AnchorItem } from 'tailv'
 export type NavItem = NavItemWithLink
 
 export interface NavItemWithLink {
-  label: string
+  title: string
   link: string
+  activeMatch: string
   children?: never
-  activeMatch?: string
   target?: string
 }
 

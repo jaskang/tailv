@@ -104,8 +104,8 @@ export default defineConfigWithTheme<ThemeConfig>({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { label: 'Home', link: '/' },
-      { label: 'Components', link: '/components/button' },
+      { title: 'Home', link: '/', activeMatch: '/' },
+      { title: 'Components', link: '/components/button', activeMatch: '/components/' },
     ],
 
     sidebar: [
