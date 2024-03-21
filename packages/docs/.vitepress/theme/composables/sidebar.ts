@@ -1,31 +1,49 @@
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect, watchPostEffect } from 'vue'
-import { isActive } from '../../shared'
-import { type DefaultTheme, useData } from 'vitepress'
+
+import { useDataByTheme } from '../utils'
+import { useRoute } from 'vitepress'
+import { IAnchorItem } from 'tailv'
+
+const HASH_RE = /#.*$/
+const HASH_OR_QUERY_RE = /[?#].*$/
+const INDEX_OR_EXT_RE = /(?:(^|\/)index)?\.(?:md|html)$/
+
+function normalize(path: string): string {
+  return decodeURI(path).replace(HASH_OR_QUERY_RE, '').replace(INDEX_OR_EXT_RE, '$1')
+}
 
 export function useSidebar() {
-  const { frontmatter, page, theme } = useData<DefaultTheme.Config>()
-  const isOpen = ref(false)
-  const sidebar = computed(() => {
-    const sidebarConfig = theme.value.sidebar
-    const relativePath = page.value.relativePath
-    return sidebarConfig ? getSidebar(sidebarConfig, relativePath) : []
+  const { theme } = useDataByTheme()
+  const route = useRoute()
+  const groups = computed(() => {
+    if (!theme.value.sidebar) return []
+    if (Array.isArray(theme.value.sidebar)) {
+      return theme.value.sidebar
+    } else {
+      const keys = Object.keys(theme.value.sidebar).sort()
+      const key = keys.find(key => route.path.startsWith(key))
+      return key ? theme.value.sidebar[key] : []
+    }
+  })
+  // flatten sidebar groups children
+  const items = computed(() =>
+    groups.value.reduce((items, group) => {
+      return items.concat(group.children || [])
+    }, [] as IAnchorItem[])
+  )
+
+  const current = computed(() => {
+    console.log(normalize(route.path))
+    const item = items.value.find(item => item.link === normalize(route.path))
+    return item?.key || ''
   })
 
-  const hasSidebar = computed(() => {
-    return frontmatter.value.sidebar !== false && sidebar.value.length > 0 && frontmatter.value.layout !== 'home'
-  })
+  const hasSidebar = computed(() => groups.value.length > 0)
 
   return {
-    isOpen,
-    sidebar,
-    sidebarGroups,
+    current,
+    groups,
     hasSidebar,
-    hasAside,
-    leftAside,
-    isSidebarEnabled,
-    open,
-    close,
-    toggle,
   }
 }
 /**

@@ -38,11 +38,15 @@ const groups = computed(() => headers2AnchorItems(headers.value))
   <div class="px-8">
     <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">{{ title }}</h5>
     <Anchor :current="current?.id" :items="groups" :offset="135">
-      <template #item="{ title, link, deep, isActive }">
+      <template #item="{ label, key, link, deep, isActive }">
         <a
           :href="link"
-          class="group flex items-start hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300"
-          :class="[isActive ? 'font-semibold text-primary-500 dark:text-primary-400' : '']"
+          class="group flex items-start"
+          :class="[
+            isActive
+              ? 'font-semibold text-primary-500 dark:text-primary-400'
+              : 'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300',
+          ]"
           :style="{
             paddingLeft: deep * 0.5 + 'rem',
           }"
@@ -56,7 +60,7 @@ const groups = computed(() => headers2AnchorItems(headers.value))
           >
             <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
           </svg>
-          {{ title }}
+          {{ label || key }}
         </a>
       </template>
     </Anchor>

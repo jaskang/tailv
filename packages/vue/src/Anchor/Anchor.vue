@@ -2,9 +2,9 @@
 import { ref, computed, type PropType, toRef, provide, inject, watchEffect } from 'vue'
 
 export type IAnchorItem = {
-  title: string
-  link: string
   key: string
+  label?: string
+  link?: string
   target?: string
   children?: IAnchorItem[]
 }
@@ -12,7 +12,7 @@ export type IAnchorItem = {
 defineOptions({ name: 'Anchor' })
 const emit = defineEmits<{ change: [key: string, item: IAnchorItem] }>()
 const slots = defineSlots<{ item?: (_: IAnchorItem & { deep: number; isActive: boolean }) => any }>()
-defineProps({
+const props = defineProps({
   current: String,
   items: Array as PropType<IAnchorItem[]>,
   deep: { type: Number, default: 0 },
@@ -25,7 +25,7 @@ const onSelect = (item: IAnchorItem) => {
 <template>
   <ul
     class="m-0 list-none p-0 text-sm leading-6 text-slate-700"
-    :class="[!isCustom && deep === 0 ? 'border-l border-gray-100' : '']"
+    :class="[!isCustom && deep === 0 ? 'border-l border-slate-100 dark:border-slate-800' : '']"
   >
     <li
       v-for="item in items"
@@ -37,16 +37,16 @@ const onSelect = (item: IAnchorItem) => {
       <div class="py-1">
         <slot name="item" v-bind="item" :deep="deep" :isActive="current === item.key">
           <a
-            class="group flex cursor-pointer items-start border-l-2 border-transparent no-underline hover:border-primary-400 hover:text-primary-500 dark:text-primary-400 dark:hover:border-primary-500"
+            class="group flex cursor-pointer items-start border-l-2 no-underline"
             :class="[
               current === item.key
                 ? 'border-primary-400 font-semibold text-primary-500 dark:text-primary-400'
-                : 'border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300',
+                : 'border-transparent text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-400 dark:hover:text-slate-300',
             ]"
             :href="item.link"
             :style="{ paddingLeft: deep + 1 + 'rem' }"
           >
-            {{ item.title }}
+            {{ item.label || item.key }}
           </a>
         </slot>
       </div>

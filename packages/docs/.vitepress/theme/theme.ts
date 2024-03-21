@@ -1,28 +1,26 @@
+import { IAnchorItem } from 'tailv'
+
 export type NavItem = NavItemWithLink
 
 export interface NavItemWithLink {
-  text: string
+  label: string
   link: string
-  items?: never
+  children?: never
   activeMatch?: string
   target?: string
 }
 
 export interface NavItemChildren {
-  text: string
-  items: NavItemWithLink[]
+  label: string
+  children: NavItemWithLink[]
 }
 
-export type Sidebar = SidebarItem[] | Record<string, SidebarItem[]>
-
-export type SidebarItem = {
-  text: string
-  link: string
-  items?: SidebarItem[]
-  target?: string
+type Sidebar = {
+  title: string
+  children: Array<IAnchorItem & { link: string }>
 }
 
 export type ThemeConfig = {
   nav: NavItem[]
-  sidebar: Sidebar
+  sidebar: Sidebar[] | Record<string, Sidebar[]>
 }

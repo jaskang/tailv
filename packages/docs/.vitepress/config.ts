@@ -1,6 +1,6 @@
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
 import { readFileSync } from 'node:fs'
 import jsx from '@vitejs/plugin-vue-jsx'
 import autoprefixer from 'autoprefixer'
@@ -9,6 +9,7 @@ import colors from 'tailwindcss/colors'
 
 import typography from '@tailwindcss/typography'
 import forms from '@tailwindcss/forms'
+import { ThemeConfig } from './theme/theme'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 console.log('vitepress config', __dirname)
@@ -31,7 +32,7 @@ const baseCss = () => {
   }
 }
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default defineConfigWithTheme<ThemeConfig>({
   title: 'My Awesome Project',
   description: 'A VitePress Site',
   vite: {
@@ -103,41 +104,39 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Components', link: '/components/button' },
+      { label: 'Home', link: '/' },
+      { label: 'Components', link: '/components/button' },
     ],
 
     sidebar: [
       {
-        text: '基础',
-        items: [
-          { text: 'Button', link: '/components/button' },
-          { text: 'Anchor', link: '/components/anchor' },
-          { text: 'ScrollArea', link: '/components/scroll-area' },
-          { text: 'Popover', link: '/components/popover' },
-          { text: 'Tooltip', link: '/components/tooltip' },
+        title: '基础',
+        children: [
+          { key: 'Button', link: '/components/button' },
+          { key: 'Anchor', link: '/components/anchor' },
+          { key: 'ScrollArea', link: '/components/scroll-area' },
+          { key: 'Popover', link: '/components/popover' },
+          { key: 'Tooltip', link: '/components/tooltip' },
         ],
       },
       {
-        text: '表单',
-        items: [
-          { text: 'Checkbox', link: '/components/checkbox' },
-          { text: 'Radio', link: '/components/radio' },
-          { text: 'Input', link: '/components/input' },
-          { text: 'Select', link: '/components/select' },
-          { text: 'Popover', link: '/components/popover' },
-          { text: 'Tooltip', link: '/components/tooltip' },
+        title: '表单',
+        children: [
+          { key: 'Checkbox', link: '/components/checkbox' },
+          { key: 'Radio', link: '/components/radio' },
+          { key: 'Input', link: '/components/input' },
+          { key: 'Select', link: '/components/select' },
+          { key: 'Popover', link: '/components/popover' },
+          { key: 'Tooltip', link: '/components/tooltip' },
         ],
       },
       {
-        text: '反馈',
-        items: [
-          { text: 'Popover', link: '/components/popover' },
-          { text: 'Tooltip', link: '/components/tooltip' },
+        title: '反馈',
+        children: [
+          { key: 'Popover', link: '/components/popover' },
+          { key: 'Tooltip', link: '/components/tooltip' },
         ],
       },
     ],
-
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
   },
 })
