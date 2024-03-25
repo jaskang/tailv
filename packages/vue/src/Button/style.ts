@@ -19,22 +19,22 @@ export const createButtonCss = tw(
       {
         variant: 'default',
         color: 'primary',
-        class: `border-transparent bg-primary-500 text-white enabled:hover:bg-primary-600`,
+        class: `bg-primary-500 enabled:hover:bg-primary-600 border-transparent text-white`,
       },
       {
         variant: 'default',
         color: 'success',
-        class: `border-transparent bg-success-500 text-white  enabled:hover:bg-success-600`,
+        class: `bg-success-500 enabled:hover:bg-success-600 border-transparent  text-white`,
       },
       {
         variant: 'default',
         color: 'warning',
-        class: `border-transparent bg-warning-500 text-white  enabled:hover:bg-warning-600`,
+        class: `bg-warning-500 enabled:hover:bg-warning-600 border-transparent  text-white`,
       },
       {
         variant: 'default',
         color: 'danger',
-        class: `border-transparent bg-danger-500 text-white  enabled:hover:bg-danger-600`,
+        class: `bg-danger-500 enabled:hover:bg-danger-600 border-transparent  text-white`,
       },
 
       {
@@ -45,22 +45,22 @@ export const createButtonCss = tw(
       {
         variant: 'secondary',
         color: 'primary',
-        class: `border-transparent bg-primary-100 text-primary-600 enabled:hover:bg-primary-200`,
+        class: `bg-primary-100 text-primary-600 enabled:hover:bg-primary-200 border-transparent`,
       },
       {
         variant: 'secondary',
         color: 'success',
-        class: `border-transparent bg-success-100 text-success-600  enabled:hover:bg-success-200`,
+        class: `bg-success-100 text-success-600 enabled:hover:bg-success-200  border-transparent`,
       },
       {
         variant: 'secondary',
         color: 'warning',
-        class: `border-transparent bg-warning-100 text-warning-600  enabled:hover:bg-warning-200`,
+        class: `bg-warning-100 text-warning-600 enabled:hover:bg-warning-200  border-transparent`,
       },
       {
         variant: 'secondary',
         color: 'danger',
-        class: `border-transparent bg-danger-100 text-danger-600  enabled:hover:bg-danger-200`,
+        class: `bg-danger-100 text-danger-600 enabled:hover:bg-danger-200  border-transparent`,
       },
 
       {
@@ -71,22 +71,22 @@ export const createButtonCss = tw(
       {
         variant: 'ghost',
         color: 'primary',
-        class: `border-transparent bg-transparent text-primary-600 enabled:hover:bg-primary-200`,
+        class: `text-primary-600 enabled:hover:bg-primary-200 border-transparent bg-transparent`,
       },
       {
         variant: 'ghost',
         color: 'success',
-        class: `border-transparent bg-transparent text-success-600  enabled:hover:bg-success-200`,
+        class: `text-success-600 enabled:hover:bg-success-200 border-transparent  bg-transparent`,
       },
       {
         variant: 'ghost',
         color: 'warning',
-        class: `border-transparent bg-transparent text-warning-600  enabled:hover:bg-warning-200`,
+        class: `text-warning-600 enabled:hover:bg-warning-200 border-transparent  bg-transparent`,
       },
       {
         variant: 'ghost',
         color: 'danger',
-        class: `border-transparent bg-transparent text-danger-600  enabled:hover:bg-danger-200`,
+        class: `text-danger-600 enabled:hover:bg-danger-200 border-transparent  bg-transparent`,
       },
     ],
     variants: {
@@ -95,7 +95,7 @@ export const createButtonCss = tw(
         true: 'w-full',
       },
       disabled: {
-        false: '',
+        false: 'cursor-pointer',
         true: 'cursor-not-allowed opacity-60',
       },
       pill: {
@@ -103,9 +103,9 @@ export const createButtonCss = tw(
         true: 'rounded-full',
       },
       size: {
-        lg: ['h-10 px-3.5 py-2.5', ''],
-        md: ['h-9 px-3 py-2', ''],
-        sm: ['h-8 px-2.5 py-1.5', ''],
+        lg: ['h-10 py-2.5 px-3.5', ''],
+        md: ['h-9 py-2 px-3', ''],
+        sm: ['h-8 py-1.5 px-2.5', ''],
       },
       square: {
         false: '',

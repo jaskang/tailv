@@ -691,3 +691,20 @@
     display: none !important;
   }
 } */
+
+@layer utilities {
+  :where(.prose) {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    h1 {
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacing-1_5);
+    }
+    h2 {
+      font-size: var(--font-size-2xl);
+    }
+    h3 {
+      font-size: var(--font-size-xl);
+    }
+  }
+}

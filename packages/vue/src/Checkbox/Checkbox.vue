@@ -2,7 +2,10 @@
 import { useModelValue } from '@/use/useModelValue'
 import { computed, inject } from 'vue'
 import { CheckboxGroupInjectKey } from './types'
+import icon from '../_svg/check.svg?raw'
 
+const iconUrl = `url("${icon}")`
+console.log('icon', iconUrl)
 defineOptions({ name: 'TCheckbox' })
 const emit = defineEmits<{ 'update:checked': [boolean]; change: [boolean] }>()
 const props = defineProps({
@@ -38,13 +41,13 @@ const onInput = (e: Event) => {
 <template>
   <label :class="['relative inline-flex items-center', disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']">
     <input
-      class="form-input h-4 w-4 rounded border-gray-300 text-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-      :style="{ boxShadow: 'none', cursor: 'inherit' }"
+      class="h-4 w-4 appearance-none rounded border-gray-300 p-0 text-indigo-500 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
       type="checkbox"
       :name="name"
       :disabled="disabled"
       :checked="checked"
       :onInput="onInput"
+      :style="`box-shadow: none; cursor: inherit; background-image:url('${icon}')`"
     />
     <template v-if="$slots.default">
       <span class="relative ml-2 text-sm font-medium">
