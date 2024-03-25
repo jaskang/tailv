@@ -30,11 +30,11 @@ const onSelect = (item: AnchorItem) => {
       <div class="py-1">
         <slot name="item" v-bind="item" :deep="deep" :isActive="current === item.key">
           <a
-            class="group flex cursor-pointer items-start border-l-2 no-underline"
+            class="group flex cursor-pointer items-start border-l no-underline"
             :class="[
               current === item.key
                 ? 'border-primary-400 font-semibold text-primary-500 dark:text-primary-400'
-                : 'border-transparent text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-400 dark:hover:text-slate-300',
+                : 'border-transparent text-slate-700 hover:border-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-400 dark:hover:text-slate-300',
             ]"
             :href="item.link"
             :style="{ paddingLeft: deep + 1 + 'rem' }"
