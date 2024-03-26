@@ -2,10 +2,7 @@
 import { useModelValue } from '@/use/useModelValue'
 import { computed, inject } from 'vue'
 import { CheckboxGroupInjectKey } from './types'
-import icon from '../_svg/check.svg?raw'
 
-const iconUrl = `url("${icon}")`
-console.log('icon', iconUrl)
 defineOptions({ name: 'TCheckbox' })
 const emit = defineEmits<{ 'update:checked': [boolean]; change: [boolean] }>()
 const props = defineProps({
@@ -40,19 +37,30 @@ const onInput = (e: Event) => {
 </script>
 <template>
   <label :class="['relative inline-flex items-center', disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']">
-    <input
-      class="h-4 w-4 appearance-none rounded border-gray-300 p-0 text-indigo-500 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-      type="checkbox"
-      :name="name"
-      :disabled="disabled"
-      :checked="checked"
-      :onInput="onInput"
-      :style="`box-shadow: none; cursor: inherit; background-image:url('${icon}')`"
-    />
-    <template v-if="$slots.default">
-      <span class="relative ml-2 text-sm font-medium">
-        <slot />
+    <span
+      class="focus-within:ring-primary-500 relative block rounded transition-all focus-within:ring-2 focus-within:ring-offset-2"
+    >
+      <input
+        class="absolute inset-0 z-1 m-0 cursor-[inherit] p-0 opacity-0"
+        type="checkbox"
+        :name="name"
+        :disabled="disabled"
+        :checked="checked"
+        :onInput="onInput"
+      />
+      <span
+        class="block h-4 w-4 rounded border-1 transition-all"
+        :class="[checked ? 'bg-primary-500 border-primary-500' : 'border-gray-200 bg-transparent']"
+      >
+        <svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"
+          />
+        </svg>
       </span>
-    </template>
+    </span>
+    <span class="relative ml-2 block text-sm font-medium leading-6">
+      <slot />
+    </span>
   </label>
 </template>
