@@ -118,8 +118,6 @@ export default defineConfigWithTheme<ThemeConfig>({
           { key: 'Button', link: '/components/button' },
           { key: 'Anchor', link: '/components/anchor' },
           { key: 'ScrollArea', link: '/components/scroll-area' },
-          { key: 'Popover', link: '/components/popover' },
-          { key: 'Tooltip', link: '/components/tooltip' },
         ],
       },
       {
@@ -129,8 +127,7 @@ export default defineConfigWithTheme<ThemeConfig>({
           { key: 'Radio', link: '/components/radio' },
           { key: 'Input', link: '/components/input' },
           { key: 'Select', link: '/components/select' },
-          { key: 'Popover', link: '/components/popover' },
-          { key: 'Tooltip', link: '/components/tooltip' },
+          { key: 'Switch', link: '/components/switch' },
         ],
       },
       {
