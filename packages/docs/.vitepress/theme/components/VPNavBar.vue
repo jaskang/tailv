@@ -1,17 +1,18 @@
 <script lang="ts" setup>
-import { computed, ref, watchPostEffect } from 'vue'
 import { useDataByTheme } from '../utils'
 import { useNavbar } from '../composables/navbar'
+import { Switch } from 'tailv'
 
 const { current, items } = useNavbar()
+const { isDark } = useDataByTheme()
 </script>
 
 <template>
   <div
-    class="sticky top-0 z-40 w-full flex-none bg-white/95 transition-colors duration-500 dark:border-slate-50/[0.06] dark:bg-transparent lg:z-50 lg:border-b lg:border-slate-900/10"
+    class="sticky top-0 z-40 w-full flex-none bg-white/95 transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10"
   >
-    <div class="mx-auto max-w-8xl">
-      <div class="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-8">
+    <div class="max-w-8xl mx-auto">
+      <div class="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-8">
         <div class="relative flex items-center">
           <a class="mr-3 flex-none overflow-hidden font-semibold md:w-auto" href="/">
             <span> Tailv </span>
@@ -28,24 +29,16 @@ const { current, items } = useNavbar()
               </a>
             </div>
 
-            <div class="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-800">
-              <label class="sr-only" id="headlessui-listbox-label-:r2:" data-headlessui-state="">Theme </label>
-              <button
-                type="button"
-                id="headlessui-listbox-button-:r3:"
-                aria-haspopup="true"
-                aria-expanded="false"
-                data-headlessui-state=""
-                aria-labelledby="headlessui-listbox-label-:r2: headlessui-listbox-button-:r3:"
-              >
-                <span class="dark:hidden">
+            <div class="ml-6 flex items-center border-l border-slate-200 pl-6">
+              <Switch v-model:checked="isDark">
+                <template #open>
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="h-6 w-6"
+                    class="h-3 w-3"
                   >
                     <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" class="fill-primary-400/20 stroke-primary-500"></path>
                     <path
@@ -53,9 +46,9 @@ const { current, items } = useNavbar()
                       class="stroke-primary-500"
                     ></path>
                   </svg>
-                </span>
-                <span class="hidden dark:inline">
-                  <svg viewBox="0 0 24 24" fill="none" class="h-6 w-6">
+                </template>
+                <template #close>
+                  <svg viewBox="0 0 24 24" fill="none" class="h-3 w-3">
                     <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -73,11 +66,12 @@ const { current, items } = useNavbar()
                       class="fill-primary-500"
                     ></path>
                   </svg>
-                </span>
-              </button>
+                </template>
+              </Switch>
+
               <a
                 href="https://github.com/tailwindlabs/tailwindcss"
-                class="ml-6 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+                class="ml-6 block text-slate-400 hover:text-slate-500"
               >
                 <span class="sr-only">Tailwind CSS on GitHub</span>
                 <svg viewBox="0 0 16 16" class="h-5 w-5" fill="currentColor" aria-hidden="true">

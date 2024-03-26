@@ -9,17 +9,13 @@ const { title, items, current } = useOutline()
 </script>
 <template>
   <div class="px-8">
-    <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100">{{ title }}</h5>
+    <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900">{{ title }}</h5>
     <Anchor :current="current?.id" :items="items" :offset="135">
       <template #item="{ label, key, link, deep, isActive }">
         <a
           :href="link"
           class="group flex items-start"
-          :class="[
-            isActive
-              ? 'font-semibold text-primary-500 dark:text-primary-400'
-              : 'hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300',
-          ]"
+          :class="[isActive ? 'text-primary-500  font-semibold' : 'hover:text-slate-900 ']"
           :style="{
             paddingLeft: deep * 0.5 + 'rem',
           }"
@@ -29,7 +25,7 @@ const { title, items, current } = useOutline()
             width="3"
             height="24"
             viewBox="0 -9 3 24"
-            class="mr-2 overflow-visible text-slate-400 group-hover:text-slate-600 dark:text-slate-600 dark:group-hover:text-slate-500"
+            class="mr-2 overflow-visible text-slate-400 group-hover:text-slate-600"
           >
             <path d="M0 0L3 3L0 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
           </svg>

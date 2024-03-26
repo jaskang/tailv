@@ -18,7 +18,7 @@ const onSelect = (item: AnchorItem) => {
 <template>
   <ul
     class="m-0 list-none p-0 text-sm leading-6 text-slate-700"
-    :class="[!isCustom && deep === 0 ? 'border-l border-slate-100 dark:border-slate-800' : '']"
+    :class="[!isCustom && deep === 0 ? 'border-l border-gray-200 ' : '']"
   >
     <li
       v-for="item in items"
@@ -33,8 +33,8 @@ const onSelect = (item: AnchorItem) => {
             class="group flex cursor-pointer items-start border-l no-underline"
             :class="[
               current === item.key
-                ? 'border-primary-400 font-semibold text-primary-500 dark:text-primary-400'
-                : 'border-transparent text-slate-700 hover:border-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-400 dark:hover:text-slate-300',
+                ? 'border-primary-400 text-primary-500 font-semibold'
+                : 'border-transparent text-slate-700 hover:text-slate-900 ',
             ]"
             :href="item.link"
             :style="{ paddingLeft: deep + 1 + 'rem' }"

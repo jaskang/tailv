@@ -50,6 +50,12 @@
   --color-danger-950: var(--color-red-950);
 
   --width-8xl: 90rem;
+
+  --theme-bg: var(--color-white);
+}
+
+[data-theme='dark'] {
+  --theme-bg: var(--color-slate-900);
 }
 
 /*! tailwindcss v4.0.0-alpha.10 | MIT License | https://tailwindcss.com */

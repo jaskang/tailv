@@ -9,7 +9,7 @@ const { groups, current } = useSidebar()
 <template>
   <div class="">
     <div v-for="group in groups">
-      <h5 class="mb-8 mt-12 font-semibold text-slate-900 dark:text-slate-200 lg:mb-3 lg:mt-8">{{ group.title }}</h5>
+      <h5 class="mt-12 mb-8 font-semibold text-slate-900 lg:mt-8 lg:mb-3">{{ group.title }}</h5>
       <Anchor :items="group.children" :current class=""></Anchor>
     </div>
   </div>

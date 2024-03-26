@@ -31,6 +31,9 @@ const baseCss = () => {
 }
 // https://vitepress.dev/reference/site-config
 export default defineConfigWithTheme<ThemeConfig>({
+  appearance: {
+    attribute: 'data-theme',
+  },
   title: 'My Awesome Project',
   description: 'A VitePress Site',
   vite: {
