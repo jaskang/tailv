@@ -6,7 +6,7 @@ import { Popover,Button } from 'tailv'
 
 ## default
 
-<div class="flex flex-wrap gap-2">
+<div class="flex flex-wrap gap-2 not-prose">
   <Popover trigger="click"> 
     <Button>Button</Button>
     <template #content>

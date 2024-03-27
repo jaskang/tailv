@@ -16,13 +16,9 @@ const onSelect = (item: AnchorItem) => {
 }
 </script>
 <template>
-  <ul
-    class="m-0 list-none p-0 text-sm leading-6 text-slate-700"
-    :class="[!isCustom && deep === 0 ? 'border-l border-slate-200 ' : '']"
-  >
-    <li
+  <div class="text-sm leading-6 text-slate-700" :class="[!isCustom && deep === 0 ? 'border-l border-slate-200 ' : '']">
+    <div
       v-for="item in items"
-      class="m-0 p-0"
       :key="item.key"
       :class="[!isCustom && deep === 0 ? '-ml-px' : '']"
       @click="onSelect(item)"
@@ -48,6 +44,6 @@ const onSelect = (item: AnchorItem) => {
           <slot name="item" v-bind="props" />
         </template>
       </Anchor>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>

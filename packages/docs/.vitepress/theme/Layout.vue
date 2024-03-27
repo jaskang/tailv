@@ -9,7 +9,7 @@ const { frontmatter, page, theme } = useDataByTheme()
 </script>
 
 <template>
-  <div v-if="frontmatter.layout !== false" class="bg-[--theme-bg] text-slate-700 antialiased">
+  <div v-if="frontmatter.layout !== false">
     <VPNavBar class=""></VPNavBar>
     <div class="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
       <div class="fixed inset-0 top-[3.5rem] right-auto left-[max(0px,calc(50%-45rem))] z-20 hidden w-[19rem] lg:block">
@@ -24,7 +24,7 @@ const { frontmatter, page, theme } = useDataByTheme()
       <div class="lg:pl-[19.5rem]">
         <main class="mx-auto max-w-3xl pt-10 xl:mr-[15.5rem] xl:ml-0 xl:max-w-none xl:pr-16">
           <header></header>
-          <Content class="vp-doc prose" />
+          <Content class="vp-doc prose prose-sm prose-slate dark:prose-dark" />
           <footer></footer>
           <div class="fixed top-[3.8125rem] right-[max(0px,calc(50%-45rem))] bottom-0 z-20 hidden w-[19.5rem] xl:block">
             <ScrollArea class="h-full">
