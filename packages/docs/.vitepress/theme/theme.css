@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 
 @theme {
+  --font-family-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial,
+    Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+
   --color-primary-50: var(--color-indigo-50);
   --color-primary-100: var(--color-indigo-100);
   --color-primary-200: var(--color-indigo-200);

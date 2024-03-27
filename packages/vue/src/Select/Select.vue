@@ -23,14 +23,14 @@ const props = defineProps({
   placeholder: String,
 })
 
-const [val, setVal] = useModelValue(props, {
+const [modelValue, setModelValue] = useModelValue(props, {
   onChange: (v: string) => {
     emit('change', v)
   },
 })
 
 const label = computed(() => {
-  const item = props.options.find(item => item.value === val.value)
+  const item = props.options.find(item => item.value === modelValue.value)
   return item ? item.label : ''
 })
 
@@ -38,7 +38,7 @@ const popoverRef = ref<InstanceType<typeof Popover>>()
 const inputRef = ref<InstanceType<typeof Input>>()
 
 const selectHandler = (item: SelectOption) => {
-  setVal(item.value)
+  setModelValue(item.value)
   emit('select', item)
   popoverRef.value?.toggle()
   inputRef.value?.focus()
@@ -52,7 +52,7 @@ const sizer: PopperSizer = ({ rects, elements }) => {
 const focused = ref(false)
 </script>
 <template>
-  <Popover trigger="click" ref="popoverRef" :sizer="sizer" @change="v => (focused = v)">
+  <Popover trigger="click" placement="bottom-start" ref="popoverRef" :sizer="sizer" @change="v => (focused = v)">
     <Input
       readonly
       :value="label"
@@ -76,8 +76,8 @@ const focused = ref(false)
             v-for="item in options"
             :key="item.value"
             @click="selectHandler(item)"
-            class="relative cursor-default select-none px-3 py-2"
-            :class="[item.value === val ? 'bg-primary-500 text-white' : 'hover:bg-primary-100']"
+            class="relative cursor-default py-2 px-3 select-none"
+            :class="[item.value === modelValue ? 'bg-primary-500 text-white' : 'hover:bg-slate-100']"
           >
             {{ item.label }}
           </div>

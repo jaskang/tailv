@@ -18,7 +18,7 @@ const onSelect = (item: AnchorItem) => {
 <template>
   <ul
     class="m-0 list-none p-0 text-sm leading-6 text-slate-700"
-    :class="[!isCustom && deep === 0 ? 'border-l border-gray-200 ' : '']"
+    :class="[!isCustom && deep === 0 ? 'border-l border-slate-200 ' : '']"
   >
     <li
       v-for="item in items"

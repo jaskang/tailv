@@ -26,7 +26,7 @@ const clickHandler = () => {
   <button
     type="button"
     class="flex-shrink-0 relative inline-flex h-6 w-11 cursor-pointer appearance-none rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out select-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:outline-none"
-    :class="[innerChecked ? 'bg-primary-500' : 'bg-gray-200']"
+    :class="[innerChecked ? 'bg-primary-500' : 'bg-slate-200']"
     :disabled="disabled"
     :name="name"
     @click="clickHandler"

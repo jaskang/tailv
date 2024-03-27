@@ -23,7 +23,7 @@ const props = defineProps({
 })
 
 const focused = ref(false)
-const [val, setVal] = useModelValue(props, {
+const [modelValue, setModelValue] = useModelValue(props, {
   onChange: (v: string) => {
     emit('change', v)
   },
@@ -31,8 +31,7 @@ const [val, setVal] = useModelValue(props, {
 
 const onInput = (e: Event) => {
   const el = e.currentTarget as HTMLInputElement
-
-  setVal(el.value)
+  setModelValue(el.value)
   emit('input', e)
 }
 const onFocus = (e: FocusEvent) => {
@@ -80,7 +79,7 @@ defineExpose({
       }"
       style="box-shadow: none"
       type="text"
-      :value="val"
+      :value="modelValue"
       :readonly="readonly"
       :disabled="disabled"
       :placeholder="placeholder"

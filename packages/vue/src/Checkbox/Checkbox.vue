@@ -14,7 +14,7 @@ const props = defineProps({
 
 const group = inject(CheckboxGroupInjectKey, null)
 
-const [innerChecked, setInnerChecked] = useModelValue(props, {
+const [modelChecked, setModelChecked] = useModelValue(props, {
   defaultValue: group ? group.value.value.includes(props.value) : false,
   valuePropName: 'checked',
   onChange: (val: boolean) => {
@@ -28,11 +28,11 @@ const [innerChecked, setInnerChecked] = useModelValue(props, {
     }
   },
 })
-const checked = computed(() => (group ? group.value.value.includes(props.value) : innerChecked.value))
+const checked = computed(() => (group ? group.value.value.includes(props.value) : modelChecked.value))
 
 const onInput = (e: Event) => {
   const el = e.currentTarget as HTMLInputElement
-  setInnerChecked(el.checked)
+  setModelChecked(el.checked)
 }
 </script>
 <template>
@@ -50,7 +50,7 @@ const onInput = (e: Event) => {
       />
       <span
         class="block h-4 w-4 rounded border-1 transition-all"
-        :class="[checked ? 'bg-primary-500 border-primary-500' : 'border-gray-200 bg-transparent']"
+        :class="[checked ? 'bg-primary-500 border-primary-500' : 'border-slate-300 bg-transparent']"
       >
         <svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path

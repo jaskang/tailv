@@ -17,7 +17,7 @@ import { Select,Button } from 'tailv'
   { value: 7, label: 'Caroline Schultz' },
   { value: 8, label: 'Mason Heaney' },
   { value: 9, label: 'Claudie Smitham' },
-  { value: 10, label: 'Emil Schaefer' },
+  { value: 10, label: 'Emil Schaefer' }, 
 ]"/>
   <Select class="w-60" placeholder="placeholder"  :options="[
   { value: 1, label: 'Wade Cooper' },

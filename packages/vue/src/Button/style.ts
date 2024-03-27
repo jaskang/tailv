@@ -14,7 +14,7 @@ export const createButtonCss = tw(
       {
         variant: 'default',
         color: 'normal',
-        class: ` border-gray-300 bg-white text-current enabled:hover:bg-gray-50`,
+        class: ` border-slate-300 bg-white text-current enabled:hover:bg-slate-50`,
       },
       {
         variant: 'default',
@@ -40,7 +40,7 @@ export const createButtonCss = tw(
       {
         variant: 'secondary',
         color: 'normal',
-        class: `border-transparent bg-gray-100 text-current enabled:hover:bg-gray-200`,
+        class: `border-transparent bg-slate-100 text-current enabled:hover:bg-slate-200`,
       },
       {
         variant: 'secondary',
@@ -66,7 +66,7 @@ export const createButtonCss = tw(
       {
         variant: 'ghost',
         color: 'normal',
-        class: `border-transparent bg-transparent text-current enabled:hover:bg-gray-200`,
+        class: `border-transparent bg-transparent text-current enabled:hover:bg-slate-200`,
       },
       {
         variant: 'ghost',

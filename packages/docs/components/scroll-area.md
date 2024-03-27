@@ -9,7 +9,7 @@ const picked = ref('A')
 # ScrollArea
 
 <div class="">
-  <ScrollArea class="h-40 w-40 border border-1 border-gray-300 break-all" y-enabled>
+  <ScrollArea class="h-40 w-40 border border-1 border-slate-300 break-all" y-enabled>
     asdfasdasdfasd
     asdfasdasdfasd
     asdfasdasdfasd
