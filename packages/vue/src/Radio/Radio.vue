@@ -3,7 +3,7 @@ import { useModelValue } from '@/use/useModelValue'
 import { computed, inject } from 'vue'
 import { RadioGroupInjectKey } from './types'
 
-defineOptions({ name: 'TRadio' })
+defineOptions({ name: 'Radio' })
 const emit = defineEmits<{ 'update:checked': [boolean]; change: [boolean] }>()
 const props = defineProps({
   value: { type: null, required: true },

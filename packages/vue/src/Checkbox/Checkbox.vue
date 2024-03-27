@@ -3,7 +3,7 @@ import { useModelValue } from '@/use/useModelValue'
 import { computed, inject } from 'vue'
 import { CheckboxGroupInjectKey } from './types'
 
-defineOptions({ name: 'TCheckbox' })
+defineOptions({ name: 'Checkbox' })
 const emit = defineEmits<{ 'update:checked': [boolean]; change: [boolean] }>()
 const props = defineProps({
   value: { type: null, required: true },

@@ -2,7 +2,7 @@
 import { useModelValue } from '@/use/useModelValue'
 import { ref, computed } from 'vue'
 
-defineOptions({ name: 'TSwitch' })
+defineOptions({ name: 'Switch' })
 const emit = defineEmits<{ 'update:checked': [boolean]; change: [boolean] }>()
 const slots = defineSlots<{ default?(_: {}): any; open?(_: {}): any; close?(_: {}): any }>()
 const props = defineProps({

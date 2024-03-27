@@ -131,6 +131,10 @@ export default defineConfigWithTheme<ThemeConfig>({
         ],
       },
       {
+        title: '展示',
+        children: [{ key: 'Menu', link: '/components/menu' }],
+      },
+      {
         title: '反馈',
         children: [
           { key: 'Popover', link: '/components/popover' },

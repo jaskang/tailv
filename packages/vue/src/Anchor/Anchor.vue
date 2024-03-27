@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type PropType, toRef, provide, inject, watchEffect } from 'vue'
+import { ref, computed, type PropType } from 'vue'
 import type { AnchorItem } from './types'
 
 defineOptions({ name: 'Anchor' })

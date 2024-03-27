@@ -2,7 +2,7 @@
 import { type PropType } from 'vue'
 import { Popper, type PopperPlacement } from '../Base/Popper'
 
-defineOptions({ name: 'TTooltip' })
+defineOptions({ name: 'Tooltip' })
 defineProps({
   content: String,
   placement: { type: String as PropType<PopperPlacement>, default: 'top' },

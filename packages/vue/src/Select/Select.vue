@@ -8,7 +8,7 @@ import ChevronUpDown from '../Icon/ChevronUpDown.vue'
 import type { PopperSizer } from '@/Base/Popper/core'
 import { ScrollArea } from '../ScrollArea'
 
-defineOptions({ name: 'TSelect', inheritAttrs: false })
+defineOptions({ name: 'Select', inheritAttrs: false })
 
 const emit = defineEmits(['update:value', 'change', 'select'])
 const props = defineProps({
@@ -77,7 +77,7 @@ const focused = ref(false)
             :key="item.value"
             @click="selectHandler(item)"
             class="relative cursor-default py-2 px-3 select-none"
-            :class="[item.value === modelValue ? 'bg-primary-500 text-white' : 'hover:bg-slate-100']"
+            :class="[item.value === modelValue ? 'bg-primary-100 text-primary-500 font-medium' : 'hover:bg-slate-100']"
           >
             {{ item.label }}
           </div>

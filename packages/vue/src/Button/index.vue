@@ -6,7 +6,7 @@ import type { ColorAlias } from '@/utils/theme'
 
 import { createButtonCss } from './style'
 
-defineOptions({ name: 'TButton' })
+defineOptions({ name: 'Button' })
 defineEmits<{ click: [Event] }>()
 const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({

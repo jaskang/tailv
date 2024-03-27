@@ -3,7 +3,7 @@ import { type VNode, ref } from 'vue'
 import { useModelValue } from '../use/useModelValue'
 import RingInput from '../Base/RingInput.vue'
 
-defineOptions({ name: 'TInput' })
+defineOptions({ name: 'Input' })
 const emit = defineEmits<{
   'update:value': [string | number]
   change: [string | number]
