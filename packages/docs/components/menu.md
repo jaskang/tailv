@@ -9,6 +9,7 @@ const items = ref([
   { type: 'divider' },
   { key: 'Trash', label: 'Trash',icon: TrashIcon  },
   {
+    key: 'Archive',
     label: 'Archive',
     icon: ArchiveBoxIcon,
     children: [
@@ -29,6 +30,7 @@ const items = ref([
   },
 ])
 
+const current = ref('Archive')
 </script>
 
 # Menu
@@ -37,6 +39,6 @@ const items = ref([
 
 <div class="flex flex-wrap gap-2 not-prose">
   <div class="">
-    <Menu :items="items" class="border rounded-md border-slate-200 w-40" /> 
+    <Menu :current="current" :items="items" class="border rounded-md border-slate-200 w-40" /> 
   </div>
 </div>

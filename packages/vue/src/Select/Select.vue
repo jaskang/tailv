@@ -71,13 +71,17 @@ const focused = ref(false)
     </Input>
     <template #content>
       <ScrollArea class="flex max-h-80 flex-col text-sm" mode="y">
-        <div class="py-1">
+        <div class="grid gap-1 p-1">
           <div
             v-for="item in options"
             :key="item.value"
             @click="selectHandler(item)"
-            class="relative cursor-default py-2 px-3 select-none"
-            :class="[item.value === modelValue ? 'bg-primary-100 text-primary-500 font-medium' : 'hover:bg-slate-100']"
+            class="relative rounded py-2 px-3 text-sm select-none"
+            :class="[
+              item.value === modelValue
+                ? 'bg-primary-500 font-medium text-white'
+                : 'hover:text-primary-600 hover:bg-slate-100',
+            ]"
           >
             {{ item.label }}
           </div>

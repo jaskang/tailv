@@ -9,7 +9,7 @@ const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 const props = defineProps({
   item: { type: Object as PropType<MenuItemRawType>, required: true },
-  active: { type: Boolean, default: false },
+  current: String,
 })
 
 const elRef = ref<HTMLElement>()
@@ -19,7 +19,7 @@ const elRef = ref<HTMLElement>()
     ref="elRef"
     :class="[
       'group inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50',
-      active ? 'text-primary-600 bg-gray-50' : 'hover:text-primary-600 text-gray-700 hover:bg-gray-50',
+      current === item.key ? 'bg-primary-500 text-white' : 'hover:text-primary-600 text-slate-700 hover:bg-slate-100',
       item.disabled ? '' : 'cursor-pointer',
     ]"
   >
