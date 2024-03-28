@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@heroicons/vue": "^2.1.3",
     "@vueuse/core": "^10.9.0",
     "tailv": "workspace:*",
     "vue": "^3.4.20",

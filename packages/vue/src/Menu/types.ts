@@ -1,32 +1,31 @@
 import type { Component } from 'vue'
 
-export type MenuItemType = {
+export type MenuItemRawType = {
   type: never
   key: string
   label: string
   disabled?: boolean
   icon?: Component
-  children?: MenuItem[]
+  children?: MenuItemType[]
 }
 
-export type MenuItemGroupType = {
-  type: 'group'
+export type MenuItemTitleType = {
+  type: 'title'
   label: string
-  children: MenuItem[]
 }
 
 export type MenuItemDividerType = {
   type: 'divider'
 }
 
-export type MenuItem = MenuItemDividerType | MenuItemGroupType | MenuItemType
+export type MenuItemType = MenuItemDividerType | MenuItemTitleType | MenuItemRawType
 
-export function isDividerItem(item: MenuItem): item is MenuItemDividerType {
+export function isDividerItem(item: MenuItemType): item is MenuItemDividerType {
   return item.type === 'divider'
 }
-export function isGroupItem(item: MenuItem): item is MenuItemGroupType {
-  return item.type === 'group'
+export function isTitleItem(item: MenuItemType): item is MenuItemTitleType {
+  return item.type === 'title'
 }
-export function isMenuItem(item: MenuItem): item is MenuItemType {
-  return !isGroupItem(item) && !isDividerItem(item)
+export function isRawItem(item: MenuItemType): item is MenuItemRawType {
+  return !isTitleItem(item) && !isDividerItem(item)
 }

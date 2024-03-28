@@ -30,7 +30,7 @@ defineExpose({
   <Popper :trigger :sizer :placement ref="popperRef" @change="emit('change', $event)">
     <slot />
     <template #content>
-      <div class="z-popover ring-opacity-5 rounded-md bg-white ring-1 shadow-lg ring-slate-300">
+      <div class="z-popover ring-opacity-5 rounded-md bg-white ring-1 shadow-lg ring-slate-200">
         <slot name="content">
           <div class="px-2">
             {{ content }}

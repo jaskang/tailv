@@ -43,7 +43,7 @@ const props = defineProps({
       ${focusedBorderMap[status]} 
       ${focusBorderMap[status]}`,
       props.disabled
-        ? 'cursor-not-allowed bg-slate-50 text-slate-500 ring-slate-200'
+        ? 'cursor-not-allowed bg-slate-50 text-slate-500 opacity-50 ring-slate-300'
         : `cursor-pointer [:where(&)]:bg-white ${borderMap[status]}`,
     ]"
   >

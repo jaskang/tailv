@@ -1,53 +1,42 @@
 <script setup>
 import { ref } from 'vue'
 import { Menu } from 'tailv'
+import { PaperAirplaneIcon,InboxIcon,TrashIcon ,ArchiveBoxIcon,CircleStackIcon} from '@heroicons/vue/24/outline'
 
 const items = ref([
+  { key: 'Inbox', label: 'Inbox',icon: InboxIcon  },
+  { key: 'Sent', label: 'Sent',icon: PaperAirplaneIcon  },
+  { type: 'divider' },
+  { key: 'Trash', label: 'Trash',icon: TrashIcon  },
   {
-    key: '1',
-    type: 'group',
-    label: 'Group title',
+    label: 'Archive',
+    icon: ArchiveBoxIcon,
     children: [
-      {key: '1-1', label: '1st menu item',
-      },
-      {key: '1-2', label: '2nd menu item',
-      },
+      { key: '1-1', label: '1st menu item' },
+      { key: '1-2', label: '2nd menu item' },
     ],
   },
+  { key: 'Drafts', label: 'Drafts',icon: CircleStackIcon  },
+  { type: 'title',label: 'group2' },
+  { key: 'item-3', label: 'item 4' },
   {
-    key: '2',
-    label: 'sub menu',
-    children: [  
-      {key: '2-1', label: '3rd menu item',
-      },
-      {key: '2-2', label: '4th menu item',},
-    ],
-  },
-  {
-    key: '3',
-    label: 'disabled sub menu',
-    disabled: true,
+    key: 'item-4',
+    label: 'item-4',
     children: [
-      {
-        key: '3-1',
-        label: '5d menu item',
-      },
-      {
-        key: '3-2',
-        label: '6th menu item',
-      },
+      { key: '3-1', label: '5d menu item' },
+      { key: '3-2', label: '6th menu item' },
     ],
   },
 ])
 
 </script>
 
-# CheckboxGroup
+# Menu
 
 ## Default
 
 <div class="flex flex-wrap gap-2 not-prose">
-  <div class="border border-slate-300">
-    <Menu :items="items" /> 
+  <div class="">
+    <Menu :items="items" class="border rounded-md border-slate-200 w-40" /> 
   </div>
 </div>
