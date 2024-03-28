@@ -7,15 +7,13 @@ import { Button,SpaceCompact,Tooltip } from 'tailv'
 ## Default
 
 ```vue demo
-<template>
-  <div class="flex flex-wrap gap-2">
-    <Button>Button</Button>
-    <Button color="primary">Primary</Button>
-    <Button color="success">Success</Button>
-    <Button color="warning">Warning</Button>
-    <Button color="danger">Danger</Button>
-  </div>
-</template>
+<div class="flex flex-wrap gap-2">
+  <Button>Button</Button>
+  <Button color="primary">Primary</Button>
+  <Button color="success">Success</Button> 
+  <Button color="warning">Warning</Button>
+  <Button color="danger">Danger</Button>
+</div>
 ```
 
 <div class="flex flex-wrap gap-2">

@@ -1,5 +1,5 @@
 import { useMutationObserver, useScroll } from '@vueuse/core'
-import { onMounted, onUnmounted, onUpdated, ref, watchEffect, type Ref, type InjectionKey } from 'vue'
+import { onMounted, ref, watchEffect, type Ref } from 'vue'
 
 export interface AnchorHeader {
   id: string

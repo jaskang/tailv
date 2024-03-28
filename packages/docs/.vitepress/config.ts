@@ -1,6 +1,7 @@
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineConfigWithTheme } from 'vitepress'
+import { createHash } from 'node:crypto'
+import { defineConfigWithTheme, type MarkdownRenderer } from 'vitepress'
 import { readFileSync } from 'node:fs'
 import jsx from '@vitejs/plugin-vue-jsx'
 import tailwindcss from '@tailwindcss/vite'
@@ -9,36 +10,50 @@ import tailwindcss from '@tailwindcss/vite'
 // import forms from '@tailwindcss/forms'
 import { ThemeConfig } from './theme/theme'
 
+function getHash(text: string): string {
+  return createHash('sha256').update(text).digest('hex').substring(0, 8)
+}
+
+const demoBlocks = new Map<string, string>()
 const __dirname = dirname(fileURLToPath(import.meta.url))
 console.log('vitepress config', __dirname)
-const baseCss = () => {
-  const virtualModuleId = 'virtual:base.css'
-  const resolvedVirtualModuleId = '\0' + virtualModuleId
-
+const demo = () => {
   return {
     name: 'baseCss',
     resolveId(id: string) {
-      if (id === virtualModuleId) {
-        return resolvedVirtualModuleId
+      if (id.startsWith('virtual:') && demoBlocks.has(id)) {
+        return '\0' + id
       }
     },
     load(id: string) {
-      if (id === resolvedVirtualModuleId) {
-        return readFileSync(resolve(__dirname, './theme/base.css'), 'utf-8')
+      if (id.startsWith('\0virtual:') && demoBlocks.has(id)) {
+        return demoBlocks.get(id.replace('\0', ''))
       }
     },
   }
 }
+
+const fencePlugin = (md: MarkdownRenderer) => {
+  const fence = md.renderer.rules.fence!
+  md.renderer.rules.fence = (tokens, idx, ...args) => {
+    const setup = tokens[0]
+    console.log(setup)
+    const node = tokens[idx]
+    const rawCode = fence(tokens, idx, ...args)
+    const id = getHash(node.content)
+
+    setup.content.replace(`</script>\n`, `import Demo${id} from 'virtual:Demo${id}' </script>\n`)
+    demoBlocks.set(`Demo${id}`, node.content)
+    return `<demo-${id}/> ${rawCode}`
+  }
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'My Awesome Project',
   description: 'A VitePress Site',
   vite: {
-    plugins: [
-      jsx(),
-      // baseCss(),
-      tailwindcss(),
-    ],
+    plugins: [jsx(), demo(), tailwindcss()],
     resolve: {
       alias: [
         {
@@ -102,7 +117,22 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   markdown: {
-    headers: true,
+    config(md) {
+      md.use(fencePlugin)
+    },
+    // codeTransformers: [
+    //   {
+    //     preprocess(code, options) {
+    //       this.__source__ = code
+    //       console.log(code, options)
+    //     },
+    //     postprocess(html, options) {
+    //       const isDemo = options.meta?.__raw?.split(' ').includes('demo')
+    //       console.log(html, options, isDemo, this)
+    //       return `${this.__source__}\n${html}`
+    //     },
+    //   },
+    // ],
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
