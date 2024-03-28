@@ -13,7 +13,7 @@ defineProps({
     type: String as PropType<PopperPlacement>,
     default: 'top',
   },
-  widthModel: String as PropType<PopperWidthMode>,
+  widthMode: String as PropType<PopperWidthMode>,
 })
 const emit = defineEmits<{
   'update:open': [open: boolean]
@@ -27,7 +27,7 @@ defineExpose({
 })
 </script>
 <template>
-  <Popper :trigger :widthModel :placement ref="popperRef" @change="emit('change', $event)">
+  <Popper :trigger :width-mode :placement ref="popperRef" @change="emit('change', $event)">
     <slot />
     <template #content>
       <div class="z-popover ring-opacity-5 rounded-md bg-white ring-1 shadow-lg ring-slate-200">

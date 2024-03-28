@@ -1,2 +1,2 @@
 export { default as Menu } from './Menu.vue'
-export type { MenuItem, MenuItemDividerType, MenuItemGroupType, MenuItemType } from './types'
+export type { MenuItemRawType, MenuItemDividerType, MenuItemTitleType, MenuItemType } from './types'
