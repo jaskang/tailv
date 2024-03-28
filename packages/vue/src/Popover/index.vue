@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { type PropType, ref } from 'vue'
-import { Popper, type PopperPlacement, type PopperSizer, type PopperTrigger } from '../Base/Popper'
+import { Popper, type PopperPlacement, type PopperWidthMode, type PopperTrigger } from '../Base/Popper'
 
 defineOptions({ name: 'Popover' })
 defineProps({
   content: String,
-  sizer: Function as PropType<PopperSizer>,
   trigger: {
     type: String as PropType<PopperTrigger>,
     default: 'click',
@@ -14,6 +13,7 @@ defineProps({
     type: String as PropType<PopperPlacement>,
     default: 'top',
   },
+  widthModel: String as PropType<PopperWidthMode>,
 })
 const emit = defineEmits<{
   'update:open': [open: boolean]
@@ -27,7 +27,7 @@ defineExpose({
 })
 </script>
 <template>
-  <Popper :trigger :sizer :placement ref="popperRef" @change="emit('change', $event)">
+  <Popper :trigger :widthModel :placement ref="popperRef" @change="emit('change', $event)">
     <slot />
     <template #content>
       <div class="z-popover ring-opacity-5 rounded-md bg-white ring-1 shadow-lg ring-slate-200">

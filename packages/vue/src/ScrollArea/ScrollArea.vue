@@ -86,10 +86,13 @@ useDraggable(thumbYEl, {
 useResizeObserver(contentEl, handleSizeChange)
 useResizeObserver(scrollbarXEl, handleSizeChange)
 useResizeObserver(scrollbarYEl, handleSizeChange)
+
+const thumbClass =
+  'relative flex-1 transition-opacity cursor-pointer rounded-[10px] bg-slate-900/30 opacity-0 group-hover:opacity-100 before:absolute before:top-1/2 before:left-1/2 before:h-full  before:w-full before:min-h-[44px] before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[""] hover:bg-slate-900/50'
 </script>
 <template>
   <div
-    class="relative overflow-hidden"
+    class="group relative overflow-hidden"
     :style="{
       '--thumb-width': sizes ? `${getThumbSize(sizes, 'horizontal')}px` : undefined,
       '--thumb-height': sizes ? `${getThumbSize(sizes, 'vertical')}px` : undefined,
@@ -115,7 +118,7 @@ useResizeObserver(scrollbarYEl, handleSizeChange)
     >
       <div
         ref="thumbXEl"
-        class="bg-slate/30 hover:bg-slate/50 relative h-[6px] w-[--thumb-width] flex-1 cursor-pointer rounded-[10px] before:absolute before:top-1/2 before:left-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']"
+        :class="[thumbClass, 'h-[6px] w-[--thumb-width]']"
         :style="{
           transform: `translate3d(${offsetX}px, 0px, 0px)`,
         }"
@@ -129,7 +132,7 @@ useResizeObserver(scrollbarYEl, handleSizeChange)
     >
       <div
         ref="thumbYEl"
-        class="relative h-[--thumb-height] w-[6px] flex-1 cursor-pointer rounded-[10px] bg-slate-900/30 before:absolute before:top-1/2 before:left-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] hover:bg-slate-900/50"
+        :class="[thumbClass, 'h-[--thumb-height] w-[6px]']"
         :style="{
           transform: `translate3d(0px, ${offsetY}px, 0px)`,
         }"

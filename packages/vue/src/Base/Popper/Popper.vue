@@ -6,7 +6,7 @@ import {
   type PopperTrigger,
   type PopperVirtualElement,
   type PopperPlacement,
-  type PopperSizer,
+  type PopperWidthMode,
 } from './core'
 import { useModelValue } from '../../use/useModelValue'
 
@@ -20,7 +20,7 @@ const props = defineProps({
     default: 'hover',
   },
   arrow: Boolean,
-  sizer: Function as PropType<PopperSizer>,
+  widthMode: String as PropType<'min-width'>,
   placement: {
     type: String as PropType<PopperPlacement>,
     default: 'bottom',
@@ -45,7 +45,7 @@ const { floatingStyles, arrowStyle } = usePopper({
   floatingArrow,
   placement: toRef(props, 'placement'),
   trigger: computed(() => (Array.isArray(props.trigger) ? props.trigger : [props.trigger])),
-  sizer: props.sizer,
+  widthMode: toRef(props, 'widthMode'),
   onChange: (val, e) => setOpen(val),
 })
 

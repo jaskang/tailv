@@ -2,15 +2,25 @@
 import { useDataByTheme } from '../utils'
 import { useNavbar } from '../composables/navbar'
 import { Switch } from 'tailv'
+import { computed, ref, watchEffect } from 'vue'
 
 const { current, items } = useNavbar()
 const { isDark } = useDataByTheme()
+watchEffect(() => {
+  console.log(isDark.value)
+})
+const dark = computed({
+  get() {
+    return isDark.value
+  },
+  set(value) {
+    isDark.value = value
+  },
+})
 </script>
 
 <template>
-  <div
-    class="sticky top-0 z-40 w-full flex-none bg-white/95 transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10"
-  >
+  <div class="sticky top-0 z-40 w-full flex-none bg-white/95 lg:z-50 lg:border-b lg:border-slate-900/10">
     <div class="max-w-8xl mx-auto">
       <div class="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-8">
         <div class="relative flex items-center">
@@ -30,24 +40,8 @@ const { isDark } = useDataByTheme()
             </div>
 
             <div class="ml-6 flex items-center border-l border-slate-200 pl-6">
-              <Switch v-model:checked="isDark">
+              <Switch v-model:checked="dark">
                 <template #open>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="h-3 w-3"
-                  >
-                    <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" class="fill-primary-400/20 stroke-primary-500"></path>
-                    <path
-                      d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                      class="stroke-primary-500"
-                    ></path>
-                  </svg>
-                </template>
-                <template #close>
                   <svg viewBox="0 0 24 24" fill="none" class="h-3 w-3">
                     <path
                       fill-rule="evenodd"
@@ -64,6 +58,22 @@ const { isDark } = useDataByTheme()
                       clip-rule="evenodd"
                       d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z"
                       class="fill-primary-500"
+                    ></path>
+                  </svg>
+                </template>
+                <template #close>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3 w-3"
+                  >
+                    <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" class="fill-primary-400/20 stroke-primary-500"></path>
+                    <path
+                      d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
+                      class="stroke-primary-500"
                     ></path>
                   </svg>
                 </template>

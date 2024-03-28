@@ -47,7 +47,7 @@ const elRef = ref<HTMLElement>()
     :reference="elRef"
   >
     <template #content>
-      <div class="z-popover ring-opacity-5 rounded-md bg-white ring-1 shadow-lg ring-slate-200">
+      <div class="z-popover ring-opacity-5 rounded bg-white ring-1 shadow-md ring-slate-200">
         <Menu :items="item.children"></Menu>
       </div>
     </template>

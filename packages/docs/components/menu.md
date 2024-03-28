@@ -6,7 +6,7 @@ import { PaperAirplaneIcon,InboxIcon,TrashIcon ,ArchiveBoxIcon,CircleStackIcon} 
 const items = ref([
   { key: 'Inbox', label: 'Inbox',icon: InboxIcon  },
   { key: 'Sent', label: 'Sent',icon: PaperAirplaneIcon  },
-  { type: 'divider' },
+  
   { key: 'Trash', label: 'Trash',icon: TrashIcon  },
   {
     key: 'Archive',
@@ -19,7 +19,6 @@ const items = ref([
   },
   { key: 'Drafts', label: 'Drafts',icon: CircleStackIcon  },
   { type: 'title',label: 'group2' },
-  { key: 'item-3', label: 'item 4' },
   {
     key: 'item-4',
     label: 'item-4',
@@ -28,6 +27,8 @@ const items = ref([
       { key: '3-2', label: '6th menu item' },
     ],
   },
+  { type: 'divider' },
+  { key: 'item-3', label: 'item 4' },
 ])
 
 const current = ref('Archive')
