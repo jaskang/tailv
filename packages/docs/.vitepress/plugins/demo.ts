@@ -1,6 +1,5 @@
 import fs from 'node:fs'
 import { relative } from 'node:path'
-
 import type { Plugin, ResolvedConfig } from 'vite'
 
 import { createHash } from 'node:crypto'
