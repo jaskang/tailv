@@ -138,7 +138,6 @@ export default defineComponent({
       }
       if (id.endsWith('.md')) {
         const { code, blocks } = remarkDemo(id, fs.readFileSync(id, 'utf8'))
-        console.log(code)
         for (const k of Object.keys(blocks)) {
           const blockKey = `${id}.${k}.vue`
           const blockId = '/' + relative(config.root, blockKey)
