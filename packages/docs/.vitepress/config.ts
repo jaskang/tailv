@@ -9,44 +9,9 @@ import tailwindcss from '@tailwindcss/vite'
 // import typography from '@tailwindcss/typography'
 // import forms from '@tailwindcss/forms'
 import { ThemeConfig } from './theme/theme'
-
-function getHash(text: string): string {
-  return createHash('sha256').update(text).digest('hex').substring(0, 8)
-}
-
-const demoBlocks = new Map<string, string>()
+import { demo } from './plugins/demo'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 console.log('vitepress config', __dirname)
-const demo = () => {
-  return {
-    name: 'baseCss',
-    resolveId(id: string) {
-      if (id.startsWith('virtual:') && demoBlocks.has(id)) {
-        return '\0' + id
-      }
-    },
-    load(id: string) {
-      if (id.startsWith('\0virtual:') && demoBlocks.has(id)) {
-        return demoBlocks.get(id.replace('\0', ''))
-      }
-    },
-  }
-}
-
-const fencePlugin = (md: MarkdownRenderer) => {
-  const fence = md.renderer.rules.fence!
-  md.renderer.rules.fence = (tokens, idx, ...args) => {
-    const setup = tokens[0]
-    console.log(setup)
-    const node = tokens[idx]
-    const rawCode = fence(tokens, idx, ...args)
-    const id = getHash(node.content)
-
-    setup.content.replace(`</script>\n`, `import Demo${id} from 'virtual:Demo${id}' </script>\n`)
-    demoBlocks.set(`Demo${id}`, node.content)
-    return `<demo-${id}/> ${rawCode}`
-  }
-}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfigWithTheme<ThemeConfig>({
@@ -117,9 +82,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   markdown: {
-    config(md) {
-      md.use(fencePlugin)
-    },
     // codeTransformers: [
     //   {
     //     preprocess(code, options) {

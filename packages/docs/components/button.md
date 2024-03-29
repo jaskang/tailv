@@ -1,6 +1,6 @@
-<script setup>
-import { Button,SpaceCompact,Tooltip } from 'tailv'
-</script>
+---
+hello: world
+---
 
 # Button
 

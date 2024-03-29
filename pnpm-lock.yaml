@@ -23,6 +23,9 @@ importers:
       '@types/jsdom':
         specifier: ^21.1.6
         version: 21.1.6
+      '@types/mdast':
+        specifier: ^4.0.3
+        version: 4.0.3
       '@types/node':
         specifier: ^20.11.30
         version: 20.11.30
@@ -53,6 +56,12 @@ importers:
       happy-dom:
         specifier: ^14.3.6
         version: 14.3.6
+      mdast-util-from-markdown:
+        specifier: ^2.0.0
+        version: 2.0.0
+      mdast-util-to-markdown:
+        specifier: ^2.1.0
+        version: 2.1.0
       mini-svg-data-uri:
         specifier: ^1.4.4
         version: 1.4.4
@@ -74,6 +83,9 @@ importers:
       typescript:
         specifier: ^5.4.3
         version: 5.4.3
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
       vite:
         specifier: ^5.2.6
         version: 5.2.6(@types/node@20.11.30)
@@ -1428,7 +1440,7 @@ packages:
   /@types/mdast@4.0.3:
     resolution: {integrity: sha512-LsjtqsyF+d2/yFOYaN22dHZI1Cpwkrj+g06G8+qtUKlhovPW89YhqSnfKtMbkgmEtYpH2gydRNULd6y8mciAFg==}
     dependencies:
-      '@types/unist': 2.0.9
+      '@types/unist': 3.0.2
     dev: true
 
   /@types/mdurl@1.0.5:
@@ -1451,10 +1463,6 @@ packages:
 
   /@types/tough-cookie@4.0.2:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
-    dev: true
-
-  /@types/unist@2.0.9:
-    resolution: {integrity: sha512-zC0iXxAv1C1ERURduJueYzkzZ2zaGyc+P2c95hgkikHPr3z8EdUZOlgEQ5X0DRmwDZn+hekycQnoeiiRVrmilQ==}
     dev: true
 
   /@types/unist@3.0.2:
