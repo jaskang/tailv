@@ -7,6 +7,7 @@ const props = defineProps({
   meta: { type: String, required: true },
   code: { type: String, required: true },
 })
+console.log(props.code)
 </script>
 <template>
   <div class="flex-col">

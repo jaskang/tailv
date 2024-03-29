@@ -1,5 +1,5 @@
 import fs from 'node:fs'
-import path, { dirname } from 'node:path'
+import { relative } from 'node:path'
 
 import type { Plugin, ResolvedConfig } from 'vite'
 
@@ -7,6 +7,8 @@ import { createHash } from 'node:crypto'
 
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { toMarkdown } from 'mdast-util-to-markdown'
+import { frontmatter } from 'micromark-extension-frontmatter'
+import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
 import { visit } from 'unist-util-visit'
 import type { Html } from 'mdast'
 
@@ -27,7 +29,10 @@ function praseMeta(meta?: string | null) {
   return ret
 }
 function remarkDemo(id: string, content: string) {
-  const root = fromMarkdown(content)
+  const root = fromMarkdown(content, {
+    extensions: [frontmatter(['yaml', 'toml'])],
+    mdastExtensions: [frontmatterFromMarkdown(['yaml', 'toml'])],
+  })
 
   const blocks: Record<string, string> = {}
 
@@ -43,9 +48,9 @@ function remarkDemo(id: string, content: string) {
       parent!.children.splice(index!, 1, {
         type: 'html',
         value: `
-<DemoWrapper lang="${decodeURIComponent(node.lang || '')}" meta="${decodeURIComponent(node.meta || '')}" code="${encodeURIComponent(node.value)}">
+<DemoProxy lang="${encodeURIComponent(node.lang || '')}" meta="${encodeURIComponent(node.meta || '')}" code="${encodeURIComponent(node.value)}">
   <${name}/>
-</DemoWrapper>`,
+</DemoProxy>`,
       })
       return index! + 1
     }
@@ -55,20 +60,30 @@ function remarkDemo(id: string, content: string) {
   if (setup) {
     setup.value = setup.value.replace(
       /<script setup>/,
-      `<script setup>\n${Object.keys(blocks)
-        .map(k => `import ${k} from "${id}.${k}.vue";`)
-        .join('\n')}`
+      `<script setup>
+import DemoProxy from "virtual:demo-proxy";
+${Object.keys(blocks)
+  .map(k => `import ${k} from "${id}.${k}.vue";`)
+  .join('\n')}`
     )
   } else {
-    root.children.unshift({
+    const i = root.children[0]?.type === 'yaml' ? 1 : 0
+    root.children.splice(i, 0, {
       type: 'html',
-      value: '<script setup>\n' + "import { ref } from 'vue'\n" + '\n' + 'const count = ref(0)\n' + '</script>',
+      value: `<script setup>
+import DemoProxy from "virtual:demo-proxy";
+${Object.keys(blocks)
+  .map(k => `import ${k} from "${id}.${k}.vue";`)
+  .join('\n')} 
+</script>`,
     })
   }
-
-  const code = toMarkdown(root)
+  const code = toMarkdown(root, { extensions: [frontmatterToMarkdown(['yaml', 'toml'])] })
   return { code, blocks }
 }
+
+const virtualDemoId = 'virtual:demo-proxy'
+const resolvedVirtualDemoId = '\0' + virtualDemoId
 
 export function demo(): Plugin {
   let config: ResolvedConfig
@@ -83,13 +98,41 @@ export function demo(): Plugin {
       // envType = isVitepress ? 'vitepress' : 'vite'
     },
     resolveId(id) {
+      if (id === virtualDemoId) {
+        return resolvedVirtualDemoId
+      }
       if (CODE_VUE_REGEXP.test(id)) {
         return id
       }
     },
     async load(id) {
+      if (id === resolvedVirtualDemoId) {
+        return `import { defineComponent, h, resolveComponent } from 'vue'
+export default defineComponent({
+  props: {
+    lang: { type: String, required: true },
+    meta: { type: String, required: true },
+    code: { type: String, required: true },
+  },
+  setup(props, { slots }) {
+    const DemoWrapper = resolveComponent('DemoWrapper')
+    return () =>
+      h(
+        DemoWrapper,
+        {
+          lang: decodeURIComponent(props.lang),
+          meta: decodeURIComponent(props.meta),
+          code: decodeURIComponent(props.code),
+        },
+        slots
+      )
+  },
+})
+`
+      }
+
       if (CODE_VUE_REGEXP.test(id)) {
-        const blockId = '/' + path.relative(config.root, id)
+        const blockId = '/' + relative(config.root, id)
         const demoCode = DemoMap.get(id) || DemoMap.get(blockId)
         return demoCode
       }
@@ -98,7 +141,7 @@ export function demo(): Plugin {
         console.log(code)
         for (const k of Object.keys(blocks)) {
           const blockKey = `${id}.${k}.vue`
-          const blockId = '/' + path.relative(config.root, blockKey)
+          const blockId = '/' + relative(config.root, blockKey)
           DemoMap.set(blockId, blocks[k])
         }
         return code
@@ -112,7 +155,7 @@ export function demo(): Plugin {
         const updates: any[] = []
         for (const k of Object.keys(blocks)) {
           const blockKey = `${file}.${k}.vue`
-          const blockId = '/' + path.relative(config.root, blockKey)
+          const blockId = '/' + relative(config.root, blockKey)
           DemoMap.set(blockId, blocks[k])
 
           const mod = moduleGraph.getModuleById(blockId)
