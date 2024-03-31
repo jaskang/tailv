@@ -82,6 +82,13 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   markdown: {
+    theme: { light: 'github-light', dark: 'github-dark' },
+    async shikiSetup(shiki) {
+      await shiki.loadTheme('github-light', 'github-dark')
+    },
+    // async shikiSetup(shiki) {
+    //   await shiki.loadTheme(...Object.keys(bundledThemes) as any)
+    // },
     // codeTransformers: [
     //   {
     //     preprocess(code, options) {

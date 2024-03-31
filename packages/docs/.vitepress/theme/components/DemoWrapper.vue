@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'DemoWrapper' })
 const emit = defineEmits<{ click: [any] }>()
-const slots = defineSlots<{ default?(_: {}): any }>()
+const slots = defineSlots<{ default?(_: {}): any; code?(_: {}): any }>()
 const props = defineProps({
   lang: { type: String, required: true },
   meta: { type: String, required: true },
@@ -14,6 +14,17 @@ console.log(props.code)
     <div>
       <slot />
     </div>
-    <div>{{ lang }} {{ meta }} {{ code }}</div>
+    <div class="rounded ring-1 ring-slate-200 [&_.copy]:hidden [&_.lang]:hidden [&_.vp-code]:p-2">
+      <slot name="code" />
+    </div>
   </div>
 </template>
+<style>
+.dark .vp-code span {
+  color: var(--shiki-dark, inherit);
+}
+
+html:not(.dark) .vp-code span {
+  color: var(--shiki-light, inherit);
+}
+</style>

@@ -48,8 +48,16 @@ function remarkDemo(id: string, content: string) {
         type: 'html',
         value: `
 <DemoProxy lang="${encodeURIComponent(node.lang || '')}" meta="${encodeURIComponent(node.meta || '')}" code="${encodeURIComponent(node.value)}">
-  <${name}/>
-</DemoProxy>`,
+<${name}/>
+<template #code>
+
+\`\`\`${node.lang} ${node.meta}
+${node.value}
+\`\`\`
+
+</template>
+</DemoProxy>
+`,
       })
       return index! + 1
     }
