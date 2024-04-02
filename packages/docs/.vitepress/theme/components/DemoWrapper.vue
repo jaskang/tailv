@@ -14,17 +14,8 @@ console.log(props.code)
     <div>
       <slot />
     </div>
-    <div class="rounded ring-1 ring-slate-200 [&_.copy]:hidden [&_.lang]:hidden [&_.vp-code]:p-2">
+    <div class="rounded ring-1 ring-slate-200">
       <slot name="code" />
     </div>
   </div>
 </template>
-<style>
-.dark .vp-code span {
-  color: var(--shiki-dark, inherit);
-}
-
-html:not(.dark) .vp-code span {
-  color: var(--shiki-light, inherit);
-}
-</style>

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './vp-doc.css';
 
 @theme {
   --font-family-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial,
@@ -694,15 +695,3 @@
     display: none !important;
   }
 } */
-
-body {
-  color: var(--color-slate-700);
-  background-color: var(--color-white);
-}
-.dark :where(body) {
-  color: var(--color-slate-300);
-  background-color: var(--color-slate-900);
-}
-
-@layer utilities {
-}

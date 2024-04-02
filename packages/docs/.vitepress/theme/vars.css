@@ -49,32 +49,32 @@
   --vp-c-gray-3: #ebebef;
   --vp-c-gray-soft: rgba(142, 150, 170, 0.14);
 
-  --vp-c-indigo-1: #3451b2;
-  --vp-c-indigo-2: #3a5ccc;
-  --vp-c-indigo-3: #5672cd;
-  --vp-c-indigo-soft: rgba(100, 108, 255, 0.14);
+  --vp-c-indigo-1: var(--color-primary-600);
+  --vp-c-indigo-2: var(--color-primary-500);
+  --vp-c-indigo-3: var(--color-primary-400);
+  --vp-c-indigo-soft: var(--color-primary-100);
 
-  --vp-c-purple-1: #6f42c1;
-  --vp-c-purple-2: #7e4cc9;
-  --vp-c-purple-3: #8e5cd9;
-  --vp-c-purple-soft: rgba(159, 122, 234, 0.14);
+  --vp-c-purple-1: var(--color-purple-600);
+  --vp-c-purple-2: var(--color-purple-500);
+  --vp-c-purple-3: var(--color-purple-400);
+  --vp-c-purple-soft: var(--color-purple-100);
 
-  --vp-c-green-1: #18794e;
-  --vp-c-green-2: #299764;
-  --vp-c-green-3: #30a46c;
-  --vp-c-green-soft: rgba(16, 185, 129, 0.14);
+  --vp-c-green-1: var(--color-success-600);
+  --vp-c-green-2: var(--color-success-500);
+  --vp-c-green-3: var(--color-success-400);
+  --vp-c-green-soft: var(--color-success-100);
 
-  --vp-c-yellow-1: #915930;
-  --vp-c-yellow-2: #946300;
-  --vp-c-yellow-3: #9f6a00;
-  --vp-c-yellow-soft: rgba(234, 179, 8, 0.14);
+  --vp-c-yellow-1: var(--color-warning-600);
+  --vp-c-yellow-2: var(--color-warning-500);
+  --vp-c-yellow-3: var(--color-warning-400);
+  --vp-c-yellow-soft: var(--color-warning-100);
 
-  --vp-c-red-1: #b8272c;
-  --vp-c-red-2: #d5393e;
-  --vp-c-red-3: #e0575b;
-  --vp-c-red-soft: rgba(244, 63, 94, 0.14);
+  --vp-c-red-1: var(--color-danger-600);
+  --vp-c-red-2: var(--color-danger-500);
+  --vp-c-red-3: var(--color-danger-400);
+  --vp-c-red-soft: var(--color-danger-100);
 
-  --vp-c-sponsor: #db2777;
+  --vp-c-sponsor: var(--color-red-600);
 }
 
 .dark {
@@ -174,9 +174,9 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-text-1: rgba(60, 60, 67);
-  --vp-c-text-2: rgba(60, 60, 67, 0.78);
-  --vp-c-text-3: rgba(60, 60, 67, 0.56);
+  --vp-c-text-1: var(--color-slate-900);
+  --vp-c-text-2: var(--color-slate-700);
+  --vp-c-text-3: var(--color-slate-500);
 }
 
 .dark {
@@ -261,12 +261,11 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-font-family-base: 'Chinese Quotes', 'Inter var', 'Inter', ui-sans-serif,
-    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Helvetica, Arial, 'Noto Sans', sans-serif,
+  --vp-font-family-base: 'Chinese Quotes', 'Inter var', 'Inter', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --vp-font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --vp-font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
 }
 
 /**
@@ -359,6 +358,11 @@
   --vp-code-tab-hover-text-color: var(--vp-c-text-1);
   --vp-code-tab-active-text-color: var(--vp-c-text-1);
   --vp-code-tab-active-bar-color: var(--vp-c-brand-1);
+
+  /* clipboard */
+  --vp-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
+  /* clipboard-copy */
+  --vp-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
 }
 
 /**

@@ -1,5 +1,5 @@
 // https://vitepress.dev/guide/custom-theme
-import './theme.css'
+import './styles/index.css'
 import type { Theme } from 'vitepress'
 import Layout from './Layout.vue'
 import DemoWrapper from './components/DemoWrapper.vue'

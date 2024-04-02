@@ -1,56 +1,67 @@
+.dark .vp-code span {
+  color: var(--shiki-dark, inherit);
+}
+
+html:not(.dark) .vp-code span {
+  color: var(--shiki-light, inherit);
+}
+
 /**
  * Headings
  * -------------------------------------------------------------------------- */
 
-.vp-doc h1,
-.vp-doc h2,
-.vp-doc h3,
-.vp-doc h4,
-.vp-doc h5,
-.vp-doc h6 {
+:where(.vp-doc h1),
+:where(.vp-doc h2),
+:where(.vp-doc h3),
+:where(.vp-doc h4),
+:where(.vp-doc h5),
+:where(.vp-doc h6) {
   position: relative;
   font-weight: 600;
   outline: none;
+  line-height: 1;
 }
 
-.vp-doc h1 {
-  letter-spacing: -0.02em;
-  line-height: 40px;
-  font-size: 28px;
+:where(.vp-doc h1) {
+  font-size: var(--font-size-2xl);
+  line-height: var(--font-size-2xl--line-height);
 }
-
-.vp-doc h2 {
-  margin: 48px 0 16px;
-  border-top: 1px solid var(--vp-c-divider);
-  padding-top: 24px;
-  letter-spacing: -0.02em;
-  line-height: 32px;
-  font-size: 24px;
+:where(.vp-doc h2) {
+  font-size: var(--font-size-xl);
+  line-height: var(--font-size-xl--line-height);
 }
-
-.vp-doc h3 {
-  margin: 32px 0 0;
-  letter-spacing: -0.01em;
-  line-height: 28px;
-  font-size: 20px;
+:where(.vp-doc h3) {
+  font-size: var(--font-size-lg);
+  line-height: var(--font-size-lg--line-height);
 }
-
+:where(.vp-doc h4) {
+  font-size: var(--font-size-base);
+  line-height: var(--font-size-base--line-height);
+}
+:where(.vp-doc h5, .vp-doc h6) {
+  font-size: var(--font-size-sm);
+  line-height: var(--font-size-sm--line-height);
+}
 .vp-doc .header-anchor {
   position: absolute;
   top: 0;
   left: 0;
-  margin-left: -0.87em;
+  margin-left: calc(var(--spacing-10) * -1);
   font-weight: 500;
   user-select: none;
   opacity: 0;
   text-decoration: none;
-  transition:
-    color 0.25s,
-    opacity 0.25s;
+  color: var(--color-slate-400);
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+  line-height: var(--spacing-6);
+  border: 1px solid var(--color-slate-300);
+  border-radius: var(--radius-md);
+  text-align: center;
 }
 
 .vp-doc .header-anchor:before {
-  content: var(--vp-header-anchor-symbol);
+  content: '#';
 }
 
 .vp-doc h1:hover .header-anchor,
@@ -68,21 +79,9 @@
   opacity: 1;
 }
 
-@media (min-width: 768px) {
-  .vp-doc h1 {
-    letter-spacing: -0.02em;
-    line-height: 40px;
-    font-size: 32px;
-  }
-}
-
-.vp-doc h2 .header-anchor {
-  top: 24px;
-}
-
 /**
- * Paragraph and inline elements
- * -------------------------------------------------------------------------- */
+  * Paragraph and inline elements
+  * -------------------------------------------------------------------------- */
 
 .vp-doc p,
 .vp-doc summary {
@@ -126,8 +125,8 @@
 }
 
 /**
- * Lists
- * -------------------------------------------------------------------------- */
+  * Lists
+  * -------------------------------------------------------------------------- */
 
 .vp-doc ul,
 .vp-doc ol {
@@ -153,8 +152,8 @@
 }
 
 /**
- * Table
- * -------------------------------------------------------------------------- */
+  * Table
+  * -------------------------------------------------------------------------- */
 
 .vp-doc table {
   display: block;
@@ -192,8 +191,8 @@
 }
 
 /**
- * Decorational elements
- * -------------------------------------------------------------------------- */
+  * Decorational elements
+  * -------------------------------------------------------------------------- */
 
 .vp-doc hr {
   margin: 16px 0;
@@ -202,8 +201,8 @@
 }
 
 /**
- * Custom Block
- * -------------------------------------------------------------------------- */
+  * Custom Block
+  * -------------------------------------------------------------------------- */
 
 .vp-doc .custom-block {
   margin: 16px 0;
@@ -234,8 +233,8 @@
 }
 
 /**
- * Code
- * -------------------------------------------------------------------------- */
+  * Code
+  * -------------------------------------------------------------------------- */
 
 /* inline code */
 .vp-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
@@ -518,8 +517,8 @@
 }
 
 /**
- * Component: Team
- * -------------------------------------------------------------------------- */
+  * Component: Team
+  * -------------------------------------------------------------------------- */
 
 .vp-doc .VPTeamMembers {
   margin-top: 24px;
@@ -541,23 +540,23 @@
 }
 
 /**
- * External links
- * -------------------------------------------------------------------------- */
+  * External links
+  * -------------------------------------------------------------------------- */
 
 /* prettier-ignore */
 :is(.vp-external-link-icon, .vp-doc a[href*='://'], .vp-doc a[target='_blank']):not(.no-icon)::after {
-  display: inline-block;
-  margin-top: -1px;
-  margin-left: 4px;
-  width: 11px;
-  height: 11px;
-  background: currentColor;
-  color: var(--vp-c-text-3);
-  flex-shrink: 0;
-  --icon: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' %3E%3Cpath d='M0 0h24v24H0V0z' fill='none' /%3E%3Cpath d='M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z' /%3E%3C/svg%3E");
-  -webkit-mask-image: var(--icon);
-  mask-image: var(--icon);
-}
+   display: inline-block;
+   margin-top: -1px;
+   margin-left: 4px;
+   width: 11px;
+   height: 11px;
+   background: currentColor;
+   color: var(--vp-c-text-3);
+   flex-shrink: 0;
+   --icon: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' %3E%3Cpath d='M0 0h24v24H0V0z' fill='none' /%3E%3Cpath d='M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z' /%3E%3C/svg%3E");
+   -webkit-mask-image: var(--icon);
+   mask-image: var(--icon);
+ }
 
 .vp-external-link-icon::after {
   content: '';
@@ -565,6 +564,6 @@
 
 /* prettier-ignore */
 .external-link-icon-enabled :is(.vp-doc a[href*='://'], .vp-doc a[target='_blank'])::after {
-  content: '';
-  color: currentColor;
-}
+   content: '';
+   color: currentColor;
+ }
