@@ -1,13 +1,16 @@
+# Menu
+
+## Default
+
+```vue demo
 <script setup>
 import { ref } from 'vue'
-import { Menu } from 'tailv'
-import { PaperAirplaneIcon,InboxIcon,TrashIcon ,ArchiveBoxIcon,CircleStackIcon} from '@heroicons/vue/24/outline'
+import { PaperAirplaneIcon, InboxIcon, TrashIcon, ArchiveBoxIcon, CircleStackIcon } from '@heroicons/vue/24/outline'
 
 const items = ref([
-  { key: 'Inbox', label: 'Inbox',icon: InboxIcon  },
-  { key: 'Sent', label: 'Sent',icon: PaperAirplaneIcon  },
-  
-  { key: 'Trash', label: 'Trash',icon: TrashIcon  },
+  { key: 'Inbox', label: 'Inbox', icon: InboxIcon },
+  { key: 'Sent', label: 'Sent', icon: PaperAirplaneIcon },
+  { key: 'Trash', label: 'Trash', icon: TrashIcon },
   {
     key: 'Archive',
     label: 'Archive',
@@ -17,8 +20,8 @@ const items = ref([
       { key: '1-2', label: '2nd menu item' },
     ],
   },
-  { key: 'Drafts', label: 'Drafts',icon: CircleStackIcon  },
-  { type: 'title',label: 'group2' },
+  { key: 'Drafts', label: 'Drafts', icon: CircleStackIcon },
+  { type: 'title', label: 'group2' },
   {
     key: 'item-4',
     label: 'item-4',
@@ -33,13 +36,11 @@ const items = ref([
 
 const current = ref('Archive')
 </script>
-
-# Menu
-
-## Default
-
-<div class="flex flex-wrap gap-2 not-prose">
-  <div class="">
-    <Menu :current="current" :items="items" class="border rounded-md border-slate-200 w-40" /> 
+<template>
+  <div class="not-prose flex flex-wrap gap-2">
+    <div class="">
+      <Menu :current="current" :items="items" class="w-40 rounded-md border border-slate-200" />
+    </div>
   </div>
-</div>
+</template>
+```

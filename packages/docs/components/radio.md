@@ -1,36 +1,43 @@
-<script setup>
-import { ref } from 'vue'
-import { Radio ,RadioGroup } from 'tailv'
-
-const picked = ref('A')
-
-</script>
-
 # RadioGroup
 
-<div class="">
-  picked: {{ picked }}
-  <RadioGroup class="mt-2 flex gap-4" v-model:value="picked"> 
-    <Radio value="A">A</Radio> 
-    <Radio value="B">B</Radio> 
-  </RadioGroup> 
-</div>
+```vue demo
+<script setup>
+import { ref } from 'vue'
+
+const picked = ref('A')
+</script>
+<template>
+  <div>
+    picked: {{ picked }}
+    <RadioGroup class="mt-2 flex gap-4" v-model:value="picked">
+      <Radio value="A">A</Radio>
+      <Radio value="B">B</Radio>
+    </RadioGroup>
+  </div>
+</template>
+```
 
 ## Default
 
-<div class="flex flex-wrap gap-2">
-  <Radio value="A">checkbox</Radio>
-  <Radio value="B" checked>checkbox</Radio>
-</div>
+```vue demo
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Radio value="A">checkbox</Radio>
+    <Radio value="B" checked>checkbox</Radio>
+  </div>
+</template>
+```
 
 ## Disabled
 
-<div class="flex flex-wrap gap-2">
-  <Radio value="A" disabled checked>
-    checked
-  </Radio>
-  <Radio value="B" disabled>unchecked</Radio>
-</div>
+```vue demo
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Radio value="A" disabled checked> checked </Radio>
+    <Radio value="B" disabled>unchecked</Radio>
+  </div>
+</template>
+```
 
 ## Props
 

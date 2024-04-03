@@ -1,36 +1,40 @@
-<script setup>
-import { ref } from 'vue'
-import { Checkbox ,CheckboxGroup } from 'tailv'
-
-const checkList = ref(['A'])
-
-</script>
-
 # CheckboxGroup
 
-<div class="">
+```vue demo
+<script setup>
+import { ref } from 'vue'
+const checkList = ref(['A'])
+</script>
+<template>
   checkList: {{ checkList }}
-  <CheckboxGroup class="mt-2 flex gap-4" v-model:value="checkList"> 
-    <Checkbox value="A">A</Checkbox> 
+  <CheckboxGroup class="mt-2 flex gap-4" v-model:value="checkList">
+    <Checkbox value="A">A</Checkbox>
     <Checkbox value="B">B</Checkbox>
-  </CheckboxGroup> 
-</div>
+  </CheckboxGroup>
+</template>
+```
 
 ## Default
 
-<div class="flex flex-wrap gap-2">
-  <Checkbox value="A">checkbox</Checkbox>
-  <Checkbox value="B" checked>checkbox</Checkbox>
-</div>
+```vue demo
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Checkbox value="A">checkbox</Checkbox>
+    <Checkbox value="B" checked>checkbox</Checkbox>
+  </div>
+</template>
+```
 
 ## Disabled
 
-<div class="flex flex-wrap gap-2">
-  <Checkbox value="A" disabled checked>
-    checked
-  </Checkbox>
-  <Checkbox value="B" disabled>unchecked</Checkbox>
-</div>
+```vue demo
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Checkbox value="A" disabled checked> checked </Checkbox>
+    <Checkbox value="B" disabled>unchecked</Checkbox>
+  </div>
+</template>
+```
 
 ## Props
 
