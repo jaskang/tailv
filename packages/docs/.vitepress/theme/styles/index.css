@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import './prose.css';
-@import './code.css';
 
 /* @import './vp-doc.css'; */
 @theme {

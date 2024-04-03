@@ -18,14 +18,14 @@ function getHash(text: string): string {
   return createHash('sha256').update(text).digest('hex').substring(0, 8)
 }
 
-function praseMeta(meta?: string | null) {
-  const metaArr = (meta || '').split(' ')
-  const ret: Record<string, string | boolean> = {}
-  for (const m of metaArr) {
-    const [key, val] = m.split('=', 2)
-    ret[key] = val || true
-  }
-  return ret
+function praseMeta(meta: string = '') {
+  return (meta || '').split(' ').reduce(
+    (prev, item) => {
+      const arr = item.split('=', 2)
+      return { ...prev, [arr[0]]: arr[1] || true }
+    },
+    {} as Record<string, any>
+  )
 }
 function remarkDemo(id: string, content: string) {
   const root = fromMarkdown(content, {
@@ -36,8 +36,8 @@ function remarkDemo(id: string, content: string) {
   const blocks: Record<string, string> = {}
 
   visit(root, 'code', (node, index, parent) => {
-    const lang = (node.lang || '').split(':')[0]
-    const meta = praseMeta(node.meta)
+    const lang = (node.lang || '').split(':')[0].split('{')[0]
+    const meta = praseMeta(node.meta || '')
     const demo = meta['demo']
     const isVueDemo = demo && lang === 'vue'
     if (isVueDemo) {
@@ -114,7 +114,7 @@ export function demo(): Plugin {
     },
     async load(id) {
       if (id === resolvedVirtualDemoId) {
-        return `import { defineComponent, h, resolveComponent } from 'vue'
+        return `import { defineComponent, h, resolveComponent, computed } from 'vue'
 export default defineComponent({
   props: {
     lang: { type: String, required: true },

@@ -1,15 +1,3 @@
-:root {
-  --vp-code-padding-x: 0.875rem;
-  --vp-code-padding-y: 0.875rem;
-
-  --vp-code-copy-color: var(--color-slate-500);
-  --vp-code-copy-code-bg: var(--color-white);
-  --vp-code-copy-code-border-color: var(--color-slate-200);
-
-  --vp-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgb(100, 116, 139)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
-  --vp-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgb(100, 116, 139)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
-}
-
 .prose :where(.vp-code span) {
   color: var(--shiki-light, inherit);
 }
@@ -68,21 +56,6 @@
   background-image: var(--vp-icon-copied);
 }
 
-/* 
-.vp-doc [class*='language-'] > button.copy:hover,
-.vp-doc [class*='language-'] > button.copy.copied {
-  border-color: var(--vp-code-copy-code-hover-border-color);
-  background-color: var(--vp-code-copy-code-hover-bg);
-} 
-
-.vp-doc [class*='language-'] > button.copy.copied,
-.vp-doc [class*='language-'] > button.copy:hover.copied {
-  border-radius: 0 4px 4px 0;
-  background-color: var(--vp-code-copy-code-hover-bg);
-  background-image: var(--vp-icon-copied);
-}
-
-*/
 .prose :where(div[class*='language-'] > button.copy.copied)::before {
   position: relative;
   top: -1px;
