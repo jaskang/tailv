@@ -82,6 +82,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   markdown: {
+    // lineNumbers: true,
     theme: { light: 'github-light', dark: 'github-dark' },
     async shikiSetup(shiki) {
       await shiki.loadTheme('github-light', 'github-dark')

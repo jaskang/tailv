@@ -1,0 +1,125 @@
+:root {
+  --vp-code-padding-x: 0.875rem;
+  --vp-code-padding-y: 0.875rem;
+
+  --vp-code-copy-color: var(--color-slate-500);
+  --vp-code-copy-code-bg: var(--color-white);
+  --vp-code-copy-code-border-color: var(--color-slate-200);
+
+  --vp-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgb(100, 116, 139)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
+  --vp-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgb(100, 116, 139)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
+}
+
+.prose :where(.vp-code span) {
+  color: var(--shiki-light, inherit);
+}
+
+.dark .prose :where(.vp-code span) {
+  color: var(--shiki-dark, inherit);
+}
+
+.prose :where(.vp-code) {
+  padding: var(--vp-code-padding-x) var(--vp-code-padding-y);
+  /* border-radius: var(--radius); */
+}
+
+.prose :where(div[class*='language-']) {
+  position: relative;
+  overflow-x: auto;
+}
+
+.prose :where(div[class*='language-'] > span.lang) {
+  position: absolute;
+  top: 2px;
+  color: var(--vp-code-copy-color);
+  right: 8px;
+  z-index: 2;
+  font-size: 12px;
+}
+.prose :where(div[class*='language-']:hover > span.lang) {
+  opacity: 0;
+}
+.prose :where(div[class*='language-'] > button.copy) {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 3;
+  border: 1px solid var(--vp-code-copy-code-border-color);
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  color: var(--vp-code-copy-color);
+  -webkit-mask: var(--vp-code-copy-color);
+  mask: var(--vp-code-copy-color);
+  background-color: var(--vp-code-copy-code-bg);
+  opacity: 0;
+  cursor: pointer;
+  background-image: var(--vp-icon-copy);
+  background-position: 50%;
+  background-size: 18px;
+  background-repeat: no-repeat;
+}
+.prose :where(div[class*='language-']:hover > button.copy) {
+  opacity: 1;
+}
+
+.prose :where(div[class*='language-'] > button.copy.copied) {
+  border-radius: 0 4px 4px 0;
+  background-image: var(--vp-icon-copied);
+}
+
+/* 
+.vp-doc [class*='language-'] > button.copy:hover,
+.vp-doc [class*='language-'] > button.copy.copied {
+  border-color: var(--vp-code-copy-code-hover-border-color);
+  background-color: var(--vp-code-copy-code-hover-bg);
+} 
+
+.vp-doc [class*='language-'] > button.copy.copied,
+.vp-doc [class*='language-'] > button.copy:hover.copied {
+  border-radius: 0 4px 4px 0;
+  background-color: var(--vp-code-copy-code-hover-bg);
+  background-image: var(--vp-icon-copied);
+}
+
+*/
+.prose :where(div[class*='language-'] > button.copy.copied)::before {
+  position: relative;
+  top: -1px;
+  /*rtl:ignore*/
+  transform: translateX(calc(-100% - 1px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--vp-code-copy-code-border-color);
+  /*rtl:ignore*/
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  padding: 0 10px;
+  width: fit-content;
+  height: 36px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-green-600);
+  background-color: var(--vp-code-copy-code-bg);
+  white-space: nowrap;
+  content: 'Copied';
+}
+
+.prose :where(div[class*='language-'].line-numbers-mode) {
+  padding-left: 32px;
+}
+
+.prose :where(div[class*='language-'] .line-numbers-wrapper) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid var(--color-slate-200);
+  left: 0;
+  padding-top: var(--vp-code-padding-y);
+  padding-bottom: var(--vp-code-padding-y);
+  z-index: 3;
+  width: 32px;
+  text-align: center;
+}
