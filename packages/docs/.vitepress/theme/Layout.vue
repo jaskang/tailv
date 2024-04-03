@@ -24,7 +24,7 @@ const { frontmatter, page, theme } = useDataByTheme()
       <div class="lg:pl-[19.5rem]">
         <main class="mx-auto max-w-3xl pt-10 xl:mr-[15.5rem] xl:ml-0 xl:max-w-none xl:pr-16">
           <header></header>
-          <Content class="vp-doc prose prose-sm prose-slate dark:prose-dark" />
+          <Content class="vp-doc prose" />
           <footer></footer>
           <div class="fixed top-[3.8125rem] right-[max(0px,calc(50%-45rem))] bottom-0 z-20 hidden w-[19.5rem] xl:block">
             <ScrollArea class="h-full">

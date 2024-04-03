@@ -1,6 +1,7 @@
 @import 'tailwindcss';
-@import './vp-doc.css';
+@import './prose.css';
 
+/* @import './vp-doc.css'; */
 @theme {
   --font-family-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial,
     Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
