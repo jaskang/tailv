@@ -26,7 +26,7 @@ const onSelect = (item: AnchorItem) => {
       <div class="py-1">
         <slot name="item" v-bind="item" :deep="deep" :isActive="current === item.key">
           <a
-            class="group flex cursor-pointer items-start border-l no-underline"
+            class="group flex cursor-pointer items-start border-l-2 no-underline"
             :class="[
               current === item.key
                 ? 'border-primary-400 text-primary-500 font-semibold'
