@@ -24,24 +24,18 @@ const [modelChecked, setModelChecked] = useModelValue(props, {
 })
 const checked = computed(() => (group ? group.value.value === props.value : modelChecked.value))
 
-const onInput = (e: Event) => {
-  const el = e.currentTarget as HTMLInputElement
-  setModelChecked(el.checked)
+const clickHandler = () => {
+  setModelChecked(true)
 }
 </script>
 <template>
-  <label :class="['relative inline-flex items-center', disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']">
-    <span
-      class="focus-within:ring-primary-500 relative block rounded-full transition-all focus-within:ring-2 focus-within:ring-offset-2"
+  <label
+    :class="['relative inline-flex items-center', disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']"
+    @click="clickHandler"
+  >
+    <button
+      class="focus-visible:ring-primary-500 relative block cursor-[inherit] appearance-none rounded-full transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
     >
-      <input
-        class="absolute inset-0 z-1 m-0 cursor-[inherit] p-0 opacity-0"
-        type="radio"
-        :name="name"
-        :disabled="disabled"
-        :checked="checked"
-        :onInput="onInput"
-      />
       <span
         class="block h-4 w-4 rounded-full border-1 transition-all"
         :class="[checked ? 'bg-primary-500 border-primary-500' : 'border-slate-300 bg-transparent']"
@@ -50,7 +44,7 @@ const onInput = (e: Event) => {
           <circle cx="8" cy="8" r="3" />
         </svg>
       </span>
-    </span>
+    </button>
     <span class="relative ml-2 block text-sm font-medium leading-6">
       <slot />
     </span>

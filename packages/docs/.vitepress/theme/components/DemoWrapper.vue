@@ -40,10 +40,10 @@ const showCode = ref(false)
         <template #close><CodeBracketIcon /></template>
       </Switch>
     </div>
-    <div class="not-prose p-4">
+    <div class="not-prose demo-wrapper-svg-bg bg-white p-4 dark:bg-slate-900">
       <slot />
     </div>
-    <div v-if="showCode" class="demo-wrapper-svg-bg bg-white dark:bg-slate-900">
+    <div v-if="showCode" class="bg-slate-50 dark:bg-slate-900">
       <slot name="code" />
     </div>
   </div>
@@ -52,10 +52,12 @@ const showCode = ref(false)
 .demo-wrapper-svg-bg {
   background-position: 8px 8px;
   background-size: 16px 16px;
+  background-color: var(--color-white);
   /* slate-100 */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 .dark .demo-wrapper-svg-bg {
+  background-color: var(--color-slate-900);
   /* slate-100 */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%231e293b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
