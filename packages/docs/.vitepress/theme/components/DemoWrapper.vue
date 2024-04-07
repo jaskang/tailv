@@ -31,18 +31,25 @@ const showCode = ref(false)
       '--tw-prose-pre-bg': 'transparent',
     }"
   >
-    <div class="flex justify-end bg-slate-100 p-2">
-      <div class="flex-1 px-2 font-medium">
-        {{ meta.title }}
+    <div class="flex items-center justify-end bg-slate-50 py-1 px-2">
+      <div class="flex-1">
+        <svg viewBox="0 0 32 32" class="h-4 w-4">
+          <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"></path>
+          <path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"></path>
+          <path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"></path>
+        </svg>
       </div>
-      <Switch v-model:checked="showCode">
-        <template #open><CodeBracketIcon /></template>
-        <template #close><CodeBracketIcon /></template>
-      </Switch>
+      <div class="flex items-center">
+        <Switch v-model:checked="showCode">
+          <template #open><CodeBracketIcon /></template>
+          <template #close><CodeBracketIcon /></template>
+        </Switch>
+      </div>
     </div>
     <div class="not-prose demo-wrapper-svg-bg bg-white p-4 dark:bg-slate-900">
       <slot />
     </div>
+
     <div v-if="showCode" class="bg-slate-50 dark:bg-slate-900">
       <slot name="code" />
     </div>
