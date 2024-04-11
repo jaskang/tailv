@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type PropType, ref } from 'vue'
-import { Popper, type PopperPlacement, type PopperWidthMode, type PopperTrigger } from '../Base/Popper'
+import { Popper, type PopperPlacement, type PopperSizeMode, type PopperTrigger } from '../Base/Popper'
 
 defineOptions({ name: 'Popover' })
 defineProps({
@@ -13,7 +13,7 @@ defineProps({
     type: String as PropType<PopperPlacement>,
     default: 'top',
   },
-  widthMode: String as PropType<PopperWidthMode>,
+  sizeMode: String as PropType<PopperSizeMode>,
 })
 const emit = defineEmits<{
   'update:open': [open: boolean]
@@ -27,10 +27,10 @@ defineExpose({
 })
 </script>
 <template>
-  <Popper :trigger :width-mode :placement ref="popperRef" @change="emit('change', $event)">
+  <Popper :trigger :sizeMode :placement ref="popperRef" @change="emit('change', $event)">
     <slot />
     <template #content>
-      <div class="z-popover ring-opacity-5 rounded-md bg-white ring-1 shadow-lg ring-slate-200">
+      <div class="z-popover rounded-md bg-white shadow-lg ring-1 ring-slate-200 ring-opacity-5">
         <slot name="content">
           <div class="px-2">
             {{ content }}

@@ -30,7 +30,7 @@ import { useHoverListener, useFocusListener, useClickListener } from '../../use/
 export type PopperPlacement = Placement
 export type PopperVirtualElement = VirtualElement
 export type PopperTrigger = 'click' | 'hover' | 'focus' | 'manual'
-export type PopperWidthMode = 'min-width'
+export type PopperSizeMode = 'min-width'
 
 interface PopperTreeContext {
   nodeId: string
@@ -87,7 +87,7 @@ export function usePopper({
   floatingArrow,
   placement,
   trigger,
-  widthMode,
+  sizeMode,
   onChange,
 }: {
   open: Ref<boolean>
@@ -96,7 +96,7 @@ export function usePopper({
   floatingArrow: Ref<HTMLElement | undefined>
   placement: Ref<PopperPlacement>
   trigger: Ref<PopperTrigger[]>
-  widthMode: Ref<PopperWidthMode | undefined>
+  sizeMode: Ref<PopperSizeMode | undefined>
   onChange: (val: boolean, trigger: PopperTrigger) => void
 }) {
   const nodeId = `popper-${uid(6)}`
@@ -109,7 +109,7 @@ export function usePopper({
       offset(8),
       size({
         apply: ({ rects, elements }) => {
-          if (widthMode.value === 'min-width') {
+          if (sizeMode.value === 'min-width') {
             Object.assign(elements.floating.style, {
               minWidth: `${rects.reference.width}px`,
             })

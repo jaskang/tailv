@@ -46,13 +46,7 @@ const selectHandler = (item: SelectOption) => {
 const focused = ref(false)
 </script>
 <template>
-  <Popover
-    trigger="click"
-    placement="bottom-start"
-    ref="popoverRef"
-    width-mode="min-width"
-    @change="v => (focused = v)"
-  >
+  <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
     <Input
       readonly
       :value="label"
@@ -76,11 +70,11 @@ const focused = ref(false)
             v-for="item in options"
             :key="item.value"
             @click="selectHandler(item)"
-            class="relative cursor-pointer rounded py-2 px-3 text-sm"
+            class="relative cursor-pointer rounded px-3 py-2 text-sm"
             :class="[
               item.value === modelValue
                 ? 'bg-primary-500 font-medium text-white'
-                : 'hover:text-primary-600 hover:bg-slate-100',
+                : 'hover:bg-slate-100 hover:text-primary-600',
             ]"
           >
             {{ item.label }}

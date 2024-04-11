@@ -5,7 +5,9 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import pkg from './package.json'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), jsx(), dts({ rollupTypes: true })],

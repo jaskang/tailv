@@ -7,7 +7,6 @@ import nesting from 'tailwindcss/nesting'
 import autoprefixer from 'autoprefixer'
 import tailwindcss from 'tailwindcss'
 import atImport from 'postcss-import'
-import preset from '../../preset'
 import type { ThemeConfig } from './theme/theme'
 import { demo } from './plugins/demo'
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -32,32 +31,7 @@ export default defineConfigWithTheme<ThemeConfig>({
           atImport(),
           nesting,
           autoprefixer({}) as any,
-          tailwindcss({
-            darkMode: 'class',
-            content: [
-              './index.html',
-              join(__dirname, '../../src/**/*.{ts,tsx,vue}'),
-              join(__dirname, '../components/**/*.{md,vue,ts}'),
-              join(__dirname, './theme/**/*.{vue,ts}'),
-            ],
-            theme: {
-              extend: {
-                maxWidth: {
-                  '8xl': '90rem',
-                },
-                typography: theme => ({
-                  DEFAULT: {
-                    css: {
-                      maxWidth: 'none',
-                    },
-                  },
-                }),
-              },
-            },
-            presets: [preset],
-            plugins: [typography()],
-            blocklist: ['container'],
-          }),
+          tailwindcss({ config: join(__dirname, '../../tailwind.config.js') }),
         ],
       },
     },

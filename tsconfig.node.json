@@ -2,6 +2,7 @@
   "extends": "@jaskang/config/tsconfig.node.json",
   "compilerOptions": {
     "composite": true,
+    "target": "ESNext",
     "allowJs": true
   },
   "include": ["./vite.config.ts", "./prettier.config.js", "./eslint.config.js", "./preset.js"]
