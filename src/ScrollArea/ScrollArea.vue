@@ -45,6 +45,7 @@ const offsetY = computed(() =>
 )
 
 const handleSizeChange = () => {
+  console.log('handleSizeChange')
   if (viewportEl.value) {
     sizes.value = {
       content: {
@@ -83,9 +84,8 @@ useDraggable(thumbYEl, {
   },
 })
 
+useResizeObserver(viewportEl, handleSizeChange)
 useResizeObserver(contentEl, handleSizeChange)
-useResizeObserver(scrollbarXEl, handleSizeChange)
-useResizeObserver(scrollbarYEl, handleSizeChange)
 
 const thumbClass =
   'relative flex-1 transition-opacity cursor-pointer rounded-[10px] bg-slate-900/30 opacity-0 group-hover:opacity-100 before:absolute before:top-1/2 before:left-1/2 before:h-full  before:w-full before:min-h-[44px] before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[""] hover:bg-slate-900/50'
@@ -112,9 +112,9 @@ const thumbClass =
     </div>
 
     <div
-      v-if="showX"
       ref="scrollbarXEl"
-      class="absolute right-0 bottom-0 left-0 flex touch-none flex-col overflow-hidden py-[2px] select-none"
+      class="absolute bottom-0 left-0 right-0 flex touch-none select-none flex-col overflow-hidden py-[2px]"
+      :class="[showX ? 'block' : 'hidden']"
     >
       <div
         ref="thumbXEl"
@@ -126,9 +126,9 @@ const thumbClass =
     </div>
 
     <div
-      v-if="showY"
       ref="scrollbarYEl"
-      class="absolute top-0 right-0 bottom-0 flex touch-none overflow-hidden px-[2px] select-none"
+      class="absolute bottom-0 right-0 top-0 flex touch-none select-none overflow-hidden px-[2px]"
+      :class="[showY ? 'block' : 'hidden']"
     >
       <div
         ref="thumbYEl"
