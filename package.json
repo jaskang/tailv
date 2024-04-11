@@ -4,13 +4,26 @@
   "author": "jaskang",
   "license": "MIT",
   "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
-    "dev": "pnpm --filter docs dev",
-    "docs:build": "pnpm --filter docs build",
-    "docs:preview": "pnpm --filter docs preview",
-    "build": "pnpm --filter tailv build"
+    "dev": "vitepress dev site",
+    "docs:build": "vitepress build site",
+    "docs:preview": "vitepress preview site",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@floating-ui/vue": "^1.0.6",
+    "@vueuse/core": "^10.9.0",
+    "kotl": "^1.8.1",
+    "mitt": "^3.0.1"
   },
   "devDependencies": {
+    "@heroicons/vue": "^2.1.3",
+    "vue": "^3.4.20",
+    "vue-router": "^4.3.0",
     "@jaskang/config": "^2.0.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.12",
@@ -46,10 +59,16 @@
     "vitest": "^1.4.0",
     "vue-eslint-parser": "^9.4.2"
   },
-  "engines": {
-    "pnpm": ">=8.0.0"
+  "peerDependencies": {
+    "vue": "^3.4.0"
   },
   "peerDependencyRules": {
-    "ignoreMissing": []
+    "ignoreMissing": [
+      "@algolia/client-search",
+      "search-insights"
+    ]
+  },
+  "engines": {
+    "pnpm": ">=8.0.0"
   }
 }

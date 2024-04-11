@@ -1,5 +1,5 @@
 import { useData } from 'vitepress'
-import { ThemeConfig } from './theme'
+import { type ThemeConfig } from './theme'
 
 const HASH_RE = /#.*$/
 const HASH_OR_QUERY_RE = /[?#].*$/

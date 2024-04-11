@@ -1,11 +1,13 @@
 {
   "extends": "@jaskang/config/tsconfig.vue.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "composite": true,
     "types": ["vite/client"],
     "paths": {
+      "tailv": ["./src"],
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "src/**/*.vue", "src/**/*.tsx"]
+  "include": ["./site/.vitepress/**/*", "src/**/*"],
+  "exclude": ["./site/.vitepress/cache"]
 }

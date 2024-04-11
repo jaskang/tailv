@@ -1,18 +1,14 @@
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createHash } from 'node:crypto'
-import { defineConfigWithTheme, type MarkdownRenderer } from 'vitepress'
-import { readFileSync } from 'node:fs'
+import { defineConfigWithTheme } from 'vitepress'
 import jsx from '@vitejs/plugin-vue-jsx'
-import colors from 'tailwindcss/colors'
 import typography from '@tailwindcss/typography'
 import nesting from 'tailwindcss/nesting'
 import autoprefixer from 'autoprefixer'
 import tailwindcss from 'tailwindcss'
 import atImport from 'postcss-import'
-import forms from '@tailwindcss/forms'
-import { tailwindcss as tailv } from '@tailv/preset'
-import { ThemeConfig } from './theme/theme'
+import preset from '../../preset'
+import type { ThemeConfig } from './theme/theme'
 import { demo } from './plugins/demo'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 console.log('vitepress config', __dirname)
@@ -25,16 +21,8 @@ export default defineConfigWithTheme<ThemeConfig>({
     plugins: [jsx(), demo()],
     resolve: {
       alias: [
-        {
-          find: /^tailv$/,
-          replacement: resolve(__dirname, '../../vue/src'),
-        },
-        { find: '@', replacement: resolve(__dirname, '../../vue/src') },
-        {
-          find: /^.\/styles\/base\.css$/,
-          // replacement: fileURLToPath(new URL('./theme/base.css', import.meta.url)),
-          replacement: 'virtual:base.css',
-        },
+        { find: /^tailv$/, replacement: resolve(__dirname, '../../src') },
+        { find: '@', replacement: resolve(__dirname, '../../src') },
       ],
     },
     css: {
@@ -48,10 +36,9 @@ export default defineConfigWithTheme<ThemeConfig>({
             darkMode: 'class',
             content: [
               './index.html',
-              join(__dirname, '../../vue/src/**/*.{ts,tsx,vue}'),
-              join(__dirname, '../../docs/*.{md,vue,ts}'),
-              join(__dirname, '../../docs/components/**/*.{md,vue,ts}'),
-              join(__dirname, '../../docs/.vitepress/theme/**/*.{md,vue,ts}'),
+              join(__dirname, '../../src/**/*.{ts,tsx,vue}'),
+              join(__dirname, '../components/**/*.{md,vue,ts}'),
+              join(__dirname, './theme/**/*.{vue,ts}'),
             ],
             theme: {
               extend: {
@@ -67,7 +54,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                 }),
               },
             },
-            presets: [tailv],
+            presets: [preset],
             plugins: [typography()],
             blocklist: ['container'],
           }),

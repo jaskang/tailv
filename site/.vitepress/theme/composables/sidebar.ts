@@ -2,7 +2,7 @@ import { computed, onMounted, onUnmounted, ref, watch, watchEffect, watchPostEff
 
 import { normalize, useDataByTheme } from '../utils'
 import { useRoute } from 'vitepress'
-import { AnchorItem } from 'tailv'
+import { type AnchorItem } from 'tailv'
 
 export function useSidebar() {
   const { theme } = useDataByTheme()

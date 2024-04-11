@@ -1,11 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-import { Anchor } from 'tailv'
-
-const picked = ref('A')
-
-</script>
-
 # Anchor
 
 ```vue demo
