@@ -18,5 +18,8 @@
     "tailv": "workspace:*",
     "vue": "^3.4.20",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@tailv/preset": "workspace:*"
   }
 }

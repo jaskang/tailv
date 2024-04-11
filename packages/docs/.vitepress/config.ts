@@ -4,10 +4,14 @@ import { createHash } from 'node:crypto'
 import { defineConfigWithTheme, type MarkdownRenderer } from 'vitepress'
 import { readFileSync } from 'node:fs'
 import jsx from '@vitejs/plugin-vue-jsx'
-import tailwindcss from '@tailwindcss/vite'
-
-// import typography from '@tailwindcss/typography'
-// import forms from '@tailwindcss/forms'
+import colors from 'tailwindcss/colors'
+import typography from '@tailwindcss/typography'
+import nesting from 'tailwindcss/nesting'
+import autoprefixer from 'autoprefixer'
+import tailwindcss from 'tailwindcss'
+import atImport from 'postcss-import'
+import forms from '@tailwindcss/forms'
+import { tailwindcss as tailv } from '@tailv/preset'
 import { ThemeConfig } from './theme/theme'
 import { demo } from './plugins/demo'
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -18,7 +22,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   title: 'My Awesome Project',
   description: 'A VitePress Site',
   vite: {
-    plugins: [jsx(), demo(), tailwindcss()],
+    plugins: [jsx(), demo()],
     resolve: {
       alias: [
         {
@@ -34,51 +38,41 @@ export default defineConfigWithTheme<ThemeConfig>({
       ],
     },
     css: {
-      transformer: 'lightningcss',
-      // postcss: {
-      // plugins: [
-      // 'postcss-import': {},
-      // 'tailwindcss/nesting': {},
-      // autoprefixer({}) as any,
-      // tailwindcss({
-      //   darkMode: 'class',
-      //   content: [
-      //     './index.html',
-      //     join(__dirname, '../../vue/src/**/*.{ts,tsx,vue}'),
-      //     join(__dirname, '../../docs/*.{md,vue,ts}'),
-      //     join(__dirname, '../../docs/components/**/*.{md,vue,ts}'),
-      //     join(__dirname, '../../docs/.vitepress/theme/**/*.{md,vue,ts}'),
-      //   ],
-      //   theme: {
-      //     extend: {
-      //       colors: {
-      //         primary: colors.indigo,
-      //         success: colors.green,
-      //         warning: colors.amber,
-      //         danger: colors.red,
-      //       },
-      //       maxWidth: {
-      //         '8xl': '90rem',
-      //       },
-      //       typography: theme => ({
-      //         DEFAULT: {
-      //           css: {
-      //             maxWidth: 'none',
-      //           },
-      //         },
-      //       }),
-      //     },
-      //   },
-      //   plugins: [
-      //     typography(),
-      //     forms({
-      //       strategy: 'base',
-      //     }),
-      //   ],
-      //   blocklist: ['container'],
-      // }),
-      // ],
-      // },
+      // transformer: 'lightningcss',
+      postcss: {
+        plugins: [
+          atImport(),
+          nesting,
+          autoprefixer({}) as any,
+          tailwindcss({
+            darkMode: 'class',
+            content: [
+              './index.html',
+              join(__dirname, '../../vue/src/**/*.{ts,tsx,vue}'),
+              join(__dirname, '../../docs/*.{md,vue,ts}'),
+              join(__dirname, '../../docs/components/**/*.{md,vue,ts}'),
+              join(__dirname, '../../docs/.vitepress/theme/**/*.{md,vue,ts}'),
+            ],
+            theme: {
+              extend: {
+                maxWidth: {
+                  '8xl': '90rem',
+                },
+                typography: theme => ({
+                  DEFAULT: {
+                    css: {
+                      maxWidth: 'none',
+                    },
+                  },
+                }),
+              },
+            },
+            presets: [tailv],
+            plugins: [typography()],
+            blocklist: ['container'],
+          }),
+        ],
+      },
     },
   },
   markdown: {

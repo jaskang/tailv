@@ -1,11 +1,17 @@
 const colors = require('tailwindcss/colors')
 const forms = require('@tailwindcss/forms')
 
-function extractColorVars(colorObj, colorGroup = '') {
+/**
+ *
+ * @param {import('tailwindcss/colors')} colorObj
+ * @param {string} scope
+ * @returns
+ */
+function extractColorVars(colorObj, scope = '') {
   return Object.keys(colorObj).reduce((vars, key) => {
     const value = colorObj[key]
     if (typeof value === 'string') {
-      return { ...vars, [`--z-${colorGroup}${key}`]: value }
+      return { ...vars, [`--color-${scope ? scope + '-' + key : key}`]: value }
     } else {
       return { ...vars, ...extractColorVars(value, `${key}`) }
     }
@@ -26,7 +32,7 @@ module.exports = {
   },
   plugins: [
     forms({ strategy: 'base' }),
-    function ({ addBase, addComponents, theme }) {
+    function ({ addBase, theme }) {
       const all = extractColorVars(theme('colors'))
       addBase({
         ':root': all,

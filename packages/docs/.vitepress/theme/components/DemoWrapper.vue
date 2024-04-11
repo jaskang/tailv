@@ -31,7 +31,7 @@ const showCode = ref(false)
       '--tw-prose-pre-bg': 'transparent',
     }"
   >
-    <div class="demo-wrapper-svg-bg flex items-center justify-end bg-slate-50 py-1 px-2">
+    <div class="demo-wrapper-svg-bg flex items-center justify-end bg-slate-50 px-2 py-1">
       <div class="flex-1">
         <svg viewBox="0 0 32 32" class="h-4 w-4">
           <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"></path>
