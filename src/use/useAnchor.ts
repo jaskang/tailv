@@ -1,4 +1,4 @@
-import { useMutationObserver, useScroll } from '@vueuse/core'
+import { useMutationObserver, useScroll, isClient } from '@vueuse/core'
 import { onMounted, ref, watchEffect, type Ref } from 'vue'
 
 export interface AnchorHeader {
@@ -132,8 +132,10 @@ export function useAnchor(
     headers.value = getHeaders(range, container.value)
     current.value = headers.value.find(h => h.link === window.location.hash) || null
   })
-  useScroll(window, {
-    onScroll: setActiveLink,
-  })
+  if (isClient) {
+    useScroll(window, {
+      onScroll: setActiveLink,
+    })
+  }
   return { current, headers }
 }

@@ -1,6 +1,5 @@
 import { type AnchorHeader, type AnchorItem, useAnchor } from 'tailv'
-import { getScrollOffset } from 'vitepress'
-import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useDataByTheme } from '../utils'
 
 export function useOutline() {

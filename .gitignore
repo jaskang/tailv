@@ -12,3 +12,5 @@ coverage
 **/.vitepress/cache
 
 *.local
+
+site/.vitepress/*.config.ts.timestamp-*.mjs
