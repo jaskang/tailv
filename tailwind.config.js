@@ -5,8 +5,6 @@ import preset from './preset'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-console.log(__dirname)
-
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',

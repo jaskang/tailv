@@ -6,9 +6,7 @@ import { computed, ref, watchEffect } from 'vue'
 
 const { current, items } = useNavbar()
 const { isDark } = useDataByTheme()
-watchEffect(() => {
-  console.log(isDark.value)
-})
+
 const dark = computed({
   get() {
     return isDark.value
@@ -21,7 +19,7 @@ const dark = computed({
 
 <template>
   <div class="sticky top-0 z-40 w-full flex-none bg-white/95 lg:z-50 lg:border-b lg:border-slate-900/10">
-    <div class="max-w-8xl mx-auto">
+    <div class="mx-auto max-w-8xl">
       <div class="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-8">
         <div class="relative flex items-center">
           <a class="mr-3 flex-none overflow-hidden font-semibold md:w-auto" href="/">

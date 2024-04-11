@@ -10,7 +10,6 @@ import atImport from 'postcss-import'
 import type { ThemeConfig } from './theme/theme'
 import { demo } from './plugins/demo'
 const __dirname = dirname(fileURLToPath(import.meta.url))
-console.log('vitepress config', __dirname)
 
 // https://vitepress.dev/reference/site-config
 export default defineConfigWithTheme<ThemeConfig>({
