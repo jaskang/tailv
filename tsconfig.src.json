@@ -8,6 +8,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["./site/.vitepress/**/*", "src/**/*"],
+  "include": ["./site/.vitepress/**/*", "./src/**/*"],
   "exclude": ["./site/.vitepress/cache"]
 }

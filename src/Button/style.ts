@@ -2,39 +2,75 @@ import { tw } from '../utils/tw'
 
 // 'primary' | 'success' | 'warning' | 'danger'
 
+function createVariantColor(variant: 'default' | 'ghost' | 'secondary', color?: string) {
+  if (variant === 'ghost') {
+    if (color) {
+      return {
+        '--btn-bg-color': '',
+        '--btn-text-color': '',
+        '--btn-border-color': '',
+        '--btn-bg-color-hover': '',
+        '--btn-text-color-hover': '',
+        '--btn-border-color-hover': '',
+      }
+    } else {
+      return `bg-transparent hover:bg-slate-100`
+    }
+  } else if ('secondary') {
+    if (color) {
+      return `bg-transparent text-${color} hover:bg-${color}-100`
+    } else {
+      return `bg-transparent hover:bg-slate-100`
+    }
+  } else {
+    if (color) {
+      return `bg-transparent text-${color} hover:bg-${color}-100`
+    } else {
+      return `border-slate-300 bg-white text-current enabled:hover:bg-slate-50`
+    }
+  }
+}
+
 export const createButtonCss = tw(
-  `inline-flex appearance-none items-center justify-center border border-solid text-sm font-medium  transition-colors
-  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500`,
+  `inline-flex appearance-none items-center justify-center border border-[--btn-border-color] bg-[--btn-bg-color] 
+  text-sm font-medium text-[--btn-text-color] outline-[--btn-outline-color]
+  transition-colors 
+  focus-visible:outline
+  focus-visible:outline-2 
+  focus-visible:outline-offset-2 
+  enabled:hover:border-[--btn-border-color-hover] 
+  enabled:hover:bg-[--btn-bg-color-hover] 
+  enabled:hover:text-[--btn-text-color-hover]
+  `,
   {
     compoundVariants: [
       { size: 'sm', square: true, class: 'w-8' },
       { size: 'md', square: true, class: 'w-9' },
       { size: 'lg', square: true, class: 'w-10' },
-
       {
         variant: 'default',
         color: 'normal',
-        class: ` border-slate-300 bg-white text-current enabled:hover:bg-slate-50`,
+        class: `border-slate-300 bg-white text-current enabled:hover:bg-slate-50`,
       },
       {
         variant: 'default',
         color: 'primary',
-        class: `bg-primary-500 enabled:hover:bg-primary-600 border-transparent text-white`,
+        class: `border-transparent bg-primary-500 text-white enabled:hover:bg-primary-600`,
       },
       {
         variant: 'default',
         color: 'success',
-        class: `bg-success-500 enabled:hover:bg-success-600 border-transparent  text-white`,
+        class: `border-transparent bg-success-500 text-white  enabled:hover:bg-success-600`,
       },
       {
         variant: 'default',
         color: 'warning',
-        class: `bg-warning-500 enabled:hover:bg-warning-600 border-transparent  text-white`,
+        class: `border-transparent bg-warning-500 text-white  enabled:hover:bg-warning-600`,
       },
       {
         variant: 'default',
         color: 'danger',
-        class: `bg-danger-500 enabled:hover:bg-danger-600 border-transparent  text-white`,
+        class: `border-transparent bg-danger-500 text-white  enabled:hover:bg-danger-600`,
       },
 
       {
@@ -45,22 +81,22 @@ export const createButtonCss = tw(
       {
         variant: 'secondary',
         color: 'primary',
-        class: `bg-primary-100 text-primary-600 enabled:hover:bg-primary-200 border-transparent`,
+        class: `border-transparent bg-primary-100 text-primary-600 enabled:hover:bg-primary-200`,
       },
       {
         variant: 'secondary',
         color: 'success',
-        class: `bg-success-100 text-success-600 enabled:hover:bg-success-200  border-transparent`,
+        class: `border-transparent bg-success-100 text-success-600  enabled:hover:bg-success-200`,
       },
       {
         variant: 'secondary',
         color: 'warning',
-        class: `bg-warning-100 text-warning-600 enabled:hover:bg-warning-200  border-transparent`,
+        class: `border-transparent bg-warning-100 text-warning-600  enabled:hover:bg-warning-200`,
       },
       {
         variant: 'secondary',
         color: 'danger',
-        class: `bg-danger-100 text-danger-600 enabled:hover:bg-danger-200  border-transparent`,
+        class: `border-transparent bg-danger-100 text-danger-600  enabled:hover:bg-danger-200`,
       },
 
       {
@@ -71,22 +107,22 @@ export const createButtonCss = tw(
       {
         variant: 'ghost',
         color: 'primary',
-        class: `text-primary-600 enabled:hover:bg-primary-200 border-transparent bg-transparent`,
+        class: `border-transparent bg-transparent text-primary-600 enabled:hover:bg-primary-200`,
       },
       {
         variant: 'ghost',
         color: 'success',
-        class: `text-success-600 enabled:hover:bg-success-200 border-transparent  bg-transparent`,
+        class: `border-transparent bg-transparent text-success-600  enabled:hover:bg-success-200`,
       },
       {
         variant: 'ghost',
         color: 'warning',
-        class: `text-warning-600 enabled:hover:bg-warning-200 border-transparent  bg-transparent`,
+        class: `border-transparent bg-transparent text-warning-600  enabled:hover:bg-warning-200`,
       },
       {
         variant: 'ghost',
         color: 'danger',
-        class: `text-danger-600 enabled:hover:bg-danger-200 border-transparent  bg-transparent`,
+        class: `border-transparent bg-transparent text-danger-600  enabled:hover:bg-danger-200`,
       },
     ],
     variants: {
@@ -103,18 +139,37 @@ export const createButtonCss = tw(
         true: 'rounded-full',
       },
       size: {
-        lg: ['h-10 py-2.5 px-3.5', ''],
-        md: ['h-9 py-2 px-3', ''],
-        sm: ['h-8 py-1.5 px-2.5', ''],
+        lg: ['h-10 px-3.5 py-2.5', ''],
+        md: ['h-9 px-3 py-2', ''],
+        sm: ['h-8 px-2.5 py-1.5', ''],
       },
       square: {
         false: '',
         true: ['overflow-hidden px-0', 'px-2.5 px-3 px-3.5'],
       },
+
+      // {
+      //   variant: 'default',
+      //   color: 'normal',
+      //   class: `border-slate-300 bg-white text-current enabled:hover:bg-slate-50`,
+      // },
+      // {
+      //   variant: 'default',
+      //   color: 'primary',
+      //   class: `border-transparent bg-primary-500 text-white enabled:hover:bg-primary-600`,
+      // },
+
+      // bg-[--btn-bg-color]
+      // text-[--btn-text-color]
+      // border-[--btn-border-color]
+      // enabled:hover:bg-[--btn-bg-color-hover]
+      // enabled:hover:text-[--btn-text-color-hover]
+      // enabled:hover:border-[--btn-border-color-hover]
+
       variant: {
-        default: `shadow-sm  `,
-        secondary: `shadow-sm  `,
-        ghost: ``,
+        default: 'shadow-sm',
+        secondary: 'shadow-sm',
+        ghost: '',
       },
       color: {
         normal: '',
