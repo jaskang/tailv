@@ -2,31 +2,75 @@ import { tw } from '../utils/tw'
 
 // 'primary' | 'success' | 'warning' | 'danger'
 
-function createVariantColor(variant: 'default' | 'ghost' | 'secondary', color?: string) {
+type ButtonCssVar = {
+  '--btn-bg-color': string
+  '--btn-text-color': string
+  '--btn-border-color': string
+  '--btn-bg-color-hover': string
+  '--btn-text-color-hover': string
+  '--btn-border-color-hover': string
+}
+
+export function createButtonVar(variant: 'default' | 'ghost' | 'secondary', color?: string): ButtonCssVar {
   if (variant === 'ghost') {
     if (color) {
       return {
-        '--btn-bg-color': '',
-        '--btn-text-color': '',
-        '--btn-border-color': '',
-        '--btn-bg-color-hover': '',
-        '--btn-text-color-hover': '',
-        '--btn-border-color-hover': '',
+        '--btn-bg-color': `var(--color-transparent)`,
+        '--btn-text-color': `var(--color-${color}-600)`,
+        '--btn-border-color': `var(--color-transparent)`,
+        '--btn-bg-color-hover': `var(--color-${color}-200)`,
+        '--btn-text-color-hover': `var(--btn-text-color)`,
+        '--btn-border-color-hover': `var(--btn-border-color)`,
       }
     } else {
-      return `bg-transparent hover:bg-slate-100`
+      return {
+        '--btn-bg-color': `var(--color-transparent)`,
+        '--btn-text-color': `var(--color-slate-700)`,
+        '--btn-border-color': `var(--color-transparent)`,
+        '--btn-bg-color-hover': `var(--color-slate-200)`,
+        '--btn-text-color-hover': `var(--btn-text-color)`,
+        '--btn-border-color-hover': `var(--btn-border-color)`,
+      }
     }
-  } else if ('secondary') {
+  } else if (variant === 'secondary') {
     if (color) {
-      return `bg-transparent text-${color} hover:bg-${color}-100`
+      return {
+        '--btn-bg-color': `var(--color-${color}-100)`,
+        '--btn-text-color': `var(--color-${color}-600)`,
+        '--btn-border-color': `var(--color-transparent)`,
+        '--btn-bg-color-hover': `var(--color-${color}-200)`,
+        '--btn-text-color-hover': `var(--btn-text-color)`,
+        '--btn-border-color-hover': `var(--btn-border-color)`,
+      }
     } else {
-      return `bg-transparent hover:bg-slate-100`
+      return {
+        '--btn-bg-color': `var(--color-slate-100)`,
+        '--btn-text-color': `var(--color-slate-700)`,
+        '--btn-border-color': `var(--color-transparent)`,
+        '--btn-bg-color-hover': `var(--color-slate-200)`,
+        '--btn-text-color-hover': `var(--btn-text-color)`,
+        '--btn-border-color-hover': `var(--btn-border-color)`,
+      }
     }
   } else {
     if (color) {
-      return `bg-transparent text-${color} hover:bg-${color}-100`
+      return {
+        '--btn-bg-color': `var(--color-${color}-500)`,
+        '--btn-text-color': `var(--color-white)`,
+        '--btn-border-color': `var(--color-transparent)`,
+        '--btn-bg-color-hover': `var(--color-${color}-600)`,
+        '--btn-text-color-hover': `var(--btn-text-color)`,
+        '--btn-border-color-hover': `var(--btn-border-color)`,
+      }
     } else {
-      return `border-slate-300 bg-white text-current enabled:hover:bg-slate-50`
+      return {
+        '--btn-bg-color': `var(--color-white)`,
+        '--btn-text-color': `var(--color-slate-700)`,
+        '--btn-border-color': `var(--color-slate-300)`,
+        '--btn-bg-color-hover': `var(--color-slate-50)`,
+        '--btn-text-color-hover': `var(--btn-text-color)`,
+        '--btn-border-color-hover': `var(--btn-border-color)`,
+      }
     }
   }
 }
@@ -47,83 +91,6 @@ export const createButtonCss = tw(
       { size: 'sm', square: true, class: 'w-8' },
       { size: 'md', square: true, class: 'w-9' },
       { size: 'lg', square: true, class: 'w-10' },
-      {
-        variant: 'default',
-        color: 'normal',
-        class: `border-slate-300 bg-white text-current enabled:hover:bg-slate-50`,
-      },
-      {
-        variant: 'default',
-        color: 'primary',
-        class: `border-transparent bg-primary-500 text-white enabled:hover:bg-primary-600`,
-      },
-      {
-        variant: 'default',
-        color: 'success',
-        class: `border-transparent bg-success-500 text-white  enabled:hover:bg-success-600`,
-      },
-      {
-        variant: 'default',
-        color: 'warning',
-        class: `border-transparent bg-warning-500 text-white  enabled:hover:bg-warning-600`,
-      },
-      {
-        variant: 'default',
-        color: 'danger',
-        class: `border-transparent bg-danger-500 text-white  enabled:hover:bg-danger-600`,
-      },
-
-      {
-        variant: 'secondary',
-        color: 'normal',
-        class: `border-transparent bg-slate-100 text-current enabled:hover:bg-slate-200`,
-      },
-      {
-        variant: 'secondary',
-        color: 'primary',
-        class: `border-transparent bg-primary-100 text-primary-600 enabled:hover:bg-primary-200`,
-      },
-      {
-        variant: 'secondary',
-        color: 'success',
-        class: `border-transparent bg-success-100 text-success-600  enabled:hover:bg-success-200`,
-      },
-      {
-        variant: 'secondary',
-        color: 'warning',
-        class: `border-transparent bg-warning-100 text-warning-600  enabled:hover:bg-warning-200`,
-      },
-      {
-        variant: 'secondary',
-        color: 'danger',
-        class: `border-transparent bg-danger-100 text-danger-600  enabled:hover:bg-danger-200`,
-      },
-
-      {
-        variant: 'ghost',
-        color: 'normal',
-        class: `border-transparent bg-transparent text-current enabled:hover:bg-slate-200`,
-      },
-      {
-        variant: 'ghost',
-        color: 'primary',
-        class: `border-transparent bg-transparent text-primary-600 enabled:hover:bg-primary-200`,
-      },
-      {
-        variant: 'ghost',
-        color: 'success',
-        class: `border-transparent bg-transparent text-success-600  enabled:hover:bg-success-200`,
-      },
-      {
-        variant: 'ghost',
-        color: 'warning',
-        class: `border-transparent bg-transparent text-warning-600  enabled:hover:bg-warning-200`,
-      },
-      {
-        variant: 'ghost',
-        color: 'danger',
-        class: `border-transparent bg-transparent text-danger-600  enabled:hover:bg-danger-200`,
-      },
     ],
     variants: {
       block: {
@@ -147,36 +114,10 @@ export const createButtonCss = tw(
         false: '',
         true: ['overflow-hidden px-0', 'px-2.5 px-3 px-3.5'],
       },
-
-      // {
-      //   variant: 'default',
-      //   color: 'normal',
-      //   class: `border-slate-300 bg-white text-current enabled:hover:bg-slate-50`,
-      // },
-      // {
-      //   variant: 'default',
-      //   color: 'primary',
-      //   class: `border-transparent bg-primary-500 text-white enabled:hover:bg-primary-600`,
-      // },
-
-      // bg-[--btn-bg-color]
-      // text-[--btn-text-color]
-      // border-[--btn-border-color]
-      // enabled:hover:bg-[--btn-bg-color-hover]
-      // enabled:hover:text-[--btn-text-color-hover]
-      // enabled:hover:border-[--btn-border-color-hover]
-
       variant: {
         default: 'shadow-sm',
         secondary: 'shadow-sm',
         ghost: '',
-      },
-      color: {
-        normal: '',
-        primary: '',
-        success: '',
-        warning: '',
-        danger: '',
       },
     },
   }

@@ -26,7 +26,7 @@ const { frontmatter, page, theme } = useDataByTheme()
           </ScrollArea>
         </div>
       </div>
-      <div class="relative flex-1 px-4 py-10 sm:px-6 md:px-8">
+      <div class="relative flex-1 px-4 py-10 sm:px-8 lg:px-12">
         <header></header>
         <Content class="vp-doc prose prose-slate max-w-none dark:prose-invert" />
         <footer></footer>

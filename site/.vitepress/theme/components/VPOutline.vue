@@ -8,14 +8,14 @@ const slots = defineSlots<{ default?(_: {}): any }>()
 const { title, items, current } = useOutline()
 </script>
 <template>
-  <div class="px-8">
+  <div>
     <h5 class="mb-4 text-sm font-semibold leading-6 text-slate-900">{{ title }}</h5>
     <Anchor :current="current?.id" :items="items" :offset="135">
       <template #item="{ label, key, link, deep, isActive }">
         <a
           :href="link"
           class="group flex items-start"
-          :class="[isActive ? 'text-primary-500  font-semibold' : 'hover:text-slate-900 ']"
+          :class="[isActive ? 'font-semibold  text-primary-500' : 'hover:text-slate-900 ']"
           :style="{
             paddingLeft: deep * 0.5 + 'rem',
           }"

@@ -4,7 +4,7 @@ import { computed, type PropType } from 'vue'
 import Loading from '../Icon/Loading.vue'
 import type { ColorAlias } from '@/utils/theme'
 
-import { createButtonCss } from './style'
+import { createButtonCss, createButtonVar } from './style'
 
 defineOptions({ name: 'Button' })
 defineEmits<{ click: [Event] }>()
@@ -32,16 +32,17 @@ const css = computed(() =>
   createButtonCss({
     variant: props.variant,
     size: props.size,
-    color: props.color || 'normal',
     pill: props.pill,
     square: props.square,
     block: props.block,
     disabled: props.disabled,
   })
 )
+
+const style = computed(() => createButtonVar(props.variant, props.color))
 </script>
 <template>
-  <button :class="css" :disabled="props.disabled" type="button">
+  <button :class="css" :disabled="props.disabled" type="button" :style>
     <template v-if="loading">
       <i class="h-[1em] w-[1em] [&_+_*]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">
         <Loading class="animate-spin" />

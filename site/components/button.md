@@ -102,6 +102,7 @@ hello: world
   <div class="flex flex-wrap gap-2">
     <Button loading>Button</Button>
     <Button color="primary" loading> Primary </Button>
+    <Button color="lime" loading> Primary </Button>
   </div>
 </template>
 ```
