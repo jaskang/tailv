@@ -1,6 +1,6 @@
 export type AnchorItem = {
   key: string
-  label?: string
+  title?: string
   link?: string
   target?: string
   children?: AnchorItem[]

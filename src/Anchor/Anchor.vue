@@ -29,13 +29,13 @@ const onSelect = (item: AnchorItem) => {
             class="group flex cursor-pointer items-start border-l-2 no-underline"
             :class="[
               current === item.key
-                ? 'border-primary-400 text-primary-500 font-semibold'
+                ? 'border-primary-400 font-semibold text-primary-500'
                 : 'border-transparent text-slate-700 hover:text-slate-900 ',
             ]"
             :href="item.link"
             :style="{ paddingLeft: deep + 1 + 'rem' }"
           >
-            {{ item.label || item.key }}
+            {{ item.title || item.key }}
           </a>
         </slot>
       </div>

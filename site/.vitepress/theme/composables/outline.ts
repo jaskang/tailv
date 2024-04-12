@@ -4,7 +4,7 @@ import { useDataByTheme } from '../utils'
 
 export function useOutline() {
   const container = ref<HTMLElement>()
-  const { theme } = useDataByTheme()
+  const { theme, page } = useDataByTheme()
   const title = ref(theme.value.outline?.label || 'On this page')
   const { headers, current } = useAnchor(container, {
     range: theme.value.outline?.level,

@@ -22,9 +22,11 @@ const isCurrent = (item: MenuItemRawType) => {
 <template>
   <nav class="grid gap-1 p-1">
     <template v-for="item in items">
-      <div v-if="isDividerItem(item)" class="h-[1px] w-full shrink-0 bg-slate-200" />
-      <div v-if="isTitleItem(item)" class="px-3 text-xs font-medium leading-6 text-slate-400">{{ item.label }}</div>
-      <MenuItem v-if="isRawItem(item)" :item="item" :current="current" />
+      <div v-if="isDividerItem(item)" class="menu__divider h-[1px] w-full shrink-0 bg-slate-200" />
+      <div v-if="isTitleItem(item)" class="menu__title px-3 text-xs font-medium leading-6 text-slate-400">
+        {{ item.label }}
+      </div>
+      <MenuItem class="menu__item" v-if="isRawItem(item)" :item="item" :current="current" />
     </template>
   </nav>
 </template>

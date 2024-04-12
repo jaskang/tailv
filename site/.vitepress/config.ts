@@ -15,6 +15,41 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'My Awesome Project',
   description: 'A VitePress Site',
+  markdown: {
+    // lineNumbers: true,
+    headers: true,
+    theme: { light: 'github-light', dark: 'github-dark' },
+    async shikiSetup(shiki) {
+      await shiki.loadTheme('github-light', 'github-dark')
+    },
+  },
+  themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
+    nav: [
+      { title: 'Home', link: '/', activeMatch: '/' },
+      { title: 'Components', link: '/components/button', activeMatch: '/components/' },
+    ],
+
+    sidebar: {
+      基础: [
+        { title: 'Button', link: '/components/button' },
+        { title: 'Anchor', link: '/components/anchor' },
+        { title: 'ScrollArea', link: '/components/scroll-area' },
+      ],
+      表单: [
+        { title: 'Checkbox', link: '/components/checkbox' },
+        { title: 'Radio', link: '/components/radio' },
+        { title: 'Input', link: '/components/input' },
+        { title: 'Select', link: '/components/select' },
+        { title: 'Switch', link: '/components/switch' },
+      ],
+      展示: [{ title: 'Menu', link: '/components/menu' }],
+      反馈: [
+        { title: 'Popover', link: '/components/popover' },
+        { title: 'Tooltip', link: '/components/tooltip' },
+      ],
+    },
+  },
   vite: {
     plugins: [jsx(), demo()],
     resolve: {
@@ -34,67 +69,5 @@ export default defineConfigWithTheme<ThemeConfig>({
         ],
       },
     },
-  },
-  markdown: {
-    // lineNumbers: true,
-    theme: { light: 'github-light', dark: 'github-dark' },
-    async shikiSetup(shiki) {
-      await shiki.loadTheme('github-light', 'github-dark')
-    },
-    // async shikiSetup(shiki) {
-    //   await shiki.loadTheme(...Object.keys(bundledThemes) as any)
-    // },
-    // codeTransformers: [
-    //   {
-    //     preprocess(code, options) {
-    //       this.__source__ = code
-    //       console.log(code, options)
-    //     },
-    //     postprocess(html, options) {
-    //       const isDemo = options.meta?.__raw?.split(' ').includes('demo')
-    //       console.log(html, options, isDemo, this)
-    //       return `${this.__source__}\n${html}`
-    //     },
-    //   },
-    // ],
-  },
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { title: 'Home', link: '/', activeMatch: '/' },
-      { title: 'Components', link: '/components/button', activeMatch: '/components/' },
-    ],
-
-    sidebar: [
-      {
-        title: '基础',
-        children: [
-          { key: 'Button', link: '/components/button' },
-          { key: 'Anchor', link: '/components/anchor' },
-          { key: 'ScrollArea', link: '/components/scroll-area' },
-        ],
-      },
-      {
-        title: '表单',
-        children: [
-          { key: 'Checkbox', link: '/components/checkbox' },
-          { key: 'Radio', link: '/components/radio' },
-          { key: 'Input', link: '/components/input' },
-          { key: 'Select', link: '/components/select' },
-          { key: 'Switch', link: '/components/switch' },
-        ],
-      },
-      {
-        title: '展示',
-        children: [{ key: 'Menu', link: '/components/menu' }],
-      },
-      {
-        title: '反馈',
-        children: [
-          { key: 'Popover', link: '/components/popover' },
-          { key: 'Tooltip', link: '/components/tooltip' },
-        ],
-      },
-    ],
   },
 })
