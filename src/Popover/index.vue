@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type PropType, ref } from 'vue'
-import { Popper, type PopperPlacement, type PopperSizeMode, type PopperTrigger } from '../Base/Popper'
+import { Popper, type PopperPlacement, type PopperSizeMode, type PopperTrigger } from '../Base'
 
 defineOptions({ name: 'Popover' })
 defineProps({

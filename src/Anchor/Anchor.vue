@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, type PropType } from 'vue'
 import type { AnchorItem } from './types'
+import { List } from '../Base'
 
 defineOptions({ name: 'Anchor' })
 const emit = defineEmits<{ change: [key: string, item: AnchorItem] }>()
@@ -16,6 +17,7 @@ const onSelect = (item: AnchorItem) => {
 }
 </script>
 <template>
+  <List :items=""> </List>
   <div class="text-sm leading-6 text-slate-700" :class="[!isCustom && deep === 0 ? 'border-l border-slate-200 ' : '']">
     <div
       v-for="item in items"

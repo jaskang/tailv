@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, type PropType } from 'vue'
 import type { MenuItemRawType } from './types'
-import { Popper } from '../Base/Popper'
+import { Popper } from '../Base'
 import Menu from './Menu.vue'
 
 defineOptions({ name: 'MenuItem' })

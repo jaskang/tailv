@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type PropType } from 'vue'
 
-defineOptions({ name: 'RingInput' })
+defineOptions({ name: 'BaseInput' })
 
 const borderMap = {
   default: 'ring-slate-300',
@@ -37,7 +37,7 @@ const props = defineProps({
     :disabled="disabled"
     :data-focused="focused"
     :class="[
-      `z-ring-input flex items-center rounded-md text-sm ring-1 shadow-sm transition-all  ring-inset
+      `z-ring-input flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset  transition-all
       focus-within:z-10 focus-within:ring-2 
       data-[focused=true]:z-10 data-[focused=true]:ring-2 
       ${focusedBorderMap[status]} 

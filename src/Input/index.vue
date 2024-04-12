@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type VNode, ref } from 'vue'
 import { useModelValue } from '../use/useModelValue'
-import RingInput from '../Base/RingInput.vue'
+import { BaseInput } from '../Base'
 
 defineOptions({ name: 'Input' })
 const emit = defineEmits<{
@@ -61,7 +61,7 @@ defineExpose({
 })
 </script>
 <template>
-  <RingInput :disabled="disabled">
+  <BaseInput :disabled="disabled">
     <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center text-slate-500">
       <slot name="prefix">
         <span class="pl-3">
@@ -71,7 +71,7 @@ defineExpose({
     </span>
     <input
       ref="inputRef"
-      class="z-input_input disabled block w-full flex-1 border-none bg-transparent py-1.5 px-3 text-sm leading-6 outline-none placeholder:text-slate-400 focus:outline-none"
+      class="z-input_input disabled block w-full flex-1 border-none bg-transparent px-3 py-1.5 text-sm leading-6 outline-none placeholder:text-slate-400 focus:outline-none"
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,
@@ -95,5 +95,5 @@ defineExpose({
         </span>
       </slot>
     </span>
-  </RingInput>
+  </BaseInput>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type PropType } from 'vue'
-import { Popper, type PopperPlacement } from '../Base/Popper'
+import { Popper, type PopperPlacement } from '../Base'
 
 defineOptions({ name: 'Tooltip' })
 defineProps({
@@ -12,7 +12,7 @@ defineProps({
   <Popper trigger="hover" :placement="placement">
     <slot />
     <template #content>
-      <div class="z-tooltip ring-opacity-5 rounded bg-white ring-1 shadow-md ring-slate-200">
+      <div class="z-tooltip rounded bg-white shadow-md ring-1 ring-slate-200 ring-opacity-5">
         <slot name="content">
           <div class="px-2">
             {{ content }}
