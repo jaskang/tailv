@@ -4,7 +4,9 @@ hello: world
 
 # Button
 
-## Default
+## Variant
+
+### Default
 
 ```vue demo title=默认样式
 <template>
@@ -18,7 +20,7 @@ hello: world
 </template>
 ```
 
-## secondary Variant
+### secondary Variant
 
 ```vue{4} demo
 <template>
@@ -32,7 +34,7 @@ hello: world
 </template>
 ```
 
-## ghost Variant
+### ghost Variant
 
 ```vue demo
 <template>

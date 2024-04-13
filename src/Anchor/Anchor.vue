@@ -1,51 +1,33 @@
 <script setup lang="ts">
 import { ref, computed, type PropType } from 'vue'
 import type { AnchorItem } from './types'
-import { List } from '../Base'
+import { List, type IListItem } from '../Base'
 
 defineOptions({ name: 'Anchor' })
 const emit = defineEmits<{ change: [key: string, item: AnchorItem] }>()
 const slots = defineSlots<{ item?: (_: AnchorItem & { deep: number; isActive: boolean }) => any }>()
 const props = defineProps({
   current: String,
-  items: Array as PropType<AnchorItem[]>,
-  deep: { type: Number, default: 0 },
+  items: Array as PropType<IListItem[]>,
 })
-const isCustom = computed(() => !!slots.item)
-const onSelect = (item: AnchorItem) => {
+const selectHandler = (item: IListItem, deep: number) => {
   emit('change', item.key, item)
 }
 </script>
 <template>
-  <List :items=""> </List>
-  <div class="text-sm leading-6 text-slate-700" :class="[!isCustom && deep === 0 ? 'border-l border-slate-200 ' : '']">
-    <div
-      v-for="item in items"
-      :key="item.key"
-      :class="[!isCustom && deep === 0 ? '-ml-px' : '']"
-      @click="onSelect(item)"
-    >
-      <div class="py-1">
-        <slot name="item" v-bind="item" :deep="deep" :isActive="current === item.key">
-          <a
-            class="group flex cursor-pointer items-start border-l-2 no-underline"
-            :class="[
-              current === item.key
-                ? 'border-primary-400 font-semibold text-primary-500'
-                : 'border-transparent text-slate-700 hover:text-slate-900 ',
-            ]"
-            :href="item.link"
-            :style="{ paddingLeft: deep + 1 + 'rem' }"
-          >
-            {{ item.title || item.key }}
-          </a>
-        </slot>
+  <List class="border-l border-slate-200 text-sm leading-6 text-slate-700" :items :current @select="selectHandler">
+    <template #item="{ item, deep, active }">
+      <div class="group -ml-px flex py-1">
+        <a
+          class="flex cursor-pointer border-l-2 border-transparent text-slate-700 no-underline hover:text-slate-900 data-[active=true]:border-primary-400 data-[active=true]:font-semibold data-[active=true]:text-primary-500 hover:data-[active=true]:text-primary-500"
+          :style="{ paddingLeft: deep + 1 + 'rem' }"
+          :data-active="active"
+          :href="item.link"
+          :target="item.target"
+        >
+          {{ item.label || item.key }}
+        </a>
       </div>
-      <Anchor v-if="item.children && item.children.length > 0" :items="item.children" :deep="deep + 1">
-        <template v-if="slots.item" #item="props">
-          <slot name="item" v-bind="props" />
-        </template>
-      </Anchor>
-    </div>
-  </div>
+    </template>
+  </List>
 </template>
