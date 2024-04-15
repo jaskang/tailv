@@ -1,21 +1,31 @@
 # Anchor
 
 ```vue demo
+<script setup>
+import { ref } from 'vue'
+const current = ref('B-2')
+const changeHandler = key => {
+  console.log(key)
+  current.value = key
+}
+</script>
 <template>
   <div class="not-prose">
     <Anchor
+      :current="current"
+      @change="changeHandler"
       :items="[
-        { title: 'A', key: 'A' },
+        { title: 'A', id: 'A' },
         {
           title: 'B',
-          key: 'B',
+          id: 'B',
           children: [
-            { title: 'B-1', key: 'B-1' },
-            { title: 'B-2', key: 'B-2' },
-            { title: 'B-3', key: 'B-3' },
+            { title: 'B-1', id: 'B-1' },
+            { title: 'B-2', id: 'B-2' },
+            { title: 'B-3', id: 'B-3' },
           ],
         },
-        { title: 'C', key: 'C' },
+        { title: 'C', id: 'C' },
       ]"
     />
   </div>

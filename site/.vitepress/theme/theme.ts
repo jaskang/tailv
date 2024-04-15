@@ -1,4 +1,4 @@
-import { type AnchorItem } from 'tailv'
+import { type IAnchorItem } from 'tailv'
 
 export type NavItem = NavItemWithLink
 

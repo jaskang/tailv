@@ -3,7 +3,14 @@
   "compilerOptions": {
     "composite": true,
     "target": "ESNext",
-    "allowJs": true
+    "allowJs": true,
+    "types": ["node"]
   },
-  "include": ["./vite.config.ts", "./prettier.config.js", "./eslint.config.js", "./preset.js"]
+  "include": [
+    "./vite.config.ts",
+    "./site/.vitepress/config.ts",
+    "./prettier.config.js",
+    "./eslint.config.js",
+    "./preset.js"
+  ]
 }

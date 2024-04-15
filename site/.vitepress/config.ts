@@ -7,6 +7,7 @@ import nesting from 'tailwindcss/nesting'
 import autoprefixer from 'autoprefixer'
 import tailwindcss from 'tailwindcss'
 import atImport from 'postcss-import'
+import VueDevTools from 'vite-plugin-vue-devtools'
 import type { ThemeConfig } from './theme/theme'
 import { demo } from './plugins/demo'
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -51,7 +52,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   vite: {
-    plugins: [jsx(), demo()],
+    plugins: [jsx(), demo(), VueDevTools()],
     resolve: {
       alias: [
         { find: /^tailv$/, replacement: resolve(__dirname, '../../src') },

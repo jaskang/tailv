@@ -3,7 +3,7 @@ import type { Plugin } from 'vue'
 import { default as Button } from './Button/index.vue'
 import { Checkbox, CheckboxGroup } from './Checkbox'
 import { Radio, RadioGroup } from './Radio'
-import { Anchor, type AnchorItem } from './Anchor'
+import { Anchor, type IAnchorItem } from './Anchor'
 import { ScrollArea } from './ScrollArea'
 import { default as Input } from './Input/index.vue'
 import { Select, type SelectOption } from './Select'
@@ -35,7 +35,7 @@ export {
 }
 
 export type {
-  AnchorItem,
+  IAnchorItem,
   AnchorRange,
   AnchorHeader,
   MenuItemRawType,

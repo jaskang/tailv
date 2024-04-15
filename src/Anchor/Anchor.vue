@@ -1,42 +1,40 @@
 <script setup lang="ts">
 import { ref, computed, type PropType } from 'vue'
-import type { AnchorItem } from './types'
+import type { IAnchorItem } from './types'
 import { List, type IListItem } from '../Base'
+import { toListItem, findAnchorItem, getItemOffset } from '@/Anchor/utils'
 
 defineOptions({ name: 'Anchor' })
-const emit = defineEmits<{ change: [key: string, item: AnchorItem] }>()
-const slots = defineSlots<{ item?: (_: AnchorItem & { deep: number; isActive: boolean }) => any }>()
+const emit = defineEmits<{ change: [key: string, item: IAnchorItem] }>()
 const props = defineProps({
   current: String,
-  items: Array as PropType<IListItem[]>,
+  items: {
+    type: Array as PropType<IAnchorItem[]>,
+    default: () => [],
+  },
 })
+
+const items = computed(() => toListItem(props.items))
 const selectHandler = (item: IListItem, deep: number) => {
-  emit('change', item.key, item)
+  emit('change', item.key, findAnchorItem(props.items, item.key)!)
 }
 
-// 找到 current 在 items 中的位置，每个 item 占 1rem ，有 children 需要递归展开
-const getCurrentOffset = (items: IListItem[]) => {
-  let offset = 0
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i]
-    if (item.key === props.current) {
-      return offset
-    }
-    if (item.children && item.children.length > 0) {
-      offset += 1
-      offset += getCurrentOffset(item.children)
-    }
-  }
-  return 0
-}
+const inkOffset = computed(() => {
+  const offset = getItemOffset(props.items, props.current)
+  return offset >= 0 ? `translate3D(0, ${offset * 1.75}rem , 0)` : ''
+})
 </script>
 <template>
   <div class="relative">
-    <List class="border-l-2 border-slate-200 text-sm leading-6" :items :current @select="selectHandler">
+    <List class="border-l-2 border-slate-200 text-sm leading-6" :items :current>
       <template #item="{ item, deep, active }">
-        <div class="group py-1" :style="{ paddingLeft: deep + 1 + 'rem' }">
+        <div
+          class="group cursor-pointer py-1"
+          :style="{ paddingLeft: deep + 1 + 'rem' }"
+          @click="selectHandler(item, deep)"
+        >
           <a
-            class="block cursor-pointer text-sm text-slate-700 no-underline hover:text-slate-900 data-[active=true]:font-semibold data-[active=true]:text-primary-500 hover:data-[active=true]:text-primary-500"
+            class="block text-sm text-slate-700 no-underline hover:text-slate-900 data-[active=true]:font-semibold data-[active=true]:text-primary-500 hover:data-[active=true]:text-primary-500"
             :data-active="active"
             :href="item.link"
             :target="item.target"
@@ -46,6 +44,10 @@ const getCurrentOffset = (items: IListItem[]) => {
         </div>
       </template>
     </List>
-    <div class="absolute left-0 top-0 h-4 w-[2px] bg-primary-500"></div>
+    <div
+      v-if="inkOffset"
+      class="absolute left-0 top-1 h-5 w-[2px] rounded-sm bg-primary-500 transition-all"
+      :style="{ transform: inkOffset }"
+    ></div>
   </div>
 </template>

@@ -2,7 +2,7 @@ import { computed, onMounted, onUnmounted, ref, watch, watchEffect, watchPostEff
 
 import { normalize, useDataByTheme } from '../utils'
 import { useRoute } from 'vitepress'
-import { type AnchorItem, type MenuItemType } from 'tailv'
+import { type IAnchorItem, type MenuItemType } from 'tailv'
 import type { Sidebar } from '../theme'
 
 function sidebarToMenuItem(sidebar: Sidebar[]): MenuItemType[] {
