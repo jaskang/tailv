@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { Anchor } from 'tailv'
-import { usePageHeaders } from '../composables/outline'
+import { useOutline } from '../composables/outline'
 
 defineOptions({ name: 'VPOutline' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
-const { title, headers, current } = usePageHeaders()
+
+const { title, headers, current } = useOutline()
 </script>
 <template>
   <div>

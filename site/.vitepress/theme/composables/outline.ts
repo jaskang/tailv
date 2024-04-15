@@ -1,4 +1,4 @@
-import { type AnchorHeader, type IAnchorItem, useAnchor } from 'tailv'
+import { type IAnchorItem, useAnchor } from 'tailv'
 import { computed, onMounted, ref } from 'vue'
 import { useDataByTheme } from '../utils'
 import type { Header } from 'vitepress'
@@ -12,11 +12,11 @@ function headersToAnchorItems(headers: Header[]): IAnchorItem[] {
   }))
 }
 
-export function usePageHeaders() {
+export function useOutline() {
   const { page } = useDataByTheme()
   const title = ref('On this page')
-  const current = ref('')
   const headers = computed(() => headersToAnchorItems(page.value.headers))
+  const { current } = useAnchor(headers, {})
 
   return {
     title,

@@ -45,7 +45,6 @@ const offsetY = computed(() =>
 )
 
 const handleSizeChange = () => {
-  console.log('handleSizeChange')
   if (viewportEl.value) {
     sizes.value = {
       content: {

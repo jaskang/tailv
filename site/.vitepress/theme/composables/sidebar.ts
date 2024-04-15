@@ -5,23 +5,27 @@ import { useRoute } from 'vitepress'
 import { type IAnchorItem, type MenuItemType } from 'tailv'
 import type { Sidebar } from '../theme'
 
-function sidebarToMenuItem(sidebar: Sidebar[]): MenuItemType[] {
+export type SidebarGroup = {
+  title: string
+  items: IAnchorItem[]
+}
+
+function sidebarToAnchorItems(sidebar: Sidebar[]): IAnchorItem[] {
   return sidebar.map(({ title, link, children }) => {
     return {
-      key: link,
-      label: title,
+      id: link,
+      title: title,
       link: link,
-      children: children ? sidebarToMenuItem(children) : [],
+      children: children ? sidebarToAnchorItems(children) : [],
     }
   })
 }
 
-function groupToMenu(sidebar: Record<string, Sidebar[]>): MenuItemType[] {
-  const ret: MenuItemType[] = []
+function groupToMenu(sidebar: Record<string, Sidebar[]>): SidebarGroup[] {
+  const ret: SidebarGroup[] = []
   const groups = Object.keys(sidebar || {})
   for (const group of groups) {
-    ret.push({ type: 'title', label: group })
-    ret.push(...sidebarToMenuItem(sidebar[group]))
+    ret.push({ title: group, items: sidebarToAnchorItems(sidebar[group]) })
   }
   return ret
 }
@@ -29,7 +33,7 @@ function groupToMenu(sidebar: Record<string, Sidebar[]>): MenuItemType[] {
 export function useSidebar() {
   const { theme } = useDataByTheme()
   const route = useRoute()
-  const items = computed(() => groupToMenu(theme.value.sidebar))
+  const groups = computed(() => groupToMenu(theme.value.sidebar))
 
   const current = computed(() => {
     return normalize(route.path) || ''
@@ -37,6 +41,6 @@ export function useSidebar() {
 
   return {
     current,
-    items,
+    groups,
   }
 }

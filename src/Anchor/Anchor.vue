@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, type PropType } from 'vue'
 import type { IAnchorItem } from './types'
-import { List, type IListItem } from '../Base'
-import { toListItem, findAnchorItem, getItemOffset } from '@/Anchor/utils'
+import { IndentList } from '../Base'
+import { getAnchorOffset } from './utils'
 
 defineOptions({ name: 'Anchor' })
-const emit = defineEmits<{ change: [key: string, item: IAnchorItem] }>()
+const emit = defineEmits<{ change: [item: IAnchorItem, deep: number] }>()
 const props = defineProps({
   current: String,
   items: {
@@ -14,36 +14,35 @@ const props = defineProps({
   },
 })
 
-const items = computed(() => toListItem(props.items))
-const selectHandler = (item: IListItem, deep: number) => {
-  emit('change', item.key, findAnchorItem(props.items, item.key)!)
+const selectHandler = (item: IAnchorItem, deep: number) => {
+  emit('change', item, deep)
 }
 
 const inkOffset = computed(() => {
-  const offset = getItemOffset(props.items, props.current)
+  const offset = getAnchorOffset(props.items, props.current)
   return offset >= 0 ? `calc(${offset} * 1.75rem)` : ''
 })
 </script>
 <template>
   <div class="relative">
-    <List class="border-l-2 border-slate-200 text-sm leading-6" :items :current>
-      <template #item="{ item, deep, active }">
+    <IndentList class="border-l-2 border-slate-200 text-sm leading-6" :items :current>
+      <template #item="{ item, deep }">
         <div
           class="group cursor-pointer py-1"
-          :style="{ paddingLeft: deep + 1 + 'rem' }"
+          :style="{ paddingLeft: deep + 0.75 + 'rem' }"
           @click="selectHandler(item, deep)"
         >
           <a
             class="block text-sm text-slate-700 no-underline hover:text-slate-900 data-[active=true]:font-semibold data-[active=true]:text-primary-500 hover:data-[active=true]:text-primary-500"
-            :data-active="active"
+            :data-active="current === item.id"
             :href="item.link"
             :target="item.target"
           >
-            {{ item.label || item.key }}
+            {{ item.title || item.id }}
           </a>
         </div>
       </template>
-    </List>
+    </IndentList>
     <div
       v-if="inkOffset"
       class="absolute left-0 top-1 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm bg-primary-500 transition-all"

@@ -3,7 +3,7 @@ import type { Plugin } from 'vue'
 import { default as Button } from './Button/index.vue'
 import { Checkbox, CheckboxGroup } from './Checkbox'
 import { Radio, RadioGroup } from './Radio'
-import { Anchor, type IAnchorItem } from './Anchor'
+import { Anchor, useAnchor, type IAnchorItem } from './Anchor'
 import { ScrollArea } from './ScrollArea'
 import { default as Input } from './Input/index.vue'
 import { Select, type SelectOption } from './Select'
@@ -12,7 +12,6 @@ import { Menu, type MenuItemRawType, type MenuItemType, type MenuItemTitleType, 
 import { default as Popover } from './Popover/index.vue'
 import { default as Tooltip } from './Tooltip/index.vue'
 import { default as SpaceCompact } from './Space/SpaceCompact.vue'
-import { useAnchor, type AnchorRange, type AnchorHeader } from './use/useAnchor'
 
 export {
   // components
@@ -34,16 +33,7 @@ export {
   useAnchor,
 }
 
-export type {
-  IAnchorItem,
-  AnchorRange,
-  AnchorHeader,
-  MenuItemRawType,
-  MenuItemType,
-  MenuItemTitleType,
-  MenuItemDividerType,
-  SelectOption,
-}
+export type { IAnchorItem, MenuItemRawType, MenuItemType, MenuItemTitleType, MenuItemDividerType, SelectOption }
 export const plugin: Plugin = {
   install(app, ...options) {
     app.component(Button.name!, Button)

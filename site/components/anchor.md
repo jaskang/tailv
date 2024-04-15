@@ -4,9 +4,8 @@
 <script setup>
 import { ref } from 'vue'
 const current = ref('B-2')
-const changeHandler = key => {
-  console.log(key)
-  current.value = key
+const changeHandler = item => {
+  current.value = item.id
 }
 </script>
 <template>
