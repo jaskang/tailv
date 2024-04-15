@@ -21,7 +21,7 @@ const selectHandler = (item: IListItem, deep: number) => {
 
 const inkOffset = computed(() => {
   const offset = getItemOffset(props.items, props.current)
-  return offset >= 0 ? `translate3D(0, ${offset * 1.75}rem , 0)` : ''
+  return offset >= 0 ? `calc(${offset} * 1.75rem)` : ''
 })
 </script>
 <template>
@@ -46,8 +46,8 @@ const inkOffset = computed(() => {
     </List>
     <div
       v-if="inkOffset"
-      class="absolute left-0 top-1 h-5 w-[2px] rounded-sm bg-primary-500 transition-all"
-      :style="{ transform: inkOffset }"
+      class="absolute left-0 top-1 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm bg-primary-500 transition-all"
+      :style="{ '--ink-offset': inkOffset }"
     ></div>
   </div>
 </template>

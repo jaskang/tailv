@@ -1,5 +1,3 @@
-import type { IListItem } from '@/Base'
-
 export type IAnchorItem = {
   /**
    * 链接标题
