@@ -25,7 +25,7 @@ const inkOffset = computed(() => {
 </script>
 <template>
   <div class="relative">
-    <IndentList class="border-l-2 border-slate-200 text-sm leading-6" :items :current>
+    <IndentList class="border-l-2 border-slate-200 text-sm leading-6 dark:border-slate-700" :items :current>
       <template #item="{ item, deep }">
         <div
           class="group cursor-pointer py-1"
