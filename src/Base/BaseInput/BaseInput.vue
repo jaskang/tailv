@@ -10,17 +10,17 @@ const borderMap = {
   danger: 'ring-danger-500',
 }
 const focusBorderMap = {
-  default: 'focus-within:ring-primary-500',
-  success: 'focus-within:ring-success-500',
-  warning: 'focus-within:ring-warning-500',
-  danger: 'focus-within:ring-danger-500',
+  default: 'focus-within:ring-primary-500 dark:focus-within:ring-primary-500',
+  success: 'focus-within:ring-success-500 dark:focus-within:ring-success-500',
+  warning: 'focus-within:ring-warning-500 dark:focus-within:ring-warning-500',
+  danger: 'focus-within:ring-danger-500 dark:focus-within:ring-danger-500',
 }
 
 const focusedBorderMap = {
-  default: 'data-[focused=true]:ring-primary-500',
-  success: 'data-[focused=true]:ring-success-500',
-  warning: 'data-[focused=true]:ring-warning-500',
-  danger: 'data-[focused=true]:ring-danger-500',
+  default: 'data-[focused=true]:ring-primary-500 dark:data-[focused=true]:ring-primary-500',
+  success: 'data-[focused=true]:ring-success-500 dark:data-[focused=true]:ring-success-500',
+  warning: 'data-[focused=true]:ring-warning-500 dark:data-[focused=true]:ring-warning-500',
+  danger: 'data-[focused=true]:ring-danger-500 dark:data-[focused=true]:ring-danger-500',
 }
 
 const props = defineProps({

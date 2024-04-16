@@ -11,7 +11,7 @@ console.log(page)
 </script>
 
 <template>
-  <div class="min-h-screen bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-400">
+  <div class="min-h-screen bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300">
     <VPNavBar></VPNavBar>
     <VPDoc v-if="frontmatter.layout !== false"></VPDoc>
     <VPPage v-else></VPPage>
