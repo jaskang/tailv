@@ -29,11 +29,11 @@ const inkOffset = computed(() => {
       <template #item="{ item, deep }">
         <div
           class="group cursor-pointer py-1"
-          :style="{ paddingLeft: deep + 0.75 + 'rem' }"
+          :style="{ paddingLeft: deep + 1 + 'rem' }"
           @click="selectHandler(item, deep)"
         >
           <a
-            class="block text-sm text-slate-700 no-underline hover:text-slate-900 data-[active=true]:font-semibold data-[active=true]:text-primary-500 hover:data-[active=true]:text-primary-500"
+            class="block text-sm text-slate-700 no-underline hover:text-primary-500 data-[active=true]:font-medium data-[active=true]:text-primary-500 dark:text-slate-400 dark:hover:text-primary-400 dark:data-[active=true]:text-primary-400"
             :data-active="current === item.id"
             :href="item.link"
             :target="item.target"

@@ -26,7 +26,7 @@ const showCode = ref(false)
 </script>
 <template>
   <div
-    class="demo-wrapper flex flex-col divide-y divide-slate-200 rounded ring-1 ring-slate-200 [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
+    class="demo-wrapper flex flex-col divide-y divide-slate-200 rounded ring-1 ring-slate-200 dark:divide-slate-700 dark:ring-slate-700 [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
     :style="{
       '--tw-prose-pre-bg': 'transparent',
     }"

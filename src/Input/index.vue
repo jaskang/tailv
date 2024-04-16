@@ -71,11 +71,10 @@ defineExpose({
     </span>
     <input
       ref="inputRef"
-      class="z-input_input disabled block w-full flex-1 border-none bg-transparent px-3 py-1.5 text-sm leading-6 outline-none placeholder:text-slate-400 focus:outline-none"
+      class="z-input_input disabled block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm leading-6 outline-none placeholder:text-slate-400 focus:outline-none"
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,
-        'cursor-pointer': readonly,
       }"
       style="box-shadow: none"
       type="text"

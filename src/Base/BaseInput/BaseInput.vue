@@ -4,7 +4,7 @@ import { type PropType } from 'vue'
 defineOptions({ name: 'BaseInput' })
 
 const borderMap = {
-  default: 'ring-slate-300',
+  default: 'ring-slate-300 dark:ring-slate-600',
   success: 'ring-success-500',
   warning: 'ring-warning-500',
   danger: 'ring-danger-500',
@@ -37,14 +37,14 @@ const props = defineProps({
     :disabled="disabled"
     :data-focused="focused"
     :class="[
-      `z-ring-input flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset  transition-all
+      `z-ring-input flex items-center rounded-md text-sm shadow-sm ring-1 ring-inset transition-all
       focus-within:z-10 focus-within:ring-2 
       data-[focused=true]:z-10 data-[focused=true]:ring-2 
       ${focusedBorderMap[status]} 
       ${focusBorderMap[status]}`,
       props.disabled
-        ? 'cursor-not-allowed bg-slate-50 text-slate-500 opacity-50 ring-slate-300'
-        : `cursor-pointer [:where(&)]:bg-white ${borderMap[status]}`,
+        ? 'cursor-not-allowed bg-slate-50 text-slate-500 opacity-50 ring-slate-300 dark:bg-slate-700 dark:ring-slate-600'
+        : `cursor-pointer bg-white dark:bg-slate-800 ${borderMap[status]}`,
     ]"
   >
     <slot />
