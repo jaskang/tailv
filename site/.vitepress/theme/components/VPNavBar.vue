@@ -18,7 +18,9 @@ const dark = computed({
 </script>
 
 <template>
-  <div class="sticky top-0 z-40 w-full flex-none bg-white/95 shadow lg:z-50">
+  <div
+    class="sticky top-0 z-40 w-full flex-none border-b border-slate-200 bg-white/95 dark:border-slate-700 dark:bg-slate-900/95 lg:z-50"
+  >
     <div class="mx-auto max-w-8xl">
       <div class="mx-4 py-4 lg:mx-0 lg:px-8">
         <div class="relative flex items-center">
