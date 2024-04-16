@@ -40,11 +40,11 @@ const clickHandler = () => {
     @click="clickHandler"
   >
     <button
-      class="focus-visible:ring-primary-500 relative block cursor-[inherit] appearance-none rounded transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      class="relative block cursor-[inherit] appearance-none rounded bg-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
     >
       <span
         class="block h-4 w-4 rounded border border-solid transition-all"
-        :class="[checked ? 'bg-primary-500 border-primary-500' : 'border-slate-300 bg-transparent']"
+        :class="[checked ? 'border-primary-500 bg-primary-500' : 'border-slate-300 bg-transparent']"
       >
         <svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path
