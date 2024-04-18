@@ -1,12 +1,25 @@
 {
-  "name": "root",
-  "private": true,
+  "name": "tailv",
   "author": "jaskang",
+  "version": "0.1.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist",
+    "preset.js"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./preset": {
+      "import": "./preset.js"
+    }
   },
   "scripts": {
     "dev": "vitepress dev site",
