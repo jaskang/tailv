@@ -88,6 +88,27 @@ useResizeObserver(contentEl, handleSizeChange)
 
 const thumbClass =
   'relative flex-1 transition-opacity cursor-pointer rounded-[10px] bg-slate-900/30 opacity-0 group-hover:opacity-100 before:absolute before:top-1/2 before:left-1/2 before:h-full  before:w-full before:min-h-[44px] before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[""] hover:bg-slate-900/50'
+
+defineExpose({
+  viewportEl,
+  contentEl,
+  scrollTo(pos: 'left' | 'right' | 'top' | 'bottom' | [number, number]) {
+    if (pos) {
+      if (Array.isArray(pos)) {
+        scrollLeft.value = pos[0]
+        scrollTop.value = pos[1]
+      } else if (pos === 'left') {
+        scrollLeft.value = 0
+      } else if (pos === 'right') {
+        scrollLeft.value = sizes.value.content.width - sizes.value.viewport.width
+      } else if (pos === 'top') {
+        scrollTop.value = 0
+      } else if (pos === 'bottom') {
+        scrollTop.value = sizes.value.content.height - sizes.value.viewport.height
+      }
+    }
+  },
+})
 </script>
 <template>
   <div
