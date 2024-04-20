@@ -6,7 +6,7 @@ const props = defineProps({})
 </script>
 <template>
   <div
-    class="t-space-compact flex items-center *:-me-[1px] *:rounded-none [&>:last-child]:rounded-r-md [&>:first-child]:rounded-l-md"
+    class="t-space-compact flex items-center *:-me-[1px] *:rounded-none [&>:first-child]:rounded-l-md [&>:last-child]:rounded-r-md"
   >
     <slot />
   </div>

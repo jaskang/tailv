@@ -1,5 +1,5 @@
-import colors from 'tailwindcss/colors'
-import forms from '@tailwindcss/forms'
+const colors = require('tailwindcss/colors')
+const forms = require('@tailwindcss/forms')
 
 /**
  *
@@ -19,7 +19,7 @@ function extractColorVars(colorObj, scope = '') {
 }
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   theme: {
     extend: {
       colors: {

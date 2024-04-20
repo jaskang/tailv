@@ -12,6 +12,7 @@ import { Menu, type MenuItemRawType, type MenuItemType, type MenuItemTitleType, 
 import { default as Popover } from './Popover/index.vue'
 import { default as Tooltip } from './Tooltip/index.vue'
 import { default as SpaceCompact } from './Space/SpaceCompact.vue'
+import { Tabs } from './Tab'
 
 export {
   // components
@@ -29,6 +30,7 @@ export {
   Popover,
   Tooltip,
   SpaceCompact,
+  Tabs,
   // use
   useAnchor,
 }
@@ -50,5 +52,6 @@ export const plugin: Plugin = {
     app.component(Popover.name!, Popover)
     app.component(Tooltip.name!, Tooltip)
     app.component(SpaceCompact.name!, SpaceCompact)
+    app.component(Tabs.name!, Tabs)
   },
 }

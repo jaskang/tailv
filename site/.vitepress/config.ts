@@ -2,7 +2,6 @@ import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfigWithTheme } from 'vitepress'
 import jsx from '@vitejs/plugin-vue-jsx'
-import typography from '@tailwindcss/typography'
 import nesting from 'tailwindcss/nesting'
 import autoprefixer from 'autoprefixer'
 import tailwindcss from 'tailwindcss'
@@ -10,6 +9,7 @@ import atImport from 'postcss-import'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import type { ThemeConfig } from './theme/theme'
 import { demo } from './plugins/demo'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // https://vitepress.dev/reference/site-config
@@ -44,7 +44,10 @@ export default defineConfigWithTheme<ThemeConfig>({
         { title: 'Select', link: '/components/select' },
         { title: 'Switch', link: '/components/switch' },
       ],
-      展示: [{ title: 'Menu', link: '/components/menu' }],
+      展示: [
+        { title: 'Menu', link: '/components/menu' },
+        { title: 'Tab', link: '/components/tab' },
+      ],
       反馈: [
         { title: 'Popover', link: '/components/popover' },
         { title: 'Tooltip', link: '/components/tooltip' },

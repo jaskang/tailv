@@ -10,7 +10,7 @@ import {
 } from './core'
 import { useModelValue } from '../../use/useModelValue'
 
-defineOptions({ name: 'Popover' })
+defineOptions({ name: 'Popper' })
 
 const props = defineProps({
   open: { type: Boolean, default: undefined },
