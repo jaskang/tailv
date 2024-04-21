@@ -41,6 +41,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         { title: 'Checkbox', link: '/components/checkbox' },
         { title: 'Radio', link: '/components/radio' },
         { title: 'Input', link: '/components/input' },
+        { title: 'Textarea', link: '/components/textarea' },
         { title: 'Select', link: '/components/select' },
         { title: 'Switch', link: '/components/switch' },
       ],

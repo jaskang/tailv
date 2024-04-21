@@ -22,7 +22,6 @@ const props = defineProps({
   allowClear: Boolean,
 })
 
-const focused = ref(false)
 const [modelValue, setModelValue] = useModelValue(props, {
   onChange: (v: string) => {
     emit('change', v)
@@ -34,24 +33,6 @@ const onInput = (e: Event) => {
   setModelValue(el.value)
   emit('input', e)
 }
-const onFocus = (e: FocusEvent) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  } else {
-    focused.value = true
-    emit('focus', e)
-  }
-}
-const onBlur = (e: FocusEvent) => {
-  if (props.disabled) {
-    e.preventDefault()
-    return false
-  } else {
-    focused.value = false
-    emit('blur', e)
-  }
-}
 
 const inputRef = ref<HTMLInputElement>()
 
@@ -61,7 +42,7 @@ defineExpose({
 })
 </script>
 <template>
-  <BaseInput :disabled="disabled">
+  <BaseInput :disabled="disabled" class="flex items-center">
     <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center text-slate-500">
       <slot name="prefix">
         <span class="pl-3">
@@ -71,7 +52,7 @@ defineExpose({
     </span>
     <input
       ref="inputRef"
-      class="z-input_input disabled block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm leading-6 outline-none placeholder:text-slate-400 focus:outline-none"
+      class="z-input_input block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm leading-6 outline-none placeholder:text-slate-400 focus:outline-none"
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,
@@ -82,10 +63,10 @@ defineExpose({
       :readonly="readonly"
       :disabled="disabled"
       :placeholder="placeholder"
-      :onInput="onInput"
-      :onFocus="onFocus"
-      :onBlur="onBlur"
       autocomplete="off"
+      @input="onInput"
+      @focus="emit('focus', $event)"
+      @blur="emit('blur', $event)"
     />
     <span v-if="suffix || slots.suffix" class="z-input_suffix flex h-full items-center text-slate-500">
       <slot name="suffix">

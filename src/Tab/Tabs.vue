@@ -29,8 +29,8 @@ const clickHandler = (key: string) => {
 }
 </script>
 <template>
-  <div v-if="items.length > 0" class="border-b border-slate-200 dark:border-slate-700">
-    <nav class="flex space-x-1">
+  <div v-if="items.length > 0">
+    <nav class="flex space-x-1 border-b border-slate-200 dark:border-slate-700">
       <button
         v-for="item in props.items"
         type="button"
@@ -42,10 +42,10 @@ const clickHandler = (key: string) => {
         {{ item.label }}
       </button>
     </nav>
-    <div>
-      <template v-if="keys.includes(currentKey)">
+    <template v-if="keys.includes(currentKey)">
+      <div>
         <slot name="default" :current="currentKey" />
-      </template>
-    </div>
+      </div>
+    </template>
   </div>
 </template>
