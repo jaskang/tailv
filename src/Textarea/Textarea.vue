@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, type PropType } from 'vue'
 import { useModelValue } from '../use/useModelValue'
 import { BaseInput } from '@/Base'
 import { scrollbarClass } from '@/utils/tw'
@@ -18,6 +18,14 @@ const props = defineProps({
   placeholder: String,
   readonly: Boolean,
   disabled: Boolean,
+  rows: {
+    type: Number,
+    default: 3,
+  },
+  resize: {
+    type: String as PropType<'none' | 'both' | 'horizontal' | 'vertical'>,
+    default: 'none',
+  },
 })
 
 const [modelValue, setModelValue] = useModelValue(props, {
@@ -39,8 +47,12 @@ const inputRef = ref<HTMLTextAreaElement>()
     <textarea
       class="block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm placeholder:text-slate-400"
       :class="scrollbarClass"
-      style="box-shadow: none"
-      rows="3"
+      :style="{
+        resize: resize,
+        boxShadow: 'none',
+      }"
+      :rows
+      resize="none"
       ref="inputRef"
       type="text"
       :value="modelValue"
