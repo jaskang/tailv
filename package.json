@@ -95,6 +95,9 @@
     },
     "github": {
       "release": true
+    },
+    "hooks": {
+      "after:bump": "pnpm run build"
     }
   }
 }
