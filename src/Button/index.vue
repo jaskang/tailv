@@ -7,7 +7,7 @@ import type { ColorAlias } from '@/utils/theme'
 import { createButtonCss, createButtonVar } from './style'
 
 defineOptions({ name: 'Button' })
-defineEmits<{ click: [Event] }>()
+const emit = defineEmits<{ click: [Event] }>()
 const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
   variant: {
@@ -42,7 +42,7 @@ const css = computed(() =>
 const style = computed(() => createButtonVar(props.variant, props.color))
 </script>
 <template>
-  <button :class="css" :disabled="props.disabled" type="button" :style>
+  <button :class="css" :disabled="props.disabled" type="button" :style @click="emit('click', $event)">
     <template v-if="loading">
       <i class="h-[1em] w-[1em] [&_+_*]:ml-1.5 [&_svg]:h-full [&_svg]:w-full">
         <Loading class="animate-spin" />
