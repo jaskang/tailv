@@ -25,6 +25,7 @@
     "dev": "vitepress dev site",
     "docs:build": "vitepress build site",
     "docs:preview": "vitepress preview site",
+    "release": "release-it",
     "build": "vite build"
   },
   "dependencies": {
