@@ -51,8 +51,7 @@ const inputRef = ref<HTMLTextAreaElement>()
         resize: resize,
         boxShadow: 'none',
       }"
-      :rows
-      resize="none"
+      :rows="rows"
       ref="inputRef"
       type="text"
       :value="modelValue"

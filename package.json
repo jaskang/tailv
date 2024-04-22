@@ -26,7 +26,8 @@
     "docs:build": "vitepress build site",
     "docs:preview": "vitepress preview site",
     "release": "release-it",
-    "build": "vite build"
+    "build": "vite build",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.0.6",
