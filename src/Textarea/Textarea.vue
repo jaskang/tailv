@@ -11,6 +11,11 @@ const emit = defineEmits<{
   input: [Event]
   focus: [FocusEvent]
   blur: [FocusEvent]
+  keydown: [KeyboardEvent]
+  keyup: [KeyboardEvent]
+  keypress: [KeyboardEvent]
+  paste: [ClipboardEvent]
+  contextmenu: [MouseEvent]
 }>()
 const slots = defineSlots<{ toolbar?(props: { content: string }): any }>()
 const props = defineProps({
@@ -60,8 +65,12 @@ const inputRef = ref<HTMLTextAreaElement>()
       :placeholder="placeholder"
       autocomplete="off"
       @input="onInput"
+      @keypress="emit('keypress', $event)"
+      @keydown="emit('keydown', $event)"
+      @keyup="emit('keyup', $event)"
       @focus="emit('focus', $event)"
       @blur="emit('blur', $event)"
+      @contextmenu="emit('contextmenu', $event)"
     />
     <div v-if="slots.toolbar" class="inset-x-px bottom-px block rounded-b-md bg-white p-2 dark:bg-slate-900">
       <slot name="toolbar" :content="modelValue"></slot>
