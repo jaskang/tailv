@@ -1,13 +1,11 @@
-const colors = require('tailwindcss/colors')
-const forms = require('@tailwindcss/forms')
+import { type Config } from 'tailwindcss'
+import colors from 'tailwindcss/colors'
+import forms from '@tailwindcss/forms'
 
-/**
- *
- * @param {import('tailwindcss/colors')} colorObj
- * @param {string} scope
- * @returns
- */
-function extractColorVars(colorObj, scope = '') {
+type Preset = Required<Config>['presets'][number]
+type Plugin = Required<Config>['plugins'][number]
+
+function extractColorVars(colorObj: any, scope = ''): Record<string, string> {
   return Object.keys(colorObj).reduce((vars, key) => {
     const value = colorObj[key]
     if (typeof value === 'string') {
@@ -18,8 +16,7 @@ function extractColorVars(colorObj, scope = '') {
   }, {})
 }
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   theme: {
     extend: {
       colors: {
@@ -32,11 +29,11 @@ module.exports = {
   },
   plugins: [
     forms({ strategy: 'base' }),
-    function ({ addBase, theme }) {
+    (({ addBase, theme }) => {
       const all = extractColorVars(theme('colors'))
       addBase({
         ':root': all,
       })
-    },
+    }) as Plugin,
   ],
-}
+} as Preset

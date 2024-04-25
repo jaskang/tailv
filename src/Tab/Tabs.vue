@@ -29,23 +29,16 @@ const clickHandler = (key: string) => {
 }
 </script>
 <template>
-  <div v-if="items.length > 0">
-    <nav class="flex space-x-1 border-b border-slate-200 dark:border-slate-700">
-      <button
-        v-for="item in props.items"
-        type="button"
-        :data-active="currentKey === item.key"
-        class="inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-2 text-sm text-slate-500 hover:text-primary-500 focus:text-primary-500 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active='true']:border-primary-500 data-[active='true']:font-semibold data-[active='true']:text-primary-500 dark:text-slate-400 dark:data-[active='true']:text-primary-500"
-        role="tab"
-        @click="clickHandler(item.key)"
-      >
-        {{ item.label }}
-      </button>
-    </nav>
-    <template v-if="keys.includes(currentKey)">
-      <div>
-        <slot name="default" :current="currentKey" />
-      </div>
-    </template>
-  </div>
+  <nav v-if="items.length > 0" class="flex gap-x-2">
+    <button
+      v-for="item in props.items"
+      type="button"
+      :data-active="currentKey === item.key"
+      class="inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-t-2 border-b-transparent border-t-transparent px-1 py-2 text-sm text-slate-500 hover:text-primary-500 focus:text-primary-500 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active='true']:border-b-primary-500 data-[active='true']:font-semibold data-[active='true']:text-primary-500 dark:text-slate-400 dark:data-[active='true']:text-primary-500"
+      role="tab"
+      @click="clickHandler(item.key)"
+    >
+      {{ item.label }}
+    </button>
+  </nav>
 </template>

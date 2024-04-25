@@ -56,9 +56,9 @@ const inputRef = ref<HTMLTextAreaElement>()
         resize: resize,
         boxShadow: 'none',
       }"
-      :rows="rows"
       ref="inputRef"
       type="text"
+      :rows="rows"
       :value="modelValue"
       :readonly="readonly"
       :disabled="disabled"
@@ -77,4 +77,3 @@ const inputRef = ref<HTMLTextAreaElement>()
     </div>
   </BaseInput>
 </template>
-<style></style>
