@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useDraggable, useResizeObserver, useScroll } from '@vueuse/core'
+import { useDraggable, useResizeObserver, useScroll, type ResizeObserverEntry } from '@vueuse/core'
 import { ref, computed, onMounted, type PropType } from 'vue'
 import { getScrollPositionFromPointer, getThumbOffsetFromScroll, getThumbSize, type Sizes } from './core'
 
 defineOptions({ name: 'ScrollArea' })
-const emit = defineEmits<{ click: [any], sizeChange: [size:{width:number,height:number}] }>()
+const emit = defineEmits<{ click: [any]; resize: [entries: ReadonlyArray<ResizeObserverEntry>] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 const props = defineProps({
   direction: { type: String as PropType<'vertical' | 'horizontal' | 'all'>, default: 'vertical' },
@@ -16,7 +16,7 @@ const scrollbarXEl = ref<HTMLElement>()
 const scrollbarYEl = ref<HTMLElement>()
 const thumbXEl = ref<HTMLElement>()
 const thumbYEl = ref<HTMLElement>()
- 
+
 const sizes = ref<Sizes>({
   content: { width: 0, height: 0 },
   viewport: { width: 0, height: 0 },
@@ -84,8 +84,9 @@ useDraggable(thumbYEl, {
 })
 
 useResizeObserver(viewportEl, handleSizeChange)
-useResizeObserver(contentEl, ()=>{
-handleSizeChange()
+useResizeObserver(contentEl, entries => {
+  emit('resize', entries)
+  handleSizeChange()
 })
 
 const thumbClass =

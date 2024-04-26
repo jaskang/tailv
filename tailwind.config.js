@@ -28,7 +28,7 @@ export default {
       }),
     },
   },
-  presets: [require('./preset.cjs')],
+  presets: [require('./dist/preset.cjs')],
   plugins: [typography()],
   blocklist: ['container'],
 }
