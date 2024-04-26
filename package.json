@@ -26,7 +26,7 @@
     "dev": "vitepress dev site",
     "docs:build": "vitepress build site",
     "docs:preview": "vitepress preview site",
-    "release": "release-it",
+    "release": "release-it --only-version",
     "build": "vite build && tsup",
     "build:preset": "tsup",
     "prepublishOnly": "pnpm run build"

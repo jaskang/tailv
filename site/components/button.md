@@ -11,26 +11,21 @@ hello: world
 ```vue demo title=默认样式
 <template>
   <div class="flex flex-wrap gap-2">
-    <Button>Button</Button>
-    <Button color="primary">Primary</Button>
-    <Button color="success">Success</Button>
-    <Button color="warning">Warning</Button>
-    <Button color="danger">Danger</Button>
+    <Button>button</Button>
   </div>
 </template>
 ```
 
-### secondary Variant
+### solid Variant
 
 ```vue{4} demo
 <template>
-  <div class="flex flex-wrap gap-2">
-    <Button variant="secondary">Button</Button>
-    <Button variant="secondary" color="primary"> Primary </Button>
-    <Button variant="secondary" color="success"> Success </Button>
-    <Button variant="secondary" color="warning"> Warning </Button>
-    <Button variant="secondary" color="danger"> Error </Button>
-  </div>
+<div class="flex flex-wrap gap-2">
+  <Button variant="solid">button</Button>
+  <Button variant="solid" color="success">success</Button>
+  <Button variant="solid" color="warning">warning</Button>
+  <Button variant="solid" color="danger">danger</Button>
+</div>
 </template>
 ```
 
@@ -39,11 +34,23 @@ hello: world
 ```vue demo
 <template>
   <div class="flex flex-wrap gap-2">
-    <Button variant="ghost">Button</Button>
-    <Button variant="ghost" color="primary"> Primary </Button>
-    <Button variant="ghost" color="success"> Success </Button>
-    <Button variant="ghost" color="warning"> Warning </Button>
-    <Button variant="ghost" color="danger"> danger </Button>
+    <Button variant="ghost">button</Button>
+    <Button variant="ghost" color="success">success</Button>
+    <Button variant="ghost" color="warning">warning</Button>
+    <Button variant="ghost" color="danger">danger</Button>
+  </div>
+</template>
+```
+
+### link Variant
+
+```vue demo
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Button variant="link">button</Button>
+    <Button variant="link" color="success">success</Button>
+    <Button variant="link" color="warning">warning</Button>
+    <Button variant="link" color="danger">danger</Button>
   </div>
 </template>
 ```
@@ -53,8 +60,8 @@ hello: world
 ```vue demo
 <template>
   <div class="flex flex-wrap gap-2">
-    <Button pill>Button</Button>
-    <Button color="primary" pill> Primary </Button>
+    <Button pill>button</Button>
+    <Button variant="solid" color="primary" pill>Primary</Button>
   </div>
 </template>
 ```
@@ -63,12 +70,20 @@ hello: world
 
 ```vue demo
 <template>
-  <div class="flex flex-wrap gap-2">
+  <div class="flex items-center gap-2">
+    <Button square size="sm">D</Button>
     <Button square>D</Button>
-    <Button square pill> D </Button>
-    <Button color="primary" square> P </Button>
+    <Button square size="lg">D</Button>
+  </div>
+</template>
+```
 
-    <Button color="primary" square pill> P </Button>
+## block
+
+```vue demo
+<template>
+  <div class="space-y-2">
+    <Button variant="solid" size="lg" block>block button</Button>
   </div>
 </template>
 ```
@@ -78,9 +93,9 @@ hello: world
 ```vue demo
 <template>
   <div class="flex flex-wrap items-center gap-2">
-    <Button color="primary" size="sm"> size: sm </Button>
-    <Button color="primary" size="md"> size: md </Button>
-    <Button color="primary" size="lg"> size: lg </Button>
+    <Button variant="solid" color="primary" size="sm">size: sm</Button>
+    <Button variant="solid" color="primary" size="md">size: md</Button>
+    <Button variant="solid" color="primary" size="lg">size: lg</Button>
   </div>
 </template>
 ```
@@ -90,9 +105,9 @@ hello: world
 ```vue demo
 <template>
   <div class="flex flex-wrap gap-2">
-    <Button disabled>Button</Button>
-    <Button color="primary" disabled> Primary </Button>
-    <Button color="danger" disabled> danger </Button>
+    <Button disabled>button</Button>
+    <Button variant="solid" color="primary" disabled>Primary</Button>
+    <Button variant="solid" color="danger" disabled>danger</Button>
   </div>
 </template>
 ```
@@ -102,9 +117,9 @@ hello: world
 ```vue demo
 <template>
   <div class="flex flex-wrap gap-2">
-    <Button loading>Button</Button>
-    <Button color="primary" loading> Primary </Button>
-    <Button color="lime" loading> Primary </Button>
+    <Button loading>button</Button>
+    <Button variant="solid" color="primary" loading>Primary</Button>
+    <Button variant="solid" color="lime" loading>Primary</Button>
   </div>
 </template>
 ```
