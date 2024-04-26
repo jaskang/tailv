@@ -1,4 +1,4 @@
-import { computed, onMounted, onUnmounted, ref, watch, watchEffect, watchPostEffect } from 'vue'
+import { computed } from 'vue'
 
 import { normalize, useDataByTheme } from '../utils'
 import { useRoute } from 'vitepress'

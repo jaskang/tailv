@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useDraggable, useResizeObserver, useScroll } from '@vueuse/core'
-import { ref, computed, onMounted, type PropType, watch, watchEffect } from 'vue'
+import { ref, computed, onMounted, type PropType } from 'vue'
 import { getScrollPositionFromPointer, getThumbOffsetFromScroll, getThumbSize, type Sizes } from './core'
 
 defineOptions({ name: 'ScrollArea' })
-const emit = defineEmits<{ click: [any] }>()
+const emit = defineEmits<{ click: [any], sizeChange: [size:{width:number,height:number}] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 const props = defineProps({
   direction: { type: String as PropType<'vertical' | 'horizontal' | 'all'>, default: 'vertical' },
@@ -16,7 +16,7 @@ const scrollbarXEl = ref<HTMLElement>()
 const scrollbarYEl = ref<HTMLElement>()
 const thumbXEl = ref<HTMLElement>()
 const thumbYEl = ref<HTMLElement>()
-
+ 
 const sizes = ref<Sizes>({
   content: { width: 0, height: 0 },
   viewport: { width: 0, height: 0 },
@@ -84,7 +84,9 @@ useDraggable(thumbYEl, {
 })
 
 useResizeObserver(viewportEl, handleSizeChange)
-useResizeObserver(contentEl, handleSizeChange)
+useResizeObserver(contentEl, ()=>{
+handleSizeChange()
+})
 
 const thumbClass =
   'relative flex-1 transition-opacity cursor-pointer rounded-[10px] bg-slate-900/30 opacity-0 group-hover:opacity-100 before:absolute before:top-1/2 before:left-1/2 before:h-full  before:w-full before:min-h-[44px] before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[""] hover:bg-slate-900/50'

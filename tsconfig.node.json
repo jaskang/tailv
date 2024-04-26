@@ -6,5 +6,5 @@
     "allowJs": true,
     "types": ["node"]
   },
-  "include": ["./vite.config.ts", "./prettier.config.js", "./eslint.config.js"]
+  "include": ["vite.config.ts", "tsup.config.ts", "preset.ts"]
 }

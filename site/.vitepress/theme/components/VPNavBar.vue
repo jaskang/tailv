@@ -2,7 +2,7 @@
 import { useDataByTheme } from '../utils'
 import { useNavbar } from '../composables/navbar'
 import { Switch } from 'tailv'
-import { computed, ref, watchEffect } from 'vue'
+import { computed} from 'vue'
 
 const { current, items } = useNavbar()
 const { isDark } = useDataByTheme()

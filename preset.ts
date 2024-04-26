@@ -1,5 +1,5 @@
 import { type Config } from 'tailwindcss'
-import colors from 'tailwindcss/colors'
+import colors from 'tailwindcss/colors.js'
 import forms from '@tailwindcss/forms'
 
 type Preset = Required<Config>['presets'][number]
@@ -16,6 +16,15 @@ function extractColorVars(colorObj: any, scope = ''): Record<string, string> {
   }, {})
 }
 
+const varPlugin:Plugin = {
+  handler: ({ addBase, theme }) => {
+    const all = extractColorVars(theme('colors'))
+    addBase({
+      ':root': all,
+    })
+  }
+}
+
 export default {
   theme: {
     extend: {
@@ -29,11 +38,6 @@ export default {
   },
   plugins: [
     forms({ strategy: 'base' }),
-    (({ addBase, theme }) => {
-      const all = extractColorVars(theme('colors'))
-      addBase({
-        ':root': all,
-      })
-    }) as Plugin,
+    varPlugin,
   ],
 } as Preset
