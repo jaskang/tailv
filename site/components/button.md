@@ -16,6 +16,16 @@ hello: world
 </template>
 ```
 
+### outline
+
+```vue demo title=默认样式
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Button variant="outline">button</Button>
+  </div>
+</template>
+```
+
 ### solid Variant
 
 ```vue{4} demo

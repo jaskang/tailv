@@ -9,8 +9,8 @@ const emit = defineEmits<{ click: [Event] }>()
 const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
   variant: {
-    type: String as PropType<'outline' | 'solid' | 'ghost' | 'link'>,
-    default: 'outline',
+    type: String as PropType<'solid' | 'ghost' | 'link' | 'outline'>,
+    default: 'solid',
   },
   size: {
     type: String as PropType<'sm' | 'md' | 'lg'>,
@@ -38,13 +38,13 @@ const props = defineProps({
       '--accent-500': cvar(`${props.color}-500`),
       '--accent-600': cvar(`${props.color}-600`),
     }"
-    class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+    class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
-        outline: 'border border-gray-200 bg-white hover:bg-gray-100 hover:text-slate-900',
         solid: 'bg-[--accent-500] text-slate-50 hover:bg-[--accent-600]',
         ghost: 'text-[--accent-500] hover:bg-[--accent-100] hover:text-[--accent-600]',
         link: 'text-[--accent-500] underline-offset-4 hover:underline',
+        outline: 'border border-gray-200 bg-white hover:bg-gray-100 hover:text-slate-900',
       }[props.variant],
       {
         sm: `h-8 ${props.square ? 'w-8' : 'px-3 py-1'}`,
