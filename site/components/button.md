@@ -134,6 +134,27 @@ hello: world
 </template>
 ```
 
+## Icon
+
+```vue demo
+<script setup>
+import { PaperAirplaneIcon, InboxIcon, TrashIcon, ArchiveBoxIcon, CircleStackIcon } from '@heroicons/vue/24/outline'
+</script>
+<template>
+  <div class="flex items-center gap-2">
+    <Button square>
+      <PaperAirplaneIcon />
+    </Button>
+    <Button>
+      <InboxIcon />
+    </Button>
+    <Button variant="outline">
+      <TrashIcon />
+    </Button>
+  </div>
+</template>
+```
+
 ## SpaceCompact
 
 ```vue demo
