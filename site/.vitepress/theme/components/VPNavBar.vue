@@ -2,7 +2,7 @@
 import { useDataByTheme } from '../utils'
 import { useNavbar } from '../composables/navbar'
 import { Switch } from 'tailv'
-import { computed} from 'vue'
+import { computed } from 'vue'
 
 const { current, items } = useNavbar()
 const { isDark } = useDataByTheme()
@@ -40,7 +40,7 @@ const dark = computed({
             </div>
 
             <div class="ml-6 flex items-center border-l border-slate-200 pl-6">
-              <Switch v-model:checked="dark">
+              <Switch v-model:value="dark">
                 <template #open>
                   <svg viewBox="0 0 24 24" fill="none" class="h-3 w-3">
                     <path

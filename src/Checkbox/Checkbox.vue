@@ -53,7 +53,7 @@ const clickHandler = () => {
         </svg>
       </span>
     </button>
-    <span class="relative ml-2 block text-sm font-medium leading-6">
+    <span class="relative ml-2 block text-sm font-medium">
       <slot />
     </span>
   </span>

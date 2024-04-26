@@ -18,6 +18,13 @@ export default defineConfigWithTheme<ThemeConfig>({
   description: 'A VitePress Site',
   markdown: {
     // lineNumbers: true,
+    codeTransformers: [
+      {
+        pre(node) {
+          this.addClassToHast(node, 'not-prose')
+        },
+      },
+    ],
     headers: true,
     theme: { light: 'github-light', dark: 'github-dark' },
     async shikiSetup(shiki) {

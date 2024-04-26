@@ -9,7 +9,7 @@ const emit = defineEmits<{ click: [Event] }>()
 const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
   variant: {
-    type: String as PropType<'solid' | 'ghost' | 'link' | 'outline'>,
+    type: String as PropType<'solid' | 'soft' | 'ghost' | 'link' | 'outline'>,
     default: 'solid',
   },
   size: {
@@ -34,17 +34,18 @@ const props = defineProps({
     type="button"
     :style="{
       '--accent-100': cvar(`${props.color}-100`),
-      '--accent-400': cvar(`${props.color}-400`),
+      '--accent-200': cvar(`${props.color}-200`),
       '--accent-500': cvar(`${props.color}-500`),
       '--accent-600': cvar(`${props.color}-600`),
     }"
     class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
-        solid: 'bg-[--accent-500] text-slate-50 hover:bg-[--accent-600]',
+        solid: 'bg-[--accent-500] text-white hover:bg-[--accent-600]',
+        soft: 'bg-[--accent-100] text-[--accent-500] hover:bg-[--accent-200] hover:text-[--accent-600]',
         ghost: 'text-[--accent-500] hover:bg-[--accent-100] hover:text-[--accent-600]',
-        link: 'text-[--accent-500] underline-offset-4 hover:underline',
-        outline: 'border border-gray-200 bg-white hover:bg-gray-100 hover:text-slate-900',
+        outline: 'border border-gray-200 bg-white hover:bg-gray-100',
+        link: 'underline-offset-4 hover:underline',
       }[props.variant],
       {
         sm: `h-8 ${props.square ? 'w-8' : 'px-3 py-1'}`,
@@ -58,15 +59,9 @@ const props = defineProps({
     @click="emit('click', $event)"
   >
     <template v-if="loading">
-      <i class="h-[1em] w-[1em] [&>*]:h-full [&>svg]:w-full" :class="$slots.default ? 'mr-1.5' : ''">
-        <Loading class="animate-spin" />
-      </i>
+      <Loading class="h-[1em] w-[1em] animate-spin" :class="$slots.default && !square ? 'mr-1.5' : ''" />
     </template>
-    <template v-else-if="slots.icon">
-      <i class="h-[1em] w-[1em] [&>svg]:h-full [&>svg]:w-full" :class="$slots.default ? 'mr-1.5' : ''">
-        <slot name="icon"></slot>
-      </i>
-    </template>
-    <slot></slot>
+
+    <slot v-if="!square || !loading"></slot>
   </button>
 </template>

@@ -37,7 +37,7 @@ const items = ref([
 const current = ref('Archive')
 </script>
 <template>
-  <div class="not-prose flex flex-wrap gap-2">
+  <div class="flex flex-wrap gap-2">
     <div class="">
       <Menu :current="current" :items="items" class="w-40 rounded-md border border-slate-200" />
     </div>

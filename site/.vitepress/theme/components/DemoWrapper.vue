@@ -40,7 +40,7 @@ const showCode = ref(false)
         </svg>
       </div>
       <div class="flex items-center">
-        <Switch v-model:checked="showCode">
+        <Switch v-model:value="showCode">
           <template #open><CodeBracketIcon /></template>
           <template #close><CodeBracketIcon /></template>
         </Switch>

@@ -2,16 +2,66 @@
 hello: world
 ---
 
+<script>
+  import ButtonBooth from './booth/button.vue'
+</script>
+
 # Button
 
-## Variant
+##
 
-### Default
+<ButtonBooth/>
+
+```ts
+import { Button } from 'tailv'
+```
+
+## 风格
+
+Button 组件支持五种风格，通过 `variant` 属性设置。
+
+分别为: `solid` | `soft` | `ghost` | `outline` | `link`, 默认为 `solid`
 
 ```vue demo title=默认样式
 <template>
   <div class="flex flex-wrap gap-2">
-    <Button>button</Button>
+    <Button>solid</Button>
+    <Button variant="soft">soft</Button>
+    <Button variant="ghost">ghost</Button>
+    <Button variant="outline">outline</Button>
+    <Button variant="link">link</Button>
+  </div>
+</template>
+```
+
+## 颜色
+
+样式 `solid`| `soft`| `ghost` 支持自定义颜色
+
+```vue demo title=默认样式
+<template>
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="w-12 text-right font-medium">solid:</span>
+      <Button>button</Button>
+      <Button color="success">success</Button>
+      <Button color="warning">warning</Button>
+      <Button color="danger">danger</Button>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="w-12 text-right font-medium">soft:</span>
+      <Button variant="soft">button</Button>
+      <Button variant="soft" color="success">success</Button>
+      <Button variant="soft" color="warning">warning</Button>
+      <Button variant="soft" color="danger">danger</Button>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="w-12 text-right font-medium">ghost:</span>
+      <Button variant="ghost">button</Button>
+      <Button variant="ghost" color="success">success</Button>
+      <Button variant="ghost" color="warning">warning</Button>
+      <Button variant="ghost" color="danger">danger</Button>
+    </div>
   </div>
 </template>
 ```
@@ -23,19 +73,6 @@ hello: world
   <div class="flex flex-wrap gap-2">
     <Button variant="outline">button</Button>
   </div>
-</template>
-```
-
-### solid Variant
-
-```vue{4} demo
-<template>
-<div class="flex flex-wrap gap-2">
-  <Button variant="solid">button</Button>
-  <Button variant="solid" color="success">success</Button>
-  <Button variant="solid" color="warning">warning</Button>
-  <Button variant="solid" color="danger">danger</Button>
-</div>
 </template>
 ```
 
@@ -143,13 +180,16 @@ import { PaperAirplaneIcon, InboxIcon, TrashIcon, ArchiveBoxIcon, CircleStackIco
 <template>
   <div class="flex items-center gap-2">
     <Button square>
-      <PaperAirplaneIcon />
+      <TrashIcon class="h-4 w-4" />
     </Button>
-    <Button>
-      <InboxIcon />
+    <Button square variant="soft">
+      <TrashIcon class="h-4 w-4" />
     </Button>
-    <Button variant="outline">
-      <TrashIcon />
+    <Button square variant="ghost">
+      <TrashIcon class="h-4 w-4" />
+    </Button>
+    <Button square variant="outline">
+      <TrashIcon class="h-4 w-4" />
     </Button>
   </div>
 </template>

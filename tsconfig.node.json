@@ -2,7 +2,6 @@
   "extends": "@jaskang/config/tsconfig.node.json",
   "compilerOptions": {
     "composite": true,
-    "target": "ESNext",
     "allowJs": true,
     "types": ["node"]
   },

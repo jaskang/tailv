@@ -9,7 +9,7 @@ const changeHandler = item => {
 }
 </script>
 <template>
-  <div class="not-prose">
+  <div>
     <Anchor
       :current="current"
       @change="changeHandler"
