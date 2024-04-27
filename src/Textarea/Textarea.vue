@@ -2,8 +2,8 @@
 import { ref, computed, type PropType } from 'vue'
 import { useModelValue } from '../use/useModelValue'
 import { BaseInput } from '@/Base'
-import { scrollbarClass } from '@/utils/tw'
 
+import { BUILTIN_CLASS } from '@/utils/theme'
 defineOptions({ name: 'Textarea' })
 const emit = defineEmits<{
   'update:value': [string]
@@ -51,7 +51,7 @@ const inputRef = ref<HTMLTextAreaElement>()
   <BaseInput class="z-textarea relative flex-col">
     <textarea
       class="block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm placeholder:text-slate-400"
-      :class="scrollbarClass"
+      :class="BUILTIN_CLASS.scrollbar"
       :style="{
         resize: resize,
         boxShadow: 'none',

@@ -1,11 +1,5 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "references.preferredLocation": "peek",
-  "eslint.experimental.useFlatConfig": true,
-  "tailwindCSS.experimental.classRegex": [
-    ["tw\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["clsVariants\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["classed(?:\\.\\w*)?\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["[a-zA-Z]*Class = '([^']+)'"]
-  ]
+  "eslint.experimental.useFlatConfig": true
 }

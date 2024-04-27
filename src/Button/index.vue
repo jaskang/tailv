@@ -26,8 +26,6 @@ const props = defineProps({
   loading: Boolean,
   disabled: Boolean,
 })
-
-// const style = computed(() => createButtonVar(props.variant, props.color))
 </script>
 <template>
   <button
@@ -38,7 +36,7 @@ const props = defineProps({
       '--accent-500': cvar(`${props.color}-500`),
       '--accent-600': cvar(`${props.color}-600`),
     }"
-    class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+    class="inline-flex items-center justify-center whitespace-nowrap text-center font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
         solid: 'bg-[--accent-500] text-white hover:bg-[--accent-600]',
@@ -48,9 +46,9 @@ const props = defineProps({
         link: 'underline-offset-4 hover:underline',
       }[props.variant],
       {
-        sm: `h-8 ${props.square ? 'w-8' : 'px-3 py-1'}`,
-        md: `h-9 ${props.square ? 'w-9' : 'px-3.5 py-1.5'}`,
-        lg: `h-10 ${props.square ? 'w-10' : 'px-4 py-2'}`,
+        sm: `h-7 text-xs ${props.square ? 'w-7' : 'px-2 py-1'}`,
+        md: `h-9 text-sm ${props.square ? 'w-9' : 'px-3 py-1.5'}`,
+        lg: `h-11 text-base ${props.square ? 'w-11' : 'px-4 py-2'}`,
       }[props.size],
       props.pill ? 'rounded-full' : 'rounded-md',
       !props.square && props.block ? 'w-full' : '',

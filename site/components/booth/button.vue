@@ -15,7 +15,7 @@ const slots = defineSlots<{ default?(_: {}): any }>()
 //   disabled: Boolean,
 
 const variant = ref<'solid' | 'soft' | 'ghost' | 'outline' | 'link'>('solid')
-const size = ref<'sm' | 'md' | 'lg'>('sm')
+const size = ref<'sm' | 'md' | 'lg'>('md')
 const color = ref<ColorAlias>('primary')
 const pill = ref(false)
 const square = ref(false)
@@ -26,6 +26,16 @@ const disabled = ref(false)
 <template>
   <div class="flex w-full flex-col rounded-md border md:flex-row-reverse">
     <div class="flex-1 space-y-2 border-l p-6">
+      <div class="flex items-start">
+        <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">variant:</div>
+        <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2 py-1.5">
+          <Radio value="solid" class="col-span-1">solid</Radio>
+          <Radio value="soft" class="col-span-1">soft</Radio>
+          <Radio value="ghost" class="col-span-1">ghost</Radio>
+          <Radio value="outline" class="col-span-1">outline</Radio>
+          <Radio value="link" class="col-span-1">link</Radio>
+        </RadioGroup>
+      </div>
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">color:</div>
         <Select
@@ -61,22 +71,13 @@ const disabled = ref(false)
           ]"
         ></Select>
       </div>
-      <div class="flex items-start">
-        <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">variant:</div>
-        <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2 py-2">
-          <Radio value="solid" class="col-span-1">solid</Radio>
-          <Radio value="soft" class="col-span-1">soft</Radio>
-          <Radio value="ghost" class="col-span-1">ghost</Radio>
-          <Radio value="outline" class="col-span-1">outline</Radio>
-          <Radio value="link" class="col-span-1">link</Radio>
-        </RadioGroup>
-      </div>
+
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">size:</div>
         <RadioGroup v-model:value="size" class="grid flex-1 grid-cols-3 py-2">
-          <div class=""><Radio value="sm">sm</Radio></div>
-          <div class=""><Radio value="md">md</Radio></div>
-          <div class=""><Radio value="lg">lg</Radio></div>
+          <Radio value="sm">sm</Radio>
+          <Radio value="md">md</Radio>
+          <Radio value="lg">lg</Radio>
         </RadioGroup>
       </div>
 
@@ -109,7 +110,7 @@ const disabled = ref(false)
     </div>
     <div class="flex flex-1 items-center justify-center p-6">
       <Button :variant :size :color :pill :square :block :loading :disabled>
-        <InboxIcon v-if="square" class="h-4 w-4" />
+        <InboxIcon v-if="square" class="h-[1.2em] w-[1.2em]" />
         <template v-else>Button</template>
       </Button>
     </div>
