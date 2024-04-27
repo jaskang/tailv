@@ -63,4 +63,8 @@ export function cvar(val: `${ColorName}-${ColorLvl}`) {
 export const BUILTIN_CLASS = {
   scrollbar:
     '[&::-webkit-scrollbar]:w-3 [&::-webkit-scrollbar]:h-3 [&::-webkit-scrollbar-track]:bg-clip-content [&::-webkit-scrollbar-track]:border-4 [&::-webkit-scrollbar-track]:border-solid [&::-webkit-scrollbar-track]:border-transparent [&::-webkit-scrollbar-track]:rounded-lg [&::-webkit-scrollbar-track]:bg-gray-200 dark:[&::-webkit-scrollbar-track]:bg-gray-700 [&::-webkit-scrollbar-thumb]:bg-clip-content [&::-webkit-scrollbar-thumb]:border-4  [&::-webkit-scrollbar-thumb]:border-solid  [&::-webkit-scrollbar-thumb]:border-transparent [&::-webkit-scrollbar-thumb]:rounded-lg [&::-webkit-scrollbar-thumb]:bg-gray-500 hover:[&:not(:disabled)::-webkit-scrollbar-thumb]:bg-gray-800 dark:hover:[&:not(:disabled)::-webkit-scrollbar-thumb]:bg-gray-200',
+  inputBorder: 'border-gray-200 focus:border-gray-200 dark:border-gray-700 dark:focus:border-gray-700',
+  inputTransparentBorder: 'border-transparent focus:border-transparent',
+  focusRing:
+    ' focus-visible:outline-none ring-offset-white dark:ring-offset-gray-900 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-500 ',
 }

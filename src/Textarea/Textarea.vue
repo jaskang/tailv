@@ -23,6 +23,7 @@ const props = defineProps({
   placeholder: String,
   readonly: Boolean,
   disabled: Boolean,
+  noBorder: Boolean,
   rows: {
     type: Number,
     default: 3,
@@ -30,6 +31,10 @@ const props = defineProps({
   resize: {
     type: String as PropType<'none' | 'both' | 'horizontal' | 'vertical'>,
     default: 'none',
+  },
+  autocomplete: {
+    type: String as PropType<'on' | 'off'>,
+    default: 'off',
   },
 })
 
@@ -44,38 +49,33 @@ const onInput = (e: Event) => {
   setModelValue(el.value)
   emit('input', e)
 }
-
-const inputRef = ref<HTMLTextAreaElement>()
 </script>
 <template>
-  <BaseInput class="z-textarea relative flex-col">
-    <textarea
-      class="block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm placeholder:text-slate-400"
-      :class="BUILTIN_CLASS.scrollbar"
-      :style="{
-        resize: resize,
-        boxShadow: 'none',
-      }"
-      ref="inputRef"
-      type="text"
-      :rows="rows"
-      :value="modelValue"
-      :readonly="readonly"
-      :disabled="disabled"
-      :placeholder="placeholder"
-      autocomplete="off"
-      @input="onInput"
-      @keypress="emit('keypress', $event)"
-      @keydown="emit('keydown', $event)"
-      @keyup="emit('keyup', $event)"
-      @focus="emit('focus', $event)"
-      @blur="emit('blur', $event)"
-      @contextmenu="emit('contextmenu', $event)"
-    />
-    <div v-if="slots.toolbar" class="inset-x-px bottom-px block rounded-b-md bg-white p-2 dark:bg-slate-900">
-      <slot name="toolbar" :content="modelValue"></slot>
-    </div>
-  </BaseInput>
+  <textarea
+    class="flex w-full appearance-none overflow-y-scroll rounded-md border border-gray-200 bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+    :class="[
+      BUILTIN_CLASS.scrollbar,
+      noBorder ? BUILTIN_CLASS.inputTransparentBorder : BUILTIN_CLASS.inputBorder,
+      noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
+    ]"
+    :style="{
+      resize: resize,
+    }"
+    type="text"
+    :rows="rows"
+    :value="modelValue"
+    :readonly="readonly"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    :autocomplete="autocomplete"
+    @input="onInput"
+    @keypress="emit('keypress', $event)"
+    @keydown="emit('keydown', $event)"
+    @keyup="emit('keyup', $event)"
+    @focus="emit('focus', $event)"
+    @blur="emit('blur', $event)"
+    @contextmenu="emit('contextmenu', $event)"
+  />
   <!-- <textarea
     class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
     placeholder="Type your message here."
