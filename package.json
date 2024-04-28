@@ -29,6 +29,7 @@
     "release": "release-it --only-version",
     "build": "vite build && tsup",
     "build:preset": "tsup",
+    "build:preset:watch": "tsup --watch",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {

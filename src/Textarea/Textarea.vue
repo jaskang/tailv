@@ -20,6 +20,8 @@ const emit = defineEmits<{
 const slots = defineSlots<{ toolbar?(props: { content: string }): any }>()
 const props = defineProps({
   value: String,
+
+  status: { type: String as PropType<'normal' | 'success' | 'warning' | 'danger'>, default: 'normal' },
   placeholder: String,
   readonly: Boolean,
   disabled: Boolean,
@@ -52,11 +54,17 @@ const onInput = (e: Event) => {
 </script>
 <template>
   <textarea
-    class="flex w-full appearance-none overflow-y-scroll rounded-md border border-gray-200 bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+    class="scrollbar input-border relative flex w-full appearance-none overflow-y-scroll rounded-md bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
-      BUILTIN_CLASS.scrollbar,
-      noBorder ? BUILTIN_CLASS.inputTransparentBorder : BUILTIN_CLASS.inputBorder,
-      noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
+      noBorder
+        ? 'input-border-color-transparent dark:input-border-color-transparent'
+        : {
+            normal: 'focus:input-border-ring focus:input-border-color-primary',
+            danger: 'focus:input-border-ring input-border-color-danger',
+            success: 'focus:input-border-ring input-border-color-success',
+            warning: 'focus:input-border-ring input-border-color-warning',
+          }[props.status],
+      // noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
     ]"
     :style="{
       resize: resize,
@@ -76,7 +84,7 @@ const onInput = (e: Event) => {
     @blur="emit('blur', $event)"
     @contextmenu="emit('contextmenu', $event)"
   />
-  <!-- <textarea
+  <!-- <textarea 
     class="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
     placeholder="Type your message here."
   ></textarea>

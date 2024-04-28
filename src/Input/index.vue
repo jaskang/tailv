@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { type VNode, ref } from 'vue'
+import { type VNode, ref, type PropType } from 'vue'
 import { useModelValue } from '../use/useModelValue'
-import { BaseInput } from '../Base'
 
 defineOptions({ name: 'Input' })
 const emit = defineEmits<{
@@ -14,6 +13,7 @@ const emit = defineEmits<{
 const slots = defineSlots<{ prefix?: (_: {}) => any; suffix?: (_: {}) => any }>()
 const props = defineProps({
   value: [String, Number],
+  status: { type: String as PropType<'normal' | 'success' | 'warning' | 'danger'>, default: 'normal' },
   prefix: String,
   suffix: String,
   placeholder: String,
@@ -42,17 +42,26 @@ defineExpose({
 })
 </script>
 <template>
-  <BaseInput :disabled="disabled" class="flex items-center">
+  <div
+    class="input-border focus-within:input-border-ring flex h-9 items-center rounded-md focus-within:z-10 disabled:opacity-50"
+    :class="[
+      {
+        normal: 'focus-within:input-border-color-primary',
+        danger: 'input-border-color-danger',
+        success: 'input-border-color-success',
+        warning: 'input-border-color-warning',
+      }[props.status],
+    ]"
+    :disabled="disabled"
+  >
     <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center text-slate-500">
       <slot name="prefix">
-        <span class="pl-3">
-          {{ prefix }}
-        </span>
+        <span class="pl-3"> {{ prefix }} </span>
       </slot>
     </span>
     <input
       ref="inputRef"
-      class="z-input_input block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm leading-6 outline-none placeholder:text-slate-400 focus:outline-none"
+      class="z-input_input block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm leading-[1.375rem] outline-none placeholder:text-slate-400 focus:outline-none"
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,
@@ -75,5 +84,5 @@ defineExpose({
         </span>
       </slot>
     </span>
-  </BaseInput>
+  </div>
 </template>

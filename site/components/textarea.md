@@ -7,7 +7,23 @@
 import { ref } from 'vue'
 </script>
 <template>
-  <Textarea placeholder="请输入内容" />
+  <Textarea placeholder="请输入内容" :rows="1" />
+</template>
+```
+
+## 状态
+
+```vue demo
+<script setup>
+import { ref } from 'vue'
+</script>
+<template>
+  <div class="flex flex-col gap-y-4">
+    <Textarea placeholder="请输入内容" />
+    <Textarea placeholder="请输入内容" status="success" />
+    <Textarea placeholder="请输入内容" status="warning" />
+    <Textarea placeholder="请输入内容" status="danger" />
+  </div>
 </template>
 ```
 
@@ -37,21 +53,22 @@ import {
 import { ref } from 'vue'
 </script>
 <template>
-  <div class="overflow-hidden rounded-md border border-gray-200 dark:border-gray-700">
-    <div class="">
-      <Textarea noBorder placeholder="请输入内容" />
-    </div>
-    <div class="flex items-center justify-between border-t bg-gray-50 p-2 dark:border-t-gray-700 dark:bg-gray-800">
+  <div class="">
+    <Textarea class="rounded-b-none focus:z-10" placeholder="请输入内容" />
+    <div
+      class="flex items-center justify-between rounded-md rounded-t-none border border-t-0 border-gray-200 bg-gray-50 p-2 dark:border-gray-700 dark:bg-gray-800"
+    >
       <div>
-        <Button variant="ghost" size="sm" square>
+        <Button variant="ghost" square>
           <CodeBracketIcon class="h-4 w-4" />
         </Button>
-        <Button variant="ghost" size="sm" square>
+        <Button variant="ghost" square>
           <PaperAirplaneIcon class="h-4 w-4" />
         </Button>
       </div>
-      <Button color="primary" size="sm" square>
-        <PaperAirplaneIcon class="h-4 w-4" />
+      <Button color="primary">
+        <PaperAirplaneIcon class="mr-2 h-4 w-4" />
+        send
       </Button>
     </div>
   </div>
