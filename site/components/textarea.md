@@ -49,7 +49,7 @@ import { ref } from 'vue'
 import { ref } from 'vue'
 </script>
 <template>
-  <Textarea noBorder placeholder="请输入内容" />
+  <Textarea noBorder placeholder="请输入内容" resize="vertical" />
 </template>
 ```
 

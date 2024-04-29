@@ -51,7 +51,7 @@ const props = defineProps({
         ghost:
           'text-[--accent-600] hover:bg-[--accent-100] hover:text-[--accent-700] dark:text-[--accent-400] dark:hover:bg-[--accent-900] dark:hover:text-[--accent-300]',
         outline:
-          'border border-gray-200 bg-white shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800',
+          'hover:input-bg-gray-100 dark:hover:input-bg-gray-800 input-bg border shadow-sm input-border dark:bg-gray-900',
         link: 'underline-offset-4 hover:underline',
       }[props.variant],
       {

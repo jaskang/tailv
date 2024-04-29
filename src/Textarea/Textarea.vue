@@ -54,17 +54,17 @@ const onInput = (e: Event) => {
 </script>
 <template>
   <textarea
-    class="relative flex w-full appearance-none overflow-y-scroll rounded-md bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar input-border placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+    class="relative flex w-full appearance-none overflow-y-scroll rounded-md py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar input-border placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
       noBorder
-        ? 'input-border-color-transparent dark:input-border-color-transparent'
-        : 'bg-white focus:input-border-ring dark:bg-gray-900',
+        ? 'input-border-transparent dark:input-border-transparent bg-inherit'
+        : 'input-bg focus:input-border-bold',
       !noBorder &&
         {
-          normal: ' focus:input-border-color-primary',
-          danger: 'input-border-color-danger  dark:input-border-color-danger',
-          success: 'input-border-color-success  dark:input-border-color-success',
-          warning: 'input-border-color-warning  dark:input-border-color-warning',
+          normal: 'focus:input-border-primary-500',
+          danger: 'input-border-danger-500',
+          success: 'input-border-success-500',
+          warning: 'input-border-warning-500',
         }[props.status],
       // noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
     ]"

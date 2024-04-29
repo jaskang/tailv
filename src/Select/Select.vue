@@ -48,7 +48,7 @@ const focused = ref(false)
 <template>
   <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
     <button
-      class="flex h-9 items-center justify-between rounded-md bg-white px-3 py-1.5 text-sm leading-[1.375rem] shadow-sm input-border focus-visible:z-10 focus-visible:input-border-ring focus-visible:input-border-color-primary disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800"
+      class="input-bg focus-visible:input-border-bold focus-visible:input-border-primary-500 flex h-9 items-center justify-between rounded-md px-3 py-1.5 text-sm leading-[1.375rem] shadow-sm input-border focus-visible:z-10 disabled:cursor-not-allowed disabled:opacity-50"
       v-bind="$attrs"
       :disabled
     >

@@ -92,15 +92,13 @@ const varPlugin: Plugin = {
       ':root': {
         ...all,
         '--t-primary': theme('colors.primary.500'),
-        '--t-border': theme('colors.gray.200'),
-        '--t-input-focus': theme('colors.gray.300'),
-        '--t-input-bg': theme('colors.gray.200'),
+        '--t-input-border': theme('colors.gray.200'),
+        '--t-input-bg': theme('colors.white'),
       },
       [darkContext]: {
         '--t-primary': theme('colors.primary.500'),
-        '--t-border': theme('colors.gray.700'),
-        '--t-input-focus': theme('colors.gray.800'),
-        '--t-input-bg': theme('colors.gray.700'),
+        '--t-input-border': theme('colors.gray.700'),
+        '--t-input-bg': theme('colors.gray.900'),
       },
     })
   },
@@ -130,16 +128,17 @@ export default {
 
         const resizerColor = theme('colors.gray.500')!.replace('#', '%23')
 
-        // const resizeYImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="M12 8V2"/><path d="M4 12H2"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M22 12h-2"/><path d="m15 19-3 3-3-3"/><path d="m15 5-3-3-3 3"/></svg>')`
+        const resizeYImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="M12 8V2"/><path d="M4 12H2"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M22 12h-2"/><path d="m15 19-3 3-3-3"/><path d="m15 5-3-3-3 3"/></svg>')`
         // const resizeXImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 12h6"/><path d="M8 12H2"/><path d="M12 2v2"/><path d="M12 8v2"/><path d="M12 14v2"/><path d="M12 20v2"/><path d="m19 15 3-3-3-3"/><path d="m5 9-3 3 3 3"/></svg>')`
         const resizeAllImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/></svg>')`
 
         addUtilities({
           '.scrollbar': {
-            '--resizer-image': resizeAllImage,
+            '--resizer-image': resizeYImage,
             '&::-webkit-scrollbar': {
               width: theme('space.3'),
               height: theme('space.3'),
+              backgroundColor: 'transparent',
             },
             '&::-webkit-scrollbar-thumb,&::-webkit-scrollbar-track': {
               backgroundClip: 'padding-box',
@@ -161,19 +160,20 @@ export default {
             '&::-webkit-scrollbar-button': {
               display: 'none',
             },
+            '&::-webkit-scrollbar-corner': {
+              backgroundColor: 'transparent',
+            },
             '&::-webkit-resizer': {
               backgroundImage: 'var(--resizer-image)',
-              backgroundColor: theme('colors.white'),
+              backgroundColor: 'transparent',
               backgroundSize: '10px 10px',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               width: theme('space.3'),
               height: theme('space.3'),
+              borderRadius: theme('borderRadius.full'),
             },
             [darkContext]: {
-              '&::-webkit-resizer': {
-                backgroundColor: theme('colors.gray.900'),
-              },
               '&::-webkit-scrollbar-track': {
                 backgroundColor: theme('colors.gray.700'),
               },
@@ -186,67 +186,26 @@ export default {
             },
           },
         })
-        matchComponents(
+
+        addUtilities({
+          '.input-bg': { backgroundColor: 'var(--t-input-bg)' },
+        })
+        matchUtilities(
           {
-            'focus-ring': value => {
-              const isDeepValue = typeof theme('colors')?.[value] === 'object'
-              return {
-                '--tw-ring-offset-color': theme('colors.white'),
-                '&:focus': {
-                  '@apply ring-2 ring-offset-2 ring-primary-500': {},
-                },
-                [darkContext]: {
-                  '--tw-ring-offset-color': theme('colors.gray.900'),
-                },
-              }
-            },
-            'focus-visible-ring': value => {
-              const isDeepValue = typeof theme('colors')?.[value] === 'object'
-              return {
-                '--tw-ring-offset-color': theme('colors.white'),
-                '&:focus-visible': {
-                  '@apply ring-2 ring-offset-2 ring-primary-500': {},
-                },
-                [darkContext]: {
-                  '--tw-ring-offset-color': theme('colors.gray.900'),
-                },
-              }
-            },
-            'focus-within-ring': value => {
-              const isDeepValue = typeof theme('colors')?.[value] === 'object'
-              return {
-                '--tw-ring-offset-color': theme('colors.white'),
-                '&:focus-within': {
-                  '@apply ring-2 ring-offset-2 ring-primary-500': {},
-                },
-                [darkContext]: {
-                  '--tw-ring-offset-color': theme('colors.gray.900'),
-                },
-              }
-            },
+            'input-bg': value => ({ '--t-input-bg': value }),
           },
-          {
-            values: flattenColors(theme('colors')),
-            type: ['color'],
-          }
+          { values: flattenColorPalette(theme('colors')), type: ['color'] }
         )
 
         addUtilities({
           '.input-border': {
-            '--tw-input-border-color': theme('colors.gray.200'),
             outline: 'none',
-            border: `1px solid var(--tw-input-border-color)`,
-            '&:focus': {
-              outline: 'none',
-            },
-            [darkContext]: {
-              '--tw-input-border-color': theme('colors.gray.700'),
-              borderColor: 'var(--tw-input-border-color)',
-            },
+            border: `1px solid var(--t-input-border)`,
+            '&:focus': { outline: 'none' },
           },
-          '.input-border-ring': {
+          '.input-border-bold': {
             '--tw-ring-opacity': '1',
-            '--tw-ring-color': 'var(--tw-input-border-color)',
+            '--tw-ring-color': 'var(--t-input-border)',
             '--tw-ring-offset-shadow':
               'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
             '--tw-ring-shadow':
@@ -256,34 +215,9 @@ export default {
         })
         matchUtilities(
           {
-            // ring-offset-white dark:ring-offset-gray-900 focus-visible:ring-1 focus-visible:ring-primary-500
-            'input-border-color': value => {
-              const isDeepValue = typeof theme('colors')?.[value] === 'object'
-              const color: string = isDeepValue ? theme(`colors.${value}.500`) : theme(`colors.${value}`)
-              return {
-                '--tw-input-border-color': color,
-              }
-            },
-            // 'input-focus-border': value => {
-            //   const isDeepValue = typeof theme('colors')?.[value] === 'object'
-            //   return {
-            //     borderWidth: '1px',
-            //     borderStyle: 'solid',
-            //     borderColor: theme(`colors.gray.200`),
-            //     '&:focus-within': {
-            //       borderColor: theme(`colors.primary.500`),
-            //       '@apply ring-1 ring-offset-0 ring-primary-500': {},
-            //     },
-            //     [darkContext]: {
-            //       borderColor: theme(`colors.gray.700`),
-            //     },
-            //   }
-            // },
+            'input-border': value => ({ '--t-input-border': value }),
           },
-          {
-            values: flattenColors(theme('colors')),
-            type: ['color'],
-          }
+          { values: flattenColorPalette(theme('colors')), type: ['color'] }
         )
       },
     } as Plugin,
