@@ -46,12 +46,12 @@ const props = defineProps({
     class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-900"
     :class="[
       {
-        solid: 'bg-[--accent-500] text-white hover:bg-[--accent-600]',
-        soft: 'bg-[--accent-100] text-[--accent-600] hover:bg-[--accent-200] hover:text-[--accent-700] dark:bg-[--accent-900] dark:text-[--accent-400] dark:hover:bg-[--accent-800] dark:hover:text-[--accent-300]',
+        solid: 'bg-[--accent-500] text-white shadow-sm hover:bg-[--accent-600]',
+        soft: 'bg-[--accent-100] text-[--accent-600] shadow-sm hover:bg-[--accent-200] hover:text-[--accent-700] dark:bg-[--accent-900] dark:text-[--accent-400] dark:hover:bg-[--accent-800] dark:hover:text-[--accent-300]',
         ghost:
           'text-[--accent-600] hover:bg-[--accent-100] hover:text-[--accent-700] dark:text-[--accent-400] dark:hover:bg-[--accent-900] dark:hover:text-[--accent-300]',
         outline:
-          'border border-gray-200 bg-white hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800',
+          'border border-gray-200 bg-white shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800',
         link: 'underline-offset-4 hover:underline',
       }[props.variant],
       {
@@ -62,7 +62,7 @@ const props = defineProps({
       props.pill ? 'rounded-full' : 'rounded-md',
       !props.square && props.block ? 'w-full' : '',
     ]"
-    :disabled="props.disabled"
+    :disabled
     @click="emit('click', $event)"
   >
     <template v-if="loading">

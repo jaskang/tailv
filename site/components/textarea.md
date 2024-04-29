@@ -53,6 +53,17 @@ import { ref } from 'vue'
 </template>
 ```
 
+## 禁用
+
+```vue demo
+<script setup>
+import { ref } from 'vue'
+</script>
+<template>
+  <Textarea disabled placeholder="请输入内容" />
+</template>
+```
+
 ## 工具条
 
 ```vue demo

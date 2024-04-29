@@ -43,7 +43,7 @@ defineExpose({
 </script>
 <template>
   <div
-    class="flex h-9 items-center rounded-md bg-white input-border focus-within:z-10 focus-within:input-border-ring disabled:opacity-50 dark:bg-gray-800"
+    class="flex h-9 items-center rounded-md bg-white shadow-sm input-border focus-within:z-10 focus-within:input-border-ring data-[disabled='true']:cursor-not-allowed data-[disabled='true']:bg-gray-50 data-[disabled='true']:opacity-60 dark:bg-gray-800"
     :class="[
       {
         normal: 'focus-within:input-border-color-primary',
@@ -52,7 +52,7 @@ defineExpose({
         warning: 'input-border-color-warning dark:input-border-color-warning',
       }[props.status],
     ]"
-    :disabled="disabled"
+    :data-disabled="disabled"
   >
     <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center text-slate-500">
       <slot name="prefix">

@@ -60,9 +60,9 @@ const onInput = (e: Event) => {
         ? 'input-border-color-transparent dark:input-border-color-transparent'
         : {
             normal: 'focus:input-border-ring focus:input-border-color-primary',
-            danger: 'input-border-color-danger focus:input-border-ring',
-            success: 'input-border-color-success focus:input-border-ring',
-            warning: 'input-border-color-warning focus:input-border-ring',
+            danger: 'input-border-color-danger focus:input-border-ring dark:input-border-color-danger',
+            success: 'input-border-color-success focus:input-border-ring dark:input-border-color-success',
+            warning: 'input-border-color-warning focus:input-border-ring dark:input-border-color-warning',
           }[props.status],
       // noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
     ]"
