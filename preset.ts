@@ -35,10 +35,73 @@ function extractColorVars(colorObj: any, scope = ''): Record<string, string> {
 }
 
 const varPlugin: Plugin = {
-  handler: ({ addBase, theme }) => {
+  handler: ({ addBase, theme, config }) => {
+    let [mode, className = '.dark'] = ([] as any[]).concat(config('darkMode', 'media'))
+    if (mode === false) {
+      mode = 'media'
+    }
+    const darkContext = mode === 'media' ? '@media (prefers-color-scheme: dark)' : `:is(${className})`
+
     const all = extractColorVars(theme('colors'))
+
+    // .theme-blue {
+    //   --background: 0 0% 100%;
+    //   --foreground: 222.2 84% 4.9%;
+    //   --muted: 210 40% 96.1%;
+    //   --muted-foreground: 215.4 16.3% 46.9%;
+    //   --popover: 0 0% 100%;
+    //   --popover-foreground: 222.2 84% 4.9%;
+    //   --card: 0 0% 100%;
+    //   --card-foreground: 222.2 84% 4.9%;
+    //   --border: 214.3 31.8% 91.4%;
+    //   --input: 214.3 31.8% 91.4%;
+    //   --primary: 221.2 83.2% 53.3%;
+    //   --primary-foreground: 210 40% 98%;
+    //   --secondary: 210 40% 96.1%;
+    //   --secondary-foreground: 222.2 47.4% 11.2%;
+    //   --accent: 210 40% 96.1%;
+    //   --accent-foreground: 222.2 47.4% 11.2%;
+    //   --destructive: 0 84.2% 60.2%;
+    //   --destructive-foreground: 210 40% 98%;
+    //   --ring: 221.2 83.2% 53.3%;
+    //   --radius:
+    // }
+
+    // .dark .theme-blue {
+    //   --background: 222.2 84% 4.9%;
+    //   --foreground: 210 40% 98%;
+    //   --muted: 217.2 32.6% 17.5%;
+    //   --muted-foreground: 215 20.2% 65.1%;
+    //   --popover: 222.2 84% 4.9%;
+    //   --popover-foreground: 210 40% 98%;
+    //   --card: 222.2 84% 4.9%;
+    //   --card-foreground: 210 40% 98%;
+    //   --border: 217.2 32.6% 17.5%;
+    //   --input: 217.2 32.6% 17.5%;
+    //   --primary: 217.2 91.2% 59.8%;
+    //   --primary-foreground: 222.2 47.4% 11.2%;
+    //   --secondary: 217.2 32.6% 17.5%;
+    //   --secondary-foreground: 210 40% 98%;
+    //   --accent: 217.2 32.6% 17.5%;
+    //   --accent-foreground: 210 40% 98%;
+    //   --destructive: 0 62.8% 30.6%;
+    //   --destructive-foreground: 210 40% 98%;
+    //   --ring: 224.3 76.3% 48%
+    // }
     addBase({
-      ':root': all,
+      ':root': {
+        ...all,
+        '--t-primary': theme('colors.primary.500'),
+        '--t-border': theme('colors.gray.200'),
+        '--t-input-focus': theme('colors.gray.300'),
+        '--t-input-bg': theme('colors.gray.200'),
+      },
+      [darkContext]: {
+        '--t-primary': theme('colors.primary.500'),
+        '--t-border': theme('colors.gray.700'),
+        '--t-input-focus': theme('colors.gray.800'),
+        '--t-input-bg': theme('colors.gray.700'),
+      },
     })
   },
 }
@@ -57,7 +120,7 @@ export default {
   plugins: [
     varPlugin,
     {
-      handler: ({ addUtilities, matchUtilities, matchComponents, theme, config }) => {
+      handler: ({ addUtilities, matchUtilities, addBase, matchComponents, theme, config }) => {
         let [mode, className = '.dark'] = ([] as any[]).concat(config('darkMode', 'media'))
         if (mode === false) {
           mode = 'media'

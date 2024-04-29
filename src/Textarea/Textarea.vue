@@ -54,16 +54,18 @@ const onInput = (e: Event) => {
 </script>
 <template>
   <textarea
-    class="relative flex w-full appearance-none overflow-y-scroll rounded-md bg-transparent bg-white py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar input-border placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800"
+    class="relative flex w-full appearance-none overflow-y-scroll rounded-md bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar input-border placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
       noBorder
         ? 'input-border-color-transparent dark:input-border-color-transparent'
-        : {
-            normal: 'focus:input-border-ring focus:input-border-color-primary',
-            danger: 'input-border-color-danger focus:input-border-ring dark:input-border-color-danger',
-            success: 'input-border-color-success focus:input-border-ring dark:input-border-color-success',
-            warning: 'input-border-color-warning focus:input-border-ring dark:input-border-color-warning',
-          }[props.status],
+        : 'bg-white focus:input-border-ring dark:bg-gray-900',
+      !noBorder &&
+        {
+          normal: ' focus:input-border-color-primary',
+          danger: 'input-border-color-danger  dark:input-border-color-danger',
+          success: 'input-border-color-success  dark:input-border-color-success',
+          warning: 'input-border-color-warning  dark:input-border-color-warning',
+        }[props.status],
       // noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
     ]"
     :style="{
