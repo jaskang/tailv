@@ -54,7 +54,7 @@ const onInput = (e: Event) => {
 </script>
 <template>
   <textarea
-    class="relative flex w-full appearance-none overflow-y-scroll rounded-md bg-transparent bg-white py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar input-border placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-900"
+    class="relative flex w-full appearance-none overflow-y-scroll rounded-md bg-transparent bg-white py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar input-border placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800"
     :class="[
       noBorder
         ? 'input-border-color-transparent dark:input-border-color-transparent'

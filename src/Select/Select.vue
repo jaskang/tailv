@@ -4,7 +4,7 @@ import Input from '../Input/index.vue'
 import { ref, computed, type PropType } from 'vue'
 import type { SelectOption } from './types'
 import { useModelValue } from '../use/useModelValue'
-import ChevronUpDown from '../Icon/ChevronUpDown.vue'
+import ChevronDownIcon from '../Icon/ChevronDownIcon.vue'
 import { ScrollArea } from '../ScrollArea'
 
 defineOptions({ name: 'Select', inheritAttrs: false })
@@ -47,7 +47,41 @@ const focused = ref(false)
 </script>
 <template>
   <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
-    <Input
+    <button
+      class="flex h-9 items-center justify-between rounded-md bg-white px-3 py-1.5 text-sm leading-[1.375rem] shadow-sm input-border focus-visible:z-10 focus-visible:input-border-ring focus-visible:input-border-color-primary disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800"
+      v-bind="$attrs"
+      :disabled
+    >
+      <span
+        class="pointer-events-none overflow-hidden text-ellipsis whitespace-nowrap"
+        :class="[label ? '' : 'text-slate-400']"
+      >
+        {{ label || placeholder }}
+      </span>
+      <ChevronDownIcon class="-mr-1 ml-1 h-4 w-4 flex-shrink-0"></ChevronDownIcon>
+    </button>
+    <template #content>
+      <ScrollArea class="flex max-h-80 flex-col text-sm" mode="y">
+        <div class="grid gap-1 p-1">
+          <div
+            v-for="item in options"
+            :key="item.value"
+            @click="selectHandler(item)"
+            class="relative cursor-pointer rounded px-3 py-2 text-sm"
+            :class="[
+              item.value === modelValue
+                ? 'bg-primary-500 font-medium text-white'
+                : 'hover:bg-slate-100 hover:text-primary-600',
+            ]"
+          >
+            {{ item.label }}
+          </div>
+        </div>
+      </ScrollArea>
+    </template>
+  </Popover>
+
+  <!-- <Input
       readonly
       :value="label"
       ref="inputRef"
@@ -59,7 +93,7 @@ const focused = ref(false)
     >
       <template #suffix>
         <div class="pr-1 text-slate-400">
-          <ChevronUpDown class="h-5 w-5"></ChevronUpDown>
+          <ChevronDownIcon class="h-5 w-5"></ChevronDownIcon>
         </div>
       </template>
     </Input>
@@ -81,6 +115,5 @@ const focused = ref(false)
           </div>
         </div>
       </ScrollArea>
-    </template>
-  </Popover>
+    </template> -->
 </template>

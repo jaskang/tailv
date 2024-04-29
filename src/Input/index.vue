@@ -43,7 +43,7 @@ defineExpose({
 </script>
 <template>
   <div
-    class="flex h-9 items-center rounded-md bg-white input-border focus-within:z-10 focus-within:input-border-ring disabled:opacity-50 dark:bg-gray-900"
+    class="flex h-9 items-center rounded-md bg-white input-border focus-within:z-10 focus-within:input-border-ring disabled:opacity-50 dark:bg-gray-800"
     :class="[
       {
         normal: 'focus-within:input-border-color-primary',

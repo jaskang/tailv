@@ -33,3 +33,23 @@
   </div>
 </template>
 ```
+
+## default
+
+```vue demo
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Select
+      class="w-60"
+      placeholder="选择框"
+      value="2"
+      disabled
+      :options="[
+        { value: '1', label: 'Wade Cooper' },
+        { value: '2', label: 'Arlene Mccoy' },
+        { value: '3', label: 'Devon Webb' },
+      ]"
+    />
+  </div>
+</template>
+```
