@@ -43,7 +43,7 @@ const props = defineProps({
       '--accent-900': cvar(`${props.color}-900`),
       '--accent-950': cvar(`${props.color}-950`),
     }"
-    class="inline-flex items-center justify-center whitespace-nowrap text-center font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-900"
+    class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-900"
     :class="[
       {
         solid: 'bg-[--accent-500] text-white hover:bg-[--accent-600]',
