@@ -94,11 +94,13 @@ const varPlugin: Plugin = {
         '--t-primary': theme('colors.primary.500'),
         '--t-input-border': theme('colors.gray.200'),
         '--t-input-bg': theme('colors.white'),
+        '--t-ring-offset': 'var(--t-input-bg)',
       },
       [darkContext]: {
         '--t-primary': theme('colors.primary.500'),
         '--t-input-border': theme('colors.gray.700'),
         '--t-input-bg': theme('colors.gray.900'),
+        '--t-ring-offset': 'var(--t-input-bg)',
       },
     })
   },
@@ -204,13 +206,22 @@ export default {
             '&:focus': { outline: 'none' },
           },
           '.input-border-bold': {
-            '--tw-ring-opacity': '1',
+            outline: 'none',
             '--tw-ring-color': 'var(--t-input-border)',
-            '--tw-ring-offset-shadow':
-              'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-ring-offset)',
             '--tw-ring-shadow':
               'var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
-            'box-shadow': 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+            boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+          },
+          '.input-outline': {
+            outline: 'none',
+            '--tw-ring-offset-width': '2px',
+            '--tw-ring-color': 'var(--t-primary)',
+            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-ring-offset)',
+            '--tw-ring-shadow':
+              'var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+            boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
+            // focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2
           },
         })
         matchUtilities(
