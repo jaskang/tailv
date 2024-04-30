@@ -43,7 +43,7 @@ defineExpose({
 </script>
 <template>
   <div
-    class="input-bg focus-within:input-border-bold flex h-9 items-center rounded-md shadow-sm input-border focus-within:z-10 data-[disabled='true']:cursor-not-allowed data-[disabled='true']:opacity-60"
+    class="flex h-9 items-center overflow-hidden rounded-md shadow-sm input-bg input-border focus-within:z-10 focus-within:input-border-bold data-[disabled='true']:cursor-not-allowed data-[disabled='true']:opacity-60"
     :class="[
       {
         normal: 'focus-within:input-border-primary-500',
@@ -54,14 +54,14 @@ defineExpose({
     ]"
     :data-disabled="disabled"
   >
-    <span v-if="prefix || slots.prefix" class="z-input_prefix flex h-full items-center text-slate-500">
+    <span v-if="prefix || slots.prefix" class="flex h-full items-center">
       <slot name="prefix">
         <span class="pl-3"> {{ prefix }} </span>
       </slot>
     </span>
     <input
       ref="inputRef"
-      class="z-input_input block w-full flex-1 cursor-[inherit] border-none bg-transparent px-3 py-1.5 text-sm leading-[1.375rem] outline-none placeholder:text-slate-400 focus:outline-none"
+      class="block w-full flex-1 cursor-[inherit] border-0 bg-transparent px-3 py-1.5 text-sm leading-[1.375rem] outline-none placeholder:text-slate-400 focus:outline-none"
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,
@@ -77,7 +77,7 @@ defineExpose({
       @focus="emit('focus', $event)"
       @blur="emit('blur', $event)"
     />
-    <span v-if="suffix || slots.suffix" class="z-input_suffix flex h-full items-center text-slate-500">
+    <span v-if="suffix || slots.suffix" class="z-input_suffix flex h-full items-center">
       <slot name="suffix">
         <span class="pr-3">
           {{ suffix }}

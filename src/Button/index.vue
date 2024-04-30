@@ -43,15 +43,14 @@ const props = defineProps({
       '--accent-900': cvar(`${props.color}-900`),
       '--accent-950': cvar(`${props.color}-950`),
     }"
-    class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium ring-offset-white transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-900"
+    class="focus-visible:ring-outline inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-colors focus-visible:z-10 disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
         solid: 'bg-[--accent-500] text-white shadow-sm hover:bg-[--accent-600]',
         soft: 'bg-[--accent-100] text-[--accent-600] shadow-sm hover:bg-[--accent-200] hover:text-[--accent-700] dark:bg-[--accent-900] dark:text-[--accent-400] dark:hover:bg-[--accent-800] dark:hover:text-[--accent-300]',
         ghost:
           'text-[--accent-600] hover:bg-[--accent-100] hover:text-[--accent-700] dark:text-[--accent-400] dark:hover:bg-[--accent-900] dark:hover:text-[--accent-300]',
-        outline:
-          'hover:input-bg-gray-100 dark:hover:input-bg-gray-800 input-bg border shadow-sm input-border dark:bg-gray-900',
+        outline: 'border shadow-sm input-bg input-border hover:input-bg-gray-100 dark:hover:input-bg-gray-900 ',
         link: 'underline-offset-4 hover:underline',
       }[props.variant],
       {

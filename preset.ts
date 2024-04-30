@@ -92,14 +92,14 @@ const varPlugin: Plugin = {
       ':root': {
         ...all,
         '--t-primary': theme('colors.primary.500'),
-        '--t-input-border': theme('colors.gray.200'),
+        '--t-border': theme('colors.slate.200'),
         '--t-input-bg': theme('colors.white'),
         '--t-ring-offset': 'var(--t-input-bg)',
       },
       [darkContext]: {
         '--t-primary': theme('colors.primary.500'),
-        '--t-input-border': theme('colors.gray.700'),
-        '--t-input-bg': theme('colors.gray.900'),
+        '--t-border': theme('colors.slate.700'),
+        '--t-input-bg': theme('colors.slate.800'),
         '--t-ring-offset': 'var(--t-input-bg)',
       },
     })
@@ -202,18 +202,18 @@ export default {
         addUtilities({
           '.input-border': {
             outline: 'none',
-            border: `1px solid var(--t-input-border)`,
+            border: `1px solid var(--t-border)`,
             '&:focus': { outline: 'none' },
           },
           '.input-border-bold': {
             outline: 'none',
-            '--tw-ring-color': 'var(--t-input-border)',
+            '--tw-ring-color': 'var(--t-border)',
             '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-ring-offset)',
             '--tw-ring-shadow':
               'var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
             boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
           },
-          '.input-outline': {
+          '.ring-outline': {
             outline: 'none',
             '--tw-ring-offset-width': '2px',
             '--tw-ring-color': 'var(--t-primary)',
@@ -226,7 +226,7 @@ export default {
         })
         matchUtilities(
           {
-            'input-border': value => ({ '--t-input-border': value }),
+            'input-border': value => ({ '--t-border': value }),
           },
           { values: flattenColorPalette(theme('colors')), type: ['color'] }
         )

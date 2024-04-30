@@ -64,8 +64,8 @@
     <SpaceCompact class="w-full ">
       <Input />
       <Select
-        placeholder="placeholder"
-        class="w-20"
+        placeholder="请选择"
+        class="w-36"
         :options="[
           { value: 1, label: 'Wade Cooper' },
           { value: 2, label: 'Arlene Mccoy' },
