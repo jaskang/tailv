@@ -39,7 +39,7 @@ const current = ref('Archive')
 <template>
   <div class="flex flex-wrap gap-2">
     <div class="">
-      <Menu :current="current" :items="items" class="w-40 rounded-md border border-slate-200" />
+      <Menu :current="current" :items="items" class="w-40 rounded-md input-border" />
     </div>
   </div>
 </template>

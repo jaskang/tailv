@@ -3,9 +3,16 @@
 ## default
 
 ```vue demo
+<script setup>
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
+</script>
 <template>
   <div class="flex flex-wrap gap-2">
-    <Input class="w-full" />
+    <Input class="w-full" placeholder="搜索">
+      <template #prefix>
+        <MagnifyingGlassIcon class="ml-3 h-4 w-4" />
+      </template>
+    </Input>
   </div>
 </template>
 ```

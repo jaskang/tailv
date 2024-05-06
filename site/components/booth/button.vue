@@ -24,8 +24,8 @@ const loading = ref(false)
 const disabled = ref(false)
 </script>
 <template>
-  <div class="flex w-full flex-col rounded-md border md:flex-row-reverse">
-    <div class="flex-1 space-y-2 border-l p-6">
+  <div class="flex w-full flex-col rounded-md input-border md:flex-row-reverse">
+    <div class="flex-1 space-y-2 border-l border-l-[--t-border] p-6">
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">variant:</div>
         <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2 py-1.5">

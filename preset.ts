@@ -93,14 +93,16 @@ const varPlugin: Plugin = {
         ...all,
         '--t-primary': theme('colors.primary.500'),
         '--t-border': theme('colors.slate.200'),
+        '--t-bg': theme('colors.white'),
         '--t-input-bg': theme('colors.white'),
-        '--t-ring-offset': 'var(--t-input-bg)',
+        '--t-ring-offset': 'var(--t-bg)',
       },
       [darkContext]: {
         '--t-primary': theme('colors.primary.500'),
         '--t-border': theme('colors.slate.700'),
+        '--t-bg': theme('colors.slate.900'),
         '--t-input-bg': theme('colors.slate.800'),
-        '--t-ring-offset': 'var(--t-input-bg)',
+        '--t-ring-offset': 'var(--t-bg)',
       },
     })
   },
@@ -205,8 +207,9 @@ export default {
             border: `1px solid var(--t-border)`,
             '&:focus': { outline: 'none' },
           },
-          '.input-border-bold': {
+          '.ring-border': {
             outline: 'none',
+            '--tw-ring-offset-width': '0px',
             '--tw-ring-color': 'var(--t-border)',
             '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-ring-offset)',
             '--tw-ring-shadow':
