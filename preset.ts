@@ -91,13 +91,17 @@ const varPlugin: Plugin = {
     const bg = theme('tailv.bg') || 'slate'
     const border = theme('tailv.border') || 'slate'
     addBase({
+      ':root': all,
+    })
+    addBase({
       ':root': {
-        ...all,
         '--t-primary': theme(`colors.primary.500`),
         '--t-border': theme(`colors.${border}.200`),
         '--t-bg': theme(`colors.white`),
         '--t-input-bg': theme(`colors.white`),
       },
+    })
+    addBase({
       [darkContext]: {
         '--t-primary': theme(`colors.primary.500`),
         '--t-border': theme(`colors.${border}.700`),
