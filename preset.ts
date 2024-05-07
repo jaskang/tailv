@@ -88,21 +88,21 @@ const varPlugin: Plugin = {
     //   --destructive-foreground: 210 40% 98%;
     //   --ring: 224.3 76.3% 48%
     // }
+    const bg = theme('tailv.bg') || 'slate'
+    const border = theme('tailv.border') || 'slate'
     addBase({
       ':root': {
         ...all,
-        '--t-primary': theme('colors.primary.500'),
-        '--t-border': theme('colors.slate.200'),
-        '--t-bg': theme('colors.white'),
-        '--t-input-bg': theme('colors.white'),
-        '--t-ring-offset': 'var(--t-bg)',
+        '--t-primary': theme(`colors.primary.500`),
+        '--t-border': theme(`colors.${border}.200`),
+        '--t-bg': theme(`colors.white`),
+        '--t-input-bg': theme(`colors.white`),
       },
       [darkContext]: {
-        '--t-primary': theme('colors.primary.500'),
-        '--t-border': theme('colors.slate.700'),
-        '--t-bg': theme('colors.slate.900'),
-        '--t-input-bg': theme('colors.slate.800'),
-        '--t-ring-offset': 'var(--t-bg)',
+        '--t-primary': theme(`colors.primary.500`),
+        '--t-border': theme(`colors.${border}.700`),
+        '--t-bg': theme(`colors.${bg}.900`),
+        '--t-input-bg': theme(`colors.${bg}.800`),
       },
     })
   },
@@ -117,6 +117,7 @@ export default {
         warning: colors.amber,
         danger: colors.red,
       },
+      tailv: {},
     },
   },
   plugins: [
@@ -211,7 +212,7 @@ export default {
             outline: 'none',
             '--tw-ring-offset-width': '0px',
             '--tw-ring-color': 'var(--t-border)',
-            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-ring-offset)',
+            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-bg)',
             '--tw-ring-shadow':
               'var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
             boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
@@ -220,7 +221,7 @@ export default {
             outline: 'none',
             '--tw-ring-offset-width': '2px',
             '--tw-ring-color': 'var(--t-primary)',
-            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-ring-offset)',
+            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-bg)',
             '--tw-ring-shadow':
               'var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
             boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
