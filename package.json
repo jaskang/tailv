@@ -23,13 +23,14 @@
     }
   },
   "scripts": {
-    "dev": "vitepress dev site",
+    "dev": "npm-run-all --parallel preset:dev docs:dev",
+    "docs:dev": "vitepress dev site",
     "docs:build": "vitepress build site",
     "docs:preview": "vitepress preview site",
     "release": "release-it --only-version",
     "build": "vite build && tsup",
-    "build:preset": "tsup",
-    "build:preset:watch": "tsup --watch",
+    "preset:build": "tsup",
+    "preset:dev": "tsup --watch",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
@@ -62,6 +63,7 @@
     "mdast-util-to-markdown": "^2.1.0",
     "micromark-extension-frontmatter": "^2.0.0",
     "mini-svg-data-uri": "^1.4.4",
+    "npm-run-all": "^4.1.5",
     "postcss-import": "^16.1.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.13",
