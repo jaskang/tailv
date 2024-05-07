@@ -9,6 +9,14 @@ const flattenColors = (colors: Record<string, Record<string, string>> | Record<s
   return Object.assign({}, ...Object.entries(colors ?? {}).map(([color, values]) => ({ [color]: color })))
 }
 
+const darkConfig = (config: any) => {
+  let [darkMode, darkClass = '.dark'] = ([] as any[]).concat(config('darkMode', 'media'))
+  if (darkMode === false) {
+    darkMode = 'media'
+  }
+  const darkContext = darkMode === 'media' ? '@media (prefers-color-scheme: dark)' : `&:is(${darkClass} *)`
+  return { darkMode, darkClass, darkContext }
+}
 const flattenColorPalette = (
   colors: Record<string, Record<string, string>> | Record<string, string> | undefined
 ): Record<string, string> =>
@@ -36,12 +44,8 @@ function extractColorVars(colorObj: any, scope = ''): Record<string, string> {
 
 const varPlugin: Plugin = {
   handler: ({ addBase, theme, config }) => {
-    let [mode, className = '.dark'] = ([] as any[]).concat(config('darkMode', 'media'))
-    if (mode === false) {
-      mode = 'media'
-    }
-    const darkContext = mode === 'media' ? '@media (prefers-color-scheme: dark)' : `:is(${className})`
-
+    const { darkMode, darkClass } = darkConfig(config)
+    const darkContext = darkMode === 'media' ? '@media (prefers-color-scheme: dark)' : `:is(${darkClass})`
     const all = extractColorVars(theme('colors'))
 
     // .theme-blue {
@@ -90,6 +94,7 @@ const varPlugin: Plugin = {
     // }
     const bg = theme('tailv.bg') || 'slate'
     const border = theme('tailv.border') || 'slate'
+
     addBase({
       ':root': all,
     })
@@ -128,12 +133,7 @@ export default {
     varPlugin,
     {
       handler: ({ addUtilities, matchUtilities, addBase, matchComponents, theme, config }) => {
-        let [mode, className = '.dark'] = ([] as any[]).concat(config('darkMode', 'media'))
-        if (mode === false) {
-          mode = 'media'
-        }
-
-        const darkContext = mode === 'media' ? '@media (prefers-color-scheme: dark)' : `&:is(${className} *)`
+        const { darkContext } = darkConfig(config)
 
         const resizerColor = theme('colors.gray.500')!.replace('#', '%23')
 

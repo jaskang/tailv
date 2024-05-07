@@ -15,6 +15,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 // https://vitepress.dev/reference/site-config
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'My Awesome Project',
+  // appearance: {
+  //   valueDark: 'vscode-dark',
+  //   valueLight: 'vscode-light',
+  // },
   description: 'A VitePress Site',
   markdown: {
     // lineNumbers: true,
