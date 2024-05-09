@@ -1,9 +1,16 @@
 import { type Config } from 'tailwindcss'
 import colors from 'tailwindcss/colors.js'
-import forms from '@tailwindcss/forms'
+import { TinyColor } from '@ctrl/tinycolor'
 
 type Preset = Required<Config>['presets'][number]
 type Plugin = Required<Config>['plugins'][number]
+
+function toHsl(color: string) {
+  const c = new TinyColor(color)
+  const hsla = c.toHslString()
+  //  'hsla(xxx, xxx, xxx, xx)' -> 'xxx xxx xxx'
+  return hsla.substring(4, hsla.indexOf(')')).replace(/\,/g, '')
+}
 
 const flattenColors = (colors: Record<string, Record<string, string>> | Record<string, string> | undefined) => {
   return Object.assign({}, ...Object.entries(colors ?? {}).map(([color, values]) => ({ [color]: color })))
@@ -97,30 +104,74 @@ const varPlugin: Plugin = {
     const text = theme('tailv.text') || 'slate'
 
     addBase({
-      ':root': all,
-    })
-    addBase({
+      ':where(*)': {
+        'border-color': 'hsl(var(--border))',
+      },
+      ':where(*):focus': { outline: 'none' },
+
       ':root': {
-        '--t-primary': theme(`colors.primary.500`),
-        '--t-background': theme(`colors.white`),
-        '--t-foreground': theme(`colors.${text}.100`),
-        '--t-border': theme(`colors.${border}.200`),
-        '--t-muted': theme(`colors.${bg}.100`),
-        '--t-input-bg': theme(`colors.white`),
+        '--border': toHsl(theme('colors.slate.200')),
+        '--input': toHsl(theme('colors.white')),
+        '--background': toHsl(theme('colors.white')),
+        '--foreground': toHsl(theme('colors.slate.900')),
+        '--primary': toHsl(theme('colors.cyan.500')),
+        '--primary-foreground': toHsl(theme('colors.stale.50')),
+        '--success': toHsl(theme('colors.green.500')),
+        '--success-foreground': toHsl(theme('colors.stale.50')),
+        '--warning': toHsl(theme('colors.amber.500')),
+        '--warning-foreground': toHsl(theme('colors.stale.50')),
+        '--danger': toHsl(theme('colors.red.500')),
+        '--danger-foreground': toHsl(theme('colors.stale.50')),
+        '--muted': toHsl(theme('colors.gray.100')),
+        '--muted-foreground': toHsl(theme('colors.gray.500')),
+        '--popper': toHsl(theme('colors.white')),
+        '--popper-foreground': toHsl(theme('colors.white')),
+        '--accent': toHsl(theme('colors.white')),
+        '--accent-foreground': toHsl(theme('colors.white')),
+
+        // '--ring': toHsl(theme('colors.white')),
+
+        // '--t-primary': theme(`colors.primary.500`),
+        // '--t-background': theme(`colors.white`),
+        // '--t-foreground': theme(`colors.${text}.100`),
+        // '--t-border': theme(`colors.${border}.200`),
+        // '--t-muted': theme(`colors.${bg}.100`),
+        // '--t-input-bg': theme(`colors.white`),
         ...all,
       },
       [darkContext]: {
-        '--t-primary': theme(`colors.primary.500`),
-        '--t-border': theme(`colors.${border}.700`),
-        '--t-background': theme(`colors.${bg}.900`),
-        '--t-muted': theme(`colors.${bg}.800`),
-        '--t-input-bg': theme(`colors.${bg}.800`),
+        '--border': toHsl(theme('colors.slate.700')),
+        '--input': toHsl(theme('colors.slate.900')),
+        '--background': toHsl(theme('colors.slate.900')),
+        '--foreground': toHsl(theme('colors.slate.50')),
+        '--primary': toHsl(theme('colors.cyan.500')),
+        '--primary-foreground': toHsl(theme('colors.stale.50')),
+        '--success': toHsl(theme('colors.green.500')),
+        '--success-foreground': toHsl(theme('colors.stale.50')),
+        '--warning': toHsl(theme('colors.amber.500')),
+        '--warning-foreground': toHsl(theme('colors.stale.50')),
+        '--danger': toHsl(theme('colors.red.500')),
+        '--danger-foreground': toHsl(theme('colors.stale.50')),
+        '--muted': toHsl(theme('colors.gray.800')),
+        '--muted-foreground': toHsl(theme('colors.gray.400')),
+        '--popper': toHsl(theme('colors.white')),
+        '--popper-foreground': toHsl(theme('colors.white')),
+        '--accent': toHsl(theme('colors.white')),
+        '--accent-foreground': toHsl(theme('colors.white')),
+
+        // '--ring': toHsl(theme('colors.white')),
+
+        // '--t-primary': theme(`colors.primary.500`),
+        // '--t-border': theme(`colors.${border}.700`),
+        // '--t-foreground': theme(`colors.${text}.100`),
+        // '--t-background': theme(`colors.${bg}.900`),
+        // '--t-muted': theme(`colors.${bg}.800`),
+        // '--t-input-bg': theme(`colors.${bg}.800`),
       },
-      '*': {
-        'border-color': 'var(--t-border)',
-      },
+
       body: {
-        'background-color': 'var(--t-background)',
+        color: 'hsl(var(--foreground))',
+        'background-color': 'hsl(var(--background))',
         'font-synthesis-weight': 'none',
         'text-rendering': 'optimizeLegibility',
       },
@@ -132,13 +183,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: colors.indigo,
-        success: colors.green,
-        warning: colors.amber,
-        danger: colors.red,
-        muted: 'var(--t-muted)',
-        background: 'var(--t-background)',
-        border: 'var(--t-muted)',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
+        success: { DEFAULT: 'hsl(var(--success))', foreground: 'hsl(var(--success-foreground))' },
+        warning: { DEFAULT: 'hsl(var(--warning))', foreground: 'hsl(var(--warning-foreground))' },
+        danger: { DEFAULT: 'hsl(var(--danger))', foreground: 'hsl(var(--danger-foreground))' },
+        muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
+        accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' },
+        popper: { DEFAULT: 'hsl(var(--popper))', foreground: 'hsl(var(--popper-foreground))' },
       },
       tailv: {},
     },
@@ -209,52 +265,6 @@ export default {
             },
           },
         })
-
-        addUtilities({
-          '.input-bg': { backgroundColor: 'var(--t-input-bg)' },
-        })
-        addUtilities({
-          '.input-bg': { backgroundColor: 'var(--t-input-bg)' },
-        })
-        matchUtilities(
-          {
-            'input-bg': value => ({ '--t-input-bg': value }),
-          },
-          { values: flattenColorPalette(theme('colors')), type: ['color'] }
-        )
-
-        addUtilities({
-          '.input-border': {
-            outline: 'none',
-            border: `1px solid var(--t-border)`,
-            '&:focus': { outline: 'none' },
-          },
-          '.ring-border': {
-            outline: 'none',
-            '--tw-ring-offset-width': '0px',
-            '--tw-ring-color': 'var(--t-border)',
-            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-background)',
-            '--tw-ring-shadow':
-              'var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
-            boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
-          },
-          '.ring-outline': {
-            outline: 'none',
-            '--tw-ring-offset-width': '2px',
-            '--tw-ring-color': 'var(--t-primary)',
-            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-background)',
-            '--tw-ring-shadow':
-              'var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
-            boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
-            // focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2
-          },
-        })
-        matchUtilities(
-          {
-            'input-border': value => ({ '--t-border': value }),
-          },
-          { values: flattenColorPalette(theme('colors')), type: ['color'] }
-        )
       },
     } as Plugin,
     // forms({ strategy: 'base' }),

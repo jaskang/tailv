@@ -45,7 +45,7 @@ const inkOffset = computed(() => {
     </IndentList>
     <div
       v-if="inkOffset"
-      class="absolute left-0 top-1 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm bg-primary-500 transition-all"
+      class="bg-primary absolute left-0 top-1 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm transition-all"
       :style="{ '--ink-offset': inkOffset }"
     ></div>
   </div>

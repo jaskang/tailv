@@ -43,13 +43,13 @@ defineExpose({
 </script>
 <template>
   <div
-    class="focus-within:ring-border flex h-9 items-center overflow-hidden rounded-md shadow-sm input-bg input-border focus-within:z-10 data-[disabled='true']:cursor-not-allowed data-[disabled='true']:opacity-60"
+    class="bg-input flex h-9 items-center overflow-hidden rounded-md border shadow-sm focus-within:z-10 focus-within:ring-1 data-[disabled='true']:cursor-not-allowed data-[disabled='true']:opacity-60"
     :class="[
       {
-        normal: 'focus-within:input-border-primary-500',
-        danger: 'input-border-danger-500 ',
-        success: 'input-border-success-500 ',
-        warning: 'input-border-warning-500 ',
+        normal: 'focus-within:border-primary ring-primary',
+        danger: 'border-danger ring-danger',
+        success: 'border-success ring-success',
+        warning: 'border-warning ring-warning',
       }[props.status],
     ]"
     :data-disabled="disabled"

@@ -39,10 +39,12 @@ const clickHandler = () => {
     :class="['relative inline-flex items-center', disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']"
     @click="clickHandler"
   >
-    <button class="focus-visible:ring-outline relative block cursor-[inherit] appearance-none rounded transition-all">
+    <button
+      class="focus-visible:ring-primary relative block cursor-[inherit] appearance-none rounded transition-all focus-visible:ring-2 focus-visible:ring-offset-2"
+    >
       <span
-        class="block h-4 w-4 rounded transition-all input-border"
-        :class="[checked ? 'bg-primary-500 input-border-primary-500' : 'bg-white']"
+        class="block h-4 w-4 rounded border transition-all"
+        :class="[checked ? 'border-primary bg-primary' : 'bg-white']"
       >
         <svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path
