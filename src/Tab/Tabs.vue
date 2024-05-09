@@ -15,6 +15,7 @@ const props = defineProps({
     >,
     default: () => [],
   },
+  type: { type: String as PropType<'line' | 'card'>, default: 'line' },
 })
 
 const keys = computed(() => props.items.map(item => item.key))
@@ -29,13 +30,31 @@ const clickHandler = (key: string) => {
 }
 </script>
 <template>
-  <nav v-if="items.length > 0" class="flex gap-x-2">
+  <nav v-if="type === 'line'" class="flex gap-x-2">
     <button
       v-for="item in props.items"
       type="button"
-      :data-active="currentKey === item.key"
-      class="inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-t-2 border-b-transparent border-t-transparent px-1 py-2 text-sm text-slate-500 hover:text-primary-500 focus:text-primary-500 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active='true']:border-b-primary-500 data-[active='true']:font-semibold data-[active='true']:text-primary-500 dark:text-slate-400 dark:data-[active='true']:text-primary-500"
       role="tab"
+      :data-state="currentKey === item.key ? 'active' : ''"
+      class="inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-t-2 border-b-transparent border-t-transparent px-1 py-2 text-sm text-slate-500 hover:text-primary-500 focus:text-primary-500 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-b-primary-500 data-[state=active]:font-semibold data-[state=active]:text-primary-500 dark:text-slate-400 dark:data-[state=active]:text-primary-500"
+      tabindex="-1"
+      @click="clickHandler(item.key)"
+    >
+      {{ item.label }}
+    </button>
+  </nav>
+  <nav
+    v-if="type === 'card'"
+    class="bg-muted grid h-9 w-full items-center justify-center rounded-lg p-1"
+    :style="{ gridTemplateColumns: `repeat(${keys.length}, minmax(0, 1fr))` }"
+  >
+    <button
+      v-for="item in props.items"
+      type="button"
+      role="tab"
+      :data-state="currentKey === item.key ? 'active' : ''"
+      class="data-[state=active]:text-foreground data-[state=active]:bg-background inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow"
+      tabindex="-1"
       @click="clickHandler(item.key)"
     >
       {{ item.label }}

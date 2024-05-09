@@ -94,6 +94,7 @@ const varPlugin: Plugin = {
     // }
     const bg = theme('tailv.bg') || 'slate'
     const border = theme('tailv.border') || 'slate'
+    const text = theme('tailv.text') || 'slate'
 
     addBase({
       ':root': all,
@@ -101,17 +102,27 @@ const varPlugin: Plugin = {
     addBase({
       ':root': {
         '--t-primary': theme(`colors.primary.500`),
+        '--t-background': theme(`colors.white`),
+        '--t-foreground': theme(`colors.${text}.100`),
         '--t-border': theme(`colors.${border}.200`),
-        '--t-bg': theme(`colors.white`),
+        '--t-muted': theme(`colors.${bg}.100`),
         '--t-input-bg': theme(`colors.white`),
+        ...all,
       },
-    })
-    addBase({
       [darkContext]: {
         '--t-primary': theme(`colors.primary.500`),
         '--t-border': theme(`colors.${border}.700`),
-        '--t-bg': theme(`colors.${bg}.900`),
+        '--t-background': theme(`colors.${bg}.900`),
+        '--t-muted': theme(`colors.${bg}.800`),
         '--t-input-bg': theme(`colors.${bg}.800`),
+      },
+      '*': {
+        'border-color': 'var(--t-border)',
+      },
+      body: {
+        'background-color': 'var(--t-background)',
+        'font-synthesis-weight': 'none',
+        'text-rendering': 'optimizeLegibility',
       },
     })
   },
@@ -125,6 +136,9 @@ export default {
         success: colors.green,
         warning: colors.amber,
         danger: colors.red,
+        muted: 'var(--t-muted)',
+        background: 'var(--t-background)',
+        border: 'var(--t-muted)',
       },
       tailv: {},
     },
@@ -199,6 +213,9 @@ export default {
         addUtilities({
           '.input-bg': { backgroundColor: 'var(--t-input-bg)' },
         })
+        addUtilities({
+          '.input-bg': { backgroundColor: 'var(--t-input-bg)' },
+        })
         matchUtilities(
           {
             'input-bg': value => ({ '--t-input-bg': value }),
@@ -216,7 +233,7 @@ export default {
             outline: 'none',
             '--tw-ring-offset-width': '0px',
             '--tw-ring-color': 'var(--t-border)',
-            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-bg)',
+            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-background)',
             '--tw-ring-shadow':
               'var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
             boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
@@ -225,7 +242,7 @@ export default {
             outline: 'none',
             '--tw-ring-offset-width': '2px',
             '--tw-ring-color': 'var(--t-primary)',
-            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-bg)',
+            '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--t-background)',
             '--tw-ring-shadow':
               'var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
             boxShadow: 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
