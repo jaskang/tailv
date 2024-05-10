@@ -9,16 +9,12 @@ const emit = defineEmits<{ click: [Event] }>()
 const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
   variant: {
-    type: String as PropType<'solid' | 'soft' | 'ghost' | 'link' | 'outline'>,
-    default: 'solid',
+    type: String as PropType<'default' | 'primary' | 'soft' | 'ghost' | 'link'>,
+    default: 'default',
   },
   size: {
     type: String as PropType<'sm' | 'md' | 'lg'>,
     default: 'md',
-  },
-  color: {
-    type: String as PropType<ColorAlias>,
-    default: 'primary',
   },
   pill: Boolean,
   square: Boolean,
@@ -30,27 +26,13 @@ const props = defineProps({
 <template>
   <button
     type="button"
-    :style="{
-      '--accent-50': cvar(`${props.color}-50`),
-      '--accent-100': cvar(`${props.color}-100`),
-      '--accent-200': cvar(`${props.color}-200`),
-      '--accent-300': cvar(`${props.color}-300`),
-      '--accent-400': cvar(`${props.color}-400`),
-      '--accent-500': cvar(`${props.color}-500`),
-      '--accent-600': cvar(`${props.color}-600`),
-      '--accent-700': cvar(`${props.color}-700`),
-      '--accent-800': cvar(`${props.color}-800`),
-      '--accent-900': cvar(`${props.color}-900`),
-      '--accent-950': cvar(`${props.color}-950`),
-    }"
-    class="focus-visible:ring-primary inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-colors focus-visible:z-10 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50"
+    class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-colors focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
-        solid: 'bg-primary hover:bg-primary/90 text-white shadow-sm',
-        soft: 'bg-[--accent-100] text-[--accent-600] shadow-sm hover:bg-[--accent-200] hover:text-[--accent-700] dark:bg-[--accent-900] dark:text-[--accent-400] dark:hover:bg-[--accent-800] dark:hover:text-[--accent-300]',
-        ghost:
-          'text-[--accent-600] hover:bg-[--accent-100] hover:text-[--accent-700] dark:text-[--accent-400] dark:hover:bg-[--accent-900] dark:hover:text-[--accent-300]',
-        outline: 'bg-input hover:bg-input/90 dark:hover:bg-input/90 border shadow-sm',
+        default: 'border bg-transparent shadow-sm hover:bg-accent',
+        primary: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90',
+        soft: 'bg-primary-light text-primary-light-foreground shadow-sm hover:bg-primary-light/80',
+        ghost: 'hover:bg-accent ',
         link: 'underline-offset-4 hover:underline',
       }[props.variant],
       {

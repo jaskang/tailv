@@ -14,9 +14,8 @@ const slots = defineSlots<{ default?(_: {}): any }>()
 //   loading: Boolean,
 //   disabled: Boolean,
 
-const variant = ref<'solid' | 'soft' | 'ghost' | 'outline' | 'link'>('solid')
+const variant = ref<'default' | 'primary' | 'soft' | 'ghost' | 'link'>('primary')
 const size = ref<'sm' | 'md' | 'lg'>('md')
-const color = ref<ColorAlias>('primary')
 const pill = ref(false)
 const square = ref(false)
 const block = ref(false)
@@ -29,47 +28,12 @@ const disabled = ref(false)
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">variant:</div>
         <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2 py-1.5">
-          <Radio value="solid" class="col-span-1">solid</Radio>
+          <Radio value="default" class="col-span-1">default</Radio>
+          <Radio value="primary" class="col-span-1">primary</Radio>
           <Radio value="soft" class="col-span-1">soft</Radio>
           <Radio value="ghost" class="col-span-1">ghost</Radio>
-          <Radio value="outline" class="col-span-1">outline</Radio>
           <Radio value="link" class="col-span-1">link</Radio>
         </RadioGroup>
-      </div>
-      <div class="flex items-start">
-        <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">color:</div>
-        <Select
-          v-model:value="color"
-          class="flex-1"
-          :options="[
-            { label: 'primary', value: 'primary' },
-            { label: 'success', value: 'success' },
-            { label: 'warning', value: 'warning' },
-            { label: 'danger', value: 'danger' },
-            // { label: 'slate', value: 'slate' },
-            // { label: 'gray', value: 'gray' },
-            // { label: 'zinc', value: 'zinc' },
-            // { label: 'neutral', value: 'neutral' },
-            // { label: 'stone', value: 'stone' },
-            // { label: 'red', value: 'red' },
-            // { label: 'orange', value: 'orange' },
-            // { label: 'amber', value: 'amber' },
-            // { label: 'yellow', value: 'yellow' },
-            // { label: 'lime', value: 'lime' },
-            // { label: 'green', value: 'green' },
-            // { label: 'emerald', value: 'emerald' },
-            // { label: 'teal', value: 'teal' },
-            // { label: 'cyan', value: 'cyan' },
-            // { label: 'sky', value: 'sky' },
-            // { label: 'blue', value: 'blue' },
-            // { label: 'indigo', value: 'indigo' },
-            // { label: 'violet', value: 'violet' },
-            // { label: 'purple', value: 'purple' },
-            // { label: 'fuchsia', value: 'fuchsia' },
-            // { label: 'pink', value: 'pink' },
-            // { label: 'rose', value: 'rose' },
-          ]"
-        ></Select>
       </div>
 
       <div class="flex items-start">

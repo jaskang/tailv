@@ -111,23 +111,31 @@ const varPlugin: Plugin = {
 
       ':root': {
         '--border': toHsl(theme('colors.slate.200')),
-        '--input': toHsl(theme('colors.white')),
+        '--input': toHsl(theme('colors.slate.200')),
         '--background': toHsl(theme('colors.white')),
         '--foreground': toHsl(theme('colors.slate.900')),
+
+        '--accent': toHsl(theme('colors.slate.100')),
+        '--accent-foreground': toHsl(theme('colors.indigo.500')),
+        '--muted': toHsl(theme('colors.slate.100')),
+        '--muted-foreground': toHsl(theme('colors.slate.500')),
+
         '--primary': toHsl(theme('colors.cyan.500')),
-        '--primary-foreground': toHsl(theme('colors.stale.50')),
+        '--primary-foreground': toHsl(theme('colors.white')),
+        '--primary-light': toHsl(theme('colors.cyan.100')),
+        '--primary-light-foreground': toHsl(theme('colors.cyan.700')),
+
         '--success': toHsl(theme('colors.green.500')),
-        '--success-foreground': toHsl(theme('colors.stale.50')),
+        '--success-foreground': toHsl(theme('colors.white')),
+
         '--warning': toHsl(theme('colors.amber.500')),
-        '--warning-foreground': toHsl(theme('colors.stale.50')),
+        '--warning-foreground': toHsl(theme('colors.white')),
+
         '--danger': toHsl(theme('colors.red.500')),
-        '--danger-foreground': toHsl(theme('colors.stale.50')),
-        '--muted': toHsl(theme('colors.gray.100')),
-        '--muted-foreground': toHsl(theme('colors.gray.500')),
+        '--danger-foreground': toHsl(theme('colors.white')),
+
         '--popper': toHsl(theme('colors.white')),
         '--popper-foreground': toHsl(theme('colors.white')),
-        '--accent': toHsl(theme('colors.white')),
-        '--accent-foreground': toHsl(theme('colors.white')),
 
         // '--ring': toHsl(theme('colors.white')),
 
@@ -137,27 +145,34 @@ const varPlugin: Plugin = {
         // '--t-border': theme(`colors.${border}.200`),
         // '--t-muted': theme(`colors.${bg}.100`),
         // '--t-input-bg': theme(`colors.white`),
-        ...all,
       },
       [darkContext]: {
         '--border': toHsl(theme('colors.slate.700')),
-        '--input': toHsl(theme('colors.slate.900')),
+        '--input': toHsl(theme('colors.slate.800')),
         '--background': toHsl(theme('colors.slate.900')),
         '--foreground': toHsl(theme('colors.slate.50')),
-        '--primary': toHsl(theme('colors.cyan.500')),
-        '--primary-foreground': toHsl(theme('colors.stale.50')),
+
+        '--accent': toHsl(theme('colors.slate.800')),
+        '--accent-foreground': toHsl(theme('colors.slate.400')),
+        '--muted': toHsl(theme('colors.slate.800')),
+        '--muted-foreground': toHsl(theme('colors.slate.400')),
+
+        '--primary': toHsl(theme('colors.indigo.500')),
+        '--primary-foreground': toHsl(theme('colors.white')),
+        '--primary-light': toHsl(theme('colors.indigo.900')),
+        '--primary-light-foreground': toHsl(theme('colors.indigo.100')),
+
         '--success': toHsl(theme('colors.green.500')),
-        '--success-foreground': toHsl(theme('colors.stale.50')),
+        '--success-foreground': toHsl(theme('colors.white')),
+
         '--warning': toHsl(theme('colors.amber.500')),
-        '--warning-foreground': toHsl(theme('colors.stale.50')),
+        '--warning-foreground': toHsl(theme('colors.white')),
+
         '--danger': toHsl(theme('colors.red.500')),
-        '--danger-foreground': toHsl(theme('colors.stale.50')),
-        '--muted': toHsl(theme('colors.gray.800')),
-        '--muted-foreground': toHsl(theme('colors.gray.400')),
+        '--danger-foreground': toHsl(theme('colors.white')),
+
         '--popper': toHsl(theme('colors.white')),
         '--popper-foreground': toHsl(theme('colors.white')),
-        '--accent': toHsl(theme('colors.white')),
-        '--accent-foreground': toHsl(theme('colors.white')),
 
         // '--ring': toHsl(theme('colors.white')),
 
@@ -188,7 +203,12 @@ export default {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          light: 'hsl(var(--primary-light))',
+          'light-foreground': 'hsl(var(--primary-light-foreground))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
         success: { DEFAULT: 'hsl(var(--success))', foreground: 'hsl(var(--success-foreground))' },
         warning: { DEFAULT: 'hsl(var(--warning))', foreground: 'hsl(var(--warning-foreground))' },
         danger: { DEFAULT: 'hsl(var(--danger))', foreground: 'hsl(var(--danger-foreground))' },
