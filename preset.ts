@@ -116,14 +116,14 @@ const varPlugin: Plugin = {
         '--foreground': toHsl(theme('colors.slate.900')),
 
         '--accent': toHsl(theme('colors.slate.100')),
-        '--accent-foreground': toHsl(theme('colors.indigo.500')),
+        '--accent-foreground': toHsl(theme('colors.slate.500')),
         '--muted': toHsl(theme('colors.slate.100')),
         '--muted-foreground': toHsl(theme('colors.slate.500')),
 
-        '--primary': toHsl(theme('colors.cyan.500')),
+        '--primary': toHsl(theme('colors.fuchsia.500')),
         '--primary-foreground': toHsl(theme('colors.white')),
-        '--primary-light': toHsl(theme('colors.cyan.100')),
-        '--primary-light-foreground': toHsl(theme('colors.cyan.700')),
+        '--primary-light': toHsl(theme('colors.fuchsia.100')),
+        '--primary-light-foreground': toHsl(theme('colors.fuchsia.700')),
 
         '--success': toHsl(theme('colors.green.500')),
         '--success-foreground': toHsl(theme('colors.white')),
@@ -157,10 +157,10 @@ const varPlugin: Plugin = {
         '--muted': toHsl(theme('colors.slate.800')),
         '--muted-foreground': toHsl(theme('colors.slate.400')),
 
-        '--primary': toHsl(theme('colors.indigo.500')),
+        '--primary': toHsl(theme('colors.fuchsia.500')),
         '--primary-foreground': toHsl(theme('colors.white')),
-        '--primary-light': toHsl(theme('colors.indigo.900')),
-        '--primary-light-foreground': toHsl(theme('colors.indigo.100')),
+        '--primary-light': toHsl(theme('colors.fuchsia.900')),
+        '--primary-light-foreground': toHsl(theme('colors.fuchsia.100')),
 
         '--success': toHsl(theme('colors.green.500')),
         '--success-foreground': toHsl(theme('colors.white')),

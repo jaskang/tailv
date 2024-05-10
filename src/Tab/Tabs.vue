@@ -45,7 +45,7 @@ const clickHandler = (key: string) => {
   </nav>
   <nav
     v-if="type === 'card'"
-    class="grid h-9 w-full items-center justify-center rounded-lg bg-accent p-1"
+    class="grid h-9 w-full items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground"
     :style="{ gridTemplateColumns: `repeat(${keys.length}, minmax(0, 1fr))` }"
   >
     <button
