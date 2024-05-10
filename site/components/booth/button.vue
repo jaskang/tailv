@@ -14,8 +14,9 @@ const slots = defineSlots<{ default?(_: {}): any }>()
 //   loading: Boolean,
 //   disabled: Boolean,
 
-const variant = ref<'default' | 'primary' | 'soft' | 'ghost' | 'link'>('primary')
+const variant = ref<'outline' | 'solid' | 'soft' | 'text' | 'link'>('outline')
 const size = ref<'sm' | 'md' | 'lg'>('md')
+const color = ref<'primary' | 'success' | 'warning' | 'danger' | 'none'>('none')
 const pill = ref(false)
 const square = ref(false)
 const block = ref(false)
@@ -28,10 +29,10 @@ const disabled = ref(false)
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">variant:</div>
         <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2 py-1.5">
-          <Radio value="default" class="col-span-1">default</Radio>
-          <Radio value="primary" class="col-span-1">primary</Radio>
+          <Radio value="outline" class="col-span-1">outline</Radio>
+          <Radio value="solid" class="col-span-1">solid</Radio>
           <Radio value="soft" class="col-span-1">soft</Radio>
-          <Radio value="ghost" class="col-span-1">ghost</Radio>
+          <Radio value="text" class="col-span-1">text</Radio>
           <Radio value="link" class="col-span-1">link</Radio>
         </RadioGroup>
       </div>
@@ -42,6 +43,16 @@ const disabled = ref(false)
           <Radio value="sm">sm</Radio>
           <Radio value="md">md</Radio>
           <Radio value="lg">lg</Radio>
+        </RadioGroup>
+      </div>
+      <div class="flex items-start">
+        <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">color:</div>
+        <RadioGroup v-model:value="color" class="grid flex-1 grid-cols-3 py-2">
+          <Radio value="primary">primary</Radio>
+          <Radio value="success">success</Radio>
+          <Radio value="warning">warning</Radio>
+          <Radio value="danger">danger</Radio>
+          <Radio value="none">none</Radio>
         </RadioGroup>
       </div>
 
