@@ -54,10 +54,10 @@ const props = defineProps({
         soft: `shadow-sm ${
           {
             none: 'bg-default-100 hover:bg-default-200 text-default-700',
-            primary: 'bg-primary-100 hover:bg-primary-200 text-primary-700',
-            success: 'bg-success-100 hover:bg-success-200 text-success-700',
-            warning: 'bg-warning-100 hover:bg-warning-200 text-warning-700',
-            danger: 'bg-danger-100 hover:bg-danger-200 text-danger-700',
+            primary: 'bg-primary-100 hover:bg-primary-200 text-primary-600',
+            success: 'bg-success-100 hover:bg-success-200 text-success-600',
+            warning: 'bg-warning-100 hover:bg-warning-200 text-warning-600',
+            danger: 'bg-danger-100 hover:bg-danger-200 text-danger-600',
           }[props.color]
         }`,
         text: `${
