@@ -61,7 +61,7 @@ defineExpose({
     </span>
     <input
       ref="inputRef"
-      class="block w-full flex-1 cursor-[inherit] border-0 bg-transparent px-3 py-1.5 text-sm leading-[1.375rem] outline-none placeholder:text-slate-400 focus:outline-none"
+      class="block w-full flex-1 cursor-[inherit] border-0 bg-transparent px-3 py-1.5 text-sm leading-[1.375rem] outline-none placeholder:text-default-400 focus:outline-none"
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,

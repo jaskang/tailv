@@ -25,7 +25,7 @@ const inkOffset = computed(() => {
 </script>
 <template>
   <div class="relative">
-    <IndentList class="border-l-2 border-slate-200 text-sm leading-6 dark:border-slate-700" :items :current>
+    <IndentList class="border-l-2 text-sm leading-6" :items :current>
       <template #item="{ item, deep }">
         <div
           class="group cursor-pointer py-1"
@@ -33,7 +33,7 @@ const inkOffset = computed(() => {
           @click="selectHandler(item, deep)"
         >
           <a
-            class="block text-sm text-slate-700 no-underline hover:text-primary-500 data-[active=true]:font-medium data-[active=true]:text-primary-500 dark:text-slate-400 dark:hover:text-primary-400 dark:data-[active=true]:text-primary-400"
+            class="block text-sm text-default-700 no-underline hover:text-primary data-[active=true]:font-medium data-[active=true]:text-primary"
             :data-active="current === item.id"
             :href="item.link"
             :target="item.target"
@@ -45,7 +45,7 @@ const inkOffset = computed(() => {
     </IndentList>
     <div
       v-if="inkOffset"
-      class="bg-primary absolute left-0 top-1 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm transition-all"
+      class="absolute left-0 top-1 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm bg-primary transition-all"
       :style="{ '--ink-offset': inkOffset }"
     ></div>
   </div>

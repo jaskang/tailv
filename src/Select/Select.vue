@@ -54,7 +54,7 @@ const focused = ref(false)
     >
       <span
         class="pointer-events-none overflow-hidden text-ellipsis whitespace-nowrap"
-        :class="[label ? '' : 'text-slate-400']"
+        :class="[label ? '' : 'text-default-400']"
       >
         {{ label || placeholder }}
       </span>
@@ -71,7 +71,7 @@ const focused = ref(false)
             :class="[
               item.value === modelValue
                 ? 'bg-primary font-medium text-white'
-                : 'hover:text-primary-600 hover:bg-accent',
+                : 'hover:bg-default-100 hover:text-primary-600',
             ]"
           >
             {{ item.label }}
@@ -80,40 +80,4 @@ const focused = ref(false)
       </ScrollArea>
     </template>
   </Popover>
-
-  <!-- <Input
-      readonly
-      :value="label"
-      ref="inputRef"
-      class="cursor-pointer"
-      v-bind="$attrs"
-      :focused
-      :placeholder
-      :disabled
-    >
-      <template #suffix>
-        <div class="pr-1 text-slate-400">
-          <ChevronDownIcon class="h-5 w-5"></ChevronDownIcon>
-        </div>
-      </template>
-    </Input>
-    <template #content>
-      <ScrollArea class="flex max-h-80 flex-col text-sm" mode="y">
-        <div class="grid gap-1 p-1">
-          <div
-            v-for="item in options"
-            :key="item.value"
-            @click="selectHandler(item)"
-            class="relative cursor-pointer rounded px-3 py-2 text-sm"
-            :class="[
-              item.value === modelValue
-                ? 'bg-primary font-medium text-white'
-                : 'hover:bg-slate-100 hover:text-primary-600',
-            ]"
-          >
-            {{ item.label }}
-          </div>
-        </div>
-      </ScrollArea>
-    </template> -->
 </template>

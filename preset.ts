@@ -53,19 +53,19 @@ function extractColorVars(colorObj: any, scope = ''): Record<string, string> {
 
 function createAliasColorConfig(alias: string): Record<string, string> {
   return {
-    DEFAULT: `hsl(var(--${alias}))`,
-    foreground: `hsl(var(--${alias}-foreground))`,
-    50: `hsl(var(--${alias}-50))`,
-    100: `hsl(var(--${alias}-100))`,
-    200: `hsl(var(--${alias}-200))`,
-    300: `hsl(var(--${alias}-300))`,
-    400: `hsl(var(--${alias}-400))`,
-    500: `hsl(var(--${alias}-500))`,
-    600: `hsl(var(--${alias}-600))`,
-    700: `hsl(var(--${alias}-700))`,
-    800: `hsl(var(--${alias}-800))`,
-    900: `hsl(var(--${alias}-900))`,
-    950: `hsl(var(--${alias}-950))`,
+    DEFAULT: `hsl(var(--tui-${alias}))`,
+    foreground: `hsl(var(--tui-${alias}-foreground))`,
+    50: `hsl(var(--tui-${alias}-50))`,
+    100: `hsl(var(--tui-${alias}-100))`,
+    200: `hsl(var(--tui-${alias}-200))`,
+    300: `hsl(var(--tui-${alias}-300))`,
+    400: `hsl(var(--tui-${alias}-400))`,
+    500: `hsl(var(--tui-${alias}-500))`,
+    600: `hsl(var(--tui-${alias}-600))`,
+    700: `hsl(var(--tui-${alias}-700))`,
+    800: `hsl(var(--tui-${alias}-800))`,
+    900: `hsl(var(--tui-${alias}-900))`,
+    950: `hsl(var(--tui-${alias}-950))`,
   }
 }
 
@@ -80,8 +80,9 @@ function createAliasColorVars(
 ): Record<string, string> {
   const { defaultKey, formatter, addons = {} } = options
   const keys = Object.keys(colors)
+  const group = `--tui-${alias}`
   const result = {
-    [`--${alias}`]: toHsl(colors[defaultKey]),
+    [group]: toHsl(colors[defaultKey]),
   }
   for (const key of keys) {
     let aliasKey = key
@@ -91,11 +92,11 @@ function createAliasColorVars(
       aliasKey = `${1000 - Number(key)}`
     }
     if (aliasKey) {
-      result[`--${alias}-${aliasKey}`] = toHsl(colors[key])
+      result[`${group}-${aliasKey}`] = toHsl(colors[key])
     }
   }
   Object.keys(addons).forEach(key => {
-    result[`--${alias}-${key}`] = toHsl(addons[key])
+    result[`${group}-${key}`] = toHsl(addons[key])
   })
   return result
 }
@@ -351,31 +352,24 @@ const varPlugin: Plugin = {
     //     --nextui-hover-opacity: .9;
     // }
 
-    const defaultColor = theme('tailv.default') || 'slate'
-    const primaryColor = theme('tailv.primary') || 'blue'
+    // const defaultColor = theme('tailv.default') || 'slate'
+    const defaultColor = theme('tailv.default') || 'zinc'
+    const primaryColor = theme('tailv.primary') || 'indigo'
     const successColor = theme('tailv.success') || 'green'
     const warningColor = theme('tailv.warning') || 'amber'
     const dangerColor = theme('tailv.danger') || 'red'
 
     addBase({
-      ':where(*)': {
-        'border-color': 'hsl(var(--border))',
+      '*, ::before, ::after': {
+        // 'border-color': `hsl(var(--tui-border))`,
+        // '--tw-ring-offset-color': `hsl(var(--tui-border))`,
       },
       ':where(*):focus': { outline: 'none' },
-
       ':root': {
-        '--border': toHsl(theme('colors.slate.200')),
-        '--input': toHsl(theme('colors.slate.200')),
-        '--background': toHsl(theme('colors.white')),
-        '--foreground': toHsl(theme('colors.slate.900')),
+        '--tui-border': `var(--tui-default-200)`,
 
-        '--accent': toHsl(theme('colors.slate.100')),
-        // '--accent-foreground': toHsl(theme('colors.slate.500')),
-        '--accent-foreground': toHsl(theme('colors.slate.800')),
-
-        '--muted': toHsl(theme('colors.slate.100')),
-        '--muted-foreground': toHsl(theme('colors.slate.500')),
-
+        '--tui-background': toHsl(theme('colors.white')),
+        '--tui-foreground': toHsl(theme(`colors.${defaultColor}.700`)),
         ...createAliasColorVars('default', theme(`colors.${defaultColor}`), {
           defaultKey: '300',
           addons: { foreground: theme(`colors.white`) },
@@ -396,31 +390,10 @@ const varPlugin: Plugin = {
           defaultKey: '500',
           addons: { foreground: theme(`colors.white`) },
         }),
-
-        '--popper': toHsl(theme('colors.white')),
-        '--popper-foreground': toHsl(theme('colors.white')),
-
-        // '--ring': toHsl(theme('colors.white')),
-
-        // '--t-primary': theme(`colors.primary.500`),
-        // '--t-background': theme(`colors.white`),
-        // '--t-foreground': theme(`colors.${text}.100`),
-        // '--t-border': theme(`colors.${border}.200`),
-        // '--t-muted': theme(`colors.${bg}.100`),
-        // '--t-input-bg': theme(`colors.white`),
       },
       [darkContext]: {
-        '--border': toHsl(theme('colors.slate.700')),
-        '--input': toHsl(theme('colors.slate.800')),
-        '--background': toHsl(theme('colors.slate.950')),
-        '--foreground': toHsl(theme('colors.slate.50')),
-
-        '--accent': toHsl(theme('colors.slate.800')),
-        '--accent-foreground': toHsl(theme('colors.slate.100')),
-
-        '--muted': toHsl(theme('colors.slate.800')),
-        '--muted-foreground': toHsl(theme('colors.slate.400')),
-
+        '--tui-background': toHsl(theme(`colors.${defaultColor}.950`)),
+        '--tui-foreground': toHsl(theme(`colors.${defaultColor}.400`)),
         ...createAliasColorVars('default', theme(`colors.${defaultColor}`), {
           defaultKey: '300',
           addons: { foreground: theme(`colors.white`), 950: theme(`colors.white`) },
@@ -428,7 +401,7 @@ const varPlugin: Plugin = {
             if (/^\d+$/.test(k)) {
               let key: number | string = 900 - Number(k)
               key = key === 850 ? 900 : key === 0 ? 50 : key === -50 ? '' : key
-              console.log(`${k} -> ${key}`)
+              // console.log(`${k} -> ${key}`)
               return `${key}`
             }
             return k
@@ -454,23 +427,11 @@ const varPlugin: Plugin = {
           addons: { foreground: theme(`colors.white`) },
           formatter: 'reverse',
         }),
-
-        '--popper': toHsl(theme('colors.white')),
-        '--popper-foreground': toHsl(theme('colors.white')),
-
-        // '--ring': toHsl(theme('colors.white')),
-
-        // '--t-primary': theme(`colors.primary.500`),
-        // '--t-border': theme(`colors.${border}.700`),
-        // '--t-foreground': theme(`colors.${text}.100`),
-        // '--t-background': theme(`colors.${bg}.900`),
-        // '--t-muted': theme(`colors.${bg}.800`),
-        // '--t-input-bg': theme(`colors.${bg}.800`),
       },
 
       body: {
-        color: 'hsl(var(--foreground))',
-        'background-color': 'hsl(var(--background))',
+        color: 'hsl(var(--tui-foreground))',
+        'background-color': 'hsl(var(--tui-background))',
         'font-synthesis-weight': 'none',
         'text-rendering': 'optimizeLegibility',
       },
@@ -482,21 +443,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        border: 'hsl(var(--tui-border))',
+        background: 'hsl(var(--tui-background))',
+        foreground: 'hsl(var(--tui-foreground))',
 
         default: createAliasColorConfig('default'),
         primary: createAliasColorConfig('primary'),
         success: createAliasColorConfig('success'),
         warning: createAliasColorConfig('warning'),
         danger: createAliasColorConfig('danger'),
-
-        muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
-        accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' },
-        popper: { DEFAULT: 'hsl(var(--popper))', foreground: 'hsl(var(--popper-foreground))' },
+      },
+      borderColor: {
+        DEFAULT: 'hsl(var(--tui-border))',
+      },
+      ringColor: {
+        DEFAULT: 'hsl(var(--tui-border))',
+      },
+      ringOffsetColor: {
+        DEFAULT: 'hsl(var(--tui-background))',
       },
       tailv: {},
     },

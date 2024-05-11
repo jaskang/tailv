@@ -40,46 +40,56 @@ Button 组件支持五种风格，通过 `variant` 属性设置。
 
 ```vue demo title=默认样式
 <template>
-  <div class="flex flex-col gap-2">
-    <div class="flex flex-wrap items-center gap-2">
-      <span class="w-12 text-right font-medium">outline:</span>
-      <Button variant="outline">button</Button>
-      <Button variant="outline" color="primary">primary</Button>
-      <Button variant="outline" color="success">success</Button>
-      <Button variant="outline" color="warning">warning</Button>
-      <Button variant="outline" color="danger">danger</Button>
+  <div class="flex flex-col gap-4">
+    <div class="flex items-center gap-4">
+      <span class="w-12 shrink-0 text-right font-medium">outline:</span>
+      <div class="grid flex-1 grid-cols-5 gap-4">
+        <Button variant="outline">button</Button>
+        <Button variant="outline" color="primary">primary</Button>
+        <Button variant="outline" color="success">success</Button>
+        <Button variant="outline" color="warning">warning</Button>
+        <Button variant="outline" color="danger">danger</Button>
+      </div>
     </div>
-    <div class="flex flex-wrap items-center gap-2">
-      <span class="w-12 text-right font-medium">solid:</span>
-      <Button variant="solid">button</Button>
-      <Button variant="solid" color="primary">primary</Button>
-      <Button variant="solid" color="success">success</Button>
-      <Button variant="solid" color="warning">warning</Button>
-      <Button variant="solid" color="danger">danger</Button>
+    <div class="flex items-center gap-4">
+      <span class="w-12 shrink-0 text-right font-medium">solid:</span>
+      <div class="grid flex-1 grid-cols-5 gap-4">
+        <Button variant="solid">button</Button>
+        <Button variant="solid" color="primary">primary</Button>
+        <Button variant="solid" color="success">success</Button>
+        <Button variant="solid" color="warning">warning</Button>
+        <Button variant="solid" color="danger">danger</Button>
+      </div>
     </div>
-    <div class="flex flex-wrap items-center gap-2">
+    <div class="flex items-center gap-4">
       <span class="w-12 text-right font-medium">soft:</span>
-      <Button variant="soft">button</Button>
-      <Button variant="soft" color="primary">primary</Button>
-      <Button variant="soft" color="success">success</Button>
-      <Button variant="soft" color="warning">warning</Button>
-      <Button variant="soft" color="danger">danger</Button>
+      <div class="grid flex-1 grid-cols-5 gap-4">
+        <Button variant="soft">button</Button>
+        <Button variant="soft" color="primary">primary</Button>
+        <Button variant="soft" color="success">success</Button>
+        <Button variant="soft" color="warning">warning</Button>
+        <Button variant="soft" color="danger">danger</Button>
+      </div>
     </div>
-    <div class="flex flex-wrap items-center gap-2">
+    <div class="flex items-center gap-4">
       <span class="w-12 text-right font-medium">text:</span>
-      <Button variant="text">button</Button>
-      <Button variant="text" color="primary">primary</Button>
-      <Button variant="text" color="success">success</Button>
-      <Button variant="text" color="warning">warning</Button>
-      <Button variant="text" color="danger">danger</Button>
+      <div class="grid flex-1 grid-cols-5 gap-4">
+        <Button variant="text">button</Button>
+        <Button variant="text" color="primary">primary</Button>
+        <Button variant="text" color="success">success</Button>
+        <Button variant="text" color="warning">warning</Button>
+        <Button variant="text" color="danger">danger</Button>
+      </div>
     </div>
-    <div class="flex flex-wrap items-center gap-2">
+    <div class="flex items-center gap-4">
       <span class="w-12 text-right font-medium">link:</span>
-      <Button variant="link">button</Button>
-      <Button variant="link" color="primary">primary</Button>
-      <Button variant="link" color="success">success</Button>
-      <Button variant="link" color="warning">warning</Button>
-      <Button variant="link" color="danger">danger</Button>
+      <div class="grid flex-1 grid-cols-5 gap-4">
+        <Button variant="link">button</Button>
+        <Button variant="link" color="primary">primary</Button>
+        <Button variant="link" color="success">success</Button>
+        <Button variant="link" color="warning">warning</Button>
+        <Button variant="link" color="danger">danger</Button>
+      </div>
     </div>
   </div>
 </template>
@@ -149,7 +159,7 @@ Button 组件支持五种风格，通过 `variant` 属性设置。
 ```vue demo
 <template>
   <div class="space-y-2">
-    <Button variant="solid" size="lg" block>block button</Button>
+    <Button variant="solid" color="primary" size="lg" block>block button</Button>
   </div>
 </template>
 ```

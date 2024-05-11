@@ -34,11 +34,11 @@ const clickHandler = () => {
     @click="clickHandler"
   >
     <button
-      class="focus-visible:ring-primary relative block cursor-[inherit] appearance-none overflow-hidden rounded-full transition-all focus-visible:ring-2 focus-visible:ring-offset-2"
+      class="relative block cursor-[inherit] appearance-none overflow-hidden rounded-full transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
     >
       <span
-        class="block h-4 w-4 rounded-full border text-white transition-all"
-        :class="[checked ? 'border-primary bg-primary' : 'bg-white']"
+        class="block h-4 w-4 rounded-full border transition-all"
+        :class="[checked ? 'border-primary bg-primary text-white' : 'bg-background text-background']"
       >
         <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <circle cx="8" cy="8" r="3" />

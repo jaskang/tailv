@@ -17,7 +17,7 @@
 ```vue demo
 <template>
   <div class="flex flex-wrap gap-2">
-    <Tooltip>
+    <Tooltip trigger="click">
       <Button>Button</Button>
       <template #content>
         content
