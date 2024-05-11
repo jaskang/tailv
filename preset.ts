@@ -7,9 +7,11 @@ type Plugin = Required<Config>['plugins'][number]
 
 function toHsl(color: string) {
   const c = new TinyColor(color)
+  const hsl = c.toHsl()
   const hsla = c.toHslString()
+  // return `${hsl.h} ${hsl.s}% ${hsl.l}%`
   //  'hsla(xxx, xxx, xxx, xx)' -> 'xxx xxx xxx'
-  return hsla.substring(4, hsla.indexOf(')')).replace(/\,/g, '')
+  return c.toHslString().substring(4, hsla.indexOf(')')).replace(/\,/g, '')
 }
 
 const flattenColors = (colors: Record<string, Record<string, string>> | Record<string, string> | undefined) => {
@@ -49,59 +51,311 @@ function extractColorVars(colorObj: any, scope = ''): Record<string, string> {
   }, {})
 }
 
+function createAliasColorConfig(alias: string): Record<string, string> {
+  return {
+    DEFAULT: `hsl(var(--${alias}))`,
+    foreground: `hsl(var(--${alias}-foreground))`,
+    50: `hsl(var(--${alias}-50))`,
+    100: `hsl(var(--${alias}-100))`,
+    200: `hsl(var(--${alias}-200))`,
+    300: `hsl(var(--${alias}-300))`,
+    400: `hsl(var(--${alias}-400))`,
+    500: `hsl(var(--${alias}-500))`,
+    600: `hsl(var(--${alias}-600))`,
+    700: `hsl(var(--${alias}-700))`,
+    800: `hsl(var(--${alias}-800))`,
+    900: `hsl(var(--${alias}-900))`,
+    950: `hsl(var(--${alias}-950))`,
+  }
+}
+
+function createAliasColorVars(
+  alias: string,
+  colors: Record<string, string>,
+  options: {
+    defaultKey: string
+    addons?: Record<string, string>
+    formatter?: ((k: string) => string) | 'reverse'
+  }
+): Record<string, string> {
+  const { defaultKey, formatter, addons = {} } = options
+  const keys = Object.keys(colors)
+  const result = {
+    [`--${alias}`]: toHsl(colors[defaultKey]),
+  }
+  for (const key of keys) {
+    let aliasKey = key
+    if (typeof formatter === 'function') {
+      aliasKey = formatter(key)
+    } else if (formatter === 'reverse' && /^\d+$/.test(key)) {
+      aliasKey = `${1000 - Number(key)}`
+    }
+    if (aliasKey) {
+      result[`--${alias}-${aliasKey}`] = toHsl(colors[key])
+    }
+  }
+  Object.keys(addons).forEach(key => {
+    result[`--${alias}-${key}`] = toHsl(addons[key])
+  })
+  return result
+}
+
 const varPlugin: Plugin = {
   handler: ({ addBase, theme, config }) => {
     const { darkMode, darkClass } = darkConfig(config)
     const darkContext = darkMode === 'media' ? '@media (prefers-color-scheme: dark)' : `:is(${darkClass})`
     const all = extractColorVars(theme('colors'))
 
-    // .theme-blue {
-    //   --background: 0 0% 100%;
-    //   --foreground: 222.2 84% 4.9%;
-    //   --muted: 210 40% 96.1%;
-    //   --muted-foreground: 215.4 16.3% 46.9%;
-    //   --popover: 0 0% 100%;
-    //   --popover-foreground: 222.2 84% 4.9%;
-    //   --card: 0 0% 100%;
-    //   --card-foreground: 222.2 84% 4.9%;
-    //   --border: 214.3 31.8% 91.4%;
-    //   --input: 214.3 31.8% 91.4%;
-    //   --primary: 221.2 83.2% 53.3%;
-    //   --primary-foreground: 210 40% 98%;
-    //   --secondary: 210 40% 96.1%;
-    //   --secondary-foreground: 222.2 47.4% 11.2%;
-    //   --accent: 210 40% 96.1%;
-    //   --accent-foreground: 222.2 47.4% 11.2%;
-    //   --destructive: 0 84.2% 60.2%;
-    //   --destructive-foreground: 210 40% 98%;
-    //   --ring: 221.2 83.2% 53.3%;
-    //   --radius:
+    //   .light, :root, [data-theme=light] {
+    //     color-scheme: light;
+    //     --nextui-background: 0 0% 100%;
+    //     --nextui-foreground-50: 0 0% 98.04%;
+    //     --nextui-foreground-100: 240 4.76% 95.88%;
+    //     --nextui-foreground-200: 240 5.88% 90%;
+    //     --nextui-foreground-300: 240 4.88% 83.92%;
+    //     --nextui-foreground-400: 240 5.03% 64.9%;
+    //     --nextui-foreground-500: 240 3.83% 46.08%;
+    //     --nextui-foreground-600: 240 5.2% 33.92%;
+    //     --nextui-foreground-700: 240 5.26% 26.08%;
+    //     --nextui-foreground-800: 240 3.7% 15.88%;
+    //     --nextui-foreground-900: 240 5.88% 10%;
+    //     --nextui-foreground: 201.81999999999994 24.44% 8.82%;
+    //     --nextui-divider: 0 0% 6.67%;
+    //     --nextui-divider-opacity: 0.15;
+    //     --nextui-focus: 212.01999999999998 100% 46.67%;
+    //     --nextui-overlay: 0 0% 0%;
+    //     --nextui-content1: 0 0% 100%;
+    //     --nextui-content1-foreground: 201.81999999999994 24.44% 8.82%;
+    //     --nextui-content2: 240 4.76% 95.88%;
+    //     --nextui-content2-foreground: 240 3.7% 15.88%;
+    //     --nextui-content3: 240 5.88% 90%;
+    //     --nextui-content3-foreground: 240 5.26% 26.08%;
+    //     --nextui-content4: 240 4.88% 83.92%;
+    //     --nextui-content4-foreground: 240 5.2% 33.92%;
+    //     --nextui-default-50: 0 0% 98.04%;
+    //     --nextui-default-100: 240 4.76% 95.88%;
+    //     --nextui-default-200: 240 5.88% 90%;
+    //     --nextui-default-300: 240 4.88% 83.92%;
+    //     --nextui-default-400: 240 5.03% 64.9%;
+    //     --nextui-default-500: 240 3.83% 46.08%;
+    //     --nextui-default-600: 240 5.2% 33.92%;
+    //     --nextui-default-700: 240 5.26% 26.08%;
+    //     --nextui-default-800: 240 3.7% 15.88%;
+    //     --nextui-default-900: 240 5.88% 10%;
+    //     --nextui-default-foreground: 0 0% 0%;
+    //     --nextui-default: 240 4.88% 83.92%;
+    //     --nextui-primary-50: 212.5 92.31% 94.9%;
+    //     --nextui-primary-100: 211.84000000000003 92.45% 89.61%;
+    //     --nextui-primary-200: 211.84000000000003 92.45% 79.22%;
+    //     --nextui-primary-300: 212.24 92.45% 68.82%;
+    //     --nextui-primary-400: 212.14 92.45% 58.43%;
+    //     --nextui-primary-500: 212.01999999999998 100% 46.67%;
+    //     --nextui-primary-600: 212.14 100% 38.43%;
+    //     --nextui-primary-700: 212.24 100% 28.82%;
+    //     --nextui-primary-800: 211.84000000000003 100% 19.22%;
+    //     --nextui-primary-900: 211.84000000000003 100% 9.61%;
+    //     --nextui-primary-foreground: 0 0% 100%;
+    //     --nextui-primary: 212.01999999999998 100% 46.67%;
+    //     --nextui-secondary-50: 270 61.54% 94.9%;
+    //     --nextui-secondary-100: 270 59.26% 89.41%;
+    //     --nextui-secondary-200: 270 59.26% 78.82%;
+    //     --nextui-secondary-300: 270 59.26% 68.24%;
+    //     --nextui-secondary-400: 270 59.26% 57.65%;
+    //     --nextui-secondary-500: 270 66.67% 47.06%;
+    //     --nextui-secondary-600: 270 66.67% 37.65%;
+    //     --nextui-secondary-700: 270 66.67% 28.24%;
+    //     --nextui-secondary-800: 270 66.67% 18.82%;
+    //     --nextui-secondary-900: 270 66.67% 9.41%;
+    //     --nextui-secondary-foreground: 0 0% 100%;
+    //     --nextui-secondary: 270 66.67% 47.06%;
+    //     --nextui-success-50: 146.66999999999996 64.29% 94.51%;
+    //     --nextui-success-100: 145.71000000000004 61.4% 88.82%;
+    //     --nextui-success-200: 146.2 61.74% 77.45%;
+    //     --nextui-success-300: 145.78999999999996 62.57% 66.47%;
+    //     --nextui-success-400: 146.01 62.45% 55.1%;
+    //     --nextui-success-500: 145.96000000000004 79.46% 43.92%;
+    //     --nextui-success-600: 146.01 79.89% 35.1%;
+    //     --nextui-success-700: 145.78999999999996 79.26% 26.47%;
+    //     --nextui-success-800: 146.2 79.78% 17.45%;
+    //     --nextui-success-900: 145.71000000000004 77.78% 8.82%;
+    //     --nextui-success-foreground: 0 0% 0%;
+    //     --nextui-success: 145.96000000000004 79.46% 43.92%;
+    //     --nextui-warning-50: 54.55000000000001 91.67% 95.29%;
+    //     --nextui-warning-100: 37.139999999999986 91.3% 90.98%;
+    //     --nextui-warning-200: 37.139999999999986 91.3% 81.96%;
+    //     --nextui-warning-300: 36.95999999999998 91.24% 73.14%;
+    //     --nextui-warning-400: 37.00999999999999 91.26% 64.12%;
+    //     --nextui-warning-500: 37.02999999999997 91.27% 55.1%;
+    //     --nextui-warning-600: 37.00999999999999 74.22% 44.12%;
+    //     --nextui-warning-700: 36.95999999999998 73.96% 33.14%;
+    //     --nextui-warning-800: 37.139999999999986 75% 21.96%;
+    //     --nextui-warning-900: 37.139999999999986 75% 10.98%;
+    //     --nextui-warning-foreground: 0 0% 0%;
+    //     --nextui-warning: 37.02999999999997 91.27% 55.1%;
+    //     --nextui-danger-50: 339.13 92% 95.1%;
+    //     --nextui-danger-100: 340 91.84% 90.39%;
+    //     --nextui-danger-200: 339.3299999999999 90% 80.39%;
+    //     --nextui-danger-300: 339.11 90.6% 70.78%;
+    //     --nextui-danger-400: 339 90% 60.78%;
+    //     --nextui-danger-500: 339.20000000000005 90.36% 51.18%;
+    //     --nextui-danger-600: 339 86.54% 40.78%;
+    //     --nextui-danger-700: 339.11 85.99% 30.78%;
+    //     --nextui-danger-800: 339.3299999999999 86.54% 20.39%;
+    //     --nextui-danger-900: 340 84.91% 10.39%;
+    //     --nextui-danger-foreground: 0 0% 100%;
+    //     --nextui-danger: 339.20000000000005 90.36% 51.18%;
+    //     --nextui-code-background: 245.71000000000004 16.8% 24.51%;
+    //     --nextui-strong: 316.95000000000005 100% 65.29%;
+    //     --nextui-code-mdx: 316.95000000000005 100% 65.29%;
+    //     --nextui-divider-weight: 1px;
+    //     --nextui-disabled-opacity: .5;
+    //     --nextui-font-size-tiny: 0.75rem;
+    //     --nextui-font-size-small: 0.875rem;
+    //     --nextui-font-size-medium: 1rem;
+    //     --nextui-font-size-large: 1.125rem;
+    //     --nextui-line-height-tiny: 1rem;
+    //     --nextui-line-height-small: 1.25rem;
+    //     --nextui-line-height-medium: 1.5rem;
+    //     --nextui-line-height-large: 1.75rem;
+    //     --nextui-radius-small: 8px;
+    //     --nextui-radius-medium: 12px;
+    //     --nextui-radius-large: 14px;
+    //     --nextui-border-width-small: 1px;
+    //     --nextui-border-width-medium: 2px;
+    //     --nextui-border-width-large: 3px;
+    //     --nextui-box-shadow-small: 0px 0px 5px 0px rgba(0,0,0,.02), 0px 2px 10px 0px rgba(0,0,0,.06), 0px 0px 1px 0px rgba(0,0,0,.3);
+    //     --nextui-box-shadow-medium: 0px 0px 15px 0px rgba(0,0,0,.03), 0px 2px 30px 0px rgba(0,0,0,.08), 0px 0px 1px 0px rgba(0,0,0,.3);
+    //     --nextui-box-shadow-large: 0px 0px 30px 0px rgba(0,0,0,.04), 0px 30px 60px 0px rgba(0,0,0,.12), 0px 0px 1px 0px rgba(0,0,0,.3);
+    //     --nextui-hover-opacity: .8;
+    // }
+    //   .dark, [data-theme=dark] {
+    //     color-scheme: dark;
+    //     --nextui-background: 0 0% 0%;
+    //     --nextui-foreground-50: 240 5.88% 10%;
+    //     --nextui-foreground-100: 240 3.7% 15.88%;
+    //     --nextui-foreground-200: 240 5.26% 26.08%;
+    //     --nextui-foreground-300: 240 5.2% 33.92%;
+    //     --nextui-foreground-400: 240 3.83% 46.08%;
+    //     --nextui-foreground-500: 240 5.03% 64.9%;
+    //     --nextui-foreground-600: 240 4.88% 83.92%;
+    //     --nextui-foreground-700: 240 5.88% 90%;
+    //     --nextui-foreground-800: 240 4.76% 95.88%;
+    //     --nextui-foreground-900: 0 0% 98.04%;
+    //     --nextui-foreground: 210 5.56% 92.94%;
+    //     --nextui-focus: 212.01999999999998 100% 46.67%;
+    //     --nextui-overlay: 0 0% 0%;
+    //     --nextui-divider: 0 0% 100%;
+    //     --nextui-divider-opacity: 0.15;
+    //     --nextui-content1: 240 5.88% 10%;
+    //     --nextui-content1-foreground: 0 0% 98.04%;
+    //     --nextui-content2: 240 3.7% 15.88%;
+    //     --nextui-content2-foreground: 240 4.76% 95.88%;
+    //     --nextui-content3: 240 5.26% 26.08%;
+    //     --nextui-content3-foreground: 240 5.88% 90%;
+    //     --nextui-content4: 240 5.2% 33.92%;
+    //     --nextui-content4-foreground: 240 4.88% 83.92%;
+    //     --nextui-default-50: 240 5.88% 10%;
+    //     --nextui-default-100: 240 3.7% 15.88%;
+    //     --nextui-default-200: 240 5.26% 26.08%;
+    //     --nextui-default-300: 240 5.2% 33.92%;
+    //     --nextui-default-400: 240 3.83% 46.08%;
+    //     --nextui-default-500: 240 5.03% 64.9%;
+    //     --nextui-default-600: 240 4.88% 83.92%;
+    //     --nextui-default-700: 240 5.88% 90%;
+    //     --nextui-default-800: 240 4.76% 95.88%;
+    //     --nextui-default-900: 0 0% 98.04%;
+    //     --nextui-default-foreground: 0 0% 100%;
+    //     --nextui-default: 240 5.26% 26.08%;
+    //     --nextui-primary-50: 211.84000000000003 100% 9.61%;
+    //     --nextui-primary-100: 211.84000000000003 100% 19.22%;
+    //     --nextui-primary-200: 212.24 100% 28.82%;
+    //     --nextui-primary-300: 212.14 100% 38.43%;
+    //     --nextui-primary-400: 212.01999999999998 100% 46.67%;
+    //     --nextui-primary-500: 212.14 92.45% 58.43%;
+    //     --nextui-primary-600: 212.24 92.45% 68.82%;
+    //     --nextui-primary-700: 211.84000000000003 92.45% 79.22%;
+    //     --nextui-primary-800: 211.84000000000003 92.45% 89.61%;
+    //     --nextui-primary-900: 212.5 92.31% 94.9%;
+    //     --nextui-primary-foreground: 0 0% 100%;
+    //     --nextui-primary: 212.01999999999998 100% 46.67%;
+    //     --nextui-secondary-50: 270 66.67% 9.41%;
+    //     --nextui-secondary-100: 270 66.67% 18.82%;
+    //     --nextui-secondary-200: 270 66.67% 28.24%;
+    //     --nextui-secondary-300: 270 66.67% 37.65%;
+    //     --nextui-secondary-400: 270 66.67% 47.06%;
+    //     --nextui-secondary-500: 270 59.26% 57.65%;
+    //     --nextui-secondary-600: 270 59.26% 68.24%;
+    //     --nextui-secondary-700: 270 59.26% 78.82%;
+    //     --nextui-secondary-800: 270 59.26% 89.41%;
+    //     --nextui-secondary-900: 270 61.54% 94.9%;
+    //     --nextui-secondary-foreground: 0 0% 100%;
+    //     --nextui-secondary: 270 59.26% 57.65%;
+    //     --nextui-success-50: 145.71000000000004 77.78% 8.82%;
+    //     --nextui-success-100: 146.2 79.78% 17.45%;
+    //     --nextui-success-200: 145.78999999999996 79.26% 26.47%;
+    //     --nextui-success-300: 146.01 79.89% 35.1%;
+    //     --nextui-success-400: 145.96000000000004 79.46% 43.92%;
+    //     --nextui-success-500: 146.01 62.45% 55.1%;
+    //     --nextui-success-600: 145.78999999999996 62.57% 66.47%;
+    //     --nextui-success-700: 146.2 61.74% 77.45%;
+    //     --nextui-success-800: 145.71000000000004 61.4% 88.82%;
+    //     --nextui-success-900: 146.66999999999996 64.29% 94.51%;
+    //     --nextui-success-foreground: 0 0% 0%;
+    //     --nextui-success: 145.96000000000004 79.46% 43.92%;
+    //     --nextui-warning-50: 37.139999999999986 75% 10.98%;
+    //     --nextui-warning-100: 37.139999999999986 75% 21.96%;
+    //     --nextui-warning-200: 36.95999999999998 73.96% 33.14%;
+    //     --nextui-warning-300: 37.00999999999999 74.22% 44.12%;
+    //     --nextui-warning-400: 37.02999999999997 91.27% 55.1%;
+    //     --nextui-warning-500: 37.00999999999999 91.26% 64.12%;
+    //     --nextui-warning-600: 36.95999999999998 91.24% 73.14%;
+    //     --nextui-warning-700: 37.139999999999986 91.3% 81.96%;
+    //     --nextui-warning-800: 37.139999999999986 91.3% 90.98%;
+    //     --nextui-warning-900: 54.55000000000001 91.67% 95.29%;
+    //     --nextui-warning-foreground: 0 0% 0%;
+    //     --nextui-warning: 37.02999999999997 91.27% 55.1%;
+    //     --nextui-danger-50: 340 84.91% 10.39%;
+    //     --nextui-danger-100: 339.3299999999999 86.54% 20.39%;
+    //     --nextui-danger-200: 339.11 85.99% 30.78%;
+    //     --nextui-danger-300: 339 86.54% 40.78%;
+    //     --nextui-danger-400: 339.20000000000005 90.36% 51.18%;
+    //     --nextui-danger-500: 339 90% 60.78%;
+    //     --nextui-danger-600: 339.11 90.6% 70.78%;
+    //     --nextui-danger-700: 339.3299999999999 90% 80.39%;
+    //     --nextui-danger-800: 340 91.84% 90.39%;
+    //     --nextui-danger-900: 339.13 92% 95.1%;
+    //     --nextui-danger-foreground: 0 0% 100%;
+    //     --nextui-danger: 339.20000000000005 90.36% 51.18%;
+    //     --nextui-strong: 190.14 94.67% 44.12%;
+    //     --nextui-code-background: 0 8.33% 4.71%;
+    //     --nextui-code-mdx: 190.14 94.67% 44.12%;
+    //     --nextui-divider-weight: 1px;
+    //     --nextui-disabled-opacity: .5;
+    //     --nextui-font-size-tiny: 0.75rem;
+    //     --nextui-font-size-small: 0.875rem;
+    //     --nextui-font-size-medium: 1rem;
+    //     --nextui-font-size-large: 1.125rem;
+    //     --nextui-line-height-tiny: 1rem;
+    //     --nextui-line-height-small: 1.25rem;
+    //     --nextui-line-height-medium: 1.5rem;
+    //     --nextui-line-height-large: 1.75rem;
+    //     --nextui-radius-small: 8px;
+    //     --nextui-radius-medium: 12px;
+    //     --nextui-radius-large: 14px;
+    //     --nextui-border-width-small: 1px;
+    //     --nextui-border-width-medium: 2px;
+    //     --nextui-border-width-large: 3px;
+    //     --nextui-box-shadow-small: 0px 0px 5px 0px rgba(0,0,0,.05), 0px 2px 10px 0px rgba(0,0,0,.2), inset 0px 0px 1px 0px hsla(0,0%,100%,.15);
+    //     --nextui-box-shadow-medium: 0px 0px 15px 0px rgba(0,0,0,.06), 0px 2px 30px 0px rgba(0,0,0,.22), inset 0px 0px 1px 0px hsla(0,0%,100%,.15);
+    //     --nextui-box-shadow-large: 0px 0px 30px 0px rgba(0,0,0,.07), 0px 30px 60px 0px rgba(0,0,0,.26), inset 0px 0px 1px 0px hsla(0,0%,100%,.15);
+    //     --nextui-hover-opacity: .9;
     // }
 
-    // .dark .theme-blue {
-    //   --background: 222.2 84% 4.9%;
-    //   --foreground: 210 40% 98%;
-    //   --muted: 217.2 32.6% 17.5%;
-    //   --muted-foreground: 215 20.2% 65.1%;
-    //   --popover: 222.2 84% 4.9%;
-    //   --popover-foreground: 210 40% 98%;
-    //   --card: 222.2 84% 4.9%;
-    //   --card-foreground: 210 40% 98%;
-    //   --border: 217.2 32.6% 17.5%;
-    //   --input: 217.2 32.6% 17.5%;
-    //   --primary: 217.2 91.2% 59.8%;
-    //   --primary-foreground: 222.2 47.4% 11.2%;
-    //   --secondary: 217.2 32.6% 17.5%;
-    //   --secondary-foreground: 210 40% 98%;
-    //   --accent: 217.2 32.6% 17.5%;
-    //   --accent-foreground: 210 40% 98%;
-    //   --destructive: 0 62.8% 30.6%;
-    //   --destructive-foreground: 210 40% 98%;
-    //   --ring: 224.3 76.3% 48%
-    // }
-    const bg = theme('tailv.bg') || 'slate'
-    const border = theme('tailv.border') || 'slate'
-    const text = theme('tailv.text') || 'slate'
+    const defaultColor = theme('tailv.default') || 'slate'
+    const primaryColor = theme('tailv.primary') || 'blue'
+    const successColor = theme('tailv.success') || 'green'
+    const warningColor = theme('tailv.warning') || 'amber'
+    const dangerColor = theme('tailv.danger') || 'red'
 
     addBase({
       ':where(*)': {
@@ -122,29 +376,26 @@ const varPlugin: Plugin = {
         '--muted': toHsl(theme('colors.slate.100')),
         '--muted-foreground': toHsl(theme('colors.slate.500')),
 
-        '--primary': toHsl(theme('colors.fuchsia.500')),
-        '--primary-foreground': toHsl(theme('colors.slate.50')),
-        '--primary-light': toHsl(theme('colors.fuchsia.400')),
-        '--primary-dark': toHsl(theme('colors.fuchsia.600')),
-        '--primary-soft': toHsl(theme('colors.fuchsia.100')),
-
-        '--success': toHsl(theme('colors.green.500')),
-        '--success-foreground': toHsl(theme('colors.slate.50')),
-        '--success-light': toHsl(theme('colors.green.400')),
-        '--success-dark': toHsl(theme('colors.green.600')),
-        '--success-soft': toHsl(theme('colors.green.100')),
-
-        '--warning': toHsl(theme('colors.amber.500')),
-        '--warning-foreground': toHsl(theme('colors.slate.50')),
-        '--warning-light': toHsl(theme('colors.amber.400')),
-        '--warning-dark': toHsl(theme('colors.amber.600')),
-        '--warning-soft': toHsl(theme('colors.amber.100')),
-
-        '--danger': toHsl(theme('colors.red.500')),
-        '--danger-foreground': toHsl(theme('colors.slate.50')),
-        '--danger-light': toHsl(theme('colors.red.400')),
-        '--danger-dark': toHsl(theme('colors.red.600')),
-        '--danger-soft': toHsl(theme('colors.red.100')),
+        ...createAliasColorVars('default', theme(`colors.${defaultColor}`), {
+          defaultKey: '300',
+          addons: { foreground: theme(`colors.white`) },
+        }),
+        ...createAliasColorVars('primary', theme(`colors.${primaryColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+        }),
+        ...createAliasColorVars('success', theme(`colors.${successColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+        }),
+        ...createAliasColorVars('warning', theme(`colors.${warningColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+        }),
+        ...createAliasColorVars('danger', theme(`colors.${dangerColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+        }),
 
         '--popper': toHsl(theme('colors.white')),
         '--popper-foreground': toHsl(theme('colors.white')),
@@ -161,7 +412,7 @@ const varPlugin: Plugin = {
       [darkContext]: {
         '--border': toHsl(theme('colors.slate.700')),
         '--input': toHsl(theme('colors.slate.800')),
-        '--background': toHsl(theme('colors.slate.900')),
+        '--background': toHsl(theme('colors.slate.950')),
         '--foreground': toHsl(theme('colors.slate.50')),
 
         '--accent': toHsl(theme('colors.slate.800')),
@@ -170,29 +421,39 @@ const varPlugin: Plugin = {
         '--muted': toHsl(theme('colors.slate.800')),
         '--muted-foreground': toHsl(theme('colors.slate.400')),
 
-        '--primary': toHsl(theme('colors.fuchsia.500')),
-        '--primary-foreground': toHsl(theme('colors.slate.50')),
-        '--primary-light': toHsl(theme('colors.fuchsia.600')),
-        '--primary-dark': toHsl(theme('colors.fuchsia.400')),
-        '--primary-soft': toHsl(theme('colors.fuchsia.950')),
-
-        '--success': toHsl(theme('colors.green.500')),
-        '--success-foreground': toHsl(theme('colors.slate.50')),
-        '--success-light': toHsl(theme('colors.green.600')),
-        '--success-dark': toHsl(theme('colors.green.400')),
-        '--success-soft': toHsl(theme('colors.green.950')),
-
-        '--warning': toHsl(theme('colors.amber.500')),
-        '--warning-foreground': toHsl(theme('colors.slate.50')),
-        '--warning-light': toHsl(theme('colors.amber.600')),
-        '--warning-dark': toHsl(theme('colors.amber.400')),
-        '--warning-soft': toHsl(theme('colors.amber.950')),
-
-        '--danger': toHsl(theme('colors.red.500')),
-        '--danger-foreground': toHsl(theme('colors.slate.50')),
-        '--danger-light': toHsl(theme('colors.red.600')),
-        '--danger-dark': toHsl(theme('colors.red.400')),
-        '--danger-soft': toHsl(theme('colors.red.950')),
+        ...createAliasColorVars('default', theme(`colors.${defaultColor}`), {
+          defaultKey: '300',
+          addons: { foreground: theme(`colors.white`), 950: theme(`colors.white`) },
+          formatter: k => {
+            if (/^\d+$/.test(k)) {
+              let key: number | string = 900 - Number(k)
+              key = key === 850 ? 900 : key === 0 ? 50 : key === -50 ? '' : key
+              console.log(`${k} -> ${key}`)
+              return `${key}`
+            }
+            return k
+          },
+        }),
+        ...createAliasColorVars('primary', theme(`colors.${primaryColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+          formatter: 'reverse',
+        }),
+        ...createAliasColorVars('success', theme(`colors.${successColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+          formatter: 'reverse',
+        }),
+        ...createAliasColorVars('warning', theme(`colors.${warningColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+          formatter: 'reverse',
+        }),
+        ...createAliasColorVars('danger', theme(`colors.${dangerColor}`), {
+          defaultKey: '500',
+          addons: { foreground: theme(`colors.white`) },
+          formatter: 'reverse',
+        }),
 
         '--popper': toHsl(theme('colors.white')),
         '--popper-foreground': toHsl(theme('colors.white')),
@@ -227,34 +488,12 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
 
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-          light: 'hsl(var(--primary-light))',
-          dark: 'hsl(var(--primary-dark))',
-          soft: 'hsl(var(--primary-soft))',
-        },
-        success: {
-          DEFAULT: 'hsl(var(--success))',
-          foreground: 'hsl(var(--success-foreground))',
-          light: 'hsl(var(--success-light))',
-          dark: 'hsl(var(--success-dark))',
-          soft: 'hsl(var(--success-soft))',
-        },
-        warning: {
-          DEFAULT: 'hsl(var(--warning))',
-          foreground: 'hsl(var(--warning-foreground))',
-          light: 'hsl(var(--warning-light))',
-          dark: 'hsl(var(--warning-dark))',
-          soft: 'hsl(var(--warning-soft))',
-        },
-        danger: {
-          DEFAULT: 'hsl(var(--danger))',
-          foreground: 'hsl(var(--danger-foreground))',
-          light: 'hsl(var(--danger-light))',
-          dark: 'hsl(var(--danger-dark))',
-          soft: 'hsl(var(--danger-soft))',
-        },
+        default: createAliasColorConfig('default'),
+        primary: createAliasColorConfig('primary'),
+        success: createAliasColorConfig('success'),
+        warning: createAliasColorConfig('warning'),
+        danger: createAliasColorConfig('danger'),
+
         muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
         accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' },
         popper: { DEFAULT: 'hsl(var(--popper))', foreground: 'hsl(var(--popper-foreground))' },

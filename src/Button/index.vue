@@ -33,49 +33,49 @@ const props = defineProps({
     class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-colors focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
+        outline: `border bg-transparent shadow-sm ${
+          {
+            none: 'hover:bg-default-50',
+            primary: 'hover:bg-primary-50 text-primary-600 border-primary',
+            success: 'hover:bg-success-50 text-success-600 border-success',
+            warning: 'hover:bg-warning-50 text-warning-600 border-warning',
+            danger: 'hover:bg-danger-50 text-danger-600 border-danger',
+          }[props.color]
+        }`,
         solid: `shadow-sm ${
           {
-            none: 'hover:bg-invert-light bg-accent-foreground text-accent',
-            primary: 'hover:bg-primary-dark bg-primary text-primary-foreground dark:hover:bg-primary-light',
-            success: 'hover:bg-success-dark dark:hover:bg-success-light bg-success text-success-foreground',
-            warning: 'hover:bg-warning-dark dark:hover:bg-warning-light bg-warning text-warning-foreground',
-            danger: 'hover:bg-danger-dark dark:hover:bg-danger-light bg-danger text-danger-foreground',
+            none: 'hover:bg-default-700 bg-default-800 text-default-100',
+            primary: 'hover:bg-primary-600 bg-primary text-primary-foreground ',
+            success: 'hover:bg-success-600 bg-success text-success-foreground ',
+            warning: 'hover:bg-warning-600 bg-warning text-warning-foreground ',
+            danger: 'hover:bg-danger-600 bg-danger text-danger-foreground ',
           }[props.color]
         }`,
         soft: `shadow-sm ${
           {
-            none: 'bg-accent',
-            primary: 'bg-primary-soft text-primary-dark',
-            success: 'bg-success-soft text-success-dark',
-            warning: 'bg-warning-soft text-warning-dark',
-            danger: 'bg-danger-soft text-danger-dark',
-          }[props.color]
-        }`,
-        outline: `border bg-transparent shadow-sm ${
-          {
-            none: 'hover:bg-accent',
-            primary: 'text-primary-dark hover:bg-primary-soft border-primary-light',
-            success: 'text-success-dark hover:bg-success-soft border-success-light',
-            warning: 'text-warning-dark hover:bg-warning-soft border-warning-light',
-            danger: 'text-danger-dark hover:bg-danger-soft border-danger-light',
+            none: 'bg-default-100 hover:bg-default-200 text-default-700',
+            primary: 'bg-primary-100 hover:bg-primary-200 text-primary-700',
+            success: 'bg-success-100 hover:bg-success-200 text-success-700',
+            warning: 'bg-warning-100 hover:bg-warning-200 text-warning-700',
+            danger: 'bg-danger-100 hover:bg-danger-200 text-danger-700',
           }[props.color]
         }`,
         text: `${
           {
-            none: 'hover:bg-accent',
-            primary: 'hover:bg-primary-soft text-primary-dark',
-            success: 'hover:bg-success-soft text-success-dark',
-            warning: 'hover:bg-warning-soft text-warning-dark',
-            danger: 'hover:bg-danger-soft text-danger-dark',
+            none: 'text-default-700 hover:bg-default-100',
+            primary: 'text-primary-600 hover:bg-primary-100',
+            success: 'text-success-600 hover:bg-success-100',
+            warning: 'text-warning-600 hover:bg-warning-100',
+            danger: 'text-danger-600 hover:bg-danger-100',
           }[props.color]
         }`,
         link: `underline-offset-4 hover:underline ${
           {
-            none: '',
-            primary: 'text-primary-dark',
-            success: 'text-success-dark',
-            warning: 'text-warning-dark',
-            danger: 'text-danger-dark',
+            none: 'text-default-700',
+            primary: 'text-primary-600',
+            success: 'text-success-600',
+            warning: 'text-warning-600',
+            danger: 'text-danger-600',
           }[props.color]
         }`,
         pure: '',

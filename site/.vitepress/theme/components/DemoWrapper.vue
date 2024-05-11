@@ -46,11 +46,11 @@ const showCode = ref(false)
         </Switch>
       </div>
     </div>
-    <div class="not-prose bg-white p-4 dark:bg-slate-900">
+    <div class="not-prose p-4">
       <slot />
     </div>
 
-    <div v-if="showCode" class="bg-slate-50 dark:bg-slate-900">
+    <div v-if="showCode" class="bg-slate-50 dark:bg-slate-950">
       <slot name="code" />
     </div>
   </div>
