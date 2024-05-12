@@ -15,7 +15,7 @@ const items = [
 const current = ref('1')
 </script>
 <template>
-  <Tabs class="border-b border-slate-200 px-2" :items="items" @change="current = $event"></Tabs>
+  <Tabs class="border-b  px-2" :items="items" @change="current = $event"></Tabs>
   current: Tab {{ current }}
 </template>
 ```

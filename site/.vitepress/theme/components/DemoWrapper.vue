@@ -26,12 +26,12 @@ const showCode = ref(false)
 </script>
 <template>
   <div
-    class="demo-wrapper flex flex-col divide-y divide-slate-200 rounded ring-1 ring-slate-200 dark:divide-slate-700 dark:ring-slate-700 [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
+    class="demo-wrapper flex flex-col divide-y divide-border rounded ring-1 ring-border [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
     :style="{
       '--tw-prose-pre-bg': 'transparent',
     }"
   >
-    <div class="demo-wrapper-svg-bg flex items-center justify-end bg-slate-50 px-2 py-1">
+    <div class="demo-wrapper-svg-bg flex items-center justify-end bg-default-50 px-2 py-1">
       <div class="flex-1">
         <svg viewBox="0 0 32 32" class="h-4 w-4">
           <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"></path>
@@ -50,7 +50,7 @@ const showCode = ref(false)
       <slot />
     </div>
 
-    <div v-if="showCode" class="bg-slate-50 dark:bg-slate-950">
+    <div v-if="showCode" class="bg-default-50 dark:bg-default-950">
       <slot name="code" />
     </div>
   </div>
@@ -59,13 +59,13 @@ const showCode = ref(false)
 .demo-wrapper-svg-bg {
   background-position: 8px 8px;
   background-size: 16px 16px;
-  background-color: var(--color-slate-50);
-  /* slate-100 */
+  background-color: var(--color-default-50);
+  /* default-100 */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 .dark .demo-wrapper-svg-bg {
-  background-color: var(--color-slate-900);
-  /* slate-100 */
+  background-color: var(--color-default-900);
+  /* default-100 */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%231e293b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 </style>

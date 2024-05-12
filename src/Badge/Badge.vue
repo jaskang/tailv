@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 <template>
   <span
-    class="inline-flex items-center rounded-md bg-slate-50 px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10"
+    class="inline-flex items-center rounded-md bg-default-50 px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10"
   >
     <slot />
   </span>

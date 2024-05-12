@@ -9,7 +9,7 @@ const { groups, current } = useSidebar()
 <template>
   <div class="">
     <div v-for="group in groups" class="">
-      <div class="flex items-center gap-x-2 pb-2 pt-4 text-xs font-medium leading-6 text-slate-500">
+      <div class="flex items-center gap-x-2 pb-2 pt-4 text-xs font-medium leading-6 text-default-500">
         <!-- <RectangleGroupIcon class="inline-block h-4 w-4" /> -->
         {{ group.title }}
       </div>

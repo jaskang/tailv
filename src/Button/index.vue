@@ -33,9 +33,9 @@ const props = defineProps({
     class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-colors focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
-        outline: `border bg-background shadow-sm ${
+        outline: `border shadow-sm ${
           {
-            none: 'hover:bg-default-100',
+            none: 'text-default-foreground hover:bg-default-100',
             primary: 'border-primary text-primary-600 hover:bg-primary-100',
             success: 'border-success text-success-600 hover:bg-success-100',
             warning: 'border-warning text-warning-600 hover:bg-warning-100',
@@ -44,7 +44,7 @@ const props = defineProps({
         }`,
         solid: `shadow-sm ${
           {
-            none: 'bg-default-950 text-default-50 hover:bg-default-900',
+            none: 'bg-default text-default-foreground hover:bg-default-300',
             primary: 'bg-primary text-primary-foreground hover:bg-primary-600 ',
             success: 'bg-success text-success-foreground hover:bg-success-600 ',
             warning: 'bg-warning text-warning-foreground hover:bg-warning-600 ',
@@ -53,7 +53,7 @@ const props = defineProps({
         }`,
         soft: `shadow-sm ${
           {
-            none: 'bg-default-100 text-default-700 hover:bg-default-200',
+            none: 'bg-default-100 text-default-foreground hover:bg-default-200',
             primary: 'bg-primary-100 text-primary-600 hover:bg-primary-200',
             success: 'bg-success-100 text-success-600 hover:bg-success-200',
             warning: 'bg-warning-100 text-warning-600 hover:bg-warning-200',

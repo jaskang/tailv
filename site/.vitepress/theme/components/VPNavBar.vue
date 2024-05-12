@@ -18,9 +18,7 @@ const dark = computed({
 </script>
 
 <template>
-  <div
-    class="sticky top-0 z-40 w-full flex-none border-b border-slate-200 bg-white/95 dark:border-slate-700 dark:bg-slate-900/95 lg:z-50"
-  >
+  <div class="sticky top-0 z-40 w-full flex-none border-b bg-white/95 dark:bg-default-950/95 lg:z-50">
     <div class="mx-auto max-w-8xl">
       <div class="mx-4 py-4 lg:mx-0 lg:px-8">
         <div class="relative flex items-center">
@@ -33,13 +31,13 @@ const dark = computed({
                 v-for="item in items"
                 :href="item.link"
                 class="text-sm font-semibold leading-6"
-                :class="[current === item.link ? 'text-primary-500' : 'text-slate-900']"
+                :class="[current === item.link ? 'text-primary-500' : 'text-default-900']"
               >
                 {{ item.title }}
               </a>
             </div>
 
-            <div class="ml-6 flex items-center border-l border-slate-200 pl-6">
+            <div class="ml-6 flex items-center border-l pl-6">
               <Switch v-model:value="dark">
                 <template #open>
                   <svg viewBox="0 0 24 24" fill="none" class="h-3 w-3">
@@ -81,7 +79,7 @@ const dark = computed({
 
               <a
                 href="https://github.com/tailwindlabs/tailwindcss"
-                class="ml-6 block text-slate-400 hover:text-slate-500"
+                class="ml-6 block text-default-400 hover:text-default-500"
               >
                 <span class="sr-only">Tailwind CSS on GitHub</span>
                 <svg viewBox="0 0 16 16" class="h-5 w-5" fill="currentColor" aria-hidden="true">

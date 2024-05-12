@@ -174,9 +174,9 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-text-1: var(--color-slate-900);
-  --vp-c-text-2: var(--color-slate-700);
-  --vp-c-text-3: var(--color-slate-500);
+  --vp-c-text-1: var(--tui-default-900);
+  --vp-c-text-2: var(--tui-default-700);
+  --vp-c-text-3: var(--tui-default-500);
 }
 
 .dark {

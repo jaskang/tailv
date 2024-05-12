@@ -370,9 +370,10 @@ const varPlugin: Plugin = {
 
         '--tui-background': toHsl(theme('colors.white')),
         '--tui-foreground': toHsl(theme(`colors.${defaultColor}.700`)),
+
         ...createAliasColorVars('default', theme(`colors.${defaultColor}`), {
-          defaultKey: '300',
-          addons: { foreground: theme(`colors.white`) },
+          defaultKey: '200',
+          addons: { foreground: theme(`colors.${defaultColor}.700`) },
         }),
         ...createAliasColorVars('primary', theme(`colors.${primaryColor}`), {
           defaultKey: '500',
@@ -395,7 +396,7 @@ const varPlugin: Plugin = {
         '--tui-background': toHsl(theme(`colors.${defaultColor}.950`)),
         '--tui-foreground': toHsl(theme(`colors.${defaultColor}.400`)),
         ...createAliasColorVars('default', theme(`colors.${defaultColor}`), {
-          defaultKey: '300',
+          defaultKey: '700',
           addons: { foreground: theme(`colors.white`), 950: theme(`colors.white`) },
           formatter: k => {
             if (/^\d+$/.test(k)) {

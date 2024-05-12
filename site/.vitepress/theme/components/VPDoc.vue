@@ -11,7 +11,7 @@ const { page } = useDataByTheme()
   <div class="relative mx-auto flex max-w-8xl flex-nowrap items-stretch">
     <div class="relative hidden w-72 lg:block">
       <div class="fixed top-14 h-[calc(100vh-3.5rem)] w-72 pl-8">
-        <ScrollArea class="h-full border-r border-slate-200 dark:border-slate-700">
+        <ScrollArea class="h-full border-r">
           <VPSidebar class="py-10" />
         </ScrollArea>
       </div>
