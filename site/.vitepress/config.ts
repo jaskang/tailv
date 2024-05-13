@@ -60,6 +60,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         { title: 'Menu', link: '/components/menu' },
         { title: 'Tab', link: '/components/tab' },
         { title: 'Avatar', link: '/components/avatar' },
+        { title: 'Badge', link: '/components/badge' },
       ],
       反馈: [
         { title: 'Popover', link: '/components/popover' },

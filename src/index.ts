@@ -3,6 +3,7 @@ import type { Plugin } from 'vue'
 import { default as Button } from './Button/index.vue'
 import { Checkbox, CheckboxGroup } from './Checkbox'
 import { Radio, RadioGroup, RadioCard } from './Radio'
+import { Badge } from './Badge'
 import { Anchor, useAnchor, type IAnchorItem } from './Anchor'
 import { Avatar } from './Avatar'
 import { ScrollArea } from './ScrollArea'
@@ -32,6 +33,7 @@ export {
   Menu,
   Popover,
   Tooltip,
+  Badge,
   SpaceCompact,
   Tabs,
   Textarea,
@@ -45,6 +47,7 @@ export const plugin: Plugin = {
     app.component(Button.name!, Button)
     app.component(Checkbox.name!, Checkbox)
     app.component(CheckboxGroup.name!, CheckboxGroup)
+    app.component(Badge.name!, Badge)
     app.component(Radio.name!, Radio)
     app.component(RadioCard.name!, RadioCard)
     app.component(RadioGroup.name!, RadioGroup)
