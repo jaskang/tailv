@@ -59,6 +59,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       展示: [
         { title: 'Menu', link: '/components/menu' },
         { title: 'Tab', link: '/components/tab' },
+        { title: 'Avatar', link: '/components/avatar' },
       ],
       反馈: [
         { title: 'Popover', link: '/components/popover' },

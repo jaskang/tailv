@@ -2,8 +2,9 @@ import type { Plugin } from 'vue'
 
 import { default as Button } from './Button/index.vue'
 import { Checkbox, CheckboxGroup } from './Checkbox'
-import { Radio, RadioGroup } from './Radio'
+import { Radio, RadioGroup, RadioCard } from './Radio'
 import { Anchor, useAnchor, type IAnchorItem } from './Anchor'
+import { Avatar } from './Avatar'
 import { ScrollArea } from './ScrollArea'
 import { default as Input } from './Input/index.vue'
 import { Select, type SelectOption } from './Select'
@@ -21,6 +22,7 @@ export {
   Checkbox,
   CheckboxGroup,
   Radio,
+  RadioCard,
   RadioGroup,
   Anchor,
   ScrollArea,
@@ -44,7 +46,9 @@ export const plugin: Plugin = {
     app.component(Checkbox.name!, Checkbox)
     app.component(CheckboxGroup.name!, CheckboxGroup)
     app.component(Radio.name!, Radio)
+    app.component(RadioCard.name!, RadioCard)
     app.component(RadioGroup.name!, RadioGroup)
+    app.component(Avatar.name!, Avatar)
     app.component(Anchor.name!, Anchor)
     app.component(ScrollArea.name!, ScrollArea)
     app.component(Input.name!, Input)

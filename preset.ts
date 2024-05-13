@@ -470,9 +470,7 @@ export default {
     varPlugin,
     {
       handler: ({ addUtilities, matchUtilities, addBase, matchComponents, theme, config }) => {
-        const { darkContext } = darkConfig(config)
-
-        const resizerColor = theme('colors.gray.500')!.replace('#', '%23')
+        const resizerColor = theme('colors.default.500')!.replace('#', '%23')
 
         const resizeYImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="M12 8V2"/><path d="M4 12H2"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M22 12h-2"/><path d="m15 19-3 3-3-3"/><path d="m15 5-3-3-3 3"/></svg>')`
         // const resizeXImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 12h6"/><path d="M8 12H2"/><path d="M12 2v2"/><path d="M12 8v2"/><path d="M12 14v2"/><path d="M12 20v2"/><path d="m19 15 3-3-3-3"/><path d="m5 9-3 3 3 3"/></svg>')`
@@ -492,16 +490,16 @@ export default {
               borderRadius: theme('borderRadius.full'),
             },
             '&::-webkit-scrollbar-track': {
-              backgroundColor: theme('colors.gray.200'),
+              backgroundColor: theme('colors.default.200'),
             },
             '&::-webkit-scrollbar-thumb': {
-              backgroundColor: theme('colors.gray.500'),
+              backgroundColor: theme('colors.default.500'),
             },
             '&:not(:disabled)::-webkit-scrollbar-thumb': {
               cursor: 'pointer',
             },
             '&:not(:disabled)::-webkit-scrollbar-thumb:hover': {
-              backgroundColor: theme('colors.gray.800'),
+              backgroundColor: theme('colors.default.800'),
             },
             '&::-webkit-scrollbar-button': {
               display: 'none',
@@ -518,17 +516,6 @@ export default {
               width: theme('space.3'),
               height: theme('space.3'),
               borderRadius: theme('borderRadius.full'),
-            },
-            [darkContext]: {
-              '&::-webkit-scrollbar-track': {
-                backgroundColor: theme('colors.gray.700'),
-              },
-              '&::-webkit-scrollbar-thumb': {
-                backgroundColor: theme('colors.gray.500'),
-              },
-              '&:not(:disabled)::-webkit-scrollbar-thumb:hover': {
-                backgroundColor: theme('colors.gray.200'),
-              },
             },
           },
         })

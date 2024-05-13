@@ -28,6 +28,48 @@ const picked = ref('A')
 </template>
 ```
 
+## RadioCard
+
+```vue demo
+<template>
+  <div class="flex flex-col gap-4">
+    <RadioGroup class="flex gap-4">
+      <RadioCard value="A" class="flex flex-col">
+        <span class="font-semibold">8-core CPU</span>
+        <span>32 GB RAM</span>
+      </RadioCard>
+      <RadioCard value="B" class="flex flex-col">
+        <span class="font-semibold">6-core CPU</span>
+        <span>24 GB RAM</span>
+      </RadioCard>
+      <RadioCard value="C" class="flex flex-col">
+        <span class="font-semibold">4-core CPU</span>
+        <span>16 GB RAM</span>
+      </RadioCard>
+    </RadioGroup>
+  </div>
+</template>
+```
+
+## RadioCard size
+
+```vue demo
+<template>
+  <div class="flex flex-col gap-4">
+    <RadioGroup class="flex gap-4" size="sm">
+      <RadioCard value="A">value A</RadioCard>
+      <RadioCard value="B">value B</RadioCard>
+      <RadioCard value="C">value B</RadioCard>
+    </RadioGroup>
+    <RadioGroup class="flex gap-4" size="lg">
+      <RadioCard value="A">value A</RadioCard>
+      <RadioCard value="B">value B</RadioCard>
+      <RadioCard value="C">value B</RadioCard>
+    </RadioGroup>
+  </div>
+</template>
+```
+
 ## Disabled
 
 ```vue demo
