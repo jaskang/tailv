@@ -31,7 +31,7 @@ const items = [
 ]
 </script>
 <template>
-  <Tabs :items="items" class="rounded px-2 ring-1 ring-gray-200"></Tabs>
+  <Tabs :items="items" class="rounded"></Tabs>
 </template>
 ```
 
