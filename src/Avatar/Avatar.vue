@@ -37,7 +37,7 @@ watch(
     ]"
   >
     <slot v-if="showFallback || !src" name="fallback">
-      <div class="flex items-center justify-center bg-default-200 text-center">
+      <div class="flex h-full w-full items-center justify-center bg-default-200 text-center">
         <span v-if="name">{{ name }}</span>
         <svg
           v-else
@@ -48,7 +48,7 @@ watch(
           stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="h-7 w-7"
+          class="h-7 w-7 bg-transparent"
         >
           <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
           <circle cx="12" cy="7" r="4" />

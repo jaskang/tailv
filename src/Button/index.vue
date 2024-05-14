@@ -44,7 +44,7 @@ const props = defineProps({
         }`,
         solid: `shadow-sm ${
           {
-            none: 'bg-default text-default-foreground hover:bg-default-300',
+            none: 'bg-default-200 text-default-foreground hover:bg-default-300',
             primary: 'bg-primary text-primary-foreground hover:bg-primary-600 ',
             success: 'bg-success text-success-foreground hover:bg-success-600 ',
             warning: 'bg-warning text-warning-foreground hover:bg-warning-600 ',
