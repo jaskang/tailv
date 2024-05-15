@@ -31,7 +31,7 @@ const clickHandler = () => {
 <template>
   <button
     :data-checked="checked"
-    class="group relative m-0 flex cursor-pointer appearance-none items-center justify-between border-2 border-border p-4 transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[checked=true]:border-primary"
+    class="group relative m-0 flex cursor-pointer appearance-none items-center justify-center border-2 border-border p-4 transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[checked=true]:border-primary"
     :class="[
       {
         sm: `rounded-md px-2 py-1 text-xs`,
@@ -42,6 +42,6 @@ const clickHandler = () => {
     ]"
     @click="clickHandler"
   >
-    <slot></slot>
+    <slot :checked="checked"></slot>
   </button>
 </template>

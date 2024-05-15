@@ -33,7 +33,7 @@ const inkOffset = computed(() => {
           @click="selectHandler(item, deep)"
         >
           <a
-            class="block text-sm text-default-700 no-underline hover:text-primary data-[active=true]:font-medium data-[active=true]:text-primary"
+            class="hover:text-foreground-dark block text-sm no-underline data-[active=true]:font-medium data-[active=true]:text-primary"
             :data-active="current === item.id"
             :href="item.link"
             :target="item.target"
