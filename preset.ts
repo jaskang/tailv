@@ -65,52 +65,44 @@ function createAliasColorConfig(alias: string): Record<string, string> {
   }
 }
 
-function createAliasColorVars(
+const isCssValue = (val: string) =>
+  val.startsWith('#') || val.startsWith('hsl') || val.startsWith('grb') || val.startsWith('var')
+
+function create950ColorVars(
   alias: string,
   source: string,
-  addons: Record<string, string> = {}
+  addons: Record<string, string>,
+  lvHandler?: (scope: string, k: number) => string
 ): Record<string, string> {
-  const { default: defaultKey = '500', foreground = '#FFFFFF', ...others } = addons
+  const { default: defaultValue = `var(--${source}-${500})`, foreground = '#FFFFFF', ...others } = addons
   const group = `--tui-${alias}`
   const result = {
-    [group]: `var(--${source}-${defaultKey})`,
+    [group]: defaultValue,
   }
   for (const key of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
-    result[`${group}-${key}`] = `var(--${source}-${key})`
+    result[`${group}-${key}`] = lvHandler ? lvHandler(source, key) : `var(--${source}-${key})`
   }
   const config: Record<string, string> = { foreground, ...others }
   Object.keys(config).forEach(key => {
-    const val =
-      config[key].startsWith('#') || config[key].startsWith('hsl') || config[key].startsWith('grb')
-        ? config[key]
-        : `var(--${source}-${config[key]})`
-    result[`${group}-${key}`] = val
+    result[`${group}-${key}`] = config[key]
   })
   return result
 }
 
-function createAliasColorDarkVars(
-  alias: string,
-  source: string,
-  addons: Record<string, string> = {}
-): Record<string, string> {
-  const { default: defaultKey = '500', foreground = '#FFFFFF', ...others } = addons
-  const group = `--tui-${alias}`
-  const result = {
-    [group]: `var(--${source}-${defaultKey})`,
+const createAliasColorVars = (alias: string, source: string, addons: Record<string, string> = {}) =>
+  create950ColorVars(alias, source, addons)
+
+const createAliasColorDarkVars = (alias: string, source: string, addons: Record<string, string> = {}) => {
+  if (source === 'default') {
+    return create950ColorVars(
+      alias,
+      source,
+      { ...addons, 950: 'var(--white)' },
+      (scope, k) => `var(--${scope}-${950 - k})`
+    )
+  } else {
+    return create950ColorVars(alias, source, addons, (scope, k) => `var(--${scope}-${1000 - k})`)
   }
-  for (const key of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
-    result[`${group}-${key}`] = `var(--${source}-${1000 - key})`
-  }
-  const config: Record<string, string> = { foreground, ...others }
-  Object.keys(config).forEach(key => {
-    const val =
-      config[key].startsWith('#') || config[key].startsWith('hsl') || config[key].startsWith('grb')
-        ? config[key]
-        : `var(--${source}-${config[key]})`
-    result[`${group}-${key}`] = val
-  })
-  return result
 }
 
 const varPlugin: Plugin = {
@@ -131,33 +123,45 @@ const varPlugin: Plugin = {
         // 'border-color': `hsl(var(--tui-border))`,
         // '--tw-ring-offset-color': `hsl(var(--tui-border))`,
       },
+      'input,button,textarea,select': {
+        outline: 'none',
+        appearance: 'none',
+      },
       ':root': {
         ...colorsVar,
 
-        ...createAliasColorVars('default', defaultColor, { default: '300', foreground: '700' }),
+        ...createAliasColorVars('default', defaultColor, {
+          default: `var(--${defaultColor}-300)`,
+          foreground: `var(--${defaultColor}-700)`,
+        }),
         ...createAliasColorVars('primary', primaryColor),
         ...createAliasColorVars('success', successColor),
         ...createAliasColorVars('warning', warningColor),
         ...createAliasColorVars('danger', dangerColor),
-        '--tui-background': `var(--white)`,
-        '--tui-foreground': `var(--${defaultColor}-700)`,
-        '--tui-foreground2': toHsl(theme(`colors.${defaultColor}.900`)),
 
-        '--tui-border': `var(--tui-default-200)`,
+        '--tui-background': `var(--white)`,
+        '--tui-foreground': `var(--tui-default-foreground)`,
+        '--tui-foreground-hover': toHsl(theme(`colors.${defaultColor}.900`)),
+
+        '--tui-border-hsl': toHsl(theme(`colors.${defaultColor}.200`)),
+        '--tui-border': `hsl(var(--tui-border-hsl))`,
       },
       [darkContext]: {
-        '--tui-background': `var(--${defaultColor}-950)`,
-        '--tui-foreground': `var(--${defaultColor}-400)`,
-        '--tui-foreground-dark': toHsl(theme(`colors.${defaultColor}.200`)),
-
         ...createAliasColorDarkVars('default', defaultColor, {
-          default: '700',
+          default: `var(--${defaultColor}-700)`,
+          foreground: `var(--${defaultColor}-400)`,
           '950': theme(`colors.white`),
         }),
         ...createAliasColorDarkVars('primary', primaryColor),
         ...createAliasColorDarkVars('success', successColor),
         ...createAliasColorDarkVars('warning', warningColor),
         ...createAliasColorDarkVars('danger', dangerColor),
+
+        '--tui-background': `var(--${defaultColor}-950)`,
+        '--tui-foreground': `var(--${defaultColor}-400)`,
+        '--tui-foreground-hover': toHsl(theme(`colors.${defaultColor}.200`)),
+
+        '--tui-border-hsl': toHsl(theme(`colors.${defaultColor}.700`)),
       },
 
       body: {
@@ -185,11 +189,17 @@ export default {
         warning: createAliasColorConfig('warning'),
         danger: createAliasColorConfig('danger'),
       },
+      outlineColor: {
+        DEFAULT: 'var(--tui-primary)',
+      },
+      outlineStyle: {
+        DEFAULT: 'solid',
+      },
       borderColor: {
         DEFAULT: 'var(--tui-border)',
       },
       ringColor: {
-        DEFAULT: 'var(--tui-border)',
+        DEFAULT: 'hsl(var(--tui-border-hsl))',
       },
       ringOffsetColor: {
         DEFAULT: 'var(--tui-background)',

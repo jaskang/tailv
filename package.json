@@ -59,6 +59,7 @@
     "eslint-plugin-vue": "^9.25.0",
     "globals": "^15.0.0",
     "happy-dom": "^14.7.1",
+    "lucide-vue-next": "^0.378.0",
     "mdast-util-from-markdown": "^2.0.0",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.1.0",

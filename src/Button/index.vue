@@ -35,7 +35,7 @@ const props = defineProps({
       {
         outline: `border shadow-sm ${
           {
-            none: 'text-default-foreground hover:bg-default-100',
+            none: 'text-default-foreground hover:bg-default-50',
             primary: 'border-primary text-primary-600 hover:bg-primary-100',
             success: 'border-success text-success-600 hover:bg-success-100',
             warning: 'border-warning text-warning-600 hover:bg-warning-100',
@@ -44,7 +44,7 @@ const props = defineProps({
         }`,
         solid: `shadow-sm ${
           {
-            none: 'bg-default-200 text-default-foreground hover:bg-default-300',
+            none: 'bg-default-800 text-default-50 hover:bg-default-700',
             primary: 'bg-primary text-primary-foreground hover:bg-primary-600 ',
             success: 'bg-success text-success-foreground hover:bg-success-600 ',
             warning: 'bg-warning text-warning-foreground hover:bg-warning-600 ',
