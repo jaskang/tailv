@@ -142,8 +142,8 @@ const varPlugin: Plugin = {
         '--tui-background': `var(--white)`,
         '--tui-foreground': `var(--tui-default-foreground)`,
         '--tui-foreground-hover': toHsl(theme(`colors.${defaultColor}.900`)),
-
         '--tui-border-hsl': toHsl(theme(`colors.${defaultColor}.200`)),
+
         '--tui-border': `hsl(var(--tui-border-hsl))`,
       },
       [darkContext]: {
@@ -160,7 +160,6 @@ const varPlugin: Plugin = {
         '--tui-background': `var(--${defaultColor}-950)`,
         '--tui-foreground': `var(--${defaultColor}-400)`,
         '--tui-foreground-hover': toHsl(theme(`colors.${defaultColor}.200`)),
-
         '--tui-border-hsl': toHsl(theme(`colors.${defaultColor}.700`)),
       },
 

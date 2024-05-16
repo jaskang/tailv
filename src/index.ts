@@ -26,6 +26,7 @@ export {
   RadioCard,
   RadioGroup,
   Anchor,
+  Avatar,
   ScrollArea,
   Input,
   Select,

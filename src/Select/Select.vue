@@ -61,7 +61,7 @@ const focused = ref(false)
       <ChevronDownIcon class="-mr-1 ml-1 h-4 w-4 flex-shrink-0"></ChevronDownIcon>
     </button>
     <template #content>
-      <ScrollArea class="flex max-h-80 flex-col text-sm" mode="y">
+      <ScrollArea class="flex max-h-80 flex-col rounded text-sm shadow-md ring-1" mode="y">
         <div class="grid gap-1 p-1">
           <div
             v-for="item in options"
