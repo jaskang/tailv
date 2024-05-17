@@ -93,13 +93,11 @@ const createAliasColorVars = (alias: string, source: string, addons: Record<stri
   create950ColorVars(alias, source, addons)
 
 const createAliasColorDarkVars = (alias: string, source: string, addons: Record<string, string> = {}) => {
-  if (source === 'default') {
-    return create950ColorVars(
-      alias,
-      source,
-      { ...addons, 950: 'var(--white)' },
-      (scope, k) => `var(--${scope}-${950 - k})`
-    )
+  if (alias === 'default') {
+    return create950ColorVars(alias, source, { ...addons, 950: 'var(--white)' }, (scope, k) => {
+      const target = 900 - k
+      return `var(--${scope}-${target === 850 ? 900 : target === 0 ? 50 : target})`
+    })
   } else {
     return create950ColorVars(alias, source, addons, (scope, k) => `var(--${scope}-${1000 - k})`)
   }
@@ -112,7 +110,7 @@ const varPlugin: Plugin = {
     const colorsVar = extractColorsVar(flattenColorPalette(theme('colors')))
 
     // const defaultColor = theme('tailv.default') || 'slate'
-    const defaultColor: string = theme('tailv.default') || 'slate'
+    const defaultColor: string = theme('tailv.default') || 'gray'
     const primaryColor: string = theme('tailv.primary') || 'indigo'
     const successColor: string = theme('tailv.success') || 'green'
     const warningColor: string = theme('tailv.warning') || 'amber'
@@ -120,6 +118,7 @@ const varPlugin: Plugin = {
 
     addBase({
       '*, ::before, ::after': {
+        '--tw-ring-color': 'var(--tui-border)',
         // 'border-color': `hsl(var(--tui-border))`,
         // '--tw-ring-offset-color': `hsl(var(--tui-border))`,
       },
