@@ -132,23 +132,24 @@ const varPlugin: Plugin = {
         ...createAliasColorVars('default', defaultColor, {
           default: `var(--${defaultColor}-300)`,
           foreground: `var(--${defaultColor}-700)`,
+          background: `var(--white)`,
         }),
         ...createAliasColorVars('primary', primaryColor),
         ...createAliasColorVars('success', successColor),
         ...createAliasColorVars('warning', warningColor),
         ...createAliasColorVars('danger', dangerColor),
 
-        '--tui-background': `var(--white)`,
-        '--tui-foreground': `var(--tui-default-foreground)`,
-        '--tui-foreground-hover': toHsl(theme(`colors.${defaultColor}.900`)),
-        '--tui-border-hsl': toHsl(theme(`colors.${defaultColor}.200`)),
+        '--tui-border': `var(--${defaultColor}-200)`,
 
-        '--tui-border': `hsl(var(--tui-border-hsl))`,
+        '--tui-background': `var(--tui-default-background)`,
+        '--tui-foreground': `var(--tui-default-foreground)`,
+        '--tw-ring-color': `var(--tui-border)`,
       },
       [darkContext]: {
         ...createAliasColorDarkVars('default', defaultColor, {
           default: `var(--${defaultColor}-700)`,
           foreground: `var(--${defaultColor}-400)`,
+          background: `var(--${defaultColor}-950)`,
           '950': theme(`colors.white`),
         }),
         ...createAliasColorDarkVars('primary', primaryColor),
@@ -156,10 +157,7 @@ const varPlugin: Plugin = {
         ...createAliasColorDarkVars('warning', warningColor),
         ...createAliasColorDarkVars('danger', dangerColor),
 
-        '--tui-background': `var(--${defaultColor}-950)`,
-        '--tui-foreground': `var(--${defaultColor}-400)`,
-        '--tui-foreground-hover': toHsl(theme(`colors.${defaultColor}.200`)),
-        '--tui-border-hsl': toHsl(theme(`colors.${defaultColor}.700`)),
+        '--tui-border': `var(--${defaultColor}-700)`,
       },
 
       body: {
@@ -195,6 +193,9 @@ export default {
       },
       borderColor: {
         DEFAULT: 'var(--tui-border)',
+      },
+      ringOpacity: {
+        DEFAULT: '1',
       },
       ringColor: {
         DEFAULT: 'hsl(var(--tui-border-hsl))',

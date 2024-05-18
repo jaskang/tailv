@@ -6,7 +6,7 @@ import VPPage from './components/VPPage.vue'
 import { TinyColor } from '@ctrl/tinycolor'
 import { Button, RadioGroup, RadioCard } from '../../../src'
 import { useDataByTheme } from './utils'
-import { computed, ref } from 'vue'
+import { computed, ref, watch, watchEffect } from 'vue'
 
 function toHsl(color: string) {
   const c = new TinyColor(color)
@@ -20,79 +20,94 @@ const { frontmatter, page, theme, isDark } = useDataByTheme()
 const primary = ref('indigo')
 const gray = ref('gray')
 
-const vars = computed(() => {
-  const border200 = window.getComputedStyle(document.body).getPropertyValue(`--${gray.value}-200`)
-  const border700 = window.getComputedStyle(document.body).getPropertyValue(`--${gray.value}-700`)
+watchEffect(
+  () => {
+    if (document.body) {
+      const border200 = window.getComputedStyle(document.body).getPropertyValue(`--${gray.value}-200`)
+      const border700 = window.getComputedStyle(document.body).getPropertyValue(`--${gray.value}-700`)
 
-  const light = {
-    '--tui-primary': `var(--${primary.value}-500)`,
-    '--tui-primary-50': `var(--${primary.value}-50)`,
-    '--tui-primary-100': `var(--${primary.value}-100)`,
-    '--tui-primary-200': `var(--${primary.value}-200)`,
-    '--tui-primary-300': `var(--${primary.value}-300)`,
-    '--tui-primary-400': `var(--${primary.value}-400)`,
-    '--tui-primary-500': `var(--${primary.value}-500)`,
-    '--tui-primary-600': `var(--${primary.value}-600)`,
-    '--tui-primary-700': `var(--${primary.value}-700)`,
-    '--tui-primary-800': `var(--${primary.value}-800)`,
-    '--tui-primary-900': `var(--${primary.value}-900)`,
-    '--tui-primary-950': `var(--${primary.value}-950)`,
-    '--tui-primary-foreground': `var(--white)`,
+      const light = {
+        '--tui-default': `var(--${gray.value}-300)`,
+        '--tui-default-50': `var(--${gray.value}-50)`,
+        '--tui-default-100': `var(--${gray.value}-100)`,
+        '--tui-default-200': `var(--${gray.value}-200)`,
+        '--tui-default-300': `var(--${gray.value}-300)`,
+        '--tui-default-400': `var(--${gray.value}-400)`,
+        '--tui-default-500': `var(--${gray.value}-500)`,
+        '--tui-default-600': `var(--${gray.value}-600)`,
+        '--tui-default-700': `var(--${gray.value}-700)`,
+        '--tui-default-800': `var(--${gray.value}-800)`,
+        '--tui-default-900': `var(--${gray.value}-900)`,
+        '--tui-default-950': `var(--${gray.value}-950)`,
+        '--tui-default-foreground': `var(--${gray.value}-700)`,
+        '--tui-default-background': `var(--white)`,
 
-    '--tui-default': `var(--${gray.value}-300)`,
-    '--tui-default-50': `var(--${gray.value}-50)`,
-    '--tui-default-100': `var(--${gray.value}-100)`,
-    '--tui-default-200': `var(--${gray.value}-200)`,
-    '--tui-default-300': `var(--${gray.value}-300)`,
-    '--tui-default-400': `var(--${gray.value}-400)`,
-    '--tui-default-500': `var(--${gray.value}-500)`,
-    '--tui-default-600': `var(--${gray.value}-600)`,
-    '--tui-default-700': `var(--${gray.value}-700)`,
-    '--tui-default-800': `var(--${gray.value}-800)`,
-    '--tui-default-900': `var(--${gray.value}-900)`,
-    '--tui-default-950': `var(--${gray.value}-950)`,
-    '--tui-default-foreground': `var(--${gray.value}-700)`,
+        '--tui-primary': `var(--${primary.value}-500)`,
+        '--tui-primary-50': `var(--${primary.value}-50)`,
+        '--tui-primary-100': `var(--${primary.value}-100)`,
+        '--tui-primary-200': `var(--${primary.value}-200)`,
+        '--tui-primary-300': `var(--${primary.value}-300)`,
+        '--tui-primary-400': `var(--${primary.value}-400)`,
+        '--tui-primary-500': `var(--${primary.value}-500)`,
+        '--tui-primary-600': `var(--${primary.value}-600)`,
+        '--tui-primary-700': `var(--${primary.value}-700)`,
+        '--tui-primary-800': `var(--${primary.value}-800)`,
+        '--tui-primary-900': `var(--${primary.value}-900)`,
+        '--tui-primary-950': `var(--${primary.value}-950)`,
+        '--tui-primary-foreground': `var(--white)`,
 
-    '--tui-border-hsl': toHsl(border200),
-  }
-  const dark = {
-    '--tui-primary': `var(--${primary.value}-500)`,
-    '--tui-primary-50': `var(--${primary.value}-950)`,
-    '--tui-primary-100': `var(--${primary.value}-900)`,
-    '--tui-primary-200': `var(--${primary.value}-800)`,
-    '--tui-primary-300': `var(--${primary.value}-700)`,
-    '--tui-primary-400': `var(--${primary.value}-600)`,
-    '--tui-primary-500': `var(--${primary.value}-500)`,
-    '--tui-primary-600': `var(--${primary.value}-400)`,
-    '--tui-primary-700': `var(--${primary.value}-300)`,
-    '--tui-primary-800': `var(--${primary.value}-200)`,
-    '--tui-primary-900': `var(--${primary.value}-100)`,
-    '--tui-primary-950': `var(--${primary.value}-50)`,
-    '--tui-primary-foreground': `var(--white)`,
+        '--tui-background': `var(--tui-default-background)`,
+        '--tui-foreground': `var(--tui-default-foreground)`,
+        '--tui-border': `var(--${gray.value}-200)`,
+        '--tw-ring-color': `var(--tui-border)`,
+      }
+      const dark = {
+        '--tui-default': `var(--${gray.value}-700)`,
+        '--tui-default-50': `var(--${gray.value}-900)`,
+        '--tui-default-100': `var(--${gray.value}-800)`,
+        '--tui-default-200': `var(--${gray.value}-700)`,
+        '--tui-default-300': `var(--${gray.value}-600)`,
+        '--tui-default-400': `var(--${gray.value}-500)`,
+        '--tui-default-500': `var(--${gray.value}-400)`,
+        '--tui-default-600': `var(--${gray.value}-300)`,
+        '--tui-default-700': `var(--${gray.value}-200)`,
+        '--tui-default-800': `var(--${gray.value}-100)`,
+        '--tui-default-900': `var(--${gray.value}-50)`,
+        '--tui-default-950': `var(--white)`,
+        '--tui-default-foreground': `var(--${gray.value}-400)`,
+        '--tui-default-background': `var(--${gray.value}-950)`,
 
-    '--tui-default': `var(--${gray.value}-700)`,
-    '--tui-default-50': `var(--${gray.value}-900)`,
-    '--tui-default-100': `var(--${gray.value}-800)`,
-    '--tui-default-200': `var(--${gray.value}-700)`,
-    '--tui-default-300': `var(--${gray.value}-600)`,
-    '--tui-default-400': `var(--${gray.value}-500)`,
-    '--tui-default-500': `var(--${gray.value}-400)`,
-    '--tui-default-600': `var(--${gray.value}-300)`,
-    '--tui-default-700': `var(--${gray.value}-200)`,
-    '--tui-default-800': `var(--${gray.value}-100)`,
-    '--tui-default-900': `var(--${gray.value}-50)`,
-    '--tui-default-950': `var(--white)`,
-    '--tui-default-foreground': `var(--${gray.value}-400)`,
+        '--tui-primary': `var(--${primary.value}-500)`,
+        '--tui-primary-50': `var(--${primary.value}-950)`,
+        '--tui-primary-100': `var(--${primary.value}-900)`,
+        '--tui-primary-200': `var(--${primary.value}-800)`,
+        '--tui-primary-300': `var(--${primary.value}-700)`,
+        '--tui-primary-400': `var(--${primary.value}-600)`,
+        '--tui-primary-500': `var(--${primary.value}-500)`,
+        '--tui-primary-600': `var(--${primary.value}-400)`,
+        '--tui-primary-700': `var(--${primary.value}-300)`,
+        '--tui-primary-800': `var(--${primary.value}-200)`,
+        '--tui-primary-900': `var(--${primary.value}-100)`,
+        '--tui-primary-950': `var(--${primary.value}-50)`,
+        '--tui-primary-foreground': `var(--white)`,
 
-    '--tui-border-hsl': toHsl(border700),
-  }
-
-  return isDark.value ? dark : light
-})
+        '--tui-background': `var(--tui-default-background)`,
+        '--tui-foreground': `var(--tui-default-foreground)`,
+        '--tui-border': `var(--${gray.value}-700)`,
+        '--tw-ring-color': `var(--tui-border)`,
+      }
+      const themeVars: Record<string, string> = isDark.value ? dark : light
+      Object.keys(themeVars).forEach(key => {
+        document.body.style.setProperty(key, themeVars[key])
+      })
+    }
+  },
+  { flush: 'post' }
+)
 </script>
 
 <template>
-  <div class="min-h-screen" :style="vars" ref="layout">
+  <div class="min-h-screen">
     <VPNavBar></VPNavBar>
     <div class="flex items-center justify-center p-4">
       <div class="">主色调：</div>

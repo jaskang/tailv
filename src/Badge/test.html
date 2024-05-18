@@ -1,4 +1,4 @@
-<style type="text/css" data-vite-dev-id="/Users/jaskang/github/tailv/site/.vitepress/theme/styles/index.css">
+<style type="text/css" data-vite-dev-id="/Users/jaskang/code/tailv/site/.vitepress/theme/styles/index.css">
   /*
   ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
   */ /*
@@ -400,6 +400,7 @@
   *,
   ::before,
   ::after {
+    --tw-ring-color: var(--tui-border);
   }
 
   input,
@@ -729,19 +730,20 @@
     --danger-950: var(--tui-danger-950);
     --danger: var(--tui-danger);
     --danger-foreground: var(--tui-danger-foreground);
-    --tui-default: var(--slate-300);
-    --tui-default-50: var(--slate-50);
-    --tui-default-100: var(--slate-100);
-    --tui-default-200: var(--slate-200);
-    --tui-default-300: var(--slate-300);
-    --tui-default-400: var(--slate-400);
-    --tui-default-500: var(--slate-500);
-    --tui-default-600: var(--slate-600);
-    --tui-default-700: var(--slate-700);
-    --tui-default-800: var(--slate-800);
-    --tui-default-900: var(--slate-900);
-    --tui-default-950: var(--slate-950);
-    --tui-default-foreground: var(--slate-700);
+    --tui-default: var(--gray-300);
+    --tui-default-50: var(--gray-50);
+    --tui-default-100: var(--gray-100);
+    --tui-default-200: var(--gray-200);
+    --tui-default-300: var(--gray-300);
+    --tui-default-400: var(--gray-400);
+    --tui-default-500: var(--gray-500);
+    --tui-default-600: var(--gray-600);
+    --tui-default-700: var(--gray-700);
+    --tui-default-800: var(--gray-800);
+    --tui-default-900: var(--gray-900);
+    --tui-default-950: var(--gray-950);
+    --tui-default-foreground: var(--gray-700);
+    --tui-default-background: var(--white);
     --tui-primary: var(--indigo-500);
     --tui-primary-50: var(--indigo-50);
     --tui-primary-100: var(--indigo-100);
@@ -794,27 +796,27 @@
     --tui-danger-900: var(--red-900);
     --tui-danger-950: var(--red-950);
     --tui-danger-foreground: #ffffff;
-    --tui-background: var(--white);
+    --tui-border-hsl: 220 13% 91%;
+    --tui-background: var(--tui-default-background);
     --tui-foreground: var(--tui-default-foreground);
-    --tui-foreground-hover: 222 47% 11%;
-    --tui-border-hsl: 214 32% 91%;
     --tui-border: hsl(var(--tui-border-hsl));
   }
 
   :is(.dark) {
-    --tui-default: var(--slate-700);
-    --tui-default-50: var(--slate-900);
-    --tui-default-100: var(--slate-800);
-    --tui-default-200: var(--slate-700);
-    --tui-default-300: var(--slate-600);
-    --tui-default-400: var(--slate-500);
-    --tui-default-500: var(--slate-400);
-    --tui-default-600: var(--slate-300);
-    --tui-default-700: var(--slate-200);
-    --tui-default-800: var(--slate-100);
-    --tui-default-900: var(--slate-50);
+    --tui-default: var(--gray-700);
+    --tui-default-50: var(--gray-900);
+    --tui-default-100: var(--gray-800);
+    --tui-default-200: var(--gray-700);
+    --tui-default-300: var(--gray-600);
+    --tui-default-400: var(--gray-500);
+    --tui-default-500: var(--gray-400);
+    --tui-default-600: var(--gray-300);
+    --tui-default-700: var(--gray-200);
+    --tui-default-800: var(--gray-100);
+    --tui-default-900: var(--gray-50);
     --tui-default-950: var(--white);
-    --tui-default-foreground: var(--slate-400);
+    --tui-default-foreground: var(--gray-400);
+    --tui-default-background: var(--gray-950);
     --tui-primary: var(--indigo-500);
     --tui-primary-50: var(--indigo-950);
     --tui-primary-100: var(--indigo-900);
@@ -867,10 +869,7 @@
     --tui-danger-900: var(--red-100);
     --tui-danger-950: var(--red-50);
     --tui-danger-foreground: #ffffff;
-    --tui-background: var(--slate-950);
-    --tui-foreground: var(--slate-400);
-    --tui-foreground-hover: 214 32% 91%;
-    --tui-border-hsl: 215 25% 27%;
+    --tui-border-hsl: 217 19% 27%;
   }
 
   body {
@@ -2023,6 +2022,10 @@
   .bg-border {
     background-color: var(--tui-border);
   }
+  .bg-cyan-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(6 182 212 / var(--tw-bg-opacity));
+  }
   .bg-danger {
     background-color: var(--tui-danger);
   }
@@ -2044,6 +2047,14 @@
   .bg-default-800 {
     background-color: var(--tui-default-800);
   }
+  .bg-emerald-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(16 185 129 / var(--tw-bg-opacity));
+  }
+  .bg-fuchsia-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(217 70 239 / var(--tw-bg-opacity));
+  }
   .bg-gray-300 {
     --tw-bg-opacity: 1;
     background-color: rgb(209 213 219 / var(--tw-bg-opacity));
@@ -2063,6 +2074,22 @@
   .bg-inherit {
     background-color: inherit;
   }
+  .bg-lime-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(132 204 22 / var(--tw-bg-opacity));
+  }
+  .bg-neutral-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(115 115 115 / var(--tw-bg-opacity));
+  }
+  .bg-orange-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(249 115 22 / var(--tw-bg-opacity));
+  }
+  .bg-pink-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(236 72 153 / var(--tw-bg-opacity));
+  }
   .bg-primary {
     background-color: var(--tui-primary);
   }
@@ -2072,13 +2099,29 @@
   .bg-primary-500 {
     background-color: var(--tui-primary-500);
   }
+  .bg-purple-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(168 85 247 / var(--tw-bg-opacity));
+  }
   .bg-red-500 {
     --tw-bg-opacity: 1;
     background-color: rgb(239 68 68 / var(--tw-bg-opacity));
   }
+  .bg-rose-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(244 63 94 / var(--tw-bg-opacity));
+  }
+  .bg-sky-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(14 165 233 / var(--tw-bg-opacity));
+  }
   .bg-slate-500 {
     --tw-bg-opacity: 1;
     background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+  }
+  .bg-stone-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(120 113 108 / var(--tw-bg-opacity));
   }
   .bg-success {
     background-color: var(--tui-success);
@@ -2086,8 +2129,16 @@
   .bg-success-100 {
     background-color: var(--tui-success-100);
   }
+  .bg-teal-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(20 184 166 / var(--tw-bg-opacity));
+  }
   .bg-transparent {
     background-color: transparent;
+  }
+  .bg-violet-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(139 92 246 / var(--tw-bg-opacity));
   }
   .bg-warning {
     background-color: var(--tui-warning);
@@ -2101,6 +2152,14 @@
   }
   .bg-white\/95 {
     background-color: rgb(255 255 255 / 0.95);
+  }
+  .bg-yellow-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+  }
+  .bg-zinc-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(113 113 122 / var(--tw-bg-opacity));
   }
   .fill-primary-500 {
     fill: var(--tui-primary-500);

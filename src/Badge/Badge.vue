@@ -27,7 +27,7 @@ const props = defineProps({
       class="font-regular text-small absolute right-[5%] top-[5%] z-10 box-border flex max-h-5 min-h-3 min-w-3 origin-center -translate-y-1/2 translate-x-1/2 scale-100 select-none flex-wrap place-content-center items-center justify-center whitespace-nowrap rounded-full border-2 border-background px-1 subpixel-antialiased opacity-100 duration-300 data-[invisible=true]:scale-0 data-[invisible=true]:opacity-0"
       :class="[
         {
-          default: 'bg-default text-default-foreground',
+          default: 'bg-default text-foreground',
           primary: 'bg-primary text-primary-foreground',
           success: 'bg-success text-success-foreground',
           warning: 'bg-warning text-warning-foreground',
