@@ -61,18 +61,14 @@ const focused = ref(false)
       <ChevronDownIcon class="-mr-1 ml-1 h-4 w-4 flex-shrink-0"></ChevronDownIcon>
     </button>
     <template #content>
-      <ScrollArea class="flex max-h-80 flex-col rounded text-sm shadow-md ring-1" mode="y">
+      <ScrollArea class="flex max-h-80 flex-col rounded text-sm shadow-md ring-1 ring-border" mode="y">
         <div class="grid gap-1 p-1">
           <div
             v-for="item in options"
             :key="item.value"
             @click="selectHandler(item)"
             class="relative cursor-pointer rounded px-3 py-2 text-sm"
-            :class="[
-              item.value === modelValue
-                ? 'bg-primary font-medium text-white'
-                : 'hover:bg-default-100 hover:text-primary-600',
-            ]"
+            :class="[item.value === modelValue ? 'bg-primary font-medium text-white' : 'hover:bg-default-100']"
           >
             {{ item.label }}
           </div>
