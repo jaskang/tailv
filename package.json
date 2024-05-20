@@ -36,7 +36,7 @@
   "dependencies": {
     "@floating-ui/vue": "^1.0.6",
     "@vueuse/core": "^10.9.0",
-    "kotl": "^1.8.1",
+    "kotl": "^2.1.0",
     "mitt": "^3.0.1"
   },
   "devDependencies": {

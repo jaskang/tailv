@@ -1,4 +1,4 @@
-import { type Flat, clsx } from 'kotl'
+import { type Prettify, clsx } from 'kotl'
 
 type TwValue = string | [string, string]
 
@@ -14,10 +14,10 @@ export function tw<T extends VariantsObject>(
   base: string,
   options: {
     variants: T
-    compoundVariants?: Array<Partial<Flat<InferVariants<T>>> & { class: TwValue }>
+    compoundVariants?: Array<Partial<Prettify<InferVariants<T>>> & { class: TwValue }>
   }
 ) {
-  return (v: Flat<InferVariants<T>>) => {
+  return (v: Prettify<InferVariants<T>>) => {
     const cls = base.split(' ').map(s => s.trim())
     Object.keys(options.variants).forEach(key => {
       const value = options.variants[key]

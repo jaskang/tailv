@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import type { ListItem, ListItemType } from '@/Base/List/type'
+import { ref, computed, type PropType } from 'vue'
 
 defineOptions({ name: 'ListItem' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
-const props = defineProps({})
+const props = defineProps({
+  item: { type: Object as PropType<ListItemType>, required: true },
+})
 </script>
 <template>
   <div
@@ -15,7 +18,7 @@ const props = defineProps({})
     data-radix-collection-item=""
   >
     <slot>
-      Profile
+      {{ props.item.label }}
       <span class="ml-auto text-xs tracking-widest opacity-60">⇧⌘P</span>
     </slot>
   </div>
