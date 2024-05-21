@@ -84,7 +84,7 @@ function create950ColorVars(
   }
   const config: Record<string, string> = { foreground, ...others }
   Object.keys(config).forEach(key => {
-    result[`${group}-${key}`] = config[key]
+    result[`${group}-${key}`] = config[key]!
   })
   return result
 }
