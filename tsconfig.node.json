@@ -1,5 +1,5 @@
 {
-  "extends": "@jaskang/config/tsconfig.node.json",
+  "extends": "@jaskang/tsconfig/tsconfig.node.json",
   "compilerOptions": {
     "composite": true,
     "allowJs": true,

@@ -1,5 +1,4 @@
 {
-  "extends": "@jaskang/config/tsconfig.vue.json",
   "compilerOptions": {
     "baseUrl": ".",
     "types": ["vite/client"],

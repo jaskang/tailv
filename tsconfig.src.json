@@ -1,5 +1,5 @@
 {
-  "extends": "@jaskang/config/tsconfig.vue.json",
+  "extends": "@jaskang/tsconfig/tsconfig.vue.json",
   "compilerOptions": {
     "composite": true,
     "types": ["vite/client"],
