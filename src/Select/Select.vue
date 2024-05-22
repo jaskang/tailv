@@ -62,7 +62,7 @@ const focused = ref(false)
     </button>
     <template #content>
       <ScrollArea class="flex max-h-80 flex-col rounded text-sm shadow-md ring-1 ring-border" mode="y">
-        <ListBox :items="options as SelectOption[]" index-key="value" @click="selectHandler">
+        <ListBox :items="options" index-key="value" @click="selectHandler">
           <template #default="{ item }">
             <div
               @click="selectHandler(item)"
