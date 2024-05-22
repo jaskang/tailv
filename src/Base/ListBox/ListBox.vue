@@ -1,0 +1,43 @@
+<script setup lang="ts" generic="T extends IListItemNormal">
+import { ref, computed, PropType } from 'vue'
+import { type IListItem, isDividerItem, isGroupItem, isDataItem, IListItemNormal } from './utils'
+import ListBoxItem from './ListBoxItem.vue'
+
+defineOptions({ name: 'ListBox' })
+const emit = defineEmits<{ click: [T] }>()
+const slots = defineSlots<{ default?(props: { item: T }): any }>()
+const props = defineProps({
+  items: Array as PropType<IListItem<T>[]>,
+  indexKey: {
+    type: String,
+    default: 'key',
+  },
+})
+</script>
+<template>
+  <div class="space-y-1 p-1 ring-1 ring-border">
+    <template v-for="item in props.items">
+      <div v-if="isDividerItem(item)" class="-mx-1 my-1 h-px bg-border"></div>
+      <div v-if="isGroupItem(item)" class="-mx-1 my-1 border-b border-t border-border p-1" :key="item.label">
+        <div class="h-8 px-2 text-sm font-medium leading-7 text-default-500">{{ item.label }}</div>
+        <div class="space-y-1">
+          <ListBoxItem
+            v-for="groupItem in item.children"
+            :item="groupItem"
+            @click="emit('click', groupItem as T)"
+            :key="item[indexKey]"
+          >
+            <template #default="itemProps" v-if="slots.default">
+              <slot v-bind="itemProps as any" />
+            </template>
+          </ListBoxItem>
+        </div>
+      </div>
+      <ListBoxItem v-else :item="item as T" @click="emit('click', item as T)" :key="item[indexKey]">
+        <template #default="itemProps" v-if="slots.default">
+          <slot v-bind="itemProps as any" />
+        </template>
+      </ListBoxItem>
+    </template>
+  </div>
+</template>

@@ -16,6 +16,7 @@ import { default as Tooltip } from './Tooltip/index.vue'
 import { default as SpaceCompact } from './Space/SpaceCompact.vue'
 import { Tabs } from './Tab'
 import { Textarea } from './Textarea'
+import { ListBox } from './Base'
 
 export {
   // components
@@ -38,6 +39,8 @@ export {
   SpaceCompact,
   Tabs,
   Textarea,
+  // base
+  ListBox,
   // use
   useAnchor,
 }
@@ -64,5 +67,7 @@ export const plugin: Plugin = {
     app.component(SpaceCompact.name!, SpaceCompact)
     app.component(Tabs.name!, Tabs)
     app.component(Textarea.name!, Textarea)
+    // base
+    app.component(ListBox.name!, ListBox)
   },
 }

@@ -61,6 +61,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         { title: 'Tab', link: '/components/tab' },
         { title: 'Avatar', link: '/components/avatar' },
         { title: 'Badge', link: '/components/badge' },
+        { title: 'ListBox', link: '/components/list-box' },
       ],
       反馈: [
         { title: 'Popover', link: '/components/popover' },

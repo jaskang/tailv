@@ -6,7 +6,7 @@ import type { SelectOption } from './types'
 import { useModelValue } from '../use/useModelValue'
 import ChevronDownIcon from '../Icon/ChevronDownIcon.vue'
 import { ScrollArea } from '../ScrollArea'
-
+import { ListBox } from '@/Base'
 defineOptions({ name: 'Select', inheritAttrs: false })
 
 const emit = defineEmits(['update:value', 'change', 'select'])
@@ -62,17 +62,17 @@ const focused = ref(false)
     </button>
     <template #content>
       <ScrollArea class="flex max-h-80 flex-col rounded text-sm shadow-md ring-1 ring-border" mode="y">
-        <div class="grid gap-1 p-1">
-          <div
-            v-for="item in options"
-            :key="item.value"
-            @click="selectHandler(item)"
-            class="relative cursor-pointer rounded px-3 py-2 text-sm"
-            :class="[item.value === modelValue ? 'bg-primary font-medium text-white' : 'hover:bg-default-100']"
-          >
-            {{ item.label }}
-          </div>
-        </div>
+        <ListBox :items="options as SelectOption[]" index-key="value" @click="selectHandler">
+          <template #default="{ item }">
+            <div
+              @click="selectHandler(item)"
+              class="relative cursor-pointer rounded px-3 py-2 text-sm"
+              :class="[item.value === modelValue ? 'bg-primary font-medium text-white' : 'hover:bg-default-100']"
+            >
+              {{ item.label }}
+            </div>
+          </template>
+        </ListBox>
       </ScrollArea>
     </template>
   </Popover>
