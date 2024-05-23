@@ -1,31 +1,21 @@
 <script setup lang="ts">
-import VPNavBar from './components/VPNavBar.vue'
+import { ref, watchEffect } from 'vue'
+import { isBrowser } from 'kotl'
+
+import { RadioCard, RadioGroup } from '../../../src'
 import VPDoc from './components/VPDoc.vue'
+import VPNavBar from './components/VPNavBar.vue'
 import VPPage from './components/VPPage.vue'
-
-import { TinyColor } from '@ctrl/tinycolor'
-import { Button, RadioGroup, RadioCard } from '../../../src'
 import { useDataByTheme } from './utils'
-import { computed, ref, watch, watchEffect } from 'vue'
 
-function toHsl(color: string) {
-  const c = new TinyColor(color)
-  const hsl = c.toHsl()
-  const hsla = c.toHslString()
-  return c.toHslString().substring(4, hsla.indexOf(')')).replace(/\,/g, '')
-}
-
-const { frontmatter, page, theme, isDark } = useDataByTheme()
+const { frontmatter, isDark } = useDataByTheme()
 
 const primary = ref('indigo')
 const gray = ref('gray')
 
 watchEffect(
   () => {
-    if (document.body) {
-      const border200 = window.getComputedStyle(document.body).getPropertyValue(`--${gray.value}-200`)
-      const border700 = window.getComputedStyle(document.body).getPropertyValue(`--${gray.value}-700`)
-
+    if (isBrowser()) {
       const light = {
         '--tui-default': `var(--${gray.value}-300)`,
         '--tui-default-50': `var(--${gray.value}-50)`,
