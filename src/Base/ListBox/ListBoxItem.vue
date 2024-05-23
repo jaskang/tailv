@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { type PropType } from 'vue'
+
 import type { IListItemNormal } from './utils'
+
 import ListBox from './ListBox.vue'
-import { ref, computed, type PropType } from 'vue'
 
 defineOptions({ name: 'ListBoxItem' })
 const emit = defineEmits<{ click: [any] }>()

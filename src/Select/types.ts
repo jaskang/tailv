@@ -1,5 +1,6 @@
-import type { IListItemNormal } from '@/Base'
 import type { Prettify } from 'kotl'
+
+import type { IListItemNormal } from '@/Base'
 
 export type SelectOption = Prettify<
   {

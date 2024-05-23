@@ -8,6 +8,8 @@ defineOptions({ name: 'ButtonBooth' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 
+const a = ref('')
+// a = 'sadf'
 // pill: Boolean,
 //   square: Boolean,
 //   block: Boolean,

@@ -1,5 +1,5 @@
 {
-  "extends": "@jaskang/tsconfig/tsconfig.node.json",
+  "extends": "@jaskang/tsconfig/node",
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",

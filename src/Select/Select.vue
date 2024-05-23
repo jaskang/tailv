@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import Popover from '../Popover/index.vue'
-import Input from '../Input/index.vue'
-import { ref, computed, type PropType } from 'vue'
-import type { SelectOption } from './types'
-import { useModelValue } from '../use/useModelValue'
-import ChevronDownIcon from '../Icon/ChevronDownIcon.vue'
-import { ScrollArea } from '../ScrollArea'
+import { type PropType, computed, ref } from 'vue'
+
 import { ListBox } from '@/Base'
+
+import type { SelectOption } from './types'
+
+import ChevronDownIcon from '../Icon/ChevronDownIcon.vue'
+import Input from '../Input/index.vue'
+import Popover from '../Popover/index.vue'
+import { ScrollArea } from '../ScrollArea'
+import { useModelValue } from '../use/useModelValue'
 defineOptions({ name: 'Select', inheritAttrs: false })
 
 const emit = defineEmits(['update:value', 'change', 'select'])
