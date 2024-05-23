@@ -1,15 +1,13 @@
-import fs from 'node:fs'
-import { relative } from 'node:path'
+import type { Html } from 'mdast'
 import type { Plugin, ResolvedConfig } from 'vite'
-
-import { createHash } from 'node:crypto'
-
 import { fromMarkdown } from 'mdast-util-from-markdown'
+import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
 import { toMarkdown } from 'mdast-util-to-markdown'
 import { frontmatter } from 'micromark-extension-frontmatter'
-import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
+import { createHash } from 'node:crypto'
+import fs from 'node:fs'
+import { relative } from 'node:path'
 import { visit } from 'unist-util-visit'
-import type { Html } from 'mdast'
 
 const CODE_VUE_REGEXP = /.md.DemoI[a-zA-Z0-9]{8}\.vue$/
 const DemoMap = new Map<string, string>()
@@ -21,7 +19,7 @@ function getHash(text: string): string {
 function praseMeta(meta: string = '') {
   return (meta || '').split(' ').reduce(
     (prev, item) => {
-      const arr = item.split('=', 2)
+      const arr = item.split('=', 2) as [string, string]
       return { ...prev, [arr[0]]: arr[1] || true }
     },
     {} as Record<string, any>
@@ -36,7 +34,7 @@ function remarkDemo(id: string, content: string) {
   const blocks: Record<string, string> = {}
 
   visit(root, 'code', (node, index, parent) => {
-    const lang = (node.lang || '').split(':')[0].split('{')[0]
+    const lang = (node.lang || '').split(':')[0]?.split('{')[0]
     const meta = praseMeta(node.meta || '')
     const demo = meta['demo']
     const isVueDemo = demo && lang === 'vue'
@@ -148,7 +146,7 @@ export default defineComponent({
         for (const k of Object.keys(blocks)) {
           const blockKey = `${id}.${k}.vue`
           const blockId = '/' + relative(config.root, blockKey)
-          DemoMap.set(blockId, blocks[k])
+          DemoMap.set(blockId, blocks[k]!)
         }
         return code
       }
@@ -162,7 +160,7 @@ export default defineComponent({
         for (const k of Object.keys(blocks)) {
           const blockKey = `${file}.${k}.vue`
           const blockId = '/' + relative(config.root, blockKey)
-          DemoMap.set(blockId, blocks[k])
+          DemoMap.set(blockId, blocks[k]!)
 
           const mod = moduleGraph.getModuleById(blockId)
           if (mod) {

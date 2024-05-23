@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-
-import { Button, Input, Select, Avatar, RadioCard, RadioGroup, Radio, Switch, Tabs } from '../../../../src'
+import { Avatar, Button, Input, RadioCard, RadioGroup, Select, Tabs } from '../../../../src'
 
 defineOptions({ name: 'HomeDemo' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
-const props = defineProps({})
 </script>
 <template>
   <div class="grid grid-cols-3 items-start gap-6">

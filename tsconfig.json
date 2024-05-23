@@ -1,4 +1,5 @@
 {
+  "extends": "@jaskang/tsconfig/vue",
   "compilerOptions": {
     "baseUrl": ".",
     "types": ["vite/client"],
@@ -6,12 +7,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "references": [
-    {
-      "path": "./tsconfig.src.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "include": ["./env.d.ts", "./site/.vitepress/**/*", "./site/components/**/*", "./src/**/*"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

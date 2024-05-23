@@ -98,7 +98,7 @@ watchEffect(
       }
       const themeVars: Record<string, string> = isDark.value ? dark : light
       Object.keys(themeVars).forEach(key => {
-        document.body.style.setProperty(key, themeVars[key])
+        document.body.style.setProperty(key, themeVars[key]!)
       })
     }
   },

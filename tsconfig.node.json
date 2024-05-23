@@ -1,9 +1,11 @@
 {
-  "extends": "@jaskang/tsconfig/node",
   "compilerOptions": {
     "composite": true,
+    "skipLibCheck": true,
     "module": "ESNext",
-    "types": ["node"]
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true
   },
   "include": ["vite.config.ts", "tsup.config.ts", "preset.ts"]
 }

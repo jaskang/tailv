@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="T extends IListItemNormal">
-import { PropType, computed, ref } from 'vue'
+import { type PropType } from 'vue'
 
 import ListBoxItem from './ListBoxItem.vue'
-import { type IListItem, IListItemNormal, isDividerItem, isGroupItem } from './utils'
+import { type IListItem, type IListItemNormal, isDividerItem, isGroupItem } from './utils'
 
 defineOptions({ name: 'ListBox' })
 const emit = defineEmits<{ click: [T] }>()
@@ -24,7 +24,7 @@ const props = defineProps({
         <div class="space-y-1">
           <ListBoxItem
             v-for="groupItem in item.children"
-            :key="groupItem[indexKey]"
+            :key="groupItem[indexKey as 'label']"
             :item="groupItem"
             @click="emit('click', groupItem as T)"
           >
@@ -34,7 +34,7 @@ const props = defineProps({
           </ListBoxItem>
         </div>
       </div>
-      <ListBoxItem v-else :item="item as T" @click="emit('click', item as T)" :key="item[indexKey]">
+      <ListBoxItem v-else :item="item as any" @click="emit('click', item as T)" :key="(item as any)[indexKey]">
         <template #default="itemProps" v-if="slots.default">
           <slot v-bind="itemProps as any" />
         </template>

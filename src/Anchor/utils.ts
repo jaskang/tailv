@@ -52,9 +52,9 @@ export function useAnchor(
     if (activeIndex == -1) {
       current.value = defaultValue || ''
     } else if (activeIndex == 0) {
-      current.value = headerNodes.value[activeIndex].item.id
+      current.value = headerNodes.value[activeIndex]?.item.id
     } else {
-      current.value = headerNodes.value[activeIndex - 1].item.id
+      current.value = headerNodes.value[activeIndex - 1]?.item.id
     }
   }
   onMounted(() => {

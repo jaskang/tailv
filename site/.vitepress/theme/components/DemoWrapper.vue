@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Switch } from 'tailv'
 import { CodeBracketIcon } from '@heroicons/vue/24/outline'
+import { Switch } from 'tailv'
 
 defineOptions({ name: 'DemoWrapper' })
 const emit = defineEmits<{ click: [any] }>()
@@ -16,7 +16,7 @@ const props = defineProps({
 const meta = computed(() =>
   (props.meta || '').split(' ').reduce(
     (prev, item) => {
-      const arr = item.split('=', 2)
+      const arr = item.split('=', 2) as [string, string]
       return { ...prev, [arr[0]]: arr[1] || true }
     },
     {} as Record<string, any>

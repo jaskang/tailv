@@ -1,9 +1,9 @@
 import { computed } from 'vue'
 
-import { normalize, useDataByTheme } from '../utils'
+import { type IAnchorItem } from 'tailv'
 import { useRoute } from 'vitepress'
-import { type IAnchorItem, type MenuItemType } from 'tailv'
 import type { Sidebar } from '../theme'
+import { normalize, useDataByTheme } from '../utils'
 
 export type SidebarGroup = {
   title: string
@@ -25,7 +25,7 @@ function groupToMenu(sidebar: Record<string, Sidebar[]>): SidebarGroup[] {
   const ret: SidebarGroup[] = []
   const groups = Object.keys(sidebar || {})
   for (const group of groups) {
-    ret.push({ title: group, items: sidebarToAnchorItems(sidebar[group]) })
+    ret.push({ title: group, items: sidebarToAnchorItems(sidebar[group]!) })
   }
   return ret
 }
