@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-import { ref, computed, type PropType } from 'vue'
+import { type PropType, ref } from 'vue'
 import type { IIndentItem } from './types'
 
 defineOptions({ name: 'IndentList' })

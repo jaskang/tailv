@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type PropType, watch, type ExtractPublicPropTypes } from 'vue'
+import { type ExtractPublicPropTypes, type PropType, ref, watch } from 'vue'
 
 defineOptions({ name: 'Avatar' })
 const emit = defineEmits<{ click: [any] }>()

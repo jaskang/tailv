@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { type PropType, computed, ref } from 'vue'
-
 import { ListBox } from '@/Base'
-
 import type { SelectOption } from './types'
-
+import CheckIcon from '../Icon/CheckIcon.vue'
 import ChevronDownIcon from '../Icon/ChevronDownIcon.vue'
 import Input from '../Input/index.vue'
 import Popover from '../Popover/index.vue'
 import { ScrollArea } from '../ScrollArea'
 import { useModelValue } from '../use/useModelValue'
-defineOptions({ name: 'Select', inheritAttrs: false })
+
+defineOptions({ name: 'TSelect', inheritAttrs: false })
 
 const emit = defineEmits(['update:value', 'change', 'select'])
 const props = defineProps({
@@ -51,7 +50,7 @@ const focused = ref(false)
 <template>
   <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
     <button
-      class="flex h-9 items-center justify-between rounded-md border bg-transparent px-3 py-1.5 text-sm leading-[1.375rem] shadow-sm focus-visible:z-10 focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
+      class="flex h-9 items-center justify-between rounded-md border border-border bg-transparent px-3 text-sm leading-[1.375rem] shadow-sm focus-visible:z-10 focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
       v-bind="$attrs"
       :disabled
     >
@@ -66,13 +65,18 @@ const focused = ref(false)
     <template #content>
       <ScrollArea class="flex max-h-80 flex-col rounded text-sm shadow-md ring-1 ring-border" mode="y">
         <ListBox :items="options" index-key="value" @click="selectHandler">
-          <template #default="{ item }">
+          <template #item="{ item }">
             <div
               @click="selectHandler(item)"
-              class="relative cursor-pointer rounded px-3 py-2 text-sm"
-              :class="[item.value === modelValue ? 'bg-primary font-medium text-white' : 'hover:bg-default-100']"
+              class="flex items-center p-2"
+              :class="[item.value === modelValue ? 'bg-primary font-medium text-white' : '']"
             >
-              {{ item.label }}
+              <span class="flex-1 overflow-hidden text-ellipsis text-nowrap">
+                {{ item.label }}
+              </span>
+              <!-- <span v-if="item.value === modelValue" class="shrink-0 pl-1">
+                <CheckIcon class="h-4 w-4" />
+              </span> -->
             </div>
           </template>
         </ListBox>

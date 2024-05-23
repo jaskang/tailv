@@ -1,9 +1,9 @@
-import { computed, onMounted, ref, type Ref } from 'vue'
-import type { IAnchorItem } from './types'
+import { type Ref, computed, onMounted, ref } from 'vue'
 import { isClient, useScroll } from '@vueuse/core'
+import type { IAnchorItem } from './types'
 
 export function flattenItems(items: IAnchorItem[]) {
-  let flatList: IAnchorItem[] = []
+  const flatList: IAnchorItem[] = []
   function traverse(items: IAnchorItem[]) {
     for (const item of items) {
       // 创建一个不包含 children 的对象副本

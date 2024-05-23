@@ -37,7 +37,7 @@ const items = ref([
       { key: '4-2', label: '6th menu item' },
     ],
   },
-  { type: 'divider' },
+  { key: 'item-5', type: 'divider' },
   { key: 'item-3', label: 'item 4' },
 ])
 

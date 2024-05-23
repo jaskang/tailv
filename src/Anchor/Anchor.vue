@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
+import { type PropType, computed } from 'vue'
 import type { IAnchorItem } from './types'
 import { IndentList } from '../Base'
 import { getAnchorOffset } from './utils'
@@ -33,7 +33,7 @@ const inkOffset = computed(() => {
           @click="selectHandler(item, deep)"
         >
           <a
-            class="hover:text-foreground-dark block text-sm no-underline data-[active=true]:font-medium data-[active=true]:text-primary"
+            class="block text-sm no-underline hover:text-foreground-dark data-[active=true]:font-medium data-[active=true]:text-primary"
             :data-active="current === item.id"
             :href="item.link"
             :target="item.target"
