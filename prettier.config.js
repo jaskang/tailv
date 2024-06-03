@@ -23,7 +23,7 @@ export default {
   // 换行行为
   proseWrap: 'preserve',
   htmlWhitespaceSensitivity: 'css',
-  vueIndentScriptAndStyle: false,
+  vueIndentScriptAndStyle: false, 
   plugins: ['prettier-plugin-tailwindcss'], 
   tailwindFunctions: ['tw'], 
 }

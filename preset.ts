@@ -210,15 +210,14 @@ export default {
     varPlugin,
     {
       handler: ({ addUtilities, matchUtilities, addBase, matchComponents, theme, config }) => {
-        const resizerColor = theme('colors.gray.500')!.replace('#', '%23')
+        const currentColor = theme('colors.gray.500')!.replace('#', '%23')
 
-        const resizeYImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="M12 8V2"/><path d="M4 12H2"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M22 12h-2"/><path d="m15 19-3 3-3-3"/><path d="m15 5-3-3-3 3"/></svg>')`
-        // const resizeXImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 12h6"/><path d="M8 12H2"/><path d="M12 2v2"/><path d="M12 8v2"/><path d="M12 14v2"/><path d="M12 20v2"/><path d="m19 15 3-3-3-3"/><path d="m5 9-3 3 3 3"/></svg>')`
-        const resizeAllImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${resizerColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/></svg>')`
+        const resizeImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="${currentColor}" d="M4 5q-.425 0-.712-.288T3 4t.288-.712T4 3t.713.288T5 4t-.288.713T4 5m4 0q-.425 0-.712-.288T7 4t.288-.712T8 3t.713.288T9 4t-.288.713T8 5m4 0q-.425 0-.712-.288T11 4t.288-.712T12 3t.713.288T13 4t-.288.713T12 5M4 9q-.425 0-.712-.288T3 8t.288-.712T4 7t.713.288T5 8t-.288.713T4 9m0 4q-.425 0-.712-.288T3 12t.288-.712T4 11t.713.288T5 12t-.288.713T4 13m16 0q-.425 0-.712-.288T19 12t.288-.712T20 11t.713.288T21 12t-.288.713T20 13m0 4q-.425 0-.712-.288T19 16t.288-.712T20 15t.713.288T21 16t-.288.713T20 17m-8 4q-.425 0-.712-.288T11 20t.288-.712T12 19t.713.288T13 20t-.288.713T12 21m4 0q-.425 0-.712-.288T15 20t.288-.712T16 19t.713.288T17 20t-.288.713T16 21m4 0q-.425 0-.712-.288T19 20t.288-.712T20 19t.713.288T21 20t-.288.713T20 21M19 8V5h-3q-.425 0-.712-.288T15 4t.288-.712T16 3h3q.825 0 1.413.588T21 5v3q0 .425-.288.713T20 9t-.712-.288T19 8M3 19v-3q0-.425.288-.712T4 15t.713.288T5 16v3h3q.425 0 .713.288T9 20t-.288.713T8 21H5q-.825 0-1.412-.587T3 19"/></svg>')`
+        // const resizeImage = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="${currentColor}" stroke-width="2"><path d="M10 20h10V10"/><path d="M12 17h5v-5"/></g></svg>')`
 
         addUtilities({
           '.scrollbar': {
-            '--resizer-image': resizeYImage,
+            '--resizer-image': resizeImage,
             '&::-webkit-scrollbar': {
               width: theme('space.3'),
               height: theme('space.3'),
@@ -248,14 +247,19 @@ export default {
               backgroundColor: 'transparent',
             },
             '&::-webkit-resizer': {
-              backgroundImage: 'var(--resizer-image)',
+              // backgroundImage: 'var(--resizer-image)',
+              // backgroundSize: '12px 12px',
+              // backgroundPosition: 'center center',
               backgroundColor: 'transparent',
-              backgroundSize: '10px 10px',
+              color: 'red',
               backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
               width: theme('space.3'),
               height: theme('space.3'),
               borderRadius: theme('borderRadius.full'),
+              backgroundImage:
+                'linear-gradient(135deg, transparent 0%,transparent 45%, currentColor 50%,  transparent 70%, currentColor 90%, transparent 90%, transparent 100%)',
+              backgroundSize: '50% 50%',
+              backgroundPosition: 'center center',
             },
           },
         })
