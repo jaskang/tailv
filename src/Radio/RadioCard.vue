@@ -31,7 +31,7 @@ const clickHandler = () => {
 <template>
   <button
     :data-checked="checked"
-    class="group relative m-0 flex cursor-pointer appearance-none items-center justify-center border-2 border-border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[checked=true]:border-primary [:where(&)]:rounded-md [:where(&)]:px-3 [:where(&)]:py-1.5"
+    class="group relative m-0 flex cursor-pointer appearance-none items-center justify-center border-2 border-border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[checked=true]:border-primary [:where(&)]:rounded-md [button:where(&)]:px-3 [button:where(&)]:py-1.5"
     :class="[disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']"
     @click="clickHandler"
   >
