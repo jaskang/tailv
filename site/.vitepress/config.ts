@@ -1,14 +1,11 @@
-import { dirname, join, resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineConfigWithTheme } from 'vitepress'
+import tailwindcss from '@tailwindcss/vite'
 import jsx from '@vitejs/plugin-vue-jsx'
-import nesting from 'tailwindcss/nesting'
-import autoprefixer from 'autoprefixer'
-import tailwindcss from 'tailwindcss'
-import atImport from 'postcss-import'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import type { ThemeConfig } from './theme/theme'
+import { defineConfigWithTheme } from 'vitepress'
 import { demo } from './plugins/demo'
+import type { ThemeConfig } from './theme/theme'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -70,7 +67,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   vite: {
-    plugins: [jsx(), demo(), VueDevTools()],
+    plugins: [jsx(), demo(), VueDevTools(), tailwindcss()],
     resolve: {
       alias: [
         { find: /^tailv$/, replacement: resolve(__dirname, '../../src') },
@@ -78,15 +75,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       ],
     },
     css: {
-      // transformer: 'lightningcss',
-      postcss: {
-        plugins: [
-          atImport(),
-          nesting,
-          autoprefixer({}) as any,
-          tailwindcss({ config: join(__dirname, '../../tailwind.config.js') }),
-        ],
-      },
+      transformer: 'lightningcss',
     },
   },
 })

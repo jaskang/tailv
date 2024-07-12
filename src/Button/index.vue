@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed, type PropType } from 'vue'
-
+import { type PropType } from 'vue'
 import Loading from '../Icon/Loading.vue'
-import { cvar, type ColorAlias } from '@/utils/theme'
 
-defineOptions({ name: 'Button' })
+defineOptions({ name: 'TButton' })
+defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const emit = defineEmits<{ click: [Event] }>()
-const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
   variant: {
     type: String as PropType<'solid' | 'soft' | 'outline' | 'text' | 'link' | 'pure'>,
@@ -30,7 +28,7 @@ const props = defineProps({
 <template>
   <button
     type="button"
-    class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-all focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+    class="focus-visible:ring-primary inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-all focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
     :class="[
       {
         outline: `border shadow-sm ${
@@ -45,10 +43,10 @@ const props = defineProps({
         solid: `shadow-sm ${
           {
             none: 'bg-default-800 text-default-50 hover:bg-default-700',
-            primary: 'bg-primary text-primary-foreground hover:bg-primary-600 ',
-            success: 'bg-success text-success-foreground hover:bg-success-600 ',
-            warning: 'bg-warning text-warning-foreground hover:bg-warning-600 ',
-            danger: 'bg-danger text-danger-foreground hover:bg-danger-600 ',
+            primary: 'bg-primary text-primary-foreground hover:bg-primary-600',
+            success: 'bg-success text-success-foreground hover:bg-success-600',
+            warning: 'bg-warning text-warning-foreground hover:bg-warning-600',
+            danger: 'bg-danger text-danger-foreground hover:bg-danger-600',
           }[props.color]
         }`,
         soft: `shadow-sm ${
@@ -81,9 +79,9 @@ const props = defineProps({
         pure: '',
       }[props.variant],
       {
-        sm: `h-7 text-xs ${props.square ? 'w-7' : 'px-2 py-1'}`,
-        md: `h-9 text-sm ${props.square ? 'w-9' : 'px-3 py-1.5'}`,
-        lg: `h-11 text-base ${props.square ? 'w-11' : 'px-4 py-2'}`,
+        sm: `h-7 text-xs ${props.square ? 'w-7' : 'py-1 px-2'}`,
+        md: `h-9 text-sm ${props.square ? 'w-9' : 'py-1.5 px-3'}`,
+        lg: `h-11 text-base ${props.square ? 'w-11' : 'py-2 px-4'}`,
       }[props.size],
       props.pill ? 'rounded-full' : 'rounded-md',
       !props.square && props.block ? 'w-full' : '',
