@@ -2,7 +2,7 @@
 import { type PropType } from 'vue'
 import Loading from '../Icon/Loading.vue'
 
-defineOptions({ name: 'TButton' })
+defineOptions({ name: 'Button' })
 defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const emit = defineEmits<{ click: [Event] }>()
 const props = defineProps({
@@ -15,8 +15,8 @@ const props = defineProps({
     default: 'md',
   },
   color: {
-    type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'none'>,
-    default: 'none',
+    type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'normal'>,
+    default: 'normal',
   },
   pill: Boolean,
   square: Boolean,
@@ -28,52 +28,52 @@ const props = defineProps({
 <template>
   <button
     type="button"
-    class="focus-visible:ring-primary inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-all focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+    class="focus-visible:ring-primary inline-flex cursor-pointer appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-all focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
       {
         outline: `border shadow-sm ${
           {
-            none: 'text-foreground hover:bg-default-50',
-            primary: 'border-primary text-primary-600 hover:bg-primary-100',
-            success: 'border-success text-success-600 hover:bg-success-100',
-            warning: 'border-warning text-warning-600 hover:bg-warning-100',
-            danger: 'border-danger text-danger-600 hover:bg-danger-100',
+            normal: 'border-border hover:bg-normal-soft',
+            primary: 'border-primary text-primary hover:bg-primary-soft',
+            success: 'border-success text-success hover:bg-success-soft',
+            warning: 'border-warning text-warning hover:bg-warning-soft',
+            danger: 'border-danger text-danger hover:bg-danger-soft',
           }[props.color]
         }`,
-        solid: `shadow-sm ${
+        solid: `text-white shadow-sm ${
           {
-            none: 'bg-default-800 text-default-50 hover:bg-default-700',
-            primary: 'bg-primary text-primary-foreground hover:bg-primary-600',
-            success: 'bg-success text-success-foreground hover:bg-success-600',
-            warning: 'bg-warning text-warning-foreground hover:bg-warning-600',
-            danger: 'bg-danger text-danger-foreground hover:bg-danger-600',
+            normal: 'bg-normal hover:bg-normal-d1',
+            primary: 'bg-primary hover:bg-primary-d1',
+            success: 'bg-success hover:bg-success-d1',
+            warning: 'bg-warning hover:bg-warning-d1',
+            danger: 'bg-danger hover:bg-danger-d1',
           }[props.color]
         }`,
         soft: `shadow-sm ${
           {
-            none: 'bg-default-100 text-foreground hover:bg-default-200',
-            primary: 'bg-primary-100 text-primary-600 hover:bg-primary-200',
-            success: 'bg-success-100 text-success-600 hover:bg-success-200',
-            warning: 'bg-warning-100 text-warning-600 hover:bg-warning-200',
-            danger: 'bg-danger-100 text-danger-600 hover:bg-danger-200',
+            normal: 'bg-default-100 text-foreground hover:bg-default-200',
+            primary: 'bg-primary-soft text-primary hover:bg-primary-soft-d1',
+            success: 'bg-success-soft text-success hover:bg-success-soft-d1',
+            warning: 'bg-warning-soft text-warning hover:bg-warning-soft-d1',
+            danger: 'bg-danger-soft text-danger hover:bg-danger-soft-d1',
           }[props.color]
         }`,
         text: `${
           {
-            none: 'text-default-700 hover:bg-default-100',
-            primary: 'text-primary-600 hover:bg-primary-100',
-            success: 'text-success-600 hover:bg-success-100',
-            warning: 'text-warning-600 hover:bg-warning-100',
-            danger: 'text-danger-600 hover:bg-danger-100',
+            normal: 'text-normal hover:bg-normal-soft',
+            primary: 'text-primary hover:bg-primary-soft',
+            success: 'text-success hover:bg-success-soft',
+            warning: 'text-warning hover:bg-warning-soft',
+            danger: 'text-danger hover:bg-danger-soft',
           }[props.color]
         }`,
         link: `underline-offset-4 hover:underline ${
           {
-            none: 'text-default-700',
-            primary: 'text-primary-600',
-            success: 'text-success-600',
-            warning: 'text-warning-600',
-            danger: 'text-danger-600',
+            normal: 'text-normal',
+            primary: 'text-primary',
+            success: 'text-success',
+            warning: 'text-warning',
+            danger: 'text-danger',
           }[props.color]
         }`,
         pure: '',

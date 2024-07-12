@@ -67,7 +67,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   vite: {
-    plugins: [jsx(), demo(), VueDevTools(), tailwindcss()],
+    plugins: [jsx(), tailwindcss(), demo(), VueDevTools()],
     resolve: {
       alias: [
         { find: /^tailv$/, replacement: resolve(__dirname, '../../src') },
