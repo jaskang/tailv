@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
-import { isDividerItem, isTitleItem, isRawItem, type MenuItemType, type MenuItemRawType } from './types'
+import { type PropType, computed, ref } from 'vue'
 import MenuItem from './MenuItem.vue'
+import { type MenuItemRawType, type MenuItemType, isDividerItem, isRawItem, isTitleItem } from './types'
 
 defineOptions({ name: 'Menu' })
 const emit = defineEmits<{ click: [any] }>()
@@ -23,7 +23,7 @@ const isCurrent = (item: MenuItemRawType) => {
   <nav class="grid gap-1 p-1">
     <template v-for="item in items">
       <div v-if="isDividerItem(item)" class="menu__divider h-[1px] w-full shrink-0 bg-border" />
-      <div v-if="isTitleItem(item)" class="menu__title px-3 text-xs font-medium leading-6 text-default-400">
+      <div v-if="isTitleItem(item)" class="menu__title px-3 text-xs font-medium leading-6 text-mute">
         {{ item.label }}
       </div>
       <MenuItem class="menu__item" v-if="isRawItem(item)" :item="item" :current="current" />

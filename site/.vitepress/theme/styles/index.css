@@ -1,2 +1,3 @@
-@import './tailwind.css';
+@import 'tailwindcss';
+@import '../../../../src/theme.css';
 @import './code.css';

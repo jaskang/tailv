@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useModelValue } from '@/use/useModelValue'
 import { computed, inject } from 'vue'
+import { useModelValue } from '@/use/useModelValue'
 import { CheckboxGroupInjectKey } from './types'
 
 defineOptions({ name: 'Checkbox' })
@@ -43,8 +43,8 @@ const clickHandler = () => {
       class="relative block cursor-[inherit] appearance-none rounded transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
     >
       <span
-        class="block h-4 w-4 rounded border transition-all"
-        :class="[checked ? 'border-primary bg-primary text-white' : 'bg-background text-background']"
+        class="block h-4 w-4 rounded border transition-all" 
+        :class="[checked ? 'border-transparent bg-primary text-white' : 'border-input bg-white text-transparent']"
       >
         <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path

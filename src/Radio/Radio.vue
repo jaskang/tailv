@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useModelValue } from '@/use/useModelValue'
 import { computed, inject } from 'vue'
+import { useModelValue } from '@/use/useModelValue'
 import { RadioGroupInjectKey } from './types'
 
 defineOptions({ name: 'Radio' })
@@ -38,7 +38,7 @@ const clickHandler = () => {
     >
       <span
         class="block h-4 w-4 rounded-full border transition-all"
-        :class="[checked ? 'border-primary bg-primary text-white' : 'bg-background text-background']"
+        :class="[checked ? 'bg-primary border-transparent text-white' : 'border-input bg-white text-transparent']"
       >
         <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <circle cx="8" cy="8" r="3" />

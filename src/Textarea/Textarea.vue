@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
-import { useModelValue } from '../use/useModelValue'
-
+import { type PropType, computed, ref } from 'vue'
 import { BUILTIN_CLASS } from '@/utils/theme'
+
+import { useModelValue } from '../use/useModelValue'
 defineOptions({ name: 'Textarea' })
 const emit = defineEmits<{
   'update:value': [string]
@@ -20,7 +20,7 @@ const slots = defineSlots<{ toolbar?(props: { content: string }): any }>()
 const props = defineProps({
   value: String,
 
-  status: { type: String as PropType<'normal' | 'success' | 'warning' | 'danger'>, default: 'normal' },
+  status: { type: String as PropType<'none' | 'success' | 'warning' | 'danger'>, default: 'none' },
   placeholder: String,
   readonly: Boolean,
   disabled: Boolean,
@@ -53,12 +53,12 @@ const onInput = (e: Event) => {
 </script>
 <template>
   <textarea
-    class="relative flex w-full appearance-none overflow-y-scroll rounded-md border bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+    class="relative flex w-full appearance-none overflow-y-scroll rounded border bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
-      noBorder ? 'border-transparent bg-inherit dark:border-transparent' : ' focus:ring-1 ',
+      noBorder ? 'border-transparent bg-inherit dark:border-transparent' : 'focus:ring-1 ',
       !noBorder &&
         {
-          normal: 'ring-primary focus:border-primary',
+          none: 'border-input ring-primary  focus:border-primary',
           danger: 'border-danger ring-danger',
           success: 'border-success ring-success',
           warning: 'border-warning ring-warning',

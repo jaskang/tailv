@@ -15,8 +15,8 @@ const props = defineProps({
     default: 'md',
   },
   color: {
-    type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'normal'>,
-    default: 'normal',
+    type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'none'>,
+    default: 'none',
   },
   pill: Boolean,
   square: Boolean,
@@ -28,12 +28,12 @@ const props = defineProps({
 <template>
   <button
     type="button"
-    class="focus-visible:ring-primary inline-flex cursor-pointer appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-all focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+    class="focus-visible:ring-primary inline-flex cursor-pointer appearance-none items-center justify-center whitespace-nowrap text-center font-medium transition-all focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
       {
         outline: `border shadow-sm ${
           {
-            normal: 'border-border hover:bg-normal-soft',
+            none: 'border-input hover:bg-bg-soft',
             primary: 'border-primary text-primary hover:bg-primary-soft',
             success: 'border-success text-success hover:bg-success-soft',
             warning: 'border-warning text-warning hover:bg-warning-soft',
@@ -42,25 +42,25 @@ const props = defineProps({
         }`,
         solid: `text-white shadow-sm ${
           {
-            normal: 'bg-normal hover:bg-normal-d1',
-            primary: 'bg-primary hover:bg-primary-d1',
-            success: 'bg-success hover:bg-success-d1',
-            warning: 'bg-warning hover:bg-warning-d1',
-            danger: 'bg-danger hover:bg-danger-d1',
+            none: 'bg-bg-deep hover:bg-bg-deep-hover',
+            primary: 'bg-primary hover:bg-primary-hover',
+            success: 'bg-success hover:bg-success-hover',
+            warning: 'bg-warning hover:bg-warning-hover',
+            danger: 'bg-danger hover:bg-danger-hover',
           }[props.color]
-        }`,
+        }`, 
         soft: `shadow-sm ${
-          {
-            normal: 'bg-default-100 text-foreground hover:bg-default-200',
-            primary: 'bg-primary-soft text-primary hover:bg-primary-soft-d1',
-            success: 'bg-success-soft text-success hover:bg-success-soft-d1',
-            warning: 'bg-warning-soft text-warning hover:bg-warning-soft-d1',
-            danger: 'bg-danger-soft text-danger hover:bg-danger-soft-d1',
+          { 
+            none: 'bg-bg-soft text-fg-1 hover:bg-bg-soft-hover',
+            primary: 'bg-primary-soft text-primary hover:bg-primary-soft-hover',
+            success: 'bg-success-soft text-success hover:bg-success-soft-hover',
+            warning: 'bg-warning-soft text-warning hover:bg-warning-soft-hover',
+            danger: 'bg-danger-soft text-danger hover:bg-danger-soft-hover',
           }[props.color]
         }`,
         text: `${
           {
-            normal: 'text-normal hover:bg-normal-soft',
+            none: 'text-fg-1 hover:bg-bg-soft',
             primary: 'text-primary hover:bg-primary-soft',
             success: 'text-success hover:bg-success-soft',
             warning: 'text-warning hover:bg-warning-soft',
@@ -69,7 +69,7 @@ const props = defineProps({
         }`,
         link: `underline-offset-4 hover:underline ${
           {
-            normal: 'text-normal',
+            none: 'text-link',
             primary: 'text-primary',
             success: 'text-success',
             warning: 'text-warning',

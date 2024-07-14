@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type VNode, ref, type PropType } from 'vue'
+import { type PropType, type VNode, ref } from 'vue'
 import { useModelValue } from '../use/useModelValue'
 
 defineOptions({ name: 'Input' })
@@ -46,7 +46,7 @@ defineExpose({
     class="flex h-9 items-center overflow-hidden rounded-md border bg-transparent shadow-sm focus-within:z-10 focus-within:ring-1 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-60"
     :class="[
       {
-        normal: 'ring-primary focus-within:border-primary',
+        normal: 'border-input ring-primary focus-within:border-primary',
         danger: 'border-danger ring-danger',
         success: 'border-success ring-success',
         warning: 'border-warning ring-warning',

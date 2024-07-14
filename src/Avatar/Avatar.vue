@@ -31,13 +31,13 @@ watch(
       props.border ? 'border border-2' : '',
       {
         sm: `h-7 w-7`,
-        md: `h-9 w-9`,
+        md: `h-9 w-9`, 
         lg: `h-11 w-11`,
       }[props.size],
     ]"
   >
     <slot v-if="showFallback || !src" name="fallback">
-      <div class="flex h-full w-full items-center justify-center bg-default-200 text-center">
+      <div class="flex h-full w-full items-center justify-center bg-mute text-center">
         <span v-if="name">{{ name }}</span>
         <svg
           v-else

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
+import { type PropType, computed, ref } from 'vue'
 import type { MenuItemRawType } from './types'
 import { Popper } from '../Base'
 import Menu from './Menu.vue'
@@ -22,9 +22,9 @@ const elRef = ref<HTMLElement>()
     :class="[
       'group inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50',
       current === item.key
-        ? 'bg-primary-500 text-white'
-        : 'text-default-700 hover:bg-default-100 hover:text-primary-600',
-      item.disabled ? '' : 'cursor-pointer',
+        ? 'bg-primary text-white'
+        : 'text-normal hover:bg-normal-soft hover:text-primary',
+      item.disabled ? '' : 'cursor-pointer', 
     ]"
   >
     <component :is="item.icon" class="mr-2 h-4 w-4" />
@@ -51,7 +51,7 @@ const elRef = ref<HTMLElement>()
     :reference="elRef"
   >
     <template #content>
-      <div class="z-popover rounded bg-white shadow-md ring-1 ring-border ring-opacity-50">
+      <div class="z-popover rounded bg-white shadow-md ring-1 ring-input ring-opacity-50">
         <Menu :items="item.children"></Menu>
       </div>
     </template>

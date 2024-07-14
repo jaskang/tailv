@@ -16,7 +16,7 @@ const a = ref('')
 
 const variant = ref<'outline' | 'solid' | 'soft' | 'text' | 'link'>('outline')
 const size = ref<'sm' | 'md' | 'lg'>('md')
-const color = ref<'primary' | 'success' | 'warning' | 'danger' | 'normal'>('normal')
+const color = ref<'primary' | 'success' | 'warning' | 'danger' | 'none'>('none')
 const pill = ref(false)
 const square = ref(false)
 const block = ref(false)
@@ -48,7 +48,7 @@ const disabled = ref(false)
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">color:</div>
         <RadioGroup v-model:value="color" class="grid flex-1 grid-cols-3 gap-2">
-          <RadioCard value="normal">normal</RadioCard>
+          <RadioCard value="none">none</RadioCard>
           <RadioCard value="primary">primary</RadioCard>
           <RadioCard value="success">success</RadioCard>
           <RadioCard value="warning">warning</RadioCard>

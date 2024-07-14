@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 
 defineOptions({ name: 'Dropdown' })
 const emit = defineEmits<{ click: [any] }>()
@@ -12,7 +12,7 @@ const props = defineProps({
   <Popper trigger="click" placement="bottom" ref="popperRef">
     <slot />
     <template #content>
-      <div class="z-popover rounded-md bg-white shadow-lg ring-1 ring-border ring-opacity-50">
+      <div class="z-popover rounded-md bg-white shadow-lg ring-1 ring-input ring-opacity-50">
         <slot name="content">
           <div class="px-2"></div>
         </slot>
