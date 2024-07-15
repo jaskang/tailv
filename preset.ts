@@ -1,6 +1,5 @@
-import { type Config } from 'tailwindcss'
-import colors from 'tailwindcss/colors.js'
 import { TinyColor } from '@ctrl/tinycolor'
+import { type Config } from 'tailwindcss'
 
 interface Colors {
   [color: string]: string | Colors
@@ -44,24 +43,17 @@ const flattenColorPalette = (colors: Colors): Record<string, string> =>
   )
 
 function extractColorsVar(colors: Record<string, string>): Record<string, string> {
-  return Object.fromEntries(Object.entries(colors).map(([key, val]) => [`--${key}`, val]))
+  return Object.fromEntries(Object.entries(colors).map(([key, val]) => [`--color-${key}`, val]))
 }
 
 function createAliasColorConfig(alias: string): Record<string, string> {
   return {
-    DEFAULT: `var(--tui-${alias})`,
-    foreground: `var(--tui-${alias}-foreground)`,
-    50: `var(--tui-${alias}-50)`,
-    100: `var(--tui-${alias}-100)`,
-    200: `var(--tui-${alias}-200)`,
-    300: `var(--tui-${alias}-300)`,
-    400: `var(--tui-${alias}-400)`,
-    500: `var(--tui-${alias}-500)`,
-    600: `var(--tui-${alias}-600)`,
-    700: `var(--tui-${alias}-700)`,
-    800: `var(--tui-${alias}-800)`,
-    900: `var(--tui-${alias}-900)`,
-    950: `var(--tui-${alias}-950)`,
+    DEFAULT: `var(--t-${alias})`,
+    hover: `var(--t-${alias}-hover,--t-${alias})`,
+    fg: `var(--t-${alias}-fg)`,
+    soft: `var(--t-${alias}-soft)`,
+    'soft-hover': `var(--t-${alias}-soft-hover,--t-${alias}-soft)`,
+    'soft-fg': `var(--t-${alias}-soft-fg)`,
   }
 }
 
@@ -89,8 +81,16 @@ function create950ColorVars(
   return result
 }
 
-const createAliasColorVars = (alias: string, source: string, addons: Record<string, string> = {}) =>
-  create950ColorVars(alias, source, addons)
+const createAliasColorVars = (alias: string, source: string) => {
+  return {
+    [`--t-${alias}`]: `var(--color-${source}-500)`,
+    [`--t-${alias}-hover`]: `var(--color-${source}-600)`,
+    [`--t-${alias}-fg`]: `var(--color-white)`,
+    [`--t-${alias}-soft`]: `var(--color-${source}-50)`,
+    [`--t-${alias}-soft-hover`]: `var(--color-${source}-100)`,
+    [`--t-${alias}-soft-fg`]: `var(--color-${source}-500)`,
+  }
+}
 
 const createAliasColorDarkVars = (alias: string, source: string, addons: Record<string, string> = {}) => {
   if (alias === 'default') {
@@ -118,7 +118,7 @@ const varPlugin: Plugin = {
 
     addBase({
       '*, ::before, ::after': {
-        '--tw-ring-color': 'var(--tui-border)',
+        // '--tw-ring-color': 'var(--tui-border)',
         // 'border-color': `hsl(var(--tui-border))`,
         // '--tw-ring-offset-color': `hsl(var(--tui-border))`,
       },
@@ -129,23 +129,32 @@ const varPlugin: Plugin = {
       ':root': {
         ...colorsVar,
 
-        ...createAliasColorVars('default', defaultColor, {
-          default: `var(--${defaultColor}-300)`,
-          foreground: `var(--${defaultColor}-700)`,
-          background: `var(--white)`,
-        }),
+        // ...createAliasColorVars('default', defaultColor, {
+        //   default: `var(--${defaultColor}-300)`,
+        //   foreground: `var(--${defaultColor}-700)`,
+        //   background: `var(--white)`,
+        // }),
+        '--t-offset-bg': `var(--color-white)`,
+        '--t-border': `var(--color-${defaultColor}-200)`,
+
+        [`--t-default`]: `var(--color-${defaultColor}-700)`,
+        [`--t-default-hover`]: `var(--color-${defaultColor}-800)`,
+        [`--t-default-fg`]: `var(--color-white)`,
+        [`--t-default-soft`]: `var(--color-${defaultColor}-50)`,
+        [`--t-default-soft-hover`]: `var(--color-${defaultColor}-100)`,
+        [`--t-default-soft-fg`]: `var(--color-${defaultColor}-700)`,
+
         ...createAliasColorVars('primary', primaryColor),
         ...createAliasColorVars('success', successColor),
         ...createAliasColorVars('warning', warningColor),
         ...createAliasColorVars('danger', dangerColor),
 
-        '--tui-border': `var(--${defaultColor}-200)`,
-
-        '--tui-background': `var(--tui-default-background)`,
-        '--tui-foreground': `var(--tui-default-foreground)`,
-        '--tw-ring-color': `var(--tui-border)`,
+        '--tw-ring-color': `var(--t-border)`,
       },
       [darkContext]: {
+        '--t-offset-bg': `var(--color-${defaultColor}-950)`,
+        '--t-border': `var(--color-${defaultColor}-700)`,
+
         ...createAliasColorDarkVars('default', defaultColor, {
           default: `var(--${defaultColor}-700)`,
           foreground: `var(--${defaultColor}-400)`,
@@ -156,8 +165,6 @@ const varPlugin: Plugin = {
         ...createAliasColorDarkVars('success', successColor),
         ...createAliasColorDarkVars('warning', warningColor),
         ...createAliasColorDarkVars('danger', dangerColor),
-
-        '--tui-border': `var(--${defaultColor}-700)`,
       },
 
       body: {
@@ -194,14 +201,14 @@ export default {
       borderColor: {
         DEFAULT: 'var(--tui-border)',
       },
-      ringOpacity: {
-        DEFAULT: '1',
-      },
-      ringColor: {
-        DEFAULT: 'hsl(var(--tui-border-hsl))',
-      },
+      // ringWidth: {
+      //   DEFAULT: 1,
+      // },
+      // ringOpacity: {
+      //   DEFAULT: '1',
+      // },
       ringOffsetColor: {
-        DEFAULT: 'var(--tui-background)',
+        DEFAULT: 'var(--t-offset-bg)',
       },
       tailv: {},
     },
