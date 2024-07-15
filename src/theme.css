@@ -1,21 +1,20 @@
-
 @layer base {
-  *,*::before,*::after {
+  *,
+  *::before,
+  *::after {
     border-color: var(--color-ring);
   }
 }
 @theme {
+  --color-fg: var(--color-gray-900);
+  --color-fg-1: var(--color-gray-700);
+  --color-fg-2: var(--color-gray-500);
 
+  --color-bg-soft: var(--color-gray-100);
+  --color-bg-soft-hover: var(--color-gray-200);
+  --color-bg-deep: var(--color-gray-800);
+  --color-bg-deep-hover: var(--color-gray-900);
 
-  --color-fg:var(--color-gray-900);
-  --color-fg-1:var(--color-gray-700);
-  --color-fg-2:var(--color-gray-500);
-
-  --color-bg-soft:var(--color-gray-100);
-  --color-bg-soft-hover:var(--color-gray-200);
-  --color-bg-deep:var(--color-gray-800);
-  --color-bg-deep-hover:var(--color-gray-900);
-  
   --color-input: var(--color-gray-300);
   --color-ring: var(--color-gray-200);
   --color-mute: var(--color-gray-300);
