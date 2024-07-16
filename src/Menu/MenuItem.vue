@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
-import type { MenuItemRawType } from './types'
+import { type PropType, ref } from 'vue'
 import { Popper } from '../Base'
 import Menu from './Menu.vue'
+import type { MenuItemRawType } from './types'
 
 defineOptions({ name: 'MenuItem' })
 const emit = defineEmits<{ click: [any] }>()
@@ -22,8 +22,8 @@ const elRef = ref<HTMLElement>()
     :class="[
       'group inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50',
       current === item.key
-        ? 'bg-primary-500 text-white'
-        : 'text-default-700 hover:bg-default-100 hover:text-primary-600',
+        ? 'bg-primary text-white'
+        : 'text-default hover:bg-default-soft-hover hover:text-primary-hover',
       item.disabled ? '' : 'cursor-pointer',
     ]"
   >

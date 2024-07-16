@@ -37,7 +37,7 @@ watch(
     ]"
   >
     <slot v-if="showFallback || !src" name="fallback">
-      <div class="flex h-full w-full items-center justify-center bg-default-200 text-center">
+      <div class="bg-input flex h-full w-full items-center justify-center text-center">
         <span v-if="name">{{ name }}</span>
         <svg
           v-else

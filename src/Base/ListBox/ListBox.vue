@@ -28,7 +28,7 @@ const props = defineProps({
       <div v-if="isDividerItem(item)" class="-mx-1 my-1 h-px bg-border" :key="item.type + i"></div>
       <div v-else-if="isGroupItem(item)" class="-mx-1 my-1 border-b border-t border-border p-1" :key="item.label">
         <slot name="group" :item="item">
-          <div class="px-2 py-1 font-medium text-default-500">{{ item.label }}</div>
+          <div class="text-mute-fg px-2 py-1 font-medium">{{ item.label }}</div>
         </slot>
         <div class="mt-1 space-y-1">
           <ListBoxItem

@@ -134,8 +134,11 @@ const varPlugin: Plugin = {
         //   foreground: `var(--${defaultColor}-700)`,
         //   background: `var(--white)`,
         // }),
-        '--t-offset-bg': `var(--color-white)`,
+        '--t-background': `var(--color-white)`,
         '--t-border': `var(--color-${defaultColor}-200)`,
+        '--t-input': `var(--color-${defaultColor}-200)`,
+        '--t-mute-fg': `var(--color-${defaultColor}-400)`,
+        '--t-mute': `var(--color-${defaultColor}-400)`,
 
         [`--t-default`]: `var(--color-${defaultColor}-700)`,
         [`--t-default-hover`]: `var(--color-${defaultColor}-800)`,
@@ -148,28 +151,30 @@ const varPlugin: Plugin = {
         ...createAliasColorVars('success', successColor),
         ...createAliasColorVars('warning', warningColor),
         ...createAliasColorVars('danger', dangerColor),
-
-        '--tw-ring-color': `var(--t-border)`,
       },
       [darkContext]: {
-        '--t-offset-bg': `var(--color-${defaultColor}-950)`,
+        '--t-background': `var(--color-${defaultColor}-950)`,
         '--t-border': `var(--color-${defaultColor}-700)`,
+        '--t-input': `var(--color-${defaultColor}-700)`,
 
-        ...createAliasColorDarkVars('default', defaultColor, {
-          default: `var(--${defaultColor}-700)`,
-          foreground: `var(--${defaultColor}-400)`,
-          background: `var(--${defaultColor}-950)`,
-          '950': theme(`colors.white`),
-        }),
-        ...createAliasColorDarkVars('primary', primaryColor),
-        ...createAliasColorDarkVars('success', successColor),
-        ...createAliasColorDarkVars('warning', warningColor),
-        ...createAliasColorDarkVars('danger', dangerColor),
+        // ...createAliasColorDarkVars('default', defaultColor, {
+        //   default: `var(--${defaultColor}-700)`,
+        //   foreground: `var(--${defaultColor}-400)`,
+        //   background: `var(--${defaultColor}-950)`,
+        //   '950': theme(`colors.white`),
+        // }),
+
+        [`--t-default`]: `var(--color-${defaultColor}-200)`,
+        [`--t-default-hover`]: `var(--color-${defaultColor}-100)`,
+        [`--t-default-fg`]: `var(--color-${defaultColor}-700)`,
+        [`--t-default-soft`]: `var(--color-${defaultColor}-950)`,
+        [`--t-default-soft-hover`]: `var(--color-${defaultColor}-900)`,
+        [`--t-default-soft-fg`]: `var(--color-${defaultColor}-200)`,
       },
 
       body: {
-        color: 'var(--tui-foreground)',
-        'background-color': 'var(--tui-background)',
+        color: 'var(--t-default)',
+        'background-color': 'var(--t-background)',
         'font-synthesis-weight': 'none',
         'text-rendering': 'optimizeLegibility',
       },
@@ -178,13 +183,19 @@ const varPlugin: Plugin = {
 }
 
 export default {
+  future: {
+    respectDefaultRingColorOpacity: true,
+  },
   theme: {
     extend: {
       colors: {
-        border: 'var(--tui-border)',
-        background: 'var(--tui-background)',
-        foreground: 'var(--tui-foreground)',
-        'foreground-dark': 'var(--tui-foreground-dark)',
+        input: 'var(--t-input)',
+        border: 'var(--t-border)',
+        background: 'var(--t-background)',
+        mute: {
+          DEFAULT: 'var(--t-mute)',
+          fg: 'var(--t-mute-fg)',
+        },
 
         default: createAliasColorConfig('default'),
         primary: createAliasColorConfig('primary'),
@@ -192,23 +203,14 @@ export default {
         warning: createAliasColorConfig('warning'),
         danger: createAliasColorConfig('danger'),
       },
-      outlineColor: {
-        DEFAULT: 'var(--tui-primary)',
-      },
-      outlineStyle: {
-        DEFAULT: 'solid',
-      },
       borderColor: {
-        DEFAULT: 'var(--tui-border)',
+        DEFAULT: 'var(--t-border)',
       },
-      // ringWidth: {
-      //   DEFAULT: 1,
-      // },
-      // ringOpacity: {
-      //   DEFAULT: '1',
-      // },
+      ringColor: {
+        DEFAULT: 'var(--t-primary)',
+      },
       ringOffsetColor: {
-        DEFAULT: 'var(--t-offset-bg)',
+        DEFAULT: 'var(--t-background)',
       },
       tailv: {},
     },

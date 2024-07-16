@@ -31,6 +31,7 @@ const [modelChecked, setModelChecked] = useModelValue(props, {
 const checked = computed(() => (group ? group.value.value.includes(props.value) : modelChecked.value))
 
 const clickHandler = () => {
+  if (props.disabled) return
   setModelChecked(!checked.value)
 }
 </script>
@@ -44,7 +45,7 @@ const clickHandler = () => {
     >
       <span
         class="block h-4 w-4 rounded border transition-all"
-        :class="[checked ? 'border-primary bg-primary text-white' : 'bg-background text-background']"
+        :class="[checked ? 'border-primary bg-primary text-white' : 'bg-white text-transparent']"
       >
         <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path

@@ -44,15 +44,16 @@ const clickHandler = (key: string) => {
     </button>
   </nav> -->
   <nav
-    class="grid h-9 w-full items-center justify-center rounded-lg bg-default-100 p-1 text-default-500"
+    class="grid h-9 w-full items-center justify-center rounded-lg bg-default-soft-hover p-1 text-default-soft-fg"
     :style="{ gridTemplateColumns: `repeat(${keys.length}, minmax(0, 1fr))` }"
   >
     <button
       v-for="item in props.items"
+      :key="item.key"
       type="button"
       role="tab"
       :data-active="currentKey === item.key"
-      class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow dark:data-[active=true]:bg-default"
+      class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 data-[active=true]:bg-background data-[active=true]:text-default data-[active=true]:shadow dark:data-[active=true]:bg-default"
       tabindex="-1"
       @click="clickHandler(item.key)"
     >

@@ -55,10 +55,10 @@ const onInput = (e: Event) => {
   <textarea
     class="relative flex w-full appearance-none overflow-y-scroll rounded-md border bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
-      noBorder ? 'border-transparent bg-inherit dark:border-transparent' : ' focus:ring-1 ',
+      noBorder ? 'border-transparent bg-inherit dark:border-transparent' : 'focus:ring-2 focus:ring-offset-2',
       !noBorder &&
         {
-          normal: 'ring-primary focus:border-primary',
+          normal: 'ring-primary',
           danger: 'border-danger ring-danger',
           success: 'border-success ring-success',
           warning: 'border-warning ring-warning',

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { type PropType, computed, ref } from 'vue'
+import { computed, type PropType, ref } from 'vue'
 import { ListBox } from '@/Base'
-import type { SelectOption } from './types'
 import CheckIcon from '../Icon/CheckIcon.vue'
 import ChevronDownIcon from '../Icon/ChevronDownIcon.vue'
-import Input from '../Input/index.vue'
 import Popover from '../Popover/index.vue'
 import { ScrollArea } from '../ScrollArea'
 import { useModelValue } from '../use/useModelValue'
+import type { SelectOption } from './types'
 
 defineOptions({ name: 'TSelect', inheritAttrs: false })
 
@@ -36,14 +35,14 @@ const currItem = computed(() => props.options.find(item => item.value === modelV
 const label = computed(() => currItem.value?.label || '')
 
 const popoverRef = ref<InstanceType<typeof Popover>>()
-const inputRef = ref<InstanceType<typeof Input>>()
+const buttonRef = ref<HTMLButtonElement>()
 
 const selectHandler = (item: SelectOption) => {
   console.log('selectHandler', item)
   setModelValue(item.value)
   emit('select', item)
   popoverRef.value?.toggle()
-  inputRef.value?.focus()
+  buttonRef.value?.focus()
 }
 
 const focused = ref(false)
@@ -51,7 +50,8 @@ const focused = ref(false)
 <template>
   <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
     <button
-      class="flex h-9 items-center gap-1 rounded-md border border-border bg-transparent px-1 text-left text-sm shadow-sm focus-visible:z-10 focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
+      ref="buttonRef"
+      class="flex h-9 items-center gap-1 rounded-md border border-border bg-transparent px-1 text-left text-sm shadow-sm focus:z-10 focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
       v-bind="$attrs"
       :disabled
     >
@@ -61,7 +61,7 @@ const focused = ref(false)
             {{ label }}
           </span>
         </slot>
-        <span v-else class="text-default-400">
+        <span v-else class="text-mute">
           {{ placeholder }}
         </span>
       </div>
