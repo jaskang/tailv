@@ -35,7 +35,7 @@ const props = defineProps({
       {
         outline: `border shadow-sm focus:ring-2 focus:ring-offset-2 ${
           {
-            none: 'border-[--t-border] text-default hover:bg-default-soft focus:ring-primary',
+            none: 'border-border text-default hover:bg-default-soft focus:ring-primary',
             primary: 'border-primary text-primary hover:bg-primary-soft focus:ring-primary',
             success: 'border-success text-success hover:bg-success-soft focus:ring-success',
             warning: 'border-warning text-warning hover:bg-warning-soft focus:ring-warning',

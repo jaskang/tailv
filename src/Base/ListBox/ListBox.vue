@@ -1,6 +1,5 @@
 <script setup lang="ts" generic="T extends IListItemNormal">
 import { type PropType } from 'vue'
-
 import ListBoxItem from './ListBoxItem.vue'
 import { type IListItem, type IListItemGroup, type IListItemNormal, isDividerItem, isGroupItem } from './utils'
 
