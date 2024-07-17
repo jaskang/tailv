@@ -26,7 +26,7 @@ const showCode = ref(false)
 </script>
 <template>
   <div
-    class="demo-wrapper bg-background divide-border ring-border flex flex-col divide-y rounded ring-1 [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
+    class="demo-wrapper divide-border ring-border flex flex-col divide-y rounded ring-1 [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
     :style="{
       '--tw-prose-pre-bg': 'transparent',
     }"
@@ -46,7 +46,7 @@ const showCode = ref(false)
         </Switch>
       </div>
     </div>
-    <div class="not-prose p-4">
+    <div class="not-prose bg-gray-50 p-4">
       <slot />
     </div>
 

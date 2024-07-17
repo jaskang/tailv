@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { Button, RadioGroup, Radio, RadioCard, Switch } from '@/index'
+import { ref } from 'vue'
 import { InboxIcon } from '@heroicons/vue/24/outline'
-
-import type { ColorAlias } from '@/utils/theme'
+import { Button, RadioCard, RadioGroup, Switch } from '@/index'
 defineOptions({ name: 'ButtonBooth' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
@@ -18,7 +16,7 @@ const a = ref('')
 
 const variant = ref<'outline' | 'solid' | 'soft' | 'text' | 'link'>('outline')
 const size = ref<'sm' | 'md' | 'lg'>('md')
-const color = ref<'primary' | 'success' | 'warning' | 'danger' | 'none'>('none')
+const color = ref<'primary' | 'success' | 'warning' | 'danger' | 'default'>('default')
 const pill = ref(false)
 const square = ref(false)
 const block = ref(false)
@@ -54,7 +52,7 @@ const disabled = ref(false)
           <RadioCard value="success">success</RadioCard>
           <RadioCard value="warning">warning</RadioCard>
           <RadioCard value="danger">danger</RadioCard>
-          <RadioCard value="none">none</RadioCard>
+          <RadioCard value="default">default</RadioCard>
         </RadioGroup>
       </div>
 

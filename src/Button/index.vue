@@ -7,7 +7,7 @@ const emit = defineEmits<{ click: [Event] }>()
 const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
   variant: {
-    type: String as PropType<'solid' | 'soft' | 'outline' | 'text' | 'link' | 'pure'>,
+    type: String as PropType<'solid' | 'soft' | 'outline' | 'text' | 'pure'>,
     default: 'outline',
   },
   size: {
@@ -15,8 +15,8 @@ const props = defineProps({
     default: 'md',
   },
   color: {
-    type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'none'>,
-    default: 'none',
+    type: String as PropType<'primary' | 'success' | 'warning' | 'danger' | 'default'>,
+    default: 'default',
   },
   pill: Boolean,
   square: Boolean,
@@ -28,53 +28,44 @@ const props = defineProps({
 <template>
   <button
     type="button"
-    class="inline-flex appearance-none items-center justify-center whitespace-nowrap text-center font-medium outline-none transition-all focus:z-10 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+    class="focus-visible:outline-primary inline-flex cursor-pointer appearance-none items-center justify-center whitespace-nowrap text-center font-medium outline-none transition-all focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
       {
-        outline: `border shadow-sm focus:ring-2 focus:ring-offset-2 ${
+        outline: `ring-1 shadow-sm ${
           {
-            none: 'border-border text-default-text bg-default hover:bg-default-hover focus:ring-primary',
-            primary: 'border-primary text-primary hover:bg-primary-subtle focus:ring-primary',
-            success: 'border-success text-success hover:bg-success-subtle focus:ring-success',
-            warning: 'border-warning text-warning hover:bg-warning-subtle focus:ring-warning',
-            danger: 'border-danger text-danger hover:bg-danger-subtle focus:ring-danger',
+            default: 'ring-border text-default-subtle-text bg-default-subtle hover:bg-default-subtle-hover',
+            primary: 'hover:bg-primary-subtle text-primary bg-default-subtle ring-primary',
+            success: 'hover:bg-success-subtle ring-success bg-default-subtle text-success',
+            warning: 'hover:bg-warning-subtle ring-warning bg-default-subtle text-warning',
+            danger: 'hover:bg-danger-subtle ring-danger bg-default-subtle text-danger',
           }[props.color]
         }`,
-        solid: `shadow-sm focus:ring-2 focus:ring-offset-2 ${
+        solid: `shadow-sm ${
           {
-            none: 'text-default-text hover:bg-default-hover focus:ring-primary bg-default',
-            primary: 'bg-primary text-primary-text hover:bg-primary-hover focus:ring-primary',
-            success: 'bg-success text-success-text hover:bg-success-hover focus:ring-success',
-            warning: 'bg-warning text-warning-text hover:bg-warning-hover focus:ring-warning',
-            danger: 'bg-danger text-danger-text hover:bg-danger-hover focus:ring-danger',
+            default: 'text-default-text bg-default hover:bg-default-hover',
+            primary: 'text-primary-text bg-primary hover:bg-primary-hover',
+            success: 'text-success-text bg-success hover:bg-success-hover',
+            warning: 'text-warning-text bg-warning hover:bg-warning-hover',
+            danger: 'text-danger-text bg-danger hover:bg-danger-hover',
           }[props.color]
         }`,
-        soft: `focus:ring-2 focus:ring-offset-2 ${
+        soft: `shadow-sm ${
           {
-            none: 'bg-default text-default-text hover:bg-default-hover focus:ring-primary',
-            primary: 'bg-primary-subtle text-primary hover:bg-primary-subtle-hover focus:ring-primary',
-            success: 'bg-success-subtle text-success hover:bg-success-subtle-hover focus:ring-success',
-            warning: 'bg-warning-subtle text-warning hover:bg-warning-subtle-hover focus:ring-warning',
-            danger: 'bg-danger-subtle text-danger hover:bg-danger-subtle-hover focus:ring-danger',
-          }[props.color]
+            default: 'bg-default-subtle hover:bg-default-subtle-hover text-default',
+            primary: 'bg-primary-subtle hover:bg-primary-subtle-hover text-primary',
+            success: 'bg-success-subtle hover:bg-success-subtle-hover text-success',
+            warning: 'bg-warning-subtle hover:bg-warning-subtle-hover text-warning',
+            danger: 'bg-danger-subtle hover:bg-danger-subtle-hover text-danger',
+          }[props.color || 'primary']
         }`,
-        text: `focus:ring-2 focus:ring-offset-2 ${
+        text: `${
           {
-            none: 'text-default-text hover:bg-default-hover focus:ring-primary',
-            primary: 'text-primary hover:bg-primary-subtle focus:ring-primary-subtle-hover',
-            success: 'text-success hover:bg-success-subtle focus:ring-success-subtle-hover',
-            warning: 'text-warning hover:bg-warning-subtle focus:ring-warning-subtle-hover',
-            danger: 'text-danger hover:bg-danger-subtle focus:ring-danger-subtle-hover',
-          }[props.color]
-        }`,
-        link: `underline-offset-4 hover:underline ${
-          {
-            none: 'text-default-text',
-            primary: 'text-primary',
-            success: 'text-success',
-            warning: 'text-warning',
-            danger: 'text-danger',
-          }[props.color]
+            default: 'hover:bg-default-subtle-hover text-default',
+            primary: 'hover:bg-primary-subtle-hover text-primary',
+            success: 'hover:bg-success-subtle-hover text-success',
+            warning: 'hover:bg-warning-subtle-hover text-warning',
+            danger: 'hover:bg-danger-subtle-hover text-danger',
+          }[props.color || 'primary']
         }`,
         pure: '',
       }[props.variant],

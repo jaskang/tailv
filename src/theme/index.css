@@ -1,12 +1,15 @@
 /* @import './colors.css'; */
 
 @theme {
-  --color-border: var(--color-slate-200);
+  --color-border: var(--color-slate-300);
   --color-background: var(--color-slate-50);
 
-  --color-default: var(--color-white);
-  --color-default-hover: var(--color-slate-50);
-  --color-default-text: var(--color-slate-700);
+  --color-default: var(--color-slate-900);
+  --color-default-hover: var(--color-slate-800);
+  --color-default-text: var(--color-white);
+  --color-default-subtle: var(--color-white);
+  --color-default-subtle-hover: var(--color-slate-50);
+  --color-default-subtle-text: var(--color-slate-700);
 
   --color-primary: var(--color-indigo-600);
   --color-primary-hover: var(--color-indigo-500);

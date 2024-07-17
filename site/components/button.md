@@ -234,10 +234,10 @@ import { PaperAirplaneIcon, InboxIcon, TrashIcon, ArchiveBoxIcon, CircleStackIco
         <Button>button</Button>
       </Tooltip>
       <Tooltip content="Comment">
-        <Button>button</Button>
+        <Button variant="soft" color="primary">button</Button>
       </Tooltip>
       <Tooltip content="Star">
-        <Button>button</Button>
+        <Button variant="soft" color="success">button</Button>
       </Tooltip>
       <Tooltip content="Heart">
         <Button>button</Button>
