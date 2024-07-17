@@ -92,14 +92,14 @@ const createAliasColorVars = (alias: string, source: string) => {
   }
 }
 
-const createAliasColorDarkVars = (alias: string, source: string, addons: Record<string, string> = {}) => {
-  if (alias === 'default') {
-    return create950ColorVars(alias, source, { ...addons, 950: 'var(--white)' }, (scope, k) => {
-      const target = 900 - k
-      return `var(--${scope}-${target === 850 ? 900 : target === 0 ? 50 : target})`
-    })
-  } else {
-    return create950ColorVars(alias, source, addons, (scope, k) => `var(--${scope}-${1000 - k})`)
+const createAliasColorDarkVars = (alias: string, source: string) => {
+  return {
+    [`--t-${alias}`]: `var(--color-${source}-500)`,
+    [`--t-${alias}-hover`]: `var(--color-${source}-600)`,
+    [`--t-${alias}-fg`]: `var(--color-white)`,
+    [`--t-${alias}-soft`]: `var(--color-${source}-950)`,
+    [`--t-${alias}-soft-hover`]: `var(--color-${source}-900)`,
+    [`--t-${alias}-soft-fg`]: `var(--color-${source}-400)`,
   }
 }
 
@@ -170,6 +170,11 @@ const varPlugin: Plugin = {
         [`--t-default-soft`]: `var(--color-${defaultColor}-950)`,
         [`--t-default-soft-hover`]: `var(--color-${defaultColor}-900)`,
         [`--t-default-soft-fg`]: `var(--color-${defaultColor}-200)`,
+
+        ...createAliasColorDarkVars('primary', primaryColor),
+        ...createAliasColorDarkVars('success', successColor),
+        ...createAliasColorDarkVars('warning', warningColor),
+        ...createAliasColorDarkVars('danger', dangerColor),
       },
 
       body: {
