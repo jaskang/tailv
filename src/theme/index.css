@@ -1,0 +1,42 @@
+/* @import './colors.css'; */
+
+@theme {
+  --color-border: var(--color-slate-200);
+  --color-background: var(--color-slate-50);
+
+  --color-default: var(--color-white);
+  --color-default-hover: var(--color-slate-50);
+  --color-default-text: var(--color-slate-700);
+
+  --color-primary: var(--color-indigo-600);
+  --color-primary-hover: var(--color-indigo-500);
+  --color-primary-text: var(--color-white);
+  --color-primary-subtle: var(--color-indigo-100);
+  --color-primary-subtle-hover: var(--color-indigo-200);
+  --color-primary-subtle-text: var(--color-indigo-600);
+
+  --color-success: var(--color-green-600);
+  --color-success-hover: var(--color-green-500);
+  --color-success-text: var(--color-white);
+  --color-success-subtle: var(--color-green-100);
+  --color-success-subtle-hover: var(--color-green-200);
+  --color-success-subtle-text: var(--color-green-600);
+
+  --color-warning: var(--color-amber-600);
+  --color-warning-hover: var(--color-amber-500);
+  --color-warning-text: var(--color-white);
+  --color-warning-subtle: var(--color-amber-100);
+  --color-warning-subtle-hover: var(--color-amber-200);
+  --color-warning-subtle-text: var(--color-amber-600);
+
+  --color-danger: var(--color-red-600);
+  --color-danger-hover: var(--color-red-500);
+  --color-danger-text: var(--color-white);
+  --color-danger-subtle: var(--color-red-100);
+  --color-danger-subtle-hover: var(--color-red-200);
+  --color-danger-subtle-text: var(--color-red-600);
+}
+
+.dark {
+  --color-background: var(--color-slate-950);
+}

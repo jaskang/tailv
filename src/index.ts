@@ -1,51 +1,50 @@
 import type { Plugin } from 'vue'
-
 import { default as Button } from './Button/index.vue'
-import { Checkbox, CheckboxGroup } from './Checkbox'
-import { Radio, RadioGroup, RadioCard } from './Radio'
-import { Badge } from './Badge'
-import { Anchor, useAnchor, type IAnchorItem } from './Anchor'
-import { Avatar } from './Avatar'
-import { ScrollArea } from './ScrollArea'
 import { default as Input } from './Input/index.vue'
+import { default as Popover } from './Popover/index.vue'
+import { default as SpaceCompact } from './Space/SpaceCompact.vue'
+import { default as Tooltip } from './Tooltip/index.vue'
+import { Anchor, type IAnchorItem, useAnchor } from './Anchor'
+import { Avatar } from './Avatar'
+import { Badge } from './Badge'
+import { ListBox } from './Base'
+import { Checkbox, CheckboxGroup } from './Checkbox'
+import { Menu, type MenuItemDividerType, type MenuItemRawType, type MenuItemTitleType, type MenuItemType } from './Menu'
+import { Radio, RadioCard, RadioGroup } from './Radio'
+import { ScrollArea } from './ScrollArea'
 import { Select, type SelectOption } from './Select'
 import { Switch } from './Switch'
-import { Menu, type MenuItemRawType, type MenuItemType, type MenuItemTitleType, type MenuItemDividerType } from './Menu'
-import { default as Popover } from './Popover/index.vue'
-import { default as Tooltip } from './Tooltip/index.vue'
-import { default as SpaceCompact } from './Space/SpaceCompact.vue'
 import { Tabs } from './Tab'
 import { Textarea } from './Textarea'
-import { ListBox } from './Base'
 
 export {
+  Anchor,
+  Avatar,
+  Badge,
   // components
   Button,
   Checkbox,
   CheckboxGroup,
+  Input,
+  // base
+  ListBox,
+  Menu,
+  Popover,
   Radio,
   RadioCard,
   RadioGroup,
-  Anchor,
-  Avatar,
   ScrollArea,
-  Input,
   Select,
-  Switch,
-  Menu,
-  Popover,
-  Tooltip,
-  Badge,
   SpaceCompact,
+  Switch,
   Tabs,
   Textarea,
-  // base
-  ListBox,
+  Tooltip,
   // use
   useAnchor,
 }
 
-export type { IAnchorItem, MenuItemRawType, MenuItemType, MenuItemTitleType, MenuItemDividerType, SelectOption }
+export type { IAnchorItem, MenuItemDividerType, MenuItemRawType, MenuItemTitleType, MenuItemType, SelectOption }
 export const plugin: Plugin = {
   install(app, ...options) {
     app.component(Button.name!, Button)

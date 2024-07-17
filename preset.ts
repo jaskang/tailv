@@ -83,9 +83,9 @@ function create950ColorVars(
 
 const createAliasColorVars = (alias: string, source: string) => {
   return {
-    [`--t-${alias}`]: `var(--color-${source}-500)`,
-    [`--t-${alias}-hover`]: `var(--color-${source}-600)`,
-    [`--t-${alias}-fg`]: `var(--color-white)`,
+    [`--t-${alias}-base`]: `var(--color-${source}-500)`,
+    [`--t-${alias}-base-hover`]: `var(--color-${source}-600)`,
+    [`--t-${alias}-base-fg`]: `var(--color-white)`,
     [`--t-${alias}-soft`]: `var(--color-${source}-50)`,
     [`--t-${alias}-soft-hover`]: `var(--color-${source}-100)`,
     [`--t-${alias}-soft-fg`]: `var(--color-${source}-500)`,

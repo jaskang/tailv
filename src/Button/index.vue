@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { computed, type PropType } from 'vue'
-
+import { type PropType } from 'vue'
 import Loading from '../Icon/Loading.vue'
-import { cvar, type ColorAlias } from '@/utils/theme'
 
 defineOptions({ name: 'Button' })
 const emit = defineEmits<{ click: [Event] }>()
@@ -35,43 +33,43 @@ const props = defineProps({
       {
         outline: `border shadow-sm focus:ring-2 focus:ring-offset-2 ${
           {
-            none: 'border-border text-default hover:bg-default-soft focus:ring-primary',
-            primary: 'border-primary text-primary hover:bg-primary-soft focus:ring-primary',
-            success: 'border-success text-success hover:bg-success-soft focus:ring-success',
-            warning: 'border-warning text-warning hover:bg-warning-soft focus:ring-warning',
-            danger: 'border-danger text-danger hover:bg-danger-soft focus:ring-danger',
+            none: 'border-border text-default-text bg-default hover:bg-default-hover focus:ring-primary',
+            primary: 'border-primary text-primary hover:bg-primary-subtle focus:ring-primary',
+            success: 'border-success text-success hover:bg-success-subtle focus:ring-success',
+            warning: 'border-warning text-warning hover:bg-warning-subtle focus:ring-warning',
+            danger: 'border-danger text-danger hover:bg-danger-subtle focus:ring-danger',
           }[props.color]
         }`,
         solid: `shadow-sm focus:ring-2 focus:ring-offset-2 ${
           {
-            none: 'bg-default text-default-fg hover:bg-default-hover focus:ring-primary',
-            primary: 'bg-primary text-primary-fg hover:bg-primary-hover focus:ring-primary',
-            success: 'bg-success text-success-fg hover:bg-success-hover focus:ring-success',
-            warning: 'bg-warning text-warning-fg hover:bg-warning-hover focus:ring-warning',
-            danger: 'bg-danger text-danger-fg hover:bg-danger-hover focus:ring-danger',
+            none: 'text-default-text hover:bg-default-hover focus:ring-primary bg-default',
+            primary: 'bg-primary text-primary-text hover:bg-primary-hover focus:ring-primary',
+            success: 'bg-success text-success-text hover:bg-success-hover focus:ring-success',
+            warning: 'bg-warning text-warning-text hover:bg-warning-hover focus:ring-warning',
+            danger: 'bg-danger text-danger-text hover:bg-danger-hover focus:ring-danger',
           }[props.color]
         }`,
         soft: `focus:ring-2 focus:ring-offset-2 ${
           {
-            none: 'bg-default-soft text-default hover:bg-default-soft-hover focus:ring-primary',
-            primary: 'bg-primary-soft text-primary hover:bg-primary-soft-hover focus:ring-primary',
-            success: 'bg-success-soft text-success hover:bg-success-soft-hover focus:ring-success',
-            warning: 'bg-warning-soft text-warning hover:bg-warning-soft-hover focus:ring-warning',
-            danger: 'bg-danger-soft text-danger hover:bg-danger-soft-hover focus:ring-danger',
+            none: 'bg-default text-default-text hover:bg-default-hover focus:ring-primary',
+            primary: 'bg-primary-subtle text-primary hover:bg-primary-subtle-hover focus:ring-primary',
+            success: 'bg-success-subtle text-success hover:bg-success-subtle-hover focus:ring-success',
+            warning: 'bg-warning-subtle text-warning hover:bg-warning-subtle-hover focus:ring-warning',
+            danger: 'bg-danger-subtle text-danger hover:bg-danger-subtle-hover focus:ring-danger',
           }[props.color]
         }`,
         text: `focus:ring-2 focus:ring-offset-2 ${
           {
-            none: 'text-default hover:bg-default-soft focus:ring-primary',
-            primary: 'text-primary hover:bg-primary-soft focus:ring-primary-soft-hover',
-            success: 'text-success hover:bg-success-soft focus:ring-success-soft-hover',
-            warning: 'text-warning hover:bg-warning-soft focus:ring-warning-soft-hover',
-            danger: 'text-danger hover:bg-danger-soft focus:ring-danger-soft-hover',
+            none: 'text-default-text hover:bg-default-hover focus:ring-primary',
+            primary: 'text-primary hover:bg-primary-subtle focus:ring-primary-subtle-hover',
+            success: 'text-success hover:bg-success-subtle focus:ring-success-subtle-hover',
+            warning: 'text-warning hover:bg-warning-subtle focus:ring-warning-subtle-hover',
+            danger: 'text-danger hover:bg-danger-subtle focus:ring-danger-subtle-hover',
           }[props.color]
         }`,
         link: `underline-offset-4 hover:underline ${
           {
-            none: 'text-default',
+            none: 'text-default-text',
             primary: 'text-primary',
             success: 'text-success',
             warning: 'text-warning',
@@ -81,9 +79,9 @@ const props = defineProps({
         pure: '',
       }[props.variant],
       {
-        sm: `h-7 text-xs ${props.square ? 'w-7' : 'px-2 py-1'}`,
-        md: `h-9 text-sm ${props.square ? 'w-9' : 'px-3 py-1.5'}`,
-        lg: `h-11 text-base ${props.square ? 'w-11' : 'px-4 py-2'}`,
+        sm: `h-7 text-xs ${props.square ? 'w-7' : 'py-1 px-2'}`,
+        md: `h-9 text-sm ${props.square ? 'w-9' : 'py-1.5 px-3'}`,
+        lg: `h-11 text-base ${props.square ? 'w-11' : 'py-2 px-4'}`,
       }[props.size],
       props.pill ? 'rounded-full' : 'rounded-md',
       !props.square && props.block ? 'w-full' : '',

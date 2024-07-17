@@ -1,2 +1,6 @@
-@import './tailwind.css';
+@import 'tailwindcss';
+/* @import 'tailwindcss/preflight' layer(base);
+@import 'tailwindcss/utilities' layer(utilities);
+@import './tailwind.css'; */
+@import '../../../../src/style.css';
 @import './code.css';
