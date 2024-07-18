@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
+import { computed, type PropType, ref } from 'vue'
 
 defineOptions({ name: 'Tabs' })
 const emit = defineEmits<{ change: [key: string] }>()
@@ -44,7 +44,7 @@ const clickHandler = (key: string) => {
     </button>
   </nav> -->
   <nav
-    class="grid h-9 w-full items-center justify-center rounded-lg bg-default-soft-hover p-1 text-default-soft-fg"
+    class="bg-default-subtle-hover text-default-subtle-text grid h-9 w-full items-center justify-center rounded-lg p-1"
     :style="{ gridTemplateColumns: `repeat(${keys.length}, minmax(0, 1fr))` }"
   >
     <button
@@ -53,7 +53,7 @@ const clickHandler = (key: string) => {
       type="button"
       role="tab"
       :data-active="currentKey === item.key"
-      class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 data-[active=true]:bg-background data-[active=true]:text-default data-[active=true]:shadow dark:data-[active=true]:bg-default"
+      class="data-[active=true]:bg-default-subtle data-[active=true]:text-default dark:data-[active=true]:bg-default-subtle relative inline-flex items-center justify-center whitespace-nowrap rounded-md py-1 px-3 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 data-[active=true]:shadow"
       tabindex="-1"
       @click="clickHandler(item.key)"
     >

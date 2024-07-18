@@ -51,7 +51,7 @@ const focused = ref(false)
   <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
     <button
       ref="buttonRef"
-      class="border-border focus:ring-primary flex h-9 items-center gap-1 rounded-md border bg-transparent px-1 text-left text-sm shadow-sm focus:z-10 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      class="border-input focus:border-primary focus:ring-primary flex h-9 items-center gap-1 rounded-md border bg-white px-1 text-left text-sm shadow-sm focus:z-10 focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
       v-bind="$attrs"
       :disabled
     >

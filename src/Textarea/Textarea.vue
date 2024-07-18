@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
+import { type PropType } from 'vue'
 import { useModelValue } from '../use/useModelValue'
-
-import { BUILTIN_CLASS } from '@/utils/theme'
 defineOptions({ name: 'Textarea' })
 const emit = defineEmits<{
   'update:value': [string]
@@ -53,15 +51,15 @@ const onInput = (e: Event) => {
 </script>
 <template>
   <textarea
-    class="relative flex w-full appearance-none overflow-y-scroll rounded-md border bg-transparent py-1.5 pl-3 pr-0 text-sm leading-[1.375rem] scrollbar placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
+    class="scrollbar relative flex w-full appearance-none overflow-y-scroll rounded-md border bg-transparent py-1.5 pr-0 pl-3 text-sm leading-[1.375rem] placeholder:text-gray-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
-      noBorder ? 'border-transparent bg-inherit dark:border-transparent' : 'focus:ring-2 focus:ring-offset-2',
+      noBorder ? 'border-transparent bg-inherit dark:border-transparent' : 'focus:ring-1',
       !noBorder &&
         {
-          normal: 'ring-primary',
-          danger: 'border-danger ring-danger',
-          success: 'border-success ring-success',
-          warning: 'border-warning ring-warning',
+          normal: 'border-input focus:border-primary focus:ring-primary',
+          success: 'border-success focus:border-success focus:ring-success',
+          warning: 'border-warning focus:border-warning focus:ring-warning',
+          danger: 'border-danger focus:border-danger focus:ring-danger',
         }[props.status],
       // noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
     ]"

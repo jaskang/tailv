@@ -23,7 +23,7 @@ const elRef = ref<HTMLElement>()
       'group inline-flex h-9 items-center justify-start whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50',
       current === item.key
         ? 'bg-primary text-white'
-        : 'text-default hover:bg-default-soft-hover hover:text-primary-hover',
+        : 'text-default hover:bg-default-subtle-hover hover:text-primary-hover',
       item.disabled ? '' : 'cursor-pointer',
     ]"
   >
