@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type PropType } from 'vue'
+import { type PropType } from 'vue'
 
 defineOptions({ name: 'Badge' })
 const emit = defineEmits<{ click: [any] }>()
@@ -24,7 +24,7 @@ const props = defineProps({
   <div class="relative inline-flex shrink-0">
     <slot />
     <span
-      class="font-regular text-small absolute right-[5%] top-[5%] z-10 box-border flex max-h-5 min-h-3 min-w-3 origin-center -translate-y-1/2 translate-x-1/2 scale-100 select-none flex-wrap place-content-center items-center justify-center whitespace-nowrap rounded-full border-2 border-background px-1 subpixel-antialiased opacity-100 duration-300 data-[invisible=true]:scale-0 data-[invisible=true]:opacity-0"
+      class="font-regular text-small border-background absolute top-[5%] right-[5%] z-10 box-border flex max-h-5 min-h-3 min-w-3 origin-center -translate-y-1/2 translate-x-1/2 scale-100 flex-wrap place-content-center items-center justify-center whitespace-nowrap rounded-full border-2 px-1 subpixel-antialiased opacity-100 duration-300 select-none data-[invisible=true]:scale-0 data-[invisible=true]:opacity-0"
       :class="[
         {
           default: 'bg-default text-default-fg',

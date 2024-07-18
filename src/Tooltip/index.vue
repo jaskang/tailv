@@ -12,7 +12,7 @@ defineProps({
   <Popper trigger="hover" :placement="placement">
     <slot />
     <template #content>
-      <div class="z-tooltip rounded bg-white shadow-md ring-1 ring-border ring-opacity-50">
+      <div class="z-tooltip ring-base-border ring-opacity-50 rounded bg-white ring-1 shadow-md">
         <slot name="content">
           <div class="px-2">
             {{ content }}

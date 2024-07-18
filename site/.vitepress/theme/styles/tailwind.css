@@ -1,3 +1,6 @@
+@import 'tailwindcss/preflight' layer(base);
+@import 'tailwindcss/utilities' layer(utilities);
+
 @theme {
   /* Defaults */
   --default-transition-duration: 150ms;

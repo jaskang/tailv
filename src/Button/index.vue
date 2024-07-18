@@ -31,13 +31,13 @@ const props = defineProps({
     class="focus-visible:outline-primary inline-flex cursor-pointer appearance-none items-center justify-center whitespace-nowrap text-center font-medium outline-none transition-all focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
     :class="[
       {
-        outline: `ring-1 shadow-sm ${
+        outline: `border shadow-sm ${
           {
-            default: 'ring-border text-default-subtle-text bg-default-subtle hover:bg-default-subtle-hover',
-            primary: 'hover:bg-primary-subtle text-primary bg-default-subtle ring-primary',
-            success: 'hover:bg-success-subtle ring-success bg-default-subtle text-success',
-            warning: 'hover:bg-warning-subtle ring-warning bg-default-subtle text-warning',
-            danger: 'hover:bg-danger-subtle ring-danger bg-default-subtle text-danger',
+            default: 'border-input text-default-subtle-text bg-default-subtle hover:bg-default-subtle-hover',
+            primary: 'hover:bg-primary-subtle border-primary bg-default-subtle text-primary',
+            success: 'hover:bg-success-subtle border-success bg-default-subtle text-success',
+            warning: 'hover:bg-warning-subtle border-warning bg-default-subtle text-warning',
+            danger: 'hover:bg-danger-subtle border-danger bg-default-subtle text-danger',
           }[props.color]
         }`,
         solid: `shadow-sm ${

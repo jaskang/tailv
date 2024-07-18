@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { type PropType, computed } from 'vue'
-import type { IAnchorItem } from './types'
+import { computed, type PropType } from 'vue'
 import { IndentList } from '../Base'
+import type { IAnchorItem } from './types'
 import { getAnchorOffset } from './utils'
 
 defineOptions({ name: 'Anchor' })
@@ -25,7 +25,7 @@ const inkOffset = computed(() => {
 </script>
 <template>
   <div class="relative">
-    <IndentList class="border-l-2 text-sm leading-6" :items :current>
+    <IndentList class="border-base-border border-l-2 text-sm leading-6" :items :current>
       <template #item="{ item, deep }">
         <div
           class="group cursor-pointer py-1"
@@ -33,7 +33,7 @@ const inkOffset = computed(() => {
           @click="selectHandler(item, deep)"
         >
           <a
-            class="block text-sm no-underline hover:text-foreground-dark data-[active=true]:font-medium data-[active=true]:text-primary"
+            class="hover:text-foreground-dark data-[active=true]:text-primary block text-sm no-underline data-[active=true]:font-medium"
             :data-active="current === item.id"
             :href="item.link"
             :target="item.target"
@@ -45,7 +45,7 @@ const inkOffset = computed(() => {
     </IndentList>
     <div
       v-if="inkOffset"
-      class="absolute left-0 top-1 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm bg-primary transition-all"
+      class="bg-primary absolute top-1 left-0 h-5 w-[2px] translate-y-[--ink-offset] rounded-sm transition-all"
       :style="{ '--ink-offset': inkOffset }"
     ></div>
   </div>

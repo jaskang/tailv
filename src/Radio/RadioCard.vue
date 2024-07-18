@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useModelValue } from '@/use/useModelValue'
 import { computed, inject } from 'vue'
+import { useModelValue } from '@/use/useModelValue'
 import { RadioGroupInjectKey } from './types'
 
 defineOptions({ name: 'RadioCard' })
@@ -31,7 +31,7 @@ const clickHandler = () => {
 <template>
   <button
     :data-checked="checked"
-    class="group relative m-0 flex cursor-pointer appearance-none items-center justify-center border-2 text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[checked=true]:border-primary [:where(&)]:rounded-md [button:where(&)]:px-3 [button:where(&)]:py-1.5"
+    class="group focus-visible:ring-primary border-input data-[checked=true]:border-primary relative m-0 flex cursor-pointer appearance-none items-center justify-center border-2 text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-offset-2 [:where(&)]:rounded-md [button:where(&)]:py-1.5 [button:where(&)]:px-3"
     :class="[disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer']"
     @click="clickHandler"
   >

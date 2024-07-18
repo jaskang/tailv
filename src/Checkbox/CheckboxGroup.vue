@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type PropType, provide } from 'vue'
-import { CheckboxGroupInjectKey } from './types'
 import { useModelValue } from '@/use/useModelValue'
+import { CheckboxGroupInjectKey } from './types'
 
 defineOptions({ name: 'CheckboxGroup' })
 const props = defineProps({ name: String, value: Array as PropType<unknown[]>, disabled: Boolean })
