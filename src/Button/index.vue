@@ -33,11 +33,11 @@ const props = defineProps({
       {
         outline: `border shadow-sm ${
           {
-            default: 'border-input text-accent-text-contrast bg-background hover:bg-accent-bg-subtle',
-            primary: 'hover:bg-primary-bg-subtle border-primary-solid bg-background text-primary-text',
-            success: 'hover:bg-success-bg-subtle border-success-solid bg-background text-success-text',
-            warning: 'hover:bg-warning-bg-subtle border-warning-solid bg-background text-warning-text',
-            danger: 'hover:bg-danger-bg-subtle border-danger-solid bg-background text-danger-text',
+            default: 'border-accent-border text-accent-text-contrast bg-background hover:bg-accent-subtle-hover',
+            primary: 'hover:bg-primary-subtle-hover border-primary-border bg-background text-primary-text',
+            success: 'hover:bg-success-subtle-hover border-success-border bg-background text-success-text',
+            warning: 'hover:bg-warning-subtle-hover border-warning-border bg-background text-warning-text',
+            danger: 'hover:bg-danger-subtle-hover border-danger-border bg-background text-danger-text',
           }[props.color]
         }`,
         solid: `shadow-sm ${
@@ -51,16 +51,16 @@ const props = defineProps({
         }`,
         soft: `shadow-sm ${
           {
-            default: 'bg-default-subtle hover:bg-default-subtle-hover text-default-subtle-text',
-            primary: 'bg-primary-bg-subtle hover:bg-primary-bg-hover text-primary-text',
-            success: 'bg-success-bg-subtle hover:bg-success-bg-hover text-success-text',
-            warning: 'bg-warning-bg-subtle hover:bg-warning-bg-hover text-warning-text',
-            danger: 'bg-danger-bg-subtle hover:bg-danger-bg-hover text-danger-text',
+            default: 'bg-accent-subtle hover:bg-accent-subtle-hover text-accent-subtle-text',
+            primary: 'bg-primary-subtle hover:bg-primary-subtle-hover text-primary-text',
+            success: 'bg-success-subtle hover:bg-success-subtle-hover text-success-text',
+            warning: 'bg-warning-subtle hover:bg-warning-subtle-hover text-warning-text',
+            danger: 'bg-danger-subtle hover:bg-danger-subtle-hover text-danger-text',
           }[props.color || 'primary']
         }`,
         text: `${
           {
-            default: 'hover:bg-default-bg-subtle text-default-text',
+            default: 'hover:bg-accent-bg-subtle text-accent-text',
             primary: 'hover:bg-primary-bg-subtle text-primary-text',
             success: 'hover:bg-success-bg-subtle text-success-text',
             warning: 'hover:bg-warning-bg-subtle text-warning-text',
