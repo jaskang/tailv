@@ -46,7 +46,7 @@ const showCode = ref(false)
         </Switch>
       </div>
     </div>
-    <div class="not-prose bg-background p-4">
+    <div class="not-prose p-4">
       <slot />
     </div>
 

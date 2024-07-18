@@ -33,16 +33,16 @@ const props = defineProps({
       {
         outline: `border shadow-sm ${
           {
-            default: 'border-accent-border text-accent-text-contrast bg-background hover:bg-accent-subtle-hover',
-            primary: 'hover:bg-primary-subtle-hover border-primary-border bg-background text-primary-text',
-            success: 'hover:bg-success-subtle-hover border-success-border bg-background text-success-text',
-            warning: 'hover:bg-warning-subtle-hover border-warning-border bg-background text-warning-text',
-            danger: 'hover:bg-danger-subtle-hover border-danger-border bg-background text-danger-text',
+            default: 'border-accent-border text-foreground bg-background hover:bg-background-hover',
+            primary: 'hover:bg-primary-subtle border-primary-border bg-background text-primary-text',
+            success: 'hover:bg-success-subtle border-success-border bg-background text-success-text',
+            warning: 'hover:bg-warning-subtle border-warning-border bg-background text-warning-text',
+            danger: 'hover:bg-danger-subtle border-danger-border bg-background text-danger-text',
           }[props.color]
         }`,
         solid: `shadow-sm ${
           {
-            default: 'bg-accent-text-contrast hover:bg-accent-text text-white',
+            default: 'bg-reverse-background hover:bg-reverse-background-hover text-reverse-foreground',
             primary: 'bg-primary-solid hover:bg-primary-solid-hover text-white',
             success: 'bg-success-solid hover:bg-success-solid-hover text-white',
             warning: 'bg-warning-solid hover:bg-warning-solid-hover text-white',
@@ -51,7 +51,7 @@ const props = defineProps({
         }`,
         soft: `shadow-sm ${
           {
-            default: 'bg-accent-subtle hover:bg-accent-subtle-hover text-accent-subtle-text',
+            default: 'bg-slate-900 text-slate-400 hover:bg-slate-800',
             primary: 'bg-primary-subtle hover:bg-primary-subtle-hover text-primary-text',
             success: 'bg-success-subtle hover:bg-success-subtle-hover text-success-text',
             warning: 'bg-warning-subtle hover:bg-warning-subtle-hover text-warning-text',
