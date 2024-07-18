@@ -4,7 +4,8 @@
   --color-base-border: var(--color-slate-200);
   --color-input: var(--color-slate-300);
   --color-mute: var(--color-slate-400);
-  --color-background: var(--color-slate-50);
+  --color-accent: var(--color-slate-100);
+  --color-background: var(--color-white);
 
   --color-default: var(--color-slate-950);
   --color-default-hover: var(--color-slate-900);

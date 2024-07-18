@@ -28,7 +28,7 @@ watch(
     class="relative flex shrink-0 items-center justify-center overflow-hidden"
     :class="[
       props.rounded ? 'rounded-full' : 'rounded-md',
-      props.border ? 'border border-2' : '',
+      props.border ? 'border-base-border border border-2' : '',
       {
         sm: `h-7 w-7`,
         md: `h-9 w-9`,
@@ -59,7 +59,7 @@ watch(
     <img
       v-else
       :src="src"
-      class="block h-full w-full select-none object-cover"
+      class="block h-full w-full object-cover select-none"
       :class="[props.rounded ? 'rounded-full' : 'rounded', props.border ? 'border-2 border-transparent' : '']"
       alt="avatar"
       @error="showFallback = true"

@@ -2,3 +2,10 @@
 /* @import './tailwind.css'; */
 @import '../../../../src/style.css';
 @import './code.css';
+
+html {
+  background-color: var(--color-white);
+}
+html.dark {
+  background-color: var(--color-slate-950);
+}
