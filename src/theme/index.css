@@ -75,5 +75,5 @@
 
 .dark {
   --color-base-border: var(--color-gray-700);
-  --color-background: var(--color-gray-12);
+  --color-background: var(--color-gray-1);
 }
