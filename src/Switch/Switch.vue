@@ -25,7 +25,7 @@ const clickHandler = () => {
 <template>
   <button
     type="button"
-    class="bg-accent peer data-[checked=true]:bg-primary ring-input-border inline-flex h-6 w-11 shrink-0 cursor-pointer appearance-none items-center rounded-full border-2 border-transparent ring-1 transition-all disabled:cursor-not-allowed disabled:opacity-50"
+    class="data-[checked=true]:bg-primary focus-visible:ring-primary bg-input-accent relative inline-flex h-6 w-11 rounded-full border-2 border-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
     :data-checked="!!value"
     :disabled="disabled"
     :name="name"
@@ -33,7 +33,7 @@ const clickHandler = () => {
   >
     <span
       :data-checked="!!value"
-      class="bg-background pointer-events-none block h-5 w-5 rounded-full ring-0 shadow-lg transition-all data-[checked=true]:translate-x-5 data-[state=unchecked]:translate-x-0"
+      class="bg-background pointer-events-none relative inline-block h-5 w-5 transform rounded-full ring-0 shadow transition duration-200 ease-in-out data-[checked=true]:translate-x-5 data-[state=unchecked]:translate-x-0"
     ></span>
   </button>
 </template>

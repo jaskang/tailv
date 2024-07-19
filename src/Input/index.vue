@@ -43,7 +43,7 @@ defineExpose({
 </script>
 <template>
   <div
-    class="bg-background flex h-9 items-center overflow-hidden rounded-md border focus-within:z-10 focus-within:ring-1 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-60"
+    class="bg-input-background flex h-9 items-center overflow-hidden rounded-md border shadow-sm focus-within:z-10 focus-within:ring-1 data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-60"
     :class="[
       {
         normal: 'border-input-border focus-within:border-primary focus-within:ring-primary',
@@ -61,7 +61,7 @@ defineExpose({
     </span>
     <input
       ref="inputRef"
-      class="placeholder:text-mute-fg block w-full flex-1 cursor-[inherit] border-0 bg-transparent py-1.5 px-3 text-sm leading-[1.375rem] outline-none focus:outline-none"
+      class="placeholder:text-mute-foreground block w-full flex-1 cursor-[inherit] border-0 bg-transparent py-1.5 px-3 text-sm leading-[1.375rem] outline-none focus:outline-none"
       :class="{
         'pl-1': prefix || slots.prefix,
         'pr-1': suffix || slots.suffix,

@@ -61,7 +61,7 @@ const focused = ref(false)
             {{ label }}
           </span>
         </slot>
-        <span v-else class="text-mute">
+        <span v-else class="text-mute-foreground">
           {{ placeholder }}
         </span>
       </div>

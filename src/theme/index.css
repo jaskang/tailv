@@ -18,7 +18,8 @@
 
   --color-input-border: var(--color-gray-300);
   --color-input-background: var(--color-white);
-  --color-input-background-hover: var(--color-gray-50);
+  --color-input-background-hover: var(--color-gray-100);
+  --color-input-accent: var(--color-gray-200);
   /* --color-light-background: var(--color-white);
   --color-light-background-hover: var(--color-gray-50);
   --color-light-foreground: var(--color-gray-700); */
@@ -75,11 +76,12 @@
   --color-foreground: var(--color-gray-300);
 
   --color-mute: var(--color-gray-400);
-  --color-mute-foreground: var(--color-gray-400);
+  --color-mute-foreground: var(--color-gray-600);
 
   --color-input-border: var(--color-gray-700);
   --color-input-background: var(--color-gray-900);
   --color-input-background-hover: var(--color-gray-800);
+  --color-input-accent: var(--color-gray-700);
 
   --color-primary: var(--color-indigo-500);
   --color-primary-subtle: var(--color-indigo-950);
