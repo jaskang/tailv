@@ -56,7 +56,7 @@ const onInput = (e: Event) => {
       noBorder ? 'border-transparent bg-inherit dark:border-transparent' : 'focus:ring-1',
       !noBorder &&
         {
-          normal: 'border-input focus:border-primary focus:ring-primary',
+          normal: 'border-input-border focus:border-primary focus:ring-primary',
           success: 'border-success focus:border-success focus:ring-success',
           warning: 'border-warning focus:border-warning focus:ring-warning',
           danger: 'border-danger focus:border-danger focus:ring-danger',

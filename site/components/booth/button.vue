@@ -14,9 +14,9 @@ const a = ref('')
 //   loading: Boolean,
 //   disabled: Boolean,
 
-const variant = ref<'outline' | 'solid' | 'soft' | 'text' | 'link'>('outline')
+const variant = ref<'solid' | 'outline' | 'soft' | 'text' | 'default'>('solid')
 const size = ref<'sm' | 'md' | 'lg'>('md')
-const color = ref<'primary' | 'success' | 'warning' | 'danger' | 'default'>('default')
+const color = ref<'primary' | 'success' | 'warning' | 'danger'>('primary')
 const pill = ref(false)
 const square = ref(false)
 const block = ref(false)
@@ -24,19 +24,28 @@ const loading = ref(false)
 const disabled = ref(false)
 </script>
 <template>
-  <div class="flex w-full flex-col rounded-md border md:flex-row-reverse">
-    <div class="flex-1 space-y-4 border-l p-6">
+  <div class="border-line flex w-full flex-col rounded-md border md:flex-row-reverse">
+    <div class="border-line flex-1 space-y-4 p-6 md:border-l">
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">variant:</div>
         <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2">
-          <RadioCard value="outline" class="col-span-1">outline</RadioCard>
           <RadioCard value="solid" class="col-span-1">solid</RadioCard>
+          <RadioCard value="outline" class="col-span-1">outline</RadioCard>
           <RadioCard value="soft" class="col-span-1">soft</RadioCard>
           <RadioCard value="text" class="col-span-1">text</RadioCard>
-          <RadioCard value="link" class="col-span-1">link</RadioCard>
+          <RadioCard value="default" class="col-span-1">default</RadioCard>
         </RadioGroup>
       </div>
 
+      <div class="flex items-start">
+        <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">color:</div>
+        <RadioGroup v-model:value="color" class="grid flex-1 grid-cols-3 gap-2">
+          <RadioCard value="primary">primary</RadioCard>
+          <RadioCard value="success">success</RadioCard>
+          <RadioCard value="warning">warning</RadioCard>
+          <RadioCard value="danger">danger</RadioCard>
+        </RadioGroup>
+      </div>
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">size:</div>
         <RadioGroup v-model:value="size" class="grid flex-1 grid-cols-3 gap-2">
@@ -45,17 +54,6 @@ const disabled = ref(false)
           <RadioCard value="lg">lg</RadioCard>
         </RadioGroup>
       </div>
-      <div class="flex items-start">
-        <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">color:</div>
-        <RadioGroup v-model:value="color" class="grid flex-1 grid-cols-3 gap-2">
-          <RadioCard value="primary">primary</RadioCard>
-          <RadioCard value="success">success</RadioCard>
-          <RadioCard value="warning">warning</RadioCard>
-          <RadioCard value="danger">danger</RadioCard>
-          <RadioCard value="default">default</RadioCard>
-        </RadioGroup>
-      </div>
-
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">pill:</div>
         <div class="grid flex-1 grid-cols-3 py-1.5">

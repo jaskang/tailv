@@ -51,7 +51,7 @@ const focused = ref(false)
   <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
     <button
       ref="buttonRef"
-      class="border-input focus:border-primary focus:ring-primary flex h-9 items-center gap-1 rounded-md border bg-white px-1 text-left text-sm shadow-sm focus:z-10 focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+      class="border-input-border focus:border-primary focus:ring-primary bg-input-background flex h-9 cursor-pointer items-center gap-1 rounded-md border px-1 text-left text-sm shadow-sm outline-none focus:z-10 focus:ring-1 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
       v-bind="$attrs"
       :disabled
     >
@@ -68,7 +68,7 @@ const focused = ref(false)
       <ChevronDownIcon class="mr-1 h-4 w-4 shrink-0"></ChevronDownIcon>
     </button>
     <template #content>
-      <ScrollArea class="ring-base-border flex max-h-80 flex-col rounded text-sm ring-1 shadow-md" mode="y">
+      <ScrollArea class="ring-line flex max-h-80 flex-col rounded text-sm ring-1 shadow-md" mode="y">
         <ListBox :items="options" index-key="value" style="" @click="selectHandler">
           <template #item="{ item }">
             <div class="flex min-h-9 w-full items-center gap-1">

@@ -1,5 +1,7 @@
 
-
+@theme{
+  
+}
 @layer theme {
   :root {
     --default-transition-duration: .15s;

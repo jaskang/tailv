@@ -10,7 +10,7 @@ const props = defineProps({
   <Popper trigger="click" placement="bottom" ref="popperRef">
     <slot />
     <template #content>
-      <div class="z-popover ring-base-border ring-opacity-50 rounded-md bg-white ring-1 shadow-lg">
+      <div class="z-popover ring-line ring-opacity-50 rounded-md bg-white ring-1 shadow-lg">
         <slot name="content">
           <div class="px-2"></div>
         </slot>

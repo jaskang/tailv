@@ -17,7 +17,7 @@ defineProps({
   <div
     :data-disabled="item.disabled"
     @click="emit('click', item)"
-    class="hover:bg-accent relative w-full cursor-pointer items-center overflow-hidden rounded text-sm transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+    class="hover:bg-input-background-hover relative w-full cursor-pointer items-center overflow-hidden rounded text-sm transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
   >
     <slot :item="item">
       <div class="flex w-full items-center py-1.5 px-2">

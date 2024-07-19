@@ -28,7 +28,7 @@ watch(
     class="relative flex shrink-0 items-center justify-center overflow-hidden"
     :class="[
       props.rounded ? 'rounded-full' : 'rounded-md',
-      props.border ? 'border-base-border border border-2' : '',
+      props.border ? 'border-line border border-2' : '',
       {
         sm: `h-7 w-7`,
         md: `h-9 w-9`,

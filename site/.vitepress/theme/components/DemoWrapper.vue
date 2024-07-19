@@ -26,12 +26,12 @@ const showCode = ref(false)
 </script>
 <template>
   <div
-    class="demo-wrapper ring-base-border divide-base-border flex flex-col divide-y rounded ring-1 shadow [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
+    class="demo-wrapper ring-line divide-line flex flex-col divide-y rounded ring-1 shadow [&+.demo-wrapper]:mt-8 [&>:first-child]:rounded-t [&>:last-child]:rounded-b"
     :style="{
       '--tw-prose-pre-bg': 'transparent',
     }"
   >
-    <div class="demo-wrapper-svg-bg flex items-center justify-end py-1 px-2">
+    <div class="flex items-center justify-end py-1 px-2">
       <div class="flex-1">
         <svg viewBox="0 0 32 32" class="h-4 w-4">
           <path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"></path>
@@ -46,7 +46,7 @@ const showCode = ref(false)
         </Switch>
       </div>
     </div>
-    <div class="not-prose p-4">
+    <div class="not-prose demo-wrapper-svg-bg p-4">
       <slot />
     </div>
 
@@ -65,13 +65,13 @@ const showCode = ref(false)
 .demo-wrapper-svg-bg {
   background-position: 8px 8px;
   background-size: 16px 16px;
-  background-color: var(--color-default-50);
+  background-color: var(--color-white);
   /* default-100 */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 .dark .demo-wrapper-svg-bg {
-  background-color: var(--color-default-900);
+  background-color: var(--color-gray-950);
   /* default-100 */
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%231e293b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.25)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 </style>

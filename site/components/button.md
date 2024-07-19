@@ -20,41 +20,30 @@ import { Button } from 'tailv'
 
 Button 组件支持五种风格，通过 `variant` 属性设置。
 
-分别为: `outline` | `solid` | `soft` | `text` | `link` , 默认为 `outline`
+分别为: `solid` | `outline` | `soft` | `text` | `default`, 默认为 `default`
 
 ```vue demo title=默认样式
 <template>
   <div class="flex flex-wrap gap-2">
     <Button>default</Button>
     <Button variant="solid">primary</Button>
+    <Button variant="outline">primary</Button>
     <Button variant="soft">soft</Button>
     <Button variant="text">text</Button>
-    <Button variant="link">link</Button>
   </div>
 </template>
 ```
 
 ## 颜色
 
-样式 `primary`| `soft`| `text` 支持自定义颜色
+样式 `primary` | `success` | `warning` | `danger`, 四种颜色可选
 
 ```vue demo title=默认样式
 <template>
   <div class="flex flex-col gap-4">
     <div class="flex items-center gap-4">
-      <span class="w-12 shrink-0 text-right font-medium">outline:</span>
+      <span class="w-16 shrink-0 text-right font-medium">solid:</span>
       <div class="grid flex-1 grid-cols-5 gap-4">
-        <Button variant="outline">button</Button>
-        <Button variant="outline" color="primary">primary</Button>
-        <Button variant="outline" color="success">success</Button>
-        <Button variant="outline" color="warning">warning</Button>
-        <Button variant="outline" color="danger">danger</Button>
-      </div>
-    </div>
-    <div class="flex items-center gap-4">
-      <span class="w-12 shrink-0 text-right font-medium">solid:</span>
-      <div class="grid flex-1 grid-cols-5 gap-4">
-        <Button variant="solid">button</Button>
         <Button variant="solid" color="primary">primary</Button>
         <Button variant="solid" color="success">success</Button>
         <Button variant="solid" color="warning">warning</Button>
@@ -62,9 +51,17 @@ Button 组件支持五种风格，通过 `variant` 属性设置。
       </div>
     </div>
     <div class="flex items-center gap-4">
-      <span class="w-12 text-right font-medium">soft:</span>
+      <span class="w-16 shrink-0 text-right font-medium">outline:</span>
       <div class="grid flex-1 grid-cols-5 gap-4">
-        <Button variant="soft">button</Button>
+        <Button variant="outline" color="primary">primary</Button>
+        <Button variant="outline" color="success">success</Button>
+        <Button variant="outline" color="warning">warning</Button>
+        <Button variant="outline" color="danger">danger</Button>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="w-16 text-right font-medium">soft:</span>
+      <div class="grid flex-1 grid-cols-5 gap-4">
         <Button variant="soft" color="primary">primary</Button>
         <Button variant="soft" color="success">success</Button>
         <Button variant="soft" color="warning">warning</Button>
@@ -72,23 +69,12 @@ Button 组件支持五种风格，通过 `variant` 属性设置。
       </div>
     </div>
     <div class="flex items-center gap-4">
-      <span class="w-12 text-right font-medium">text:</span>
+      <span class="w-16 text-right font-medium">text:</span>
       <div class="grid flex-1 grid-cols-5 gap-4">
-        <Button variant="text">button</Button>
         <Button variant="text" color="primary">primary</Button>
         <Button variant="text" color="success">success</Button>
         <Button variant="text" color="warning">warning</Button>
         <Button variant="text" color="danger">danger</Button>
-      </div>
-    </div>
-    <div class="flex items-center gap-4">
-      <span class="w-12 text-right font-medium">link:</span>
-      <div class="grid flex-1 grid-cols-5 gap-4">
-        <Button variant="link">button</Button>
-        <Button variant="link" color="primary">primary</Button>
-        <Button variant="link" color="success">success</Button>
-        <Button variant="link" color="warning">warning</Button>
-        <Button variant="link" color="danger">danger</Button>
       </div>
     </div>
   </div>
@@ -114,19 +100,6 @@ Button 组件支持五种风格，通过 `variant` 属性设置。
     <Button variant="text" color="success">success</Button>
     <Button variant="text" color="warning">warning</Button>
     <Button variant="text" color="danger">danger</Button>
-  </div>
-</template>
-```
-
-### link Variant
-
-```vue demo
-<template>
-  <div class="flex flex-wrap gap-2">
-    <Button variant="link">button</Button>
-    <Button variant="link" color="success">success</Button>
-    <Button variant="link" color="warning">warning</Button>
-    <Button variant="link" color="danger">danger</Button>
   </div>
 </template>
 ```
