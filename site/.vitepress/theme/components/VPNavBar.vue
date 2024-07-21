@@ -1,25 +1,15 @@
 <script lang="ts" setup>
-import { useDataByTheme } from '../utils'
-import { useNavbar } from '../composables/navbar'
 import { Switch } from 'tailv'
-import { computed } from 'vue'
+import { useNavbar } from '../composables/navbar'
+import { useDataByTheme } from '../utils'
 
 const { current, items } = useNavbar()
 const { isDark } = useDataByTheme()
-
-const dark = computed({
-  get() {
-    return isDark.value
-  },
-  set(value) {
-    isDark.value = value
-  },
-})
 </script>
 
 <template>
-  <div class="sticky top-0 z-40 w-full flex-none border-b bg-white/95 dark:bg-default-950/95 lg:z-50">
-    <div class="mx-auto max-w-8xl">
+  <div class="dark:bg-default-950/95 sticky top-0 z-40 w-full flex-none border-b bg-white/95 lg:z-50">
+    <div class="max-w-8xl mx-auto">
       <div class="mx-4 py-4 lg:mx-0 lg:px-8">
         <div class="relative flex items-center">
           <a class="mr-3 flex-none overflow-hidden font-semibold md:w-auto" href="/">
@@ -38,7 +28,7 @@ const dark = computed({
             </div>
 
             <div class="ml-6 flex items-center border-l pl-6">
-              <Switch v-model:value="dark">
+              <Switch v-model:value="isDark">
                 <template #open>
                   <svg viewBox="0 0 24 24" fill="none" class="h-3 w-3">
                     <path
@@ -79,7 +69,7 @@ const dark = computed({
 
               <a
                 href="https://github.com/tailwindlabs/tailwindcss"
-                class="ml-6 block text-default-400 hover:text-default-500"
+                class="text-default-400 hover:text-default-500 ml-6 block"
               >
                 <span class="sr-only">Tailwind CSS on GitHub</span>
                 <svg viewBox="0 0 16 16" class="h-5 w-5" fill="currentColor" aria-hidden="true">

@@ -10,7 +10,7 @@ const { title, headers, current } = useOutline()
 </script>
 <template>
   <div>
-    <h5 class="mb-4 text-sm font-semibold leading-6 text-default-900">{{ title }}</h5>
+    <h5 class="text-default-900 mb-4 text-sm font-semibold leading-6">{{ title }}</h5>
     <Anchor :current="current" :items="headers" :offset="135"></Anchor>
   </div>
 </template>
