@@ -28,8 +28,7 @@
     "docs:dev": "vitepress dev site",
     "docs:build": "pnpm build && vitepress build site",
     "docs:preview": "vitepress preview site",
-    "preset:dev": "tsup --watch",
-    "build": "vite build && tsup",
+    "build": "vite build",
     "change": "pnpm changeset",
     "release": "pnpm build && changeset publish"
   },
