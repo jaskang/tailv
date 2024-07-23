@@ -18,17 +18,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🥡 Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false
+      - name: 💼 Enable Corepack
+        run: corepack enable
 
       - name: 🟢 Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: 'pnpm'
 
       - name: 🔆 Setup Config
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
@@ -43,8 +40,8 @@ jobs:
         with:
           version: pnpm changeset version
           publish: pnpm release
-          commit: "chore(release): version packages 🦋 [skip ci]"
-          title: "chore(release): version packages 🦋"
+          commit: 'chore(release): version packages 🦋 [skip ci]'
+          title: 'chore(release): version packages 🦋'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
