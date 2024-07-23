@@ -20,9 +20,6 @@
   --color-input-background: var(--color-white);
   --color-input-background-hover: var(--color-gray-100);
   --color-input-accent: var(--color-gray-200);
-  /* --color-light-background: var(--color-white);
-  --color-light-background-hover: var(--color-gray-50);
-  --color-light-foreground: var(--color-gray-700); */
 
   --color-primary: var(--color-indigo-500);
   --color-primary-subtle: var(--color-indigo-50);
@@ -69,6 +66,20 @@
   color: var(--color-foreground);
 }
 
+/* Track */
+::scrollbar-track {
+  background: red;
+}
+
+/* Handle */
+::scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::scrollbar-thumb:hover {
+  background: #555;
+}
 .dark {
   --color-line: var(--color-gray-700);
 

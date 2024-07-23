@@ -61,7 +61,6 @@ const onInput = (e: Event) => {
           warning: 'border-warning focus:border-warning focus:ring-warning',
           danger: 'border-danger focus:border-danger focus:ring-danger',
         }[props.status],
-      // noBorder ? 'focus:ring-0' : BUILTIN_CLASS.focusRing,
     ]"
     :style="{
       resize: resize,

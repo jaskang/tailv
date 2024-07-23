@@ -2,7 +2,7 @@
 import { type PropType } from 'vue'
 import Loading from '../Icon/Loading.vue'
 
-defineOptions({ name: 'Button' })
+defineOptions({ name: 'TButton' })
 const emit = defineEmits<{ click: [Event] }>()
 const slots = defineSlots<{ default?(_: {}): any; icon?(_: {}): any }>()
 const props = defineProps({
@@ -32,37 +32,37 @@ const props = defineProps({
     :class="[
       {
         pure: '',
-        default: `border-input-border text-foreground bg-input-background hover:bg-input-background-hover border shadow-sm`,
+        default: `border-input-border text-foreground bg-input-background enabled:hover:bg-input-background-hover border shadow-sm`,
         outline: `border-2 shadow-sm ${
           {
-            primary: 'hover:bg-primary-subtle border-primary-border bg-background text-primary-text',
-            success: 'hover:bg-success-subtle border-success-border bg-background text-success-text',
-            warning: 'hover:bg-warning-subtle border-warning-border bg-background text-warning-text',
-            danger: 'hover:bg-danger-subtle border-danger-border bg-background text-danger-text',
+            primary: 'enabled:hover:bg-primary-subtle border-primary-border bg-background text-primary-text',
+            success: 'enabled:hover:bg-success-subtle border-success-border bg-background text-success-text',
+            warning: 'enabled:hover:bg-warning-subtle border-warning-border bg-background text-warning-text',
+            danger: 'enabled:hover:bg-danger-subtle border-danger-border bg-background text-danger-text',
           }[props.color]
         }`,
         solid: `shadow-sm ${
           {
-            primary: 'bg-primary-solid hover:bg-primary-solid-hover text-white',
-            success: 'bg-success-solid hover:bg-success-solid-hover text-white',
-            warning: 'bg-warning-solid hover:bg-warning-solid-hover text-white',
-            danger: 'bg-danger-solid hover:bg-danger-solid-hover text-white',
+            primary: 'bg-primary-solid enabled:hover:bg-primary-solid-hover text-white',
+            success: 'bg-success-solid enabled:hover:bg-success-solid-hover text-white',
+            warning: 'bg-warning-solid enabled:hover:bg-warning-solid-hover text-white',
+            danger: 'bg-danger-solid enabled:hover:bg-danger-solid-hover text-white',
           }[props.color]
         }`,
         soft: `shadow-sm ${
           {
-            primary: 'bg-primary-subtle hover:bg-primary-subtle-hover text-primary-text',
-            success: 'bg-success-subtle hover:bg-success-subtle-hover text-success-text',
-            warning: 'bg-warning-subtle hover:bg-warning-subtle-hover text-warning-text',
-            danger: 'bg-danger-subtle hover:bg-danger-subtle-hover text-danger-text',
+            primary: 'bg-primary-subtle enabled:hover:bg-primary-subtle-hover text-primary-text',
+            success: 'bg-success-subtle enabled:hover:bg-success-subtle-hover text-success-text',
+            warning: 'bg-warning-subtle enabled:hover:bg-warning-subtle-hover text-warning-text',
+            danger: 'bg-danger-subtle enabled:hover:bg-danger-subtle-hover text-danger-text',
           }[props.color || 'primary']
         }`,
         text: `${
           {
-            primary: 'hover:bg-primary-bg-subtle text-primary-text',
-            success: 'hover:bg-success-bg-subtle text-success-text',
-            warning: 'hover:bg-warning-bg-subtle text-warning-text',
-            danger: 'hover:bg-danger-bg-subtle text-danger-text',
+            primary: 'enabled:hover:bg-primary-bg-subtle text-primary-text',
+            success: 'enabled:hover:bg-success-bg-subtle text-success-text',
+            warning: 'enabled:hover:bg-warning-bg-subtle text-warning-text',
+            danger: 'enabled:hover:bg-danger-bg-subtle text-danger-text',
           }[props.color || 'primary']
         }`,
       }[props.variant],
@@ -78,7 +78,7 @@ const props = defineProps({
     @click="emit('click', $event)"
   >
     <template v-if="loading">
-      <Loading class="h-[1em] w-[1em] animate-spin" :class="$slots.default && !square ? 'mr-1.5' : ''" />
+      <Loading class="h-[1em] w-[1em] animate-spin" :class="slots.default && !square ? 'mr-1.5' : ''" />
     </template>
 
     <slot v-if="!square || !loading"></slot>

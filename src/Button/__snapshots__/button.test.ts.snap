@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > default 1`] = `
+"<button type="button" class="focus-visible:outline-primary-solid inline-flex cursor-pointer appearance-none items-center justify-center whitespace-nowrap text-center font-medium outline-none transition-[color,background-color,text-decoration-color] focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-input-border text-foreground bg-input-background enabled:hover:bg-input-background-hover border shadow-sm h-9 text-sm py-1.5 px-3 rounded-md">
+  <!--v-if-->Hello world
+</button>"
+`;

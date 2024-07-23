@@ -2,7 +2,6 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import jsx from '@vitejs/plugin-vue-jsx'
-import VueDevTools from 'vite-plugin-vue-devtools'
 import { defineConfigWithTheme } from 'vitepress'
 import { demo } from './plugins/demo'
 import type { ThemeConfig } from './theme/theme'
@@ -67,7 +66,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   vite: {
-    plugins: [jsx(), demo(), tailwindcss(), VueDevTools()],
+    plugins: [jsx(), demo(), tailwindcss()],
     resolve: {
       alias: [
         { find: /^tailv$/, replacement: resolve(__dirname, '../../src') },
