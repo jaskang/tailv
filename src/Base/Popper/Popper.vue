@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import { ref, type PropType, computed, toRef, Teleport } from 'vue'
-import ElSlot from './ElSlot.vue'
-import {
-  usePopper,
-  type PopperTrigger,
-  type PopperVirtualElement,
-  type PopperPlacement,
-  type PopperSizeMode,
-} from './core'
+import { computed, type PropType, ref, toRef } from 'vue'
 import { useModelValue } from '../../use/useModelValue'
+import { type PopperPlacement, type PopperTrigger, type PopperVirtualElement, usePopper } from './core'
+import ElSlot from './ElSlot.vue'
 
 defineOptions({ name: 'Popper' })
 

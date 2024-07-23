@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.2",
+    "@headlessui/vue": "^1.7.22",
     "@vueuse/core": "^10.11.0",
     "kotl": "^2.1.4",
     "mitt": "^3.0.1"

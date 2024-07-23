@@ -5,27 +5,26 @@ import {
   onMounted,
   provide,
   reactive,
-  ref,
-  toValue,
   type Ref,
+  ref,
   type StyleValue,
+  toValue,
 } from 'vue'
+import { onClickOutside, useEventListener } from '@vueuse/core'
 import {
-  useFloating,
-  offset,
-  flip,
-  shift,
-  size,
-  type VirtualElement,
   arrow,
   autoUpdate,
-  type Placement,
-  type SizeOptions,
+  flip,
   type Middleware,
+  offset,
+  type Placement,
+  shift,
+  size,
+  useFloating,
+  type VirtualElement,
 } from '@floating-ui/vue'
 import { uid } from 'kotl'
-import { onClickOutside, useEventListener } from '@vueuse/core'
-import { useHoverListener, useFocusListener, useClickListener } from '../../use/useTargetEvent'
+import { useClickListener, useFocusListener, useHoverListener } from '../../use/useTargetEvent'
 
 export type PopperPlacement = Placement
 export type PopperVirtualElement = VirtualElement

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ComponentPublicInstance, Fragment, type VNode, cloneVNode, defineComponent, mergeProps } from 'vue'
+import { cloneVNode, type ComponentPublicInstance, defineComponent, Fragment, mergeProps, type VNode } from 'vue'
 
 defineOptions({ name: 'ElSlot' })
 const emits = defineEmits<{ load: [el: Element] }>()
