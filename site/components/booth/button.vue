@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { InboxIcon } from '@heroicons/vue/24/outline'
-import { Button, RadioCard, RadioGroup, Switch } from '@/index'
+import { Button, Radio, RadioGroup, Switch } from '@/index'
 defineOptions({ name: 'ButtonBooth' })
 const emit = defineEmits<{ click: [any] }>()
 const slots = defineSlots<{ default?(_: {}): any }>()
 
-const a = ref('')
 // a = 'sadf'
 // pill: Boolean,
 //   square: Boolean,
@@ -28,30 +27,30 @@ const disabled = ref(false)
     <div class="border-line flex-1 space-y-4 p-6 md:border-l">
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">variant:</div>
-        <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2">
-          <RadioCard value="solid" class="col-span-1">solid</RadioCard>
-          <RadioCard value="outline" class="col-span-1">outline</RadioCard>
-          <RadioCard value="soft" class="col-span-1">soft</RadioCard>
-          <RadioCard value="text" class="col-span-1">text</RadioCard>
-          <RadioCard value="default" class="col-span-1">default</RadioCard>
+        <RadioGroup v-model:value="variant" class="grid flex-1 grid-cols-3 gap-2 py-2">
+          <Radio value="solid" class="col-span-1">solid</Radio>
+          <Radio value="outline" class="col-span-1">outline</Radio>
+          <Radio value="soft" class="col-span-1">soft</Radio>
+          <Radio value="text" class="col-span-1">text</Radio>
+          <Radio value="default" class="col-span-1">default</Radio>
         </RadioGroup>
       </div>
 
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">color:</div>
-        <RadioGroup v-model:value="color" class="grid flex-1 grid-cols-3 gap-2">
-          <RadioCard value="primary">primary</RadioCard>
-          <RadioCard value="success">success</RadioCard>
-          <RadioCard value="warning">warning</RadioCard>
-          <RadioCard value="danger">danger</RadioCard>
+        <RadioGroup v-model:value="color" class="grid flex-1 grid-cols-3 gap-2 py-2">
+          <Radio value="primary">primary</Radio>
+          <Radio value="success">success</Radio>
+          <Radio value="warning">warning</Radio>
+          <Radio value="danger">danger</Radio>
         </RadioGroup>
       </div>
       <div class="flex items-start">
         <div class="mr-4 w-16 py-2 text-right text-sm font-semibold">size:</div>
-        <RadioGroup v-model:value="size" class="grid flex-1 grid-cols-3 gap-2">
-          <RadioCard value="sm">sm</RadioCard>
-          <RadioCard value="md">md</RadioCard>
-          <RadioCard value="lg">lg</RadioCard>
+        <RadioGroup v-model:value="size" class="grid flex-1 grid-cols-3 gap-2 py-2">
+          <Radio value="sm">sm</Radio>
+          <Radio value="md">md</Radio>
+          <Radio value="lg">lg</Radio>
         </RadioGroup>
       </div>
       <div class="flex items-start">

@@ -34,7 +34,7 @@ const clickHandler = () => {
     @click="clickHandler"
   >
     <button
-      class="focus-visible:ring-primary focus-visible:ring-offset-background relative block cursor-[inherit] appearance-none overflow-hidden rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      class="focus-visible:ring-primary focus-visible:ring-offset-background relative block cursor-[inherit] appearance-none overflow-hidden rounded-full transition-[background-color] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
     >
       <span
         class="block h-4 w-4 rounded-full border transition-all"
