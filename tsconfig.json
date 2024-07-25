@@ -2,6 +2,7 @@
   "extends": "@jaskang/tsconfig/vue",
   "compilerOptions": {
     "baseUrl": ".",
+    "jsxImportSource": "vue",
     "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"]

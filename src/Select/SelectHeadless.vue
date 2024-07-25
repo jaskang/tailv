@@ -1,0 +1,129 @@
+<script setup lang="ts">
+import { computed, type PropType } from 'vue'
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/vue'
+import CheckIcon from '../Icon/CheckIcon.vue'
+import ChevronDownIcon from '../Icon/ChevronDownIcon.vue'
+import { useModelValue } from '../use/useModelValue'
+import type { SelectOption } from './types'
+
+defineOptions({ name: 'TSelect', inheritAttrs: false })
+
+const emit = defineEmits(['update:value', 'change', 'select'])
+defineSlots<{ label?: (props: { selected: boolean; item?: SelectOption; placeholder?: string }) => any }>()
+const props = defineProps({
+  value: [String, Number],
+  options: {
+    type: Array as PropType<SelectOption[]>,
+    default: () => [],
+  },
+  size: String as PropType<'sm' | 'md' | 'lg'>,
+  disabled: Boolean,
+  clearable: Boolean,
+  placeholder: String,
+})
+
+const [modelValue, setModelValue] = useModelValue(props, {
+  onChange: (v: string) => {
+    emit('change', v)
+  },
+})
+
+const currItem = computed(() => props.options.find(item => item.value === modelValue.value))
+
+const label = computed(() => currItem.value?.label || '')
+</script>
+<template>
+  <Listbox :model-value="modelValue" @update:model-value="setModelValue">
+    <div class="relative" v-bind="$attrs">
+      <ListboxButton
+        class="border-input-border focus:border-primary focus:ring-primary bg-input-background flex h-9 w-full cursor-pointer items-center gap-1 rounded-md border px-1 text-left text-sm shadow-sm outline-none focus:z-10 focus:ring-1 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+        :disabled
+      >
+        <div class="flex flex-1 items-center overflow-hidden text-nowrap pl-2">
+          <slot v-if="label" name="label" :selected="false" :item="currItem" :placeholder>
+            <span class="w-full text-ellipsis text-nowrap">
+              {{ label }}
+            </span>
+          </slot>
+          <span v-else class="text-mute-foreground">
+            {{ placeholder }}
+          </span>
+        </div>
+        <ChevronDownIcon class="mr-1 h-4 w-4 shrink-0"></ChevronDownIcon>
+      </ListboxButton>
+      <transition
+        leave-active-class="transition duration-100 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <ListboxOptions
+          class="bg-background ring-line absolute z-[999] mt-1 max-h-60 w-full space-y-1 overflow-auto rounded-md p-1 text-sm ring-1 shadow-lg focus:outline-none"
+        >
+          <ListboxOption
+            v-for="item in options"
+            :key="item.value"
+            :value="item.value"
+            :disabled="item.disabled"
+            as="template"
+            v-slot="{ active, selected, disabled }"
+          >
+            <div
+              class="relative flex min-h-9 w-full cursor-pointer items-center gap-1 overflow-hidden rounded transition-colors"
+              :class="[disabled ? 'pointer-events-none opacity-50' : '', active ? 'bg-input-background-hover' : '']"
+            >
+              <div class="flex flex-1 items-center overflow-hidden text-nowrap pl-2">
+                <slot name="label" :selected="selected" :item="item">
+                  <span class="w-full text-ellipsis text-nowrap" :class="[selected ? 'font-medium' : '']">
+                    {{ item.label }}
+                  </span>
+                </slot>
+              </div>
+              <CheckIcon v-if="selected" class="mr-2 h-4 w-4 shrink-0" />
+            </div>
+          </ListboxOption>
+        </ListboxOptions>
+      </transition>
+    </div>
+  </Listbox>
+  <!-- <Popover trigger="click" placement="bottom-start" ref="popoverRef" size-mode="min-width" @change="v => (focused = v)">
+    <button
+      ref="buttonRef"
+      class="border-input-border focus:border-primary focus:ring-primary bg-input-background flex h-9 cursor-pointer items-center gap-1 rounded-md border px-1 text-left text-sm shadow-sm outline-none focus:z-10 focus:ring-1 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+      v-bind="$attrs"
+      :disabled
+    >
+      <div class="flex flex-1 items-center overflow-hidden text-nowrap pl-2">
+        <slot v-if="label" name="label" :active="false" :item="currItem" :placeholder>
+          <span class="w-full text-ellipsis text-nowrap">
+            {{ label }}
+          </span>
+        </slot>
+        <span v-else class="text-mute-foreground">
+          {{ placeholder }}
+        </span>
+      </div>
+      <ChevronDownIcon class="mr-1 h-4 w-4 shrink-0"></ChevronDownIcon>
+    </button>
+    <template #content>
+      <ScrollArea class="ring-line flex max-h-80 flex-col rounded text-sm ring-1 shadow-md" mode="y">
+        <ListBox :items="options" index-key="value" style="" @click="selectHandler">
+          <template #item="{ item }">
+            <div class="flex min-h-9 w-full items-center gap-1">
+              <div class="flex flex-1 items-center overflow-hidden text-nowrap pl-2">
+                <slot name="label" :active="item.value === modelValue" :item="item">
+                  <span
+                    class="w-full text-ellipsis text-nowrap"
+                    :class="[item.value === modelValue ? 'font-medium' : '']"
+                  >
+                    {{ item.label }}
+                  </span>
+                </slot>
+              </div>
+              <CheckIcon v-if="item.value === modelValue" class="mr-2 h-4 w-4 shrink-0" />
+            </div>
+          </template>
+        </ListBox>
+      </ScrollArea>
+    </template>
+  </Popover> -->
+</template>
