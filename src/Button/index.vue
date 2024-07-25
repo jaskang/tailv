@@ -77,10 +77,13 @@ const props = defineProps({
     :disabled
     @click="emit('click', $event)"
   >
-    <template v-if="loading">
-      <Loading class="h-[1em] w-[1em] animate-spin" :class="slots.default && !square ? 'mr-1.5' : ''" />
+    <template v-if="loading || slots.icon">
+      <span class="[:where(&_>_*)]:h-[1em] [:where(&_>_*)]:w-[1em]" :class="slots.default && !square ? 'mr-1.5' : ''">
+        <Loading v-if="loading" class="animate-spin" />
+        <slot v-else name="icon" />
+      </span>
     </template>
-
+    <!-- 一比一样式 loading 时不展示内容 -->
     <slot v-if="!square || !loading"></slot>
   </button>
 </template>
