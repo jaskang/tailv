@@ -1,5 +1,5 @@
 export default {
-  printWidth: 120,
+  printWidth: 140,
   tabWidth: 2,
   useTabs: false,
   // 语句末尾分号
@@ -23,7 +23,7 @@ export default {
   // 换行行为
   proseWrap: 'preserve',
   htmlWhitespaceSensitivity: 'css',
-  vueIndentScriptAndStyle: false, 
-  plugins: ['prettier-plugin-tailwindcss'], 
-  tailwindFunctions: ['tw'], 
+  vueIndentScriptAndStyle: false,
+  plugins: ['prettier-plugin-tailwindcss'],
+  tailwindFunctions: ['tw'],
 }

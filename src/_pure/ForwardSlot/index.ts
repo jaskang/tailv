@@ -9,14 +9,20 @@ function renderSlotFragments(children?: VNode[]): VNode[] {
   })
 }
 
-export const Slot = defineComponent({
-  name: 'PrimitiveSlot',
+export const ForwardSlot = defineComponent({
+  name: 'EForwardSlot',
+  props: { single: Boolean },
   inheritAttrs: false,
-  setup(_, { attrs, slots }) {
+  setup(props, { attrs, slots }) {
     return () => {
       if (!slots.default) return null
 
       const children = renderSlotFragments(slots.default())
+
+      // single 模式下只能有一个子节点
+      if (props.single && children.filter(child => child.type !== Comment).length > 1)
+        throw new Error('EForwardSlot can only contain a single child')
+
       const firstNonCommentChildrenIndex = children.findIndex(child => child.type !== Comment)
       if (firstNonCommentChildrenIndex === -1) return children
 
