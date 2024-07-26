@@ -1,5 +1,5 @@
 export default {
-  printWidth: 140,
+  printWidth: 120,
   tabWidth: 2,
   useTabs: false,
   // 语句末尾分号

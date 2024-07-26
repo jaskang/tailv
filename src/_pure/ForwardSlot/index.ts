@@ -1,4 +1,5 @@
 import { cloneVNode, Comment, defineComponent, Fragment, mergeProps, type VNode } from 'vue'
+import { useComponentRef } from '@/use/useComponentRef'
 
 function renderSlotFragments(children?: VNode[]): VNode[] {
   if (!children) return []
@@ -9,12 +10,14 @@ function renderSlotFragments(children?: VNode[]): VNode[] {
   })
 }
 
-export const ForwardSlot = defineComponent({
+export default defineComponent({
   name: 'EForwardSlot',
   props: { single: Boolean },
   inheritAttrs: false,
-  setup(props, { attrs, slots }) {
+  setup(props, { attrs, slots, expose }) {
     return () => {
+      const { componentRef, currentElement } = useComponentRef()
+      expose({ $el: currentElement })
       if (!slots.default) return null
 
       const children = renderSlotFragments(slots.default())
@@ -31,7 +34,7 @@ export const ForwardSlot = defineComponent({
       // remove props ref from being inferred
       delete firstNonCommentChildren.props?.ref
 
-      const mergedProps = firstNonCommentChildren.props ? mergeProps(attrs, firstNonCommentChildren.props) : attrs
+      const mergedProps = mergeProps(attrs, firstNonCommentChildren.props || {}, { ref: componentRef })
       // remove class to prevent duplicated
       if (attrs.class && firstNonCommentChildren.props?.class) delete firstNonCommentChildren.props.class
       const cloned = cloneVNode(firstNonCommentChildren, mergedProps)
